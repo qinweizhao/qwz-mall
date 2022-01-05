@@ -207,7 +207,7 @@
             <!-- 核心模块 -->
             <dependency>
                 <groupId>com.qinweizhao</groupId>
-                <artifactId>mall-common</artifactId>
+                <artifactId>mall-common-core</artifactId>
                 <version>${mall.version}</version>
             </dependency>
 

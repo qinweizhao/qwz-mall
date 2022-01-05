@@ -2,7 +2,6 @@
 
 ~~~
 com.qinweizhao     
-├── mall-ui              // 前端框架 [80]
 ├── mall-gateway         // 网关模块 [8080]
 ├── mall-auth            // 认证中心 [9200]
 ├── mall-api             // 接口模块

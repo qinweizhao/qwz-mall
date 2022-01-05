@@ -11,9 +11,7 @@
 
     <artifactId>mall-common-core</artifactId>
 
-    <description>
-        ruoyi-common-core核心模块
-    </description>
+    <description>核心模块</description>
 
     <dependencies>
 

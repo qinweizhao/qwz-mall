@@ -21,8 +21,6 @@
     <artifactId>mall-common</artifactId>
     <packaging>pom</packaging>
 
-    <description>
-        common通用模块
-    </description>
+    <description>common通用模块</description>
 
 </project>

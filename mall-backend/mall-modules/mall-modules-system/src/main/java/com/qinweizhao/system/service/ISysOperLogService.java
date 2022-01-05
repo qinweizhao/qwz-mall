@@ -1,5 +1,7 @@
 package com.qinweizhao.system.service;
 
+import com.qinweizhao.system.api.domain.SysOperLog;
+
 import java.util.List;
 
 /**

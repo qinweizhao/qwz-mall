@@ -11,16 +11,14 @@
 
     <artifactId>mall-api-system</artifactId>
 
-    <description>
-        ruoyi-api-system系统接口模块
-    </description>
+    <description>系统接口模块</description>
 
     <dependencies>
 
-        <!-- RuoYi Common Core-->
+        <!-- Common Core-->
         <dependency>
             <groupId>com.qinweizhao</groupId>
-            <artifactId>mall-common</artifactId>
+            <artifactId>mall-common-core</artifactId>
         </dependency>
 
     </dependencies>
