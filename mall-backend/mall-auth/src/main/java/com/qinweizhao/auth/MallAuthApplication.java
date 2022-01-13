@@ -8,13 +8,14 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 /**
  * 认证授权中心
  *
- * @author ruoyi
+ * @author qinweizhao
+ * @since 2021-12-22
  */
 @EnableRyFeignClients
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class AuthApplication {
+public class MallAuthApplication {
     public static void main(String[] args) {
-        SpringApplication.run(AuthApplication.class, args);
+        SpringApplication.run(MallAuthApplication.class, args);
         System.out.println("认证授权中心启动成功");
     }
 }
