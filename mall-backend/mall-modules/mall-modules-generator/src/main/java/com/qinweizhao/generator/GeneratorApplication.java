@@ -1,4 +1,4 @@
-package com.qinweizhao.gen;
+package com.qinweizhao.generator;
 
 import com.qinweizhao.common.security.annotation.EnableCustomConfig;
 import com.qinweizhao.common.security.annotation.EnableRyFeignClients;
@@ -15,9 +15,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @EnableCustomSwagger2
 @EnableRyFeignClients
 @SpringBootApplication
-public class GenApplication {
+public class GeneratorApplication {
     public static void main(String[] args) {
-        SpringApplication.run(GenApplication.class, args);
+        SpringApplication.run(GeneratorApplication.class, args);
         System.out.println("(♥◠‿◠)ﾉﾞ  代码生成模块启动成功   ლ(´ڡ`ლ)ﾞ  \n" +
                 " .-------.       ____     __        \n" +
                 " |  _ _   \\      \\   \\   /  /    \n" +

@@ -1,4 +1,4 @@
-package com.qinweizhao.gen.domain;
+package com.qinweizhao.generator.domain;
 
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.web.domain.BaseEntity;

@@ -1,4 +1,4 @@
-package com.qinweizhao.gen.util;
+package com.qinweizhao.generator.util;
 
 import com.qinweizhao.common.core.constant.Constants;
 import org.apache.velocity.app.Velocity;

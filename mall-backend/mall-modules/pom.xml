@@ -11,7 +11,7 @@
     <modules>
         <module>mall-modules-coupon</module>
         <module>mall-modules-file</module>
-        <module>mall-modules-gen</module>
+        <module>mall-modules-generator</module>
         <module>mall-modules-job</module>
         <module>mall-modules-system</module>
     </modules>

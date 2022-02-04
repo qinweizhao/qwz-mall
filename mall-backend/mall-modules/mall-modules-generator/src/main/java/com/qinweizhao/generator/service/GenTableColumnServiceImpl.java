@@ -1,8 +1,8 @@
-package com.qinweizhao.gen.service;
+package com.qinweizhao.generator.service;
 
 import com.qinweizhao.common.core.text.Convert;
-import com.qinweizhao.gen.domain.GenTableColumn;
-import com.qinweizhao.gen.mapper.GenTableColumnMapper;
+import com.qinweizhao.generator.domain.GenTableColumn;
+import com.qinweizhao.generator.mapper.GenTableColumnMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

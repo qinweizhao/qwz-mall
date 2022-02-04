@@ -1,4 +1,4 @@
-package com.qinweizhao.gen.controller;
+package com.qinweizhao.generator.controller;
 
 import com.qinweizhao.common.core.text.Convert;
 import com.qinweizhao.common.core.web.controller.BaseController;
@@ -7,10 +7,10 @@ import com.qinweizhao.common.core.web.page.TableDataInfo;
 import com.qinweizhao.common.log.annotation.Log;
 import com.qinweizhao.common.log.enums.BusinessType;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
-import com.qinweizhao.gen.domain.GenTable;
-import com.qinweizhao.gen.domain.GenTableColumn;
-import com.qinweizhao.gen.service.IGenTableColumnService;
-import com.qinweizhao.gen.service.IGenTableService;
+import com.qinweizhao.generator.domain.GenTable;
+import com.qinweizhao.generator.domain.GenTableColumn;
+import com.qinweizhao.generator.service.IGenTableColumnService;
+import com.qinweizhao.generator.service.IGenTableService;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;

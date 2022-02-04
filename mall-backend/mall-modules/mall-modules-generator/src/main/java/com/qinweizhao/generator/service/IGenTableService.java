@@ -1,6 +1,6 @@
-package com.qinweizhao.gen.service;
+package com.qinweizhao.generator.service;
 
-import com.qinweizhao.gen.domain.GenTable;
+import com.qinweizhao.generator.domain.GenTable;
 
 import java.util.List;
 import java.util.Map;

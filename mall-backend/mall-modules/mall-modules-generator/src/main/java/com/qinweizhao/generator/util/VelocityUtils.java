@@ -1,11 +1,11 @@
-package com.qinweizhao.gen.util;
+package com.qinweizhao.generator.util;
 
 import com.alibaba.fastjson.JSONObject;
 import com.qinweizhao.common.core.constant.GenConstants;
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
-import com.qinweizhao.gen.domain.GenTable;
-import com.qinweizhao.gen.domain.GenTableColumn;
+import com.qinweizhao.generator.domain.GenTable;
+import com.qinweizhao.generator.domain.GenTableColumn;
 import org.apache.velocity.VelocityContext;
 
 import java.util.ArrayList;

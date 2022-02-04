@@ -1,4 +1,4 @@
-package com.qinweizhao.gen.service;
+package com.qinweizhao.generator.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -8,13 +8,13 @@ import com.qinweizhao.common.core.exception.ServiceException;
 import com.qinweizhao.common.core.text.CharsetKit;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
-import com.qinweizhao.gen.domain.GenTable;
-import com.qinweizhao.gen.domain.GenTableColumn;
-import com.qinweizhao.gen.mapper.GenTableColumnMapper;
-import com.qinweizhao.gen.mapper.GenTableMapper;
-import com.qinweizhao.gen.util.GenUtils;
-import com.qinweizhao.gen.util.VelocityInitializer;
-import com.qinweizhao.gen.util.VelocityUtils;
+import com.qinweizhao.generator.domain.GenTable;
+import com.qinweizhao.generator.domain.GenTableColumn;
+import com.qinweizhao.generator.mapper.GenTableColumnMapper;
+import com.qinweizhao.generator.mapper.GenTableMapper;
+import com.qinweizhao.generator.util.GenUtils;
+import com.qinweizhao.generator.util.VelocityInitializer;
+import com.qinweizhao.generator.util.VelocityUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.velocity.Template;
