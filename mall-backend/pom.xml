@@ -256,7 +256,7 @@
             <!-- 系统接口 -->
             <dependency>
                 <groupId>com.qinweizhao</groupId>
-                <artifactId>mall-api-system</artifactId>
+                <artifactId>mall-service-api-system</artifactId>
                 <version>${mall.version}</version>
             </dependency>
 
@@ -266,9 +266,8 @@
     <modules>
         <module>mall-auth</module>
         <module>mall-gateway</module>
-        <module>mall-visual</module>
-        <module>mall-modules</module>
-        <module>mall-api</module>
+        <module>mall-service</module>
+        <module>mall-service-api</module>
         <module>mall-common</module>
     </modules>
     <packaging>pom</packaging>
