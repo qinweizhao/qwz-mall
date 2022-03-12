@@ -9,12 +9,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <modules>
-        <module>mall-service-coupon</module>
-        <module>mall-service-product</module>
-        <module>mall-service-file</module>
+        <module>mall-service-activity</module>
         <module>mall-service-generator</module>
-        <module>mall-service-job</module>
+        <module>mall-service-order</module>
+        <module>mall-service-payment</module>
+        <module>mall-service-search</module>
+        <module>mall-service-user</module>
+        <module>mall-service-product</module>
+        <module>mall-service-support</module>
         <module>mall-service-system</module>
+        <module>mall-service-ware</module>
     </modules>
 
     <artifactId>mall-service</artifactId>
