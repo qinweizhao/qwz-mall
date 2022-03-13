@@ -10,7 +10,7 @@
 
     <artifactId>mall-auth</artifactId>
 
-    <description>认证授权中心</description>
+    <description>认证授权服务</description>
 
     <dependencies>
 

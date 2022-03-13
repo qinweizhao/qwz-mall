@@ -12,8 +12,8 @@
 18:08:28.283 [main] INFO  c.a.n.c.r.client - [printIfInfoEnabled,60] - [64ddde53-8f4e-4213-a65f-6c5aa1216b5f_config-0]Register server push request handler:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$$Lambda$456/0x000000080040a040
 18:08:28.284 [main] INFO  c.a.n.c.r.client - [printIfInfoEnabled,60] - [64ddde53-8f4e-4213-a65f-6c5aa1216b5f_config-0]Registry connection listener to current client:com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$1
 18:08:28.285 [main] INFO  c.a.n.c.r.client - [printIfInfoEnabled,60] - [64ddde53-8f4e-4213-a65f-6c5aa1216b5f_config-0]RpcClient init, ServerListFactory =com.alibaba.nacos.client.config.impl.ClientWorker$ConfigRpcTransportClient$2
-18:08:28.295 [main] INFO  c.a.n.c.r.client - [printIfInfoEnabled,60] - [64ddde53-8f4e-4213-a65f-6c5aa1216b5f_config-0] Try to connect to server on start up, server: {serverIp='42.192.49.72', server main port=8848}
-18:08:29.978 [main] INFO  c.a.n.c.r.client - [printIfInfoEnabled,60] - [64ddde53-8f4e-4213-a65f-6c5aa1216b5f_config-0] Success to connect to server [42.192.49.72:8848] on start up,connectionId=1641550109593_116.227.58.110_2889
+18:08:28.295 [main] INFO  c.a.n.c.r.client - [printIfInfoEnabled,60] - [64ddde53-8f4e-4213-a65f-6c5aa1216b5f_config-0] Try to connect to server on start up, server: {serverIp='127.0.0.1', server main port=8848}
+18:08:29.978 [main] INFO  c.a.n.c.r.client - [printIfInfoEnabled,60] - [64ddde53-8f4e-4213-a65f-6c5aa1216b5f_config-0] Success to connect to server [127.0.0.1:8848] on start up,connectionId=1641550109593_116.227.58.110_2889
 18:08:29.979 [com.alibaba.nacos.client.remote.worker] INFO  c.a.n.c.r.client - [printIfInfoEnabled,60] - [64ddde53-8f4e-4213-a65f-6c5aa1216b5f_config-0]Notify connected event to listeners.
 18:08:29.979 [main] INFO  c.a.n.c.r.client - [printIfInfoEnabled,60] - [64ddde53-8f4e-4213-a65f-6c5aa1216b5f_config-0]Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$ConnectResetRequestHandler
 18:08:29.980 [com.alibaba.nacos.client.remote.worker] INFO  c.a.n.c.c.i.ClientWorker - [onConnected,681] - [64ddde53-8f4e-4213-a65f-6c5aa1216b5f_config-0] Connected,notify listen context...
@@ -34,8 +34,8 @@
 18:08:33.891 [main] INFO  c.a.n.c.r.client - [printIfInfoEnabled,60] - [bce01b60-46b3-4b06-88c5-deba5340b771]RpcClient init, ServerListFactory =com.alibaba.nacos.client.naming.core.ServerListManager
 18:08:33.891 [main] INFO  c.a.n.c.r.client - [printIfInfoEnabled,60] - [bce01b60-46b3-4b06-88c5-deba5340b771]Registry connection listener to current client:com.alibaba.nacos.client.naming.remote.gprc.redo.NamingGrpcRedoService
 18:08:33.892 [main] INFO  c.a.n.c.r.client - [printIfInfoEnabled,60] - [bce01b60-46b3-4b06-88c5-deba5340b771]Register server push request handler:com.alibaba.nacos.client.naming.remote.gprc.NamingPushRequestHandler
-18:08:33.892 [main] INFO  c.a.n.c.r.client - [printIfInfoEnabled,60] - [bce01b60-46b3-4b06-88c5-deba5340b771] Try to connect to server on start up, server: {serverIp='42.192.49.72', server main port=8848}
-18:08:34.049 [main] INFO  c.a.n.c.r.client - [printIfInfoEnabled,60] - [bce01b60-46b3-4b06-88c5-deba5340b771] Success to connect to server [42.192.49.72:8848] on start up,connectionId=1641550113724_116.227.58.110_2890
+18:08:33.892 [main] INFO  c.a.n.c.r.client - [printIfInfoEnabled,60] - [bce01b60-46b3-4b06-88c5-deba5340b771] Try to connect to server on start up, server: {serverIp='127.0.0.1', server main port=8848}
+18:08:34.049 [main] INFO  c.a.n.c.r.client - [printIfInfoEnabled,60] - [bce01b60-46b3-4b06-88c5-deba5340b771] Success to connect to server [127.0.0.1:8848] on start up,connectionId=1641550113724_116.227.58.110_2890
 18:08:34.049 [main] INFO  c.a.n.c.r.client - [printIfInfoEnabled,60] - [bce01b60-46b3-4b06-88c5-deba5340b771]Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$ConnectResetRequestHandler
 18:08:34.049 [com.alibaba.nacos.client.remote.worker] INFO  c.a.n.c.r.client - [printIfInfoEnabled,60] - [bce01b60-46b3-4b06-88c5-deba5340b771]Notify connected event to listeners.
 18:08:34.049 [main] INFO  c.a.n.c.r.client - [printIfInfoEnabled,60] - [bce01b60-46b3-4b06-88c5-deba5340b771]Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$4

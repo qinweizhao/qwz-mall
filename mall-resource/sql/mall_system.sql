@@ -4,7 +4,7 @@
  Source Server         : TX_Cloud
  Source Server Type    : MySQL
  Source Server Version : 80027
- Source Host           : 42.192.49.72:3306
+ Source Host           : 127.0.0.1:3306
  Source Schema         : mall_system
 
  Target Server Type    : MySQL

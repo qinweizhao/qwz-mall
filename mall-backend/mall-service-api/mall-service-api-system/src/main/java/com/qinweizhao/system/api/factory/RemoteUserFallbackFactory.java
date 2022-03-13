@@ -21,6 +21,7 @@ public class RemoteUserFallbackFactory implements FallbackFactory<RemoteUserServ
     @Override
     public RemoteUserService create(Throwable throwable) {
         log.error("用户服务调用失败:{}", throwable.getMessage());
+        System.out.println("throwable======="+throwable);
         return new RemoteUserService() {
             @Override
             public R<LoginUser> getUserInfo(String username, String source) {
