@@ -21,8 +21,8 @@ spring:
             - ValidateCodeFilter
             - StripPrefix=1
         # 代码生成
-        - id: mall-gen
-          uri: lb://mall-gen
+        - id: mall-generator
+          uri: lb://mall-generator
           predicates:
             - Path=/code/**
           filters:
