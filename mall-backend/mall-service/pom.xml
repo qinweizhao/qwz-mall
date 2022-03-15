@@ -10,7 +10,6 @@
 
     <modules>
         <module>mall-service-activity</module>
-        <module>mall-service-generator</module>
         <module>mall-service-order</module>
         <module>mall-service-payment</module>
         <module>mall-service-search</module>
