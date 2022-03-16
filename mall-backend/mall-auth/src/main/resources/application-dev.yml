@@ -1,15 +1,4 @@
-# Tomcat
-server:
-  port: 9200
-
-# Spring
 spring:
-  application:
-    # 应用名称
-    name: mall-auth
-  profiles:
-    # 环境配置
-    active: dev
   cloud:
     nacos:
       discovery:

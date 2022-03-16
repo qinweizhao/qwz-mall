@@ -20,13 +20,6 @@ spring:
             - CacheRequestFilter
             - ValidateCodeFilter
             - StripPrefix=1
-        # 代码生成
-        - id: mall-generator
-          uri: lb://mall-generator
-          predicates:
-            - Path=/code/**
-          filters:
-            - StripPrefix=1
         # 定时任务
         - id: mall-job
           uri: lb://mall-job
