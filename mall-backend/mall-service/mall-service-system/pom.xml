@@ -81,7 +81,7 @@
             <artifactId>mall-common-datascope</artifactId>
         </dependency>
 
-        <!-- RuoYi Common Log -->
+        <!-- Common Log -->
         <dependency>
             <groupId>com.qinweizhao</groupId>
             <artifactId>mall-common-log</artifactId>

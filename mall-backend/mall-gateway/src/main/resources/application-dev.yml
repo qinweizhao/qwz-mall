@@ -40,6 +40,13 @@ spring:
             - Path=/system/**
           filters:
             - StripPrefix=1
+        # 系统模块
+        - id: mall-product
+          uri: lb://mall-product
+          predicates:
+            - Path=/product/**
+          filters:
+            - StripPrefix=1
         # 文件服务
         - id: mall-file
           uri: lb://ruoyi-file
