@@ -178,4 +178,7 @@ public class GenConstants {
      * 需要
      */
     public static final String REQUIRE = "1";
+
+    /** 相等查询 */
+    public static final String QUERY_EQ = "EQ";
 }

@@ -20,13 +20,19 @@ spring:
             - CacheRequestFilter
             - ValidateCodeFilter
             - StripPrefix=1
-        # 定时任务
-        - id: mall-job
-          uri: lb://mall-job
+        # 代码生成
+        - id: mall-generator
+          uri: lb://mall-generator
           predicates:
-            - Path=/schedule/**
+            - Path=/code/**
           filters:
             - StripPrefix=1
+#        # 定时任务
+#        - id: mall-job
+#          predicates:
+#            - Path=/schedule/**
+#          filters:
+#            - StripPrefix=1
         # 系统模块
         - id: mall-system
           uri: lb://mall-system
