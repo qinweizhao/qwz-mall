@@ -8,12 +8,16 @@
         <version>1.0.0</version>
     </parent>
     <artifactId>mall-service-product</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <name>mall-service-product</name>
-    <description>Demo project for Spring Boot</description>
+    <description>商品服务</description>
 
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
         <!-- SpringBoot Admin -->
         <dependency>
             <groupId>de.codecentric</groupId>
@@ -38,39 +42,19 @@
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
 
-        <!-- SpringBoot Actuator -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
-
-
         <!-- Mysql Connector -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
-        <!-- Quartz -->
-        <dependency>
-            <groupId>org.quartz-scheduler</groupId>
-            <artifactId>quartz</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.mchange</groupId>
-                    <artifactId>c3p0</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!-- RuoYi Common DataSource -->
+        <!--  Common DataSource -->
         <dependency>
             <groupId>com.qinweizhao</groupId>
             <artifactId>mall-common-datasource</artifactId>
         </dependency>
 
-        <!-- RuoYi Common DataScope -->
+        <!--  Common DataScope -->
         <dependency>
             <groupId>com.qinweizhao</groupId>
             <artifactId>mall-common-datascope</artifactId>
@@ -82,17 +66,12 @@
             <artifactId>mall-common-log</artifactId>
         </dependency>
 
-        <!-- RuoYi Common Swagger -->
-        <dependency>
-            <groupId>com.qinweizhao</groupId>
-            <artifactId>mall-common-swagger</artifactId>
-        </dependency>
+        <!--  Common Swagger -->
+<!--        <dependency>-->
+<!--            <groupId>com.qinweizhao</groupId>-->
+<!--            <artifactId>mall-common-swagger</artifactId>-->
+<!--        </dependency>-->
 
-        <!-- Spring Security -->
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.boot</groupId>-->
-        <!--            <artifactId>spring-boot-starter-security</artifactId>-->
-        <!--        </dependency>-->
 
     </dependencies>
 

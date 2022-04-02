@@ -9,6 +9,9 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 import java.lang.annotation.*;
 
+/**
+ * @author weizhao
+ */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
