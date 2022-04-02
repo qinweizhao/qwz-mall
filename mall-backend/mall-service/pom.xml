@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.qinweizhao</groupId>
         <artifactId>mall-backend</artifactId>
-        <version>3.3.0</version>
+        <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -16,7 +16,6 @@
         <module>mall-service-search</module>
         <module>mall-service-user</module>
         <module>mall-service-product</module>
-        <module>mall-service-support</module>
         <module>mall-service-system</module>
         <module>mall-service-ware</module>
     </modules>

@@ -6,14 +6,14 @@
 
     <groupId>com.qinweizhao</groupId>
     <artifactId>mall-backend</artifactId>
-    <version>3.3.0</version>
+    <version>1.0.0</version>
 
     <name>a-backend</name>
 
     <description>微服务系统</description>
 
     <properties>
-        <mall.version>3.3.0</mall.version>
+        <mall.version>1.0.0</mall.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
@@ -275,6 +275,7 @@
         <module>mall-gateway</module>
         <module>mall-service</module>
         <module>mall-service-api</module>
+        <module>mall-support</module>
         <module>mall-common</module>
     </modules>
     <packaging>pom</packaging>
