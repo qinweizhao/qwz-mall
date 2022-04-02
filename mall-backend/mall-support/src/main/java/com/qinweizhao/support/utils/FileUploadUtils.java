@@ -1,4 +1,4 @@
-package com.qinweizhao.file.utils;
+package com.qinweizhao.support.utils;
 
 import java.io.File;
 import java.io.IOException;

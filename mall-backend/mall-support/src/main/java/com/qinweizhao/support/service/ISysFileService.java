@@ -1,4 +1,4 @@
-package com.qinweizhao.file.service;
+package com.qinweizhao.support.service;
 
 import org.springframework.web.multipart.MultipartFile;
 

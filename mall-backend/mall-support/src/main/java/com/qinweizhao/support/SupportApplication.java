@@ -1,4 +1,4 @@
-package com.qinweizhao.file;
+package com.qinweizhao.support;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,11 +12,11 @@ import com.qinweizhao.common.swagger.annotation.EnableCustomSwagger2;
  */
 @EnableCustomSwagger2
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
-public class FileApplication
+public class SupportApplication
 {
     public static void main(String[] args)
     {
-        SpringApplication.run(FileApplication.class, args);
+        SpringApplication.run(SupportApplication.class, args);
         System.out.println("服务支持模块启动成功");
     }
 }

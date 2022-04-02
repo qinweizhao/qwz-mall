@@ -1,4 +1,4 @@
-package com.qinweizhao.file.controller;
+package com.qinweizhao.support.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.qinweizhao.common.core.domain.R;
 import com.qinweizhao.common.core.utils.file.FileUtils;
-import com.qinweizhao.file.service.ISysFileService;
+import com.qinweizhao.support.service.ISysFileService;
 import com.qinweizhao.system.api.domain.SysFile;
 
 /**

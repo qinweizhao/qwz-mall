@@ -1,4 +1,4 @@
-package com.qinweizhao.file.config;
+package com.qinweizhao.support.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
