@@ -31,7 +31,7 @@ public class PmsCategoryController extends BaseController {
      * 查询商品三级分类列表
      */
     @RequiresPermissions("product:category:list")
-    @GetMapping("/list")
+    @GetMapping("/list/{parentId}")
     public TableDataInfo list(PmsCategory pmsCategory) {
         startPage();
         List<PmsCategory> list = pmsCategoryService.selectPmsCategoryList(pmsCategory);

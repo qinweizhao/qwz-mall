@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 public class TokenController {
+
     @Autowired
     private TokenService tokenService;
 
