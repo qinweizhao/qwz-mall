@@ -5,6 +5,7 @@ import com.qinweizhao.common.core.web.domain.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -73,10 +74,10 @@ public class PmsCategory extends BaseEntity {
     private Long productCount;
 
     /**
-     * 商品数量
+     * 子分类
      */
-    @Excel(name = "商品数量")
-    private List<PmsCategory> children;
+    @Excel(name = "子分类")
+    private List<PmsCategory> children= new ArrayList<>();
 
 
 }

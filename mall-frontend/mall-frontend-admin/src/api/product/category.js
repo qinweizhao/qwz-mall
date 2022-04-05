@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
-// 查询商品三级分类列表
-export function listCategory(query) {
+// 查询菜单列表
+export function listMenu(query) {
   return request({
     url: '/product/category/list',
     method: 'get',
@@ -9,16 +9,32 @@ export function listCategory(query) {
   })
 }
 
-// 查询商品三级分类详细
-export function getCategory(catId) {
+// 查询菜单详细
+export function getMenu(menuId) {
   return request({
-    url: '/product/category/' + catId,
+    url: '/product/category/' + menuId,
     method: 'get'
   })
 }
 
-// 新增商品三级分类
-export function addCategory(data) {
+// 查询菜单下拉树结构
+export function treeselect() {
+  return request({
+    url: '/product/category/treeselect',
+    method: 'get'
+  })
+}
+
+// 根据角色ID查询菜单下拉树结构
+export function roleMenuTreeselect(roleId) {
+  return request({
+    url: '/product/category/roleMenuTreeselect/' + roleId,
+    method: 'get'
+  })
+}
+
+// 新增菜单
+export function addMenu(data) {
   return request({
     url: '/product/category',
     method: 'post',
@@ -26,8 +42,8 @@ export function addCategory(data) {
   })
 }
 
-// 修改商品三级分类
-export function updateCategory(data) {
+// 修改菜单
+export function updateMenu(data) {
   return request({
     url: '/product/category',
     method: 'put',
@@ -35,10 +51,10 @@ export function updateCategory(data) {
   })
 }
 
-// 删除商品三级分类
-export function delCategory(catId) {
+// 删除菜单
+export function delMenu(menuId) {
   return request({
-    url: '/product/category/' + catId,
+    url: '/product/category/' + menuId,
     method: 'delete'
   })
 }
