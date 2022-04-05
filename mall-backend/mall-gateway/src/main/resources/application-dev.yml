@@ -27,12 +27,6 @@ spring:
             - Path=/code/**
           filters:
             - StripPrefix=1
-#        # 定时任务
-#        - id: mall-job
-#          predicates:
-#            - Path=/schedule/**
-#          filters:
-#            - StripPrefix=1
         # 系统模块
         - id: mall-system
           uri: lb://mall-system
@@ -49,7 +43,7 @@ spring:
             - StripPrefix=1
         # 文件服务
         - id: mall-file
-          uri: lb://ruoyi-file
+          uri: lb://mall-file
           predicates:
             - Path=/file/**
           filters:

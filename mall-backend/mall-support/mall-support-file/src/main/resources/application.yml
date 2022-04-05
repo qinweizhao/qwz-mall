@@ -1,7 +1,7 @@
 # 本地文件上传
 file:
   domain: http://127.0.0.1:9300
-  path: D:/ruoyi/uploadPath
+  path: D:/mall-file/uploadPath
   prefix: /statics
 
 # FastDFS配置

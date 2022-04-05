@@ -6,7 +6,7 @@ server:
 spring: 
   application:
     # 应用名称
-    name: ruoyi-file
+    name: mall-file
   profiles:
     # 环境配置
     active: dev
