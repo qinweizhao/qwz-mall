@@ -16,5 +16,6 @@
     <modules>
         <module>mall-support-file</module>
         <module>mall-support-generator</module>
+        <module>mall-support-search</module>
     </modules>
 </project>

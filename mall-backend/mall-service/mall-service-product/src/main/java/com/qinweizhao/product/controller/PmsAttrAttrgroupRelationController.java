@@ -24,6 +24,7 @@ import java.util.List;
 @RestController
 @RequestMapping("attr/group/relation")
 public class PmsAttrAttrgroupRelationController extends BaseController {
+
     @Autowired
     private IPmsAttrAttrgroupRelationService pmsAttrAttrgroupRelationService;
 

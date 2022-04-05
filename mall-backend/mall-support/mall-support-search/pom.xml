@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.qinweizhao</groupId>
-    <artifactId>mall-service-search</artifactId>
+    <artifactId>mall-support-search</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>mall-service-search</name>
-    <description>mall-service-search</description>
+    <name>mall-support-search</name>
+    <description>检索服务</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
