@@ -7,9 +7,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <resultMap type="PmsCategory" id="PmsCategoryResult">
         <result property="catId"    column="cat_id"    />
         <result property="name"    column="name"    />
-        <result property="parentCid"    column="parent_cid"    />
-        <result property="catLevel"    column="cat_level"    />
-        <result property="showStatus"    column="show_status"    />
+        <result property="parentId"    column="parent_id"    />
+        <result property="level"    column="level"    />
+        <result property="status"    column="status"    />
         <result property="sort"    column="sort"    />
         <result property="icon"    column="icon"    />
         <result property="productUnit"    column="product_unit"    />
@@ -17,16 +17,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectPmsCategoryVo">
-        select cat_id, name, parent_cid, cat_level, show_status, sort, icon, product_unit, product_count from pms_category
+        select cat_id, name, parent_id, level, status, sort, icon, product_unit, product_count from pms_category
     </sql>
 
     <select id="selectPmsCategoryList" parameterType="PmsCategory" resultMap="PmsCategoryResult">
         <include refid="selectPmsCategoryVo"/>
         <where>  
             <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
-            <if test="parentCid != null "> and parent_cid = #{parentCid}</if>
-            <if test="catLevel != null "> and cat_level = #{catLevel}</if>
-            <if test="showStatus != null "> and show_status = #{showStatus}</if>
+            <if test="parentId != null "> and parent_cid = #{parentId}</if>
+            <if test="level != null "> and cat_level = #{level}</if>
+            <if test="status != null "> and show_status = #{status}</if>
             <if test="sort != null "> and sort = #{sort}</if>
             <if test="icon != null  and icon != ''"> and icon = #{icon}</if>
             <if test="productUnit != null  and productUnit != ''"> and product_unit = #{productUnit}</if>
@@ -43,9 +43,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         insert into pms_category
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="name != null">name,</if>
-            <if test="parentCid != null">parent_cid,</if>
-            <if test="catLevel != null">cat_level,</if>
-            <if test="showStatus != null">show_status,</if>
+            <if test="parentId != null">parent_cid,</if>
+            <if test="level != null">cat_level,</if>
+            <if test="status != null">show_status,</if>
             <if test="sort != null">sort,</if>
             <if test="icon != null">icon,</if>
             <if test="productUnit != null">product_unit,</if>
@@ -53,9 +53,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="name != null">#{name},</if>
-            <if test="parentCid != null">#{parentCid},</if>
-            <if test="catLevel != null">#{catLevel},</if>
-            <if test="showStatus != null">#{showStatus},</if>
+            <if test="parentId != null">#{parentId},</if>
+            <if test="level != null">#{level},</if>
+            <if test="status != null">#{status},</if>
             <if test="sort != null">#{sort},</if>
             <if test="icon != null">#{icon},</if>
             <if test="productUnit != null">#{productUnit},</if>
@@ -67,9 +67,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         update pms_category
         <trim prefix="SET" suffixOverrides=",">
             <if test="name != null">name = #{name},</if>
-            <if test="parentCid != null">parent_cid = #{parentCid},</if>
-            <if test="catLevel != null">cat_level = #{catLevel},</if>
-            <if test="showStatus != null">show_status = #{showStatus},</if>
+            <if test="parentId != null">parent_cid = #{parentId},</if>
+            <if test="level != null">cat_level = #{level},</if>
+            <if test="status != null">show_status = #{status},</if>
             <if test="sort != null">sort = #{sort},</if>
             <if test="icon != null">icon = #{icon},</if>
             <if test="productUnit != null">product_unit = #{productUnit},</if>

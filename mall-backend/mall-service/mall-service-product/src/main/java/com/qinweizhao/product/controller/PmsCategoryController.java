@@ -3,7 +3,6 @@ package com.qinweizhao.product.controller;
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.core.web.domain.AjaxResult;
-import com.qinweizhao.common.core.web.page.TableDataInfo;
 import com.qinweizhao.common.log.annotation.Log;
 import com.qinweizhao.common.log.enums.BusinessType;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
@@ -31,11 +30,10 @@ public class PmsCategoryController extends BaseController {
      * 查询商品三级分类列表
      */
     @RequiresPermissions("product:category:list")
-    @GetMapping("/list/{parentId}")
-    public TableDataInfo list(PmsCategory pmsCategory) {
-        startPage();
+    @GetMapping("/list")
+    public AjaxResult list(PmsCategory pmsCategory) {
         List<PmsCategory> list = pmsCategoryService.selectPmsCategoryList(pmsCategory);
-        return getDataTable(list);
+        return AjaxResult.success(list);
     }
 
     /**
