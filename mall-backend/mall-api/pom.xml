@@ -9,10 +9,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <modules>
-        <module>mall-service-api-system</module>
+        <module>mall-api-system</module>
     </modules>
 
-    <artifactId>mall-service-api</artifactId>
+    <artifactId>mall-api</artifactId>
     <packaging>pom</packaging>
 
     <description>系统接口</description>

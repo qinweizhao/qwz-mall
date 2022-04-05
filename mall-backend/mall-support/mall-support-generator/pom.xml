@@ -4,61 +4,73 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>com.qinweizhao</groupId>
-        <artifactId>mall-support</artifactId>
+        <artifactId>mall-service</artifactId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>mall-support-file</artifactId>
+    <artifactId>mall-support-generator</artifactId>
 
-    <description>文件服务</description>
+    <description>代码生成</description>
 
     <dependencies>
-
-        <!-- SpringCloud Alibaba Nacos -->
+    	
+    	<!-- SpringCloud Alibaba Nacos -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-
+        
         <!-- SpringCloud Alibaba Nacos Config -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
-
+        
         <!-- SpringCloud Alibaba Sentinel -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
-
+        
         <!-- SpringBoot Actuator -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-
-        <!-- FastDFS -->
+		
+        <!-- Swagger UI -->
         <dependency>
-            <groupId>com.github.tobato</groupId>
-            <artifactId>fastdfs-client</artifactId>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger.fox.version}</version>
         </dependency>
-
-        <!-- Minio -->
+        
+        <!-- Apache Velocity -->
         <dependency>
-            <groupId>io.minio</groupId>
-            <artifactId>minio</artifactId>
-            <version>${minio.version}</version>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-engine-core</artifactId>
         </dependency>
-
-        <!--  Api System -->
+        
+        <!-- Commons Collections -->
+        <dependency> 
+            <groupId>commons-collections</groupId> 
+            <artifactId>commons-collections</artifactId> 
+        </dependency>
+        
+        <!-- Mysql Connector -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        
+        <!-- Common Log -->
         <dependency>
             <groupId>com.qinweizhao</groupId>
-            <artifactId>mall-api-system</artifactId>
+            <artifactId>mall-common-log</artifactId>
         </dependency>
-
-        <!--  Common Swagger -->
+        
+        <!-- RuoYi Common Swagger -->
         <dependency>
             <groupId>com.qinweizhao</groupId>
             <artifactId>mall-common-swagger</artifactId>
@@ -72,9 +84,15 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
-
+   
 </project>
