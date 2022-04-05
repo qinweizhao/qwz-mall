@@ -1,4 +1,4 @@
-package com.qinweizhao.support.service;
+package com.qinweizhao.file.service;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;

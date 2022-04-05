@@ -1,6 +1,6 @@
-package com.qinweizhao.support.service;
+package com.qinweizhao.file.service;
 
-import com.qinweizhao.support.utils.FileUploadUtils;
+import com.qinweizhao.file.utils.FileUploadUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;

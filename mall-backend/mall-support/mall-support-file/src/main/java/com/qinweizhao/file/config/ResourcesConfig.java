@@ -1,4 +1,4 @@
-package com.qinweizhao.support.config;
+package com.qinweizhao.file.config;
 
 import java.io.File;
 import org.springframework.beans.factory.annotation.Value;

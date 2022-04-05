@@ -16,6 +16,7 @@ import java.util.List;
  */
 @Service
 public class PmsAttrServiceImpl implements IPmsAttrService {
+
     @Autowired
     private PmsAttrMapper pmsAttrMapper;
 
