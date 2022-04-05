@@ -53,6 +53,9 @@ public class BaseEntity implements Serializable {
     private Map<String, Object> params;
 
     public String getSearchValue() {
+
+
+
         return searchValue;
     }
 

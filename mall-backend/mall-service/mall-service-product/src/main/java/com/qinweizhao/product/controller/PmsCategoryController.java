@@ -40,7 +40,7 @@ public class PmsCategoryController extends BaseController {
      * 导出商品三级分类列表
      */
     @RequiresPermissions("product:category:export")
-    @Log(title = "商品三级分类" , businessType = BusinessType.EXPORT)
+    @Log(title = "商品三级分类", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, PmsCategory pmsCategory) {
         List<PmsCategory> list = pmsCategoryService.selectPmsCategoryList(pmsCategory);
@@ -61,7 +61,7 @@ public class PmsCategoryController extends BaseController {
      * 新增商品三级分类
      */
     @RequiresPermissions("product:category:add")
-    @Log(title = "商品三级分类" , businessType = BusinessType.INSERT)
+    @Log(title = "商品三级分类", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody PmsCategory pmsCategory) {
         return toAjax(pmsCategoryService.insertPmsCategory(pmsCategory));
@@ -71,7 +71,7 @@ public class PmsCategoryController extends BaseController {
      * 修改商品三级分类
      */
     @RequiresPermissions("product:category:edit")
-    @Log(title = "商品三级分类" , businessType = BusinessType.UPDATE)
+    @Log(title = "商品三级分类", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody PmsCategory pmsCategory) {
         return toAjax(pmsCategoryService.updatePmsCategory(pmsCategory));
@@ -81,7 +81,7 @@ public class PmsCategoryController extends BaseController {
      * 删除商品三级分类
      */
     @RequiresPermissions("product:category:remove")
-    @Log(title = "商品三级分类" , businessType = BusinessType.DELETE)
+    @Log(title = "商品三级分类", businessType = BusinessType.DELETE)
     @DeleteMapping("/{catIds}")
     public AjaxResult remove(@PathVariable Long[] catIds) {
         return toAjax(pmsCategoryService.deletePmsCategoryByCatIds(catIds));
