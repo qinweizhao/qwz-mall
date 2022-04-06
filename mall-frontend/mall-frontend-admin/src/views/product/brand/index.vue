@@ -65,7 +65,7 @@
       <el-table-column label="品牌名" align="center" prop="name" />
       <el-table-column label="logo" align="center" prop="logo" >
         <template slot-scope="scope">
-          <image-preview :src="scope.row.logo" :width="'50px'"/>
+          <image-preview :src="scope.row.logo" :width="'30px'"/>
         </template>
       </el-table-column>
       <el-table-column label="介绍" align="center" prop="descript" />
