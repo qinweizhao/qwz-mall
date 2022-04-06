@@ -17,7 +17,7 @@ public interface IPmsAttrAttrgroupRelationService {
      * @param id 属性&属性分组关联主键
      * @return 属性&属性分组关联
      */
-    public PmsAttrAttrgroupRelation selectPmsAttrAttrgroupRelationById(Long id);
+    PmsAttrAttrgroupRelation selectPmsAttrAttrgroupRelationById(Long id);
 
     /**
      * 查询属性&属性分组关联列表
@@ -25,7 +25,7 @@ public interface IPmsAttrAttrgroupRelationService {
      * @param pmsAttrAttrgroupRelation 属性&属性分组关联
      * @return 属性&属性分组关联集合
      */
-    public List<PmsAttrAttrgroupRelation> selectPmsAttrAttrgroupRelationList(PmsAttrAttrgroupRelation pmsAttrAttrgroupRelation);
+    List<PmsAttrAttrgroupRelation> selectPmsAttrAttrgroupRelationList(PmsAttrAttrgroupRelation pmsAttrAttrgroupRelation);
 
     /**
      * 新增属性&属性分组关联
@@ -33,7 +33,7 @@ public interface IPmsAttrAttrgroupRelationService {
      * @param pmsAttrAttrgroupRelation 属性&属性分组关联
      * @return 结果
      */
-    public int insertPmsAttrAttrgroupRelation(PmsAttrAttrgroupRelation pmsAttrAttrgroupRelation);
+    int insertPmsAttrAttrgroupRelation(PmsAttrAttrgroupRelation pmsAttrAttrgroupRelation);
 
     /**
      * 修改属性&属性分组关联
@@ -41,7 +41,7 @@ public interface IPmsAttrAttrgroupRelationService {
      * @param pmsAttrAttrgroupRelation 属性&属性分组关联
      * @return 结果
      */
-    public int updatePmsAttrAttrgroupRelation(PmsAttrAttrgroupRelation pmsAttrAttrgroupRelation);
+    int updatePmsAttrAttrgroupRelation(PmsAttrAttrgroupRelation pmsAttrAttrgroupRelation);
 
     /**
      * 批量删除属性&属性分组关联
@@ -49,7 +49,7 @@ public interface IPmsAttrAttrgroupRelationService {
      * @param ids 需要删除的属性&属性分组关联主键集合
      * @return 结果
      */
-    public int deletePmsAttrAttrgroupRelationByIds(Long[] ids);
+    int deletePmsAttrAttrgroupRelationByIds(Long[] ids);
 
     /**
      * 删除属性&属性分组关联信息
@@ -57,5 +57,5 @@ public interface IPmsAttrAttrgroupRelationService {
      * @param id 属性&属性分组关联主键
      * @return 结果
      */
-    public int deletePmsAttrAttrgroupRelationById(Long id);
+    int deletePmsAttrAttrgroupRelationById(Long id);
 }
