@@ -1,5 +1,6 @@
-package com.qinweizhao.file.service;
+package com.qinweizhao.file.service.impl;
 
+import com.qinweizhao.file.service.ISysFileService;
 import com.qinweizhao.file.utils.FileUploadUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Primary;

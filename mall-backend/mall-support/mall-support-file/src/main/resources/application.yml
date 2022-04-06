@@ -1,7 +1,7 @@
 # 本地文件上传
 file:
   domain: http://127.0.0.1:9300
-  path: D:/mall-file/uploadPath
+  path: /Users/weizhao/uploadPath
   prefix: /statics
 
 # FastDFS配置

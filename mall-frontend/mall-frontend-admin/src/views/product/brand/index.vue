@@ -9,18 +9,10 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="检索首字母" prop="firstLetter">
+      <el-form-item label="首字母" prop="firstLetter">
         <el-input
           v-model="queryParams.firstLetter"
-          placeholder="请输入检索首字母"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="排序" prop="sort">
-        <el-input
-          v-model="queryParams.sort"
-          placeholder="请输入排序"
+          placeholder="请输入品牌首字母"
           clearable
           @keyup.enter.native="handleQuery"
         />
@@ -64,27 +56,21 @@
           v-hasPermi="['product:brand:remove']"
         >删除</el-button>
       </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="warning"
-          plain
-          icon="el-icon-download"
-          size="mini"
-          @click="handleExport"
-          v-hasPermi="['product:brand:export']"
-        >导出</el-button>
-      </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
     <el-table v-loading="loading" :data="brandList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="品牌id" align="center" prop="brandId" />
+      <el-table-column label="编号" align="center" prop="brandId" />
       <el-table-column label="品牌名" align="center" prop="name" />
-      <el-table-column label="品牌logo地址" align="center" prop="logo" />
+      <el-table-column label="logo" align="center" prop="logo" >
+        <template slot-scope="scope">
+          <image-preview :src="scope.row.logo" :width="'50px'"/>
+        </template>
+      </el-table-column>
       <el-table-column label="介绍" align="center" prop="descript" />
-      <el-table-column label="显示状态[0-不显示；1-显示]" align="center" prop="showStatus" />
-      <el-table-column label="检索首字母" align="center" prop="firstLetter" />
+      <el-table-column label="状态" align="center" prop="showStatus" />
+      <el-table-column label="品牌首字母" align="center" prop="firstLetter" />
       <el-table-column label="排序" align="center" prop="sort" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
@@ -105,7 +91,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -120,13 +106,13 @@
         <el-form-item label="品牌名" prop="name">
           <el-input v-model="form.name" placeholder="请输入品牌名" />
         </el-form-item>
-        <el-form-item label="品牌logo地址" prop="logo">
-          <el-input v-model="form.logo" type="textarea" placeholder="请输入内容" />
+        <el-form-item label="logo" prop="logo">
+          <image-upload v-model="form.logo"></image-upload>
         </el-form-item>
         <el-form-item label="介绍" prop="descript">
           <el-input v-model="form.descript" type="textarea" placeholder="请输入内容" />
         </el-form-item>
-        <el-form-item label="检索首字母" prop="firstLetter">
+        <el-form-item label="首字母" prop="firstLetter">
           <el-input v-model="form.firstLetter" placeholder="请输入检索首字母" />
         </el-form-item>
         <el-form-item label="排序" prop="sort">
@@ -143,9 +129,12 @@
 
 <script>
 import { listBrand, getBrand, delBrand, addBrand, updateBrand } from "@/api/product/brand";
+import ImageUpload from '@/components/ImageUpload';
+import ImagePreview from '@/components/ImagePreview'
 
 export default {
   name: "Brand",
+  components:{ImageUpload,ImagePreview},
   data() {
     return {
       // 遮罩层

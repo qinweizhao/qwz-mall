@@ -1,5 +1,6 @@
-package com.qinweizhao.file.service;
+package com.qinweizhao.file.service.impl;
 
+import com.qinweizhao.file.service.ISysFileService;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

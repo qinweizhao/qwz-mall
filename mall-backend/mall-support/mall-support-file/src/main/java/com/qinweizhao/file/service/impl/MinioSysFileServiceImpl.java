@@ -1,6 +1,7 @@
-package com.qinweizhao.file.service;
+package com.qinweizhao.file.service.impl;
 
 import com.qinweizhao.file.config.MinioConfig;
+import com.qinweizhao.file.service.ISysFileService;
 import com.qinweizhao.file.utils.FileUploadUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
