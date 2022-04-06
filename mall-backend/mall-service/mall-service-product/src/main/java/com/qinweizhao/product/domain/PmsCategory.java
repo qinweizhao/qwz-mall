@@ -47,19 +47,13 @@ public class PmsCategory extends BaseEntity {
      * 是否显示[0-不显示，1显示]
      */
     @Excel(name = "是否显示[0-不显示，1显示]")
-    private Long status;
+    private String status;
 
     /**
      * 排序
      */
     @Excel(name = "排序")
     private Long sort;
-
-    /**
-     * 图标地址
-     */
-    @Excel(name = "图标地址")
-    private String icon;
 
     /**
      * 计量单位

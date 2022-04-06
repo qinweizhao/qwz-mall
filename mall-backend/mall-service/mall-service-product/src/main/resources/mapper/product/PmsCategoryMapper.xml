@@ -11,7 +11,6 @@
         <result property="level" column="level"/>
         <result property="status" column="status"/>
         <result property="sort" column="sort"/>
-        <result property="icon" column="icon"/>
         <result property="productUnit" column="product_unit"/>
         <result property="productCount" column="product_count"/>
         <result property="createBy" column="create_by"/>
@@ -28,7 +27,6 @@
                level,
                status,
                sort,
-               icon,
                product_unit,
                product_count
         from pms_category
@@ -38,11 +36,10 @@
         <include refid="selectPmsCategoryVo"/>
         <where>
             <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
-            <if test="parentId != null ">and parent_cid = #{parentId}</if>
-            <if test="level != null ">and cat_level = #{level}</if>
-            <if test="status != null ">and show_status = #{status}</if>
+            <if test="parentId != null ">and parent_id = #{parentId}</if>
+            <if test="level != null ">and level = #{level}</if>
+            <if test="status != null ">and status = #{status}</if>
             <if test="sort != null ">and sort = #{sort}</if>
-            <if test="icon != null  and icon != ''">and icon = #{icon}</if>
             <if test="productUnit != null  and productUnit != ''">and product_unit = #{productUnit}</if>
             <if test="productCount != null ">and product_count = #{productCount}</if>
         </where>
@@ -57,11 +54,10 @@
         insert into pms_category
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="name != null">name,</if>
-            <if test="parentId != null">parent_cid,</if>
-            <if test="level != null">cat_level,</if>
-            <if test="status != null">show_status,</if>
+            <if test="parentId != null">parent_id,</if>
+            <if test="level != null">level,</if>
+            <if test="status != null">status,</if>
             <if test="sort != null">sort,</if>
-            <if test="icon != null">icon,</if>
             <if test="productUnit != null">product_unit,</if>
             <if test="productCount != null">product_count,</if>
         </trim>
@@ -71,7 +67,6 @@
             <if test="level != null">#{level},</if>
             <if test="status != null">#{status},</if>
             <if test="sort != null">#{sort},</if>
-            <if test="icon != null">#{icon},</if>
             <if test="productUnit != null">#{productUnit},</if>
             <if test="productCount != null">#{productCount},</if>
         </trim>
@@ -81,11 +76,10 @@
         update pms_category
         <trim prefix="SET" suffixOverrides=",">
             <if test="name != null">name = #{name},</if>
-            <if test="parentId != null">parent_cid = #{parentId},</if>
-            <if test="level != null">cat_level = #{level},</if>
-            <if test="status != null">show_status = #{status},</if>
+            <if test="parentId != null">parent_id = #{parentId},</if>
+            <if test="level != null">level = #{level},</if>
+            <if test="status != null">status = #{status},</if>
             <if test="sort != null">sort = #{sort},</if>
-            <if test="icon != null">icon = #{icon},</if>
             <if test="productUnit != null">product_unit = #{productUnit},</if>
             <if test="productCount != null">product_count = #{productCount},</if>
         </trim>
