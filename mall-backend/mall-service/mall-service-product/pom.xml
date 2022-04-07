@@ -48,12 +48,6 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
-        <!--  Common DataSource -->
-        <dependency>
-            <groupId>com.qinweizhao</groupId>
-            <artifactId>mall-common-datasource</artifactId>
-        </dependency>
-
         <!--  Common DataScope -->
         <dependency>
             <groupId>com.qinweizhao</groupId>

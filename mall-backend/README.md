@@ -9,7 +9,6 @@ com.qinweizhao
 ├── mall-common          // 通用模块
 │       └── mall-common-core                         // 核心模块
 │       └── mall-common-datascope                    // 权限范围
-│       └── mall-common-datasource                   // 多数据源
 │       └── mall-common-log                          // 日志记录
 │       └── mall-common-redis                        // 缓存服务
 │       └── mall-common-security                     // 安全模块

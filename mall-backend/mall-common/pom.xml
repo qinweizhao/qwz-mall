@@ -14,7 +14,6 @@
         <module>mall-common-redis</module>
         <module>mall-common-security</module>
         <module>mall-common-datascope</module>
-        <module>mall-common-datasource</module>
     </modules>
 
     <artifactId>mall-common</artifactId>

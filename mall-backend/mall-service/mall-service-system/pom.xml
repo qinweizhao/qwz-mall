@@ -67,12 +67,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- RuoYi Common DataSource -->
-        <dependency>
-            <groupId>com.qinweizhao</groupId>
-            <artifactId>mall-common-datasource</artifactId>
-        </dependency>
-
         <!-- RuoYi Common DataScope -->
         <dependency>
             <groupId>com.qinweizhao</groupId>

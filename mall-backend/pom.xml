@@ -218,13 +218,6 @@
                 <version>${mall.version}</version>
             </dependency>
 
-            <!-- 多数据源 -->
-            <dependency>
-                <groupId>com.qinweizhao</groupId>
-                <artifactId>mall-common-datasource</artifactId>
-                <version>${mall.version}</version>
-            </dependency>
-
             <!-- 日志记录 -->
             <dependency>
                 <groupId>com.qinweizhao</groupId>
