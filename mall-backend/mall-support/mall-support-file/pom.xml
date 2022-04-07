@@ -41,6 +41,11 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
 
@@ -61,12 +66,6 @@
         <dependency>
             <groupId>com.qinweizhao</groupId>
             <artifactId>mall-api-system</artifactId>
-        </dependency>
-
-        <!--  Common Swagger -->
-        <dependency>
-            <groupId>com.qinweizhao</groupId>
-            <artifactId>mall-common-swagger</artifactId>
         </dependency>
 
     </dependencies>

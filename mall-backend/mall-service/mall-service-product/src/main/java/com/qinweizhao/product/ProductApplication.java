@@ -21,7 +21,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableAsync
 // 自动加载类
 @Import({ApplicationConfig.class, FeignAutoConfiguration.class})
-@EnableFeignClients
+@EnableFeignClients("com.qinweizhao")
 @SpringBootApplication
 public class ProductApplication {
 

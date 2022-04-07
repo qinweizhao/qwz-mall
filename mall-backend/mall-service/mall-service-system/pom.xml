@@ -44,13 +44,6 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!-- Swagger UI -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${swagger.fox.version}</version>
-        </dependency>
-
         <!-- Mysql Connector -->
         <dependency>
             <groupId>mysql</groupId>
@@ -69,6 +62,11 @@
             </exclusions>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
         <!-- RuoYi Common DataSource -->
         <dependency>
             <groupId>com.qinweizhao</groupId>
@@ -85,12 +83,6 @@
         <dependency>
             <groupId>com.qinweizhao</groupId>
             <artifactId>mall-common-log</artifactId>
-        </dependency>
-
-        <!-- RuoYi Common Swagger -->
-        <dependency>
-            <groupId>com.qinweizhao</groupId>
-            <artifactId>mall-common-swagger</artifactId>
         </dependency>
 
         <!-- Spring Security -->

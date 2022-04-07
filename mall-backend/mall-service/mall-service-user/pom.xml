@@ -17,7 +17,7 @@
     <description>用户服务</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>8</java.version>
         <spring-cloud.version>2021.0.0</spring-cloud.version>
     </properties>
 

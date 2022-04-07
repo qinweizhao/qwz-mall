@@ -11,7 +11,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @author qinweizhao
  * @since 2021-12-22
  */
-@EnableFeignClients("com.qinweizhao")
+@EnableFeignClients("com.qinweizhao")("com.qinweizhao")
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class AuthApplication {
     public static void main(String[] args) {

@@ -2,7 +2,6 @@ package com.qinweizhao.system;
 
 import com.qinweizhao.common.security.config.ApplicationConfig;
 import com.qinweizhao.common.security.feign.FeignAutoConfiguration;
-import com.qinweizhao.common.swagger.annotation.EnableCustomSwagger2;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,8 +26,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableAsync
 // 自动加载类
 @Import({ApplicationConfig.class, FeignAutoConfiguration.class})
-@EnableCustomSwagger2
-@EnableFeignClients
+@EnableFeignClients("com.qinweizhao")
 @SpringBootApplication
 public class SystemApplication {
     public static void main(String[] args) {

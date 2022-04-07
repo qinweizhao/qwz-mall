@@ -75,9 +75,3 @@ mybatis:
   typeAliasesPackage: com.qinweizhao.product
   # 配置mapper的扫描，找到所有的mapper.xml映射文件
   mapperLocations: classpath:mapper/**/*.xml
-# swagger配置
-
-swagger:
-  title: 系统模块接口文档
-  license: Powered By qinweizhao
-  licenseUrl: https://www.qinweizhao.com

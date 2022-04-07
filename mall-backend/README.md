@@ -13,7 +13,6 @@ com.qinweizhao
 │       └── mall-common-log                          // 日志记录
 │       └── mall-common-redis                        // 缓存服务
 │       └── mall-common-security                     // 安全模块
-│       └── mall-common-swagger                      // 系统接口
 ├── mall-modules         // 业务模块
 │       └── mall-system                              // 系统模块 [9201]
 │       └── mall-gen                                 // 代码生成 [9202]
