@@ -22,10 +22,6 @@ com.qinweizhao
 ├──pom.xml                // 公共依赖
 ~~~
 
-## 架构图
-
-<img src="https://cdn.jsdelivr.net/gh/qinweizhao/qwz-calf/calf-resource/img/2022-01-04_183341.png"/>
-
 ## 内置功能
 
 1. 用户管理：用户是系统操作者，该功能主要完成系统用户配置。
