@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import java.lang.reflect.Method;
 
 /**
- * 基于 Spring Aop 的注解鉴权
+ * 鉴权
  *
  * @author kong
  */
@@ -32,6 +32,7 @@ public class PreAuthorizeAspect {
      * 构建
      */
     public PreAuthorizeAspect() {
+
     }
 
     /**
