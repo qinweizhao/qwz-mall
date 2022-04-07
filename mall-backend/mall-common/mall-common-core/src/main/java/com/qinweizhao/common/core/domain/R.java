@@ -8,6 +8,7 @@ import java.io.Serializable;
  * 响应信息主体
  *
  * @author ruoyi
+ * @author qinweizhao
  */
 public class R<T> implements Serializable {
     /**

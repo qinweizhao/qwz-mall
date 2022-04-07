@@ -1,9 +1,9 @@
 package com.qinweizhao.auth;
 
-import com.qinweizhao.common.security.annotation.EnableRyFeignClients;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * 认证授权中心
@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  * @author qinweizhao
  * @since 2021-12-22
  */
-@EnableRyFeignClients
+@EnableFeignClients
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class AuthApplication {
     public static void main(String[] args) {
