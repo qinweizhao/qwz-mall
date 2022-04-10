@@ -11,7 +11,7 @@
     <artifactId>mall-common-security</artifactId>
 
     <description>
-        ruoyi-common-security安全模块
+        安全模块
     </description>
 
     <dependencies>

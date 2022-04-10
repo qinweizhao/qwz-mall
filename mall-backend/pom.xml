@@ -22,7 +22,7 @@
         <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
         <alibaba.nacos.version>2.0.3</alibaba.nacos.version>
         <spring-boot-admin.version>2.5.4</spring-boot-admin.version>
-        <spring-boot.mybatis>2.2.0</spring-boot.mybatis>
+        <spring-boot.mybatis>3.5.1</spring-boot.mybatis>
         <tobato.version>1.27.2</tobato.version>
         <kaptcha.version>2.3.2</kaptcha.version>
         <pagehelper.boot.version>1.4.0</pagehelper.boot.version>
@@ -94,12 +94,13 @@
                 <version>${tobato.version}</version>
             </dependency>
 
-            <!-- Mybatis 依赖配置 -->
+            <!-- MybatisPlus 依赖配置 -->
             <dependency>
-                <groupId>org.mybatis.spring.boot</groupId>
-                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${spring-boot.mybatis}</version>
             </dependency>
+
 
             <!-- 验证码 -->
             <dependency>
