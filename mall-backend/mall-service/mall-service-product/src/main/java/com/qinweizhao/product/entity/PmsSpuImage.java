@@ -1,4 +1,4 @@
-package com.qinweizhao.product.domain;
+package com.qinweizhao.product.entity;
 
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
@@ -6,42 +6,30 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- * spu属性值对象 pms_spu_attr_value
+ * spu图片对象 pms_spu_image
  *
  * @author qinweizhao
- * @date 2022-04-11
+ * @date 2022-04-12
  */
-public class PmsSpuAttrValue extends BaseEntity {
+public class PmsSpuImage extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
-     * id
+     * spu_id
      */
-    private Long id;
-
-    /**
-     * 商品id
-     */
-    @Excel(name = "商品id")
     private Long spuId;
 
     /**
-     * 属性id
+     * 图片名
      */
-    @Excel(name = "属性id")
-    private Long attrId;
-
-    /**
-     * 属性名
-     */
-    @Excel(name = "属性名")
+    @Excel(name = "图片名")
     private String name;
 
     /**
-     * 属性值
+     * 图片地址
      */
-    @Excel(name = "属性值")
-    private String value;
+    @Excel(name = "图片地址")
+    private String url;
 
     /**
      * 顺序
@@ -50,18 +38,10 @@ public class PmsSpuAttrValue extends BaseEntity {
     private Long sort;
 
     /**
-     * 快速展示【是否展示在介绍上；0-否 1-是】
+     * 是否默认图
      */
-    @Excel(name = "快速展示【是否展示在介绍上；0-否 1-是】")
-    private Long quickShow;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Excel(name = "是否默认图")
+    private Long defaultImage;
 
     public Long getSpuId() {
         return spuId;
@@ -69,14 +49,6 @@ public class PmsSpuAttrValue extends BaseEntity {
 
     public void setSpuId(Long spuId) {
         this.spuId = spuId;
-    }
-
-    public Long getAttrId() {
-        return attrId;
-    }
-
-    public void setAttrId(Long attrId) {
-        this.attrId = attrId;
     }
 
     public String getName() {
@@ -87,12 +59,12 @@ public class PmsSpuAttrValue extends BaseEntity {
         this.name = name;
     }
 
-    public String getValue() {
-        return value;
+    public String getUrl() {
+        return url;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public Long getSort() {
@@ -103,24 +75,22 @@ public class PmsSpuAttrValue extends BaseEntity {
         this.sort = sort;
     }
 
-    public Long getQuickShow() {
-        return quickShow;
+    public Long getDefaultImage() {
+        return defaultImage;
     }
 
-    public void setQuickShow(Long quickShow) {
-        this.quickShow = quickShow;
+    public void setDefaultImage(Long defaultImage) {
+        this.defaultImage = defaultImage;
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("id", getId())
                 .append("spuId", getSpuId())
-                .append("attrId", getAttrId())
                 .append("name", getName())
-                .append("value", getValue())
+                .append("url", getUrl())
                 .append("sort", getSort())
-                .append("quickShow", getQuickShow())
+                .append("defaultImage", getDefaultImage())
                 .append("createBy", getCreateBy())
                 .append("updateBy", getUpdateBy())
                 .append("createTime", getCreateTime())

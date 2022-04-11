@@ -1,4 +1,4 @@
-package com.qinweizhao.product.domain;
+package com.qinweizhao.product.entity;
 
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
@@ -6,12 +6,12 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- * 商品评价回复关系对象 pms_comment_replay
+ * 属性&属性分组关联对象 pms_attr_attr_group
  *
  * @author qinweizhao
  * @date 2022-04-11
  */
-public class PmsCommentReplay extends BaseEntity {
+public class PmsAttrAttrGroup extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -20,16 +20,22 @@ public class PmsCommentReplay extends BaseEntity {
     private Long id;
 
     /**
-     * 评论id
+     * 属性id
      */
-    @Excel(name = "评论id")
-    private Long commentId;
+    @Excel(name = "属性id")
+    private Long attrId;
 
     /**
-     * 回复id
+     * 属性分组id
      */
-    @Excel(name = "回复id")
-    private Long replayId;
+    @Excel(name = "属性分组id")
+    private Long attrGroupId;
+
+    /**
+     * 属性组内排序
+     */
+    @Excel(name = "属性组内排序")
+    private Long sort;
 
     public Long getId() {
         return id;
@@ -39,28 +45,37 @@ public class PmsCommentReplay extends BaseEntity {
         this.id = id;
     }
 
-    public Long getCommentId() {
-        return commentId;
+    public Long getAttrId() {
+        return attrId;
     }
 
-    public void setCommentId(Long commentId) {
-        this.commentId = commentId;
+    public void setAttrId(Long attrId) {
+        this.attrId = attrId;
     }
 
-    public Long getReplayId() {
-        return replayId;
+    public Long getAttrGroupId() {
+        return attrGroupId;
     }
 
-    public void setReplayId(Long replayId) {
-        this.replayId = replayId;
+    public void setAttrGroupId(Long attrGroupId) {
+        this.attrGroupId = attrGroupId;
+    }
+
+    public Long getSort() {
+        return sort;
+    }
+
+    public void setSort(Long sort) {
+        this.sort = sort;
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
                 .append("id", getId())
-                .append("commentId", getCommentId())
-                .append("replayId", getReplayId())
+                .append("attrId", getAttrId())
+                .append("attrGroupId", getAttrGroupId())
+                .append("sort", getSort())
                 .append("createBy", getCreateBy())
                 .append("updateBy", getUpdateBy())
                 .append("createTime", getCreateTime())

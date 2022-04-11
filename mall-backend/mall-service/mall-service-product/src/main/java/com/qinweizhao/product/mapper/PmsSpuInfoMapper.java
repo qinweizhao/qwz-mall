@@ -1,6 +1,6 @@
 package com.qinweizhao.product.mapper;
 
-import com.qinweizhao.product.domain.PmsSpuInfo;
+import com.qinweizhao.product.entity.PmsSpuInfo;
 
 import java.util.List;
 

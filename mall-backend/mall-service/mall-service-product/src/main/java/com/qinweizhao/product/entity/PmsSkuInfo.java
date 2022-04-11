@@ -1,4 +1,4 @@
-package com.qinweizhao.product.domain;
+package com.qinweizhao.product.entity;
 
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
@@ -8,29 +8,35 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import java.math.BigDecimal;
 
 /**
- * spu信息对象 pms_spu_info
+ * sku信息对象 pms_sku_info
  *
  * @author qinweizhao
  * @date 2022-04-11
  */
-public class PmsSpuInfo extends BaseEntity {
+public class PmsSkuInfo extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 商品id
+     * skuId
      */
+    private Long skuId;
+
+    /**
+     * spuId
+     */
+    @Excel(name = "spuId")
     private Long spuId;
 
     /**
-     * 商品名称
+     * sku名称
      */
-    @Excel(name = "商品名称")
+    @Excel(name = "sku名称")
     private String name;
 
     /**
-     * 商品描述
+     * sku介绍描述
      */
-    @Excel(name = "商品描述")
+    @Excel(name = "sku介绍描述")
     private String desc;
 
     /**
@@ -46,16 +52,42 @@ public class PmsSpuInfo extends BaseEntity {
     private Long brandId;
 
     /**
-     * $column.columnComment
+     * 默认图片
      */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
-    private BigDecimal weight;
+    @Excel(name = "默认图片")
+    private String defaultImg;
 
     /**
-     * 上架状态[0 - 下架，1 - 上架]
+     * 标题
      */
-    @Excel(name = "上架状态[0 - 下架，1 - 上架]")
-    private Long status;
+    @Excel(name = "标题")
+    private String title;
+
+    /**
+     * 副标题
+     */
+    @Excel(name = "副标题")
+    private String subtitle;
+
+    /**
+     * 价格
+     */
+    @Excel(name = "价格")
+    private BigDecimal price;
+
+    /**
+     * 销量
+     */
+    @Excel(name = "销量")
+    private Long saleCount;
+
+    public Long getSkuId() {
+        return skuId;
+    }
+
+    public void setSkuId(Long skuId) {
+        this.skuId = skuId;
+    }
 
     public Long getSpuId() {
         return spuId;
@@ -97,32 +129,60 @@ public class PmsSpuInfo extends BaseEntity {
         this.brandId = brandId;
     }
 
-    public BigDecimal getWeight() {
-        return weight;
+    public String getDefaultImg() {
+        return defaultImg;
     }
 
-    public void setWeight(BigDecimal weight) {
-        this.weight = weight;
+    public void setDefaultImg(String defaultImg) {
+        this.defaultImg = defaultImg;
     }
 
-    public Long getStatus() {
-        return status;
+    public String getTitle() {
+        return title;
     }
 
-    public void setStatus(Long status) {
-        this.status = status;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Long getSaleCount() {
+        return saleCount;
+    }
+
+    public void setSaleCount(Long saleCount) {
+        this.saleCount = saleCount;
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+                .append("skuId", getSkuId())
                 .append("spuId", getSpuId())
                 .append("name", getName())
                 .append("desc", getDesc())
                 .append("categoryId", getCategoryId())
                 .append("brandId", getBrandId())
-                .append("weight", getWeight())
-                .append("status", getStatus())
+                .append("defaultImg", getDefaultImg())
+                .append("title", getTitle())
+                .append("subtitle", getSubtitle())
+                .append("price", getPrice())
+                .append("saleCount", getSaleCount())
                 .append("createBy", getCreateBy())
                 .append("updateBy", getUpdateBy())
                 .append("createTime", getCreateTime())

@@ -1,7 +1,7 @@
 package com.qinweizhao.product.service.impl;
 
 import com.qinweizhao.common.core.utils.DateUtils;
-import com.qinweizhao.product.domain.PmsAttrAttrGroup;
+import com.qinweizhao.product.entity.PmsAttrAttrGroup;
 import com.qinweizhao.product.mapper.PmsAttrAttrGroupMapper;
 import com.qinweizhao.product.service.IPmsAttrAttrGroupService;
 import org.springframework.stereotype.Service;

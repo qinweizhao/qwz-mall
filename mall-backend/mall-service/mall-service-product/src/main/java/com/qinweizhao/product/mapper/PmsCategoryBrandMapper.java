@@ -1,6 +1,6 @@
 package com.qinweizhao.product.mapper;
 
-import com.qinweizhao.product.domain.PmsCategoryBrand;
+import com.qinweizhao.product.entity.PmsCategoryBrand;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.qinweizhao.product.service;
 
-import com.qinweizhao.product.domain.PmsAttrAttrGroup;
+import com.qinweizhao.product.entity.PmsAttrAttrGroup;
 
 import java.util.List;
 

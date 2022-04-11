@@ -1,6 +1,6 @@
 package com.qinweizhao.product.service;
 
-import com.qinweizhao.product.domain.PmsSkuAttrValue;
+import com.qinweizhao.product.entity.PmsSkuAttrValue;
 
 import java.util.List;
 

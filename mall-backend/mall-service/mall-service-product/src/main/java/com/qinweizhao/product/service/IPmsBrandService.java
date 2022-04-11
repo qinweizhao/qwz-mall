@@ -1,6 +1,6 @@
 package com.qinweizhao.product.service;
 
-import com.qinweizhao.product.domain.PmsBrand;
+import com.qinweizhao.product.entity.PmsBrand;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.qinweizhao.product.service;
 
-import com.qinweizhao.product.domain.PmsCommentReplay;
+import com.qinweizhao.product.entity.PmsCommentReplay;
 
 import java.util.List;
 

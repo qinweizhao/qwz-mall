@@ -1,4 +1,4 @@
-package com.qinweizhao.product.domain;
+package com.qinweizhao.product.entity;
 
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
@@ -6,24 +6,18 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- * spu图片对象 pms_spu_image
+ * sku图片对象 pms_sku_image
  *
  * @author qinweizhao
  * @date 2022-04-12
  */
-public class PmsSpuImage extends BaseEntity {
+public class PmsSkuImage extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
-     * spu_id
+     * sku_id
      */
-    private Long spuId;
-
-    /**
-     * 图片名
-     */
-    @Excel(name = "图片名")
-    private String name;
+    private Long skuId;
 
     /**
      * 图片地址
@@ -32,31 +26,23 @@ public class PmsSpuImage extends BaseEntity {
     private String url;
 
     /**
-     * 顺序
+     * 排序
      */
-    @Excel(name = "顺序")
+    @Excel(name = "排序")
     private Long sort;
 
     /**
-     * 是否默认图
+     * 默认图[0 - 不是默认图，1 - 是默认图]
      */
-    @Excel(name = "是否默认图")
+    @Excel(name = "默认图[0 - 不是默认图，1 - 是默认图]")
     private Long defaultImage;
 
-    public Long getSpuId() {
-        return spuId;
+    public Long getSkuId() {
+        return skuId;
     }
 
-    public void setSpuId(Long spuId) {
-        this.spuId = spuId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setSkuId(Long skuId) {
+        this.skuId = skuId;
     }
 
     public String getUrl() {
@@ -86,8 +72,7 @@ public class PmsSpuImage extends BaseEntity {
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("spuId", getSpuId())
-                .append("name", getName())
+                .append("skuId", getSkuId())
                 .append("url", getUrl())
                 .append("sort", getSort())
                 .append("defaultImage", getDefaultImage())
