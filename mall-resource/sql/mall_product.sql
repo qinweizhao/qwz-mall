@@ -11,7 +11,7 @@
  Target Server Version : 80028
  File Encoding         : 65001
 
- Date: 10/04/2022 22:05:30
+ Date: 11/04/2022 23:56:09
 */
 
 SET NAMES utf8mb4;
@@ -234,28 +234,29 @@ CREATE TABLE `pms_spu_attr_value` (
 -- Table structure for pms_spu_comment
 -- ----------------------------
 DROP TABLE IF EXISTS `pms_spu_comment`;
-CREATE TABLE `pms_spu_comment` (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `sku_id` bigint DEFAULT NULL COMMENT 'sku_id',
-  `spu_id` bigint DEFAULT NULL COMMENT 'spu_id',
-  `spu_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品名字',
-  `user_nick_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '会员昵称',
-  `star` tinyint(1) DEFAULT NULL COMMENT '星级',
-  `user_ip` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '会员ip',
-  `show_status` tinyint(1) DEFAULT NULL COMMENT '显示状态[0-不显示，1-显示]',
-  `spu_attributes` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '购买时属性组合',
-  `likes_count` int DEFAULT NULL COMMENT '点赞数',
-  `reply_count` int DEFAULT NULL COMMENT '回复数',
-  `resources` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '评论图片/视频[json数据；[{type:文件类型,url:资源路径}]]',
-  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci COMMENT '内容',
-  `member_icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '用户头像',
-  `type` tinyint DEFAULT NULL COMMENT '评论类型[0 - 对商品的直接评论，1 - 对评论的回复]',
-  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '创建者',
-  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '更新者',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`id`) USING BTREE
+CREATE TABLE `pms_spu_comment`
+(
+    `id`               bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
+    `sku_id`           bigint                                                         DEFAULT NULL COMMENT 'sku_id',
+    `spu_id`           bigint                                                         DEFAULT NULL COMMENT 'spu_id',
+    `spu_name`         varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  DEFAULT NULL COMMENT '商品名字',
+    `member_nick_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  DEFAULT NULL COMMENT '会员昵称',
+    `star`             tinyint(1) DEFAULT NULL COMMENT '星级',
+    `member_ip`        varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci   DEFAULT NULL COMMENT '会员ip',
+    `show_status`      tinyint(1) DEFAULT NULL COMMENT '显示状态[0-不显示，1-显示]',
+    `spu_attributes`   varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  DEFAULT NULL COMMENT '购买时属性组合',
+    `likes_count`      int                                                            DEFAULT NULL COMMENT '点赞数',
+    `reply_count`      int                                                            DEFAULT NULL COMMENT '回复数',
+    `resources`        varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '评论图片/视频[json数据；[{type:文件类型,url:资源路径}]]',
+    `content`          text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci COMMENT '内容',
+    `member_avatar`    varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  DEFAULT NULL COMMENT '用户头像',
+    `type`             tinyint                                                        DEFAULT NULL COMMENT '评论类型[0 - 对商品的直接评论，1 - 对评论的回复]',
+    `create_by`        varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci   DEFAULT '' COMMENT '创建者',
+    `update_by`        varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci   DEFAULT '' COMMENT '更新者',
+    `create_time`      datetime                                                       DEFAULT NULL COMMENT '创建时间',
+    `update_time`      datetime                                                       DEFAULT NULL COMMENT '更新时间',
+    `remark`           varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  DEFAULT NULL COMMENT '备注',
+    PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='商品评价';
 
 -- ----------------------------
