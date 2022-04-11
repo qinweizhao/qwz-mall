@@ -1,4 +1,4 @@
-package com.qinweizhao.coupon;
+package com.qinweizhao.member;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,10 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since 2021-12-22
  */
 @SpringBootApplication
-public class CouponApplication {
+public class MemberApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CouponApplication.class, args);
+        SpringApplication.run(MemberApplication.class, args);
     }
 
 }

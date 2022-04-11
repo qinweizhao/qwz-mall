@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>com.qinweizhao</groupId>
-    <artifactId>mall-service-user</artifactId>
+    <artifactId>mall-service-member</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>mall-coupon</name>
 

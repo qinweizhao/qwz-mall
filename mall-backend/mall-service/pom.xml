@@ -11,7 +11,7 @@
     <modules>
         <module>mall-service-activity</module>
         <module>mall-service-order</module>
-        <module>mall-service-user</module>
+        <module>mall-service-member</module>
         <module>mall-service-product</module>
         <module>mall-service-system</module>
         <module>mall-service-ware</module>
