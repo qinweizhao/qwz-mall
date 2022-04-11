@@ -1,7 +1,8 @@
 package com.qinweizhao.product.mapper;
 
-import java.util.List;
 import com.qinweizhao.product.domain.PmsSkuInfo;
+
+import java.util.List;
 
 /**
  * sku信息Mapper接口
@@ -16,7 +17,7 @@ public interface PmsSkuInfoMapper {
      * @param skuId sku信息主键
      * @return sku信息
      */
-    public PmsSkuInfo selectPmsSkuInfoBySkuId(Long skuId);
+    PmsSkuInfo selectPmsSkuInfoBySkuId(Long skuId);
 
     /**
      * 查询sku信息列表
@@ -24,7 +25,7 @@ public interface PmsSkuInfoMapper {
      * @param pmsSkuInfo sku信息
      * @return sku信息集合
      */
-    public List<PmsSkuInfo> selectPmsSkuInfoList(PmsSkuInfo pmsSkuInfo);
+    List<PmsSkuInfo> selectPmsSkuInfoList(PmsSkuInfo pmsSkuInfo);
 
     /**
      * 新增sku信息
@@ -32,7 +33,7 @@ public interface PmsSkuInfoMapper {
      * @param pmsSkuInfo sku信息
      * @return 结果
      */
-    public int insertPmsSkuInfo(PmsSkuInfo pmsSkuInfo);
+    int insertPmsSkuInfo(PmsSkuInfo pmsSkuInfo);
 
     /**
      * 修改sku信息
@@ -40,7 +41,7 @@ public interface PmsSkuInfoMapper {
      * @param pmsSkuInfo sku信息
      * @return 结果
      */
-    public int updatePmsSkuInfo(PmsSkuInfo pmsSkuInfo);
+    int updatePmsSkuInfo(PmsSkuInfo pmsSkuInfo);
 
     /**
      * 删除sku信息
@@ -48,7 +49,7 @@ public interface PmsSkuInfoMapper {
      * @param skuId sku信息主键
      * @return 结果
      */
-    public int deletePmsSkuInfoBySkuId(Long skuId);
+    int deletePmsSkuInfoBySkuId(Long skuId);
 
     /**
      * 批量删除sku信息
@@ -56,5 +57,5 @@ public interface PmsSkuInfoMapper {
      * @param skuIds 需要删除的数据主键集合
      * @return 结果
      */
-    public int deletePmsSkuInfoBySkuIds(Long[] skuIds);
+    int deletePmsSkuInfoBySkuIds(Long[] skuIds);
 }

@@ -1,10 +1,11 @@
 package com.qinweizhao.product.domain;
 
-import java.math.BigDecimal;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import java.math.BigDecimal;
 
 /**
  * sku信息对象 pms_sku_info
@@ -15,38 +16,56 @@ import com.qinweizhao.common.core.web.domain.BaseEntity;
 public class PmsSkuInfo extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    /** skuId */
+    /**
+     * skuId
+     */
     private Long skuId;
 
-    /** spuId */
+    /**
+     * spuId
+     */
     @Excel(name = "spuId")
     private Long spuId;
 
-    /** sku名称 */
+    /**
+     * sku名称
+     */
     @Excel(name = "sku名称")
     private String name;
 
-    /** sku介绍描述 */
+    /**
+     * sku介绍描述
+     */
     @Excel(name = "sku介绍描述")
     private String desc;
 
-    /** 所属分类id */
+    /**
+     * 所属分类id
+     */
     @Excel(name = "所属分类id")
     private Long categoryId;
 
-    /** 品牌id */
+    /**
+     * 品牌id
+     */
     @Excel(name = "品牌id")
     private Long brandId;
 
-    /** 默认图片 */
+    /**
+     * 默认图片
+     */
     @Excel(name = "默认图片")
     private String defaultImg;
 
-    /** 标题 */
+    /**
+     * 标题
+     */
     @Excel(name = "标题")
     private String title;
 
-    /** 副标题 */
+    /**
+     * 副标题
+     */
     @Excel(name = "副标题")
     private String subtitle;
 
@@ -62,92 +81,92 @@ public class PmsSkuInfo extends BaseEntity {
     @Excel(name = "销量")
     private Long saleCount;
 
-    public void setSkuId(Long skuId) {
-        this.skuId = skuId;
-    }
-
     public Long getSkuId() {
         return skuId;
     }
 
-    public void setSpuId(Long spuId) {
-        this.spuId = spuId;
+    public void setSkuId(Long skuId) {
+        this.skuId = skuId;
     }
 
     public Long getSpuId() {
         return spuId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSpuId(Long spuId) {
+        this.spuId = spuId;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDesc() {
         return desc;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public Long getCategoryId() {
         return categoryId;
     }
 
-    public void setBrandId(Long brandId) {
-        this.brandId = brandId;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
     public Long getBrandId() {
         return brandId;
     }
 
-    public void setDefaultImg(String defaultImg) {
-        this.defaultImg = defaultImg;
+    public void setBrandId(Long brandId) {
+        this.brandId = brandId;
     }
 
     public String getDefaultImg() {
         return defaultImg;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setDefaultImg(String defaultImg) {
+        this.defaultImg = defaultImg;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setSubtitle(String subtitle) {
-        this.subtitle = subtitle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getSubtitle() {
         return subtitle;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
     }
 
     public BigDecimal getPrice() {
         return price;
     }
 
-    public void setSaleCount(Long saleCount) {
-        this.saleCount = saleCount;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     public Long getSaleCount() {
         return saleCount;
+    }
+
+    public void setSaleCount(Long saleCount) {
+        this.saleCount = saleCount;
     }
 
     @Override

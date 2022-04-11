@@ -11,7 +11,7 @@ import com.qinweizhao.common.log.enums.BusinessType;
 import com.qinweizhao.common.security.annotation.InnerAuth;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.common.security.utils.SecurityUtils;
-import com.qinweizhao.modle.result.R;
+import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.system.api.domain.SysRole;
 import com.qinweizhao.system.api.domain.SysUser;
 import com.qinweizhao.system.api.model.LoginUser;

@@ -2,7 +2,7 @@ package com.qinweizhao.file.controller;
 
 import com.qinweizhao.common.core.utils.file.FileUtils;
 import com.qinweizhao.file.service.ISysFileService;
-import com.qinweizhao.modle.result.R;
+import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.system.api.domain.SysFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

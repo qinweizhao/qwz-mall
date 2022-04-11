@@ -1,9 +1,9 @@
 package com.qinweizhao.product.domain;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * 商品评价回复关系对象 pms_comment_replay
@@ -14,39 +14,45 @@ import com.qinweizhao.common.core.web.domain.BaseEntity;
 public class PmsCommentReplay extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    /** id */
+    /**
+     * id
+     */
     private Long id;
 
-    /** 评论id */
+    /**
+     * 评论id
+     */
     @Excel(name = "评论id")
     private Long commentId;
 
-    /** 回复id */
+    /**
+     * 回复id
+     */
     @Excel(name = "回复id")
     private Long replayId;
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getId() {
         return id;
     }
 
-    public void setCommentId(Long commentId) {
-        this.commentId = commentId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getCommentId() {
         return commentId;
     }
 
-    public void setReplayId(Long replayId) {
-        this.replayId = replayId;
+    public void setCommentId(Long commentId) {
+        this.commentId = commentId;
     }
 
     public Long getReplayId() {
         return replayId;
+    }
+
+    public void setReplayId(Long replayId) {
+        this.replayId = replayId;
     }
 
     @Override

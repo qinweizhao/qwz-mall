@@ -1,6 +1,7 @@
 package com.qinweizhao.common.core.exception.user;
 
-import com.qinweizhao.common.core.exception.base.BaseException;
+
+import com.qinweizhao.component.exception.base.BaseException;
 
 /**
  * 用户信息异常类
@@ -10,7 +11,7 @@ import com.qinweizhao.common.core.exception.base.BaseException;
 public class UserException extends BaseException {
     private static final long serialVersionUID = 1L;
 
-    public UserException(String code, Object[] args) {
-        super("user", code, args, null);
+    public UserException(String errMsg) {
+        super(errMsg);
     }
 }

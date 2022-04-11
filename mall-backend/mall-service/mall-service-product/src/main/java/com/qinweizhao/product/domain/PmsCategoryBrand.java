@@ -1,9 +1,9 @@
 package com.qinweizhao.product.domain;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * 分类&品牌关联对象 pms_category_brand
@@ -14,14 +14,20 @@ import com.qinweizhao.common.core.web.domain.BaseEntity;
 public class PmsCategoryBrand extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    /** $column.columnComment */
+    /**
+     * $column.columnComment
+     */
     private Long id;
 
-    /** 品牌id */
+    /**
+     * 品牌id
+     */
     @Excel(name = "品牌id")
     private Long brandId;
 
-    /** 分类id */
+    /**
+     * 分类id
+     */
     @Excel(name = "分类id")
     private Long categoryId;
 
@@ -37,44 +43,44 @@ public class PmsCategoryBrand extends BaseEntity {
     @Excel(name = "分类名称")
     private String catelogName;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getId() {
         return id;
     }
 
-    public void setBrandId(Long brandId) {
-        this.brandId = brandId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getBrandId() {
         return brandId;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setBrandId(Long brandId) {
+        this.brandId = brandId;
     }
 
     public Long getCategoryId() {
         return categoryId;
     }
 
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getBrandName() {
         return brandName;
     }
 
-    public void setCatelogName(String catelogName) {
-        this.catelogName = catelogName;
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
     }
 
     public String getCatelogName() {
         return catelogName;
+    }
+
+    public void setCatelogName(String catelogName) {
+        this.catelogName = catelogName;
     }
 
     @Override

@@ -1,7 +1,8 @@
 package com.qinweizhao.product.mapper;
 
-import java.util.List;
 import com.qinweizhao.product.domain.PmsAttrGroup;
+
+import java.util.List;
 
 /**
  * 属性分组Mapper接口
@@ -16,7 +17,7 @@ public interface PmsAttrGroupMapper {
      * @param attrGroupId 属性分组主键
      * @return 属性分组
      */
-    public PmsAttrGroup selectPmsAttrGroupByAttrGroupId(Long attrGroupId);
+    PmsAttrGroup selectPmsAttrGroupByAttrGroupId(Long attrGroupId);
 
     /**
      * 查询属性分组列表
@@ -24,7 +25,7 @@ public interface PmsAttrGroupMapper {
      * @param pmsAttrGroup 属性分组
      * @return 属性分组集合
      */
-    public List<PmsAttrGroup> selectPmsAttrGroupList(PmsAttrGroup pmsAttrGroup);
+    List<PmsAttrGroup> selectPmsAttrGroupList(PmsAttrGroup pmsAttrGroup);
 
     /**
      * 新增属性分组
@@ -32,7 +33,7 @@ public interface PmsAttrGroupMapper {
      * @param pmsAttrGroup 属性分组
      * @return 结果
      */
-    public int insertPmsAttrGroup(PmsAttrGroup pmsAttrGroup);
+    int insertPmsAttrGroup(PmsAttrGroup pmsAttrGroup);
 
     /**
      * 修改属性分组
@@ -40,7 +41,7 @@ public interface PmsAttrGroupMapper {
      * @param pmsAttrGroup 属性分组
      * @return 结果
      */
-    public int updatePmsAttrGroup(PmsAttrGroup pmsAttrGroup);
+    int updatePmsAttrGroup(PmsAttrGroup pmsAttrGroup);
 
     /**
      * 删除属性分组
@@ -48,7 +49,7 @@ public interface PmsAttrGroupMapper {
      * @param attrGroupId 属性分组主键
      * @return 结果
      */
-    public int deletePmsAttrGroupByAttrGroupId(Long attrGroupId);
+    int deletePmsAttrGroupByAttrGroupId(Long attrGroupId);
 
     /**
      * 批量删除属性分组
@@ -56,5 +57,5 @@ public interface PmsAttrGroupMapper {
      * @param attrGroupIds 需要删除的数据主键集合
      * @return 结果
      */
-    public int deletePmsAttrGroupByAttrGroupIds(Long[] attrGroupIds);
+    int deletePmsAttrGroupByAttrGroupIds(Long[] attrGroupIds);
 }

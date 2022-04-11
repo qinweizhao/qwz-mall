@@ -1,17 +1,18 @@
 package com.qinweizhao.common.core.exception.file;
 
-import com.qinweizhao.common.core.exception.base.BaseException;
+
+import com.qinweizhao.component.exception.base.BaseException;
 
 /**
  * 文件信息异常类
  *
- * @author ruoyi
+ * @author qinweizhao
  */
 public class FileException extends BaseException {
     private static final long serialVersionUID = 1L;
 
-    public FileException(String code, Object[] args) {
-        super("file", code, args, null);
+    public FileException(String code, String errMag) {
+        super(code, errMag);
     }
 
 }

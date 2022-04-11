@@ -9,7 +9,7 @@
         <result property="name" column="name"/>
         <result property="url" column="url"/>
         <result property="sort" column="sort"/>
-        <result property="default" column="default"/>
+        <result property="defaultImage" column="default_image"/>
         <result property="createBy" column="create_by"/>
         <result property="updateBy" column="update_by"/>
         <result property="createTime" column="create_time"/>
@@ -22,7 +22,7 @@
                name,
                url,
                sort,
-               default,
+               default_image,
                create_by,
                update_by,
                create_time,
@@ -37,7 +37,7 @@
             <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
             <if test="url != null  and url != ''">and url = #{url}</if>
             <if test="sort != null ">and sort = #{sort}</if>
-            <if test="default != null ">and default = #{default}</if>
+            <if test="defaultImage != null ">and default_image = #{defaultImage}</if>
         </where>
     </select>
 
@@ -53,7 +53,7 @@
             <if test="name != null">name,</if>
             <if test="url != null">url,</if>
             <if test="sort != null">sort,</if>
-            <if test="default != null">default,</if>
+            <if test="defaultImage != null">default_image,</if>
             <if test="createBy != null">create_by,</if>
             <if test="updateBy != null">update_by,</if>
             <if test="createTime != null">create_time,</if>
@@ -65,7 +65,7 @@
             <if test="name != null">#{name},</if>
             <if test="url != null">#{url},</if>
             <if test="sort != null">#{sort},</if>
-            <if test="default != null">#{default},</if>
+            <if test="defaultImage != null">#{defaultImage},</if>
             <if test="createBy != null">#{createBy},</if>
             <if test="updateBy != null">#{updateBy},</if>
             <if test="createTime != null">#{createTime},</if>
@@ -80,7 +80,7 @@
             <if test="name != null">name = #{name},</if>
             <if test="url != null">url = #{url},</if>
             <if test="sort != null">sort = #{sort},</if>
-            <if test="default != null">default = #{default},</if>
+            <if test="defaultImage != null">default_image = #{defaultImage},</if>
             <if test="createBy != null">create_by = #{createBy},</if>
             <if test="updateBy != null">update_by = #{updateBy},</if>
             <if test="createTime != null">create_time = #{createTime},</if>

@@ -1,9 +1,9 @@
 package com.qinweizhao.product.domain;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * spu信息介绍对象 pms_spu_info_desc
@@ -14,27 +14,31 @@ import com.qinweizhao.common.core.web.domain.BaseEntity;
 public class PmsSpuInfoDesc extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    /** 商品id */
+    /**
+     * 商品id
+     */
     private Long spuId;
 
-    /** 商品介绍 */
+    /**
+     * 商品介绍
+     */
     @Excel(name = "商品介绍")
     private String desc;
-
-    public void setSpuId(Long spuId) {
-        this.spuId = spuId;
-    }
 
     public Long getSpuId() {
         return spuId;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setSpuId(Long spuId) {
+        this.spuId = spuId;
     }
 
     public String getDesc() {
         return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     @Override

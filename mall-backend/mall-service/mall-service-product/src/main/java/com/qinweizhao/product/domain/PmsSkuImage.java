@@ -6,59 +6,51 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- * 属性&属性分组关联对象 pms_attr_attr_group
+ * sku图片对象 pms_sku_image
  *
  * @author qinweizhao
- * @date 2022-04-11
+ * @date 2022-04-12
  */
-public class PmsAttrAttrGroup extends BaseEntity {
+public class PmsSkuImage extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
-     * id
+     * sku_id
      */
-    private Long id;
+    private Long skuId;
 
     /**
-     * 属性id
+     * 图片地址
      */
-    @Excel(name = "属性id")
-    private Long attrId;
+    @Excel(name = "图片地址")
+    private String url;
 
     /**
-     * 属性分组id
+     * 排序
      */
-    @Excel(name = "属性分组id")
-    private Long attrGroupId;
-
-    /**
-     * 属性组内排序
-     */
-    @Excel(name = "属性组内排序")
+    @Excel(name = "排序")
     private Long sort;
 
-    public Long getId() {
-        return id;
+    /**
+     * 默认图[0 - 不是默认图，1 - 是默认图]
+     */
+    @Excel(name = "默认图[0 - 不是默认图，1 - 是默认图]")
+    private Long defaultImage;
+
+    public Long getSkuId() {
+        return skuId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setSkuId(Long skuId) {
+        this.skuId = skuId;
     }
 
-    public Long getAttrId() {
-        return attrId;
+    public String getUrl() {
+        return url;
     }
 
-    public void setAttrId(Long attrId) {
-        this.attrId = attrId;
-    }
-
-    public Long getAttrGroupId() {
-        return attrGroupId;
-    }
-
-    public void setAttrGroupId(Long attrGroupId) {
-        this.attrGroupId = attrGroupId;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public Long getSort() {
@@ -69,13 +61,21 @@ public class PmsAttrAttrGroup extends BaseEntity {
         this.sort = sort;
     }
 
+    public Long getDefaultImage() {
+        return defaultImage;
+    }
+
+    public void setDefaultImage(Long defaultImage) {
+        this.defaultImage = defaultImage;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("id", getId())
-                .append("attrId", getAttrId())
-                .append("attrGroupId", getAttrGroupId())
+                .append("skuId", getSkuId())
+                .append("url", getUrl())
                 .append("sort", getSort())
+                .append("defaultImage", getDefaultImage())
                 .append("createBy", getCreateBy())
                 .append("updateBy", getUpdateBy())
                 .append("createTime", getCreateTime())

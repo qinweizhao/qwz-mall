@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qinweizhao.product.mapper.PmsSkuImagesMapper">
-    
-    <resultMap type="PmsSkuImages" id="PmsSkuImagesResult">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qinweizhao.product.mapper.PmsSkuImageMapper">
+
+    <resultMap type="PmsSkuImage" id="PmsSkuImageResult">
         <result property="skuId" column="sku_id"/>
         <result property="url" column="url"/>
         <result property="sort" column="sort"/>
-        <result property="default" column="default"/>
+        <result property="defaultImage" column="default_image"/>
         <result property="createBy" column="create_by"/>
         <result property="updateBy" column="update_by"/>
         <result property="createTime" column="create_time"/>
@@ -16,40 +16,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="remark" column="remark"/>
     </resultMap>
 
-    <sql id="selectPmsSkuImagesVo">
+    <sql id="selectPmsSkuImageVo">
         select sku_id,
                url,
                sort,
-               default,
+               default_image,
                create_by,
                update_by,
                create_time,
                update_time,
                remark
-        from pms_sku_images
+        from pms_sku_image
     </sql>
 
-    <select id="selectPmsSkuImagesList" parameterType="PmsSkuImages" resultMap="PmsSkuImagesResult">
-        <include refid="selectPmsSkuImagesVo"/>
+    <select id="selectPmsSkuImageList" parameterType="PmsSkuImage" resultMap="PmsSkuImageResult">
+        <include refid="selectPmsSkuImageVo"/>
         <where>
             <if test="url != null  and url != ''">and url = #{url}</if>
             <if test="sort != null ">and sort = #{sort}</if>
-            <if test="default != null ">and default = #{default}</if>
+            <if test="defaultImage != null ">and default_image = #{defaultImage}</if>
         </where>
     </select>
 
-    <select id="selectPmsSkuImagesBySkuId" parameterType="Long" resultMap="PmsSkuImagesResult">
-        <include refid="selectPmsSkuImagesVo"/>
+    <select id="selectPmsSkuImageBySkuId" parameterType="Long" resultMap="PmsSkuImageResult">
+        <include refid="selectPmsSkuImageVo"/>
         where sku_id = #{skuId}
     </select>
 
-    <insert id="insertPmsSkuImages" parameterType="PmsSkuImages">
-        insert into pms_sku_images
+    <insert id="insertPmsSkuImage" parameterType="PmsSkuImage">
+        insert into pms_sku_image
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="skuId != null">sku_id,</if>
             <if test="url != null">url,</if>
             <if test="sort != null">sort,</if>
-            <if test="default != null">default,</if>
+            <if test="defaultImage != null">default_image,</if>
             <if test="createBy != null">create_by,</if>
             <if test="updateBy != null">update_by,</if>
             <if test="createTime != null">create_time,</if>
@@ -60,7 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="skuId != null">#{skuId},</if>
             <if test="url != null">#{url},</if>
             <if test="sort != null">#{sort},</if>
-            <if test="default != null">#{default},</if>
+            <if test="defaultImage != null">#{defaultImage},</if>
             <if test="createBy != null">#{createBy},</if>
             <if test="updateBy != null">#{updateBy},</if>
             <if test="createTime != null">#{createTime},</if>
@@ -69,12 +69,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </trim>
     </insert>
 
-    <update id="updatePmsSkuImages" parameterType="PmsSkuImages">
-        update pms_sku_images
+    <update id="updatePmsSkuImage" parameterType="PmsSkuImage">
+        update pms_sku_image
         <trim prefix="SET" suffixOverrides=",">
             <if test="url != null">url = #{url},</if>
             <if test="sort != null">sort = #{sort},</if>
-            <if test="default != null">default = #{default},</if>
+            <if test="defaultImage != null">default_image = #{defaultImage},</if>
             <if test="createBy != null">create_by = #{createBy},</if>
             <if test="updateBy != null">update_by = #{updateBy},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
@@ -84,14 +84,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where sku_id = #{skuId}
     </update>
 
-    <delete id="deletePmsSkuImagesBySkuId" parameterType="Long">
+    <delete id="deletePmsSkuImageBySkuId" parameterType="Long">
         delete
-        from pms_sku_images
+        from pms_sku_image
         where sku_id = #{skuId}
     </delete>
 
-    <delete id="deletePmsSkuImagesBySkuIds" parameterType="String">
-        delete from pms_sku_images where sku_id in
+    <delete id="deletePmsSkuImageBySkuIds" parameterType="String">
+        delete from pms_sku_image where sku_id in
         <foreach item="skuId" collection="array" open="(" separator="," close=")">
             #{skuId}
         </foreach>

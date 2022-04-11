@@ -40,6 +40,7 @@
         <commons-collections.version>3.2.2</commons-collections.version>
         <transmittable-thread-local.version>2.12.2</transmittable-thread-local.version>
         <log4j2.version>2.17.1</log4j2.version>
+        <qwz.component.version>1.0.0</qwz.component.version>
     </properties>
 
     <!-- 依赖声明 -->
@@ -238,6 +239,12 @@
                 <groupId>com.qinweizhao</groupId>
                 <artifactId>mall-api-system</artifactId>
                 <version>${mall.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.qinweizhao.component</groupId>
+                <artifactId>qwz-component-all</artifactId>
+                <version>${qwz.component.version}</version>
             </dependency>
 
         </dependencies>

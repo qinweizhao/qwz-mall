@@ -1,9 +1,9 @@
 package com.qinweizhao.product.domain;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * 商品评价对象 pms_spu_comment
@@ -14,54 +14,80 @@ import com.qinweizhao.common.core.web.domain.BaseEntity;
 public class PmsSpuComment extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    /** id */
+    /**
+     * id
+     */
     private Long id;
 
-    /** sku_id */
+    /**
+     * sku_id
+     */
     @Excel(name = "sku_id")
     private Long skuId;
 
-    /** spu_id */
+    /**
+     * spu_id
+     */
     @Excel(name = "spu_id")
     private Long spuId;
 
-    /** 商品名字 */
+    /**
+     * 商品名字
+     */
     @Excel(name = "商品名字")
     private String spuName;
 
-    /** 会员昵称 */
+    /**
+     * 会员昵称
+     */
     @Excel(name = "会员昵称")
     private String memberNickName;
 
-    /** 星级 */
+    /**
+     * 星级
+     */
     @Excel(name = "星级")
     private Integer star;
 
-    /** 会员ip */
+    /**
+     * 会员ip
+     */
     @Excel(name = "会员ip")
     private String memberIp;
 
-    /** 显示状态[0-不显示，1-显示] */
+    /**
+     * 显示状态[0-不显示，1-显示]
+     */
     @Excel(name = "显示状态[0-不显示，1-显示]")
     private Integer showStatus;
 
-    /** 购买时属性组合 */
+    /**
+     * 购买时属性组合
+     */
     @Excel(name = "购买时属性组合")
     private String spuAttributes;
 
-    /** 点赞数 */
+    /**
+     * 点赞数
+     */
     @Excel(name = "点赞数")
     private Long likesCount;
 
-    /** 回复数 */
+    /**
+     * 回复数
+     */
     @Excel(name = "回复数")
     private Long replyCount;
 
-    /** 评论图片/视频[json数据；[{type:文件类型,url:资源路径}]] */
+    /**
+     * 评论图片/视频[json数据；[{type:文件类型,url:资源路径}]]
+     */
     @Excel(name = "评论图片/视频[json数据；[{type:文件类型,url:资源路径}]]")
     private String resources;
 
-    /** 内容 */
+    /**
+     * 内容
+     */
     @Excel(name = "内容")
     private String content;
 
@@ -77,124 +103,124 @@ public class PmsSpuComment extends BaseEntity {
     @Excel(name = "评论类型[0 - 对商品的直接评论，1 - 对评论的回复]")
     private Long type;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getId() {
         return id;
     }
 
-    public void setSkuId(Long skuId) {
-        this.skuId = skuId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getSkuId() {
         return skuId;
     }
 
-    public void setSpuId(Long spuId) {
-        this.spuId = spuId;
+    public void setSkuId(Long skuId) {
+        this.skuId = skuId;
     }
 
     public Long getSpuId() {
         return spuId;
     }
 
-    public void setSpuName(String spuName) {
-        this.spuName = spuName;
+    public void setSpuId(Long spuId) {
+        this.spuId = spuId;
     }
 
     public String getSpuName() {
         return spuName;
     }
 
-    public void setMemberNickName(String memberNickName) {
-        this.memberNickName = memberNickName;
+    public void setSpuName(String spuName) {
+        this.spuName = spuName;
     }
 
     public String getMemberNickName() {
         return memberNickName;
     }
 
-    public void setStar(Integer star) {
-        this.star = star;
+    public void setMemberNickName(String memberNickName) {
+        this.memberNickName = memberNickName;
     }
 
     public Integer getStar() {
         return star;
     }
 
-    public void setMemberIp(String memberIp) {
-        this.memberIp = memberIp;
+    public void setStar(Integer star) {
+        this.star = star;
     }
 
     public String getMemberIp() {
         return memberIp;
     }
 
-    public void setShowStatus(Integer showStatus) {
-        this.showStatus = showStatus;
+    public void setMemberIp(String memberIp) {
+        this.memberIp = memberIp;
     }
 
     public Integer getShowStatus() {
         return showStatus;
     }
 
-    public void setSpuAttributes(String spuAttributes) {
-        this.spuAttributes = spuAttributes;
+    public void setShowStatus(Integer showStatus) {
+        this.showStatus = showStatus;
     }
 
     public String getSpuAttributes() {
         return spuAttributes;
     }
 
-    public void setLikesCount(Long likesCount) {
-        this.likesCount = likesCount;
+    public void setSpuAttributes(String spuAttributes) {
+        this.spuAttributes = spuAttributes;
     }
 
     public Long getLikesCount() {
         return likesCount;
     }
 
-    public void setReplyCount(Long replyCount) {
-        this.replyCount = replyCount;
+    public void setLikesCount(Long likesCount) {
+        this.likesCount = likesCount;
     }
 
     public Long getReplyCount() {
         return replyCount;
     }
 
-    public void setResources(String resources) {
-        this.resources = resources;
+    public void setReplyCount(Long replyCount) {
+        this.replyCount = replyCount;
     }
 
     public String getResources() {
         return resources;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setResources(String resources) {
+        this.resources = resources;
     }
 
     public String getContent() {
         return content;
     }
 
-    public void setMemberAvatar(String memberAvatar) {
-        this.memberAvatar = memberAvatar;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getMemberAvatar() {
         return memberAvatar;
     }
 
-    public void setType(Long type) {
-        this.type = type;
+    public void setMemberAvatar(String memberAvatar) {
+        this.memberAvatar = memberAvatar;
     }
 
     public Long getType() {
         return type;
+    }
+
+    public void setType(Long type) {
+        this.type = type;
     }
 
     @Override

@@ -1,9 +1,9 @@
 package com.qinweizhao.product.domain;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * spu属性值对象 pms_spu_attr_value
@@ -14,22 +14,32 @@ import com.qinweizhao.common.core.web.domain.BaseEntity;
 public class PmsSpuAttrValue extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    /** id */
+    /**
+     * id
+     */
     private Long id;
 
-    /** 商品id */
+    /**
+     * 商品id
+     */
     @Excel(name = "商品id")
     private Long spuId;
 
-    /** 属性id */
+    /**
+     * 属性id
+     */
     @Excel(name = "属性id")
     private Long attrId;
 
-    /** 属性名 */
+    /**
+     * 属性名
+     */
     @Excel(name = "属性名")
     private String name;
 
-    /** 属性值 */
+    /**
+     * 属性值
+     */
     @Excel(name = "属性值")
     private String value;
 
@@ -45,60 +55,60 @@ public class PmsSpuAttrValue extends BaseEntity {
     @Excel(name = "快速展示【是否展示在介绍上；0-否 1-是】")
     private Long quickShow;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getId() {
         return id;
     }
 
-    public void setSpuId(Long spuId) {
-        this.spuId = spuId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getSpuId() {
         return spuId;
     }
 
-    public void setAttrId(Long attrId) {
-        this.attrId = attrId;
+    public void setSpuId(Long spuId) {
+        this.spuId = spuId;
     }
 
     public Long getAttrId() {
         return attrId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAttrId(Long attrId) {
+        this.attrId = attrId;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getValue() {
         return value;
     }
 
-    public void setSort(Long sort) {
-        this.sort = sort;
+    public void setValue(String value) {
+        this.value = value;
     }
 
     public Long getSort() {
         return sort;
     }
 
-    public void setQuickShow(Long quickShow) {
-        this.quickShow = quickShow;
+    public void setSort(Long sort) {
+        this.sort = sort;
     }
 
     public Long getQuickShow() {
         return quickShow;
+    }
+
+    public void setQuickShow(Long quickShow) {
+        this.quickShow = quickShow;
     }
 
     @Override

@@ -1,9 +1,9 @@
 package com.qinweizhao.product.domain;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * sku销售属性&值对象 pms_sku_attr_value
@@ -14,18 +14,26 @@ import com.qinweizhao.common.core.web.domain.BaseEntity;
 public class PmsSkuAttrValue extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    /** id */
+    /**
+     * id
+     */
     private Long id;
 
-    /** sku_id */
+    /**
+     * sku_id
+     */
     @Excel(name = "sku_id")
     private Long skuId;
 
-    /** attr_id */
+    /**
+     * attr_id
+     */
     @Excel(name = "attr_id")
     private Long attrId;
 
-    /** 销售属性名 */
+    /**
+     * 销售属性名
+     */
     @Excel(name = "销售属性名")
     private String name;
 
@@ -41,52 +49,52 @@ public class PmsSkuAttrValue extends BaseEntity {
     @Excel(name = "顺序")
     private Long sort;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getId() {
         return id;
     }
 
-    public void setSkuId(Long skuId) {
-        this.skuId = skuId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getSkuId() {
         return skuId;
     }
 
-    public void setAttrId(Long attrId) {
-        this.attrId = attrId;
+    public void setSkuId(Long skuId) {
+        this.skuId = skuId;
     }
 
     public Long getAttrId() {
         return attrId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAttrId(Long attrId) {
+        this.attrId = attrId;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getValue() {
         return value;
     }
 
-    public void setSort(Long sort) {
-        this.sort = sort;
+    public void setValue(String value) {
+        this.value = value;
     }
 
     public Long getSort() {
         return sort;
+    }
+
+    public void setSort(Long sort) {
+        this.sort = sort;
     }
 
     @Override

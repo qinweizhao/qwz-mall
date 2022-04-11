@@ -3,7 +3,7 @@ package com.qinweizhao.common.core.utils;
 import com.alibaba.fastjson.JSONObject;
 import com.qinweizhao.common.core.constant.Constants;
 import com.qinweizhao.common.core.text.Convert;
-import com.qinweizhao.modle.result.R;
+import com.qinweizhao.component.modle.result.R;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

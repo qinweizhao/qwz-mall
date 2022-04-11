@@ -1,7 +1,8 @@
 package com.qinweizhao.product.mapper;
 
-import java.util.List;
 import com.qinweizhao.product.domain.PmsSpuInfoDesc;
+
+import java.util.List;
 
 /**
  * spu信息介绍Mapper接口
@@ -16,7 +17,7 @@ public interface PmsSpuInfoDescMapper {
      * @param spuId spu信息介绍主键
      * @return spu信息介绍
      */
-    public PmsSpuInfoDesc selectPmsSpuInfoDescBySpuId(Long spuId);
+    PmsSpuInfoDesc selectPmsSpuInfoDescBySpuId(Long spuId);
 
     /**
      * 查询spu信息介绍列表
@@ -24,7 +25,7 @@ public interface PmsSpuInfoDescMapper {
      * @param pmsSpuInfoDesc spu信息介绍
      * @return spu信息介绍集合
      */
-    public List<PmsSpuInfoDesc> selectPmsSpuInfoDescList(PmsSpuInfoDesc pmsSpuInfoDesc);
+    List<PmsSpuInfoDesc> selectPmsSpuInfoDescList(PmsSpuInfoDesc pmsSpuInfoDesc);
 
     /**
      * 新增spu信息介绍
@@ -32,7 +33,7 @@ public interface PmsSpuInfoDescMapper {
      * @param pmsSpuInfoDesc spu信息介绍
      * @return 结果
      */
-    public int insertPmsSpuInfoDesc(PmsSpuInfoDesc pmsSpuInfoDesc);
+    int insertPmsSpuInfoDesc(PmsSpuInfoDesc pmsSpuInfoDesc);
 
     /**
      * 修改spu信息介绍
@@ -40,7 +41,7 @@ public interface PmsSpuInfoDescMapper {
      * @param pmsSpuInfoDesc spu信息介绍
      * @return 结果
      */
-    public int updatePmsSpuInfoDesc(PmsSpuInfoDesc pmsSpuInfoDesc);
+    int updatePmsSpuInfoDesc(PmsSpuInfoDesc pmsSpuInfoDesc);
 
     /**
      * 删除spu信息介绍
@@ -48,7 +49,7 @@ public interface PmsSpuInfoDescMapper {
      * @param spuId spu信息介绍主键
      * @return 结果
      */
-    public int deletePmsSpuInfoDescBySpuId(Long spuId);
+    int deletePmsSpuInfoDescBySpuId(Long spuId);
 
     /**
      * 批量删除spu信息介绍
@@ -56,5 +57,5 @@ public interface PmsSpuInfoDescMapper {
      * @param spuIds 需要删除的数据主键集合
      * @return 结果
      */
-    public int deletePmsSpuInfoDescBySpuIds(Long[] spuIds);
+    int deletePmsSpuInfoDescBySpuIds(Long[] spuIds);
 }

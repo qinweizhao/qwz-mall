@@ -4,7 +4,7 @@ import java.util.List;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 
-import com.qinweizhao.modle.result.R;
+import com.qinweizhao.component.modle.result.R;
 
 import javax.annotation.Resource;
 

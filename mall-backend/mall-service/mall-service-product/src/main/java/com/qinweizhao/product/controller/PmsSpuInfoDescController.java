@@ -1,28 +1,18 @@
 package com.qinweizhao.product.controller;
 
-import java.util.List;
-import java.io.IOException;
-import javax.servlet.http.HttpServletResponse;
-
-import com.qinweizhao.modle.result.R;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.qinweizhao.common.core.utils.poi.ExcelUtil;
+import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.log.annotation.Log;
 import com.qinweizhao.common.log.enums.BusinessType;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
+import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.product.domain.PmsSpuInfoDesc;
 import com.qinweizhao.product.service.IPmsSpuInfoDescService;
-import com.qinweizhao.common.core.web.controller.BaseController;
-import com.qinweizhao.common.core.web.domain.AjaxResult;
-import com.qinweizhao.common.core.utils.poi.ExcelUtil;
-import com.qinweizhao.common.core.web.page.TableDataInfo;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * spu信息介绍Controller
@@ -33,6 +23,7 @@ import com.qinweizhao.common.core.web.page.TableDataInfo;
 @RestController
 @RequestMapping("/desc")
 public class PmsSpuInfoDescController extends BaseController {
+
     @Resource
     private IPmsSpuInfoDescService pmsSpuInfoDescService;
 

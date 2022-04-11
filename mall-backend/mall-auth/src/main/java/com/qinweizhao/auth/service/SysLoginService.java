@@ -9,7 +9,7 @@ import com.qinweizhao.common.core.utils.ServletUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.utils.ip.IpUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
-import com.qinweizhao.modle.result.R;
+import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.system.api.RemoteLogService;
 import com.qinweizhao.system.api.RemoteUserService;
 import com.qinweizhao.system.api.domain.SysLogininfor;

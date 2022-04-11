@@ -11,7 +11,7 @@
  Target Server Version : 80028
  File Encoding         : 65001
 
- Date: 11/04/2022 23:56:09
+ Date: 12/04/2022 01:47:16
 */
 
 SET NAMES utf8mb4;
@@ -155,35 +155,36 @@ CREATE TABLE `pms_comment_replay` (
 -- ----------------------------
 DROP TABLE IF EXISTS `pms_sku_attr_value`;
 CREATE TABLE `pms_sku_attr_value` (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `sku_id` bigint DEFAULT NULL COMMENT 'sku_id',
-  `attr_id` bigint DEFAULT NULL COMMENT 'attr_id',
-  `name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '销售属性名',
-  `value` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '销售属性值',
-  `sort` int DEFAULT NULL COMMENT '顺序',
-  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '创建者',
-  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '更新者',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`id`) USING BTREE
+                                      `id`          bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
+                                      `sku_id`      bigint                                                        DEFAULT NULL COMMENT 'sku_id',
+                                      `attr_id`     bigint                                                        DEFAULT NULL COMMENT 'attr_id',
+                                      `name`        varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '销售属性名',
+                                      `value`       varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '销售属性值',
+                                      `sort`        int                                                           DEFAULT NULL COMMENT '顺序',
+                                      `create_by`   varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  DEFAULT '' COMMENT '创建者',
+                                      `update_by`   varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  DEFAULT '' COMMENT '更新者',
+                                      `create_time` datetime                                                      DEFAULT NULL COMMENT '创建时间',
+                                      `update_time` datetime                                                      DEFAULT NULL COMMENT '更新时间',
+                                      `remark`      varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '备注',
+                                      PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='sku销售属性&值';
 
 -- ----------------------------
--- Table structure for pms_sku_images
+-- Table structure for pms_sku_image
 -- ----------------------------
-DROP TABLE IF EXISTS `pms_sku_images`;
-CREATE TABLE `pms_sku_images` (
-  `sku_id` bigint NOT NULL COMMENT 'sku_id',
-  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '图片地址',
-  `sort` int DEFAULT NULL COMMENT '排序',
-  `default` int DEFAULT NULL COMMENT '默认图[0 - 不是默认图，1 - 是默认图]',
-  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '创建者',
-  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '更新者',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`sku_id`) USING BTREE
+DROP TABLE IF EXISTS `pms_sku_image`;
+CREATE TABLE `pms_sku_image`
+(
+    `sku_id`        bigint NOT NULL COMMENT 'sku_id',
+    `url`           varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '图片地址',
+    `sort`          int                                                           DEFAULT NULL COMMENT '排序',
+    `default_image` tinyint                                                       DEFAULT NULL COMMENT '默认图[0 - 不是默认图，1 - 是默认图]',
+    `create_by`     varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  DEFAULT '' COMMENT '创建者',
+    `update_by`     varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  DEFAULT '' COMMENT '更新者',
+    `create_time`   datetime                                                      DEFAULT NULL COMMENT '创建时间',
+    `update_time`   datetime                                                      DEFAULT NULL COMMENT '更新时间',
+    `remark`        varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '备注',
+    PRIMARY KEY (`sku_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='sku图片';
 
 -- ----------------------------
@@ -263,18 +264,19 @@ CREATE TABLE `pms_spu_comment`
 -- Table structure for pms_spu_image
 -- ----------------------------
 DROP TABLE IF EXISTS `pms_spu_image`;
-CREATE TABLE `pms_spu_image` (
-  `spu_id` bigint NOT NULL COMMENT 'spu_id',
-  `name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '图片名',
-  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '图片地址',
-  `sort` int DEFAULT NULL COMMENT '顺序',
-  `default` tinyint DEFAULT NULL COMMENT '是否默认图',
-  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '创建者',
-  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '更新者',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`spu_id`) USING BTREE
+CREATE TABLE `pms_spu_image`
+(
+    `spu_id`        bigint NOT NULL COMMENT 'spu_id',
+    `name`          varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '图片名',
+    `url`           varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '图片地址',
+    `sort`          int                                                           DEFAULT NULL COMMENT '顺序',
+    `default_image` tinyint                                                       DEFAULT NULL COMMENT '是否默认图',
+    `create_by`     varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  DEFAULT '' COMMENT '创建者',
+    `update_by`     varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  DEFAULT '' COMMENT '更新者',
+    `create_time`   datetime                                                      DEFAULT NULL COMMENT '创建时间',
+    `update_time`   datetime                                                      DEFAULT NULL COMMENT '更新时间',
+    `remark`        varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '备注',
+    PRIMARY KEY (`spu_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='spu图片';
 
 -- ----------------------------
