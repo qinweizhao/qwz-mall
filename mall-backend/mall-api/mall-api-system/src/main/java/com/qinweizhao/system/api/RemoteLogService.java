@@ -2,7 +2,7 @@ package com.qinweizhao.system.api;
 
 import com.qinweizhao.common.core.constant.SecurityConstants;
 import com.qinweizhao.common.core.constant.ServiceNameConstants;
-import com.qinweizhao.modle.result.R;
+import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.system.api.domain.SysLogininfor;
 import com.qinweizhao.system.api.domain.SysOperLog;
 import com.qinweizhao.system.api.factory.RemoteLogFallbackFactory;

@@ -1,6 +1,6 @@
 package com.qinweizhao.system.api.factory;
 
-import com.qinweizhao.modle.result.R;
+import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.system.api.RemoteUserService;
 import com.qinweizhao.system.api.domain.SysUser;
 import com.qinweizhao.system.api.model.LoginUser;

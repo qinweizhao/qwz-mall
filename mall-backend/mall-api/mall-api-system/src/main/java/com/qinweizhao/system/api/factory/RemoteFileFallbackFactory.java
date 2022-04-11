@@ -1,6 +1,6 @@
 package com.qinweizhao.system.api.factory;
 
-import com.qinweizhao.modle.result.R;
+import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.system.api.RemoteFileService;
 import com.qinweizhao.system.api.domain.SysFile;
 import org.slf4j.Logger;
