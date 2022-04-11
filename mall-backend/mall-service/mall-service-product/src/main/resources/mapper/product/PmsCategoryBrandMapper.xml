@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qinweizhao.product.mapper.PmsCategoryBrandMapper">
+
+    <resultMap type="PmsCategoryBrand" id="PmsCategoryBrandResult">
+        <result property="id" column="id"/>
+        <result property="brandId" column="brand_id"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="brandName" column="brand_name"/>
+        <result property="catelogName" column="catelog_name"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <sql id="selectPmsCategoryBrandVo">
+        select id,
+               brand_id,
+               category_id,
+               brand_name,
+               catelog_name,
+               create_by,
+               update_by,
+               create_time,
+               update_time,
+               remark
+        from pms_category_brand
+    </sql>
+
+    <select id="selectPmsCategoryBrandList" parameterType="PmsCategoryBrand" resultMap="PmsCategoryBrandResult">
+        <include refid="selectPmsCategoryBrandVo"/>
+        <where>
+            <if test="brandId != null ">and brand_id = #{brandId}</if>
+            <if test="categoryId != null ">and category_id = #{categoryId}</if>
+            <if test="brandName != null  and brandName != ''">and brand_name like concat('%', #{brandName}, '%')</if>
+            <if test="catelogName != null  and catelogName != ''">and catelog_name like concat('%', #{catelogName},
+                '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectPmsCategoryBrandById" parameterType="Long" resultMap="PmsCategoryBrandResult">
+        <include refid="selectPmsCategoryBrandVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertPmsCategoryBrand" parameterType="PmsCategoryBrand" useGeneratedKeys="true" keyProperty="id">
+        insert into pms_category_brand
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="brandId != null">brand_id,</if>
+            <if test="categoryId != null">category_id,</if>
+            <if test="brandName != null">brand_name,</if>
+            <if test="catelogName != null">catelog_name,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="brandId != null">#{brandId},</if>
+            <if test="categoryId != null">#{categoryId},</if>
+            <if test="brandName != null">#{brandName},</if>
+            <if test="catelogName != null">#{catelogName},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+        </trim>
+    </insert>
+
+    <update id="updatePmsCategoryBrand" parameterType="PmsCategoryBrand">
+        update pms_category_brand
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="brandId != null">brand_id = #{brandId},</if>
+            <if test="categoryId != null">category_id = #{categoryId},</if>
+            <if test="brandName != null">brand_name = #{brandName},</if>
+            <if test="catelogName != null">catelog_name = #{catelogName},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletePmsCategoryBrandById" parameterType="Long">
+        delete
+        from pms_category_brand
+        where id = #{id}
+    </delete>
+
+    <delete id="deletePmsCategoryBrandByIds" parameterType="String">
+        delete from pms_category_brand where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

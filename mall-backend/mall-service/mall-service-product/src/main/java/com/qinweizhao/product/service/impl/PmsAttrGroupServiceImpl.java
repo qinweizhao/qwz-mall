@@ -1,22 +1,23 @@
 package com.qinweizhao.product.service.impl;
 
-import com.qinweizhao.product.domain.PmsAttrGroup;
-import com.qinweizhao.product.mapper.PmsAttrGroupMapper;
-import com.qinweizhao.product.service.IPmsAttrGroupService;
+import java.util.List;
+
+import com.qinweizhao.common.core.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import com.qinweizhao.product.mapper.PmsAttrGroupMapper;
+import com.qinweizhao.product.domain.PmsAttrGroup;
+import com.qinweizhao.product.service.IPmsAttrGroupService;
 
 /**
  * 属性分组Service业务层处理
  *
  * @author qinweizhao
- * @date 2022-04-03
+ * @date 2022-04-11
  */
 @Service
 public class PmsAttrGroupServiceImpl implements IPmsAttrGroupService {
-    @Autowired
+    @Resource
     private PmsAttrGroupMapper pmsAttrGroupMapper;
 
     /**
@@ -49,6 +50,7 @@ public class PmsAttrGroupServiceImpl implements IPmsAttrGroupService {
      */
     @Override
     public int insertPmsAttrGroup(PmsAttrGroup pmsAttrGroup) {
+        pmsAttrGroup.setCreateTime(DateUtils.getNowDate());
         return pmsAttrGroupMapper.insertPmsAttrGroup(pmsAttrGroup);
     }
 
@@ -60,6 +62,7 @@ public class PmsAttrGroupServiceImpl implements IPmsAttrGroupService {
      */
     @Override
     public int updatePmsAttrGroup(PmsAttrGroup pmsAttrGroup) {
+        pmsAttrGroup.setUpdateTime(DateUtils.getNowDate());
         return pmsAttrGroupMapper.updatePmsAttrGroup(pmsAttrGroup);
     }
 

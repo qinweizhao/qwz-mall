@@ -1,33 +1,34 @@
 package com.qinweizhao.product.service.impl;
 
-import com.qinweizhao.product.domain.PmsSkuImages;
-import com.qinweizhao.product.mapper.PmsSkuImagesMapper;
-import com.qinweizhao.product.service.IPmsSkuImagesService;
+import java.util.List;
+
+import com.qinweizhao.common.core.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import com.qinweizhao.product.mapper.PmsSkuImagesMapper;
+import com.qinweizhao.product.domain.PmsSkuImages;
+import com.qinweizhao.product.service.IPmsSkuImagesService;
 
 /**
  * sku图片Service业务层处理
  *
  * @author qinweizhao
- * @date 2022-04-03
+ * @date 2022-04-11
  */
 @Service
 public class PmsSkuImagesServiceImpl implements IPmsSkuImagesService {
-    @Autowired
+    @Resource
     private PmsSkuImagesMapper pmsSkuImagesMapper;
 
     /**
      * 查询sku图片
      *
-     * @param id sku图片主键
+     * @param skuId sku图片主键
      * @return sku图片
      */
     @Override
-    public PmsSkuImages selectPmsSkuImagesById(Long id) {
-        return pmsSkuImagesMapper.selectPmsSkuImagesById(id);
+    public PmsSkuImages selectPmsSkuImagesBySkuId(Long skuId) {
+        return pmsSkuImagesMapper.selectPmsSkuImagesBySkuId(skuId);
     }
 
     /**
@@ -49,6 +50,7 @@ public class PmsSkuImagesServiceImpl implements IPmsSkuImagesService {
      */
     @Override
     public int insertPmsSkuImages(PmsSkuImages pmsSkuImages) {
+        pmsSkuImages.setCreateTime(DateUtils.getNowDate());
         return pmsSkuImagesMapper.insertPmsSkuImages(pmsSkuImages);
     }
 
@@ -60,28 +62,29 @@ public class PmsSkuImagesServiceImpl implements IPmsSkuImagesService {
      */
     @Override
     public int updatePmsSkuImages(PmsSkuImages pmsSkuImages) {
+        pmsSkuImages.setUpdateTime(DateUtils.getNowDate());
         return pmsSkuImagesMapper.updatePmsSkuImages(pmsSkuImages);
     }
 
     /**
      * 批量删除sku图片
      *
-     * @param ids 需要删除的sku图片主键
+     * @param skuIds 需要删除的sku图片主键
      * @return 结果
      */
     @Override
-    public int deletePmsSkuImagesByIds(Long[] ids) {
-        return pmsSkuImagesMapper.deletePmsSkuImagesByIds(ids);
+    public int deletePmsSkuImagesBySkuIds(Long[] skuIds) {
+        return pmsSkuImagesMapper.deletePmsSkuImagesBySkuIds(skuIds);
     }
 
     /**
      * 删除sku图片信息
      *
-     * @param id sku图片主键
+     * @param skuId sku图片主键
      * @return 结果
      */
     @Override
-    public int deletePmsSkuImagesById(Long id) {
-        return pmsSkuImagesMapper.deletePmsSkuImagesById(id);
+    public int deletePmsSkuImagesBySkuId(Long skuId) {
+        return pmsSkuImagesMapper.deletePmsSkuImagesBySkuId(skuId);
     }
 }

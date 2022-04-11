@@ -1,6 +1,6 @@
 package com.qinweizhao.system.api.factory;
 
-import com.qinweizhao.common.core.domain.R;
+import com.qinweizhao.modle.result.R;
 import com.qinweizhao.system.api.RemoteLogService;
 import com.qinweizhao.system.api.domain.SysLogininfor;
 import com.qinweizhao.system.api.domain.SysOperLog;

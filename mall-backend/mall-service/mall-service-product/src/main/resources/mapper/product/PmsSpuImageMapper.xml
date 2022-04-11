@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qinweizhao.product.mapper.PmsSpuImageMapper">
+
+    <resultMap type="PmsSpuImage" id="PmsSpuImageResult">
+        <result property="spuId" column="spu_id"/>
+        <result property="name" column="name"/>
+        <result property="url" column="url"/>
+        <result property="sort" column="sort"/>
+        <result property="default" column="default"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <sql id="selectPmsSpuImageVo">
+        select spu_id,
+               name,
+               url,
+               sort,
+               default,
+               create_by,
+               update_by,
+               create_time,
+               update_time,
+               remark
+        from pms_spu_image
+    </sql>
+
+    <select id="selectPmsSpuImageList" parameterType="PmsSpuImage" resultMap="PmsSpuImageResult">
+        <include refid="selectPmsSpuImageVo"/>
+        <where>
+            <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
+            <if test="url != null  and url != ''">and url = #{url}</if>
+            <if test="sort != null ">and sort = #{sort}</if>
+            <if test="default != null ">and default = #{default}</if>
+        </where>
+    </select>
+
+    <select id="selectPmsSpuImageBySpuId" parameterType="Long" resultMap="PmsSpuImageResult">
+        <include refid="selectPmsSpuImageVo"/>
+        where spu_id = #{spuId}
+    </select>
+
+    <insert id="insertPmsSpuImage" parameterType="PmsSpuImage">
+        insert into pms_spu_image
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="spuId != null">spu_id,</if>
+            <if test="name != null">name,</if>
+            <if test="url != null">url,</if>
+            <if test="sort != null">sort,</if>
+            <if test="default != null">default,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="spuId != null">#{spuId},</if>
+            <if test="name != null">#{name},</if>
+            <if test="url != null">#{url},</if>
+            <if test="sort != null">#{sort},</if>
+            <if test="default != null">#{default},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+        </trim>
+    </insert>
+
+    <update id="updatePmsSpuImage" parameterType="PmsSpuImage">
+        update pms_spu_image
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name = #{name},</if>
+            <if test="url != null">url = #{url},</if>
+            <if test="sort != null">sort = #{sort},</if>
+            <if test="default != null">default = #{default},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where spu_id = #{spuId}
+    </update>
+
+    <delete id="deletePmsSpuImageBySpuId" parameterType="Long">
+        delete
+        from pms_spu_image
+        where spu_id = #{spuId}
+    </delete>
+
+    <delete id="deletePmsSpuImageBySpuIds" parameterType="String">
+        delete from pms_spu_image where spu_id in
+        <foreach item="spuId" collection="array" open="(" separator="," close=")">
+            #{spuId}
+        </foreach>
+    </delete>
+</mapper>

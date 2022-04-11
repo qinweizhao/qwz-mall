@@ -1,130 +1,119 @@
 package com.qinweizhao.product.domain;
 
-import com.qinweizhao.common.core.annotation.Excel;
-import com.qinweizhao.common.core.web.domain.BaseEntity;
+import java.math.BigDecimal;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-
-import java.math.BigDecimal;
+import com.qinweizhao.common.core.annotation.Excel;
+import com.qinweizhao.common.core.web.domain.BaseEntity;
 
 /**
  * spu信息对象 pms_spu_info
  *
  * @author qinweizhao
- * @date 2022-04-03
+ * @date 2022-04-11
  */
 public class PmsSpuInfo extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 商品id
-     */
-    private Long id;
+    /** 商品id */
+    private Long spuId;
 
-    /**
-     * 商品名称
-     */
+    /** 商品名称 */
     @Excel(name = "商品名称")
-    private String spuName;
+    private String name;
 
-    /**
-     * 商品描述
-     */
+    /** 商品描述 */
     @Excel(name = "商品描述")
-    private String spuDescription;
+    private String desc;
 
-    /**
-     * 所属分类id
-     */
+    /** 所属分类id */
     @Excel(name = "所属分类id")
-    private Long catalogId;
+    private Long categoryId;
 
-    /**
-     * 品牌id
-     */
+    /** 品牌id */
     @Excel(name = "品牌id")
     private Long brandId;
 
-    /**
-     * $column.columnComment
-     */
-    @Excel(name = "${comment}" , readConverterExp = "$column.readConverterExp()")
+    /** $column.columnComment */
+    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
     private BigDecimal weight;
 
-    /**
-     * 上架状态[0 - 下架，1 - 上架]
-     */
+    /** 上架状态[0 - 下架，1 - 上架] */
     @Excel(name = "上架状态[0 - 下架，1 - 上架]")
-    private Long publishStatus;
+    private Long status;
 
-    public Long getId() {
-        return id;
+    public void setSpuId(Long spuId) {
+        this.spuId = spuId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getSpuId() {
+        return spuId;
     }
 
-    public String getSpuName() {
-        return spuName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setSpuName(String spuName) {
-        this.spuName = spuName;
+    public String getName() {
+        return name;
     }
 
-    public String getSpuDescription() {
-        return spuDescription;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
-    public void setSpuDescription(String spuDescription) {
-        this.spuDescription = spuDescription;
+    public String getDesc() {
+        return desc;
     }
 
-    public Long getCatalogId() {
-        return catalogId;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public void setCatalogId(Long catalogId) {
-        this.catalogId = catalogId;
-    }
-
-    public Long getBrandId() {
-        return brandId;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
     public void setBrandId(Long brandId) {
         this.brandId = brandId;
     }
 
-    public BigDecimal getWeight() {
-        return weight;
+    public Long getBrandId() {
+        return brandId;
     }
 
     public void setWeight(BigDecimal weight) {
         this.weight = weight;
     }
 
-    public Long getPublishStatus() {
-        return publishStatus;
+    public BigDecimal getWeight() {
+        return weight;
     }
 
-    public void setPublishStatus(Long publishStatus) {
-        this.publishStatus = publishStatus;
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
+    public Long getStatus() {
+        return status;
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("id" , getId())
-                .append("spuName" , getSpuName())
-                .append("spuDescription" , getSpuDescription())
-                .append("catalogId" , getCatalogId())
-                .append("brandId" , getBrandId())
-                .append("weight" , getWeight())
-                .append("publishStatus" , getPublishStatus())
-                .append("createTime" , getCreateTime())
-                .append("updateTime" , getUpdateTime())
+                .append("spuId", getSpuId())
+                .append("name", getName())
+                .append("desc", getDesc())
+                .append("categoryId", getCategoryId())
+                .append("brandId", getBrandId())
+                .append("weight", getWeight())
+                .append("status", getStatus())
+                .append("createBy", getCreateBy())
+                .append("updateBy", getUpdateBy())
+                .append("createTime", getCreateTime())
+                .append("updateTime", getUpdateTime())
+                .append("remark", getRemark())
                 .toString();
     }
 }

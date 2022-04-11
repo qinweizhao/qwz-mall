@@ -5,32 +5,51 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.qinweizhao.product.mapper.PmsAttrMapper">
     
     <resultMap type="PmsAttr" id="PmsAttrResult">
-        <result property="attrId"    column="attr_id"    />
-        <result property="attrName"    column="attr_name"    />
-        <result property="searchType"    column="search_type"    />
-        <result property="icon"    column="icon"    />
-        <result property="valueSelect"    column="value_select"    />
-        <result property="attrType"    column="attr_type"    />
-        <result property="enable"    column="enable"    />
-        <result property="catelogId"    column="catelog_id"    />
-        <result property="showDesc"    column="show_desc"    />
+        <result property="attrId" column="attr_id"/>
+        <result property="name" column="name"/>
+        <result property="searchType" column="search_type"/>
+        <result property="icon" column="icon"/>
+        <result property="valueSelect" column="value_select"/>
+        <result property="type" column="type"/>
+        <result property="enable" column="enable"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="quickShow" column="quick_show"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
     </resultMap>
 
     <sql id="selectPmsAttrVo">
-        select attr_id, attr_name, search_type, icon, value_select, attr_type, enable, catelog_id, show_desc from pms_attr
+        select attr_id,
+               name,
+               search_type,
+               icon,
+               value_select,
+               type,
+               enable,
+               category_id,
+               quick_show,
+               create_by,
+               update_by,
+               create_time,
+               update_time,
+               remark
+        from pms_attr
     </sql>
 
     <select id="selectPmsAttrList" parameterType="PmsAttr" resultMap="PmsAttrResult">
         <include refid="selectPmsAttrVo"/>
-        <where>  
-            <if test="attrName != null  and attrName != ''"> and attr_name like concat('%', #{attrName}, '%')</if>
-            <if test="searchType != null "> and search_type = #{searchType}</if>
-            <if test="icon != null  and icon != ''"> and icon = #{icon}</if>
-            <if test="valueSelect != null  and valueSelect != ''"> and value_select = #{valueSelect}</if>
-            <if test="attrType != null "> and attr_type = #{attrType}</if>
-            <if test="enable != null "> and enable = #{enable}</if>
-            <if test="catelogId != null "> and catelog_id = #{catelogId}</if>
-            <if test="showDesc != null "> and show_desc = #{showDesc}</if>
+        <where>
+            <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
+            <if test="searchType != null ">and search_type = #{searchType}</if>
+            <if test="icon != null  and icon != ''">and icon = #{icon}</if>
+            <if test="valueSelect != null  and valueSelect != ''">and value_select = #{valueSelect}</if>
+            <if test="type != null ">and type = #{type}</if>
+            <if test="enable != null ">and enable = #{enable}</if>
+            <if test="categoryId != null ">and category_id = #{categoryId}</if>
+            <if test="quickShow != null ">and quick_show = #{quickShow}</if>
         </where>
     </select>
     
@@ -42,38 +61,53 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <insert id="insertPmsAttr" parameterType="PmsAttr" useGeneratedKeys="true" keyProperty="attrId">
         insert into pms_attr
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="attrName != null">attr_name,</if>
+            <if test="name != null">name,</if>
             <if test="searchType != null">search_type,</if>
             <if test="icon != null">icon,</if>
             <if test="valueSelect != null">value_select,</if>
-            <if test="attrType != null">attr_type,</if>
+            <if test="type != null">type,</if>
             <if test="enable != null">enable,</if>
-            <if test="catelogId != null">catelog_id,</if>
-            <if test="showDesc != null">show_desc,</if>
-         </trim>
+            <if test="categoryId != null">category_id,</if>
+            <if test="quickShow != null">quick_show,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="attrName != null">#{attrName},</if>
+            <if test="name != null">#{name},</if>
             <if test="searchType != null">#{searchType},</if>
             <if test="icon != null">#{icon},</if>
             <if test="valueSelect != null">#{valueSelect},</if>
-            <if test="attrType != null">#{attrType},</if>
+            <if test="type != null">#{type},</if>
             <if test="enable != null">#{enable},</if>
-            <if test="catelogId != null">#{catelogId},</if>
-            <if test="showDesc != null">#{showDesc},</if>
-         </trim>
+            <if test="categoryId != null">#{categoryId},</if>
+            <if test="quickShow != null">#{quickShow},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+        </trim>
     </insert>
 
     <update id="updatePmsAttr" parameterType="PmsAttr">
         update pms_attr
         <trim prefix="SET" suffixOverrides=",">
-            <if test="attrName != null">attr_name = #{attrName},</if>
+            <if test="name != null">name = #{name},</if>
             <if test="searchType != null">search_type = #{searchType},</if>
             <if test="icon != null">icon = #{icon},</if>
             <if test="valueSelect != null">value_select = #{valueSelect},</if>
-            <if test="attrType != null">attr_type = #{attrType},</if>
+            <if test="type != null">type = #{type},</if>
             <if test="enable != null">enable = #{enable},</if>
-            <if test="catelogId != null">catelog_id = #{catelogId},</if>
-            <if test="showDesc != null">show_desc = #{showDesc},</if>
+            <if test="categoryId != null">category_id = #{categoryId},</if>
+            <if test="quickShow != null">quick_show = #{quickShow},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
         </trim>
         where attr_id = #{attrId}
     </update>

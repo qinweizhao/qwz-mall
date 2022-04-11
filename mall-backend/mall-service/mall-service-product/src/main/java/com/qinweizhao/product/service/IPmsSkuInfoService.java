@@ -1,14 +1,14 @@
 package com.qinweizhao.product.service;
 
-import com.qinweizhao.product.domain.PmsSkuInfo;
-
 import java.util.List;
+
+import com.qinweizhao.product.domain.PmsSkuInfo;
 
 /**
  * sku信息Service接口
  *
  * @author qinweizhao
- * @date 2022-04-03
+ * @date 2022-04-11
  */
 public interface IPmsSkuInfoService {
     /**
@@ -17,7 +17,7 @@ public interface IPmsSkuInfoService {
      * @param skuId sku信息主键
      * @return sku信息
      */
-    public PmsSkuInfo selectPmsSkuInfoBySkuId(Long skuId);
+    PmsSkuInfo selectPmsSkuInfoBySkuId(Long skuId);
 
     /**
      * 查询sku信息列表
@@ -25,7 +25,7 @@ public interface IPmsSkuInfoService {
      * @param pmsSkuInfo sku信息
      * @return sku信息集合
      */
-    public List<PmsSkuInfo> selectPmsSkuInfoList(PmsSkuInfo pmsSkuInfo);
+    List<PmsSkuInfo> selectPmsSkuInfoList(PmsSkuInfo pmsSkuInfo);
 
     /**
      * 新增sku信息
@@ -33,7 +33,7 @@ public interface IPmsSkuInfoService {
      * @param pmsSkuInfo sku信息
      * @return 结果
      */
-    public int insertPmsSkuInfo(PmsSkuInfo pmsSkuInfo);
+    int insertPmsSkuInfo(PmsSkuInfo pmsSkuInfo);
 
     /**
      * 修改sku信息
@@ -41,7 +41,7 @@ public interface IPmsSkuInfoService {
      * @param pmsSkuInfo sku信息
      * @return 结果
      */
-    public int updatePmsSkuInfo(PmsSkuInfo pmsSkuInfo);
+    int updatePmsSkuInfo(PmsSkuInfo pmsSkuInfo);
 
     /**
      * 批量删除sku信息
@@ -49,7 +49,7 @@ public interface IPmsSkuInfoService {
      * @param skuIds 需要删除的sku信息主键集合
      * @return 结果
      */
-    public int deletePmsSkuInfoBySkuIds(Long[] skuIds);
+    int deletePmsSkuInfoBySkuIds(Long[] skuIds);
 
     /**
      * 删除sku信息信息
@@ -57,5 +57,5 @@ public interface IPmsSkuInfoService {
      * @param skuId sku信息主键
      * @return 结果
      */
-    public int deletePmsSkuInfoBySkuId(Long skuId);
+    int deletePmsSkuInfoBySkuId(Long skuId);
 }

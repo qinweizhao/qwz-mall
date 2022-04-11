@@ -1,14 +1,14 @@
 package com.qinweizhao.product.mapper;
 
-import com.qinweizhao.product.domain.PmsAttrGroup;
-
 import java.util.List;
+
+import com.qinweizhao.product.domain.PmsAttrGroup;
 
 /**
  * 属性分组Mapper接口
  *
  * @author qinweizhao
- * @date 2022-04-03
+ * @date 2022-04-11
  */
 public interface PmsAttrGroupMapper {
     /**

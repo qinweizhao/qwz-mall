@@ -1,6 +1,6 @@
 package com.qinweizhao.system.api.factory;
 
-import com.qinweizhao.common.core.domain.R;
+import com.qinweizhao.modle.result.R;
 import com.qinweizhao.system.api.RemoteUserService;
 import com.qinweizhao.system.api.domain.SysUser;
 import com.qinweizhao.system.api.model.LoginUser;
@@ -25,12 +25,12 @@ public class RemoteUserFallbackFactory implements FallbackFactory<RemoteUserServ
         return new RemoteUserService() {
             @Override
             public R<LoginUser> getUserInfo(String username, String source) {
-                return R.fail("获取用户失败:" + throwable.getMessage());
+                return R.failure("获取用户失败:" + throwable.getMessage());
             }
 
             @Override
             public R<Boolean> registerUserInfo(SysUser sysUser, String source) {
-                return R.fail("注册用户失败:" + throwable.getMessage());
+                return R.failure("注册用户失败:" + throwable.getMessage());
             }
         };
     }

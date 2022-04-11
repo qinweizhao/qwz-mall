@@ -1,22 +1,23 @@
 package com.qinweizhao.product.service.impl;
 
-import com.qinweizhao.product.domain.PmsSpuInfoDesc;
-import com.qinweizhao.product.mapper.PmsSpuInfoDescMapper;
-import com.qinweizhao.product.service.IPmsSpuInfoDescService;
+import java.util.List;
+
+import com.qinweizhao.common.core.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import com.qinweizhao.product.mapper.PmsSpuInfoDescMapper;
+import com.qinweizhao.product.domain.PmsSpuInfoDesc;
+import com.qinweizhao.product.service.IPmsSpuInfoDescService;
 
 /**
  * spu信息介绍Service业务层处理
  *
  * @author qinweizhao
- * @date 2022-04-03
+ * @date 2022-04-11
  */
 @Service
 public class PmsSpuInfoDescServiceImpl implements IPmsSpuInfoDescService {
-    @Autowired
+    @Resource
     private PmsSpuInfoDescMapper pmsSpuInfoDescMapper;
 
     /**
@@ -49,6 +50,7 @@ public class PmsSpuInfoDescServiceImpl implements IPmsSpuInfoDescService {
      */
     @Override
     public int insertPmsSpuInfoDesc(PmsSpuInfoDesc pmsSpuInfoDesc) {
+        pmsSpuInfoDesc.setCreateTime(DateUtils.getNowDate());
         return pmsSpuInfoDescMapper.insertPmsSpuInfoDesc(pmsSpuInfoDesc);
     }
 
@@ -60,6 +62,7 @@ public class PmsSpuInfoDescServiceImpl implements IPmsSpuInfoDescService {
      */
     @Override
     public int updatePmsSpuInfoDesc(PmsSpuInfoDesc pmsSpuInfoDesc) {
+        pmsSpuInfoDesc.setUpdateTime(DateUtils.getNowDate());
         return pmsSpuInfoDescMapper.updatePmsSpuInfoDesc(pmsSpuInfoDesc);
     }
 

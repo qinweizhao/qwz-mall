@@ -1,15 +1,15 @@
 package com.qinweizhao.file.controller;
 
+import com.qinweizhao.common.core.utils.file.FileUtils;
+import com.qinweizhao.file.service.ISysFileService;
+import com.qinweizhao.modle.result.R;
+import com.qinweizhao.system.api.domain.SysFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import com.qinweizhao.common.core.domain.R;
-import com.qinweizhao.common.core.utils.file.FileUtils;
-import com.qinweizhao.file.service.ISysFileService;
-import com.qinweizhao.system.api.domain.SysFile;
 
 /**
  * 文件请求处理
@@ -37,12 +37,12 @@ public class SysFileController
             SysFile sysFile = new SysFile();
             sysFile.setName(FileUtils.getName(url));
             sysFile.setUrl(url);
-            return R.ok(sysFile);
+            return R.success(sysFile);
         }
         catch (Exception e)
         {
             log.error("上传文件失败", e);
-            return R.fail(e.getMessage());
+            return R.failure(e.getMessage());
         }
     }
 }

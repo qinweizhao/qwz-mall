@@ -1,30 +1,38 @@
 package com.qinweizhao.product.controller;
 
-import com.qinweizhao.common.core.utils.poi.ExcelUtil;
-import com.qinweizhao.common.core.web.controller.BaseController;
-import com.qinweizhao.common.core.web.domain.AjaxResult;
-import com.qinweizhao.common.core.web.page.TableDataInfo;
+import java.util.List;
+import java.io.IOException;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import com.qinweizhao.common.log.annotation.Log;
 import com.qinweizhao.common.log.enums.BusinessType;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.product.domain.PmsBrand;
 import com.qinweizhao.product.service.IPmsBrandService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
+import com.qinweizhao.common.core.web.controller.BaseController;
+import com.qinweizhao.common.core.web.domain.AjaxResult;
+import com.qinweizhao.common.core.utils.poi.ExcelUtil;
+import com.qinweizhao.common.core.web.page.TableDataInfo;
 
 /**
  * 品牌Controller
  *
  * @author qinweizhao
- * @date 2022-04-03
+ * @date 2022-04-11
  */
 @RestController
 @RequestMapping("/brand")
 public class PmsBrandController extends BaseController {
-    @Autowired
+    @Resource
     private IPmsBrandService pmsBrandService;
 
     /**
@@ -42,12 +50,13 @@ public class PmsBrandController extends BaseController {
      * 导出品牌列表
      */
     @RequiresPermissions("product:brand:export")
-    @Log(title = "品牌" , businessType = BusinessType.EXPORT)
+    @Log(title = "品牌", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, PmsBrand pmsBrand) {
+    public R<Void> export(HttpServletResponse response, PmsBrand pmsBrand) {
         List<PmsBrand> list = pmsBrandService.selectPmsBrandList(pmsBrand);
         ExcelUtil<PmsBrand> util = new ExcelUtil<PmsBrand>(PmsBrand.class);
         util.exportExcel(response, list, "品牌数据");
+        return R.success();
     }
 
     /**
@@ -55,37 +64,37 @@ public class PmsBrandController extends BaseController {
      */
     @RequiresPermissions("product:brand:query")
     @GetMapping(value = "/{brandId}")
-    public AjaxResult getInfo(@PathVariable("brandId") Long brandId) {
-        return AjaxResult.success(pmsBrandService.selectPmsBrandByBrandId(brandId));
+    public R<PmsBrand> getInfo(@PathVariable("brandId") Long brandId) {
+        return R.success(pmsBrandService.selectPmsBrandByBrandId(brandId));
     }
 
     /**
      * 新增品牌
      */
     @RequiresPermissions("product:brand:add")
-    @Log(title = "品牌" , businessType = BusinessType.INSERT)
+    @Log(title = "品牌", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@RequestBody PmsBrand pmsBrand) {
-        return toAjax(pmsBrandService.insertPmsBrand(pmsBrand));
+    public R<Void> add(@RequestBody PmsBrand pmsBrand) {
+        return R.condition(pmsBrandService.insertPmsBrand(pmsBrand));
     }
 
     /**
      * 修改品牌
      */
     @RequiresPermissions("product:brand:edit")
-    @Log(title = "品牌" , businessType = BusinessType.UPDATE)
+    @Log(title = "品牌", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@RequestBody PmsBrand pmsBrand) {
-        return toAjax(pmsBrandService.updatePmsBrand(pmsBrand));
+    public R<Void> edit(@RequestBody PmsBrand pmsBrand) {
+        return R.condition(pmsBrandService.updatePmsBrand(pmsBrand));
     }
 
     /**
      * 删除品牌
      */
     @RequiresPermissions("product:brand:remove")
-    @Log(title = "品牌" , businessType = BusinessType.DELETE)
+    @Log(title = "品牌", businessType = BusinessType.DELETE)
     @DeleteMapping("/{brandIds}")
-    public AjaxResult remove(@PathVariable Long[] brandIds) {
-        return toAjax(pmsBrandService.deletePmsBrandByBrandIds(brandIds));
+    public R<Void> remove(@PathVariable Long[] brandIds) {
+        return R.condition(pmsBrandService.deletePmsBrandByBrandIds(brandIds));
     }
 }

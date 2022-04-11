@@ -1,23 +1,23 @@
 package com.qinweizhao.product.service;
 
-import com.qinweizhao.product.domain.PmsSkuImages;
-
 import java.util.List;
+
+import com.qinweizhao.product.domain.PmsSkuImages;
 
 /**
  * sku图片Service接口
  *
  * @author qinweizhao
- * @date 2022-04-03
+ * @date 2022-04-11
  */
 public interface IPmsSkuImagesService {
     /**
      * 查询sku图片
      *
-     * @param id sku图片主键
+     * @param skuId sku图片主键
      * @return sku图片
      */
-    public PmsSkuImages selectPmsSkuImagesById(Long id);
+    PmsSkuImages selectPmsSkuImagesBySkuId(Long skuId);
 
     /**
      * 查询sku图片列表
@@ -25,7 +25,7 @@ public interface IPmsSkuImagesService {
      * @param pmsSkuImages sku图片
      * @return sku图片集合
      */
-    public List<PmsSkuImages> selectPmsSkuImagesList(PmsSkuImages pmsSkuImages);
+    List<PmsSkuImages> selectPmsSkuImagesList(PmsSkuImages pmsSkuImages);
 
     /**
      * 新增sku图片
@@ -33,7 +33,7 @@ public interface IPmsSkuImagesService {
      * @param pmsSkuImages sku图片
      * @return 结果
      */
-    public int insertPmsSkuImages(PmsSkuImages pmsSkuImages);
+    int insertPmsSkuImages(PmsSkuImages pmsSkuImages);
 
     /**
      * 修改sku图片
@@ -41,21 +41,21 @@ public interface IPmsSkuImagesService {
      * @param pmsSkuImages sku图片
      * @return 结果
      */
-    public int updatePmsSkuImages(PmsSkuImages pmsSkuImages);
+    int updatePmsSkuImages(PmsSkuImages pmsSkuImages);
 
     /**
      * 批量删除sku图片
      *
-     * @param ids 需要删除的sku图片主键集合
+     * @param skuIds 需要删除的sku图片主键集合
      * @return 结果
      */
-    public int deletePmsSkuImagesByIds(Long[] ids);
+    int deletePmsSkuImagesBySkuIds(Long[] skuIds);
 
     /**
      * 删除sku图片信息
      *
-     * @param id sku图片主键
+     * @param skuId sku图片主键
      * @return 结果
      */
-    public int deletePmsSkuImagesById(Long id);
+    int deletePmsSkuImagesBySkuId(Long skuId);
 }

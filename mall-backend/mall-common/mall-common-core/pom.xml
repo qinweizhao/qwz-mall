@@ -122,6 +122,11 @@
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.qinweizhao.component</groupId>
+            <artifactId>qwz-component-model</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
 </project>

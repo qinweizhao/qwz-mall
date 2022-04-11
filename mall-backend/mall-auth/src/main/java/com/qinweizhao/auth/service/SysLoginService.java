@@ -3,13 +3,13 @@ package com.qinweizhao.auth.service;
 import com.qinweizhao.common.core.constant.Constants;
 import com.qinweizhao.common.core.constant.SecurityConstants;
 import com.qinweizhao.common.core.constant.UserConstants;
-import com.qinweizhao.common.core.domain.R;
 import com.qinweizhao.common.core.enums.UserStatus;
 import com.qinweizhao.common.core.exception.ServiceException;
 import com.qinweizhao.common.core.utils.ServletUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.utils.ip.IpUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
+import com.qinweizhao.modle.result.R;
 import com.qinweizhao.system.api.RemoteLogService;
 import com.qinweizhao.system.api.RemoteUserService;
 import com.qinweizhao.system.api.domain.SysLogininfor;
@@ -56,7 +56,7 @@ public class SysLoginService {
         // 查询用户信息
         R<LoginUser> userResult = remoteUserService.getUserInfo(username, SecurityConstants.INNER);
 
-        if (R.FAIL == userResult.getCode()) {
+        if (Constants.FAIL == userResult.getCode()) {
             throw new ServiceException(userResult.getMsg());
         }
 
@@ -110,7 +110,7 @@ public class SysLoginService {
         sysUser.setPassword(SecurityUtils.encryptPassword(password));
         R<?> registerResult = remoteUserService.registerUserInfo(sysUser, SecurityConstants.INNER);
 
-        if (R.FAIL == registerResult.getCode()) {
+        if (Constants.FAIL == registerResult.getCode()) {
             throw new ServiceException(registerResult.getMsg());
         }
         recordLogininfor(username, Constants.REGISTER, "注册成功");

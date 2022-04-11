@@ -1,23 +1,23 @@
 package com.qinweizhao.product.service.impl;
 
+import java.util.List;
+
 import com.qinweizhao.common.core.utils.DateUtils;
-import com.qinweizhao.product.domain.PmsSpuComment;
-import com.qinweizhao.product.mapper.PmsSpuCommentMapper;
-import com.qinweizhao.product.service.IPmsSpuCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import com.qinweizhao.product.mapper.PmsSpuCommentMapper;
+import com.qinweizhao.product.domain.PmsSpuComment;
+import com.qinweizhao.product.service.IPmsSpuCommentService;
 
 /**
  * 商品评价Service业务层处理
  *
  * @author qinweizhao
- * @date 2022-04-03
+ * @date 2022-04-11
  */
 @Service
 public class PmsSpuCommentServiceImpl implements IPmsSpuCommentService {
-    @Autowired
+    @Resource
     private PmsSpuCommentMapper pmsSpuCommentMapper;
 
     /**
@@ -62,6 +62,7 @@ public class PmsSpuCommentServiceImpl implements IPmsSpuCommentService {
      */
     @Override
     public int updatePmsSpuComment(PmsSpuComment pmsSpuComment) {
+        pmsSpuComment.setUpdateTime(DateUtils.getNowDate());
         return pmsSpuCommentMapper.updatePmsSpuComment(pmsSpuComment);
     }
 

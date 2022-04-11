@@ -1,22 +1,23 @@
 package com.qinweizhao.product.service.impl;
 
-import com.qinweizhao.product.domain.PmsBrand;
-import com.qinweizhao.product.mapper.PmsBrandMapper;
-import com.qinweizhao.product.service.IPmsBrandService;
+import java.util.List;
+
+import com.qinweizhao.common.core.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import com.qinweizhao.product.mapper.PmsBrandMapper;
+import com.qinweizhao.product.domain.PmsBrand;
+import com.qinweizhao.product.service.IPmsBrandService;
 
 /**
  * 品牌Service业务层处理
  *
  * @author qinweizhao
- * @date 2022-04-03
+ * @date 2022-04-11
  */
 @Service
 public class PmsBrandServiceImpl implements IPmsBrandService {
-    @Autowired
+    @Resource
     private PmsBrandMapper pmsBrandMapper;
 
     /**
@@ -49,6 +50,7 @@ public class PmsBrandServiceImpl implements IPmsBrandService {
      */
     @Override
     public int insertPmsBrand(PmsBrand pmsBrand) {
+        pmsBrand.setCreateTime(DateUtils.getNowDate());
         return pmsBrandMapper.insertPmsBrand(pmsBrand);
     }
 
@@ -60,6 +62,7 @@ public class PmsBrandServiceImpl implements IPmsBrandService {
      */
     @Override
     public int updatePmsBrand(PmsBrand pmsBrand) {
+        pmsBrand.setUpdateTime(DateUtils.getNowDate());
         return pmsBrandMapper.updatePmsBrand(pmsBrand);
     }
 

@@ -1,22 +1,23 @@
 package com.qinweizhao.product.service.impl;
 
-import com.qinweizhao.product.domain.PmsCommentReplay;
-import com.qinweizhao.product.mapper.PmsCommentReplayMapper;
-import com.qinweizhao.product.service.IPmsCommentReplayService;
+import java.util.List;
+
+import com.qinweizhao.common.core.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import com.qinweizhao.product.mapper.PmsCommentReplayMapper;
+import com.qinweizhao.product.domain.PmsCommentReplay;
+import com.qinweizhao.product.service.IPmsCommentReplayService;
 
 /**
  * 商品评价回复关系Service业务层处理
  *
  * @author qinweizhao
- * @date 2022-04-03
+ * @date 2022-04-11
  */
 @Service
 public class PmsCommentReplayServiceImpl implements IPmsCommentReplayService {
-    @Autowired
+    @Resource
     private PmsCommentReplayMapper pmsCommentReplayMapper;
 
     /**
@@ -49,6 +50,7 @@ public class PmsCommentReplayServiceImpl implements IPmsCommentReplayService {
      */
     @Override
     public int insertPmsCommentReplay(PmsCommentReplay pmsCommentReplay) {
+        pmsCommentReplay.setCreateTime(DateUtils.getNowDate());
         return pmsCommentReplayMapper.insertPmsCommentReplay(pmsCommentReplay);
     }
 
@@ -60,6 +62,7 @@ public class PmsCommentReplayServiceImpl implements IPmsCommentReplayService {
      */
     @Override
     public int updatePmsCommentReplay(PmsCommentReplay pmsCommentReplay) {
+        pmsCommentReplay.setUpdateTime(DateUtils.getNowDate());
         return pmsCommentReplayMapper.updatePmsCommentReplay(pmsCommentReplay);
     }
 

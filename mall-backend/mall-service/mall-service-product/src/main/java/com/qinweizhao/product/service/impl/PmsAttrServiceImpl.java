@@ -1,5 +1,6 @@
 package com.qinweizhao.product.service.impl;
 
+import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.product.domain.PmsAttr;
 import com.qinweizhao.product.mapper.PmsAttrMapper;
 import com.qinweizhao.product.service.IPmsAttrService;
@@ -12,12 +13,11 @@ import java.util.List;
  * 商品属性Service业务层处理
  *
  * @author qinweizhao
- * @date 2022-04-03
+ * @date 2022-04-11
  */
 @Service
 public class PmsAttrServiceImpl implements IPmsAttrService {
-
-    @Autowired
+    @Resource
     private PmsAttrMapper pmsAttrMapper;
 
     /**
@@ -50,6 +50,7 @@ public class PmsAttrServiceImpl implements IPmsAttrService {
      */
     @Override
     public int insertPmsAttr(PmsAttr pmsAttr) {
+        pmsAttr.setCreateTime(DateUtils.getNowDate());
         return pmsAttrMapper.insertPmsAttr(pmsAttr);
     }
 
@@ -61,6 +62,7 @@ public class PmsAttrServiceImpl implements IPmsAttrService {
      */
     @Override
     public int updatePmsAttr(PmsAttr pmsAttr) {
+        pmsAttr.setUpdateTime(DateUtils.getNowDate());
         return pmsAttrMapper.updatePmsAttr(pmsAttr);
     }
 

@@ -5,20 +5,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.qinweizhao.product.mapper.PmsCommentReplayMapper">
     
     <resultMap type="PmsCommentReplay" id="PmsCommentReplayResult">
-        <result property="id"    column="id"    />
-        <result property="commentId"    column="comment_id"    />
-        <result property="replyId"    column="reply_id"    />
+        <result property="id" column="id"/>
+        <result property="commentId" column="comment_id"/>
+        <result property="replayId" column="replay_id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
     </resultMap>
 
     <sql id="selectPmsCommentReplayVo">
-        select id, comment_id, reply_id from pms_comment_replay
+        select id,
+               comment_id,
+               replay_id,
+               create_by,
+               update_by,
+               create_time,
+               update_time,
+               remark
+        from pms_comment_replay
     </sql>
 
     <select id="selectPmsCommentReplayList" parameterType="PmsCommentReplay" resultMap="PmsCommentReplayResult">
         <include refid="selectPmsCommentReplayVo"/>
         <where>  
             <if test="commentId != null "> and comment_id = #{commentId}</if>
-            <if test="replyId != null "> and reply_id = #{replyId}</if>
+            <if test="replayId != null ">and replay_id = #{replayId}</if>
         </where>
     </select>
     
@@ -31,19 +44,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         insert into pms_comment_replay
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="commentId != null">comment_id,</if>
-            <if test="replyId != null">reply_id,</if>
-         </trim>
+            <if test="replayId != null">replay_id,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="commentId != null">#{commentId},</if>
-            <if test="replyId != null">#{replyId},</if>
-         </trim>
+            <if test="replayId != null">#{replayId},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+        </trim>
     </insert>
 
     <update id="updatePmsCommentReplay" parameterType="PmsCommentReplay">
         update pms_comment_replay
         <trim prefix="SET" suffixOverrides=",">
             <if test="commentId != null">comment_id = #{commentId},</if>
-            <if test="replyId != null">reply_id = #{replyId},</if>
+            <if test="replayId != null">replay_id = #{replayId},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
         </trim>
         where id = #{id}
     </update>

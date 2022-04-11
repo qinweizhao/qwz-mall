@@ -1,6 +1,6 @@
 package com.qinweizhao.system.api.factory;
 
-import com.qinweizhao.common.core.domain.R;
+import com.qinweizhao.modle.result.R;
 import com.qinweizhao.system.api.RemoteFileService;
 import com.qinweizhao.system.api.domain.SysFile;
 import org.slf4j.Logger;
@@ -24,7 +24,7 @@ public class RemoteFileFallbackFactory implements FallbackFactory<RemoteFileServ
         return new RemoteFileService() {
             @Override
             public R<SysFile> upload(MultipartFile file) {
-                return R.fail("上传文件失败:" + throwable.getMessage());
+                return R.failure("上传文件失败:" + throwable.getMessage());
             }
         };
     }

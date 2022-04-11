@@ -1,7 +1,6 @@
 package com.qinweizhao.system.controller;
 
 import com.qinweizhao.common.core.constant.UserConstants;
-import com.qinweizhao.common.core.domain.R;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.core.web.domain.AjaxResult;
@@ -9,6 +8,7 @@ import com.qinweizhao.common.log.annotation.Log;
 import com.qinweizhao.common.log.enums.BusinessType;
 import com.qinweizhao.common.security.service.TokenService;
 import com.qinweizhao.common.security.utils.SecurityUtils;
+import com.qinweizhao.modle.result.R;
 import com.qinweizhao.system.api.RemoteFileService;
 import com.qinweizhao.system.api.domain.SysFile;
 import com.qinweizhao.system.api.domain.SysUser;

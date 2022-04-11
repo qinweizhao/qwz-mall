@@ -1,17 +1,17 @@
 package com.qinweizhao.product.domain;
 
-import com.qinweizhao.common.core.annotation.Excel;
-import com.qinweizhao.common.core.web.domain.BaseEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import com.qinweizhao.common.core.annotation.Excel;
+import com.qinweizhao.common.core.web.domain.BaseEntity;
 
 /**
- * 分类&品牌关联对象 pms_category_brand_relation
+ * 分类&品牌关联对象 pms_category_brand
  *
  * @author qinweizhao
- * @date 2022-04-03
+ * @date 2022-04-11
  */
-public class PmsCategoryBrandRelation extends BaseEntity {
+public class PmsCategoryBrand extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -29,7 +29,7 @@ public class PmsCategoryBrandRelation extends BaseEntity {
      * 分类id
      */
     @Excel(name = "分类id")
-    private Long catelogId;
+    private Long categoryId;
 
     /**
      * 品牌名称
@@ -43,54 +43,59 @@ public class PmsCategoryBrandRelation extends BaseEntity {
     @Excel(name = "分类名称")
     private String catelogName;
 
-    public Long getId() {
-        return id;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
 
-    public Long getBrandId() {
-        return brandId;
+    public Long getId() {
+        return id;
     }
 
     public void setBrandId(Long brandId) {
         this.brandId = brandId;
     }
 
-    public Long getCatelogId() {
-        return catelogId;
+    public Long getBrandId() {
+        return brandId;
     }
 
-    public void setCatelogId(Long catelogId) {
-        this.catelogId = catelogId;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public String getBrandName() {
-        return brandName;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
     public void setBrandName(String brandName) {
         this.brandName = brandName;
     }
 
-    public String getCatelogName() {
-        return catelogName;
+    public String getBrandName() {
+        return brandName;
     }
 
     public void setCatelogName(String catelogName) {
         this.catelogName = catelogName;
     }
 
+    public String getCatelogName() {
+        return catelogName;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("id" , getId())
-                .append("brandId" , getBrandId())
-                .append("catelogId" , getCatelogId())
-                .append("brandName" , getBrandName())
-                .append("catelogName" , getCatelogName())
+                .append("id", getId())
+                .append("brandId", getBrandId())
+                .append("categoryId", getCategoryId())
+                .append("brandName", getBrandName())
+                .append("catelogName", getCatelogName())
+                .append("createBy", getCreateBy())
+                .append("updateBy", getUpdateBy())
+                .append("createTime", getCreateTime())
+                .append("updateTime", getUpdateTime())
+                .append("remark", getRemark())
                 .toString();
     }
 }

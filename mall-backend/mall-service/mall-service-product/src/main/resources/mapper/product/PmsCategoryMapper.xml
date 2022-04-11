@@ -5,30 +5,35 @@
 <mapper namespace="com.qinweizhao.product.mapper.PmsCategoryMapper">
 
     <resultMap type="PmsCategory" id="PmsCategoryResult">
-        <result property="catId" column="cat_id"/>
+        <result property="categoryId" column="category_id"/>
         <result property="name" column="name"/>
         <result property="parentId" column="parent_id"/>
         <result property="level" column="level"/>
         <result property="status" column="status"/>
         <result property="sort" column="sort"/>
-        <result property="productUnit" column="product_unit"/>
-        <result property="productCount" column="product_count"/>
+        <result property="unit" column="unit"/>
+        <result property="count" column="count"/>
         <result property="createBy" column="create_by"/>
         <result property="createTime" column="create_time"/>
-        <result property="updateTime" column="update_time"/>
         <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
         <result property="remark" column="remark"/>
     </resultMap>
 
     <sql id="selectPmsCategoryVo">
-        select cat_id,
+        select category_id,
                name,
                parent_id,
                level,
                status,
                sort,
-               product_unit,
-               product_count
+               unit,
+               count,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark
         from pms_category
     </sql>
 
@@ -38,19 +43,19 @@
             <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
             <if test="parentId != null ">and parent_id = #{parentId}</if>
             <if test="level != null ">and level = #{level}</if>
-            <if test="status != null ">and status = #{status}</if>
+            <if test="status != null  and status != ''">and status = #{status}</if>
             <if test="sort != null ">and sort = #{sort}</if>
-            <if test="productUnit != null  and productUnit != ''">and product_unit = #{productUnit}</if>
-            <if test="productCount != null ">and product_count = #{productCount}</if>
+            <if test="unit != null  and unit != ''">and unit = #{unit}</if>
+            <if test="count != null ">and count = #{count}</if>
         </where>
     </select>
 
-    <select id="selectPmsCategoryByCatId" parameterType="Long" resultMap="PmsCategoryResult">
+    <select id="selectPmsCategoryByCategoryId" parameterType="Long" resultMap="PmsCategoryResult">
         <include refid="selectPmsCategoryVo"/>
-        where cat_id = #{catId}
+        where category_id = #{categoryId}
     </select>
 
-    <insert id="insertPmsCategory" parameterType="PmsCategory" useGeneratedKeys="true" keyProperty="catId">
+    <insert id="insertPmsCategory" parameterType="PmsCategory" useGeneratedKeys="true" keyProperty="categoryId">
         insert into pms_category
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="name != null">name,</if>
@@ -58,8 +63,13 @@
             <if test="level != null">level,</if>
             <if test="status != null">status,</if>
             <if test="sort != null">sort,</if>
-            <if test="productUnit != null">product_unit,</if>
-            <if test="productCount != null">product_count,</if>
+            <if test="unit != null">unit,</if>
+            <if test="count != null">count,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="name != null">#{name},</if>
@@ -67,8 +77,13 @@
             <if test="level != null">#{level},</if>
             <if test="status != null">#{status},</if>
             <if test="sort != null">#{sort},</if>
-            <if test="productUnit != null">#{productUnit},</if>
-            <if test="productCount != null">#{productCount},</if>
+            <if test="unit != null">#{unit},</if>
+            <if test="count != null">#{count},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
         </trim>
     </insert>
 
@@ -80,22 +95,27 @@
             <if test="level != null">level = #{level},</if>
             <if test="status != null">status = #{status},</if>
             <if test="sort != null">sort = #{sort},</if>
-            <if test="productUnit != null">product_unit = #{productUnit},</if>
-            <if test="productCount != null">product_count = #{productCount},</if>
+            <if test="unit != null">unit = #{unit},</if>
+            <if test="count != null">count = #{count},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
         </trim>
-        where cat_id = #{catId}
+        where category_id = #{categoryId}
     </update>
 
-    <delete id="deletePmsCategoryByCatId" parameterType="Long">
+    <delete id="deletePmsCategoryByCategoryId" parameterType="Long">
         delete
         from pms_category
-        where cat_id = #{catId}
+        where category_id = #{categoryId}
     </delete>
 
-    <delete id="deletePmsCategoryByCatIds" parameterType="String">
-        delete from pms_category where cat_id in
-        <foreach item="catId" collection="array" open="(" separator="," close=")">
-            #{catId}
+    <delete id="deletePmsCategoryByCategoryIds" parameterType="String">
+        delete from pms_category where category_id in
+        <foreach item="categoryId" collection="array" open="(" separator="," close=")">
+            #{categoryId}
         </foreach>
     </delete>
 </mapper>

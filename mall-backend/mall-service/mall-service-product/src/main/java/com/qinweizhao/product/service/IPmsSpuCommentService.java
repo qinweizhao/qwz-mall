@@ -1,14 +1,14 @@
 package com.qinweizhao.product.service;
 
-import com.qinweizhao.product.domain.PmsSpuComment;
-
 import java.util.List;
+
+import com.qinweizhao.product.domain.PmsSpuComment;
 
 /**
  * 商品评价Service接口
  *
  * @author qinweizhao
- * @date 2022-04-03
+ * @date 2022-04-11
  */
 public interface IPmsSpuCommentService {
     /**
@@ -17,7 +17,7 @@ public interface IPmsSpuCommentService {
      * @param id 商品评价主键
      * @return 商品评价
      */
-    public PmsSpuComment selectPmsSpuCommentById(Long id);
+    PmsSpuComment selectPmsSpuCommentById(Long id);
 
     /**
      * 查询商品评价列表
@@ -25,7 +25,7 @@ public interface IPmsSpuCommentService {
      * @param pmsSpuComment 商品评价
      * @return 商品评价集合
      */
-    public List<PmsSpuComment> selectPmsSpuCommentList(PmsSpuComment pmsSpuComment);
+    List<PmsSpuComment> selectPmsSpuCommentList(PmsSpuComment pmsSpuComment);
 
     /**
      * 新增商品评价
@@ -33,7 +33,7 @@ public interface IPmsSpuCommentService {
      * @param pmsSpuComment 商品评价
      * @return 结果
      */
-    public int insertPmsSpuComment(PmsSpuComment pmsSpuComment);
+    int insertPmsSpuComment(PmsSpuComment pmsSpuComment);
 
     /**
      * 修改商品评价
@@ -41,7 +41,7 @@ public interface IPmsSpuCommentService {
      * @param pmsSpuComment 商品评价
      * @return 结果
      */
-    public int updatePmsSpuComment(PmsSpuComment pmsSpuComment);
+    int updatePmsSpuComment(PmsSpuComment pmsSpuComment);
 
     /**
      * 批量删除商品评价
@@ -49,7 +49,7 @@ public interface IPmsSpuCommentService {
      * @param ids 需要删除的商品评价主键集合
      * @return 结果
      */
-    public int deletePmsSpuCommentByIds(Long[] ids);
+    int deletePmsSpuCommentByIds(Long[] ids);
 
     /**
      * 删除商品评价信息
@@ -57,5 +57,5 @@ public interface IPmsSpuCommentService {
      * @param id 商品评价主键
      * @return 结果
      */
-    public int deletePmsSpuCommentById(Long id);
+    int deletePmsSpuCommentById(Long id);
 }

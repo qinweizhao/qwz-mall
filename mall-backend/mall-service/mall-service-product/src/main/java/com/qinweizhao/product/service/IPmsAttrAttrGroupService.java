@@ -1,47 +1,47 @@
 package com.qinweizhao.product.service;
 
-import com.qinweizhao.product.domain.PmsAttrAttrgroupRelation;
-
 import java.util.List;
+
+import com.qinweizhao.product.domain.PmsAttrAttrGroup;
 
 /**
  * 属性&属性分组关联Service接口
  *
  * @author qinweizhao
- * @date 2022-04-03
+ * @date 2022-04-11
  */
-public interface IPmsAttrAttrgroupRelationService {
+public interface IPmsAttrAttrGroupService {
     /**
      * 查询属性&属性分组关联
      *
      * @param id 属性&属性分组关联主键
      * @return 属性&属性分组关联
      */
-    PmsAttrAttrgroupRelation selectPmsAttrAttrgroupRelationById(Long id);
+    PmsAttrAttrGroup selectPmsAttrAttrGroupById(Long id);
 
     /**
      * 查询属性&属性分组关联列表
      *
-     * @param pmsAttrAttrgroupRelation 属性&属性分组关联
+     * @param pmsAttrAttrGroup 属性&属性分组关联
      * @return 属性&属性分组关联集合
      */
-    List<PmsAttrAttrgroupRelation> selectPmsAttrAttrgroupRelationList(PmsAttrAttrgroupRelation pmsAttrAttrgroupRelation);
+    List<PmsAttrAttrGroup> selectPmsAttrAttrGroupList(PmsAttrAttrGroup pmsAttrAttrGroup);
 
     /**
      * 新增属性&属性分组关联
      *
-     * @param pmsAttrAttrgroupRelation 属性&属性分组关联
+     * @param pmsAttrAttrGroup 属性&属性分组关联
      * @return 结果
      */
-    int insertPmsAttrAttrgroupRelation(PmsAttrAttrgroupRelation pmsAttrAttrgroupRelation);
+    int insertPmsAttrAttrGroup(PmsAttrAttrGroup pmsAttrAttrGroup);
 
     /**
      * 修改属性&属性分组关联
      *
-     * @param pmsAttrAttrgroupRelation 属性&属性分组关联
+     * @param pmsAttrAttrGroup 属性&属性分组关联
      * @return 结果
      */
-    int updatePmsAttrAttrgroupRelation(PmsAttrAttrgroupRelation pmsAttrAttrgroupRelation);
+    int updatePmsAttrAttrGroup(PmsAttrAttrGroup pmsAttrAttrGroup);
 
     /**
      * 批量删除属性&属性分组关联
@@ -49,7 +49,7 @@ public interface IPmsAttrAttrgroupRelationService {
      * @param ids 需要删除的属性&属性分组关联主键集合
      * @return 结果
      */
-    int deletePmsAttrAttrgroupRelationByIds(Long[] ids);
+    int deletePmsAttrAttrGroupByIds(Long[] ids);
 
     /**
      * 删除属性&属性分组关联信息
@@ -57,5 +57,5 @@ public interface IPmsAttrAttrgroupRelationService {
      * @param id 属性&属性分组关联主键
      * @return 结果
      */
-    int deletePmsAttrAttrgroupRelationById(Long id);
+    int deletePmsAttrAttrGroupById(Long id);
 }

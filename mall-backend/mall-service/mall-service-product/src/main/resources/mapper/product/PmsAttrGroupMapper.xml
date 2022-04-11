@@ -5,26 +5,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.qinweizhao.product.mapper.PmsAttrGroupMapper">
     
     <resultMap type="PmsAttrGroup" id="PmsAttrGroupResult">
-        <result property="attrGroupId"    column="attr_group_id"    />
-        <result property="attrGroupName"    column="attr_group_name"    />
-        <result property="sort"    column="sort"    />
-        <result property="descript"    column="descript"    />
-        <result property="icon"    column="icon"    />
-        <result property="catelogId"    column="catelog_id"    />
+        <result property="attrGroupId" column="attr_group_id"/>
+        <result property="name" column="name"/>
+        <result property="sort" column="sort"/>
+        <result property="desc" column="desc"/>
+        <result property="icon" column="icon"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
     </resultMap>
 
     <sql id="selectPmsAttrGroupVo">
-        select attr_group_id, attr_group_name, sort, descript, icon, catelog_id from pms_attr_group
+        select attr_group_id,
+               name,
+               sort, desc, icon, category_id, create_by, update_by, create_time, update_time, remark
+        from pms_attr_group
     </sql>
 
     <select id="selectPmsAttrGroupList" parameterType="PmsAttrGroup" resultMap="PmsAttrGroupResult">
         <include refid="selectPmsAttrGroupVo"/>
-        <where>  
-            <if test="attrGroupName != null  and attrGroupName != ''"> and attr_group_name like concat('%', #{attrGroupName}, '%')</if>
+        <where>
+            <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
             <if test="sort != null "> and sort = #{sort}</if>
-            <if test="descript != null  and descript != ''"> and descript = #{descript}</if>
+            <if test="desc != null  and desc != ''">and desc = #{desc}</if>
             <if test="icon != null  and icon != ''"> and icon = #{icon}</if>
-            <if test="catelogId != null "> and catelog_id = #{catelogId}</if>
+            <if test="categoryId != null ">and category_id = #{categoryId}</if>
         </where>
     </select>
     
@@ -36,29 +44,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <insert id="insertPmsAttrGroup" parameterType="PmsAttrGroup" useGeneratedKeys="true" keyProperty="attrGroupId">
         insert into pms_attr_group
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="attrGroupName != null">attr_group_name,</if>
+            <if test="name != null">name,</if>
             <if test="sort != null">sort,</if>
-            <if test="descript != null">descript,</if>
+            <if test="desc != null">desc,</if>
             <if test="icon != null">icon,</if>
-            <if test="catelogId != null">catelog_id,</if>
-         </trim>
+            <if test="categoryId != null">category_id,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="attrGroupName != null">#{attrGroupName},</if>
+            <if test="name != null">#{name},</if>
             <if test="sort != null">#{sort},</if>
-            <if test="descript != null">#{descript},</if>
+            <if test="desc != null">#{desc},</if>
             <if test="icon != null">#{icon},</if>
-            <if test="catelogId != null">#{catelogId},</if>
-         </trim>
+            <if test="categoryId != null">#{categoryId},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+        </trim>
     </insert>
 
     <update id="updatePmsAttrGroup" parameterType="PmsAttrGroup">
         update pms_attr_group
         <trim prefix="SET" suffixOverrides=",">
-            <if test="attrGroupName != null">attr_group_name = #{attrGroupName},</if>
+            <if test="name != null">name = #{name},</if>
             <if test="sort != null">sort = #{sort},</if>
-            <if test="descript != null">descript = #{descript},</if>
+            <if test="desc != null">desc = #{desc},</if>
             <if test="icon != null">icon = #{icon},</if>
-            <if test="catelogId != null">catelog_id = #{catelogId},</if>
+            <if test="categoryId != null">category_id = #{categoryId},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
         </trim>
         where attr_group_id = #{attrGroupId}
     </update>

@@ -8,30 +8,21 @@
         <result property="brandId" column="brand_id"/>
         <result property="name" column="name"/>
         <result property="logo" column="logo"/>
-        <result property="descript" column="descript"/>
+        <result property="desc" column="desc"/>
         <result property="status" column="status"/>
         <result property="firstLetter" column="first_letter"/>
         <result property="sort" column="sort"/>
         <result property="createBy" column="create_by"/>
         <result property="createTime" column="create_time"/>
-        <result property="updateTime" column="update_time"/>
         <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
         <result property="remark" column="remark"/>
     </resultMap>
 
     <sql id="selectPmsBrandVo">
         select brand_id,
                name,
-               logo,
-               descript,
-               status,
-               first_letter,
-               sort,
-               create_by,
-               create_time,
-               update_time,
-               update_by,
-               remark
+               logo, desc, status, first_letter, sort, create_by, create_time, update_by, update_time, remark
         from pms_brand
     </sql>
 
@@ -40,7 +31,7 @@
         <where>
             <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
             <if test="logo != null  and logo != ''">and logo = #{logo}</if>
-            <if test="descript != null  and descript != ''">and descript = #{descript}</if>
+            <if test="desc != null  and desc != ''">and desc = #{desc}</if>
             <if test="status != null ">and status = #{status}</if>
             <if test="firstLetter != null  and firstLetter != ''">and first_letter = #{firstLetter}</if>
             <if test="sort != null ">and sort = #{sort}</if>
@@ -57,18 +48,28 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="name != null">name,</if>
             <if test="logo != null">logo,</if>
-            <if test="descript != null">descript,</if>
+            <if test="desc != null">desc,</if>
             <if test="status != null">status,</if>
             <if test="firstLetter != null">first_letter,</if>
             <if test="sort != null">sort,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="name != null">#{name},</if>
             <if test="logo != null">#{logo},</if>
-            <if test="descript != null">#{descript},</if>
+            <if test="desc != null">#{desc},</if>
             <if test="status != null">#{status},</if>
             <if test="firstLetter != null">#{firstLetter},</if>
             <if test="sort != null">#{sort},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
         </trim>
     </insert>
 
@@ -77,10 +78,15 @@
         <trim prefix="SET" suffixOverrides=",">
             <if test="name != null">name = #{name},</if>
             <if test="logo != null">logo = #{logo},</if>
-            <if test="descript != null">descript = #{descript},</if>
+            <if test="desc != null">desc = #{desc},</if>
             <if test="status != null">status = #{status},</if>
             <if test="firstLetter != null">first_letter = #{firstLetter},</if>
             <if test="sort != null">sort = #{sort},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
         </trim>
         where brand_id = #{brandId}
     </update>

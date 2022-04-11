@@ -1,23 +1,23 @@
 package com.qinweizhao.product.mapper;
 
-import com.qinweizhao.product.domain.PmsSpuInfo;
-
 import java.util.List;
+
+import com.qinweizhao.product.domain.PmsSpuInfo;
 
 /**
  * spu信息Mapper接口
  *
  * @author qinweizhao
- * @date 2022-04-03
+ * @date 2022-04-11
  */
 public interface PmsSpuInfoMapper {
     /**
      * 查询spu信息
      *
-     * @param id spu信息主键
+     * @param spuId spu信息主键
      * @return spu信息
      */
-    public PmsSpuInfo selectPmsSpuInfoById(Long id);
+    public PmsSpuInfo selectPmsSpuInfoBySpuId(Long spuId);
 
     /**
      * 查询spu信息列表
@@ -46,16 +46,16 @@ public interface PmsSpuInfoMapper {
     /**
      * 删除spu信息
      *
-     * @param id spu信息主键
+     * @param spuId spu信息主键
      * @return 结果
      */
-    public int deletePmsSpuInfoById(Long id);
+    public int deletePmsSpuInfoBySpuId(Long spuId);
 
     /**
      * 批量删除spu信息
      *
-     * @param ids 需要删除的数据主键集合
+     * @param spuIds 需要删除的数据主键集合
      * @return 结果
      */
-    public int deletePmsSpuInfoByIds(Long[] ids);
+    public int deletePmsSpuInfoBySpuIds(Long[] spuIds);
 }

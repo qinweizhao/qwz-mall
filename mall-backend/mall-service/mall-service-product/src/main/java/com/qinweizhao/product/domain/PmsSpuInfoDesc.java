@@ -1,51 +1,52 @@
 package com.qinweizhao.product.domain;
 
-import com.qinweizhao.common.core.annotation.Excel;
-import com.qinweizhao.common.core.web.domain.BaseEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import com.qinweizhao.common.core.annotation.Excel;
+import com.qinweizhao.common.core.web.domain.BaseEntity;
 
 /**
  * spu信息介绍对象 pms_spu_info_desc
  *
  * @author qinweizhao
- * @date 2022-04-03
+ * @date 2022-04-11
  */
 public class PmsSpuInfoDesc extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 商品id
-     */
+    /** 商品id */
     private Long spuId;
 
-    /**
-     * 商品介绍
-     */
+    /** 商品介绍 */
     @Excel(name = "商品介绍")
-    private String decript;
-
-    public Long getSpuId() {
-        return spuId;
-    }
+    private String desc;
 
     public void setSpuId(Long spuId) {
         this.spuId = spuId;
     }
 
-    public String getDecript() {
-        return decript;
+    public Long getSpuId() {
+        return spuId;
     }
 
-    public void setDecript(String decript) {
-        this.decript = decript;
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public String getDesc() {
+        return desc;
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("spuId" , getSpuId())
-                .append("decript" , getDecript())
+                .append("spuId", getSpuId())
+                .append("desc", getDesc())
+                .append("createBy", getCreateBy())
+                .append("updateBy", getUpdateBy())
+                .append("createTime", getCreateTime())
+                .append("updateTime", getUpdateTime())
+                .append("remark", getRemark())
                 .toString();
     }
 }

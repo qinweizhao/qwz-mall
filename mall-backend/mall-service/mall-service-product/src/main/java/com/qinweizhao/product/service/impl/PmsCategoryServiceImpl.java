@@ -1,33 +1,34 @@
 package com.qinweizhao.product.service.impl;
 
-import com.qinweizhao.product.domain.PmsCategory;
-import com.qinweizhao.product.mapper.PmsCategoryMapper;
-import com.qinweizhao.product.service.IPmsCategoryService;
+import java.util.List;
+
+import com.qinweizhao.common.core.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import com.qinweizhao.product.mapper.PmsCategoryMapper;
+import com.qinweizhao.product.domain.PmsCategory;
+import com.qinweizhao.product.service.IPmsCategoryService;
 
 /**
  * 商品三级分类Service业务层处理
  *
  * @author qinweizhao
- * @date 2022-04-03
+ * @date 2022-04-11
  */
 @Service
 public class PmsCategoryServiceImpl implements IPmsCategoryService {
-    @Autowired
+    @Resource
     private PmsCategoryMapper pmsCategoryMapper;
 
     /**
      * 查询商品三级分类
      *
-     * @param catId 商品三级分类主键
+     * @param categoryId 商品三级分类主键
      * @return 商品三级分类
      */
     @Override
-    public PmsCategory selectPmsCategoryByCatId(Long catId) {
-        return pmsCategoryMapper.selectPmsCategoryByCatId(catId);
+    public PmsCategory selectPmsCategoryByCategoryId(Long categoryId) {
+        return pmsCategoryMapper.selectPmsCategoryByCategoryId(categoryId);
     }
 
     /**
@@ -49,6 +50,7 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
      */
     @Override
     public int insertPmsCategory(PmsCategory pmsCategory) {
+        pmsCategory.setCreateTime(DateUtils.getNowDate());
         return pmsCategoryMapper.insertPmsCategory(pmsCategory);
     }
 
@@ -60,28 +62,29 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
      */
     @Override
     public int updatePmsCategory(PmsCategory pmsCategory) {
+        pmsCategory.setUpdateTime(DateUtils.getNowDate());
         return pmsCategoryMapper.updatePmsCategory(pmsCategory);
     }
 
     /**
      * 批量删除商品三级分类
      *
-     * @param catIds 需要删除的商品三级分类主键
+     * @param categoryIds 需要删除的商品三级分类主键
      * @return 结果
      */
     @Override
-    public int deletePmsCategoryByCatIds(Long[] catIds) {
-        return pmsCategoryMapper.deletePmsCategoryByCatIds(catIds);
+    public int deletePmsCategoryByCategoryIds(Long[] categoryIds) {
+        return pmsCategoryMapper.deletePmsCategoryByCategoryIds(categoryIds);
     }
 
     /**
      * 删除商品三级分类信息
      *
-     * @param catId 商品三级分类主键
+     * @param categoryId 商品三级分类主键
      * @return 结果
      */
     @Override
-    public int deletePmsCategoryByCatId(Long catId) {
-        return pmsCategoryMapper.deletePmsCategoryByCatId(catId);
+    public int deletePmsCategoryByCategoryId(Long categoryId) {
+        return pmsCategoryMapper.deletePmsCategoryByCategoryId(categoryId);
     }
 }

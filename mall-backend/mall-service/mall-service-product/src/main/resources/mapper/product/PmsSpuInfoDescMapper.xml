@@ -5,18 +5,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.qinweizhao.product.mapper.PmsSpuInfoDescMapper">
     
     <resultMap type="PmsSpuInfoDesc" id="PmsSpuInfoDescResult">
-        <result property="spuId"    column="spu_id"    />
-        <result property="decript"    column="decript"    />
+        <result property="spuId" column="spu_id"/>
+        <result property="desc" column="desc"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
     </resultMap>
 
     <sql id="selectPmsSpuInfoDescVo">
-        select spu_id, decript from pms_spu_info_desc
+        select spu_id, desc, create_by, update_by, create_time, update_time, remark
+        from pms_spu_info_desc
     </sql>
 
     <select id="selectPmsSpuInfoDescList" parameterType="PmsSpuInfoDesc" resultMap="PmsSpuInfoDescResult">
         <include refid="selectPmsSpuInfoDescVo"/>
-        <where>  
-            <if test="decript != null  and decript != ''"> and decript = #{decript}</if>
+        <where>
+            <if test="desc != null  and desc != ''">and desc = #{desc}</if>
         </where>
     </select>
     
@@ -29,18 +35,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         insert into pms_spu_info_desc
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="spuId != null">spu_id,</if>
-            <if test="decript != null">decript,</if>
-         </trim>
+            <if test="desc != null">desc,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="spuId != null">#{spuId},</if>
-            <if test="decript != null">#{decript},</if>
-         </trim>
+            <if test="desc != null">#{desc},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+        </trim>
     </insert>
 
     <update id="updatePmsSpuInfoDesc" parameterType="PmsSpuInfoDesc">
         update pms_spu_info_desc
         <trim prefix="SET" suffixOverrides=",">
-            <if test="decript != null">decript = #{decript},</if>
+            <if test="desc != null">desc = #{desc},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
         </trim>
         where spu_id = #{spuId}
     </update>

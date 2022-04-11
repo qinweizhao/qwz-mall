@@ -51,10 +51,9 @@ public class ${ClassName}Controller extends BaseController
         return getDataTable(list);
     }
 #elseif($table.tree)
-    public AjaxResult list(${ClassName} ${className})
-    {
+    public R<List<${className}>> list(${ClassName} ${className}) {
         List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
-        return AjaxResult.success(list);
+        return R.success(list);
     }
 #end
 
@@ -64,11 +63,11 @@ public class ${ClassName}Controller extends BaseController
     @RequiresPermissions("${permissionPrefix}:export")
     @Log(title = "${functionName}", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, ${ClassName} ${className})
-    {
+    public R<Void> export(HttpServletResponse response, ${ClassName} ${className}) {
         List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
-        ExcelUtil<${ClassName}> util = new ExcelUtil<${ClassName}>(${ClassName}.class);
+        ExcelUtil<${ClassName}> util = new ExcelUtil<${ClassName}>(${ClassName}. class);
         util.exportExcel(response, list, "${functionName}数据");
+        return R.success();
     }
 
     /**
@@ -76,9 +75,8 @@ public class ${ClassName}Controller extends BaseController
      */
     @RequiresPermissions("${permissionPrefix}:query")
     @GetMapping(value = "/{${pkColumn.javaField}}")
-    public AjaxResult getInfo(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField})
-    {
-        return AjaxResult.success(${className}Service.select${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaField}));
+    public R<${ClassName}> getInfo(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField}) {
+        return R.success(${className}Service.select${ClassName}By${pkColumn.capJavaField}(${pkColumn.javaField}));
     }
 
     /**
@@ -87,9 +85,8 @@ public class ${ClassName}Controller extends BaseController
     @RequiresPermissions("${permissionPrefix}:add")
     @Log(title = "${functionName}", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@RequestBody ${ClassName} ${className})
-    {
-        return toAjax(${className}Service.insert${ClassName}(${className}));
+    public R<Void> add(@RequestBody ${ClassName} ${className}) {
+        return R.condition(${className}Service.insert${ClassName}(${className}));
     }
 
     /**
@@ -98,9 +95,8 @@ public class ${ClassName}Controller extends BaseController
     @RequiresPermissions("${permissionPrefix}:edit")
     @Log(title = "${functionName}", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@RequestBody ${ClassName} ${className})
-    {
-        return toAjax(${className}Service.update${ClassName}(${className}));
+    public R<Void> edit(@RequestBody ${ClassName} ${className}) {
+        return R.condition(${className}Service.update${ClassName}(${className}));
     }
 
     /**
@@ -108,9 +104,8 @@ public class ${ClassName}Controller extends BaseController
      */
     @RequiresPermissions("${permissionPrefix}:remove")
     @Log(title = "${functionName}", businessType = BusinessType.DELETE)
-	@DeleteMapping("/{${pkColumn.javaField}s}")
-    public AjaxResult remove(@PathVariable ${pkColumn.javaType}[] ${pkColumn.javaField}s)
-    {
-        return toAjax(${className}Service.delete${ClassName}By${pkColumn.capJavaField}s(${pkColumn.javaField}s));
+    @DeleteMapping("/{${pkColumn.javaField}s}")
+    public R<Void> remove(@PathVariable ${pkColumn.javaType}[] ${pkColumn.javaField}s) {
+        return R.condition(${className}Service.delete${ClassName}By${pkColumn.capJavaField}s(${pkColumn.javaField}s));
     }
 }

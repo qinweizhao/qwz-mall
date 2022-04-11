@@ -1,22 +1,23 @@
 package com.qinweizhao.product.service.impl;
 
-import com.qinweizhao.product.domain.PmsSkuInfo;
-import com.qinweizhao.product.mapper.PmsSkuInfoMapper;
-import com.qinweizhao.product.service.IPmsSkuInfoService;
+import java.util.List;
+
+import com.qinweizhao.common.core.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import com.qinweizhao.product.mapper.PmsSkuInfoMapper;
+import com.qinweizhao.product.domain.PmsSkuInfo;
+import com.qinweizhao.product.service.IPmsSkuInfoService;
 
 /**
  * sku信息Service业务层处理
  *
  * @author qinweizhao
- * @date 2022-04-03
+ * @date 2022-04-11
  */
 @Service
 public class PmsSkuInfoServiceImpl implements IPmsSkuInfoService {
-    @Autowired
+    @Resource
     private PmsSkuInfoMapper pmsSkuInfoMapper;
 
     /**
@@ -49,6 +50,7 @@ public class PmsSkuInfoServiceImpl implements IPmsSkuInfoService {
      */
     @Override
     public int insertPmsSkuInfo(PmsSkuInfo pmsSkuInfo) {
+        pmsSkuInfo.setCreateTime(DateUtils.getNowDate());
         return pmsSkuInfoMapper.insertPmsSkuInfo(pmsSkuInfo);
     }
 
@@ -60,6 +62,7 @@ public class PmsSkuInfoServiceImpl implements IPmsSkuInfoService {
      */
     @Override
     public int updatePmsSkuInfo(PmsSkuInfo pmsSkuInfo) {
+        pmsSkuInfo.setUpdateTime(DateUtils.getNowDate());
         return pmsSkuInfoMapper.updatePmsSkuInfo(pmsSkuInfo);
     }
 

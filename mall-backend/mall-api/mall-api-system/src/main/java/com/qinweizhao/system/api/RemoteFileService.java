@@ -1,7 +1,7 @@
 package com.qinweizhao.system.api;
 
 import com.qinweizhao.common.core.constant.ServiceNameConstants;
-import com.qinweizhao.common.core.domain.R;
+import com.qinweizhao.modle.result.R;
 import com.qinweizhao.system.api.domain.SysFile;
 import com.qinweizhao.system.api.factory.RemoteFileFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;

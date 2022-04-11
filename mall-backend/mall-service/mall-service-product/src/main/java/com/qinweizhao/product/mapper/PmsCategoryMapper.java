@@ -1,23 +1,23 @@
 package com.qinweizhao.product.mapper;
 
-import com.qinweizhao.product.domain.PmsCategory;
-
 import java.util.List;
+
+import com.qinweizhao.product.domain.PmsCategory;
 
 /**
  * 商品三级分类Mapper接口
  *
  * @author qinweizhao
- * @date 2022-04-03
+ * @date 2022-04-11
  */
 public interface PmsCategoryMapper {
     /**
      * 查询商品三级分类
      *
-     * @param catId 商品三级分类主键
+     * @param categoryId 商品三级分类主键
      * @return 商品三级分类
      */
-    public PmsCategory selectPmsCategoryByCatId(Long catId);
+    public PmsCategory selectPmsCategoryByCategoryId(Long categoryId);
 
     /**
      * 查询商品三级分类列表
@@ -46,16 +46,16 @@ public interface PmsCategoryMapper {
     /**
      * 删除商品三级分类
      *
-     * @param catId 商品三级分类主键
+     * @param categoryId 商品三级分类主键
      * @return 结果
      */
-    public int deletePmsCategoryByCatId(Long catId);
+    public int deletePmsCategoryByCategoryId(Long categoryId);
 
     /**
      * 批量删除商品三级分类
      *
-     * @param catIds 需要删除的数据主键集合
+     * @param categoryIds 需要删除的数据主键集合
      * @return 结果
      */
-    public int deletePmsCategoryByCatIds(Long[] catIds);
+    public int deletePmsCategoryByCategoryIds(Long[] categoryIds);
 }

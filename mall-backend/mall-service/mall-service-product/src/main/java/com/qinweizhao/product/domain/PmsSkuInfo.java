@@ -1,73 +1,55 @@
 package com.qinweizhao.product.domain;
 
-import com.qinweizhao.common.core.annotation.Excel;
-import com.qinweizhao.common.core.web.domain.BaseEntity;
+import java.math.BigDecimal;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-
-import java.math.BigDecimal;
+import com.qinweizhao.common.core.annotation.Excel;
+import com.qinweizhao.common.core.web.domain.BaseEntity;
 
 /**
  * sku信息对象 pms_sku_info
  *
  * @author qinweizhao
- * @date 2022-04-03
+ * @date 2022-04-11
  */
 public class PmsSkuInfo extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * skuId
-     */
+    /** skuId */
     private Long skuId;
 
-    /**
-     * spuId
-     */
+    /** spuId */
     @Excel(name = "spuId")
     private Long spuId;
 
-    /**
-     * sku名称
-     */
+    /** sku名称 */
     @Excel(name = "sku名称")
-    private String skuName;
+    private String name;
 
-    /**
-     * sku介绍描述
-     */
+    /** sku介绍描述 */
     @Excel(name = "sku介绍描述")
-    private String skuDesc;
+    private String desc;
 
-    /**
-     * 所属分类id
-     */
+    /** 所属分类id */
     @Excel(name = "所属分类id")
-    private Long catalogId;
+    private Long categoryId;
 
-    /**
-     * 品牌id
-     */
+    /** 品牌id */
     @Excel(name = "品牌id")
     private Long brandId;
 
-    /**
-     * 默认图片
-     */
+    /** 默认图片 */
     @Excel(name = "默认图片")
-    private String skuDefaultImg;
+    private String defaultImg;
 
-    /**
-     * 标题
-     */
+    /** 标题 */
     @Excel(name = "标题")
-    private String skuTitle;
+    private String title;
 
-    /**
-     * 副标题
-     */
+    /** 副标题 */
     @Excel(name = "副标题")
-    private String skuSubtitle;
+    private String subtitle;
 
     /**
      * 价格
@@ -81,108 +63,113 @@ public class PmsSkuInfo extends BaseEntity {
     @Excel(name = "销量")
     private Long saleCount;
 
-    public Long getSkuId() {
-        return skuId;
-    }
-
     public void setSkuId(Long skuId) {
         this.skuId = skuId;
     }
 
-    public Long getSpuId() {
-        return spuId;
+    public Long getSkuId() {
+        return skuId;
     }
 
     public void setSpuId(Long spuId) {
         this.spuId = spuId;
     }
 
-    public String getSkuName() {
-        return skuName;
+    public Long getSpuId() {
+        return spuId;
     }
 
-    public void setSkuName(String skuName) {
-        this.skuName = skuName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getSkuDesc() {
-        return skuDesc;
+    public String getName() {
+        return name;
     }
 
-    public void setSkuDesc(String skuDesc) {
-        this.skuDesc = skuDesc;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
-    public Long getCatalogId() {
-        return catalogId;
+    public String getDesc() {
+        return desc;
     }
 
-    public void setCatalogId(Long catalogId) {
-        this.catalogId = catalogId;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public Long getBrandId() {
-        return brandId;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
     public void setBrandId(Long brandId) {
         this.brandId = brandId;
     }
 
-    public String getSkuDefaultImg() {
-        return skuDefaultImg;
+    public Long getBrandId() {
+        return brandId;
     }
 
-    public void setSkuDefaultImg(String skuDefaultImg) {
-        this.skuDefaultImg = skuDefaultImg;
+    public void setDefaultImg(String defaultImg) {
+        this.defaultImg = defaultImg;
     }
 
-    public String getSkuTitle() {
-        return skuTitle;
+    public String getDefaultImg() {
+        return defaultImg;
     }
 
-    public void setSkuTitle(String skuTitle) {
-        this.skuTitle = skuTitle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getSkuSubtitle() {
-        return skuSubtitle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setSkuSubtitle(String skuSubtitle) {
-        this.skuSubtitle = skuSubtitle;
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
     }
 
-    public BigDecimal getPrice() {
-        return price;
+    public String getSubtitle() {
+        return subtitle;
     }
 
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
-    public Long getSaleCount() {
-        return saleCount;
+    public BigDecimal getPrice() {
+        return price;
     }
 
     public void setSaleCount(Long saleCount) {
         this.saleCount = saleCount;
     }
 
+    public Long getSaleCount() {
+        return saleCount;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("skuId" , getSkuId())
-                .append("spuId" , getSpuId())
-                .append("skuName" , getSkuName())
-                .append("skuDesc" , getSkuDesc())
-                .append("catalogId" , getCatalogId())
-                .append("brandId" , getBrandId())
-                .append("skuDefaultImg" , getSkuDefaultImg())
-                .append("skuTitle" , getSkuTitle())
-                .append("skuSubtitle" , getSkuSubtitle())
-                .append("price" , getPrice())
-                .append("saleCount" , getSaleCount())
+                .append("skuId", getSkuId())
+                .append("spuId", getSpuId())
+                .append("name", getName())
+                .append("desc", getDesc())
+                .append("categoryId", getCategoryId())
+                .append("brandId", getBrandId())
+                .append("defaultImg", getDefaultImg())
+                .append("title", getTitle())
+                .append("subtitle", getSubtitle())
+                .append("price", getPrice())
+                .append("saleCount", getSaleCount())
+                .append("createBy", getCreateBy())
+                .append("updateBy", getUpdateBy())
+                .append("createTime", getCreateTime())
+                .append("updateTime", getUpdateTime())
+                .append("remark", getRemark())
                 .toString();
     }
 }

@@ -1,14 +1,14 @@
 package com.qinweizhao.product.service;
 
-import com.qinweizhao.product.domain.PmsBrand;
-
 import java.util.List;
+
+import com.qinweizhao.product.domain.PmsBrand;
 
 /**
  * 品牌Service接口
  *
  * @author qinweizhao
- * @date 2022-04-03
+ * @date 2022-04-11
  */
 public interface IPmsBrandService {
     /**
@@ -17,7 +17,7 @@ public interface IPmsBrandService {
      * @param brandId 品牌主键
      * @return 品牌
      */
-    public PmsBrand selectPmsBrandByBrandId(Long brandId);
+    PmsBrand selectPmsBrandByBrandId(Long brandId);
 
     /**
      * 查询品牌列表
@@ -25,7 +25,7 @@ public interface IPmsBrandService {
      * @param pmsBrand 品牌
      * @return 品牌集合
      */
-    public List<PmsBrand> selectPmsBrandList(PmsBrand pmsBrand);
+    List<PmsBrand> selectPmsBrandList(PmsBrand pmsBrand);
 
     /**
      * 新增品牌
@@ -33,7 +33,7 @@ public interface IPmsBrandService {
      * @param pmsBrand 品牌
      * @return 结果
      */
-    public int insertPmsBrand(PmsBrand pmsBrand);
+    int insertPmsBrand(PmsBrand pmsBrand);
 
     /**
      * 修改品牌
@@ -41,7 +41,7 @@ public interface IPmsBrandService {
      * @param pmsBrand 品牌
      * @return 结果
      */
-    public int updatePmsBrand(PmsBrand pmsBrand);
+    int updatePmsBrand(PmsBrand pmsBrand);
 
     /**
      * 批量删除品牌
@@ -49,7 +49,7 @@ public interface IPmsBrandService {
      * @param brandIds 需要删除的品牌主键集合
      * @return 结果
      */
-    public int deletePmsBrandByBrandIds(Long[] brandIds);
+    int deletePmsBrandByBrandIds(Long[] brandIds);
 
     /**
      * 删除品牌信息
@@ -57,5 +57,5 @@ public interface IPmsBrandService {
      * @param brandId 品牌主键
      * @return 结果
      */
-    public int deletePmsBrandByBrandId(Long brandId);
+    int deletePmsBrandByBrandId(Long brandId);
 }
