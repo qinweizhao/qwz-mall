@@ -14,26 +14,18 @@ import com.qinweizhao.common.core.web.domain.BaseEntity;
 public class PmsSkuAttrValue extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * id
-     */
+    /** id */
     private Long id;
 
-    /**
-     * sku_id
-     */
+    /** sku_id */
     @Excel(name = "sku_id")
     private Long skuId;
 
-    /**
-     * attr_id
-     */
+    /** attr_id */
     @Excel(name = "attr_id")
     private Long attrId;
 
-    /**
-     * 销售属性名
-     */
+    /** 销售属性名 */
     @Excel(name = "销售属性名")
     private String name;
 

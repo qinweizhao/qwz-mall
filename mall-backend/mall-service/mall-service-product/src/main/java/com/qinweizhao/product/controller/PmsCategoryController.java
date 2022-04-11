@@ -4,6 +4,7 @@ import java.util.List;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 
+import com.qinweizhao.modle.result.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +33,7 @@ import com.qinweizhao.common.core.web.page.TableDataInfo;
 @RestController
 @RequestMapping("/category")
 public class PmsCategoryController extends BaseController {
-    @Resource
+    @Autowired
     private IPmsCategoryService pmsCategoryService;
 
     /**
@@ -40,10 +41,10 @@ public class PmsCategoryController extends BaseController {
      */
     @RequiresPermissions("product:category:list")
     @GetMapping("/list")
-    public TableDataInfo list(PmsCategory pmsCategory) {
+    public R<List<PmsCategory>> list(PmsCategory pmsCategory) {
         startPage();
         List<PmsCategory> list = pmsCategoryService.selectPmsCategoryList(pmsCategory);
-        return getDataTable(list);
+        return R.success(list);
     }
 
     /**

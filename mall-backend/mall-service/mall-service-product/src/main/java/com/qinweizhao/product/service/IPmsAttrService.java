@@ -1,8 +1,8 @@
 package com.qinweizhao.product.service;
 
-import com.qinweizhao.product.domain.PmsAttr;
-
 import java.util.List;
+
+import com.qinweizhao.product.domain.PmsAttr;
 
 /**
  * 商品属性Service接口

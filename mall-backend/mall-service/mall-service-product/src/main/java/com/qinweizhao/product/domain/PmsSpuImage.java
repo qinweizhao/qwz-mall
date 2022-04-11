@@ -14,20 +14,14 @@ import com.qinweizhao.common.core.web.domain.BaseEntity;
 public class PmsSpuImage extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * spu_id
-     */
+    /** spu_id */
     private Long spuId;
 
-    /**
-     * 图片名
-     */
+    /** 图片名 */
     @Excel(name = "图片名")
     private String name;
 
-    /**
-     * 图片地址
-     */
+    /** 图片地址 */
     @Excel(name = "图片地址")
     private String url;
 

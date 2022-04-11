@@ -4,6 +4,7 @@ import java.util.List;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 
+import com.qinweizhao.modle.result.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +33,7 @@ import com.qinweizhao.common.core.web.page.TableDataInfo;
 @RestController
 @RequestMapping("/brand")
 public class PmsBrandController extends BaseController {
-    @Resource
+    @Autowired
     private IPmsBrandService pmsBrandService;
 
     /**
@@ -40,10 +41,10 @@ public class PmsBrandController extends BaseController {
      */
     @RequiresPermissions("product:brand:list")
     @GetMapping("/list")
-    public TableDataInfo list(PmsBrand pmsBrand) {
+    public R<List<PmsBrand>> list(PmsBrand pmsBrand) {
         startPage();
         List<PmsBrand> list = pmsBrandService.selectPmsBrandList(pmsBrand);
-        return getDataTable(list);
+        return R.success(list);
     }
 
     /**

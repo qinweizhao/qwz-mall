@@ -14,20 +14,14 @@ import com.qinweizhao.common.core.web.domain.BaseEntity;
 public class PmsCategoryBrand extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * $column.columnComment
-     */
+    /** $column.columnComment */
     private Long id;
 
-    /**
-     * 品牌id
-     */
+    /** 品牌id */
     @Excel(name = "品牌id")
     private Long brandId;
 
-    /**
-     * 分类id
-     */
+    /** 分类id */
     @Excel(name = "分类id")
     private Long categoryId;
 

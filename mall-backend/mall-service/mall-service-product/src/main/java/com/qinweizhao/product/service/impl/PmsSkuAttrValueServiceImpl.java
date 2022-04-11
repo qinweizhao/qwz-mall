@@ -1,7 +1,6 @@
 package com.qinweizhao.product.service.impl;
 
 import java.util.List;
-
 import com.qinweizhao.common.core.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,7 @@ import com.qinweizhao.product.service.IPmsSkuAttrValueService;
  */
 @Service
 public class PmsSkuAttrValueServiceImpl implements IPmsSkuAttrValueService {
-    @Resource
+    @Autowired
     private PmsSkuAttrValueMapper pmsSkuAttrValueMapper;
 
     /**

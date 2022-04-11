@@ -3,6 +3,8 @@ package ${packageName}.controller;
 import java.util.List;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
+
+import com.qinweizhao.modle.result.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,18 +45,17 @@ public class ${ClassName}Controller extends BaseController
      */
     @RequiresPermissions("${permissionPrefix}:list")
     @GetMapping("/list")
-#if($table.crud || $table.sub)
-    public TableDataInfo list(${ClassName} ${className})
-    {
+    #if($table.crud || $table.sub)
+    public R<List<${ClassName}>> list(${ClassName} ${className}) {
         startPage();
-        List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
-        return getDataTable(list);
-    }
-#elseif($table.tree)
-    public R<List<${className}>> list(${ClassName} ${className}) {
         List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
         return R.success(list);
     }
+    #elseif($table.tree)
+        public R<List<${className}>> list(${ClassName} ${className}) {
+            List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
+            return R.success(list);
+        }
 #end
 
     /**

@@ -4,6 +4,7 @@ import java.util.List;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 
+import com.qinweizhao.modle.result.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +33,7 @@ import com.qinweizhao.common.core.web.page.TableDataInfo;
 @RestController
 @RequestMapping("/desc")
 public class PmsSpuInfoDescController extends BaseController {
-    @Resource
+    @Autowired
     private IPmsSpuInfoDescService pmsSpuInfoDescService;
 
     /**
@@ -40,10 +41,10 @@ public class PmsSpuInfoDescController extends BaseController {
      */
     @RequiresPermissions("product:desc:list")
     @GetMapping("/list")
-    public TableDataInfo list(PmsSpuInfoDesc pmsSpuInfoDesc) {
+    public R<List<PmsSpuInfoDesc>> list(PmsSpuInfoDesc pmsSpuInfoDesc) {
         startPage();
         List<PmsSpuInfoDesc> list = pmsSpuInfoDescService.selectPmsSpuInfoDescList(pmsSpuInfoDesc);
-        return getDataTable(list);
+        return R.success(list);
     }
 
     /**

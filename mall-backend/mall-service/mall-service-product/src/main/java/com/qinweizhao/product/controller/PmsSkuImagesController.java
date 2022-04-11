@@ -4,6 +4,7 @@ import java.util.List;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 
+import com.qinweizhao.modle.result.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +33,7 @@ import com.qinweizhao.common.core.web.page.TableDataInfo;
 @RestController
 @RequestMapping("/images")
 public class PmsSkuImagesController extends BaseController {
-    @Resource
+    @Autowired
     private IPmsSkuImagesService pmsSkuImagesService;
 
     /**
@@ -40,10 +41,10 @@ public class PmsSkuImagesController extends BaseController {
      */
     @RequiresPermissions("product:images:list")
     @GetMapping("/list")
-    public TableDataInfo list(PmsSkuImages pmsSkuImages) {
+    public R<List<PmsSkuImages>> list(PmsSkuImages pmsSkuImages) {
         startPage();
         List<PmsSkuImages> list = pmsSkuImagesService.selectPmsSkuImagesList(pmsSkuImages);
-        return getDataTable(list);
+        return R.success(list);
     }
 
     /**

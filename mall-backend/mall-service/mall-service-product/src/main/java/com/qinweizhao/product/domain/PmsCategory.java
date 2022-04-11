@@ -33,9 +33,7 @@ public class PmsCategory extends BaseEntity {
     @Excel(name = "是否显示[0-不显示，1显示]")
     private String status;
 
-    /**
-     * 排序
-     */
+    /** 排序 */
     @Excel(name = "排序")
     private Long sort;
 

@@ -1,7 +1,6 @@
 package com.qinweizhao.product.domain;
 
 import java.math.BigDecimal;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.qinweizhao.common.core.annotation.Excel;
@@ -35,11 +34,15 @@ public class PmsSpuInfo extends BaseEntity {
     @Excel(name = "品牌id")
     private Long brandId;
 
-    /** $column.columnComment */
+    /**
+     * $column.columnComment
+     */
     @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
     private BigDecimal weight;
 
-    /** 上架状态[0 - 下架，1 - 上架] */
+    /**
+     * 上架状态[0 - 下架，1 - 上架]
+     */
     @Excel(name = "上架状态[0 - 下架，1 - 上架]")
     private Long status;
 

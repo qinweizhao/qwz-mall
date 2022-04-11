@@ -29,9 +29,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectPmsAttrGroupVo"/>
         <where>
             <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
-            <if test="sort != null "> and sort = #{sort}</if>
+            <if test="sort != null ">and sort = #{sort}</if>
             <if test="desc != null  and desc != ''">and desc = #{desc}</if>
-            <if test="icon != null  and icon != ''"> and icon = #{icon}</if>
+            <if test="icon != null  and icon != ''">and icon = #{icon}</if>
             <if test="categoryId != null ">and category_id = #{categoryId}</if>
         </where>
     </select>

@@ -14,26 +14,18 @@ import com.qinweizhao.common.core.web.domain.BaseEntity;
 public class PmsAttrAttrGroup extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * id
-     */
+    /** id */
     private Long id;
 
-    /**
-     * 属性id
-     */
+    /** 属性id */
     @Excel(name = "属性id")
     private Long attrId;
 
-    /**
-     * 属性分组id
-     */
+    /** 属性分组id */
     @Excel(name = "属性分组id")
     private Long attrGroupId;
 
-    /**
-     * 属性组内排序
-     */
+    /** 属性组内排序 */
     @Excel(name = "属性组内排序")
     private Long sort;
 

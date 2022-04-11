@@ -1,7 +1,6 @@
 package com.qinweizhao.product.service.impl;
 
 import java.util.List;
-
 import com.qinweizhao.common.core.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,7 @@ import com.qinweizhao.product.service.IPmsCategoryService;
  */
 @Service
 public class PmsCategoryServiceImpl implements IPmsCategoryService {
-    @Resource
+    @Autowired
     private PmsCategoryMapper pmsCategoryMapper;
 
     /**

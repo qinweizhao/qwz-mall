@@ -1,7 +1,6 @@
 package com.qinweizhao.product.domain;
 
 import java.math.BigDecimal;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.qinweizhao.common.core.annotation.Excel;

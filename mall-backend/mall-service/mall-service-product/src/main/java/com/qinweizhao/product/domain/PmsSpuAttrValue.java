@@ -14,32 +14,22 @@ import com.qinweizhao.common.core.web.domain.BaseEntity;
 public class PmsSpuAttrValue extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * id
-     */
+    /** id */
     private Long id;
 
-    /**
-     * 商品id
-     */
+    /** 商品id */
     @Excel(name = "商品id")
     private Long spuId;
 
-    /**
-     * 属性id
-     */
+    /** 属性id */
     @Excel(name = "属性id")
     private Long attrId;
 
-    /**
-     * 属性名
-     */
+    /** 属性名 */
     @Excel(name = "属性名")
     private String name;
 
-    /**
-     * 属性值
-     */
+    /** 属性值 */
     @Excel(name = "属性值")
     private String value;
 
