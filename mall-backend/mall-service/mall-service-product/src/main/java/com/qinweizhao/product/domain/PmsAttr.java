@@ -2,8 +2,8 @@ package com.qinweizhao.product.domain;
 
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 商品属性对象 pms_attr
@@ -11,6 +11,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @author qinweizhao
  * @date 2022-04-11
  */
+@Data
+@EqualsAndHashCode(callSuper = false)
 public class PmsAttr extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
@@ -67,95 +69,4 @@ public class PmsAttr extends BaseEntity {
     @Excel(name = "快速展示【是否展示在介绍上；0-否 1-是】，在sku中仍然可以调整")
     private Long quickShow;
 
-    public Long getAttrId() {
-        return attrId;
-    }
-
-    public void setAttrId(Long attrId) {
-        this.attrId = attrId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getSearchType() {
-        return searchType;
-    }
-
-    public void setSearchType(Long searchType) {
-        this.searchType = searchType;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
-
-    public String getValueSelect() {
-        return valueSelect;
-    }
-
-    public void setValueSelect(String valueSelect) {
-        this.valueSelect = valueSelect;
-    }
-
-    public Long getType() {
-        return type;
-    }
-
-    public void setType(Long type) {
-        this.type = type;
-    }
-
-    public Long getEnable() {
-        return enable;
-    }
-
-    public void setEnable(Long enable) {
-        this.enable = enable;
-    }
-
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public Long getQuickShow() {
-        return quickShow;
-    }
-
-    public void setQuickShow(Long quickShow) {
-        this.quickShow = quickShow;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("attrId", getAttrId())
-                .append("name", getName())
-                .append("searchType", getSearchType())
-                .append("icon", getIcon())
-                .append("valueSelect", getValueSelect())
-                .append("type", getType())
-                .append("enable", getEnable())
-                .append("categoryId", getCategoryId())
-                .append("quickShow", getQuickShow())
-                .append("createBy", getCreateBy())
-                .append("updateBy", getUpdateBy())
-                .append("createTime", getCreateTime())
-                .append("updateTime", getUpdateTime())
-                .append("remark", getRemark())
-                .toString();
-    }
 }
