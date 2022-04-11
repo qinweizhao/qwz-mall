@@ -1,18 +1,19 @@
 package com.qinweizhao.product.service.impl;
 
-import java.util.List;
 import com.qinweizhao.common.core.utils.DateUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import com.qinweizhao.product.mapper.PmsSpuImageMapper;
 import com.qinweizhao.product.domain.PmsSpuImage;
+import com.qinweizhao.product.mapper.PmsSpuImageMapper;
 import com.qinweizhao.product.service.IPmsSpuImageService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * spu图片Service业务层处理
  *
  * @author qinweizhao
- * @date 2022-04-11
+ * @date 2022-04-12
  */
 @Service
 public class PmsSpuImageServiceImpl implements IPmsSpuImageService {

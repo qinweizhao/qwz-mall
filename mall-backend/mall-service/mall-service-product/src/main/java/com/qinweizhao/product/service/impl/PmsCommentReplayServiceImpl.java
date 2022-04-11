@@ -1,12 +1,13 @@
 package com.qinweizhao.product.service.impl;
 
-import java.util.List;
 import com.qinweizhao.common.core.utils.DateUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import com.qinweizhao.product.mapper.PmsCommentReplayMapper;
 import com.qinweizhao.product.domain.PmsCommentReplay;
+import com.qinweizhao.product.mapper.PmsCommentReplayMapper;
 import com.qinweizhao.product.service.IPmsCommentReplayService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 商品评价回复关系Service业务层处理

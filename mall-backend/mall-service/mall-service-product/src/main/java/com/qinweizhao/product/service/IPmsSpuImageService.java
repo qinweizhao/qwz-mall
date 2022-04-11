@@ -1,14 +1,14 @@
 package com.qinweizhao.product.service;
 
-import java.util.List;
-
 import com.qinweizhao.product.domain.PmsSpuImage;
+
+import java.util.List;
 
 /**
  * spu图片Service接口
  *
  * @author qinweizhao
- * @date 2022-04-11
+ * @date 2022-04-12
  */
 public interface IPmsSpuImageService {
     /**

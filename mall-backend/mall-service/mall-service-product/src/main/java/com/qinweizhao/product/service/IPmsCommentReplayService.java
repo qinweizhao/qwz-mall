@@ -1,8 +1,8 @@
 package com.qinweizhao.product.service;
 
-import java.util.List;
-
 import com.qinweizhao.product.domain.PmsCommentReplay;
+
+import java.util.List;
 
 /**
  * 商品评价回复关系Service接口

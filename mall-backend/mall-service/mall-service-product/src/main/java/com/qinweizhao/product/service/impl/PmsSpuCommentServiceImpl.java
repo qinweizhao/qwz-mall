@@ -1,12 +1,13 @@
 package com.qinweizhao.product.service.impl;
 
-import java.util.List;
 import com.qinweizhao.common.core.utils.DateUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import com.qinweizhao.product.mapper.PmsSpuCommentMapper;
 import com.qinweizhao.product.domain.PmsSpuComment;
+import com.qinweizhao.product.mapper.PmsSpuCommentMapper;
 import com.qinweizhao.product.service.IPmsSpuCommentService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 商品评价Service业务层处理

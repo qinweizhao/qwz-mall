@@ -1,12 +1,13 @@
 package com.qinweizhao.product.service.impl;
 
-import java.util.List;
 import com.qinweizhao.common.core.utils.DateUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import com.qinweizhao.product.mapper.PmsSpuInfoDescMapper;
 import com.qinweizhao.product.domain.PmsSpuInfoDesc;
+import com.qinweizhao.product.mapper.PmsSpuInfoDescMapper;
 import com.qinweizhao.product.service.IPmsSpuInfoDescService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * spu信息介绍Service业务层处理

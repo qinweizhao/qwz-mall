@@ -1,12 +1,13 @@
 package com.qinweizhao.product.service.impl;
 
-import java.util.List;
 import com.qinweizhao.common.core.utils.DateUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import com.qinweizhao.product.mapper.PmsSkuAttrValueMapper;
 import com.qinweizhao.product.domain.PmsSkuAttrValue;
+import com.qinweizhao.product.mapper.PmsSkuAttrValueMapper;
 import com.qinweizhao.product.service.IPmsSkuAttrValueService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * sku销售属性&值Service业务层处理

@@ -1,8 +1,8 @@
 package com.qinweizhao.product.service;
 
-import java.util.List;
-
 import com.qinweizhao.product.domain.PmsCategoryBrand;
+
+import java.util.List;
 
 /**
  * 分类&品牌关联Service接口

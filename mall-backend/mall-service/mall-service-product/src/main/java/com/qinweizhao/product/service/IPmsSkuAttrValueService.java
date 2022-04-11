@@ -1,8 +1,8 @@
 package com.qinweizhao.product.service;
 
-import java.util.List;
-
 import com.qinweizhao.product.domain.PmsSkuAttrValue;
+
+import java.util.List;
 
 /**
  * sku销售属性&值Service接口

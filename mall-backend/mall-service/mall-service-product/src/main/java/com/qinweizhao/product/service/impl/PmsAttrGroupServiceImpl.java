@@ -1,12 +1,13 @@
 package com.qinweizhao.product.service.impl;
 
-import java.util.List;
 import com.qinweizhao.common.core.utils.DateUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import com.qinweizhao.product.mapper.PmsAttrGroupMapper;
 import com.qinweizhao.product.domain.PmsAttrGroup;
+import com.qinweizhao.product.mapper.PmsAttrGroupMapper;
 import com.qinweizhao.product.service.IPmsAttrGroupService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 属性分组Service业务层处理
