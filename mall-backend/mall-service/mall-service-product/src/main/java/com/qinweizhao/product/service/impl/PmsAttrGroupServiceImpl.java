@@ -16,7 +16,7 @@ import com.qinweizhao.product.service.IPmsAttrGroupService;
  */
 @Service
 public class PmsAttrGroupServiceImpl implements IPmsAttrGroupService {
-    @Autowired
+    @Resource
     private PmsAttrGroupMapper pmsAttrGroupMapper;
 
     /**

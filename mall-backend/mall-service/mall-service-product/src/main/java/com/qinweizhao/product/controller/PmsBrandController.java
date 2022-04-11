@@ -33,7 +33,7 @@ import com.qinweizhao.common.core.web.page.TableDataInfo;
 @RestController
 @RequestMapping("/brand")
 public class PmsBrandController extends BaseController {
-    @Autowired
+    @Resource
     private IPmsBrandService pmsBrandService;
 
     /**

@@ -33,7 +33,7 @@ import com.qinweizhao.common.core.web.page.TableDataInfo;
 @RestController
 @RequestMapping("/image")
 public class PmsSpuImageController extends BaseController {
-    @Autowired
+    @Resource
     private IPmsSpuImageService pmsSpuImageService;
 
     /**

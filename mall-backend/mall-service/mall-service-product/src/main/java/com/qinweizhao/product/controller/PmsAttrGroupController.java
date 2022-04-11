@@ -33,7 +33,7 @@ import com.qinweizhao.common.core.web.page.TableDataInfo;
 @RestController
 @RequestMapping("/group")
 public class PmsAttrGroupController extends BaseController {
-    @Autowired
+    @Resource
     private IPmsAttrGroupService pmsAttrGroupService;
 
     /**

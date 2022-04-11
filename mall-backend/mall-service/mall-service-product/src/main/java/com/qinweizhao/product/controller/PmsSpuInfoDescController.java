@@ -33,7 +33,7 @@ import com.qinweizhao.common.core.web.page.TableDataInfo;
 @RestController
 @RequestMapping("/desc")
 public class PmsSpuInfoDescController extends BaseController {
-    @Autowired
+    @Resource
     private IPmsSpuInfoDescService pmsSpuInfoDescService;
 
     /**

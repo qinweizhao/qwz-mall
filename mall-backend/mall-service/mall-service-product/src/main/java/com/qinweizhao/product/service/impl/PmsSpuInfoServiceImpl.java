@@ -16,7 +16,7 @@ import com.qinweizhao.product.service.IPmsSpuInfoService;
  */
 @Service
 public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
-    @Autowired
+    @Resource
     private PmsSpuInfoMapper pmsSpuInfoMapper;
 
     /**

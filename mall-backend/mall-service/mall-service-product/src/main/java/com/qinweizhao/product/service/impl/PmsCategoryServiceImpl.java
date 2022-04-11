@@ -16,7 +16,7 @@ import com.qinweizhao.product.service.IPmsCategoryService;
  */
 @Service
 public class PmsCategoryServiceImpl implements IPmsCategoryService {
-    @Autowired
+    @Resource
     private PmsCategoryMapper pmsCategoryMapper;
 
     /**

@@ -16,7 +16,7 @@ import com.qinweizhao.product.service.IPmsSkuAttrValueService;
  */
 @Service
 public class PmsSkuAttrValueServiceImpl implements IPmsSkuAttrValueService {
-    @Autowired
+    @Resource
     private PmsSkuAttrValueMapper pmsSkuAttrValueMapper;
 
     /**

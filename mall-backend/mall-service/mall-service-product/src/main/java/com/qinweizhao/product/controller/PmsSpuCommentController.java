@@ -33,7 +33,7 @@ import com.qinweizhao.common.core.web.page.TableDataInfo;
 @RestController
 @RequestMapping("/comment")
 public class PmsSpuCommentController extends BaseController {
-    @Autowired
+    @Resource
     private IPmsSpuCommentService pmsSpuCommentService;
 
     /**

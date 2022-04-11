@@ -33,7 +33,7 @@ import com.qinweizhao.common.core.web.page.TableDataInfo;
 @RestController
 @RequestMapping("/category")
 public class PmsCategoryController extends BaseController {
-    @Autowired
+    @Resource
     private IPmsCategoryService pmsCategoryService;
 
     /**

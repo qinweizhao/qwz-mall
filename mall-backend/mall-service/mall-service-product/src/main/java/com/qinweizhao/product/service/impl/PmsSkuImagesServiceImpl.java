@@ -16,7 +16,7 @@ import com.qinweizhao.product.service.IPmsSkuImagesService;
  */
 @Service
 public class PmsSkuImagesServiceImpl implements IPmsSkuImagesService {
-    @Autowired
+    @Resource
     private PmsSkuImagesMapper pmsSkuImagesMapper;
 
     /**

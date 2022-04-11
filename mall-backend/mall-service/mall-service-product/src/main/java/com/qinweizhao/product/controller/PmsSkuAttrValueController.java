@@ -33,7 +33,7 @@ import com.qinweizhao.common.core.web.page.TableDataInfo;
 @RestController
 @RequestMapping("/value")
 public class PmsSkuAttrValueController extends BaseController {
-    @Autowired
+    @Resource
     private IPmsSkuAttrValueService pmsSkuAttrValueService;
 
     /**

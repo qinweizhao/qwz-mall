@@ -16,7 +16,7 @@ import com.qinweizhao.product.service.IPmsSpuCommentService;
  */
 @Service
 public class PmsSpuCommentServiceImpl implements IPmsSpuCommentService {
-    @Autowired
+    @Resource
     private PmsSpuCommentMapper pmsSpuCommentMapper;
 
     /**

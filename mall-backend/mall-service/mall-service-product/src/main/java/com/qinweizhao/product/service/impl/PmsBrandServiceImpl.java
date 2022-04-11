@@ -16,7 +16,7 @@ import com.qinweizhao.product.service.IPmsBrandService;
  */
 @Service
 public class PmsBrandServiceImpl implements IPmsBrandService {
-    @Autowired
+    @Resource
     private PmsBrandMapper pmsBrandMapper;
 
     /**

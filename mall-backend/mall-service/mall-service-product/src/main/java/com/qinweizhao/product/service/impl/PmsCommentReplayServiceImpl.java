@@ -16,7 +16,7 @@ import com.qinweizhao.product.service.IPmsCommentReplayService;
  */
 @Service
 public class PmsCommentReplayServiceImpl implements IPmsCommentReplayService {
-    @Autowired
+    @Resource
     private PmsCommentReplayMapper pmsCommentReplayMapper;
 
     /**
