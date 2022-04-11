@@ -5,7 +5,9 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 
 import com.qinweizhao.modle.result.R;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.annotation.Resource;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -35,9 +37,8 @@ import com.qinweizhao.common.core.web.page.TableDataInfo;
  */
 @RestController
 @RequestMapping("/${businessName}")
-public class ${ClassName}Controller extends BaseController
-{
-    @Autowired
+public class ${ClassName}Controller extends BaseController {
+    @Resource
     private I${ClassName}Service ${className}Service;
 
     /**
