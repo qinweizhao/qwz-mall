@@ -23,6 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/category")
 public class PmsCategoryController extends BaseController {
+
     @Resource
     private IPmsCategoryService pmsCategoryService;
 
