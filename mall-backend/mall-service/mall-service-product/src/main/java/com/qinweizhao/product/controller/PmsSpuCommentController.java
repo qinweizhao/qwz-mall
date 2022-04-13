@@ -21,7 +21,7 @@ import java.util.List;
  * @date 2022-04-11
  */
 @RestController
-@RequestMapping("/comment")
+@RequestMapping("/spu/comment")
 public class PmsSpuCommentController extends BaseController {
     @Resource
     private IPmsSpuCommentService pmsSpuCommentService;

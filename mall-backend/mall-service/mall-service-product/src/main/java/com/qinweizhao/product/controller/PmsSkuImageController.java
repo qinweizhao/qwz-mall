@@ -21,7 +21,7 @@ import java.util.List;
  * @date 2022-04-12
  */
 @RestController
-@RequestMapping("/image")
+@RequestMapping("/sku/image")
 public class PmsSkuImageController extends BaseController {
     @Resource
     private IPmsSkuImageService pmsSkuImageService;

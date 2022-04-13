@@ -30,8 +30,9 @@
 
         <!-- RuoYi Common Redis-->
         <dependency>
-            <groupId>com.qinweizhao</groupId>
-            <artifactId>mall-common-redis</artifactId>
+            <groupId>com.qinweizhao.starter</groupId>
+            <artifactId>qwz-redis-spring-boot-starter</artifactId>
+            <version>1.0.0</version>
         </dependency>
 
     </dependencies>

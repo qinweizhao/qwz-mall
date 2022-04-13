@@ -21,7 +21,7 @@ import java.util.List;
  * @date 2022-04-11
  */
 @RestController
-@RequestMapping("/group")
+@RequestMapping("/attr-group")
 public class PmsAttrGroupController extends BaseController {
     @Resource
     private IPmsAttrGroupService pmsAttrGroupService;

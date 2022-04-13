@@ -8,6 +8,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <artifactId>mall-service</artifactId>
+    <packaging>pom</packaging>
+
     <modules>
         <module>mall-service-activity</module>
         <module>mall-service-order</module>
@@ -17,8 +20,7 @@
         <module>mall-service-ware</module>
     </modules>
 
-    <artifactId>mall-service</artifactId>
-    <packaging>pom</packaging>
+
 
     <description>业务模块</description>
 

@@ -227,13 +227,6 @@
                 <version>${mall.version}</version>
             </dependency>
 
-            <!-- 缓存服务 -->
-            <dependency>
-                <groupId>com.qinweizhao</groupId>
-                <artifactId>mall-common-redis</artifactId>
-                <version>${mall.version}</version>
-            </dependency>
-
             <!-- 系统接口 -->
             <dependency>
                 <groupId>com.qinweizhao</groupId>

@@ -21,7 +21,7 @@ import java.util.List;
  * @date 2022-04-11
  */
 @RestController
-@RequestMapping("/value")
+@RequestMapping("/sku/attr")
 public class PmsSkuAttrValueController extends BaseController {
     @Resource
     private IPmsSkuAttrValueService pmsSkuAttrValueService;

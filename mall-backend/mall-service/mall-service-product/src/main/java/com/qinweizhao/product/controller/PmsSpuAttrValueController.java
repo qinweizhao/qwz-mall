@@ -21,7 +21,7 @@ import java.util.List;
  * @date 2022-04-11
  */
 @RestController
-@RequestMapping("/value")
+@RequestMapping("/spu/attr/value")
 public class PmsSpuAttrValueController extends BaseController {
     @Resource
     private IPmsSpuAttrValueService pmsSpuAttrValueService;
