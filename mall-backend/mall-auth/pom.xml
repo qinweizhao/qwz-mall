@@ -44,7 +44,7 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!-- RuoYi Common Security-->
+        <!-- Common Security-->
         <dependency>
             <groupId>com.qinweizhao</groupId>
             <artifactId>mall-common-security</artifactId>

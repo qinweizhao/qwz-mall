@@ -12,12 +12,12 @@
     <artifactId>mall-common-log</artifactId>
 
     <description>
-        ruoyi-common-log日志记录
+        日志记录
     </description>
 
     <dependencies>
 
-        <!-- RuoYi Common Security -->
+        <!-- Common Security -->
         <dependency>
             <groupId>com.qinweizhao</groupId>
             <artifactId>mall-common-security</artifactId>

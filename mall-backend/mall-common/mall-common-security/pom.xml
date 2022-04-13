@@ -22,13 +22,13 @@
             <artifactId>spring-webmvc</artifactId>
         </dependency>
 
-        <!-- RuoYi Api System -->
+        <!-- Api System -->
         <dependency>
             <groupId>com.qinweizhao</groupId>
             <artifactId>mall-api-system</artifactId>
         </dependency>
 
-        <!-- RuoYi Common Redis-->
+        <!-- Common Redis-->
         <dependency>
             <groupId>com.qinweizhao.starter</groupId>
             <artifactId>qwz-redis-spring-boot-starter</artifactId>
