@@ -50,6 +50,11 @@
             <artifactId>mall-common-security</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.qinweizhao.starter</groupId>
+            <artifactId>qwz-redis-spring-boot-starter</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -31,6 +31,7 @@ public class TokenService {
     private final static long EXPIRE_TIME = CacheConstants.EXPIRATION;
     private final static String ACCESS_TOKEN = CacheConstants.LOGIN_TOKEN_KEY;
     private final static Long MILLIS_MINUTE_TEN = CacheConstants.REFRESH_TIME * MILLIS_MINUTE;
+
     @Autowired
     private RedisService redisService;
 
@@ -141,6 +142,7 @@ public class TokenService {
         // 根据uuid将loginUser缓存
         String userKey = getTokenKey(loginUser.getToken());
         redisService.setCacheObject(userKey, loginUser, EXPIRE_TIME, TimeUnit.MINUTES);
+        System.out.println("保存token"+userKey);
     }
 
     private String getTokenKey(String token) {

@@ -11,6 +11,7 @@
     <modules>
         <module>mall-common-log</module>
         <module>mall-common-core</module>
+        <module>mall-common-redis</module>
         <module>mall-common-security</module>
         <module>mall-common-datascope</module>
     </modules>
