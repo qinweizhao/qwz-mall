@@ -62,21 +62,23 @@
             <artifactId>kaptcha</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.qinweizhao.component</groupId>
+            <artifactId>qwz-component-redis-starter</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+
 <!--        <dependency>-->
-<!--            <groupId>com.qinweizhao.starter</groupId>-->
-<!--            <artifactId>qwz-redis-spring-boot-starter</artifactId>-->
+<!--            <groupId>com.qinweizhao</groupId>-->
+<!--            <artifactId>mall-common-redis</artifactId>-->
 <!--            <version>1.0.0</version>-->
 <!--        </dependency>-->
-
         <dependency>
             <groupId>com.qinweizhao</groupId>
             <artifactId>mall-common-core</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.qinweizhao</groupId>
-            <artifactId>mall-common-redis</artifactId>
-            <version>1.0.0</version>
-        </dependency>
+
 
 
         <dependency>

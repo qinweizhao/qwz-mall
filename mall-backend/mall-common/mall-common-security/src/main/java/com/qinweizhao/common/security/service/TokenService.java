@@ -8,7 +8,7 @@ import com.qinweizhao.common.core.utils.ServletUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.utils.ip.IpUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
-import com.qinweizhao.starter.redis.service.RedisService;
+import com.qinweizhao.component.redis.service.RedisService;
 import com.qinweizhao.system.api.model.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

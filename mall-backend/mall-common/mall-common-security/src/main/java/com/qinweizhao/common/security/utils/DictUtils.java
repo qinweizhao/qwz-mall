@@ -3,7 +3,7 @@ package com.qinweizhao.common.security.utils;
 import com.qinweizhao.common.core.constant.Constants;
 import com.qinweizhao.common.core.utils.SpringUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
-import com.qinweizhao.starter.redis.service.RedisService;
+import com.qinweizhao.component.redis.service.RedisService;
 import com.qinweizhao.system.api.domain.SysDictData;
 
 import java.util.Collection;

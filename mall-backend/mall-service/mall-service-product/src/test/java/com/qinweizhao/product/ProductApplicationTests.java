@@ -1,6 +1,6 @@
 package com.qinweizhao.product;
 
-import com.qinweizhao.starter.redis.service.RedisService;
+import com.qinweizhao.component.redis.service.RedisService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

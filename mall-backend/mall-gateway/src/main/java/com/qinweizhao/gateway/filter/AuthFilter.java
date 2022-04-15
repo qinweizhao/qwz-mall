@@ -7,8 +7,8 @@ import com.qinweizhao.common.core.constant.TokenConstants;
 import com.qinweizhao.common.core.utils.JwtUtils;
 import com.qinweizhao.common.core.utils.ServletUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
+import com.qinweizhao.component.redis.service.RedisService;
 import com.qinweizhao.gateway.config.properties.IgnoreWhiteProperties;
-import com.qinweizhao.common.redis.service.RedisService;
 import io.jsonwebtoken.Claims;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,22 +56,10 @@ public class AuthFilter implements GlobalFilter, Ordered {
         if (claims == null) {
             return unauthorizedResponse(exchange, "令牌已过期或验证不正确！");
         }
-        String userkey = JwtUtils.getUserKey(claims);
-        String tokenKey = getTokenKey(userkey);
-        System.out.println("ßssss");
-        System.out.printf(tokenKey);
+        String userKey = JwtUtils.getUserKey(claims);
+        boolean isLogin = redisService.hasKey(getTokenKey(JwtUtils.getUserKey(claims)));
 
-        redisService.setCacheObject("test","test");
-        boolean islogin = redisService.hasKey("login_tokens:f4bf5de1-a833-483b-a416-2593d4c7e3d6");
-
-        System.out.println(islogin);
-
-
-        Class<? extends RedisService> aClass = redisService.getClass();
-        System.out.println(aClass);
-
-
-        if (!islogin) {
+        if (!isLogin) {
             return unauthorizedResponse(exchange, "登录状态已过期");
         }
         String userid = JwtUtils.getUserId(claims);
@@ -81,7 +69,7 @@ public class AuthFilter implements GlobalFilter, Ordered {
         }
 
         // 设置用户信息到请求
-        addHeader(mutate, SecurityConstants.USER_KEY, userkey);
+        addHeader(mutate, SecurityConstants.USER_KEY, userKey);
         addHeader(mutate, SecurityConstants.DETAILS_USER_ID, userid);
         addHeader(mutate, SecurityConstants.DETAILS_USERNAME, username);
         // 内部请求来源参数清除

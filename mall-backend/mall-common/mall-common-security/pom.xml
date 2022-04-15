@@ -30,8 +30,8 @@
 
         <!-- Common Redis-->
         <dependency>
-            <groupId>com.qinweizhao.starter</groupId>
-            <artifactId>qwz-redis-spring-boot-starter</artifactId>
+            <groupId>com.qinweizhao.component</groupId>
+            <artifactId>qwz-component-redis-starter</artifactId>
             <version>1.0.0</version>
         </dependency>
 

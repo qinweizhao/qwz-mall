@@ -8,7 +8,7 @@ import com.qinweizhao.common.core.web.page.TableDataInfo;
 import com.qinweizhao.common.log.annotation.Log;
 import com.qinweizhao.common.log.enums.BusinessType;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
-import com.qinweizhao.starter.redis.service.RedisService;
+import com.qinweizhao.component.redis.service.RedisService;
 import com.qinweizhao.system.api.model.LoginUser;
 import com.qinweizhao.system.domain.SysUserOnline;
 import com.qinweizhao.system.service.ISysUserOnlineService;

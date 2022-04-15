@@ -5,7 +5,7 @@ import com.qinweizhao.common.core.constant.UserConstants;
 import com.qinweizhao.common.core.exception.ServiceException;
 import com.qinweizhao.common.core.text.Convert;
 import com.qinweizhao.common.core.utils.StringUtils;
-import com.qinweizhao.starter.redis.service.RedisService;
+import com.qinweizhao.component.redis.service.RedisService;
 import com.qinweizhao.system.domain.SysConfig;
 import com.qinweizhao.system.mapper.SysConfigMapper;
 import com.qinweizhao.system.service.ISysConfigService;
