@@ -213,12 +213,7 @@
                 <version>${mall.version}</version>
             </dependency>
 
-            <!-- 权限范围 -->
-            <dependency>
-                <groupId>com.qinweizhao</groupId>
-                <artifactId>mall-common-datascope</artifactId>
-                <version>${mall.version}</version>
-            </dependency>
+
 
             <!-- 日志记录 -->
             <dependency>

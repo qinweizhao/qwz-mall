@@ -1,9 +1,9 @@
-package com.qinweizhao.common.datascope.aspect;
+package com.qinweizhao.system.aspect;
 
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
-import com.qinweizhao.common.datascope.annotation.DataScope;
 import com.qinweizhao.common.security.utils.SecurityUtils;
+import com.qinweizhao.system.annotation.DataScope;
 import com.qinweizhao.system.api.domain.SysRole;
 import com.qinweizhao.system.api.domain.SysUser;
 import com.qinweizhao.system.api.model.LoginUser;

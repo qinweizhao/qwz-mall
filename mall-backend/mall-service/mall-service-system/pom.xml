@@ -67,11 +67,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- Common DataScope -->
-        <dependency>
-            <groupId>com.qinweizhao</groupId>
-            <artifactId>mall-common-datascope</artifactId>
-        </dependency>
 
         <!-- Common Log -->
         <dependency>

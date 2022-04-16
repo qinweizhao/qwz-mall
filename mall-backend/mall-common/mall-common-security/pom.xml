@@ -28,7 +28,7 @@
             <artifactId>mall-api-system</artifactId>
         </dependency>
 
-        <!-- Common Redis-->
+        <!-- Redis-->
         <dependency>
             <groupId>com.qinweizhao.component</groupId>
             <artifactId>qwz-component-redis-starter</artifactId>

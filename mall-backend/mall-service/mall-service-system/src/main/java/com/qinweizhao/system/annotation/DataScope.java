@@ -1,4 +1,4 @@
-package com.qinweizhao.common.datascope.annotation;
+package com.qinweizhao.system.annotation;
 
 import java.lang.annotation.*;
 

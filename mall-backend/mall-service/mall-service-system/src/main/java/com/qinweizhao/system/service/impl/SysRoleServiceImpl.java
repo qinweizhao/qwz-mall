@@ -4,7 +4,7 @@ import com.qinweizhao.common.core.constant.UserConstants;
 import com.qinweizhao.common.core.exception.ServiceException;
 import com.qinweizhao.common.core.utils.SpringUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
-import com.qinweizhao.common.datascope.annotation.DataScope;
+import com.qinweizhao.system.annotation.DataScope;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.system.api.domain.SysRole;
 import com.qinweizhao.system.api.domain.SysUser;

@@ -8,7 +8,6 @@ com.qinweizhao
 │       └── mall-api-system                          // 系统接口
 ├── mall-common          // 通用模块
 │       └── mall-common-core                         // 核心模块
-│       └── mall-common-datascope                    // 权限范围
 │       └── mall-common-log                          // 日志记录
 │       └── mall-common-security                     // 安全模块
 ├── mall-modules         // 业务模块
