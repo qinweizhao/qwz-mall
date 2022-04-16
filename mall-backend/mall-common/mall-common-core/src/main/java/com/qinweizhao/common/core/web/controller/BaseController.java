@@ -1,13 +1,13 @@
 package com.qinweizhao.common.core.web.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.qinweizhao.common.core.constant.HttpStatus;
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.PageUtils;
 import com.qinweizhao.common.core.web.domain.AjaxResult;
 import com.qinweizhao.common.core.web.page.TableDataInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 
@@ -50,7 +50,7 @@ public class BaseController {
     @SuppressWarnings({"rawtypes", "unchecked"})
     protected TableDataInfo getDataTable(List<?> list) {
         TableDataInfo rspData = new TableDataInfo();
-        rspData.setCode(HttpStatus.SUCCESS);
+        rspData.setCode(HttpStatus.OK.value());
         rspData.setRows(list);
         rspData.setMsg("查询成功");
         rspData.setTotal(new PageInfo(list).getTotal());
