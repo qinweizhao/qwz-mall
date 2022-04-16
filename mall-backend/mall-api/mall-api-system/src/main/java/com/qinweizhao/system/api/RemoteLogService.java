@@ -26,6 +26,7 @@ public interface RemoteLogService extends QwzLogService {
      * @param source     请求来源
      * @return 结果
      */
+    @Override
     @PostMapping("/operlog")
     R<Boolean> saveLog(@RequestBody SysOperLog sysOperLog, @RequestHeader(SecurityConstants.FROM_SOURCE) String source);
 
