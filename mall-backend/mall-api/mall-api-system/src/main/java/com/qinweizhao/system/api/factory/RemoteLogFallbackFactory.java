@@ -1,9 +1,9 @@
 package com.qinweizhao.system.api.factory;
 
+import com.qinweizhao.component.log.SysOperLog;
 import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.system.api.RemoteLogService;
 import com.qinweizhao.system.api.domain.SysLogininfor;
-import com.qinweizhao.system.api.domain.SysOperLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.openfeign.FallbackFactory;
@@ -22,6 +22,7 @@ public class RemoteLogFallbackFactory implements FallbackFactory<RemoteLogServic
     public RemoteLogService create(Throwable throwable) {
         log.error("日志服务调用失败:{}", throwable.getMessage());
         return new RemoteLogService() {
+
             @Override
             public R<Boolean> saveLog(SysOperLog sysOperLog, String source) {
                 return null;

@@ -267,11 +267,11 @@
 </template>
 
 <script>
-import { list${BusinessName}, get${BusinessName}, del${BusinessName}, add${BusinessName}, update${BusinessName} } from "@/api/${moduleName}/${businessName}";
-import Treeselect from "@riophae/vue-treeselect";
-import "@riophae/vue-treeselect/dist/vue-treeselect.css";
+  import {add${BusinessName}, del${BusinessName}, get${BusinessName}, list${BusinessName}, update${BusinessName}} from "@/api/";
+  import Treeselect from "@riophae/vue-treeselect";
+  import "@riophae/vue-treeselect/dist/vue-treeselect.css";
 
-export default {
+  export default {
   name: "${BusinessName}",
 #if(${dicts} != '')
   dicts: [${dicts}],

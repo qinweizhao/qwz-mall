@@ -213,15 +213,6 @@
                 <version>${mall.version}</version>
             </dependency>
 
-
-
-            <!-- 日志记录 -->
-            <dependency>
-                <groupId>com.qinweizhao</groupId>
-                <artifactId>mall-common-log</artifactId>
-                <version>${mall.version}</version>
-            </dependency>
-
             <!-- 系统接口 -->
             <dependency>
                 <groupId>com.qinweizhao</groupId>
@@ -235,6 +226,11 @@
                 <version>${qwz.component.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.qinweizhao.component</groupId>
+                <artifactId>qwz-component-log-starter</artifactId>
+                <version>${qwz.component.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

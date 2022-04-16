@@ -1,9 +1,5 @@
 package com.qinweizhao.file.utils;
 
-import java.io.File;
-import java.io.IOException;
-import org.apache.commons.io.FilenameUtils;
-import org.springframework.web.multipart.MultipartFile;
 import com.qinweizhao.common.core.exception.file.FileNameLengthLimitExceededException;
 import com.qinweizhao.common.core.exception.file.FileSizeLimitExceededException;
 import com.qinweizhao.common.core.exception.file.InvalidExtensionException;
@@ -11,6 +7,11 @@ import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.IdUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.utils.file.MimeTypeUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * 文件上传工具类

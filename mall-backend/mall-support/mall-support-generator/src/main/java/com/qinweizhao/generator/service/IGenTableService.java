@@ -1,8 +1,9 @@
 package com.qinweizhao.generator.service;
 
+import com.qinweizhao.generator.domain.GenTable;
+
 import java.util.List;
 import java.util.Map;
-import com.qinweizhao.generator.domain.GenTable;
 
 /**
  * 业务 服务层

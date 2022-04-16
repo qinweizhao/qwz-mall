@@ -17,4 +17,11 @@
 
     <description>系统接口</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.qinweizhao.component</groupId>
+            <artifactId>qwz-component-log-starter</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

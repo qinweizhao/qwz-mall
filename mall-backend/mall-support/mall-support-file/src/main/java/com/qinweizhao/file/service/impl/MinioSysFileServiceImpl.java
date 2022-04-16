@@ -3,11 +3,11 @@ package com.qinweizhao.file.service.impl;
 import com.qinweizhao.file.config.MinioConfig;
 import com.qinweizhao.file.service.ISysFileService;
 import com.qinweizhao.file.utils.FileUploadUtils;
+import io.minio.MinioClient;
+import io.minio.PutObjectArgs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import io.minio.MinioClient;
-import io.minio.PutObjectArgs;
 
 /**
  * Minio 文件存储

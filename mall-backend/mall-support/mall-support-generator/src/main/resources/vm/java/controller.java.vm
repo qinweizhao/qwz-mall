@@ -16,9 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.qinweizhao.common.log.annotation.Log;
-import com.qinweizhao.common.log.enums.BusinessType;
-import com.qinweizhao.common.security.annotation.RequiresPermissions;
+
+import com.qinweizhao.component.log.annotation.Log;
 import ${packageName}.domain.${ClassName};
 import ${packageName}.service.I${ClassName}Service;
 import com.qinweizhao.common.core.web.controller.BaseController;

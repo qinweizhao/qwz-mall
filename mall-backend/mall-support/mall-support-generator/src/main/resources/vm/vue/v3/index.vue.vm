@@ -347,9 +347,9 @@
 </template>
 
 <script setup name="${BusinessName}">
-import { list${BusinessName}, get${BusinessName}, del${BusinessName}, add${BusinessName}, update${BusinessName} } from "@/api/${moduleName}/${businessName}";
+  import {add${BusinessName}, del${BusinessName}, get${BusinessName}, list${BusinessName}, update${BusinessName}} from "@/api/";
 
-const { proxy } = getCurrentInstance();
+  const { proxy } = getCurrentInstance();
 #if(${dicts} != '')
 #set($dictsNoSymbol=$dicts.replace("'", ""))
 const { ${dictsNoSymbol} } = proxy.useDict(${dicts});

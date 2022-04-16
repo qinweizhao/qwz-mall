@@ -1,9 +1,9 @@
 package com.qinweizhao.file.config;
 
+import io.minio.MinioClient;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import io.minio.MinioClient;
 
 /**
  * Minio 配置信息

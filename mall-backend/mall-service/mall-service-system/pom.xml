@@ -70,8 +70,16 @@
 
         <!-- Common Log -->
         <dependency>
+            <groupId>com.qinweizhao.component</groupId>
+            <artifactId>qwz-component-log-starter</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.qinweizhao</groupId>
-            <artifactId>mall-common-log</artifactId>
+            <artifactId>mall-common-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.qinweizhao</groupId>
+            <artifactId>mall-common-security</artifactId>
         </dependency>
 
     </dependencies>

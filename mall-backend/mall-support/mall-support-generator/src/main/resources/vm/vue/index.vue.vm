@@ -347,9 +347,9 @@
 </template>
 
 <script>
-import { list${BusinessName}, get${BusinessName}, del${BusinessName}, add${BusinessName}, update${BusinessName} } from "@/api/${moduleName}/${businessName}";
+  import {add${BusinessName}, del${BusinessName}, get${BusinessName}, list${BusinessName}, update${BusinessName}} from "@/api/";
 
-export default {
+  export default {
   name: "${BusinessName}",
 #if(${dicts} != '')
   dicts: [${dicts}],

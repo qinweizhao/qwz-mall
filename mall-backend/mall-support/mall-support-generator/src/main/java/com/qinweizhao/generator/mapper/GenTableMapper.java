@@ -1,15 +1,15 @@
 package com.qinweizhao.generator.mapper;
 
-import java.util.List;
 import com.qinweizhao.generator.domain.GenTable;
+
+import java.util.List;
 
 /**
  * 业务 数据层
- * 
+ *
  * @author ruoyi
  */
-public interface GenTableMapper
-{
+public interface GenTableMapper {
     /**
      * 查询业务列表
      * 
