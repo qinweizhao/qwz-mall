@@ -100,7 +100,6 @@ public class AuthFilter implements GlobalFilter, Ordered {
      */
     private String getTokenKey(String token) {
         String sss =CacheConstants.LOGIN_TOKEN_KEY + token;
-        System.out.println("登陆携带token"+sss);
         return CacheConstants.LOGIN_TOKEN_KEY + token;
     }
 
