@@ -8,7 +8,8 @@ package com.qinweizhao.common.core.exception.file;
 public class FileSizeLimitExceededException extends FileException {
     private static final long serialVersionUID = 1L;
 
+    // TODO
     public FileSizeLimitExceededException(long defaultMaxSize) {
-        super("upload.exceed.maxSize{}", String.valueOf(defaultMaxSize));
+        super(500, "upload.exceed.maxSize{}" + defaultMaxSize);
     }
 }

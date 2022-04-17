@@ -11,7 +11,8 @@ import com.qinweizhao.component.exception.base.BaseException;
 public class UserException extends BaseException {
     private static final long serialVersionUID = 1L;
 
+    // TODO
     public UserException(String errMsg) {
-        super(errMsg);
+        super(500, errMsg);
     }
 }
