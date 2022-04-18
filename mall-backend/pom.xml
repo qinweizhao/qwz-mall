@@ -228,7 +228,7 @@
 
             <dependency>
                 <groupId>com.qinweizhao.component</groupId>
-                <artifactId>qwz-component-log-starter</artifactId>
+                <artifactId>qwz-component-starter-log</artifactId>
                 <version>${qwz.component.version}</version>
             </dependency>
         </dependencies>

@@ -31,10 +31,9 @@
         <!-- Redis-->
         <dependency>
             <groupId>com.qinweizhao.component</groupId>
-            <artifactId>qwz-component-redis-starter</artifactId>
+            <artifactId>qwz-component-starter-redis</artifactId>
             <version>1.0.0</version>
         </dependency>
-
 
     </dependencies>
 

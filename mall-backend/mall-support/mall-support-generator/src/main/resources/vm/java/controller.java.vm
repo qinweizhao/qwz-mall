@@ -1,7 +1,6 @@
 package ${packageName}.controller;
 
 import java.util.List;
-import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 
 import com.qinweizhao.component.modle.result.R;
@@ -21,10 +20,8 @@ import com.qinweizhao.component.log.annotation.Log;
 import ${packageName}.domain.${ClassName};
 import ${packageName}.service.I${ClassName}Service;
 import com.qinweizhao.common.core.web.controller.BaseController;
-import com.qinweizhao.common.core.web.domain.AjaxResult;
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 #if($table.crud || $table.sub)
-import com.qinweizhao.common.core.web.page.TableDataInfo;
 #elseif($table.tree)
 #end
 

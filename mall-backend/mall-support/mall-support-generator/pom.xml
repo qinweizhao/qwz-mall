@@ -65,7 +65,7 @@
         <!-- Common Log -->
         <dependency>
             <groupId>com.qinweizhao.component</groupId>
-            <artifactId>qwz-component-log-starter</artifactId>
+            <artifactId>qwz-component-starter-log</artifactId>
         </dependency>
         <dependency>
             <groupId>com.qinweizhao</groupId>
