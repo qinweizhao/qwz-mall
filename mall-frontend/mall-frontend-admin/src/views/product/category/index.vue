@@ -54,7 +54,7 @@
       v-if="refreshTable"
       v-loading="loading"
       :data="categoryList"
-      row-key="catId"
+      row-key="categoryId"
       :default-expand-all="isExpandAll"
       :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
     >
@@ -157,7 +157,7 @@
 </template>
 
 <script>
-import { getMenu, delMenu, addMenu, updateMenu, listCategory } from '@/api/product/category'
+import {addMenu, delMenu, getMenu, listCategory, updateMenu} from '@/api/product/category'
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 
@@ -216,7 +216,7 @@ export default {
     getList() {
       this.loading = true
       listCategory(this.queryParams).then(response => {
-        this.categoryList = this.handleTree(response.data, 'catId')
+        this.categoryList = this.handleTree(response.data, 'categoryId')
         this.loading = false
       })
     },
@@ -226,7 +226,7 @@ export default {
         delete node.children
       }
       return {
-        id: node.catId,
+        id: node.categoryId,
         label: node.name,
         children: node.children
       }
@@ -235,8 +235,8 @@ export default {
     getTreeSelect() {
       listCategory().then(response => {
         this.categoryOptions = []
-        const category = { catId: 0, name: '主类目', children: [] }
-        category.children = this.handleTree(response.data, 'catId')
+        const category = {categoryId: 0, name: '主类目', children: []}
+        category.children = this.handleTree(response.data, 'categoryId')
         this.categoryOptions.push(category)
       })
     },
@@ -248,7 +248,7 @@ export default {
     // 表单重置
     reset() {
       this.form = {
-        catId: undefined,
+        categoryId: undefined,
         parentId: 0,
         name: undefined,
         icon: undefined,
@@ -272,8 +272,8 @@ export default {
     handleAdd(row) {
       this.reset()
       this.getTreeSelect()
-      if (row != null && row.catId) {
-        this.form.parentId = row.catId
+      if (row != null && row.categoryId) {
+        this.form.parentId = row.categoryId
       } else {
         this.form.parentId = 0
       }
@@ -292,7 +292,7 @@ export default {
     handleUpdate(row) {
       this.reset()
       this.getTreeSelect()
-      getMenu(row.catId).then(response => {
+      getMenu(row.categoryId).then(response => {
         this.form = response.data
         this.open = true
         this.title = '修改分类'
@@ -302,7 +302,7 @@ export default {
     submitForm: function() {
       this.$refs['form'].validate(valid => {
         if (valid) {
-          if (this.form.catId != undefined) {
+          if (this.form.categoryId != undefined) {
             updateMenu(this.form).then(response => {
               this.$modal.msgSuccess('修改成功')
               this.open = false
@@ -321,7 +321,7 @@ export default {
     /** 删除按钮操作 */
     handleDelete(row) {
       this.$modal.confirm('是否确认删除名称为"' + row.name + '"的数据项？').then(function() {
-        return delMenu(row.catId)
+        return delMenu(row.categoryId)
       }).then(() => {
         this.getList()
         this.$modal.msgSuccess('删除成功')

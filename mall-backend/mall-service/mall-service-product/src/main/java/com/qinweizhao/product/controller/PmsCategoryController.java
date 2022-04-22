@@ -21,7 +21,7 @@ import java.util.List;
  * @date 2022-04-11
  */
 @RestController
-@RequestMapping("/product//category")
+@RequestMapping("/category")
 public class PmsCategoryController extends BaseController {
 
     @Resource

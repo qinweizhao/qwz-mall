@@ -128,7 +128,7 @@
 </template>
 
 <script>
-import { listBrand, getBrand, delBrand, addBrand, updateBrand } from "@/api/product/brand";
+import {addBrand, delBrand, getBrand, listBrand, updateBrand} from "@/api/product/brand";
 import ImageUpload from '@/components/ImageUpload';
 import ImagePreview from '@/components/ImagePreview'
 
@@ -181,8 +181,8 @@ export default {
     getList() {
       this.loading = true;
       listBrand(this.queryParams).then(response => {
-        this.brandList = response.rows;
-        this.total = response.total;
+        this.brandList = response.data.records;
+        this.total = response.data.total;
         this.loading = false;
       });
     },

@@ -27,7 +27,8 @@
     </sql>
 
     <select id="selectPmsBrandList" parameterType="PmsBrand" resultMap="PmsBrandResult">
-        <include refid="selectPmsBrandVo"/>
+        select *
+        from pms_brand
         <where>
             <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
             <if test="logo != null  and logo != ''">and logo = #{logo}</if>
