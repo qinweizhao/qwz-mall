@@ -44,7 +44,7 @@ public class Constants {
     /**
      * 失败标记
      */
-    public static final Integer FAIL = 500;
+    public static final String FAIL = "500";
 
     /**
      * 登录成功

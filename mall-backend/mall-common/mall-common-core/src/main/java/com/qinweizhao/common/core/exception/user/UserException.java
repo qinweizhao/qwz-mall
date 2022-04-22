@@ -13,6 +13,6 @@ public class UserException extends BaseException {
 
     // TODO
     public UserException(String errMsg) {
-        super(500, errMsg);
+        super("500", errMsg);
     }
 }

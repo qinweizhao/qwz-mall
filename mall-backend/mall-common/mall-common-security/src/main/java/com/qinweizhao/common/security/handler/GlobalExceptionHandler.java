@@ -35,7 +35,8 @@ public class GlobalExceptionHandler {
         String requestURI = request.getRequestURI();
         log.error("请求地址'{}',权限码校验失败'{}'", requestURI, e.getMessage());
 
-        return AjaxResult.error(HttpStatus.FORBIDDEN.value(), "没有访问权限，请联系管理员授权");
+        // TODO
+        return AjaxResult.error(String.valueOf(HttpStatus.FORBIDDEN.value()), "没有访问权限，请联系管理员授权");
     }
 
     /**
@@ -45,7 +46,7 @@ public class GlobalExceptionHandler {
     public AjaxResult handleNotRoleException(NotRoleException e, HttpServletRequest request) {
         String requestURI = request.getRequestURI();
         log.error("请求地址'{}',角色权限校验失败'{}'", requestURI, e.getMessage());
-        return AjaxResult.error(HttpStatus.FORBIDDEN.value(), "没有访问权限，请联系管理员授权");
+        return AjaxResult.error(String.valueOf(HttpStatus.FORBIDDEN.value()), "没有访问权限，请联系管理员授权");
     }
 
     /**
@@ -65,7 +66,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ServiceException.class)
     public AjaxResult handleServiceException(ServiceException e, HttpServletRequest request) {
         log.error(e.getMessage(), e);
-        Integer code = e.getCode();
+        String code = e.getCode();
         return StringUtils.isNotNull(code) ? AjaxResult.error(code, e.getMessage()) : AjaxResult.error(e.getMessage());
     }
 

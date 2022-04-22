@@ -37,7 +37,7 @@ public class AjaxResult extends HashMap<String, Object> {
      * @param code 状态码
      * @param msg  返回内容
      */
-    public AjaxResult(int code, String msg) {
+    public AjaxResult(String code, String msg) {
         super.put(CODE_TAG, code);
         super.put(MSG_TAG, msg);
     }
@@ -49,7 +49,7 @@ public class AjaxResult extends HashMap<String, Object> {
      * @param msg  返回内容
      * @param data 数据对象
      */
-    public AjaxResult(int code, String msg, Object data) {
+    public AjaxResult(String code, String msg, Object data) {
         super.put(CODE_TAG, code);
         super.put(MSG_TAG, msg);
         if (StringUtils.isNotNull(data)) {
@@ -93,7 +93,7 @@ public class AjaxResult extends HashMap<String, Object> {
      * @return 成功消息
      */
     public static AjaxResult success(String msg, Object data) {
-        return new AjaxResult(HttpStatus.OK.value(), msg, data);
+        return new AjaxResult(String.valueOf(HttpStatus.OK.value()), msg, data);
     }
 
     /**
@@ -123,7 +123,7 @@ public class AjaxResult extends HashMap<String, Object> {
      * @return 警告消息
      */
     public static AjaxResult error(String msg, Object data) {
-        return new AjaxResult(HttpStatus.BAD_REQUEST.value(), msg, data);
+        return new AjaxResult(String.valueOf(HttpStatus.BAD_REQUEST.value()), msg, data);
     }
 
     /**
@@ -133,7 +133,7 @@ public class AjaxResult extends HashMap<String, Object> {
      * @param msg  返回内容
      * @return 警告消息
      */
-    public static AjaxResult error(int code, String msg) {
+    public static AjaxResult error(String code, String msg) {
         return new AjaxResult(code, msg, null);
     }
 

@@ -11,7 +11,7 @@ import com.qinweizhao.component.exception.base.BaseException;
 public class FileException extends BaseException {
     private static final long serialVersionUID = 1L;
 
-    public FileException(int code, String errMag) {
+    public FileException(String code, String errMag) {
         super(code, errMag);
     }
 

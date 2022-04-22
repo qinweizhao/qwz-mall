@@ -226,7 +226,7 @@ public class ServletUtils {
      * @param value    响应内容
      * @return Mono<Void>
      */
-    public static Mono<Void> webFluxResponseWriter(ServerHttpResponse response, Object value, int code) {
+    public static Mono<Void> webFluxResponseWriter(ServerHttpResponse response, Object value, String code) {
         return webFluxResponseWriter(response, HttpStatus.OK, value, code);
     }
 
@@ -239,7 +239,7 @@ public class ServletUtils {
      * @param value    响应内容
      * @return Mono<Void>
      */
-    public static Mono<Void> webFluxResponseWriter(ServerHttpResponse response, HttpStatus status, Object value, int code) {
+    public static Mono<Void> webFluxResponseWriter(ServerHttpResponse response, HttpStatus status, Object value, String code) {
         return webFluxResponseWriter(response, MediaType.APPLICATION_JSON_VALUE, status, value, code);
     }
 
@@ -253,7 +253,7 @@ public class ServletUtils {
      * @param value       响应内容
      * @return Mono<Void>
      */
-    public static Mono<Void> webFluxResponseWriter(ServerHttpResponse response, String contentType, HttpStatus status, Object value, int code) {
+    public static Mono<Void> webFluxResponseWriter(ServerHttpResponse response, String contentType, HttpStatus status, Object value, String code) {
         response.setStatusCode(status);
         response.getHeaders().add(HttpHeaders.CONTENT_TYPE, contentType);
         R<?> result = R.failure(code, value.toString());

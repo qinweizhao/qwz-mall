@@ -6,7 +6,7 @@ import com.qinweizhao.common.core.exception.CaptchaException;
 import com.qinweizhao.common.core.utils.IdUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.utils.sign.Base64;
-import com.qinweizhao.common.core.web.domain.AjaxResult;
+import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.component.redis.service.RedisService;
 import com.qinweizhao.gateway.config.properties.CaptchaProperties;
 import com.qinweizhao.gateway.service.ValidateCodeService;
@@ -18,6 +18,8 @@ import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -43,12 +45,17 @@ public class ValidateCodeServiceImpl implements ValidateCodeService {
      * 生成验证码
      */
     @Override
-    public AjaxResult createCapcha() throws IOException, CaptchaException {
-        AjaxResult ajax = AjaxResult.success();
+    public R<Object> createCapcha() throws CaptchaException {
+        R<Object> result = R.success();
+        Map<String, Object> map = new LinkedHashMap<>();
+
         boolean captchaOnOff = captchaProperties.getEnabled();
-        ajax.put("captchaOnOff", captchaOnOff);
+
+        map.put("captchaOnOff", captchaOnOff);
+
         if (!captchaOnOff) {
-            return ajax;
+            result.setData(map);
+            return result;
         }
 
         // 保存验证码信息
@@ -76,12 +83,15 @@ public class ValidateCodeServiceImpl implements ValidateCodeService {
         try {
             ImageIO.write(image, "jpg", os);
         } catch (IOException e) {
-            return AjaxResult.error(e.getMessage());
+            return R.failure(e.getMessage());
         }
 
-        ajax.put("uuid", uuid);
-        ajax.put("img", Base64.encode(os.toByteArray()));
-        return ajax;
+        map.put("uuid", uuid);
+        map.put("img", Base64.encode(os.toByteArray()));
+        result.setData(map);
+        result.setMsg("成功");
+        result.setCode("200");
+        return result;
     }
 
     /**

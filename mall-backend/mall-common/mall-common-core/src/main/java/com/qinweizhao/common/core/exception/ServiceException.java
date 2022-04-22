@@ -11,7 +11,7 @@ public final class ServiceException extends RuntimeException {
     /**
      * 错误码
      */
-    private Integer code;
+    private String code;
 
     /**
      * 错误提示
@@ -35,7 +35,7 @@ public final class ServiceException extends RuntimeException {
         this.message = message;
     }
 
-    public ServiceException(String message, Integer code) {
+    public ServiceException(String message, String code) {
         this.message = message;
         this.code = code;
     }
@@ -49,6 +49,7 @@ public final class ServiceException extends RuntimeException {
         return this;
     }
 
+    @Override
     public String getMessage() {
         return message;
     }
@@ -58,7 +59,7 @@ public final class ServiceException extends RuntimeException {
         return this;
     }
 
-    public Integer getCode() {
+    public String getCode() {
         return code;
     }
 }

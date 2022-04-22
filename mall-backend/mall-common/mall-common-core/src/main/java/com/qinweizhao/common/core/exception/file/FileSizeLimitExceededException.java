@@ -10,6 +10,6 @@ public class FileSizeLimitExceededException extends FileException {
 
     // TODO
     public FileSizeLimitExceededException(long defaultMaxSize) {
-        super(500, "upload.exceed.maxSize{}" + defaultMaxSize);
+        super("500", "upload.exceed.maxSize{}" + defaultMaxSize);
     }
 }

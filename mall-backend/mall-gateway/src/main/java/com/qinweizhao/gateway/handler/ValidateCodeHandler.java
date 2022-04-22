@@ -1,7 +1,7 @@
 package com.qinweizhao.gateway.handler;
 
 import com.qinweizhao.common.core.exception.CaptchaException;
-import com.qinweizhao.common.core.web.domain.AjaxResult;
+import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.gateway.service.ValidateCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,12 +26,12 @@ public class ValidateCodeHandler implements HandlerFunction<ServerResponse> {
 
     @Override
     public Mono<ServerResponse> handle(ServerRequest serverRequest) {
-        AjaxResult ajax;
+        R<Object> result;
         try {
-            ajax = validateCodeService.createCapcha();
+            result = validateCodeService.createCapcha();
         } catch (CaptchaException | IOException e) {
             return Mono.error(e);
         }
-        return ServerResponse.status(HttpStatus.OK).body(BodyInserters.fromValue(ajax));
+        return ServerResponse.status(HttpStatus.OK).body(BodyInserters.fromValue(result));
     }
 }

@@ -90,9 +90,10 @@ public class AuthFilter implements GlobalFilter, Ordered {
         mutate.headers(httpHeaders -> httpHeaders.remove(name)).build();
     }
 
+    // TODO
     private Mono<Void> unauthorizedResponse(ServerWebExchange exchange, String msg) {
         log.error("[鉴权异常处理]请求路径:{}", exchange.getRequest().getPath());
-        return ServletUtils.webFluxResponseWriter(exchange.getResponse(), msg, HttpStatus.UNAUTHORIZED.value());
+        return ServletUtils.webFluxResponseWriter(exchange.getResponse(), msg, String.valueOf(HttpStatus.UNAUTHORIZED.value()));
     }
 
     /**

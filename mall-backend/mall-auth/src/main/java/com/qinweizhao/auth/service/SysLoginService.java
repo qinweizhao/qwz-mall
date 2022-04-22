@@ -56,7 +56,7 @@ public class SysLoginService {
         // 查询用户信息
         R<LoginUser> userResult = remoteUserService.getUserInfo(username, SecurityConstants.INNER);
 
-        if (Constants.FAIL == userResult.getCode()) {
+        if (Constants.FAIL.equals(userResult.getCode())) {
             throw new ServiceException(userResult.getMsg());
         }
 
