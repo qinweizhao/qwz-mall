@@ -62,11 +62,11 @@
             <version>${minio.version}</version>
         </dependency>
 
-        <!--  Api System -->
         <dependency>
             <groupId>com.qinweizhao</groupId>
-            <artifactId>mall-api-system</artifactId>
+            <artifactId>mall-api-file</artifactId>
         </dependency>
+
 
     </dependencies>
 

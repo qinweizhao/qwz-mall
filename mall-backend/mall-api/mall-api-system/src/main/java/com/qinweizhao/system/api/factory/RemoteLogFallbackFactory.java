@@ -24,8 +24,7 @@ public class RemoteLogFallbackFactory implements FallbackFactory<RemoteLogServic
         return new RemoteLogService() {
 
             @Override
-            public R<Boolean> saveLog(SysOperLog sysOperLog, String source) {
-                return null;
+            public void saveLog(SysOperLog sysOperLog, String source) {
             }
 
             @Override

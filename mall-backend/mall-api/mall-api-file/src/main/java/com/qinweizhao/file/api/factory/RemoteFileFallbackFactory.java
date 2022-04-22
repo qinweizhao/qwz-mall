@@ -1,8 +1,9 @@
-package com.qinweizhao.system.api.factory;
+package com.qinweizhao.file.api.factory;
 
+import com.qinweizhao.common.core.enums.ErrorEnum;
 import com.qinweizhao.component.modle.result.R;
-import com.qinweizhao.system.api.RemoteFileService;
-import com.qinweizhao.system.api.domain.SysFile;
+import com.qinweizhao.file.api.RemoteFileService;
+import com.qinweizhao.file.api.domain.SysFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.openfeign.FallbackFactory;
@@ -24,7 +25,9 @@ public class RemoteFileFallbackFactory implements FallbackFactory<RemoteFileServ
         return new RemoteFileService() {
             @Override
             public R<SysFile> upload(MultipartFile file) {
-                return R.failure("上传文件失败:" + throwable.getMessage());
+                // TODO
+//                return R.failure("上传文件失败:" + throwable.getMessage());
+                return R.failure(ErrorEnum.USER_ERROR);
             }
         };
     }

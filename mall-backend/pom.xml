@@ -221,6 +221,12 @@
             </dependency>
 
             <dependency>
+                <groupId>com.qinweizhao</groupId>
+                <artifactId>mall-api-file</artifactId>
+                <version>${mall.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>com.qinweizhao.component</groupId>
                 <artifactId>qwz-component-all</artifactId>
                 <version>${qwz.component.version}</version>

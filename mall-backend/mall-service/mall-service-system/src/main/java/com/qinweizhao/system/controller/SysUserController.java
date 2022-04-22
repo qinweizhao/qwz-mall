@@ -1,6 +1,7 @@
 package com.qinweizhao.system.controller;
 
 import com.qinweizhao.common.core.constant.UserConstants;
+import com.qinweizhao.common.core.exception.ServiceException;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.core.web.controller.BaseController;
@@ -96,7 +97,7 @@ public class SysUserController extends BaseController {
     public R<LoginUser> info(@PathVariable("username") String username) {
         SysUser sysUser = userService.selectUserByUserName(username);
         if (StringUtils.isNull(sysUser)) {
-            return R.failure("用户名或密码错误");
+            throw new ServiceException("用户名或密码错误");
         }
         // 角色集合
         Set<String> roles = permissionService.getRolePermission(sysUser.getUserId());
@@ -117,10 +118,10 @@ public class SysUserController extends BaseController {
     public R<Boolean> register(@RequestBody SysUser sysUser) {
         String username = sysUser.getUserName();
         if (!("true".equals(configService.selectConfigByKey("sys.account.registerUser")))) {
-            return R.failure("当前系统没有开启注册功能！");
+            throw new ServiceException("当前系统没有开启注册功能！");
         }
         if (UserConstants.NOT_UNIQUE.equals(userService.checkUserNameUnique(username))) {
-            return R.failure("保存用户'" + username + "'失败，注册账号已存在");
+            throw new ServiceException("保存用户'" + username + "'失败，注册账号已存在");
         }
         return R.success(userService.registerUser(sysUser));
     }

@@ -1,9 +1,10 @@
 package com.qinweizhao.file.controller;
 
+import com.qinweizhao.common.core.exception.ServiceException;
 import com.qinweizhao.common.core.utils.file.FileUtils;
 import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.file.api.domain.SysFile;
 import com.qinweizhao.file.service.ISysFileService;
-import com.qinweizhao.system.api.domain.SysFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,10 +40,11 @@ public class SysFileController
             sysFile.setUrl(url);
             return R.success(sysFile);
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             log.error("上传文件失败", e);
-            return R.failure(e.getMessage());
+            // TODO
+//            return R.failure(e.getMessage());
+            throw new ServiceException(e.getMessage());
         }
     }
 }

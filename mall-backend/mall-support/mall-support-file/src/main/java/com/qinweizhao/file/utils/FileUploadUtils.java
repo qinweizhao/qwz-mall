@@ -20,6 +20,8 @@ import java.io.IOException;
  * @author ruoyi
  */
 public class FileUploadUtils {
+
+
     /**
      * 默认大小 50M
      */

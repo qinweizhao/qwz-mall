@@ -19,16 +19,16 @@ import org.springframework.web.bind.annotation.RequestHeader;
  */
 @FeignClient(contextId = "remoteLogService", value = ServiceNameConstants.SYSTEM_SERVICE, fallbackFactory = RemoteLogFallbackFactory.class)
 public interface RemoteLogService extends QwzLogService {
+
     /**
      * 保存系统日志
      *
      * @param sysOperLog 日志实体
      * @param source     请求来源
-     * @return 结果
      */
     @Override
     @PostMapping("/operlog")
-    R<Boolean> saveLog(@RequestBody SysOperLog sysOperLog, @RequestHeader(SecurityConstants.FROM_SOURCE) String source);
+    void saveLog(@RequestBody SysOperLog sysOperLog, @RequestHeader(SecurityConstants.FROM_SOURCE) String source);
 
     /**
      * 保存访问记录

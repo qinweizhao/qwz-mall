@@ -64,6 +64,7 @@
             <groupId>com.qinweizhao</groupId>
             <artifactId>mall-common-core</artifactId>
         </dependency>
+
         <!-- Common Log -->
         <dependency>
             <groupId>com.qinweizhao.component</groupId>

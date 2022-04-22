@@ -6,9 +6,10 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 /**
  * 文件服务
+ *
  * @author qinweizhao
  */
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class}, scanBasePackages = "com.qinweizhao")
 public class FileApplication {
 
     public static void main(String[] args) {

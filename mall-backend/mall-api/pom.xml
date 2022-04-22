@@ -9,6 +9,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <modules>
+        <module>mall-api-file</module>
         <module>mall-api-system</module>
     </modules>
 
@@ -18,10 +19,13 @@
     <description>系统接口</description>
 
     <dependencies>
+        <!-- Common Core-->
         <dependency>
-            <groupId>com.qinweizhao.component</groupId>
-            <artifactId>qwz-component-starter-log</artifactId>
+            <groupId>com.qinweizhao</groupId>
+            <artifactId>mall-common-core</artifactId>
         </dependency>
+
     </dependencies>
+
 
 </project>

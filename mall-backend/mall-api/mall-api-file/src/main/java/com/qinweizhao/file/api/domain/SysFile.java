@@ -1,4 +1,4 @@
-package com.qinweizhao.system.api.domain;
+package com.qinweizhao.file.api.domain;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

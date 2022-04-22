@@ -15,10 +15,9 @@
 
     <dependencies>
 
-        <!-- Common Core-->
         <dependency>
-            <groupId>com.qinweizhao</groupId>
-            <artifactId>mall-common-core</artifactId>
+            <groupId>com.qinweizhao.component</groupId>
+            <artifactId>qwz-component-starter-log</artifactId>
         </dependency>
 
     </dependencies>
