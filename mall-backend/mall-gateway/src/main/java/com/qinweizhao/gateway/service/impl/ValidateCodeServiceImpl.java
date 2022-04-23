@@ -92,7 +92,7 @@ public class ValidateCodeServiceImpl implements ValidateCodeService {
         map.put("uuid", uuid);
         map.put("img", Base64.encode(os.toByteArray()));
         result.setData(map);
-        result.setMsg("成功");
+        result.setMessage("成功");
         result.setCode("200");
         return result;
     }

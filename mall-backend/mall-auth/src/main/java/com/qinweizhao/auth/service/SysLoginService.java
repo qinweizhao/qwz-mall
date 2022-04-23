@@ -57,7 +57,7 @@ public class SysLoginService {
         R<LoginUser> userResult = remoteUserService.getUserInfo(username, SecurityConstants.INNER);
 
         if (Constants.FAIL.equals(userResult.getCode())) {
-            throw new ServiceException(userResult.getMsg());
+            throw new ServiceException(userResult.getMessage());
         }
 
         if (StringUtils.isNull(userResult.getData())) {
@@ -111,7 +111,7 @@ public class SysLoginService {
         R<?> registerResult = remoteUserService.registerUserInfo(sysUser, SecurityConstants.INNER);
 
         if (Constants.FAIL == registerResult.getCode()) {
-            throw new ServiceException(registerResult.getMsg());
+            throw new ServiceException(registerResult.getMessage());
         }
         recordLogininfor(username, Constants.REGISTER, "注册成功");
     }

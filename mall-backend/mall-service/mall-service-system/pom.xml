@@ -82,6 +82,15 @@
             <artifactId>mall-common-security</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.qinweizhao</groupId>
+            <artifactId>mall-api-system</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.qinweizhao</groupId>
+            <artifactId>mall-api-file</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
