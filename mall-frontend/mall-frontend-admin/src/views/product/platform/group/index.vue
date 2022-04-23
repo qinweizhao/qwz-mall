@@ -26,9 +26,9 @@
               @keyup.enter.native="handleQuery"
             />
           </el-form-item>
-          <el-form-item label="描述" prop="descript">
+          <el-form-item label="描述" prop="desc">
             <el-input
-              v-model="queryParams.descript"
+              v-model="queryParams.desc"
               placeholder="请输入描述"
               clearable
               @keyup.enter.native="handleQuery"
@@ -38,14 +38,6 @@
             <el-input
               v-model="queryParams.icon"
               placeholder="请输入组图标"
-              clearable
-              @keyup.enter.native="handleQuery"
-            />
-          </el-form-item>
-          <el-form-item label="所属分类id" prop="catelogId">
-            <el-input
-              v-model="queryParams.catelogId"
-              placeholder="请输入所属分类id"
               clearable
               @keyup.enter.native="handleQuery"
             />
@@ -111,9 +103,8 @@
           <el-table-column label="分组id" align="center" prop="attrGroupId"/>
           <el-table-column label="组名" align="center" prop="attrGroupName"/>
           <el-table-column label="排序" align="center" prop="sort"/>
-          <el-table-column label="描述" align="center" prop="descript"/>
+          <el-table-column label="描述" align="center" prop="desc"/>
           <el-table-column label="组图标" align="center" prop="icon"/>
-          <el-table-column label="所属分类id" align="center" prop="catelogId"/>
           <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
             <template slot-scope="scope">
               <el-button
@@ -154,14 +145,14 @@
         <el-form-item label="排序" prop="sort">
           <el-input v-model="form.sort" placeholder="请输入排序"/>
         </el-form-item>
-        <el-form-item label="描述" prop="descript">
-          <el-input v-model="form.descript" placeholder="请输入描述"/>
+        <el-form-item label="描述" prop="desc">
+          <el-input v-model="form.desc" placeholder="请输入描述"/>
         </el-form-item>
         <el-form-item label="组图标" prop="icon">
           <el-input v-model="form.icon" placeholder="请输入组图标"/>
         </el-form-item>
-        <el-form-item label="所属分类id" prop="catelogId">
-          <el-input v-model="form.catelogId" placeholder="请输入所属分类id"/>
+        <el-form-item label="所属分类id" prop="categoryId">
+          <el-input v-model="form.categoryId" placeholder="请输入所属分类id"/>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -205,9 +196,9 @@ export default {
         pageSize: 10,
         attrGroupName: null,
         sort: null,
-        descript: null,
+        desc: null,
         icon: null,
-        catelogId: null
+        // categoryId: null
       },
       // 表单参数
       form: {},
@@ -245,9 +236,9 @@ export default {
         attrGroupId: null,
         attrGroupName: null,
         sort: null,
-        descript: null,
+        desc: null,
         icon: null,
-        catelogId: null
+        categoryId: null
       }
       this.resetForm('form')
     },
