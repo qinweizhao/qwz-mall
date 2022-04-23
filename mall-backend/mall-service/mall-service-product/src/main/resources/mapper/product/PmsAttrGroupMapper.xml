@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qinweizhao.product.mapper.PmsAttrGroupMapper">
-    
+
     <resultMap type="PmsAttrGroup" id="PmsAttrGroupResult">
         <result property="attrGroupId" column="attr_group_id"/>
         <result property="name" column="name"/>
@@ -21,26 +21,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <sql id="selectPmsAttrGroupVo">
         select attr_group_id,
                name,
-               sort, desc, icon, category_id, create_by, update_by, create_time, update_time, remark
+               sort,
+               'desc',
+               icon,
+               category_id,
+               create_by,
+               update_by,
+               create_time,
+               update_time,
+               remark
         from pms_attr_group
     </sql>
 
     <select id="selectPmsAttrGroupList" parameterType="PmsAttrGroup" resultMap="PmsAttrGroupResult">
-        <include refid="selectPmsAttrGroupVo"/>
+        select *
+        from pms_attr_group
         <where>
             <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
             <if test="sort != null ">and sort = #{sort}</if>
-            <if test="desc != null  and desc != ''">and desc = #{desc}</if>
             <if test="icon != null  and icon != ''">and icon = #{icon}</if>
             <if test="categoryId != null ">and category_id = #{categoryId}</if>
         </where>
     </select>
-    
+
     <select id="selectPmsAttrGroupByAttrGroupId" parameterType="Long" resultMap="PmsAttrGroupResult">
         <include refid="selectPmsAttrGroupVo"/>
         where attr_group_id = #{attrGroupId}
     </select>
-        
+
     <insert id="insertPmsAttrGroup" parameterType="PmsAttrGroup" useGeneratedKeys="true" keyProperty="attrGroupId">
         insert into pms_attr_group
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -87,11 +95,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
     <delete id="deletePmsAttrGroupByAttrGroupId" parameterType="Long">
-        delete from pms_attr_group where attr_group_id = #{attrGroupId}
+        delete
+        from pms_attr_group
+        where attr_group_id = #{attrGroupId}
     </delete>
 
     <delete id="deletePmsAttrGroupByAttrGroupIds" parameterType="String">
-        delete from pms_attr_group where attr_group_id in 
+        delete from pms_attr_group where attr_group_id in
         <foreach item="attrGroupId" collection="array" open="(" separator="," close=")">
             #{attrGroupId}
         </foreach>

@@ -1,10 +1,12 @@
 package com.qinweizhao.product.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
+import com.qinweizhao.component.modle.result.PageResult;
 import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.product.entity.PmsCategory;
 import com.qinweizhao.product.service.IPmsCategoryService;
@@ -32,10 +34,13 @@ public class PmsCategoryController extends BaseController {
      */
     @RequiresPermissions("product:category:list")
     @GetMapping("/list")
-    public R<List<PmsCategory>> list(PmsCategory pmsCategory) {
+    public R<PageResult<PmsCategory>> list(PmsCategory pmsCategory) {
         startPage();
         List<PmsCategory> list = pmsCategoryService.selectPmsCategoryList(pmsCategory);
-        return R.success(list);
+        PageResult<PmsCategory> result = new PageResult<>();
+        result.setRows(list);
+        result.setTotal(new PageInfo(list).getTotal());
+        return R.success(result);
     }
 
     /**

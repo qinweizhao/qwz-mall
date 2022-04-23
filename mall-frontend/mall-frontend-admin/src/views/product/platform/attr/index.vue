@@ -1,42 +1,50 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="组名" prop="attrGroupName">
+      <el-form-item label="属性名" prop="attrName">
         <el-input
-          v-model="queryParams.attrGroupName"
-          placeholder="请输入组名"
+          v-model="queryParams.attrName"
+          placeholder="请输入属性名"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="排序" prop="sort">
-        <el-input
-          v-model="queryParams.sort"
-          placeholder="请输入排序"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="描述" prop="descript">
-        <el-input
-          v-model="queryParams.descript"
-          placeholder="请输入描述"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="组图标" prop="icon">
+      <el-form-item label="属性图标" prop="icon">
         <el-input
           v-model="queryParams.icon"
-          placeholder="请输入组图标"
+          placeholder="请输入属性图标"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="所属分类id" prop="catelogId">
+      <el-form-item label="可选值列表[用逗号分隔]" prop="valueSelect">
+        <el-input
+          v-model="queryParams.valueSelect"
+          placeholder="请输入可选值列表[用逗号分隔]"
+          clearable
+          @keyup.enter.native="handleQuery"
+        />
+      </el-form-item>
+      <el-form-item label="启用状态[0 - 禁用，1 - 启用]" prop="enable">
+        <el-input
+          v-model="queryParams.enable"
+          placeholder="请输入启用状态[0 - 禁用，1 - 启用]"
+          clearable
+          @keyup.enter.native="handleQuery"
+        />
+      </el-form-item>
+      <el-form-item label="所属分类" prop="catelogId">
         <el-input
           v-model="queryParams.catelogId"
-          placeholder="请输入所属分类id"
+          placeholder="请输入所属分类"
+          clearable
+          @keyup.enter.native="handleQuery"
+        />
+      </el-form-item>
+      <el-form-item label="快速展示【是否展示在介绍上；0-否 1-是】，在sku中仍然可以调整" prop="showDesc">
+        <el-input
+          v-model="queryParams.showDesc"
+          placeholder="请输入快速展示【是否展示在介绍上；0-否 1-是】，在sku中仍然可以调整"
           clearable
           @keyup.enter.native="handleQuery"
         />
@@ -55,7 +63,7 @@
           icon="el-icon-plus"
           size="mini"
           @click="handleAdd"
-          v-hasPermi="['product:group:add']"
+          v-hasPermi="['product:attr:add']"
         >新增</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -66,7 +74,7 @@
           size="mini"
           :disabled="single"
           @click="handleUpdate"
-          v-hasPermi="['product:group:edit']"
+          v-hasPermi="['product:attr:edit']"
         >修改</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -77,7 +85,7 @@
           size="mini"
           :disabled="multiple"
           @click="handleDelete"
-          v-hasPermi="['product:group:remove']"
+          v-hasPermi="['product:attr:remove']"
         >删除</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -87,20 +95,23 @@
           icon="el-icon-download"
           size="mini"
           @click="handleExport"
-          v-hasPermi="['product:group:export']"
+          v-hasPermi="['product:attr:export']"
         >导出</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
-    <el-table v-loading="loading" :data="groupList" @selection-change="handleSelectionChange">
+    <el-table v-loading="loading" :data="attrList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="分组id" align="center" prop="attrGroupId" />
-      <el-table-column label="组名" align="center" prop="attrGroupName" />
-      <el-table-column label="排序" align="center" prop="sort" />
-      <el-table-column label="描述" align="center" prop="descript" />
-      <el-table-column label="组图标" align="center" prop="icon" />
-      <el-table-column label="所属分类id" align="center" prop="catelogId" />
+      <el-table-column label="属性id" align="center" prop="attrId" />
+      <el-table-column label="属性名" align="center" prop="attrName" />
+      <el-table-column label="是否需要检索[0-不需要，1-需要]" align="center" prop="searchType" />
+      <el-table-column label="属性图标" align="center" prop="icon" />
+      <el-table-column label="可选值列表[用逗号分隔]" align="center" prop="valueSelect" />
+      <el-table-column label="属性类型[0-销售属性，1-基本属性，2-既是销售属性又是基本属性]" align="center" prop="attrType" />
+      <el-table-column label="启用状态[0 - 禁用，1 - 启用]" align="center" prop="enable" />
+      <el-table-column label="所属分类" align="center" prop="catelogId" />
+      <el-table-column label="快速展示【是否展示在介绍上；0-否 1-是】，在sku中仍然可以调整" align="center" prop="showDesc" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -108,19 +119,19 @@
             type="text"
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
-            v-hasPermi="['product:group:edit']"
+            v-hasPermi="['product:attr:edit']"
           >修改</el-button>
           <el-button
             size="mini"
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
-            v-hasPermi="['product:group:remove']"
+            v-hasPermi="['product:attr:remove']"
           >删除</el-button>
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -129,23 +140,26 @@
       @pagination="getList"
     />
 
-    <!-- 添加或修改属性分组对话框 -->
+    <!-- 添加或修改商品属性对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="组名" prop="attrGroupName">
-          <el-input v-model="form.attrGroupName" placeholder="请输入组名" />
+        <el-form-item label="属性名" prop="attrName">
+          <el-input v-model="form.attrName" placeholder="请输入属性名" />
         </el-form-item>
-        <el-form-item label="排序" prop="sort">
-          <el-input v-model="form.sort" placeholder="请输入排序" />
+        <el-form-item label="属性图标" prop="icon">
+          <el-input v-model="form.icon" placeholder="请输入属性图标" />
         </el-form-item>
-        <el-form-item label="描述" prop="descript">
-          <el-input v-model="form.descript" placeholder="请输入描述" />
+        <el-form-item label="可选值列表[用逗号分隔]" prop="valueSelect">
+          <el-input v-model="form.valueSelect" placeholder="请输入可选值列表[用逗号分隔]" />
         </el-form-item>
-        <el-form-item label="组图标" prop="icon">
-          <el-input v-model="form.icon" placeholder="请输入组图标" />
+        <el-form-item label="启用状态[0 - 禁用，1 - 启用]" prop="enable">
+          <el-input v-model="form.enable" placeholder="请输入启用状态[0 - 禁用，1 - 启用]" />
         </el-form-item>
-        <el-form-item label="所属分类id" prop="catelogId">
-          <el-input v-model="form.catelogId" placeholder="请输入所属分类id" />
+        <el-form-item label="所属分类" prop="catelogId">
+          <el-input v-model="form.catelogId" placeholder="请输入所属分类" />
+        </el-form-item>
+        <el-form-item label="快速展示【是否展示在介绍上；0-否 1-是】，在sku中仍然可以调整" prop="showDesc">
+          <el-input v-model="form.showDesc" placeholder="请输入快速展示【是否展示在介绍上；0-否 1-是】，在sku中仍然可以调整" />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -157,10 +171,10 @@
 </template>
 
 <script>
-import { listGroup, getGroup, delGroup, addGroup, updateGroup } from "@/api/product/group";
+import {addAttr, delAttr, getAttr, listAttr, updateAttr} from "@/api/product/attr";
 
 export default {
-  name: "Group",
+  name: "Attr",
   data() {
     return {
       // 遮罩层
@@ -175,8 +189,8 @@ export default {
       showSearch: true,
       // 总条数
       total: 0,
-      // 属性分组表格数据
-      groupList: [],
+      // 商品属性表格数据
+      attrList: [],
       // 弹出层标题
       title: "",
       // 是否显示弹出层
@@ -185,11 +199,14 @@ export default {
       queryParams: {
         pageNum: 1,
         pageSize: 10,
-        attrGroupName: null,
-        sort: null,
-        descript: null,
+        attrName: null,
+        searchType: null,
         icon: null,
-        catelogId: null
+        valueSelect: null,
+        attrType: null,
+        enable: null,
+        catelogId: null,
+        showDesc: null
       },
       // 表单参数
       form: {},
@@ -202,11 +219,11 @@ export default {
     this.getList();
   },
   methods: {
-    /** 查询属性分组列表 */
+    /** 查询商品属性列表 */
     getList() {
       this.loading = true;
-      listGroup(this.queryParams).then(response => {
-        this.groupList = response.rows;
+      listAttr(this.queryParams).then(response => {
+        this.attrList = response.rows;
         this.total = response.total;
         this.loading = false;
       });
@@ -219,12 +236,15 @@ export default {
     // 表单重置
     reset() {
       this.form = {
-        attrGroupId: null,
-        attrGroupName: null,
-        sort: null,
-        descript: null,
+        attrId: null,
+        attrName: null,
+        searchType: null,
         icon: null,
-        catelogId: null
+        valueSelect: null,
+        attrType: null,
+        enable: null,
+        catelogId: null,
+        showDesc: null
       };
       this.resetForm("form");
     },
@@ -240,7 +260,7 @@ export default {
     },
     // 多选框选中数据
     handleSelectionChange(selection) {
-      this.ids = selection.map(item => item.attrGroupId)
+      this.ids = selection.map(item => item.attrId)
       this.single = selection.length!==1
       this.multiple = !selection.length
     },
@@ -248,30 +268,30 @@ export default {
     handleAdd() {
       this.reset();
       this.open = true;
-      this.title = "添加属性分组";
+      this.title = "添加商品属性";
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
       this.reset();
-      const attrGroupId = row.attrGroupId || this.ids
-      getGroup(attrGroupId).then(response => {
+      const attrId = row.attrId || this.ids
+      getAttr(attrId).then(response => {
         this.form = response.data;
         this.open = true;
-        this.title = "修改属性分组";
+        this.title = "修改商品属性";
       });
     },
     /** 提交按钮 */
     submitForm() {
       this.$refs["form"].validate(valid => {
         if (valid) {
-          if (this.form.attrGroupId != null) {
-            updateGroup(this.form).then(response => {
+          if (this.form.attrId != null) {
+            updateAttr(this.form).then(response => {
               this.$modal.msgSuccess("修改成功");
               this.open = false;
               this.getList();
             });
           } else {
-            addGroup(this.form).then(response => {
+            addAttr(this.form).then(response => {
               this.$modal.msgSuccess("新增成功");
               this.open = false;
               this.getList();
@@ -282,9 +302,9 @@ export default {
     },
     /** 删除按钮操作 */
     handleDelete(row) {
-      const attrGroupIds = row.attrGroupId || this.ids;
-      this.$modal.confirm('是否确认删除属性分组编号为"' + attrGroupIds + '"的数据项？').then(function() {
-        return delGroup(attrGroupIds);
+      const attrIds = row.attrId || this.ids;
+      this.$modal.confirm('是否确认删除商品属性编号为"' + attrIds + '"的数据项？').then(function() {
+        return delAttr(attrIds);
       }).then(() => {
         this.getList();
         this.$modal.msgSuccess("删除成功");
@@ -292,9 +312,9 @@ export default {
     },
     /** 导出按钮操作 */
     handleExport() {
-      this.download('product/group/export', {
+      this.download('product/attr/export', {
         ...this.queryParams
-      }, `group_${new Date().getTime()}.xlsx`)
+      }, `attr_${new Date().getTime()}.xlsx`)
     }
   }
 };

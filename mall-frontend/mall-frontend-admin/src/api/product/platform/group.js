@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询属性分组列表
 export function listGroup(query) {
   return request({
-    url: '/product/group/list',
+    url: '/product/attr-group/list',
     method: 'get',
     params: query
   })
@@ -12,7 +12,7 @@ export function listGroup(query) {
 // 查询属性分组详细
 export function getGroup(attrGroupId) {
   return request({
-    url: '/product/group/' + attrGroupId,
+    url: '/product/attr-group/' + attrGroupId,
     method: 'get'
   })
 }
@@ -20,7 +20,7 @@ export function getGroup(attrGroupId) {
 // 新增属性分组
 export function addGroup(data) {
   return request({
-    url: '/product/group',
+    url: '/product/attr-group',
     method: 'post',
     data: data
   })
@@ -29,7 +29,7 @@ export function addGroup(data) {
 // 修改属性分组
 export function updateGroup(data) {
   return request({
-    url: '/product/group',
+    url: '/product/attr-group',
     method: 'put',
     data: data
   })
@@ -38,7 +38,7 @@ export function updateGroup(data) {
 // 删除属性分组
 export function delGroup(attrGroupId) {
   return request({
-    url: '/product/group/' + attrGroupId,
+    url: '/product/attr-group/' + attrGroupId,
     method: 'delete'
   })
 }

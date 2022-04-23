@@ -1,10 +1,12 @@
 package com.qinweizhao.product.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
+import com.qinweizhao.component.modle.result.PageResult;
 import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.product.entity.PmsAttrGroup;
 import com.qinweizhao.product.service.IPmsAttrGroupService;
@@ -31,10 +33,13 @@ public class PmsAttrGroupController extends BaseController {
      */
     @RequiresPermissions("product:group:list")
     @GetMapping("/list")
-    public R<List<PmsAttrGroup>> list(PmsAttrGroup pmsAttrGroup) {
+    public R<PageResult<PmsAttrGroup>> list(PmsAttrGroup pmsAttrGroup) {
         startPage();
         List<PmsAttrGroup> list = pmsAttrGroupService.selectPmsAttrGroupList(pmsAttrGroup);
-        return R.success(list);
+        PageResult<PmsAttrGroup> result = new PageResult<>();
+        result.setRows(list);
+        result.setTotal(new PageInfo(list).getTotal());
+        return R.success(result);
     }
 
     /**

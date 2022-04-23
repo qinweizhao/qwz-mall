@@ -37,7 +37,7 @@ public class PmsBrandController extends BaseController {
         startPage();
         List<PmsBrand> list = pmsBrandService.selectPmsBrandList(pmsBrand);
         PageResult<PmsBrand> pmsBrandPageResult = new PageResult<>();
-        pmsBrandPageResult.setRecords(list);
+        pmsBrandPageResult.setRows(list);
         pmsBrandPageResult.setTotal(new PageInfo(list).getTotal());
         return R.success(pmsBrandPageResult);
     }

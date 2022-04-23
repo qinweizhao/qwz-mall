@@ -40,7 +40,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </sql>
 
     <select id="selectPmsAttrList" parameterType="PmsAttr" resultMap="PmsAttrResult">
-        <include refid="selectPmsAttrVo"/>
+        select *
+        from pms_attr
         <where>
             <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
             <if test="searchType != null ">and search_type = #{searchType}</if>

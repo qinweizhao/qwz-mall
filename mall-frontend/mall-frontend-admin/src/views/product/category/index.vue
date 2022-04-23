@@ -216,7 +216,7 @@ export default {
     getList() {
       this.loading = true
       listCategory(this.queryParams).then(response => {
-        this.categoryList = this.handleTree(response.data, 'categoryId')
+        this.categoryList = this.handleTree(response.data.rows, 'categoryId')
         this.loading = false
       })
     },
