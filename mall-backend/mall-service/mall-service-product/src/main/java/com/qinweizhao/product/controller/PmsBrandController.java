@@ -1,6 +1,5 @@
 package com.qinweizhao.product.controller;
 
-import com.github.pagehelper.PageInfo;
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
@@ -36,10 +35,7 @@ public class PmsBrandController extends BaseController {
     public R<PageResult<PmsBrand>> list(PmsBrand pmsBrand) {
         startPage();
         List<PmsBrand> list = pmsBrandService.selectPmsBrandList(pmsBrand);
-        PageResult<PmsBrand> pmsBrandPageResult = new PageResult<>();
-        pmsBrandPageResult.setRows(list);
-        pmsBrandPageResult.setTotal(new PageInfo(list).getTotal());
-        return R.success(pmsBrandPageResult);
+        return getPageResult(list);
     }
 
     /**

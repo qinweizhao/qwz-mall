@@ -1,6 +1,5 @@
 package com.qinweizhao.product.controller;
 
-import com.github.pagehelper.PageInfo;
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 商品三级分类Controller
@@ -37,10 +37,16 @@ public class PmsCategoryController extends BaseController {
     public R<PageResult<PmsCategory>> list(PmsCategory pmsCategory) {
         startPage();
         List<PmsCategory> list = pmsCategoryService.selectPmsCategoryList(pmsCategory);
-        PageResult<PmsCategory> result = new PageResult<>();
-        result.setRows(list);
-        result.setTotal(new PageInfo(list).getTotal());
-        return R.success(result);
+        return getPageResult(list);
+    }
+
+    /**
+     * 获取部门下拉树列表
+     */
+    @GetMapping("/treeselect")
+    public R<List<Map<String, Object>>> treeselect(PmsCategory pmsCategory) {
+        List<PmsCategory> list = pmsCategoryService.selectPmsCategoryList(pmsCategory);
+        return R.success(pmsCategoryService.buildCategoryTreeSelect(list));
     }
 
     /**

@@ -3,6 +3,7 @@ package com.qinweizhao.product.service;
 import com.qinweizhao.product.entity.PmsCategory;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 商品三级分类Service接口
@@ -58,4 +59,12 @@ public interface IPmsCategoryService {
      * @return 结果
      */
     int deletePmsCategoryByCategoryId(Long categoryId);
+
+    /**
+     * 构建分类树
+     *
+     * @param list list
+     * @return List<PmsCategory>
+     */
+    List<Map<String, Object>> buildCategoryTreeSelect(List<PmsCategory> list);
 }

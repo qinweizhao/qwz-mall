@@ -1,6 +1,5 @@
 package com.qinweizhao.product.controller;
 
-import com.github.pagehelper.PageInfo;
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
@@ -36,10 +35,7 @@ public class PmsAttrGroupController extends BaseController {
     public R<PageResult<PmsAttrGroup>> list(PmsAttrGroup pmsAttrGroup) {
         startPage();
         List<PmsAttrGroup> list = pmsAttrGroupService.selectPmsAttrGroupList(pmsAttrGroup);
-        PageResult<PmsAttrGroup> result = new PageResult<>();
-        result.setRows(list);
-        result.setTotal(new PageInfo(list).getTotal());
-        return R.success(result);
+        return getPageResult(list);
     }
 
     /**

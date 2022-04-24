@@ -8,7 +8,7 @@
         <result property="attrGroupId" column="attr_group_id"/>
         <result property="name" column="name"/>
         <result property="sort" column="sort"/>
-        <result property="desc" column="desc"/>
+        <result property="description" column="description"/>
         <result property="icon" column="icon"/>
         <result property="categoryId" column="category_id"/>
         <result property="createBy" column="create_by"/>
@@ -22,7 +22,7 @@
         select attr_group_id,
                name,
                sort,
-               'desc',
+               'description',
                icon,
                category_id,
                create_by,
@@ -54,7 +54,7 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="name != null">name,</if>
             <if test="sort != null">sort,</if>
-            <if test="desc != null">desc,</if>
+            <if test="description != null">description,</if>
             <if test="icon != null">icon,</if>
             <if test="categoryId != null">category_id,</if>
             <if test="createBy != null">create_by,</if>
@@ -66,7 +66,7 @@
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="name != null">#{name},</if>
             <if test="sort != null">#{sort},</if>
-            <if test="desc != null">#{desc},</if>
+            <if test="description != null">#{description},</if>
             <if test="icon != null">#{icon},</if>
             <if test="categoryId != null">#{categoryId},</if>
             <if test="createBy != null">#{createBy},</if>
@@ -82,7 +82,7 @@
         <trim prefix="SET" suffixOverrides=",">
             <if test="name != null">name = #{name},</if>
             <if test="sort != null">sort = #{sort},</if>
-            <if test="desc != null">desc = #{desc},</if>
+            <if test="description != null">description = #{description},</if>
             <if test="icon != null">icon = #{icon},</if>
             <if test="categoryId != null">category_id = #{categoryId},</if>
             <if test="createBy != null">create_by = #{createBy},</if>

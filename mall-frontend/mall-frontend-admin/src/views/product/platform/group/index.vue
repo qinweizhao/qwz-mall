@@ -10,34 +10,10 @@
         <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch"
                  label-width="68px"
         >
-          <el-form-item label="组名" prop="attrGroupName">
+          <el-form-item label="组名" prop="name">
             <el-input
-              v-model="queryParams.attrGroupName"
+              v-model="queryParams.name"
               placeholder="请输入组名"
-              clearable
-              @keyup.enter.native="handleQuery"
-            />
-          </el-form-item>
-          <el-form-item label="排序" prop="sort">
-            <el-input
-              v-model="queryParams.sort"
-              placeholder="请输入排序"
-              clearable
-              @keyup.enter.native="handleQuery"
-            />
-          </el-form-item>
-          <el-form-item label="描述" prop="desc">
-            <el-input
-              v-model="queryParams.desc"
-              placeholder="请输入描述"
-              clearable
-              @keyup.enter.native="handleQuery"
-            />
-          </el-form-item>
-          <el-form-item label="组图标" prop="icon">
-            <el-input
-              v-model="queryParams.icon"
-              placeholder="请输入组图标"
               clearable
               @keyup.enter.native="handleQuery"
             />
@@ -100,11 +76,11 @@
 
         <el-table v-loading="loading" :data="groupList" @selection-change="handleSelectionChange">
           <el-table-column type="selection" width="55" align="center"/>
-          <el-table-column label="分组id" align="center" prop="attrGroupId"/>
-          <el-table-column label="组名" align="center" prop="attrGroupName"/>
+          <el-table-column label="编号" align="center" prop="attrGroupId"/>
+          <el-table-column label="组名" align="center" prop="name"/>
           <el-table-column label="排序" align="center" prop="sort"/>
-          <el-table-column label="描述" align="center" prop="desc"/>
-          <el-table-column label="组图标" align="center" prop="icon"/>
+          <el-table-column label="描述" align="center" prop="description"/>
+          <el-table-column label="创建时间" align="center" prop="createTime"/>
           <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
             <template slot-scope="scope">
               <el-button
@@ -134,10 +110,10 @@
           @pagination="getList"
         />
       </el-col>
-
     </el-row>
+
     <!-- 添加或修改属性分组对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
+    <el-dialog :title="title" :visible.sync="open" width="600px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="组名" prop="name">
           <el-input v-model="form.name" placeholder="请输入组名"/>
@@ -145,14 +121,11 @@
         <el-form-item label="排序" prop="sort">
           <el-input v-model="form.sort" placeholder="请输入排序"/>
         </el-form-item>
-        <el-form-item label="描述" prop="desc">
-          <el-input v-model="form.desc" placeholder="请输入描述"/>
+        <el-form-item label="描述" prop="description">
+          <el-input v-model="form.description" placeholder="请输入描述"/>
         </el-form-item>
-        <el-form-item label="组图标" prop="icon">
-          <el-input v-model="form.icon" placeholder="请输入组图标"/>
-        </el-form-item>
-        <el-form-item label="所属分类id" prop="categoryId">
-          <el-input v-model="form.categoryId" placeholder="请输入所属分类id"/>
+        <el-form-item label="所属分类" prop="categoryId">
+          <treeselect v-model="form.categoryId" :options="categoryOptions" :show-count="true" placeholder="请选择所属分类"/>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -164,12 +137,15 @@
 </template>
 
 <script>
+import Treeselect from '@riophae/vue-treeselect'
+import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 import {addGroup, delGroup, getGroup, listGroup, updateGroup} from '@/api/product/platform/group'
+import {treeselect} from '@/api/product/category'
 import category from '@/views/product/platform/common/category'
 
 export default {
   name: 'Group',
-  components: {category},
+  components: {category, Treeselect},
   data() {
     return {
       // 遮罩层
@@ -194,27 +170,35 @@ export default {
       queryParams: {
         pageNum: 1,
         pageSize: 10,
-        attrGroupName: null,
+        name: null,
         sort: null,
-        desc: null,
-        icon: null,
+        description: null,
+        icon: null
         // categoryId: null
       },
       // 表单参数
       form: {},
       // 表单校验
-      rules: {}
+      rules: {},
+      categoryOptions: {}
     }
   },
   created() {
     this.getList()
+    this.getTreeselect()
   },
   methods: {
     treeNodeClick(data, node, component) {
       if (node.level === 3) {
-        this.queryParams.categoryId = data.categoryId;
-        this.getList(); //重新查询
+        this.queryParams.categoryId = data.categoryId
+        this.getList() //重新查询
       }
+    },
+    /** 查询部门下拉树结构 */
+    getTreeselect() {
+      treeselect().then(response => {
+        this.categoryOptions = response.data
+      })
     },
     /** 查询属性分组列表 */
     getList() {
@@ -234,9 +218,9 @@ export default {
     reset() {
       this.form = {
         attrGroupId: null,
-        attrGroupName: null,
+        name: null,
         sort: null,
-        desc: null,
+        description: null,
         icon: null,
         categoryId: null
       }

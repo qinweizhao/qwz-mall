@@ -5,6 +5,8 @@ import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.PageUtils;
 import com.qinweizhao.common.core.web.domain.AjaxResult;
 import com.qinweizhao.common.core.web.page.TableDataInfo;
+import com.qinweizhao.component.modle.result.PageResult;
+import com.qinweizhao.component.modle.result.R;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -55,6 +57,14 @@ public class BaseController {
         rspData.setMsg("查询成功");
         rspData.setTotal(new PageInfo(list).getTotal());
         return rspData;
+    }
+
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    protected <T> R<PageResult<T>> getPageResult(List<T> list) {
+        PageResult<T> result = new PageResult<>();
+        result.setRows(list);
+        result.setTotal(new PageInfo(list).getTotal());
+        return R.success(result);
     }
 
     /**

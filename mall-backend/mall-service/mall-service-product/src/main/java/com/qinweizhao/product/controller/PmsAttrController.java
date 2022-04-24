@@ -5,6 +5,7 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
+import com.qinweizhao.component.modle.result.PageResult;
 import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.product.entity.PmsAttr;
 import com.qinweizhao.product.service.IPmsAttrService;
@@ -32,10 +33,10 @@ public class PmsAttrController extends BaseController {
      */
     @RequiresPermissions("product:attr:list")
     @GetMapping("/list")
-    public R<List<PmsAttr>> list(PmsAttr pmsAttr) {
+    public R<PageResult<PmsAttr>> list(PmsAttr pmsAttr) {
         startPage();
         List<PmsAttr> list = pmsAttrService.selectPmsAttrList(pmsAttr);
-        return R.success(list);
+        return getPageResult(list);
     }
 
     /**

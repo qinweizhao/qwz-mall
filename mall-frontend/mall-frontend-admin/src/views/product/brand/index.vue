@@ -181,7 +181,7 @@ export default {
     getList() {
       this.loading = true;
       listBrand(this.queryParams).then(response => {
-        this.brandList = response.data.records;
+        this.brandList = response.data.rows;
         this.total = response.data.total;
         this.loading = false;
       });
