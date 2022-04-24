@@ -2,7 +2,6 @@ package com.qinweizhao.gateway.service.impl;
 
 import com.google.code.kaptcha.Producer;
 import com.qinweizhao.common.core.constant.Constants;
-import com.qinweizhao.common.core.enums.ErrorEnum;
 import com.qinweizhao.common.core.exception.CaptchaException;
 import com.qinweizhao.common.core.utils.IdUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
@@ -85,8 +84,7 @@ public class ValidateCodeServiceImpl implements ValidateCodeService {
             ImageIO.write(image, "jpg", os);
         } catch (IOException e) {
             // TODO
-//            return R.failure(e.getMessage());
-            return R.failure(ErrorEnum.SYSTEM_RUN_ERROR);
+            return R.failure(e.getMessage());
         }
 
         map.put("uuid", uuid);

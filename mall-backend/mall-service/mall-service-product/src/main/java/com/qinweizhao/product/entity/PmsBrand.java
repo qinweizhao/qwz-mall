@@ -2,8 +2,8 @@ package com.qinweizhao.product.entity;
 
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 品牌对象 pms_brand
@@ -11,6 +11,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @author qinweizhao
  * @date 2022-04-11
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class PmsBrand extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
@@ -35,7 +37,7 @@ public class PmsBrand extends BaseEntity {
      * 介绍
      */
     @Excel(name = "介绍")
-    private String desc;
+    private String description;
 
     /**
      * 显示状态[0-不显示；1-显示]
@@ -55,77 +57,5 @@ public class PmsBrand extends BaseEntity {
     @Excel(name = "排序")
     private Long sort;
 
-    public Long getBrandId() {
-        return brandId;
-    }
 
-    public void setBrandId(Long brandId) {
-        this.brandId = brandId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLogo() {
-        return logo;
-    }
-
-    public void setLogo(String logo) {
-        this.logo = logo;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
-    public Long getStatus() {
-        return status;
-    }
-
-    public void setStatus(Long status) {
-        this.status = status;
-    }
-
-    public String getFirstLetter() {
-        return firstLetter;
-    }
-
-    public void setFirstLetter(String firstLetter) {
-        this.firstLetter = firstLetter;
-    }
-
-    public Long getSort() {
-        return sort;
-    }
-
-    public void setSort(Long sort) {
-        this.sort = sort;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("brandId", getBrandId())
-                .append("name", getName())
-                .append("logo", getLogo())
-                .append("desc", getDesc())
-                .append("status", getStatus())
-                .append("firstLetter", getFirstLetter())
-                .append("sort", getSort())
-                .append("createBy", getCreateBy())
-                .append("createTime", getCreateTime())
-                .append("updateBy", getUpdateBy())
-                .append("updateTime", getUpdateTime())
-                .append("remark", getRemark())
-                .toString();
-    }
 }

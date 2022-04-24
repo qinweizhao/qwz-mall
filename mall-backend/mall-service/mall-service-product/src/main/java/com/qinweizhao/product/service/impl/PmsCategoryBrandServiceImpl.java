@@ -87,4 +87,10 @@ public class PmsCategoryBrandServiceImpl implements IPmsCategoryBrandService {
     public int deletePmsCategoryBrandById(Long id) {
         return pmsCategoryBrandMapper.deletePmsCategoryBrandById(id);
     }
+
+
+    @Override
+    public List<PmsCategoryBrand> selectPmsCategoryBrandByBrandId(Long brandId) {
+        return pmsCategoryBrandMapper.selectPmsCategoryBrandByBrandId(brandId);
+    }
 }

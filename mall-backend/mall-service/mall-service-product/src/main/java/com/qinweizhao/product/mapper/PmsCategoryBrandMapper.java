@@ -58,4 +58,13 @@ public interface PmsCategoryBrandMapper {
      * @return 结果
      */
     int deletePmsCategoryBrandByIds(Long[] ids);
+
+    /**
+     * 查询分类和品牌的关联信息
+     *
+     * @param brandId brandId
+     * @return List<PmsCategoryBrand>
+     */
+    List<PmsCategoryBrand> selectPmsCategoryBrandByBrandId(Long brandId);
+
 }

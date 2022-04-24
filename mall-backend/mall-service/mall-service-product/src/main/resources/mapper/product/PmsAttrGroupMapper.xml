@@ -22,7 +22,7 @@
         select attr_group_id,
                name,
                sort,
-               'description',
+               description,
                icon,
                category_id,
                create_by,
@@ -41,6 +41,7 @@
             <if test="sort != null ">and sort = #{sort}</if>
             <if test="icon != null  and icon != ''">and icon = #{icon}</if>
             <if test="categoryId != null ">and category_id = #{categoryId}</if>
+
         </where>
     </select>
 

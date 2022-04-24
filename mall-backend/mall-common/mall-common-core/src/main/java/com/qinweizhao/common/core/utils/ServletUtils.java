@@ -2,7 +2,6 @@ package com.qinweizhao.common.core.utils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.qinweizhao.common.core.constant.Constants;
-import com.qinweizhao.common.core.enums.ErrorEnum;
 import com.qinweizhao.common.core.text.Convert;
 import com.qinweizhao.component.modle.result.R;
 import org.springframework.core.io.buffer.DataBuffer;
@@ -258,7 +257,7 @@ public class ServletUtils {
         response.setStatusCode(status);
         response.getHeaders().add(HttpHeaders.CONTENT_TYPE, contentType);
         // TODO
-        R<?> result = R.failure(ErrorEnum.SYSTEM_RUN_ERROR);
+        R<?> result = R.failure();
         DataBuffer dataBuffer = response.bufferFactory().wrap(JSONObject.toJSONString(result).getBytes());
         return response.writeWith(Mono.just(dataBuffer));
     }

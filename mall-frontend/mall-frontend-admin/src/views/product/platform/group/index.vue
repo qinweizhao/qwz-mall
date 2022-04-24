@@ -62,13 +62,13 @@
           </el-col>
           <el-col :span="1.5">
             <el-button
-              type="warning"
-              plain
-              icon="el-icon-download"
-              size="mini"
-              @click="handleExport"
-              v-hasPermi="['product:group:export']"
-            >导出
+                type="search"
+                plain
+                icon="el-icon-refresh"
+                size="mini"
+                @click="handleQueryAll"
+                v-hasPermi="['product:group:export']"
+            >查询全部
             </el-button>
           </el-col>
           <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
@@ -231,6 +231,11 @@ export default {
       this.queryParams.pageNum = 1
       this.getList()
     },
+    handleQueryAll() {
+      this.queryParams.pageNum = 1
+      this.queryParams.categoryId = null;
+      this.getList()
+    },
     /** 重置按钮操作 */
     resetQuery() {
       this.resetForm('queryForm')
@@ -288,13 +293,8 @@ export default {
         this.$modal.msgSuccess('删除成功')
       }).catch(() => {
       })
-    },
-    /** 导出按钮操作 */
-    handleExport() {
-      this.download('product/group/export', {
-        ...this.queryParams
-      }, `group_${new Date().getTime()}.xlsx`)
     }
+
   }
 }
 </script>

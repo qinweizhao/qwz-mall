@@ -4,11 +4,12 @@ import com.qinweizhao.product.entity.PmsCategoryBrand;
 
 import java.util.List;
 
+
 /**
  * 分类&品牌关联Service接口
  *
  * @author qinweizhao
- * @date 2022-04-11
+ * @date 2022-04-24
  */
 public interface IPmsCategoryBrandService {
     /**
@@ -58,4 +59,12 @@ public interface IPmsCategoryBrandService {
      * @return 结果
      */
     int deletePmsCategoryBrandById(Long id);
+
+    /**
+     * 查询分类和品牌的关联信息
+     *
+     * @param brandId brandId
+     * @return List<PmsCategoryBrand>
+     */
+    List<PmsCategoryBrand> selectPmsCategoryBrandByBrandId(Long brandId);
 }

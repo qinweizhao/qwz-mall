@@ -3,6 +3,7 @@ package com.qinweizhao.product.service.impl;
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.product.entity.PmsBrand;
 import com.qinweizhao.product.mapper.PmsBrandMapper;
+import com.qinweizhao.product.mapper.PmsCategoryBrandMapper;
 import com.qinweizhao.product.service.IPmsBrandService;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,9 @@ import java.util.List;
 public class PmsBrandServiceImpl implements IPmsBrandService {
     @Resource
     private PmsBrandMapper pmsBrandMapper;
+
+    @Resource
+    private PmsCategoryBrandMapper pmsCategoryBrandMapper;
 
     /**
      * 查询品牌
@@ -87,4 +91,5 @@ public class PmsBrandServiceImpl implements IPmsBrandService {
     public int deletePmsBrandByBrandId(Long brandId) {
         return pmsBrandMapper.deletePmsBrandByBrandId(brandId);
     }
+
 }

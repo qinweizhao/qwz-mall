@@ -9,7 +9,7 @@
         <result property="brandId" column="brand_id"/>
         <result property="categoryId" column="category_id"/>
         <result property="brandName" column="brand_name"/>
-        <result property="catelogName" column="catelog_name"/>
+        <result property="categoryName" column="category_name"/>
         <result property="createBy" column="create_by"/>
         <result property="updateBy" column="update_by"/>
         <result property="createTime" column="create_time"/>
@@ -22,7 +22,7 @@
                brand_id,
                category_id,
                brand_name,
-               catelog_name,
+               category_name,
                create_by,
                update_by,
                create_time,
@@ -37,7 +37,7 @@
             <if test="brandId != null ">and brand_id = #{brandId}</if>
             <if test="categoryId != null ">and category_id = #{categoryId}</if>
             <if test="brandName != null  and brandName != ''">and brand_name like concat('%', #{brandName}, '%')</if>
-            <if test="catelogName != null  and catelogName != ''">and catelog_name like concat('%', #{catelogName},
+            <if test="categoryName != null  and categoryName != ''">and category_name like concat('%', #{categoryName},
                 '%')
             </if>
         </where>
@@ -48,13 +48,18 @@
         where id = #{id}
     </select>
 
+    <select id="selectPmsCategoryBrandByBrandId" resultMap="PmsCategoryBrandResult">
+        <include refid="selectPmsCategoryBrandVo"/>
+        where brand_id = #{brandId}
+    </select>
+
     <insert id="insertPmsCategoryBrand" parameterType="PmsCategoryBrand" useGeneratedKeys="true" keyProperty="id">
         insert into pms_category_brand
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="brandId != null">brand_id,</if>
             <if test="categoryId != null">category_id,</if>
             <if test="brandName != null">brand_name,</if>
-            <if test="catelogName != null">catelog_name,</if>
+            <if test="categoryName != null">category_name,</if>
             <if test="createBy != null">create_by,</if>
             <if test="updateBy != null">update_by,</if>
             <if test="createTime != null">create_time,</if>
@@ -65,7 +70,7 @@
             <if test="brandId != null">#{brandId},</if>
             <if test="categoryId != null">#{categoryId},</if>
             <if test="brandName != null">#{brandName},</if>
-            <if test="catelogName != null">#{catelogName},</if>
+            <if test="categoryName != null">#{categoryName},</if>
             <if test="createBy != null">#{createBy},</if>
             <if test="updateBy != null">#{updateBy},</if>
             <if test="createTime != null">#{createTime},</if>
@@ -80,7 +85,7 @@
             <if test="brandId != null">brand_id = #{brandId},</if>
             <if test="categoryId != null">category_id = #{categoryId},</if>
             <if test="brandName != null">brand_name = #{brandName},</if>
-            <if test="catelogName != null">catelog_name = #{catelogName},</if>
+            <if test="categoryName != null">category_name = #{categoryName},</if>
             <if test="createBy != null">create_by = #{createBy},</if>
             <if test="updateBy != null">update_by = #{updateBy},</if>
             <if test="createTime != null">create_time = #{createTime},</if>

@@ -49,7 +49,8 @@
 </template>
 
 <script>
-import { listDbTable, importTable } from "@/api/tool/gen";
+import {importTable, listDbTable} from "@/api/tool/gen";
+
 export default {
   data() {
     return {
@@ -86,10 +87,8 @@ export default {
     // 查询表数据
     getList() {
       listDbTable(this.queryParams).then(res => {
-        if (res.code === 200) {
           this.dbTableList = res.rows;
           this.total = res.total;
-        }
       });
     },
     /** 搜索按钮操作 */
@@ -111,7 +110,7 @@ export default {
       }
       importTable({ tables: tableNames }).then(res => {
         this.$modal.msgSuccess(res.msg);
-        if (res.code === 200) {
+        if (res.code === "200") {
           this.visible = false;
           this.$emit("ok");
         }
@@ -330,7 +329,7 @@ export default {
     // 查询表数据
     getList() {
       listDbTable(this.queryParams).then(res => {
-        if (res.code === 200) {
+        if (res.code === "200") {
           this.dbTableList = res.rows;
           this.total = res.total;
         }
@@ -355,10 +354,8 @@ export default {
       }
       importTable({ tables: tableNames }).then(res => {
         this.$modal.msgSuccess(res.msg);
-        if (res.code === 200) {
           this.visible = false;
           this.$emit("ok");
-        }
       });
     }
   }

@@ -59,7 +59,6 @@ public class PmsBrandController extends BaseController {
     public R<PmsBrand> getInfo(@PathVariable("brandId") Long brandId) {
         return R.success(pmsBrandService.selectPmsBrandByBrandId(brandId));
     }
-
     /**
      * 新增品牌
      */
