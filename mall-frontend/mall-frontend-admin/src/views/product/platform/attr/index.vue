@@ -186,15 +186,11 @@
           </el-select>
         </el-form-item>
 
-        <el-form-item label="所属分类" prop="categoryId" v-if="form.attrId!==null||form.type!== 0">
+        <el-form-item label="所属分类" prop="categoryId">
           <treeselect v-model="form.categoryId" :options="categoryOptions" :show-count="true" placeholder="请选择所属分类"/>
         </el-form-item>
 
-        <el-form-item label="所属分类" prop="categoryId" v-else>
-          <treeselect v-model="watchCategoryId" :options="categoryOptions" :show-count="true" placeholder="请选择所属分类"/>
-        </el-form-item>
-
-        <el-form-item label="所属分组" prop="attrGroupId" v-if="form.type !== 0">
+        <el-form-item label="所属分组" prop="attrGroupId" v-show="form.type !== 0&&form.type!=null">
           <el-select ref="groupSelect" v-model="form.attrGroupId" placeholder="请选择">
             <el-option
               v-for="item in form.attrGroups"
@@ -315,7 +311,6 @@ export default {
       },
       // 表单参数
       form: {},
-      watchCategoryId: undefined,
       // 表单校验
       rules: {},
       categoryOptions: []
@@ -326,16 +321,14 @@ export default {
   },
   watch: {
     form: { // 深度监听
-      handler(val, oldVal) {
-        console.log("currentForm", val, oldVal)
+      handler(form) {
+        console.log(form)
         // 但是这两个值打印出来却都是一样的,因为它们的引用指向同一个对象/数组
+        if (form.type!==1&&form.categoryId!==null){
+          this.getAttrGroupList(form.categoryId)
+        }
       },
       deep: true
-    },
-    // 根据名称筛选部门树
-    watchCategoryId(path) {
-      this.form.categoryId = path
-      this.getAttrGroupList(path.categoryId)
     }
   },
   methods: {
