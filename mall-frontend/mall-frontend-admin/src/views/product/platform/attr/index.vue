@@ -165,17 +165,17 @@
 
     <!-- 添加或修改商品属性对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="100px">
         <el-form-item label="名称" prop="name">
           <el-input v-model="form.name" placeholder="请输入属性名"/>
         </el-form-item>
+
         <el-form-item label="类型" prop="icon">
           <el-select
             v-model="form.type"
             placeholder="属性类型"
             clearable
             size="small"
-            style="width: 240px"
           >
             <el-option
               v-for="dict in dict.type.pms_attr_type"
@@ -186,9 +186,23 @@
           </el-select>
         </el-form-item>
 
-
-        <el-form-item label="分类" prop="categoryId">
+        <el-form-item label="所属分类" prop="categoryId" v-if="form.attrId!==null||form.type!== 0">
           <treeselect v-model="form.categoryId" :options="categoryOptions" :show-count="true" placeholder="请选择所属分类"/>
+        </el-form-item>
+
+        <el-form-item label="所属分类" prop="categoryId" v-else>
+          <treeselect v-model="watchCategoryId" :options="categoryOptions" :show-count="true" placeholder="请选择所属分类"/>
+        </el-form-item>
+
+        <el-form-item label="所属分组" prop="attrGroupId" v-if="form.type !== 0">
+          <el-select ref="groupSelect" v-model="form.attrGroupId" placeholder="请选择">
+            <el-option
+              v-for="item in form.attrGroups"
+              :key="item.attrGroupId"
+              :label="item.name"
+              :value="item.attrGroupId"
+            ></el-option>
+          </el-select>
         </el-form-item>
 
         <el-form-item label="值类型" prop="valueSelect">
@@ -259,6 +273,7 @@ import Category from '@/views/components/product/Category'
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 import {treeselect} from '@/api/product/category'
+import {listGroup} from '@/api/product/platform/group'
 
 export default {
   name: 'Attr',
@@ -300,6 +315,7 @@ export default {
       },
       // 表单参数
       form: {},
+      watchCategoryId: undefined,
       // 表单校验
       rules: {},
       categoryOptions: []
@@ -307,6 +323,20 @@ export default {
   },
   created() {
     this.getList()
+  },
+  watch: {
+    form: { // 深度监听
+      handler(val, oldVal) {
+        console.log("currentForm", val, oldVal)
+        // 但是这两个值打印出来却都是一样的,因为它们的引用指向同一个对象/数组
+      },
+      deep: true
+    },
+    // 根据名称筛选部门树
+    watchCategoryId(path) {
+      this.form.categoryId = path
+      this.getAttrGroupList(path.categoryId)
+    }
   },
   methods: {
     /** 查询商品属性列表 */
@@ -362,8 +392,8 @@ export default {
     },
     /** 新增按钮操作 */
     handleAdd() {
-      this.getTreeselect()
       this.reset()
+      this.getTreeselect()
       this.open = true
       this.title = '添加商品属性'
     },
@@ -443,7 +473,16 @@ export default {
       treeselect().then(response => {
         this.categoryOptions = response.data
       })
-    }
+    },
+
+    /** 查询属性分组列表 */
+    getAttrGroupList(categoryId) {
+      this.loading = true
+      listGroup({"categoryId": categoryId}).then(response => {
+        this.form.attrGroups = response.data.rows
+      })
+      this.getList()
+    },
 
   }
 }

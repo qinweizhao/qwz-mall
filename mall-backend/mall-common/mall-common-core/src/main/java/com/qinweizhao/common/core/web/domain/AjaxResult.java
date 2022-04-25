@@ -1,5 +1,6 @@
 package com.qinweizhao.common.core.web.domain;
 
+import com.qinweizhao.common.core.constant.Constants;
 import com.qinweizhao.common.core.utils.StringUtils;
 import org.springframework.http.HttpStatus;
 
@@ -112,7 +113,7 @@ public class AjaxResult extends HashMap<String, Object> {
      * @return 警告消息
      */
     public static AjaxResult error(String msg) {
-        return AjaxResult.error(msg, null);
+        return AjaxResult.error(Constants.FAIL, msg);
     }
 
     /**

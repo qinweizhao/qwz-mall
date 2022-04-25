@@ -7,6 +7,7 @@ import com.qinweizhao.common.core.exception.auth.NotPermissionException;
 import com.qinweizhao.common.core.exception.auth.NotRoleException;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.web.domain.AjaxResult;
+import com.qinweizhao.component.modle.result.R;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -84,10 +85,10 @@ public class GlobalExceptionHandler {
      * 系统异常
      */
     @ExceptionHandler(Exception.class)
-    public AjaxResult handleException(Exception e, HttpServletRequest request) {
+    public R<?> handleException(Exception e, HttpServletRequest request) {
         String requestURI = request.getRequestURI();
         log.error("请求地址'{}',发生系统异常.", requestURI, e);
-        return AjaxResult.error(e.getMessage());
+        return R.failure(e.getMessage());
     }
 
     /**
