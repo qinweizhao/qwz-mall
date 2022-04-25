@@ -19,12 +19,11 @@ import java.util.List;
  * 商品属性Controller
  *
  * @author qinweizhao
- * @date 2022-04-11
+ * @date 2022-04-25
  */
 @RestController
 @RequestMapping("/attr")
 public class PmsAttrController extends BaseController {
-
     @Resource
     private IPmsAttrService pmsAttrService;
 

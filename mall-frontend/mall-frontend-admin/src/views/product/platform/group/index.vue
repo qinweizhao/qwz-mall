@@ -62,12 +62,12 @@
           </el-col>
           <el-col :span="1.5">
             <el-button
-                type="search"
-                plain
-                icon="el-icon-refresh"
-                size="mini"
-                @click="handleQueryAll"
-                v-hasPermi="['product:group:export']"
+              type="search"
+              plain
+              icon="el-icon-refresh"
+              size="mini"
+              @click="handleQueryAll"
+              v-hasPermi="['product:group:export']"
             >查询全部
             </el-button>
           </el-col>
@@ -141,11 +141,11 @@ import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 import {addGroup, delGroup, getGroup, listGroup, updateGroup} from '@/api/product/platform/group'
 import {treeselect} from '@/api/product/category'
-import category from '@/views/product/platform/common/category'
+import Category from '@/views/components/product/Category'
 
 export default {
   name: 'Group',
-  components: {category, Treeselect},
+  components: {Category, Treeselect},
   data() {
     return {
       // 遮罩层
@@ -173,8 +173,8 @@ export default {
         name: null,
         sort: null,
         description: null,
-        icon: null
-        // categoryId: null
+        icon: null,
+        categoryId: null
       },
       // 表单参数
       form: {},
@@ -188,18 +188,7 @@ export default {
     this.getTreeselect()
   },
   methods: {
-    treeNodeClick(data, node, component) {
-      if (node.level === 3) {
-        this.queryParams.categoryId = data.categoryId
-        this.getList() //重新查询
-      }
-    },
-    /** 查询部门下拉树结构 */
-    getTreeselect() {
-      treeselect().then(response => {
-        this.categoryOptions = response.data
-      })
-    },
+
     /** 查询属性分组列表 */
     getList() {
       this.loading = true
@@ -231,11 +220,7 @@ export default {
       this.queryParams.pageNum = 1
       this.getList()
     },
-    handleQueryAll() {
-      this.queryParams.pageNum = 1
-      this.queryParams.categoryId = null;
-      this.getList()
-    },
+
     /** 重置按钮操作 */
     resetQuery() {
       this.resetForm('queryForm')
@@ -293,7 +278,26 @@ export default {
         this.$modal.msgSuccess('删除成功')
       }).catch(() => {
       })
+    },
+    // wz-code
+    handleQueryAll() {
+      this.queryParams.pageNum = 1
+      this.queryParams.categoryId = null
+      this.getList()
+    },
+    treeNodeClick(data, node, component) {
+      if (node.level === 3) {
+        this.queryParams.categoryId = data.categoryId
+        this.getList() //重新查询
+      }
+    },
+    /** 查询分类下拉树结构 */
+    getTreeselect() {
+      treeselect().then(response => {
+        this.categoryOptions = response.data
+      })
     }
+
 
   }
 }

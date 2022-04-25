@@ -147,7 +147,7 @@
         <el-button slot="reference">新增关联</el-button>
       </el-popover>
       <el-table :data="relationTableData" style="width: 100%">
-        <el-table-column prop="id" label="#"></el-table-column>
+        <el-table-column prop="id" label="编号"></el-table-column>
         <el-table-column prop="brandName" label="品牌名"></el-table-column>
         <el-table-column prop="categoryName" label="分类名"></el-table-column>
         <el-table-column fixed="right" header-align="center" align="center" label="操作">
@@ -162,8 +162,7 @@
         </el-table-column>
       </el-table>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="cateRelationDialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="cateRelationDialogVisible = false">确 定</el-button>
+        <el-button type="primary" @click="cateRelationDialogVisible = false">关 闭</el-button>
       </span>
     </el-dialog>
   </div>
@@ -181,7 +180,7 @@ import {
   updateBrand
 } from '@/api/product/brand'
 import ImageUpload from '@/components/ImageUpload'
-import category from '@/views/product/platform/common/category'
+import category from '@/views/components/product/Category'
 import ImagePreview from '@/components/ImagePreview'
 
 export default {
@@ -332,6 +331,7 @@ export default {
         ...this.queryParams
       }, `brand_${new Date().getTime()}.xlsx`)
     },
+    // wz-code
     handleUpdateRelation(row) {
       this.cateRelationDialogVisible = true;
       this.relationForm.brandId = row.brandId;
@@ -344,11 +344,16 @@ export default {
       })
     },
     handleRelationAdd() {
-      addRelation(this.relationForm).then(response => {
-        this.$modal.msgSuccess('新增成功')
-        this.popCategorySelectVisible = false
-        this.getCateRelation()
-      })
+      if (this.relationForm.categoryId != null) {
+        addRelation(this.relationForm).then(response => {
+          this.$modal.msgSuccess('新增成功')
+          this.popCategorySelectVisible = false
+          this.getCateRelation()
+        })
+      } else {
+        this.$modal.msgError('请选择具体分类')
+      }
+
     },
     HandleRelationDelete(categoryId, brandId) {
       this.$modal.confirm('是否确认删除品牌编号为"' + categoryId + '"的数据项？').then(function () {

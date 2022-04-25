@@ -4,11 +4,12 @@ import com.qinweizhao.product.entity.PmsAttr;
 
 import java.util.List;
 
+
 /**
  * 商品属性Service接口
  *
  * @author qinweizhao
- * @date 2022-04-11
+ * @date 2022-04-25
  */
 public interface IPmsAttrService {
     /**

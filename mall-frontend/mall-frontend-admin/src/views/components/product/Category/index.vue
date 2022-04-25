@@ -45,15 +45,20 @@ export default {
   created() {
     this.getList();
   },
+  watch: {
+    // 根据名称筛选部门树
+    categoryName(val) {
+      this.$refs.tree.filter(val)
+    }
+  },
   methods: {
     // 筛选节点
     filterNode(value, data) {
-      if (!value) return true
-      return data.label.indexOf(value) !== -1
+      if (!value) return true;
+      return data.name.indexOf(value) !== -1;
     },
     // 节点单击事件
     handleNodeClick(data, node, component) {
-      console.log("子组件category的节点被点击", data, node, component);
       //向父组件发送事件；
       this.$emit("tree-node-click", data, node, component);
     },

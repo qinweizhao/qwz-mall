@@ -236,7 +236,7 @@ export default {
       listCategory().then(response => {
         this.categoryOptions = []
         const category = {categoryId: 0, name: '主类目', children: []}
-        category.children = this.handleTree(response.data, 'categoryId')
+        category.children = this.handleTree(response.data.rows, 'categoryId')
         this.categoryOptions.push(category)
       })
     },

@@ -13,7 +13,7 @@ import java.util.List;
  * 商品属性Service业务层处理
  *
  * @author qinweizhao
- * @date 2022-04-11
+ * @date 2022-04-25
  */
 @Service
 public class PmsAttrServiceImpl implements IPmsAttrService {

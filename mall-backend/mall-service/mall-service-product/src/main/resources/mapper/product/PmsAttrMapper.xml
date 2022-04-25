@@ -7,11 +7,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <resultMap type="PmsAttr" id="PmsAttrResult">
         <result property="attrId" column="attr_id"/>
         <result property="name" column="name"/>
-        <result property="searchType" column="search_type"/>
         <result property="icon" column="icon"/>
         <result property="valueSelect" column="value_select"/>
+        <result property="valueType" column="value_type"/>
+        <result property="searchType" column="search_type"/>
         <result property="type" column="type"/>
-        <result property="enable" column="enable"/>
+        <result property="status" column="status"/>
         <result property="categoryId" column="category_id"/>
         <result property="quickShow" column="quick_show"/>
         <result property="createBy" column="create_by"/>
@@ -24,11 +25,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <sql id="selectPmsAttrVo">
         select attr_id,
                name,
-               search_type,
                icon,
                value_select,
+               value_type,
+               search_type,
                type,
-               enable,
+               status,
                category_id,
                quick_show,
                create_by,
@@ -40,15 +42,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </sql>
 
     <select id="selectPmsAttrList" parameterType="PmsAttr" resultMap="PmsAttrResult">
-        select *
-        from pms_attr
+        <include refid="selectPmsAttrVo"/>
         <where>
             <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
-            <if test="searchType != null ">and search_type = #{searchType}</if>
             <if test="icon != null  and icon != ''">and icon = #{icon}</if>
             <if test="valueSelect != null  and valueSelect != ''">and value_select = #{valueSelect}</if>
+            <if test="valueType != null ">and value_type = #{valueType}</if>
+            <if test="searchType != null ">and search_type = #{searchType}</if>
             <if test="type != null ">and type = #{type}</if>
-            <if test="enable != null ">and enable = #{enable}</if>
+            <if test="status != null ">and status = #{status}</if>
             <if test="categoryId != null ">and category_id = #{categoryId}</if>
             <if test="quickShow != null ">and quick_show = #{quickShow}</if>
         </where>
@@ -63,11 +65,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         insert into pms_attr
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="name != null">name,</if>
-            <if test="searchType != null">search_type,</if>
             <if test="icon != null">icon,</if>
             <if test="valueSelect != null">value_select,</if>
+            <if test="valueType != null">value_type,</if>
+            <if test="searchType != null">search_type,</if>
             <if test="type != null">type,</if>
-            <if test="enable != null">enable,</if>
+            <if test="status != null">status,</if>
             <if test="categoryId != null">category_id,</if>
             <if test="quickShow != null">quick_show,</if>
             <if test="createBy != null">create_by,</if>
@@ -78,11 +81,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="name != null">#{name},</if>
-            <if test="searchType != null">#{searchType},</if>
             <if test="icon != null">#{icon},</if>
             <if test="valueSelect != null">#{valueSelect},</if>
+            <if test="valueType != null">#{valueType},</if>
+            <if test="searchType != null">#{searchType},</if>
             <if test="type != null">#{type},</if>
-            <if test="enable != null">#{enable},</if>
+            <if test="status != null">#{status},</if>
             <if test="categoryId != null">#{categoryId},</if>
             <if test="quickShow != null">#{quickShow},</if>
             <if test="createBy != null">#{createBy},</if>
@@ -97,11 +101,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         update pms_attr
         <trim prefix="SET" suffixOverrides=",">
             <if test="name != null">name = #{name},</if>
-            <if test="searchType != null">search_type = #{searchType},</if>
             <if test="icon != null">icon = #{icon},</if>
             <if test="valueSelect != null">value_select = #{valueSelect},</if>
+            <if test="valueType != null">value_type = #{valueType},</if>
+            <if test="searchType != null">search_type = #{searchType},</if>
             <if test="type != null">type = #{type},</if>
-            <if test="enable != null">enable = #{enable},</if>
+            <if test="status != null">status = #{status},</if>
             <if test="categoryId != null">category_id = #{categoryId},</if>
             <if test="quickShow != null">quick_show = #{quickShow},</if>
             <if test="createBy != null">create_by = #{createBy},</if>
