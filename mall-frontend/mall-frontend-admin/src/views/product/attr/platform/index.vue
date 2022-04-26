@@ -51,7 +51,7 @@
               icon="el-icon-plus"
               size="mini"
               @click="handleAdd"
-              v-hasPermi="['product:attr:add']"
+              v-hasPermi="['product:platform:add']"
             >新增
             </el-button>
           </el-col>
@@ -63,7 +63,7 @@
               size="mini"
               :disabled="single"
               @click="handleUpdate"
-              v-hasPermi="['product:attr:edit']"
+              v-hasPermi="['product:platform:edit']"
             >修改
             </el-button>
           </el-col>
@@ -75,7 +75,7 @@
               size="mini"
               :disabled="multiple"
               @click="handleDelete"
-              v-hasPermi="['product:attr:remove']"
+              v-hasPermi="['product:platform:remove']"
             >删除
             </el-button>
           </el-col>
@@ -137,7 +137,7 @@
                 type="text"
                 icon="el-icon-edit"
                 @click="handleUpdate(scope.row)"
-                v-hasPermi="['product:attr:edit']"
+                v-hasPermi="['product:platform:edit']"
               >修改
               </el-button>
               <el-button
@@ -145,7 +145,7 @@
                 type="text"
                 icon="el-icon-delete"
                 @click="handleDelete(scope.row)"
-                v-hasPermi="['product:attr:remove']"
+                v-hasPermi="['product:platform:remove']"
               >删除
               </el-button>
             </template>
@@ -322,7 +322,6 @@ export default {
   watch: {
     form: { // 深度监听
       handler(form) {
-        console.log(form)
         // 但是这两个值打印出来却都是一样的,因为它们的引用指向同一个对象/数组
         if (form.type!==1&&form.categoryId!==null){
           this.getAttrGroupList(form.categoryId)
@@ -434,7 +433,7 @@ export default {
     },
     /** 导出按钮操作 */
     handleExport() {
-      this.download('product/attr/export', {
+      this.download('product/platform/export', {
         ...this.queryParams
       }, `attr_${new Date().getTime()}.xlsx`)
     },

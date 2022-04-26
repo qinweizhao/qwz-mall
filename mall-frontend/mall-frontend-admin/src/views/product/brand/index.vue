@@ -64,7 +64,7 @@
 
     <el-table v-loading="loading" :data="brandList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="25" align="center"/>
-      <el-table-column label="编号" align="center" prop="brandId"/>
+      <el-table-column label="编号" align="center" prop="brandId" width="60px"/>
       <el-table-column label="品牌名" align="center" prop="name"/>
       <el-table-column label="logo" align="center" prop="logo">
         <template slot-scope="scope">
@@ -72,7 +72,7 @@
         </template>
       </el-table-column>
       <el-table-column label="介绍" align="center" prop="description"/>
-      <el-table-column label="状态" align="center" prop="showStatus"/>
+      <el-table-column label="状态" align="center" prop="showStatus" width="60px"/>
       <el-table-column label="品牌首字母" align="center" prop="firstLetter"/>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
@@ -138,7 +138,7 @@
 
     <!-- 关联分类对话框 -->
     <el-dialog title="关联分类" :visible.sync="cateRelationDialogVisible" width="30%">
-      <el-popover width="180" placement="right-end" v-model="popCategorySelectVisible">
+      <el-popover width="280" placement="right-end" v-model="popCategorySelectVisible">
         <category @tree-node-click="treeNodeClick"/>
         <div style="text-align: right; margin: 0">
           <el-button size="mini" type="text" @click="popCategorySelectVisible = false">取消</el-button>
@@ -146,16 +146,16 @@
         </div>
         <el-button slot="reference">新增关联</el-button>
       </el-popover>
-      <el-table :data="relationTableData" style="width: 100%">
+      <el-table :data="relationTableData">
         <el-table-column prop="id" label="编号"></el-table-column>
         <el-table-column prop="brandName" label="品牌名"></el-table-column>
         <el-table-column prop="categoryName" label="分类名"></el-table-column>
         <el-table-column fixed="right" header-align="center" align="center" label="操作">
           <template slot-scope="scope">
             <el-button
-                type="text"
-                size="small"
-                @click="HandleRelationDelete(scope.row.id,scope.row.brandId)"
+              type="text"
+              size="small"
+              @click="HandleRelationDelete(scope.row.id,scope.row.brandId)"
             >移除
             </el-button>
           </template>

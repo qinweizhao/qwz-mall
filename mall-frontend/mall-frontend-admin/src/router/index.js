@@ -157,10 +157,26 @@ export const dynamicRoutes = [
         path: 'index',
         component: () => import('@/views/tool/gen/editTable'),
         name: 'GenEdit',
-        meta: { title: '修改生成配置', activeMenu: '/tool/gen' }
+        meta: {title: '修改生成配置', activeMenu: '/tool/gen'}
       }
     ]
-  }
+  },
+  // wz-code
+  // product
+  {
+    path: '/product/relation',
+    component: Layout,
+    hidden: true,
+    permissions: ['product:group:edit'],
+    children: [
+      {
+        path: 'attr-attr-group/:attrGroupId(\\d+)',
+        component: () => import('@/views/product/attr/group/relation'),
+        name: 'Relation',
+        meta: {title: '关联分类', activeMenu: '/product/attr/group'}
+      }
+    ]
+  },
 ]
 
 export default new Router({

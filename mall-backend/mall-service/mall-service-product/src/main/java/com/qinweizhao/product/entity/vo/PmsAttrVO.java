@@ -6,7 +6,7 @@ import com.qinweizhao.common.core.annotation.Excel;
  * @author qinweizhao
  * @since 2022/4/25
  */
-public class AttrVO {
+public class PmsAttrVO {
     /**
      * 属性id
      */

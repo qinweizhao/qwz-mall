@@ -51,7 +51,7 @@ public class PmsCategoryBrandController extends BaseController {
      */
     @RequiresPermissions("product:brand:relation")
     @GetMapping(value = "/{brandId}")
-    public R<List<PmsCategoryBrand>> getRelation(@PathVariable("brandId") Long brandId) {
+    public R<List<PmsCategoryBrand>> get(@PathVariable("brandId") Long brandId) {
         return R.success(pmsCategoryBrandService.selectPmsCategoryBrandByBrandId(brandId));
     }
 

@@ -76,13 +76,21 @@
 
         <el-table v-loading="loading" :data="groupList" @selection-change="handleSelectionChange">
           <el-table-column type="selection" width="55" align="center"/>
-          <el-table-column label="编号" align="center" prop="attrGroupId"/>
+          <el-table-column label="编号" width="55" align="center" prop="attrGroupId"/>
           <el-table-column label="组名" align="center" prop="name"/>
           <el-table-column label="排序" align="center" prop="sort"/>
           <el-table-column label="描述" align="center" prop="description"/>
           <el-table-column label="创建时间" align="center" prop="createTime"/>
           <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
             <template slot-scope="scope">
+              <el-button
+                size="mini"
+                type="text"
+                icon="el-icon-edit"
+                @click="handleRelation(scope.row)"
+                v-hasPermi="['product:group:edit']"
+              >关联属性
+              </el-button>
               <el-button
                 size="mini"
                 type="text"
@@ -296,7 +304,13 @@ export default {
       treeselect().then(response => {
         this.categoryOptions = response.data
       })
-    }
+    },
+    /** 关联属性操作 */
+    handleRelation: function (row) {
+      const attrGroupId = row.attrGroupId;
+      console.log(row)
+      this.$router.push("/product/relation/attr-attr-group/" + attrGroupId);
+    },
 
 
   }
