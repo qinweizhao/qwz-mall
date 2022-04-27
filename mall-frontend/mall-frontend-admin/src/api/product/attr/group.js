@@ -62,19 +62,19 @@ export function unRelation(query) {
   })
 }
 
-// 新增品牌
+// 新增属性分组
 export function addRelation(data) {
   return request({
-    url: '/product/brand/category',
+    url: '/product/attr/attr-group',
     method: 'post',
     data: data
   })
 }
 
 // 删除关联
-export function delRelation(brandId) {
+export function relationCancel(ids) {
   return request({
-    url: '/product/brand/category/' + brandId,
+    url: '/product/attr/attr-group/' + ids,
     method: 'delete'
   })
 }

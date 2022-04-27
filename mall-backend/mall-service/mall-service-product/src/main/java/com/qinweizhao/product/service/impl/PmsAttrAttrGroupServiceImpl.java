@@ -2,9 +2,12 @@ package com.qinweizhao.product.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import com.qinweizhao.common.core.utils.DateUtils;
+import com.qinweizhao.common.core.utils.bean.BeanUtils;
+import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.product.entity.PmsAttr;
 import com.qinweizhao.product.entity.PmsAttrAttrGroup;
 import com.qinweizhao.product.entity.PmsAttrGroup;
+import com.qinweizhao.product.entity.vo.PmsAttrAttrGroupSaveBatchVO;
 import com.qinweizhao.product.mapper.PmsAttrAttrGroupMapper;
 import com.qinweizhao.product.mapper.PmsAttrGroupMapper;
 import com.qinweizhao.product.mapper.PmsAttrMapper;
@@ -12,8 +15,11 @@ import com.qinweizhao.product.service.IPmsAttrAttrGroupService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 属性&属性分组关联Service业务层处理
@@ -117,5 +123,22 @@ public class PmsAttrAttrGroupServiceImpl implements IPmsAttrAttrGroupService {
         Collection<PmsAttr> subtract = CollUtil.subtract(attrs, pmsAttrs);
 
         return (List<PmsAttr>) subtract;
+    }
+
+
+    @Override
+    public int insertPmsAttrAttrGroups(PmsAttrAttrGroupSaveBatchVO pmsAttrAttrGroupSaveBatch) {
+        String ids = pmsAttrAttrGroupSaveBatch.getAttrIds();
+        String[] attrIds = ids.split(",");
+        List<PmsAttrAttrGroup> list = Arrays.stream(attrIds).map(item -> {
+            PmsAttrAttrGroup attrAttrGroup = new PmsAttrAttrGroup();
+            BeanUtils.copyProperties(pmsAttrAttrGroupSaveBatch, attrAttrGroup);
+            attrAttrGroup.setAttrId(Long.parseLong(item));
+            attrAttrGroup.setCreateTime(new Date());
+            attrAttrGroup.setRemark("");
+            attrAttrGroup.setCreateBy(SecurityUtils.getUsername());
+            return attrAttrGroup;
+        }).collect(Collectors.toList());
+        return pmsAttrAttrGroupMapper.insertPmsAttrAttrGroups(list);
     }
 }

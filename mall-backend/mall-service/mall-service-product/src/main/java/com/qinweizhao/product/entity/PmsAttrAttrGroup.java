@@ -2,8 +2,8 @@ package com.qinweizhao.product.entity;
 
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 属性&属性分组关联对象 pms_attr_attr_group
@@ -11,6 +11,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @author qinweizhao
  * @date 2022-04-11
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class PmsAttrAttrGroup extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
@@ -37,50 +39,4 @@ public class PmsAttrAttrGroup extends BaseEntity {
     @Excel(name = "属性组内排序")
     private Long sort;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getAttrId() {
-        return attrId;
-    }
-
-    public void setAttrId(Long attrId) {
-        this.attrId = attrId;
-    }
-
-    public Long getAttrGroupId() {
-        return attrGroupId;
-    }
-
-    public void setAttrGroupId(Long attrGroupId) {
-        this.attrGroupId = attrGroupId;
-    }
-
-    public Long getSort() {
-        return sort;
-    }
-
-    public void setSort(Long sort) {
-        this.sort = sort;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("id", getId())
-                .append("attrId", getAttrId())
-                .append("attrGroupId", getAttrGroupId())
-                .append("sort", getSort())
-                .append("createBy", getCreateBy())
-                .append("updateBy", getUpdateBy())
-                .append("createTime", getCreateTime())
-                .append("updateTime", getUpdateTime())
-                .append("remark", getRemark())
-                .toString();
-    }
 }

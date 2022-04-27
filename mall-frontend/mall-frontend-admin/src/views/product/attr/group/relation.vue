@@ -54,7 +54,7 @@
           icon="el-icon-circle-close"
           size="mini"
           :disabled="multiple"
-          @click="cancelAuthUserAll"
+          @click="cancelRelationAll"
           v-hasPermi="['system:role:remove']"
         >批量取消关联
         </el-button>
@@ -105,7 +105,7 @@
             size="mini"
             type="text"
             icon="el-icon-circle-close"
-            @click="cancelAuthUser(scope.row)"
+            @click="cancelRelation(scope.row)"
             v-hasPermi="['system:role:remove']"
           >取消关联
           </el-button>
@@ -126,8 +126,8 @@
 </template>
 
 <script>
-import {authUserCancel, authUserCancelAll} from "@/api/system/role";
-import {getRelation} from '@/api/product/attr/group'
+import {authUserCancelAll} from "@/api/system/role";
+import {getRelation, relationCancel} from '@/api/product/attr/group'
 import selectAttr from "./selectAttr";
 
 export default {
@@ -216,19 +216,19 @@ export default {
     openSelectAttr() {
       this.$refs.select.show();
     },
-    /** 取消授权按钮操作 */
-    cancelAuthUser(row) {
-      const roleId = this.queryParams.roleId;
-      this.$modal.confirm('确认要取消该用户"' + row.userName + '"角色吗？').then(function () {
-        return authUserCancel({userId: row.userId, roleId: roleId});
+    /** 取消关联操作 */
+    cancelRelation(row) {
+      const ids = row.attrId || this.ids
+      this.$modal.confirm('确认要取消该用户"' + row.name + '"属性吗？').then(function () {
+        return relationCancel(ids);
       }).then(() => {
         this.getList();
-        this.$modal.msgSuccess("取消授权成功");
+        this.$modal.msgSuccess("取消关联成功");
       }).catch(() => {
       });
     },
-    /** 批量取消授权按钮操作 */
-    cancelAuthUserAll(row) {
+    /** 批量取消关联操作 */
+    cancelRelationAll(row) {
       const roleId = this.queryParams.roleId;
       const userIds = this.userIds.join(",");
       this.$modal.confirm('是否取消选中用户授权数据项？').then(function () {

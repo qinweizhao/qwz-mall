@@ -67,6 +67,25 @@
         </trim>
     </insert>
 
+
+    <insert id="insertPmsAttrAttrGroups">
+        insert into pms_attr_attr_group
+        ( attr_id,
+        attr_group_id,
+        create_by,
+        create_time,
+        remark)
+        values
+        <foreach collection="pmsAttrAttrGroups" item="pmsAttrAttrGroup" separator="," open="(" close=")">
+            #{pmsAttrAttrGroup.attrId},
+            #{pmsAttrAttrGroup.attrGroupId},
+            #{pmsAttrAttrGroup.createBy},
+            #{pmsAttrAttrGroup.createTime},
+            #{pmsAttrAttrGroup.remark}
+        </foreach>
+
+    </insert>
+
     <update id="updatePmsAttrAttrGroup" parameterType="PmsAttrAttrGroup">
         update pms_attr_attr_group
         <trim prefix="SET" suffixOverrides=",">
@@ -85,7 +104,7 @@
     <delete id="deletePmsAttrAttrGroupById" parameterType="Long">
         delete
         from pms_attr_attr_group
-        where id = #{id}
+        where attrId = #{id}
     </delete>
 
     <delete id="deletePmsAttrAttrGroupByIds" parameterType="String">

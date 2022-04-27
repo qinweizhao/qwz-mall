@@ -1,6 +1,5 @@
 package com.qinweizhao.product.controller;
 
-import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
@@ -9,12 +8,12 @@ import com.qinweizhao.component.modle.result.PageResult;
 import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.product.entity.PmsAttr;
 import com.qinweizhao.product.entity.PmsAttrAttrGroup;
+import com.qinweizhao.product.entity.vo.PmsAttrAttrGroupSaveBatchVO;
 import com.qinweizhao.product.service.IPmsAttrAttrGroupService;
 import com.qinweizhao.product.service.IPmsAttrService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,7 +43,9 @@ public class PmsAttrAttrGroupController extends BaseController {
         List<PmsAttrAttrGroup> list = pmsAttrAttrGroupService.selectPmsAttrAttrGroupList(pmsAttrAttrGroup);
         List<PmsAttr> collect = list.stream().map(item -> {
             Long attrId = item.getAttrId();
-            return pmsAttrService.selectPmsAttrByAttrId(attrId);
+            PmsAttr attr = pmsAttrService.selectPmsAttrByAttrId(attrId);
+            attr.setAttrId(item.getId());
+            return attr;
         }).collect(Collectors.toList());
         return R.success(collect);
     }
@@ -61,20 +62,6 @@ public class PmsAttrAttrGroupController extends BaseController {
         return getPageResult(list);
     }
 
-
-    /**
-     * 导出属性&属性分组关联列表
-     */
-    @RequiresPermissions("product:group:export")
-    @Log(title = "属性&属性分组关联", businessType = BusinessType.EXPORT)
-    @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, PmsAttrAttrGroup pmsAttrAttrGroup) {
-        List<PmsAttrAttrGroup> list = pmsAttrAttrGroupService.selectPmsAttrAttrGroupList(pmsAttrAttrGroup);
-        ExcelUtil<PmsAttrAttrGroup> util = new ExcelUtil<PmsAttrAttrGroup>(PmsAttrAttrGroup.class);
-        util.exportExcel(response, list, "属性&属性分组关联数据");
-        return R.success();
-    }
-
     /**
      * 获取属性&属性分组关联详细信息
      */
@@ -83,16 +70,16 @@ public class PmsAttrAttrGroupController extends BaseController {
     public R<PmsAttrAttrGroup> getInfo(@PathVariable("id") Long id) {
         return R.success(pmsAttrAttrGroupService.selectPmsAttrAttrGroupById(id));
     }
-
-    /**
-     * 新增属性&属性分组关联
-     */
-    @RequiresPermissions("product:group:add")
-    @Log(title = "属性&属性分组关联", businessType = BusinessType.INSERT)
-    @PostMapping
-    public R<Void> add(@RequestBody PmsAttrAttrGroup pmsAttrAttrGroup) {
-        return R.condition(pmsAttrAttrGroupService.insertPmsAttrAttrGroup(pmsAttrAttrGroup));
-    }
+//
+//    /**
+//     * 新增属性&属性分组关联
+//     */
+//    @RequiresPermissions("product:group:add")
+//    @Log(title = "属性&属性分组关联", businessType = BusinessType.INSERT)
+//    @PostMapping
+//    public R<Void> add(@RequestBody PmsAttrAttrGroup pmsAttrAttrGroup) {
+//        return R.condition(pmsAttrAttrGroupService.insertPmsAttrAttrGroup(pmsAttrAttrGroup));
+//    }
 
     /**
      * 修改属性&属性分组关联
@@ -105,12 +92,22 @@ public class PmsAttrAttrGroupController extends BaseController {
     }
 
     /**
-     * 删除属性&属性分组关联
+     * 删除关联属性
      */
-    @RequiresPermissions("product:group:remove")
+    @RequiresPermissions("product:attr:remove")
     @Log(title = "属性&属性分组关联", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable Long[] ids) {
-        return R.condition(pmsAttrAttrGroupService.deletePmsAttrAttrGroupByIds(ids));
+    @DeleteMapping("/{attrIds}")
+    public R<Void> remove(@PathVariable Long[] attrIds) {
+        return R.condition(pmsAttrAttrGroupService.deletePmsAttrAttrGroupByIds(attrIds));
+    }
+
+    /**
+     * 批量选择关联属性
+     */
+    @RequiresPermissions("product:group:edit")
+    @Log(title = "属性&属性分组关联", businessType = BusinessType.GRANT)
+    @PostMapping
+    public R<Void> selectAuthUserAll(@RequestBody PmsAttrAttrGroupSaveBatchVO pmsAttrAttrGroupSaveBatchVO) {
+        return R.condition(pmsAttrAttrGroupService.insertPmsAttrAttrGroups(pmsAttrAttrGroupSaveBatchVO));
     }
 }

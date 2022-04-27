@@ -1,6 +1,6 @@
 <template>
   <!-- 关联属性 -->
-  <el-dialog title="选择用户" :visible.sync="visible" width="800px" top="5vh" append-to-body>
+  <el-dialog title="选择属性" :visible.sync="visible" width="800px" top="5vh" append-to-body>
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true"
              label-width="68px"
     >
@@ -63,8 +63,7 @@
 </template>
 
 <script>
-import {unRelation} from '@/api/product/attr/group'
-import {authUserSelectAll} from '@/api/system/role'
+import {addRelation, unRelation} from '@/api/product/attr/group'
 
 export default {
   name: 'selectAttr',
@@ -83,6 +82,7 @@ export default {
       total: 0,
       // 商品属性表格数据
       attrList: [],
+      attrIds: [],
       // 查询参数
       queryParams: {
         pageNum: 1,
@@ -118,15 +118,15 @@ export default {
     },
     /** 选择授权用户操作 */
     handleSelectAttr() {
-      const roleId = this.queryParams.roleId;
-      const userIds = this.userIds.join(",");
-      if (userIds == "") {
-        this.$modal.msgError("请选择要分配的用户");
+      const attrGroupId = this.queryParams.attrGroupId;
+      const attrIds = this.attrIds.join(",");
+      if (attrIds === "") {
+        this.$modal.msgError("请选择要关联的属性");
         return;
       }
-      authUserSelectAll({roleId: roleId, userIds: userIds}).then(res => {
-        this.$modal.msgSuccess(res.msg);
-        if (res.code === 200) {
+      addRelation({attrGroupId: attrGroupId, attrIds: attrIds}).then(response => {
+        this.$modal.msgSuccess(response.message);
+        if (res.code === "200") {
           this.visible = false;
           this.$emit("ok");
         }
@@ -144,7 +144,7 @@ export default {
     },
     // 多选框选中数据
     handleSelectionChange(selection) {
-      this.userIds = selection.map(item => item.userId);
+      this.attrIds = selection.map(item => item.attrId);
     },
   }
 }

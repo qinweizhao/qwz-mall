@@ -2,6 +2,7 @@ package com.qinweizhao.product.service;
 
 import com.qinweizhao.product.entity.PmsAttr;
 import com.qinweizhao.product.entity.PmsAttrAttrGroup;
+import com.qinweizhao.product.entity.vo.PmsAttrAttrGroupSaveBatchVO;
 
 import java.util.List;
 
@@ -67,4 +68,13 @@ public interface IPmsAttrAttrGroupService {
      * @return List<PmsAttr>
      */
     List<PmsAttr> selectPmsAttrAttrGroupUnRelationList(Long attrGroupId);
+
+
+    /**
+     * 批量选择关联属性
+     *
+     * @param pmsAttrAttrGroupSaveBatch pmsAttrAttrGroupSaveBatch
+     * @return int
+     */
+    int insertPmsAttrAttrGroups(PmsAttrAttrGroupSaveBatchVO pmsAttrAttrGroupSaveBatch);
 }

@@ -74,4 +74,5 @@ public interface PmsAttrMapper {
      * @return 结果
      */
     List<PmsAttr> selectPmsAttrsByCategoryId(Long categoryId);
+
 }

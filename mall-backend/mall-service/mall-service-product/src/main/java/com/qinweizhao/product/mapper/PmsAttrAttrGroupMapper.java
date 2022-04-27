@@ -1,6 +1,7 @@
 package com.qinweizhao.product.mapper;
 
 import com.qinweizhao.product.entity.PmsAttrAttrGroup;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -58,4 +59,13 @@ public interface PmsAttrAttrGroupMapper {
      * @return 结果
      */
     int deletePmsAttrAttrGroupByIds(Long[] ids);
+
+
+    /**
+     * 批量选择关联属性
+     *
+     * @param pmsAttrAttrGroups pmsAttrAttrGroups
+     * @return int
+     */
+    int insertPmsAttrAttrGroups(@Param("pmsAttrAttrGroups") List<PmsAttrAttrGroup> pmsAttrAttrGroups);
 }
