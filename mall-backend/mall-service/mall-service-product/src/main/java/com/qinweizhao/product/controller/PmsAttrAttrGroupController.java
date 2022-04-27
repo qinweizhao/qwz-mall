@@ -70,16 +70,6 @@ public class PmsAttrAttrGroupController extends BaseController {
     public R<PmsAttrAttrGroup> getInfo(@PathVariable("id") Long id) {
         return R.success(pmsAttrAttrGroupService.selectPmsAttrAttrGroupById(id));
     }
-//
-//    /**
-//     * 新增属性&属性分组关联
-//     */
-//    @RequiresPermissions("product:group:add")
-//    @Log(title = "属性&属性分组关联", businessType = BusinessType.INSERT)
-//    @PostMapping
-//    public R<Void> add(@RequestBody PmsAttrAttrGroup pmsAttrAttrGroup) {
-//        return R.condition(pmsAttrAttrGroupService.insertPmsAttrAttrGroup(pmsAttrAttrGroup));
-//    }
 
     /**
      * 修改属性&属性分组关联
