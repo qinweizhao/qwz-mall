@@ -61,22 +61,8 @@
         where attr_id = #{attrId}
     </select>
 
-    <select id="selectPmsAttrsByAttrGroupIds" resultMap="PmsAttrResult">
-        select a.attr_id,
-        a.name,
-        a.icon,
-        a.value_select,
-        a.value_type,
-        a.search_type,
-        a.type,
-        a.status,
-        a.category_id,
-        a.quick_show,
-        a.create_by,
-        a.update_by,
-        a.create_time,
-        a.update_time,
-        a.remark
+    <select id="selectPmsAttrsByAttrGroupIds" resultType="long">
+        select a.attr_id
         from pms_attr a
         left join pms_attr_attr_group aag on a.attr_id = aag.attr_id
         where aag.attr_group_id in
@@ -87,7 +73,10 @@
 
     <select id="selectPmsAttrsByCategoryId" resultMap="PmsAttrResult">
         <include refid="selectPmsAttrVo"/>
-        where category_id = #{categoryId} and type=#{type}
+        where category_id = #{categoryId} and type=#{type} and attr_id not in
+        <foreach collection="excludeAttrIds" item="attrId" open="(" close=")" separator=",">
+            #{attrId}
+        </foreach>
     </select>
 
     <insert id="insertPmsAttr" parameterType="PmsAttr" useGeneratedKeys="true" keyProperty="attrId">

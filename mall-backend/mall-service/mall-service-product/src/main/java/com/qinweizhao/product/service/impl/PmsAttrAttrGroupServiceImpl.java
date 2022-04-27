@@ -1,6 +1,5 @@
 package com.qinweizhao.product.service.impl;
 
-import cn.hutool.core.collection.CollUtil;
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.bean.BeanUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -118,15 +116,11 @@ public class PmsAttrAttrGroupServiceImpl implements IPmsAttrAttrGroupService {
         // 2.1)、当前分类下的其他分组+当前分组
         List<Long> ids = pmsAttrGroupMapper.selectAttrGroupIdsByCategoryId(categoryId);
 
-        ids.add(attrGroupId);
         // 2.2)、这些分组关联的属性
-        List<PmsAttr> pmsAttrs = pmsAttrMapper.selectPmsAttrsByAttrGroupIds(ids);
+        List<Long> excludeAttrIds = pmsAttrMapper.selectPmsAttrsByAttrGroupIds(ids);
 
         // 2.3)、从当前分类的所有属性(基本属性)中移除这些属性
-        List<PmsAttr> attrs = pmsAttrMapper.selectPmsAttrsByCategoryId(categoryId, ProductConstant.AttrEnum.ATTR_TYPE_BASE.getCode());
-        Collection<PmsAttr> subtract = CollUtil.subtract(attrs, pmsAttrs);
-
-        return (List<PmsAttr>) subtract;
+        return pmsAttrMapper.selectPmsAttrsByCategoryId(categoryId, ProductConstant.AttrEnum.ATTR_TYPE_BASE.getCode(), excludeAttrIds);
     }
 
 
