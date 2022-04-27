@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollUtil;
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.bean.BeanUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
+import com.qinweizhao.product.constant.ProductConstant;
 import com.qinweizhao.product.entity.PmsAttr;
 import com.qinweizhao.product.entity.PmsAttrAttrGroup;
 import com.qinweizhao.product.entity.PmsAttrGroup;
@@ -114,12 +115,15 @@ public class PmsAttrAttrGroupServiceImpl implements IPmsAttrAttrGroupService {
         PmsAttrGroup pmsAttrGroup = pmsAttrGroupMapper.selectPmsAttrGroupByAttrGroupId(attrGroupId);
         Long categoryId = pmsAttrGroup.getCategoryId();
         // 2、当前分组只能关联别的分组没有引用的属性
-        // 2.1)、当前分类下的其他分组
+        // 2.1)、当前分类下的其他分组+当前分组
         List<Long> ids = pmsAttrGroupMapper.selectAttrGroupIdsByCategoryId(categoryId);
+
+        ids.add(attrGroupId);
         // 2.2)、这些分组关联的属性
         List<PmsAttr> pmsAttrs = pmsAttrMapper.selectPmsAttrsByAttrGroupIds(ids);
+
         // 2.3)、从当前分类的所有属性(基本属性)中移除这些属性
-        List<PmsAttr> attrs = pmsAttrMapper.selectPmsAttrsByCategoryId(categoryId);
+        List<PmsAttr> attrs = pmsAttrMapper.selectPmsAttrsByCategoryId(categoryId, ProductConstant.AttrEnum.ATTR_TYPE_BASE.getCode());
         Collection<PmsAttr> subtract = CollUtil.subtract(attrs, pmsAttrs);
 
         return (List<PmsAttr>) subtract;

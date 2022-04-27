@@ -170,6 +170,12 @@
           <el-input v-model="form.name" placeholder="请输入属性名"/>
         </el-form-item>
 
+
+        <el-form-item label="所属分类" prop="categoryId">
+          <treeselect v-model="form.categoryId" :options="categoryOptions" :show-count="true" placeholder="请选择所属分类"/>
+        </el-form-item>
+
+
         <el-form-item label="类型" prop="icon">
           <el-select
             v-model="form.type"
@@ -186,9 +192,6 @@
           </el-select>
         </el-form-item>
 
-        <el-form-item label="所属分类" prop="categoryId">
-          <treeselect v-model="form.categoryId" :options="categoryOptions" :show-count="true" placeholder="请选择所属分类"/>
-        </el-form-item>
 
         <el-form-item label="所属分组" prop="attrGroupId" v-show="form.type !== 0&&form.type!=null">
           <el-select ref="groupSelect" v-model="form.attrGroupId" placeholder="请选择">
@@ -323,7 +326,7 @@ export default {
     form: { // 深度监听
       handler(form) {
         // 但是这两个值打印出来却都是一样的,因为它们的引用指向同一个对象/数组
-        if (form.type!==1&&form.categoryId!==null){
+        if (form.type !== 1 && form.categoryId !== null) {
           this.getAttrGroupList(form.categoryId)
         }
       },
@@ -470,11 +473,11 @@ export default {
     /** 查询属性分组列表 */
     getAttrGroupList(categoryId) {
       this.loading = true
-      listGroup({"categoryId": categoryId}).then(response => {
+      listGroup({'categoryId': categoryId}).then(response => {
         this.form.attrGroups = response.data.rows
       })
       this.getList()
-    },
+    }
 
   }
 }

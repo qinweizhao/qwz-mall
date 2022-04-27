@@ -62,10 +62,13 @@ public class PmsAttrServiceImpl implements IPmsAttrService {
         PmsAttr attr = new PmsAttr();
         attr.setCreateTime(DateUtils.getNowDate());
         BeanUtils.copyProperties(pmsAttr, attr);
-        PmsAttrAttrGroup pmsAttrAttrGroup = new PmsAttrAttrGroup();
-        pmsAttrAttrGroup.setAttrId(pmsAttr.getAttrId());
-        pmsAttrAttrGroup.setAttrGroupId(pmsAttr.getAttrGroupId());
-        pmsAttrAttrGroupMapper.insertPmsAttrAttrGroup(pmsAttrAttrGroup);
+        Long attrId = pmsAttr.getAttrId();
+        if (attrId != null) {
+            PmsAttrAttrGroup pmsAttrAttrGroup = new PmsAttrAttrGroup();
+            pmsAttrAttrGroup.setAttrId(pmsAttr.getAttrId());
+            pmsAttrAttrGroup.setAttrGroupId(pmsAttr.getAttrGroupId());
+            pmsAttrAttrGroupMapper.insertPmsAttrAttrGroup(pmsAttrAttrGroup);
+        }
         return pmsAttrMapper.insertPmsAttr(attr);
     }
 

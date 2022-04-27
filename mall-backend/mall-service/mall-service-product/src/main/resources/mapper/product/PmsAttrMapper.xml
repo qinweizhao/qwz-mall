@@ -87,7 +87,7 @@
 
     <select id="selectPmsAttrsByCategoryId" resultMap="PmsAttrResult">
         <include refid="selectPmsAttrVo"/>
-        where category_id = #{attrId}
+        where category_id = #{categoryId} and type=#{type}
     </select>
 
     <insert id="insertPmsAttr" parameterType="PmsAttr" useGeneratedKeys="true" keyProperty="attrId">

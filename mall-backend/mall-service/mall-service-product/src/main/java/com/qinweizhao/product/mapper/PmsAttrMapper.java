@@ -1,6 +1,7 @@
 package com.qinweizhao.product.mapper;
 
 import com.qinweizhao.product.entity.PmsAttr;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -71,8 +72,9 @@ public interface PmsAttrMapper {
      * 查询属性
      *
      * @param categoryId categoryId
+     * @param type       type
      * @return 结果
      */
-    List<PmsAttr> selectPmsAttrsByCategoryId(Long categoryId);
+    List<PmsAttr> selectPmsAttrsByCategoryId(@Param("categoryId") Long categoryId, @Param("type") int type);
 
 }
