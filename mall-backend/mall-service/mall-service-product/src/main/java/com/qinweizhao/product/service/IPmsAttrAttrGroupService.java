@@ -1,5 +1,6 @@
 package com.qinweizhao.product.service;
 
+import com.qinweizhao.product.entity.PmsAttr;
 import com.qinweizhao.product.entity.PmsAttrAttrGroup;
 
 import java.util.List;
@@ -58,4 +59,12 @@ public interface IPmsAttrAttrGroupService {
      * @return 结果
      */
     int deletePmsAttrAttrGroupById(Long id);
+
+    /**
+     * 查询属性组未关联的属性
+     *
+     * @param attrGroupId attrGroupId
+     * @return List<PmsAttr>
+     */
+    List<PmsAttr> selectPmsAttrAttrGroupUnRelationList(Long attrGroupId);
 }

@@ -42,7 +42,7 @@
           plain
           icon="el-icon-plus"
           size="mini"
-          @click="openSelectUser"
+          @click="openSelectAttr"
           v-hasPermi="['system:role:add']"
         >新增
         </el-button>
@@ -121,19 +121,19 @@
       :limit.sync="queryParams.pageSize"
       @pagination="getList"
     />
-    <select-user ref="select" :roleId="queryParams.roleId" @ok="handleQuery"/>
+    <select-attr ref="select" :attrGroupId="queryParams.attrGroupId" @ok="handleQuery"/>
   </div>
 </template>
 
 <script>
 import {authUserCancel, authUserCancelAll} from "@/api/system/role";
-import {listAttr} from '@/api/product/attr'
-// import selectUser from "./selectUser";
+import {getRelation} from '@/api/product/attr/group'
+import selectAttr from "./selectAttr";
 
 export default {
   name: "Relation",
   dicts: ['pms_attr_value_type', 'pms_attr_search_type', 'pms_attr_type', 'pms_attr_quick_show'],
-  // components: { selectUser },
+  components: {selectAttr},
   data() {
     return {
       // 遮罩层
@@ -166,6 +166,7 @@ export default {
         type: null,
         status: null,
         categoryId: null,
+        attrGroupId: null,
         quickShow: null
       },
       // 表单参数
@@ -186,9 +187,8 @@ export default {
     /** 查询授权用户列表 */
     getList() {
       this.loading = true
-      listAttr(this.queryParams).then(response => {
-        this.attrList = response.data.rows
-        this.total = response.data.total
+      getRelation(this.queryParams).then(response => {
+        this.attrList = response.data
         this.loading = false
       })
     },
@@ -213,7 +213,7 @@ export default {
       this.multiple = !selection.length
     },
     /** 打开授权用户表弹窗 */
-    openSelectUser() {
+    openSelectAttr() {
       this.$refs.select.show();
     },
     /** 取消授权按钮操作 */

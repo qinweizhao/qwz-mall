@@ -41,13 +41,18 @@
             <if test="sort != null ">and sort = #{sort}</if>
             <if test="icon != null  and icon != ''">and icon = #{icon}</if>
             <if test="categoryId != null ">and category_id = #{categoryId}</if>
-
         </where>
     </select>
 
     <select id="selectPmsAttrGroupByAttrGroupId" parameterType="Long" resultMap="PmsAttrGroupResult">
         <include refid="selectPmsAttrGroupVo"/>
         where attr_group_id = #{attrGroupId}
+    </select>
+
+    <select id="selectAttrGroupIdsByCategoryId" resultType="java.lang.Long">
+        select attr_group_id
+        from pms_attr_group
+        where category_id = #{categoryId}
     </select>
 
     <insert id="insertPmsAttrGroup" parameterType="PmsAttrGroup" useGeneratedKeys="true" keyProperty="attrGroupId">

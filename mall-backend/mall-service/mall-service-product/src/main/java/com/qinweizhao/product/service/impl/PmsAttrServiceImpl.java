@@ -1,10 +1,15 @@
 package com.qinweizhao.product.service.impl;
 
 import com.qinweizhao.common.core.utils.DateUtils;
+import com.qinweizhao.common.core.utils.bean.BeanUtils;
 import com.qinweizhao.product.entity.PmsAttr;
+import com.qinweizhao.product.entity.PmsAttrAttrGroup;
+import com.qinweizhao.product.entity.vo.PmsAttrVO;
+import com.qinweizhao.product.mapper.PmsAttrAttrGroupMapper;
 import com.qinweizhao.product.mapper.PmsAttrMapper;
 import com.qinweizhao.product.service.IPmsAttrService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -17,8 +22,11 @@ import java.util.List;
  */
 @Service
 public class PmsAttrServiceImpl implements IPmsAttrService {
+
     @Resource
     private PmsAttrMapper pmsAttrMapper;
+    @Resource
+    private PmsAttrAttrGroupMapper pmsAttrAttrGroupMapper;
 
     /**
      * 查询商品属性
@@ -49,9 +57,16 @@ public class PmsAttrServiceImpl implements IPmsAttrService {
      * @return 结果
      */
     @Override
-    public int insertPmsAttr(PmsAttr pmsAttr) {
-        pmsAttr.setCreateTime(DateUtils.getNowDate());
-        return pmsAttrMapper.insertPmsAttr(pmsAttr);
+    @Transactional(rollbackFor = Exception.class)
+    public int insertPmsAttr(PmsAttrVO pmsAttr) {
+        PmsAttr attr = new PmsAttr();
+        attr.setCreateTime(DateUtils.getNowDate());
+        BeanUtils.copyProperties(pmsAttr, attr);
+        PmsAttrAttrGroup pmsAttrAttrGroup = new PmsAttrAttrGroup();
+        pmsAttrAttrGroup.setAttrId(pmsAttr.getAttrId());
+        pmsAttrAttrGroup.setAttrGroupId(pmsAttr.getAttrGroupId());
+        pmsAttrAttrGroupMapper.insertPmsAttrAttrGroup(pmsAttrAttrGroup);
+        return pmsAttrMapper.insertPmsAttr(attr);
     }
 
     /**
@@ -61,9 +76,23 @@ public class PmsAttrServiceImpl implements IPmsAttrService {
      * @return 结果
      */
     @Override
-    public int updatePmsAttr(PmsAttr pmsAttr) {
-        pmsAttr.setUpdateTime(DateUtils.getNowDate());
-        return pmsAttrMapper.updatePmsAttr(pmsAttr);
+    public int updatePmsAttr(PmsAttrVO pmsAttr) {
+        PmsAttr attr = new PmsAttr();
+        attr.setUpdateTime(DateUtils.getNowDate());
+        BeanUtils.copyProperties(pmsAttr, attr);
+        Long attrGroupId = pmsAttr.getAttrGroupId();
+        PmsAttrAttrGroup pmsAttrAttrGroup = new PmsAttrAttrGroup();
+        pmsAttrAttrGroup.setAttrGroupId(attrGroupId);
+        pmsAttrAttrGroup.setAttrId(pmsAttr.getAttrId());
+        if (attrGroupId != null) {
+            PmsAttrAttrGroup attrAttrGroup = pmsAttrAttrGroupMapper.selectPmsAttrAttrGroupById(attrGroupId);
+            if (attrAttrGroup != null) {
+                pmsAttrAttrGroupMapper.updatePmsAttrAttrGroup(pmsAttrAttrGroup);
+            } else {
+                pmsAttrAttrGroupMapper.insertPmsAttrAttrGroup(pmsAttrAttrGroup);
+            }
+        }
+        return pmsAttrMapper.updatePmsAttr(attr);
     }
 
     /**

@@ -58,4 +58,12 @@ public interface PmsAttrGroupMapper {
      * @return 结果
      */
     int deletePmsAttrGroupByAttrGroupIds(Long[] attrGroupIds);
+
+    /**
+     * 查询属性分组 id 集合
+     *
+     * @param categoryId categoryId
+     * @return List<Long>
+     */
+    List<Long> selectAttrGroupIdsByCategoryId(Long categoryId);
 }

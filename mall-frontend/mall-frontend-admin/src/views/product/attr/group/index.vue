@@ -147,7 +147,7 @@
 <script>
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
-import {addGroup, delGroup, getGroup, listGroup, updateGroup} from '@/api/product/platform/group'
+import {addGroup, delGroup, getGroup, listGroup, updateGroup} from '@/api/product/attr/group'
 import {treeselect} from '@/api/product/category'
 import Category from '@/views/components/product/Category'
 

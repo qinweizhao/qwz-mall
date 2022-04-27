@@ -263,13 +263,13 @@
 </template>
 
 <script>
-import {addAttr, delAttr, getAttr, listAttr, updateAttr} from '@/api/product/attr'
+import {addAttr, delAttr, getAttr, listAttr, updateAttr} from '@/api/product/attr/attr'
 import {changeUserStatus} from '@/api/system/user'
 import Category from '@/views/components/product/Category'
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 import {treeselect} from '@/api/product/category'
-import {listGroup} from '@/api/product/platform/group'
+import {listGroup} from '@/api/product/attr/group'
 
 export default {
   name: 'Attr',
