@@ -54,7 +54,7 @@
           icon="el-icon-circle-close"
           size="mini"
           :disabled="multiple"
-          @click="cancelRelationAll"
+          @click="cancelRelation"
           v-hasPermi="['system:role:remove']"
         >批量取消关联
         </el-button>
@@ -126,12 +126,11 @@
 </template>
 
 <script>
-import {authUserCancelAll} from "@/api/system/role";
 import {getRelation, relationCancel} from '@/api/product/attr/group'
-import selectAttr from "./selectAttr";
+import selectAttr from './selectAttr'
 
 export default {
-  name: "Relation",
+  name: 'Relation',
   dicts: ['pms_attr_value_type', 'pms_attr_search_type', 'pms_attr_type', 'pms_attr_quick_show'],
   components: {selectAttr},
   data() {
@@ -177,14 +176,14 @@ export default {
     }
   },
   created() {
-    const attrGroupId = this.$route.params && this.$route.params.attrGroupId;
+    const attrGroupId = this.$route.params && this.$route.params.attrGroupId
     if (attrGroupId) {
-      this.queryParams.attrGroupId = attrGroupId;
-      this.getList();
+      this.queryParams.attrGroupId = attrGroupId
+      this.getList()
     }
   },
   methods: {
-    /** 查询授权用户列表 */
+    /** 查询未关联列表 */
     getList() {
       this.loading = true
       getRelation(this.queryParams).then(response => {
@@ -194,51 +193,42 @@ export default {
     },
     // 返回按钮
     handleClose() {
-      const obj = {path: "/product/attr/group"};
-      this.$tab.closeOpenPage(obj);
+      const obj = {path: '/product/attr/group'}
+      this.$tab.closeOpenPage(obj)
     },
     /** 搜索按钮操作 */
     handleQuery() {
-      this.queryParams.pageNum = 1;
-      this.getList();
+      this.queryParams.pageNum = 1
+      this.getList()
     },
     /** 重置按钮操作 */
     resetQuery() {
-      this.resetForm("queryForm");
-      this.handleQuery();
+      this.resetForm('queryForm')
+      this.handleQuery()
     },
     // 多选框选中数据
     handleSelectionChange(selection) {
-      this.userIds = selection.map(item => item.userId)
+      this.ids = selection.map(item =>
+        item.attrId
+      )
       this.multiple = !selection.length
     },
     /** 打开授权用户表弹窗 */
     openSelectAttr() {
-      this.$refs.select.show();
+      this.$refs.select.show()
     },
     /** 取消关联操作 */
     cancelRelation(row) {
       const ids = row.attrId || this.ids
-      this.$modal.confirm('确认要取消该用户"' + row.name + '"属性吗？').then(function () {
-        return relationCancel(ids);
+      this.$modal.confirm('确认要取消关联吗？').then(function () {
+        return relationCancel(ids)
       }).then(() => {
-        this.getList();
-        this.$modal.msgSuccess("取消关联成功");
+        this.getList()
+        this.$modal.msgSuccess('取消关联成功')
       }).catch(() => {
-      });
-    },
-    /** 批量取消关联操作 */
-    cancelRelationAll(row) {
-      const roleId = this.queryParams.roleId;
-      const userIds = this.userIds.join(",");
-      this.$modal.confirm('是否取消选中用户授权数据项？').then(function () {
-        return authUserCancelAll({roleId: roleId, userIds: userIds});
-      }).then(() => {
-        this.getList();
-        this.$modal.msgSuccess("取消授权成功");
-      }).catch(() => {
-      });
+      })
     }
+
   }
-};
+}
 </script>

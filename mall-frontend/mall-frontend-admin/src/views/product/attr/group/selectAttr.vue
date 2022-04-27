@@ -19,7 +19,7 @@
       </el-form-item>
     </el-form>
     <el-row>
-      <el-table v-loading="loading" :data="attrList" @selection-change="handleSelectionChange">
+      <el-table :data="attrList" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55" align="center"/>
         <el-table-column label="编号" align="center" prop="attrId"/>
         <el-table-column label="名称" align="center" prop="name"/>
@@ -109,11 +109,10 @@ export default {
     },
     /** 查询授权用户列表 */
     getList() {
-      this.loading = true
+      this.visible = true
       unRelation(this.queryParams).then(response => {
         this.attrList = response.data.rows
         this.total = response.data.total
-        this.loading = false
       })
     },
     /** 选择授权用户操作 */
@@ -126,7 +125,7 @@ export default {
       }
       addRelation({attrGroupId: attrGroupId, attrIds: attrIds}).then(response => {
         this.$modal.msgSuccess(response.message);
-        if (res.code === "200") {
+        if (response.code === "200") {
           this.visible = false;
           this.$emit("ok");
         }

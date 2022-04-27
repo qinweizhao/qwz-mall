@@ -67,23 +67,15 @@
         </trim>
     </insert>
 
-
     <insert id="insertPmsAttrAttrGroups">
         insert into pms_attr_attr_group
         ( attr_id,
-        attr_group_id,
-        create_by,
-        create_time,
-        remark)
+        attr_group_id)
         values
-        <foreach collection="pmsAttrAttrGroups" item="pmsAttrAttrGroup" separator="," open="(" close=")">
-            #{pmsAttrAttrGroup.attrId},
-            #{pmsAttrAttrGroup.attrGroupId},
-            #{pmsAttrAttrGroup.createBy},
-            #{pmsAttrAttrGroup.createTime},
-            #{pmsAttrAttrGroup.remark}
+        <foreach collection="pmsAttrAttrGroups" item="item" separator=",">
+            ( #{item.attrId},
+            #{item.attrGroupId})
         </foreach>
-
     </insert>
 
     <update id="updatePmsAttrAttrGroup" parameterType="PmsAttrAttrGroup">
