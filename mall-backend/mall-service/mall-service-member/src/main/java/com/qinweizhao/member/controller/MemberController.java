@@ -1,7 +1,6 @@
 package com.qinweizhao.member.controller;
 
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
-import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
@@ -23,7 +22,8 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/member")
-public class MemberController extends BaseController {
+public class MemberController {
+
     @Resource
     private MemberService memberService;
 
@@ -32,8 +32,17 @@ public class MemberController extends BaseController {
      */
     @RequiresPermissions("product:member:list")
     @GetMapping("/list")
+    public R<List<Member>> list() {
+        List<Member> list = memberService.list();
+        return R.success(list);
+    }
+
+    /**
+     * 查询会员列表
+     */
+    @RequiresPermissions("product:member:list")
+    @GetMapping("/list")
     public R<List<Member>> list(Member member) {
-        startPage();
         List<Member> list = memberService.selectMemberList(member);
         return R.success(list);
     }
@@ -57,7 +66,7 @@ public class MemberController extends BaseController {
     @RequiresPermissions("product:member:query")
     @GetMapping(value = "/{id}")
     public R<Member> getInfo(@PathVariable("id") Long id) {
-        return R.success(memberService.selectMemberById(id));
+        return R.success(memberService.getById(id));
     }
 
     /**
@@ -66,8 +75,8 @@ public class MemberController extends BaseController {
     @RequiresPermissions("product:member:add")
     @Log(title = "会员", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody Member Member) {
-        return R.condition(memberService.insertMember(Member));
+    public R<Void> add(@RequestBody Member member) {
+        return R.condition(memberService.save(member));
     }
 
     /**
@@ -76,8 +85,8 @@ public class MemberController extends BaseController {
     @RequiresPermissions("product:member:edit")
     @Log(title = "会员", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody Member Member) {
-        return R.condition(memberService.updateMember(Member));
+    public R<Void> edit(@RequestBody Member member) {
+        return R.condition(memberService.save(member));
     }
 
     /**
@@ -86,7 +95,7 @@ public class MemberController extends BaseController {
     @RequiresPermissions("product:member:remove")
     @Log(title = "会员", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable Long[] ids) {
-        return R.condition(memberService.deleteMemberByIds(ids));
+    public R<Void> remove(@PathVariable List<Long> ids) {
+        return R.condition(memberService.removeByIds(ids));
     }
 }
