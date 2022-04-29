@@ -25,6 +25,7 @@ public class PmsAttrServiceImpl implements IPmsAttrService {
 
     @Resource
     private PmsAttrMapper pmsAttrMapper;
+
     @Resource
     private PmsAttrAttrGroupMapper pmsAttrAttrGroupMapper;
 
