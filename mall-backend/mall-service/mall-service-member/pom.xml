@@ -14,7 +14,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>mall-coupon</name>
 
-    <description>用户服务</description>
+    <description>会员服务</description>
 
     <properties>
         <java.version>8</java.version>
@@ -30,6 +30,12 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.qinweizhao.component</groupId>
+            <artifactId>qwz-component-mybatis</artifactId>
+            <version>1.0.0</version>
         </dependency>
 
         <dependency>
