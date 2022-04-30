@@ -511,7 +511,7 @@ export default {
     },
     getMemberLevels() {
       // this.$http({
-      //   url: this.$http.adornUrl("/member/memberlevel/list"),
+      //   url: this.$http.adornUrl("/umsMember/memberlevel/list"),
       //   method: "get",
       //   params: this.$http.adornParams({
       //     page: 1,

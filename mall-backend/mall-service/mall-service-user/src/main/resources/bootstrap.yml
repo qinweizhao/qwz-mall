@@ -6,7 +6,7 @@ server:
 spring:
   application:
     # 应用名称
-    name: mall-member
+    name: mall-user
   profiles:
     # 环境配置
     active: dev

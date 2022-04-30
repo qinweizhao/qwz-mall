@@ -1,7 +1,7 @@
 package com.qinweizhao.user.entity;
 
 import com.qinweizhao.common.core.annotation.Excel;
-import com.qinweizhao.common.core.web.domain.BaseEntity;
+import lombok.Data;
 
 import java.math.BigDecimal;
 
@@ -11,7 +11,8 @@ import java.math.BigDecimal;
  * @author qinweizhao
  * @date 2022-04-30
  */
-public class UmsMemberLevel extends BaseEntity {
+@Data
+public class UmsMemberLevel {
     private static final long serialVersionUID = 1L;
 
     /**

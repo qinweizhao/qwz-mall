@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qinweizhao.user.mapper.UmsMemberMapper">
 
-    <resultMap type="UmsMember" id="UmsMemberResult">
+    <resultMap type="UmsMember" id="MemberResult">
         <result property="id" column="id"/>
         <result property="levelId" column="level_id"/>
         <result property="username" column="username"/>
@@ -25,7 +23,7 @@
         <result property="createTime" column="create_time"/>
     </resultMap>
 
-    <sql id="selectUmsMemberVo">
+    <sql id="selectMemberVo">
         select id,
                level_id,
                username,
@@ -47,8 +45,8 @@
         from ums_member
     </sql>
 
-    <select id="selectUmsMemberList" parameterType="UmsMember" resultMap="UmsMemberResult">
-        <include refid="selectUmsMemberVo"/>
+    <select id="selectMemberList" parameterType="com.qinweizhao.user.entity.UmsMember" resultMap="MemberResult">
+        <include refid="selectMemberVo"/>
         <where>
             <if test="levelId != null ">and level_id = #{levelId}</if>
             <if test="username != null  and username != ''">and username like concat('%', #{username}, '%')</if>
@@ -69,87 +67,4 @@
         </where>
     </select>
 
-    <select id="selectUmsMemberById" parameterType="Long" resultMap="UmsMemberResult">
-        <include refid="selectUmsMemberVo"/>
-        where id = #{id}
-    </select>
-
-    <insert id="insertUmsMember" parameterType="UmsMember" useGeneratedKeys="true" keyProperty="id">
-        insert into ums_member
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="levelId != null">level_id,</if>
-            <if test="username != null">username,</if>
-            <if test="password != null">password,</if>
-            <if test="nickname != null">nickname,</if>
-            <if test="mobile != null">mobile,</if>
-            <if test="email != null">email,</if>
-            <if test="header != null">header,</if>
-            <if test="gender != null">gender,</if>
-            <if test="birth != null">birth,</if>
-            <if test="city != null">city,</if>
-            <if test="job != null">job,</if>
-            <if test="sign != null">sign,</if>
-            <if test="sourceType != null">source_type,</if>
-            <if test="integration != null">integration,</if>
-            <if test="growth != null">growth,</if>
-            <if test="status != null">status,</if>
-            <if test="createTime != null">create_time,</if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="levelId != null">#{levelId},</if>
-            <if test="username != null">#{username},</if>
-            <if test="password != null">#{password},</if>
-            <if test="nickname != null">#{nickname},</if>
-            <if test="mobile != null">#{mobile},</if>
-            <if test="email != null">#{email},</if>
-            <if test="header != null">#{header},</if>
-            <if test="gender != null">#{gender},</if>
-            <if test="birth != null">#{birth},</if>
-            <if test="city != null">#{city},</if>
-            <if test="job != null">#{job},</if>
-            <if test="sign != null">#{sign},</if>
-            <if test="sourceType != null">#{sourceType},</if>
-            <if test="integration != null">#{integration},</if>
-            <if test="growth != null">#{growth},</if>
-            <if test="status != null">#{status},</if>
-            <if test="createTime != null">#{createTime},</if>
-        </trim>
-    </insert>
-
-    <update id="updateUmsMember" parameterType="UmsMember">
-        update ums_member
-        <trim prefix="SET" suffixOverrides=",">
-            <if test="levelId != null">level_id = #{levelId},</if>
-            <if test="username != null">username = #{username},</if>
-            <if test="password != null">password = #{password},</if>
-            <if test="nickname != null">nickname = #{nickname},</if>
-            <if test="mobile != null">mobile = #{mobile},</if>
-            <if test="email != null">email = #{email},</if>
-            <if test="header != null">header = #{header},</if>
-            <if test="gender != null">gender = #{gender},</if>
-            <if test="birth != null">birth = #{birth},</if>
-            <if test="city != null">city = #{city},</if>
-            <if test="job != null">job = #{job},</if>
-            <if test="sign != null">sign = #{sign},</if>
-            <if test="sourceType != null">source_type = #{sourceType},</if>
-            <if test="integration != null">integration = #{integration},</if>
-            <if test="growth != null">growth = #{growth},</if>
-            <if test="status != null">status = #{status},</if>
-            <if test="createTime != null">create_time = #{createTime},</if>
-        </trim>
-        where id = #{id}
-    </update>
-
-    <delete id="deleteUmsMemberById" parameterType="Long">
-        delete
-        from ums_member
-        where id = #{id}
-    </delete>
-
-    <delete id="deleteUmsMemberByIds" parameterType="String">
-        delete from ums_member where id in
-        <foreach item="id" collection="array" open="(" separator="," close=")">
-            #{id}
-        </foreach>
-    </delete>
 </mapper>

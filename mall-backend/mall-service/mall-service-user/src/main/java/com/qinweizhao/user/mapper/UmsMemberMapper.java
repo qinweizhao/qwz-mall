@@ -1,5 +1,7 @@
 package com.qinweizhao.user.mapper;
 
+
+import com.qinweizhao.component.mybatis.mapper.QwzBaseMapper;
 import com.qinweizhao.user.entity.UmsMember;
 
 import java.util.List;
@@ -8,16 +10,10 @@ import java.util.List;
  * 会员Mapper接口
  *
  * @author qinweizhao
- * @date 2022-04-30
+ * @date 2022-04-29
  */
-public interface UmsMemberMapper {
-    /**
-     * 查询会员
-     *
-     * @param id 会员主键
-     * @return 会员
-     */
-    public UmsMember selectUmsMemberById(Long id);
+public interface UmsMemberMapper extends QwzBaseMapper<UmsMember> {
+
 
     /**
      * 查询会员列表
@@ -25,37 +21,7 @@ public interface UmsMemberMapper {
      * @param umsMember 会员
      * @return 会员集合
      */
-    public List<UmsMember> selectUmsMemberList(UmsMember umsMember);
+    List<UmsMember> selectMemberList(UmsMember umsMember);
 
-    /**
-     * 新增会员
-     *
-     * @param umsMember 会员
-     * @return 结果
-     */
-    public int insertUmsMember(UmsMember umsMember);
 
-    /**
-     * 修改会员
-     *
-     * @param umsMember 会员
-     * @return 结果
-     */
-    public int updateUmsMember(UmsMember umsMember);
-
-    /**
-     * 删除会员
-     *
-     * @param id 会员主键
-     * @return 结果
-     */
-    public int deleteUmsMemberById(Long id);
-
-    /**
-     * 批量删除会员
-     *
-     * @param ids 需要删除的数据主键集合
-     * @return 结果
-     */
-    public int deleteUmsMemberByIds(Long[] ids);
 }

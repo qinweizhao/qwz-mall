@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询会员列表
 export function listMember(query) {
   return request({
-    url: '/product/member/list',
+    url: '/user/member/list',
     method: 'get',
     params: query
   })
@@ -12,7 +12,7 @@ export function listMember(query) {
 // 查询会员详细
 export function getMember(id) {
   return request({
-    url: '/product/member/' + id,
+    url: '/user/member/' + id,
     method: 'get'
   })
 }
@@ -20,7 +20,7 @@ export function getMember(id) {
 // 新增会员
 export function addMember(data) {
   return request({
-    url: '/product/member',
+    url: '/user/member',
     method: 'post',
     data: data
   })
@@ -29,7 +29,7 @@ export function addMember(data) {
 // 修改会员
 export function updateMember(data) {
   return request({
-    url: '/product/member',
+    url: '/user/member',
     method: 'put',
     data: data
   })
@@ -38,7 +38,7 @@ export function updateMember(data) {
 // 删除会员
 export function delMember(id) {
   return request({
-    url: '/product/member/' + id,
+    url: '/user/member/' + id,
     method: 'delete'
   })
 }
