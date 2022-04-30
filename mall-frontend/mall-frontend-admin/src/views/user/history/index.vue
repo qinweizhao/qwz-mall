@@ -140,7 +140,7 @@
 </template>
 
 <script>
-import {addHistory, delHistory, getHistory, listHistory, updateHistory} from "@/api/";
+import {addHistory, delHistory, getHistory, listHistory, updateHistory} from "@/api/user/history";
 
 export default {
   name: "History",

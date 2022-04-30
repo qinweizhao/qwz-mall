@@ -180,7 +180,7 @@ import {
   updateBrand
 } from '@/api/product/brand'
 import ImageUpload from '@/components/ImageUpload'
-import category from '@/views/components/product/Category'
+import category from '@/views/product/common/Category'
 import ImagePreview from '@/components/ImagePreview'
 
 export default {

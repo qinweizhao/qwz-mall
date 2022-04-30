@@ -212,7 +212,7 @@
 </template>
 
 <script>
-import {addAddress, delAddress, getAddress, listAddress, updateAddress} from "@/api/";
+import {addAddress, delAddress, getAddress, listAddress, updateAddress} from "@/api/user/address";
 
 export default {
   name: "Address",

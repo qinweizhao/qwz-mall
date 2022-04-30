@@ -140,7 +140,7 @@
 </template>
 
 <script>
-import {addLog, delLog, getLog, listLog, updateLog} from "@/api/";
+import {addLog, delLog, getLog, listLog, updateLog} from "@/api/user/log";
 
 export default {
   name: "Log",

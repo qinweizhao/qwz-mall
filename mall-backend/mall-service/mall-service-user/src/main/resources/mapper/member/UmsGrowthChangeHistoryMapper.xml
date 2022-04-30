@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qinweizhao.product.mapper.UmsGrowthChangeHistoryMapper">
+<mapper namespace="com.qinweizhao.root.mapper.UmsGrowthChangeHistoryMapper">
 
     <resultMap type="UmsGrowthChangeHistory" id="UmsGrowthChangeHistoryResult">
         <result property="id" column="id"/>

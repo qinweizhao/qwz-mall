@@ -41,13 +41,12 @@ public class PmsCategoryBrandController extends BaseController {
     @RequiresPermissions("product:brand:list")
     @GetMapping("/list")
     public R<List<PmsCategoryBrand>> list(PmsCategoryBrand pmsCategoryBrand) {
-        startPage();
         List<PmsCategoryBrand> list = pmsCategoryBrandService.selectPmsCategoryBrandList(pmsCategoryBrand);
         return R.success(list);
     }
 
     /**
-     * 获取品牌详细信息
+     * 通过品牌ID查询
      */
     @RequiresPermissions("product:brand:relation")
     @GetMapping(value = "/{brandId}")

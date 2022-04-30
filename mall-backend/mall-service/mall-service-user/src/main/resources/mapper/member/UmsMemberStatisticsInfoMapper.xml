@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qinweizhao.product.mapper.UmsMemberStatisticsInfoMapper">
+<mapper namespace="com.qinweizhao.root.mapper.UmsMemberStatisticsInfoMapper">
 
     <resultMap type="UmsMemberStatisticsInfo" id="UmsMemberStatisticsInfoResult">
         <result property="id" column="id"/>

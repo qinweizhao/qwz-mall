@@ -46,9 +46,11 @@ export function delBrand(brandId) {
 // 品牌和分类
 // 查询与分类的关联信息
 export function getRelation(brandId) {
+  const param = {brandId: brandId}
   return request({
-    url: '/product/brand/category/' + brandId,
-    method: 'get'
+    url: '/product/brand/category/list',
+    method: 'get',
+    params: param
   })
 }
 

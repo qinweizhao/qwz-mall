@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qinweizhao.product.mapper.UmsMemberLevelMapper">
+<mapper namespace="com.qinweizhao.user.mapper.UmsMemberLevelMapper">
 
-    <resultMap type="UmsMemberLevel" id="UmsMemberLevelResult">
+    <resultMap type="com.qinweizhao.user.entity.UmsMemberLevel" id="UmsMemberLevelResult">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="growthPoint" column="growth_point"/>
@@ -31,7 +31,8 @@
         from ums_member_level
     </sql>
 
-    <select id="selectUmsMemberLevelList" parameterType="UmsMemberLevel" resultMap="UmsMemberLevelResult">
+    <select id="selectUmsMemberLevelList" parameterType="com.qinweizhao.user.entity.UmsMemberLevel"
+            resultMap="UmsMemberLevelResult">
         <include refid="selectUmsMemberLevelVo"/>
         <where>
             <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
@@ -46,63 +47,4 @@
         </where>
     </select>
 
-    <select id="selectUmsMemberLevelById" parameterType="Long" resultMap="UmsMemberLevelResult">
-        <include refid="selectUmsMemberLevelVo"/>
-        where id = #{id}
-    </select>
-
-    <insert id="insertUmsMemberLevel" parameterType="UmsMemberLevel" useGeneratedKeys="true" keyProperty="id">
-        insert into ums_member_level
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="name != null">name,</if>
-            <if test="growthPoint != null">growth_point,</if>
-            <if test="defaultStatus != null">default_status,</if>
-            <if test="freeFreightPoint != null">free_freight_point,</if>
-            <if test="commentGrowthPoint != null">comment_growth_point,</if>
-            <if test="priviledgeFreeFreight != null">priviledge_free_freight,</if>
-            <if test="priviledgeMemberPrice != null">priviledge_member_price,</if>
-            <if test="priviledgeBirthday != null">priviledge_birthday,</if>
-            <if test="note != null">note,</if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="name != null">#{name},</if>
-            <if test="growthPoint != null">#{growthPoint},</if>
-            <if test="defaultStatus != null">#{defaultStatus},</if>
-            <if test="freeFreightPoint != null">#{freeFreightPoint},</if>
-            <if test="commentGrowthPoint != null">#{commentGrowthPoint},</if>
-            <if test="priviledgeFreeFreight != null">#{priviledgeFreeFreight},</if>
-            <if test="priviledgeMemberPrice != null">#{priviledgeMemberPrice},</if>
-            <if test="priviledgeBirthday != null">#{priviledgeBirthday},</if>
-            <if test="note != null">#{note},</if>
-        </trim>
-    </insert>
-
-    <update id="updateUmsMemberLevel" parameterType="UmsMemberLevel">
-        update ums_member_level
-        <trim prefix="SET" suffixOverrides=",">
-            <if test="name != null">name = #{name},</if>
-            <if test="growthPoint != null">growth_point = #{growthPoint},</if>
-            <if test="defaultStatus != null">default_status = #{defaultStatus},</if>
-            <if test="freeFreightPoint != null">free_freight_point = #{freeFreightPoint},</if>
-            <if test="commentGrowthPoint != null">comment_growth_point = #{commentGrowthPoint},</if>
-            <if test="priviledgeFreeFreight != null">priviledge_free_freight = #{priviledgeFreeFreight},</if>
-            <if test="priviledgeMemberPrice != null">priviledge_member_price = #{priviledgeMemberPrice},</if>
-            <if test="priviledgeBirthday != null">priviledge_birthday = #{priviledgeBirthday},</if>
-            <if test="note != null">note = #{note},</if>
-        </trim>
-        where id = #{id}
-    </update>
-
-    <delete id="deleteUmsMemberLevelById" parameterType="Long">
-        delete
-        from ums_member_level
-        where id = #{id}
-    </delete>
-
-    <delete id="deleteUmsMemberLevelByIds" parameterType="String">
-        delete from ums_member_level where id in
-        <foreach item="id" collection="array" open="(" separator="," close=")">
-            #{id}
-        </foreach>
-    </delete>
 </mapper>

@@ -271,7 +271,7 @@
 </template>
 
 <script>
-import {addInfo, delInfo, getInfo, listInfo, updateInfo} from "@/api/";
+import {addInfo, delInfo, getInfo, listInfo, updateInfo} from "@/api/user/info";
 
 export default {
   name: "Info",

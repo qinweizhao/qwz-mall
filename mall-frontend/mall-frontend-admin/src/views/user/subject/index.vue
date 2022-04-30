@@ -135,7 +135,7 @@
 </template>
 
 <script>
-import {addSubject, delSubject, getSubject, listSubject, updateSubject} from "@/api/";
+import {addSubject, delSubject, getSubject, listSubject, updateSubject} from "@/api/user/subject";
 
 export default {
   name: "Subject",

@@ -200,7 +200,7 @@
 </template>
 
 <script>
-import {addLevel, delLevel, getLevel, listLevel, updateLevel} from "@/api/";
+import {addLevel, delLevel, getLevel, listLevel, updateLevel} from "@/api/user/level";
 
 export default {
   name: "Level",

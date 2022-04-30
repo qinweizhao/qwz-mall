@@ -135,7 +135,7 @@
 </template>
 
 <script>
-import {addSpu, delSpu, getSpu, listSpu, updateSpu} from "@/api/";
+import {addSpu, delSpu, getSpu, listSpu, updateSpu} from "@/api/user/spu";
 
 export default {
   name: "Spu",

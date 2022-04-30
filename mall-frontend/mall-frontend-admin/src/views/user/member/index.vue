@@ -266,7 +266,7 @@
 </template>
 
 <script>
-import {addMember, delMember, getMember, listMember, updateMember} from "@/api/";
+import {addMember, delMember, getMember, listMember, updateMember} from "@/api/user/member";
 
 export default {
   name: "Member",
