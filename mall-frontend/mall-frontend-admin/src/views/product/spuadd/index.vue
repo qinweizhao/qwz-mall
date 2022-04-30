@@ -72,7 +72,7 @@
         <el-card class="box-card" style="width:80%;margin:20px auto">
           <el-tabs tab-position="left" style="width:98%">
             <el-tab-pane
-              :label="group.attrGroupName"
+              :label="group.name"
               v-for="(group,gidx) in dataResp.attrGroups"
               :key="group.attrGroupId"
             >
@@ -104,7 +104,7 @@
                     ></el-option>
                   </el-select>
                   <el-checkbox
-                    v-model="dataResp.baseAttrs[gidx][aidx].showDesc"
+                    v-model="dataResp.baseAttrs[gidx][aidx].quickShow"
                     :true-label="1"
                     :false-label="0"
                   >快速展示
@@ -568,6 +568,7 @@ export default {
           //跳过没有录入值的属性
           if (attrValues != '') {
             if (attrValues instanceof Array) {
+
               //多个值用;隔开
               attrValues = attrValues.join(';')
             }
@@ -698,21 +699,24 @@ export default {
     showBaseAttrs() {
       if (!this.dataResp.steped[0]) {
         console.log(this.spu.categoryId)
-        getAttrGroupWithAttrs(this.spu.categoryId).then(({data}) => {
+        getAttrGroupWithAttrs(this.spu.categoryId).then(data => {
           //先对表单的baseAttrs进行初始化
           data.data.forEach(item => {
             let attrArray = []
-            item.attrs.forEach(attr => {
-              attrArray.push({
-                attrId: attr.attrId,
-                attrValues: '',
-                showDesc: attr.showDesc
+            if (item.attrs != null) {
+              item.attrs.forEach(attr => {
+                attrArray.push({
+                  attrId: attr.attrId,
+                  attrValues: '',
+                  showDesc: attr.quickShow
+                })
               })
-            })
+            }
             this.dataResp.baseAttrs.push(attrArray)
           })
           this.dataResp.steped[0] = 0
           this.dataResp.attrGroups = data.data
+          console.log(this.dataResp)
         })
         //
         // this.$http({

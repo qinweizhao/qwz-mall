@@ -55,7 +55,7 @@
         where category_id = #{categoryId}
     </select>
 
-    <select id="selectPmsAttrGroupByCategoryId" resultType="com.qinweizhao.product.entity.PmsAttrGroup">
+    <select id="selectPmsAttrGroupByCategoryId" resultMap="PmsAttrGroupResult">
         <include refid="selectPmsAttrGroupVo"/>
         where category_id = #{categoryId}
     </select>

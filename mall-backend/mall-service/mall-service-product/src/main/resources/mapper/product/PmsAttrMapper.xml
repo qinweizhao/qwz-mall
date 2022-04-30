@@ -79,7 +79,7 @@
         </foreach>
     </select>
 
-    <select id="selectPmsAttrsByPmsAttrIds" resultType="com.qinweizhao.product.entity.PmsAttr">
+    <select id="selectPmsAttrsByPmsAttrIds" resultMap="PmsAttrResult">
         <include refid="selectPmsAttrVo"/>
         where attr_id in
         <foreach collection="list" item="id" open="(" close=")" separator=",">
