@@ -21,7 +21,7 @@ import java.util.List;
  * @since 2022-04-29
  */
 @RestController
-@RequestMapping("/member")
+@RequestMapping("/user")
 public class MemberController {
 
     @Resource
