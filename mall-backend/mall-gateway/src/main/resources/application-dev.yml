@@ -40,6 +40,13 @@ spring:
             - Path=/product/**
           filters:
             - StripPrefix=1
+        # 用户模块
+        - id: mall-user
+          uri: lb://mall-user
+          predicates:
+            - Path=/user/**
+          filters:
+            - StripPrefix=1
         # 文件服务
         - id: mall-file
           uri: lb://mall-file
