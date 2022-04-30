@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qinweizhao.product.mapper.UmsMemberCollectSubjectMapper">
+
+    <resultMap type="UmsMemberCollectSubject" id="UmsMemberCollectSubjectResult">
+        <result property="id" column="id"/>
+        <result property="subjectId" column="subject_id"/>
+        <result property="subjectName" column="subject_name"/>
+        <result property="subjectImg" column="subject_img"/>
+        <result property="subjectUrll" column="subject_urll"/>
+    </resultMap>
+
+    <sql id="selectUmsMemberCollectSubjectVo">
+        select id, subject_id, subject_name, subject_img, subject_urll
+        from ums_member_collect_subject
+    </sql>
+
+    <select id="selectUmsMemberCollectSubjectList" parameterType="UmsMemberCollectSubject"
+            resultMap="UmsMemberCollectSubjectResult">
+        <include refid="selectUmsMemberCollectSubjectVo"/>
+        <where>
+            <if test="subjectId != null ">and subject_id = #{subjectId}</if>
+            <if test="subjectName != null  and subjectName != ''">and subject_name like concat('%', #{subjectName},
+                '%')
+            </if>
+            <if test="subjectImg != null  and subjectImg != ''">and subject_img = #{subjectImg}</if>
+            <if test="subjectUrll != null  and subjectUrll != ''">and subject_urll = #{subjectUrll}</if>
+        </where>
+    </select>
+
+    <select id="selectUmsMemberCollectSubjectById" parameterType="Long" resultMap="UmsMemberCollectSubjectResult">
+        <include refid="selectUmsMemberCollectSubjectVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertUmsMemberCollectSubject" parameterType="UmsMemberCollectSubject" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into ums_member_collect_subject
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="subjectId != null">subject_id,</if>
+            <if test="subjectName != null">subject_name,</if>
+            <if test="subjectImg != null">subject_img,</if>
+            <if test="subjectUrll != null">subject_urll,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="subjectId != null">#{subjectId},</if>
+            <if test="subjectName != null">#{subjectName},</if>
+            <if test="subjectImg != null">#{subjectImg},</if>
+            <if test="subjectUrll != null">#{subjectUrll},</if>
+        </trim>
+    </insert>
+
+    <update id="updateUmsMemberCollectSubject" parameterType="UmsMemberCollectSubject">
+        update ums_member_collect_subject
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="subjectId != null">subject_id = #{subjectId},</if>
+            <if test="subjectName != null">subject_name = #{subjectName},</if>
+            <if test="subjectImg != null">subject_img = #{subjectImg},</if>
+            <if test="subjectUrll != null">subject_urll = #{subjectUrll},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteUmsMemberCollectSubjectById" parameterType="Long">
+        delete
+        from ums_member_collect_subject
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteUmsMemberCollectSubjectByIds" parameterType="String">
+        delete from ums_member_collect_subject where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
