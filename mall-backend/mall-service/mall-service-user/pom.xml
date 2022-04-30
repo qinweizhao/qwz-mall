@@ -13,9 +13,9 @@
 
     <artifactId>mall-service-user</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>mall-coupon</name>
+    <name>mall-service-user</name>
 
-    <description>会员服务</description>
+    <description>用户服务</description>
 
     <dependencies>
         <dependency>

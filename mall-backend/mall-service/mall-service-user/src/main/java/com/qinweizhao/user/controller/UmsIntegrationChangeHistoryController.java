@@ -21,7 +21,7 @@ import java.util.List;
  * @date 2022-04-30
  */
 @RestController
-@RequestMapping("/history")
+@RequestMapping("/integration-history")
 public class UmsIntegrationChangeHistoryController extends BaseController {
 
     @Resource

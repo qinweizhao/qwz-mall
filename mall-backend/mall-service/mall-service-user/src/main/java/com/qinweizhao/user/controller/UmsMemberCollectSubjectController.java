@@ -57,7 +57,7 @@ public class UmsMemberCollectSubjectController extends BaseController {
     @RequiresPermissions("product:subject:query")
     @GetMapping(value = "/{id}")
     public R<UmsMemberCollectSubject> getInfo(@PathVariable("id") Long id) {
-        return R.success(umsMemberCollectSubjectService.selectUmsMemberCollectSubjectById(id));
+        return R.success(umsMemberCollectSubjectService.getById(id));
     }
 
     /**
@@ -67,7 +67,7 @@ public class UmsMemberCollectSubjectController extends BaseController {
     @Log(title = "会员收藏的专题活动", businessType = BusinessType.INSERT)
     @PostMapping
     public R<Void> add(@RequestBody UmsMemberCollectSubject umsMemberCollectSubject) {
-        return R.condition(umsMemberCollectSubjectService.insertUmsMemberCollectSubject(umsMemberCollectSubject));
+        return R.condition(umsMemberCollectSubjectService.save(umsMemberCollectSubject));
     }
 
     /**
@@ -77,7 +77,7 @@ public class UmsMemberCollectSubjectController extends BaseController {
     @Log(title = "会员收藏的专题活动", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<Void> edit(@RequestBody UmsMemberCollectSubject umsMemberCollectSubject) {
-        return R.condition(umsMemberCollectSubjectService.updateUmsMemberCollectSubject(umsMemberCollectSubject));
+        return R.condition(umsMemberCollectSubjectService.updateById(umsMemberCollectSubject));
     }
 
     /**
@@ -86,7 +86,7 @@ public class UmsMemberCollectSubjectController extends BaseController {
     @RequiresPermissions("product:subject:remove")
     @Log(title = "会员收藏的专题活动", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable Long[] ids) {
-        return R.condition(umsMemberCollectSubjectService.deleteUmsMemberCollectSubjectByIds(ids));
+    public R<Void> remove(@PathVariable List<Long> ids) {
+        return R.condition(umsMemberCollectSubjectService.removeBatchByIds(ids));
     }
 }

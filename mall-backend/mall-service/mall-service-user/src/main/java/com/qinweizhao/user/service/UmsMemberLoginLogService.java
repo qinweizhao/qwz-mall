@@ -11,7 +11,7 @@ import java.util.List;
  * @author qinweizhao
  * @date 2022-04-30
  */
-public interface IUmsMemberLoginLogService extends QwzService<UmsMemberLoginLog> {
+public interface UmsMemberLoginLogService extends QwzService<UmsMemberLoginLog> {
 
 
     /**

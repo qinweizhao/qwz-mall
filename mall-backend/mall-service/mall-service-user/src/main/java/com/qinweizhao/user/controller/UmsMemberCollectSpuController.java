@@ -21,7 +21,7 @@ import java.util.List;
  * @date 2022-04-30
  */
 @RestController
-@RequestMapping("/spu")
+@RequestMapping("/collect-spu")
 public class UmsMemberCollectSpuController extends BaseController {
 
     @Resource

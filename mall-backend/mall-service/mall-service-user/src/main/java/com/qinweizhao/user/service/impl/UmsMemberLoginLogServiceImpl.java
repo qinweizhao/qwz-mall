@@ -3,7 +3,7 @@ package com.qinweizhao.user.service.impl;
 import com.qinweizhao.component.mybatis.service.impl.QwzServiceImpl;
 import com.qinweizhao.user.entity.UmsMemberLoginLog;
 import com.qinweizhao.user.mapper.UmsMemberLoginLogMapper;
-import com.qinweizhao.user.service.IUmsMemberLoginLogService;
+import com.qinweizhao.user.service.UmsMemberLoginLogService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,7 +16,7 @@ import java.util.List;
  * @date 2022-04-30
  */
 @Service
-public class UmsMemberLoginLogServiceImpl extends QwzServiceImpl<UmsMemberLoginLogMapper, UmsMemberLoginLog> implements IUmsMemberLoginLogService {
+public class UmsMemberLoginLogServiceImpl extends QwzServiceImpl<UmsMemberLoginLogMapper, UmsMemberLoginLog> implements UmsMemberLoginLogService {
     @Resource
     private UmsMemberLoginLogMapper umsMemberLoginLogMapper;
 

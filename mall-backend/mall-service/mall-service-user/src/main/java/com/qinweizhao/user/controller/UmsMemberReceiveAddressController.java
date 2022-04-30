@@ -7,7 +7,7 @@ import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.user.entity.UmsMemberReceiveAddress;
-import com.qinweizhao.user.service.IUmsMemberReceiveAddressService;
+import com.qinweizhao.user.service.UmsMemberReceiveAddressService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -25,7 +25,7 @@ import java.util.List;
 public class UmsMemberReceiveAddressController extends BaseController {
 
     @Resource
-    private IUmsMemberReceiveAddressService umsMemberReceiveAddressService;
+    private UmsMemberReceiveAddressService umsMemberReceiveAddressService;
 
     /**
      * 查询会员收货地址列表

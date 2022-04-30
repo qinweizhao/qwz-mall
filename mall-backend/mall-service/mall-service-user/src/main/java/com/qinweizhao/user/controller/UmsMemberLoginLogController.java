@@ -7,7 +7,7 @@ import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.user.entity.UmsMemberLoginLog;
-import com.qinweizhao.user.service.IUmsMemberLoginLogService;
+import com.qinweizhao.user.service.UmsMemberLoginLogService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -24,7 +24,7 @@ import java.util.List;
 @RequestMapping("/log")
 public class UmsMemberLoginLogController extends BaseController {
     @Resource
-    private IUmsMemberLoginLogService umsMemberLoginLogService;
+    private UmsMemberLoginLogService umsMemberLoginLogService;
 
     /**
      * 查询会员登录记录列表
