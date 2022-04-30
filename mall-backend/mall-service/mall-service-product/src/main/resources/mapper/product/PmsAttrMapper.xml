@@ -61,7 +61,7 @@
         where attr_id = #{attrId}
     </select>
 
-    <select id="selectPmsAttrsByAttrGroupIds" resultType="long">
+    <select id="selectPmsAttrIdsByAttrGroupIds" resultType="long">
         select a.attr_id
         from pms_attr a
         left join pms_attr_attr_group aag on a.attr_id = aag.attr_id
@@ -76,6 +76,14 @@
         where category_id = #{categoryId} and type=#{type} and attr_id not in
         <foreach collection="excludeAttrIds" item="attrId" open="(" close=")" separator=",">
             #{attrId}
+        </foreach>
+    </select>
+
+    <select id="selectPmsAttrsByPmsAttrIds" resultType="com.qinweizhao.product.entity.PmsAttr">
+        <include refid="selectPmsAttrVo"/>
+        where attr_id in
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
+            #{id}
         </foreach>
     </select>
 

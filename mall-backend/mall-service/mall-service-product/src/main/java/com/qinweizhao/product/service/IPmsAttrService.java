@@ -60,4 +60,7 @@ public interface IPmsAttrService {
      * @return 结果
      */
     int deletePmsAttrByAttrId(Long attrId);
+
+    // todo
+    List<PmsAttr> getRelationAttr(Long attrGroupId);
 }

@@ -66,4 +66,6 @@ public interface PmsAttrGroupMapper {
      * @return List<Long>
      */
     List<Long> selectAttrGroupIdsByCategoryId(Long categoryId);
+
+    List<PmsAttrGroup> selectPmsAttrGroupByCategoryId(Long categoryId);
 }

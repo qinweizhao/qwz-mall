@@ -78,3 +78,11 @@ export function relationCancel(ids) {
     method: 'delete'
   })
 }
+
+
+export function getAttrGroupWithAttrs(id) {
+  return request({
+    url: `/product/attr-group/${id}/attr`,
+    method: 'get',
+  })
+}

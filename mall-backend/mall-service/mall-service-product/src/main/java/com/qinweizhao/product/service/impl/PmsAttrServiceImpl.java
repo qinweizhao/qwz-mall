@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 商品属性Service业务层处理
@@ -121,5 +122,18 @@ public class PmsAttrServiceImpl implements IPmsAttrService {
     @Override
     public int deletePmsAttrByAttrId(Long attrId) {
         return pmsAttrMapper.deletePmsAttrByAttrId(attrId);
+    }
+
+    @Override
+    public List<PmsAttr> getRelationAttr(Long attrGroupId) {
+        PmsAttrAttrGroup pmsAttrAttrGroup = new PmsAttrAttrGroup();
+        pmsAttrAttrGroup.setAttrGroupId(attrGroupId);
+        List<PmsAttrAttrGroup> pmsAttrAttrGroups = pmsAttrAttrGroupMapper.selectPmsAttrAttrGroupList(pmsAttrAttrGroup);
+        List<Long> attrIds = pmsAttrAttrGroups.stream().map(PmsAttrAttrGroup::getAttrId).collect(Collectors.toList());
+
+        if (attrIds.size() == 0) {
+            return null;
+        }
+        return pmsAttrMapper.selectPmsAttrsByPmsAttrIds(attrIds);
     }
 }

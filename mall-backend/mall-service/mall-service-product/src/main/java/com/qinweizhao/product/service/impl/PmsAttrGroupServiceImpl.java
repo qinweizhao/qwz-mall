@@ -1,13 +1,18 @@
 package com.qinweizhao.product.service.impl;
 
 import com.qinweizhao.common.core.utils.DateUtils;
+import com.qinweizhao.product.entity.PmsAttr;
 import com.qinweizhao.product.entity.PmsAttrGroup;
+import com.qinweizhao.product.entity.vo.PmsAttrGroupWithPmsAttrsVO;
 import com.qinweizhao.product.mapper.PmsAttrGroupMapper;
 import com.qinweizhao.product.service.IPmsAttrGroupService;
+import com.qinweizhao.product.service.IPmsAttrService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 属性分组Service业务层处理
@@ -19,6 +24,8 @@ import java.util.List;
 public class PmsAttrGroupServiceImpl implements IPmsAttrGroupService {
     @Resource
     private PmsAttrGroupMapper pmsAttrGroupMapper;
+    @Resource
+    private IPmsAttrService pmsAttrService;
 
     /**
      * 查询属性分组
@@ -86,5 +93,20 @@ public class PmsAttrGroupServiceImpl implements IPmsAttrGroupService {
     @Override
     public int deletePmsAttrGroupByAttrGroupId(Long attrGroupId) {
         return pmsAttrGroupMapper.deletePmsAttrGroupByAttrGroupId(attrGroupId);
+    }
+
+    @Override
+    public List<PmsAttrGroupWithPmsAttrsVO> getPmsAttrGroupWithPmsAttrsByCatelogId(Long categoryId) {
+        List<PmsAttrGroup> list = pmsAttrGroupMapper.selectPmsAttrGroupByCategoryId(categoryId);
+        //2、查询所有属性
+        List<PmsAttrGroupWithPmsAttrsVO> collect = list.stream().map(group -> {
+            PmsAttrGroupWithPmsAttrsVO attrsVo = new PmsAttrGroupWithPmsAttrsVO();
+            BeanUtils.copyProperties(group, attrsVo);
+            List<PmsAttr> attrs = pmsAttrService.getRelationAttr(attrsVo.getAttrGroupId());
+            attrsVo.setAttrs(attrs);
+            return attrsVo;
+        }).collect(Collectors.toList());
+
+        return collect;
     }
 }

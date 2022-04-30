@@ -66,7 +66,7 @@ public interface PmsAttrMapper {
      * @param ids ids
      * @return 结果
      */
-    List<Long> selectPmsAttrsByAttrGroupIds(List<Long> ids);
+    List<Long> selectPmsAttrIdsByAttrGroupIds(List<Long> ids);
 
     /**
      * 查询属性
@@ -78,4 +78,11 @@ public interface PmsAttrMapper {
      */
     List<PmsAttr> selectPmsAttrsByCategoryId(@Param("categoryId") Long categoryId, @Param("type") int type, @Param("excludeAttrIds") List<Long> excludeAttrIds);
 
+    /**
+     * 批量查询
+     *
+     * @param attrIds attrIds
+     * @return 结果
+     */
+    List<PmsAttr> selectPmsAttrsByPmsAttrIds(List<Long> attrIds);
 }

@@ -8,6 +8,7 @@ import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.modle.result.PageResult;
 import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.product.entity.PmsAttrGroup;
+import com.qinweizhao.product.entity.vo.PmsAttrGroupWithPmsAttrsVO;
 import com.qinweizhao.product.service.IPmsAttrGroupService;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,8 +25,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/attr-group")
 public class PmsAttrGroupController extends BaseController {
+
     @Resource
     private IPmsAttrGroupService pmsAttrGroupService;
+
 
     /**
      * 查询属性分组列表
@@ -59,6 +62,17 @@ public class PmsAttrGroupController extends BaseController {
     public R<PmsAttrGroup> getInfo(@PathVariable("attrGroupId") Long attrGroupId) {
         return R.success(pmsAttrGroupService.selectPmsAttrGroupByAttrGroupId(attrGroupId));
     }
+
+
+    /**
+     * 获取
+     */
+    @RequiresPermissions("product:group:query")
+    @GetMapping(value = "/{categoryId}/attr")
+    public R<List<PmsAttrGroupWithPmsAttrsVO>> getAttrGroupWithAttrs(@PathVariable("categoryId") Long categoryId) {
+        return R.success(pmsAttrGroupService.getPmsAttrGroupWithPmsAttrsByCatelogId(categoryId));
+    }
+
 
     /**
      * 新增属性分组

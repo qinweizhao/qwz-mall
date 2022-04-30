@@ -55,6 +55,11 @@
         where category_id = #{categoryId}
     </select>
 
+    <select id="selectPmsAttrGroupByCategoryId" resultType="com.qinweizhao.product.entity.PmsAttrGroup">
+        <include refid="selectPmsAttrGroupVo"/>
+        where category_id = #{categoryId}
+    </select>
+
     <insert id="insertPmsAttrGroup" parameterType="PmsAttrGroup" useGeneratedKeys="true" keyProperty="attrGroupId">
         insert into pms_attr_group
         <trim prefix="(" suffix=")" suffixOverrides=",">

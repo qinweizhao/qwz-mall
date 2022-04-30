@@ -9,62 +9,6 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="等级需要的成长值" prop="growthPoint">
-        <el-input
-          v-model="queryParams.growthPoint"
-          placeholder="请输入等级需要的成长值"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="免运费标准" prop="freeFreightPoint">
-        <el-input
-          v-model="queryParams.freeFreightPoint"
-          placeholder="请输入免运费标准"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="每次评价获取的成长值" prop="commentGrowthPoint">
-        <el-input
-          v-model="queryParams.commentGrowthPoint"
-          placeholder="请输入每次评价获取的成长值"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="是否有免邮特权" prop="priviledgeFreeFreight">
-        <el-input
-          v-model="queryParams.priviledgeFreeFreight"
-          placeholder="请输入是否有免邮特权"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="是否有会员价格特权" prop="priviledgeMemberPrice">
-        <el-input
-          v-model="queryParams.priviledgeMemberPrice"
-          placeholder="请输入是否有会员价格特权"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="是否有生日特权" prop="priviledgeBirthday">
-        <el-input
-          v-model="queryParams.priviledgeBirthday"
-          placeholder="请输入是否有生日特权"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="备注" prop="note">
-        <el-input
-          v-model="queryParams.note"
-          placeholder="请输入备注"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
@@ -252,8 +196,8 @@ export default {
     getList() {
       this.loading = true;
       listLevel(this.queryParams).then(response => {
-        this.levelList = response.rows;
-        this.total = response.total;
+        this.levelList = response.data.rows;
+        this.total = response.data.total;
         this.loading = false;
       });
     },

@@ -5,6 +5,7 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
+import com.qinweizhao.component.modle.result.PageResult;
 import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.user.entity.UmsMemberLevel;
 import com.qinweizhao.user.service.UmsMemberLevelService;
@@ -32,10 +33,10 @@ public class UmsMemberLevelController extends BaseController {
      */
     @RequiresPermissions("product:level:list")
     @GetMapping("/list")
-    public R<List<UmsMemberLevel>> list(UmsMemberLevel umsMemberLevel) {
+    public R<PageResult<UmsMemberLevel>> list(UmsMemberLevel umsMemberLevel) {
         startPage();
         List<UmsMemberLevel> list = umsMemberLevelService.selectUmsMemberLevelList(umsMemberLevel);
-        return R.success(list);
+        return getPageResult(list);
     }
 
     /**

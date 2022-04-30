@@ -360,6 +360,8 @@
 import CategoryCascade from '../common/CategoryCascade'
 import FileUpload from '@/components/FileUpload'
 import {getRelation} from '@/api/product/categoryBrand'
+import {listLevel} from '@/api/user/level'
+import {getAttrGroupWithAttrs} from '@/api/product/attr/group'
 
 export default {
   //import引入的组件需要注入到对象中才能使用
@@ -380,7 +382,7 @@ export default {
         //要提交的数据
         spuName: '',
         spuDescription: '',
-        catalogId: 0,
+        categoryId: 0,
         brandId: '',
         weight: '',
         publishStatus: 0,
@@ -401,18 +403,18 @@ export default {
         description: [
           {required: true, message: '请编写一个简单描述', trigger: 'blur'}
         ],
-        catalogId: [
+        categoryId: [
           {required: true, message: '请选择一个分类', trigger: 'blur'}
         ],
         brandId: [
           {required: true, message: '请选择一个品牌', trigger: 'blur'}
         ],
-        details: [
-          {required: true, message: '请上传商品详情图集', trigger: 'blur'}
-        ],
-        images: [
-          {required: true, message: '请上传商品图片集', trigger: 'blur'}
-        ],
+        // details: [
+        //   {required: true, message: '请上传商品详情图集', trigger: 'blur'}
+        // ],
+        // images: [
+        //   {required: true, message: '请上传商品图片集', trigger: 'blur'}
+        // ],
         weight: [
           {
             type: 'number',
@@ -510,20 +512,11 @@ export default {
       this.spu.skus[scope.$index].memberPrice[mpidx].price = e
     },
     getMemberLevels() {
-      // this.$http({
-      //   url: this.$http.adornUrl("/umsMember/memberlevel/list"),
-      //   method: "get",
-      //   params: this.$http.adornParams({
-      //     page: 1,
-      //     limit: 500
-      //   })
-      // })
-      //   .then(({ data }) => {
-      //     this.dataResp.memberLevels = data.page.list;
-      //   })
-      //   .catch(e => {
-      //     console.log(e);
-      //   });
+      listLevel().then(response => {
+        this.dataResp.memberLevels = response.data.rows;
+        this.total = response.data.total;
+        this.loading = false;
+      });
     },
     showInput(idx) {
       console.log('``````', this.view)
@@ -680,7 +673,7 @@ export default {
       // if (!this.dataResp.steped[1]) {
       //   this.$http({
       //     url: this.$http.adornUrl(
-      //       `/product/attr/sale/list/${this.spu.catalogId}`
+      //       `/product/attr/sale/list/${this.spu.categoryId}`
       //     ),
       //     method: "get",
       //     params: this.$http.adornParams({
@@ -704,13 +697,8 @@ export default {
     },
     showBaseAttrs() {
       if (!this.dataResp.steped[0]) {
-        this.$http({
-          // url: this.$http.adornUrl(
-          //   `/product/attrgroup/${this.spu.catalogId}/withattr`
-          // ),
-          // method: "get",
-          // params: this.$http.adornParams({})
-        }).then(({data}) => {
+        console.log(this.spu.categoryId)
+        getAttrGroupWithAttrs(this.spu.categoryId).then(({data}) => {
           //先对表单的baseAttrs进行初始化
           data.data.forEach(item => {
             let attrArray = []
@@ -726,6 +714,29 @@ export default {
           this.dataResp.steped[0] = 0
           this.dataResp.attrGroups = data.data
         })
+        //
+        // this.$http({
+        //   // url: this.$http.adornUrl(
+        //   //   `/product/attrgroup/${this.spu.categoryId}/withattr`
+        //   // ),
+        //   // method: "get",
+        //   // params: this.$http.adornParams({})
+        // }).then(({data}) => {
+        //   //先对表单的baseAttrs进行初始化
+        //   data.data.forEach(item => {
+        //     let attrArray = []
+        //     item.attrs.forEach(attr => {
+        //       attrArray.push({
+        //         attrId: attr.attrId,
+        //         attrValues: '',
+        //         showDesc: attr.showDesc
+        //       })
+        //     })
+        //     this.dataResp.baseAttrs.push(attrArray)
+        //   })
+        //   this.dataResp.steped[0] = 0
+        //   this.dataResp.attrGroups = data.data
+        // })
       }
     },
 
@@ -823,7 +834,7 @@ export default {
   //生命周期-挂载完成（可以访问DOM元素）
   mounted() {
     // this.catPathSub = PubSub.subscribe("catPath", (msg, val) => {
-    //   this.spu.catalogId = val[val.length - 1];
+    //   this.spu.categoryId = val[val.length - 1];
     // });
     // this.brandIdSub = PubSub.subscribe("brandId", (msg, val) => {
     //   this.spu.brandId = val;

@@ -1,6 +1,7 @@
 package com.qinweizhao.product.service;
 
 import com.qinweizhao.product.entity.PmsAttrGroup;
+import com.qinweizhao.product.entity.vo.PmsAttrGroupWithPmsAttrsVO;
 
 import java.util.List;
 
@@ -58,4 +59,13 @@ public interface IPmsAttrGroupService {
      * @return 结果
      */
     int deletePmsAttrGroupByAttrGroupId(Long attrGroupId);
+
+
+    /**
+     * 查询分组属性和属性
+     *
+     * @param categoryId categoryId
+     * @return 结果
+     */
+    List<PmsAttrGroupWithPmsAttrsVO> getPmsAttrGroupWithPmsAttrsByCatelogId(Long categoryId);
 }

@@ -1,10 +1,10 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="会员等级id" prop="levelId">
+      <el-form-item label="会员等级" prop="levelId">
         <el-input
           v-model="queryParams.levelId"
-          placeholder="请输入会员等级id"
+          placeholder="请选择会员等级"
           clearable
           @keyup.enter.native="handleQuery"
         />
@@ -17,82 +17,10 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="密码" prop="password">
-        <el-input
-          v-model="queryParams.password"
-          placeholder="请输入密码"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
       <el-form-item label="昵称" prop="nickname">
         <el-input
           v-model="queryParams.nickname"
           placeholder="请输入昵称"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="手机号码" prop="mobile">
-        <el-input
-          v-model="queryParams.mobile"
-          placeholder="请输入手机号码"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="邮箱" prop="email">
-        <el-input
-          v-model="queryParams.email"
-          placeholder="请输入邮箱"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="性别" prop="gender">
-        <el-input
-          v-model="queryParams.gender"
-          placeholder="请输入性别"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="生日" prop="birth">
-        <el-date-picker clearable
-                        v-model="queryParams.birth"
-                        type="date"
-                        value-format="yyyy-MM-dd"
-                        placeholder="请选择生日">
-        </el-date-picker>
-      </el-form-item>
-      <el-form-item label="职业" prop="job">
-        <el-input
-          v-model="queryParams.job"
-          placeholder="请输入职业"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="个性签名" prop="sign">
-        <el-input
-          v-model="queryParams.sign"
-          placeholder="请输入个性签名"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="积分" prop="integration">
-        <el-input
-          v-model="queryParams.integration"
-          placeholder="请输入积分"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="成长值" prop="growth">
-        <el-input
-          v-model="queryParams.growth"
-          placeholder="请输入成长值"
           clearable
           @keyup.enter.native="handleQuery"
         />
@@ -155,8 +83,8 @@
 
     <el-table v-loading="loading" :data="memberList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
-      <el-table-column label="id" align="center" prop="id"/>
-      <el-table-column label="会员等级id" align="center" prop="levelId"/>
+      <el-table-column label="编号" align="center" prop="id"/>
+      <el-table-column label="会员等级" align="center" prop="levelId"/>
       <el-table-column label="用户名" align="center" prop="username"/>
       <el-table-column label="密码" align="center" prop="password"/>
       <el-table-column label="昵称" align="center" prop="nickname"/>
