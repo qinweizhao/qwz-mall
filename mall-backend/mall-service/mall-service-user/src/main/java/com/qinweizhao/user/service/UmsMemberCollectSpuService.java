@@ -1,17 +1,17 @@
-package com.qinweizhao.user.mapper;
+package com.qinweizhao.user.service;
 
-import com.qinweizhao.component.mybatis.mapper.QwzBaseMapper;
+import com.qinweizhao.component.mybatis.service.QwzService;
 import com.qinweizhao.user.entity.UmsMemberCollectSpu;
 
 import java.util.List;
 
 /**
- * 会员收藏的商品Mapper接口
+ * 会员收藏的商品Service接口
  *
  * @author qinweizhao
  * @date 2022-04-30
  */
-public interface UmsMemberCollectSpuMapper extends QwzBaseMapper<UmsMemberCollectSpu> {
+public interface UmsMemberCollectSpuService extends QwzService<UmsMemberCollectSpu> {
 
     /**
      * 查询会员收藏的商品列表
@@ -21,5 +21,4 @@ public interface UmsMemberCollectSpuMapper extends QwzBaseMapper<UmsMemberCollec
      */
     List<UmsMemberCollectSpu> selectUmsMemberCollectSpuList(UmsMemberCollectSpu umsMemberCollectSpu);
 
-    ;
 }

@@ -21,8 +21,9 @@ import java.util.List;
  * @date 2022-04-30
  */
 @RestController
-@RequestMapping("/history")
+@RequestMapping("/growth-history")
 public class UmsGrowthChangeHistoryController extends BaseController {
+
     @Resource
     private UmsGrowthChangeHistoryService umsGrowthChangeHistoryService;
 
@@ -56,7 +57,7 @@ public class UmsGrowthChangeHistoryController extends BaseController {
     @RequiresPermissions("product:history:query")
     @GetMapping(value = "/{id}")
     public R<UmsGrowthChangeHistory> getInfo(@PathVariable("id") Long id) {
-        return R.success(umsGrowthChangeHistoryService.selectUmsGrowthChangeHistoryById(id));
+        return R.success(umsGrowthChangeHistoryService.getById(id));
     }
 
     /**
@@ -66,7 +67,7 @@ public class UmsGrowthChangeHistoryController extends BaseController {
     @Log(title = "成长值变化历史记录", businessType = BusinessType.INSERT)
     @PostMapping
     public R<Void> add(@RequestBody UmsGrowthChangeHistory umsGrowthChangeHistory) {
-        return R.condition(umsGrowthChangeHistoryService.insertUmsGrowthChangeHistory(umsGrowthChangeHistory));
+        return R.condition(umsGrowthChangeHistoryService.save(umsGrowthChangeHistory));
     }
 
     /**
@@ -76,7 +77,7 @@ public class UmsGrowthChangeHistoryController extends BaseController {
     @Log(title = "成长值变化历史记录", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<Void> edit(@RequestBody UmsGrowthChangeHistory umsGrowthChangeHistory) {
-        return R.condition(umsGrowthChangeHistoryService.updateUmsGrowthChangeHistory(umsGrowthChangeHistory));
+        return R.condition(umsGrowthChangeHistoryService.updateById(umsGrowthChangeHistory));
     }
 
     /**
@@ -85,7 +86,7 @@ public class UmsGrowthChangeHistoryController extends BaseController {
     @RequiresPermissions("product:history:remove")
     @Log(title = "成长值变化历史记录", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable Long[] ids) {
-        return R.condition(umsGrowthChangeHistoryService.deleteUmsGrowthChangeHistoryByIds(ids));
+    public R<Void> remove(@PathVariable List<Long> ids) {
+        return R.condition(umsGrowthChangeHistoryService.removeBatchByIds(ids));
     }
 }

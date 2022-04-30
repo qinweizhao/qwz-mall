@@ -12,7 +12,7 @@ import java.util.List;
  * @author qinweizhao
  * @date 2022-04-29
  */
-public interface MemberService extends QwzService<Member> {
+public interface UmsMemberService extends QwzService<Member> {
 
     /**
      * 查询会员列表

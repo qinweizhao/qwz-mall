@@ -43,44 +43,44 @@ public class UmsIntegrationChangeHistory extends BaseEntity {
     @Excel(name = "来源[0->购物；1->管理员修改;2->活动]")
     private Long sourceTyoe;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getId() {
         return id;
     }
 
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getMemberId() {
         return memberId;
     }
 
-    public void setChangeCount(Long changeCount) {
-        this.changeCount = changeCount;
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
     }
 
     public Long getChangeCount() {
         return changeCount;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setChangeCount(Long changeCount) {
+        this.changeCount = changeCount;
     }
 
     public String getNote() {
         return note;
     }
 
-    public void setSourceTyoe(Long sourceTyoe) {
-        this.sourceTyoe = sourceTyoe;
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public Long getSourceTyoe() {
         return sourceTyoe;
+    }
+
+    public void setSourceTyoe(Long sourceTyoe) {
+        this.sourceTyoe = sourceTyoe;
     }
 
     @Override

@@ -105,124 +105,124 @@ public class UmsMemberStatisticsInfo extends BaseEntity {
     @Excel(name = "邀请的朋友数量")
     private Long inviteFriendCount;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getId() {
         return id;
     }
 
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getMemberId() {
         return memberId;
     }
 
-    public void setConsumeAmount(BigDecimal consumeAmount) {
-        this.consumeAmount = consumeAmount;
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
     }
 
     public BigDecimal getConsumeAmount() {
         return consumeAmount;
     }
 
-    public void setCouponAmount(BigDecimal couponAmount) {
-        this.couponAmount = couponAmount;
+    public void setConsumeAmount(BigDecimal consumeAmount) {
+        this.consumeAmount = consumeAmount;
     }
 
     public BigDecimal getCouponAmount() {
         return couponAmount;
     }
 
-    public void setOrderCount(Long orderCount) {
-        this.orderCount = orderCount;
+    public void setCouponAmount(BigDecimal couponAmount) {
+        this.couponAmount = couponAmount;
     }
 
     public Long getOrderCount() {
         return orderCount;
     }
 
-    public void setCouponCount(Long couponCount) {
-        this.couponCount = couponCount;
+    public void setOrderCount(Long orderCount) {
+        this.orderCount = orderCount;
     }
 
     public Long getCouponCount() {
         return couponCount;
     }
 
-    public void setCommentCount(Long commentCount) {
-        this.commentCount = commentCount;
+    public void setCouponCount(Long couponCount) {
+        this.couponCount = couponCount;
     }
 
     public Long getCommentCount() {
         return commentCount;
     }
 
-    public void setReturnOrderCount(Long returnOrderCount) {
-        this.returnOrderCount = returnOrderCount;
+    public void setCommentCount(Long commentCount) {
+        this.commentCount = commentCount;
     }
 
     public Long getReturnOrderCount() {
         return returnOrderCount;
     }
 
-    public void setLoginCount(Long loginCount) {
-        this.loginCount = loginCount;
+    public void setReturnOrderCount(Long returnOrderCount) {
+        this.returnOrderCount = returnOrderCount;
     }
 
     public Long getLoginCount() {
         return loginCount;
     }
 
-    public void setAttendCount(Long attendCount) {
-        this.attendCount = attendCount;
+    public void setLoginCount(Long loginCount) {
+        this.loginCount = loginCount;
     }
 
     public Long getAttendCount() {
         return attendCount;
     }
 
-    public void setFansCount(Long fansCount) {
-        this.fansCount = fansCount;
+    public void setAttendCount(Long attendCount) {
+        this.attendCount = attendCount;
     }
 
     public Long getFansCount() {
         return fansCount;
     }
 
-    public void setCollectProductCount(Long collectProductCount) {
-        this.collectProductCount = collectProductCount;
+    public void setFansCount(Long fansCount) {
+        this.fansCount = fansCount;
     }
 
     public Long getCollectProductCount() {
         return collectProductCount;
     }
 
-    public void setCollectSubjectCount(Long collectSubjectCount) {
-        this.collectSubjectCount = collectSubjectCount;
+    public void setCollectProductCount(Long collectProductCount) {
+        this.collectProductCount = collectProductCount;
     }
 
     public Long getCollectSubjectCount() {
         return collectSubjectCount;
     }
 
-    public void setCollectCommentCount(Long collectCommentCount) {
-        this.collectCommentCount = collectCommentCount;
+    public void setCollectSubjectCount(Long collectSubjectCount) {
+        this.collectSubjectCount = collectSubjectCount;
     }
 
     public Long getCollectCommentCount() {
         return collectCommentCount;
     }
 
-    public void setInviteFriendCount(Long inviteFriendCount) {
-        this.inviteFriendCount = inviteFriendCount;
+    public void setCollectCommentCount(Long collectCommentCount) {
+        this.collectCommentCount = collectCommentCount;
     }
 
     public Long getInviteFriendCount() {
         return inviteFriendCount;
+    }
+
+    public void setInviteFriendCount(Long inviteFriendCount) {
+        this.inviteFriendCount = inviteFriendCount;
     }
 
     @Override

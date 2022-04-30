@@ -43,44 +43,44 @@ public class UmsMemberCollectSpu extends BaseEntity {
     @Excel(name = "spu_img")
     private String spuImg;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getId() {
         return id;
     }
 
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getMemberId() {
         return memberId;
     }
 
-    public void setSpuId(Long spuId) {
-        this.spuId = spuId;
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
     }
 
     public Long getSpuId() {
         return spuId;
     }
 
-    public void setSpuName(String spuName) {
-        this.spuName = spuName;
+    public void setSpuId(Long spuId) {
+        this.spuId = spuId;
     }
 
     public String getSpuName() {
         return spuName;
     }
 
-    public void setSpuImg(String spuImg) {
-        this.spuImg = spuImg;
+    public void setSpuName(String spuName) {
+        this.spuName = spuName;
     }
 
     public String getSpuImg() {
         return spuImg;
+    }
+
+    public void setSpuImg(String spuImg) {
+        this.spuImg = spuImg;
     }
 
     @Override

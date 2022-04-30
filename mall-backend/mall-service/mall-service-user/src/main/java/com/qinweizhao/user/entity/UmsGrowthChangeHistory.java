@@ -43,44 +43,44 @@ public class UmsGrowthChangeHistory extends BaseEntity {
     @Excel(name = "积分来源[0-购物，1-管理员修改]")
     private Long sourceType;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getId() {
         return id;
     }
 
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getMemberId() {
         return memberId;
     }
 
-    public void setChangeCount(Long changeCount) {
-        this.changeCount = changeCount;
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
     }
 
     public Long getChangeCount() {
         return changeCount;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setChangeCount(Long changeCount) {
+        this.changeCount = changeCount;
     }
 
     public String getNote() {
         return note;
     }
 
-    public void setSourceType(Long sourceType) {
-        this.sourceType = sourceType;
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public Long getSourceType() {
         return sourceType;
+    }
+
+    public void setSourceType(Long sourceType) {
+        this.sourceType = sourceType;
     }
 
     @Override

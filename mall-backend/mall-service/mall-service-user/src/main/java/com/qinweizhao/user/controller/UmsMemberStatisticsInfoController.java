@@ -56,7 +56,7 @@ public class UmsMemberStatisticsInfoController extends BaseController {
     @RequiresPermissions("product:info:query")
     @GetMapping(value = "/{id}")
     public R<UmsMemberStatisticsInfo> getInfo(@PathVariable("id") Long id) {
-        return R.success(umsMemberStatisticsInfoService.selectUmsMemberStatisticsInfoById(id));
+        return R.success(umsMemberStatisticsInfoService.getById(id));
     }
 
     /**
@@ -66,7 +66,7 @@ public class UmsMemberStatisticsInfoController extends BaseController {
     @Log(title = "会员统计信息", businessType = BusinessType.INSERT)
     @PostMapping
     public R<Void> add(@RequestBody UmsMemberStatisticsInfo umsMemberStatisticsInfo) {
-        return R.condition(umsMemberStatisticsInfoService.insertUmsMemberStatisticsInfo(umsMemberStatisticsInfo));
+        return R.condition(umsMemberStatisticsInfoService.save(umsMemberStatisticsInfo));
     }
 
     /**
@@ -76,7 +76,7 @@ public class UmsMemberStatisticsInfoController extends BaseController {
     @Log(title = "会员统计信息", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<Void> edit(@RequestBody UmsMemberStatisticsInfo umsMemberStatisticsInfo) {
-        return R.condition(umsMemberStatisticsInfoService.updateUmsMemberStatisticsInfo(umsMemberStatisticsInfo));
+        return R.condition(umsMemberStatisticsInfoService.updateById(umsMemberStatisticsInfo));
     }
 
     /**
@@ -85,7 +85,7 @@ public class UmsMemberStatisticsInfoController extends BaseController {
     @RequiresPermissions("product:info:remove")
     @Log(title = "会员统计信息", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable Long[] ids) {
-        return R.condition(umsMemberStatisticsInfoService.deleteUmsMemberStatisticsInfoByIds(ids));
+    public R<Void> remove(@PathVariable List<Long> ids) {
+        return R.condition(umsMemberStatisticsInfoService.removeBatchByIds(ids));
     }
 }

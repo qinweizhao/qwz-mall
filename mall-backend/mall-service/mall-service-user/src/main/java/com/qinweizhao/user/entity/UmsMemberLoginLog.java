@@ -43,44 +43,44 @@ public class UmsMemberLoginLog extends BaseEntity {
     @Excel(name = "登录类型[1-web，2-app]")
     private Integer loginType;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getId() {
         return id;
     }
 
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getMemberId() {
         return memberId;
     }
 
-    public void setIp(String ip) {
-        this.ip = ip;
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
     }
 
     public String getIp() {
         return ip;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 
     public String getCity() {
         return city;
     }
 
-    public void setLoginType(Integer loginType) {
-        this.loginType = loginType;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public Integer getLoginType() {
         return loginType;
+    }
+
+    public void setLoginType(Integer loginType) {
+        this.loginType = loginType;
     }
 
     @Override

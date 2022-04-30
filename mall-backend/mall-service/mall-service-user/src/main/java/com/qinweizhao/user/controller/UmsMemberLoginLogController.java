@@ -45,7 +45,7 @@ public class UmsMemberLoginLogController extends BaseController {
     @PostMapping("/export")
     public R<Void> export(HttpServletResponse response, UmsMemberLoginLog umsMemberLoginLog) {
         List<UmsMemberLoginLog> list = umsMemberLoginLogService.selectUmsMemberLoginLogList(umsMemberLoginLog);
-        ExcelUtil<UmsMemberLoginLog> util = new ExcelUtil<UmsMemberLoginLog>(UmsMemberLoginLog.class);
+        ExcelUtil<UmsMemberLoginLog> util = new ExcelUtil<>(UmsMemberLoginLog.class);
         util.exportExcel(response, list, "会员登录记录数据");
         return R.success();
     }
@@ -56,7 +56,7 @@ public class UmsMemberLoginLogController extends BaseController {
     @RequiresPermissions("product:log:query")
     @GetMapping(value = "/{id}")
     public R<UmsMemberLoginLog> getInfo(@PathVariable("id") Long id) {
-        return R.success(umsMemberLoginLogService.selectUmsMemberLoginLogById(id));
+        return R.success(umsMemberLoginLogService.getById(id));
     }
 
     /**
@@ -66,7 +66,7 @@ public class UmsMemberLoginLogController extends BaseController {
     @Log(title = "会员登录记录", businessType = BusinessType.INSERT)
     @PostMapping
     public R<Void> add(@RequestBody UmsMemberLoginLog umsMemberLoginLog) {
-        return R.condition(umsMemberLoginLogService.insertUmsMemberLoginLog(umsMemberLoginLog));
+        return R.condition(umsMemberLoginLogService.save(umsMemberLoginLog));
     }
 
     /**
@@ -76,7 +76,7 @@ public class UmsMemberLoginLogController extends BaseController {
     @Log(title = "会员登录记录", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<Void> edit(@RequestBody UmsMemberLoginLog umsMemberLoginLog) {
-        return R.condition(umsMemberLoginLogService.updateUmsMemberLoginLog(umsMemberLoginLog));
+        return R.condition(umsMemberLoginLogService.updateById(umsMemberLoginLog));
     }
 
     /**
@@ -85,7 +85,7 @@ public class UmsMemberLoginLogController extends BaseController {
     @RequiresPermissions("product:log:remove")
     @Log(title = "会员登录记录", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable Long[] ids) {
-        return R.condition(umsMemberLoginLogService.deleteUmsMemberLoginLogByIds(ids));
+    public R<Void> remove(@PathVariable List<Long> ids) {
+        return R.condition(umsMemberLoginLogService.removeBatchByIds(ids));
     }
 }

@@ -7,7 +7,7 @@ import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.user.entity.UmsMemberCollectSubject;
-import com.qinweizhao.user.service.IUmsMemberCollectSubjectService;
+import com.qinweizhao.user.service.UmsMemberCollectSubjectService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -23,8 +23,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/subject")
 public class UmsMemberCollectSubjectController extends BaseController {
+
     @Resource
-    private IUmsMemberCollectSubjectService umsMemberCollectSubjectService;
+    private UmsMemberCollectSubjectService umsMemberCollectSubjectService;
 
     /**
      * 查询会员收藏的专题活动列表

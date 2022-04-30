@@ -79,92 +79,92 @@ public class UmsMemberReceiveAddress extends BaseEntity {
     @Excel(name = "是否默认")
     private Integer defaultStatus;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getId() {
         return id;
     }
 
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getMemberId() {
         return memberId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPhone() {
         return phone;
     }
 
-    public void setPostCode(String postCode) {
-        this.postCode = postCode;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getPostCode() {
         return postCode;
     }
 
-    public void setProvince(String province) {
-        this.province = province;
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
     }
 
     public String getProvince() {
         return province;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setProvince(String province) {
+        this.province = province;
     }
 
     public String getCity() {
         return city;
     }
 
-    public void setRegion(String region) {
-        this.region = region;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getRegion() {
         return region;
     }
 
-    public void setDetailAddress(String detailAddress) {
-        this.detailAddress = detailAddress;
+    public void setRegion(String region) {
+        this.region = region;
     }
 
     public String getDetailAddress() {
         return detailAddress;
     }
 
-    public void setAreacode(String areacode) {
-        this.areacode = areacode;
+    public void setDetailAddress(String detailAddress) {
+        this.detailAddress = detailAddress;
     }
 
     public String getAreacode() {
         return areacode;
     }
 
-    public void setDefaultStatus(Integer defaultStatus) {
-        this.defaultStatus = defaultStatus;
+    public void setAreacode(String areacode) {
+        this.areacode = areacode;
     }
 
     public Integer getDefaultStatus() {
         return defaultStatus;
+    }
+
+    public void setDefaultStatus(Integer defaultStatus) {
+        this.defaultStatus = defaultStatus;
     }
 
     @Override

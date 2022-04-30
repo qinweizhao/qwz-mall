@@ -7,7 +7,7 @@ import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.user.entity.UmsIntegrationChangeHistory;
-import com.qinweizhao.user.service.IUmsIntegrationChangeHistoryService;
+import com.qinweizhao.user.service.UmsIntegrationChangeHistoryService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -23,8 +23,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/history")
 public class UmsIntegrationChangeHistoryController extends BaseController {
+
     @Resource
-    private IUmsIntegrationChangeHistoryService umsIntegrationChangeHistoryService;
+    private UmsIntegrationChangeHistoryService umsIntegrationChangeHistoryService;
 
     /**
      * 查询积分变化历史记录列表
@@ -56,7 +57,7 @@ public class UmsIntegrationChangeHistoryController extends BaseController {
     @RequiresPermissions("product:history:query")
     @GetMapping(value = "/{id}")
     public R<UmsIntegrationChangeHistory> getInfo(@PathVariable("id") Long id) {
-        return R.success(umsIntegrationChangeHistoryService.selectUmsIntegrationChangeHistoryById(id));
+        return R.success(umsIntegrationChangeHistoryService.getById(id));
     }
 
     /**
@@ -66,7 +67,7 @@ public class UmsIntegrationChangeHistoryController extends BaseController {
     @Log(title = "积分变化历史记录", businessType = BusinessType.INSERT)
     @PostMapping
     public R<Void> add(@RequestBody UmsIntegrationChangeHistory umsIntegrationChangeHistory) {
-        return R.condition(umsIntegrationChangeHistoryService.insertUmsIntegrationChangeHistory(umsIntegrationChangeHistory));
+        return R.condition(umsIntegrationChangeHistoryService.save(umsIntegrationChangeHistory));
     }
 
     /**
@@ -76,7 +77,7 @@ public class UmsIntegrationChangeHistoryController extends BaseController {
     @Log(title = "积分变化历史记录", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<Void> edit(@RequestBody UmsIntegrationChangeHistory umsIntegrationChangeHistory) {
-        return R.condition(umsIntegrationChangeHistoryService.updateUmsIntegrationChangeHistory(umsIntegrationChangeHistory));
+        return R.condition(umsIntegrationChangeHistoryService.updateById(umsIntegrationChangeHistory));
     }
 
     /**
@@ -85,7 +86,7 @@ public class UmsIntegrationChangeHistoryController extends BaseController {
     @RequiresPermissions("product:history:remove")
     @Log(title = "积分变化历史记录", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable Long[] ids) {
-        return R.condition(umsIntegrationChangeHistoryService.deleteUmsIntegrationChangeHistoryByIds(ids));
+    public R<Void> remove(@PathVariable List<Long> ids) {
+        return R.condition(umsIntegrationChangeHistoryService.removeBatchByIds(ids));
     }
 }

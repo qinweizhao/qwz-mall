@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qinweizhao.root.mapper.UmsMemberStatisticsInfoMapper">
+<mapper namespace="com.qinweizhao.user.mapper.UmsMemberStatisticsInfoMapper">
 
     <resultMap type="UmsMemberStatisticsInfo" id="UmsMemberStatisticsInfoResult">
         <result property="id" column="id"/>
@@ -62,79 +62,4 @@
         </where>
     </select>
 
-    <select id="selectUmsMemberStatisticsInfoById" parameterType="Long" resultMap="UmsMemberStatisticsInfoResult">
-        <include refid="selectUmsMemberStatisticsInfoVo"/>
-        where id = #{id}
-    </select>
-
-    <insert id="insertUmsMemberStatisticsInfo" parameterType="UmsMemberStatisticsInfo" useGeneratedKeys="true"
-            keyProperty="id">
-        insert into ums_member_statistics_info
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="memberId != null">member_id,</if>
-            <if test="consumeAmount != null">consume_amount,</if>
-            <if test="couponAmount != null">coupon_amount,</if>
-            <if test="orderCount != null">order_count,</if>
-            <if test="couponCount != null">coupon_count,</if>
-            <if test="commentCount != null">comment_count,</if>
-            <if test="returnOrderCount != null">return_order_count,</if>
-            <if test="loginCount != null">login_count,</if>
-            <if test="attendCount != null">attend_count,</if>
-            <if test="fansCount != null">fans_count,</if>
-            <if test="collectProductCount != null">collect_product_count,</if>
-            <if test="collectSubjectCount != null">collect_subject_count,</if>
-            <if test="collectCommentCount != null">collect_comment_count,</if>
-            <if test="inviteFriendCount != null">invite_friend_count,</if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="memberId != null">#{memberId},</if>
-            <if test="consumeAmount != null">#{consumeAmount},</if>
-            <if test="couponAmount != null">#{couponAmount},</if>
-            <if test="orderCount != null">#{orderCount},</if>
-            <if test="couponCount != null">#{couponCount},</if>
-            <if test="commentCount != null">#{commentCount},</if>
-            <if test="returnOrderCount != null">#{returnOrderCount},</if>
-            <if test="loginCount != null">#{loginCount},</if>
-            <if test="attendCount != null">#{attendCount},</if>
-            <if test="fansCount != null">#{fansCount},</if>
-            <if test="collectProductCount != null">#{collectProductCount},</if>
-            <if test="collectSubjectCount != null">#{collectSubjectCount},</if>
-            <if test="collectCommentCount != null">#{collectCommentCount},</if>
-            <if test="inviteFriendCount != null">#{inviteFriendCount},</if>
-        </trim>
-    </insert>
-
-    <update id="updateUmsMemberStatisticsInfo" parameterType="UmsMemberStatisticsInfo">
-        update ums_member_statistics_info
-        <trim prefix="SET" suffixOverrides=",">
-            <if test="memberId != null">member_id = #{memberId},</if>
-            <if test="consumeAmount != null">consume_amount = #{consumeAmount},</if>
-            <if test="couponAmount != null">coupon_amount = #{couponAmount},</if>
-            <if test="orderCount != null">order_count = #{orderCount},</if>
-            <if test="couponCount != null">coupon_count = #{couponCount},</if>
-            <if test="commentCount != null">comment_count = #{commentCount},</if>
-            <if test="returnOrderCount != null">return_order_count = #{returnOrderCount},</if>
-            <if test="loginCount != null">login_count = #{loginCount},</if>
-            <if test="attendCount != null">attend_count = #{attendCount},</if>
-            <if test="fansCount != null">fans_count = #{fansCount},</if>
-            <if test="collectProductCount != null">collect_product_count = #{collectProductCount},</if>
-            <if test="collectSubjectCount != null">collect_subject_count = #{collectSubjectCount},</if>
-            <if test="collectCommentCount != null">collect_comment_count = #{collectCommentCount},</if>
-            <if test="inviteFriendCount != null">invite_friend_count = #{inviteFriendCount},</if>
-        </trim>
-        where id = #{id}
-    </update>
-
-    <delete id="deleteUmsMemberStatisticsInfoById" parameterType="Long">
-        delete
-        from ums_member_statistics_info
-        where id = #{id}
-    </delete>
-
-    <delete id="deleteUmsMemberStatisticsInfoByIds" parameterType="String">
-        delete from ums_member_statistics_info where id in
-        <foreach item="id" collection="array" open="(" separator="," close=")">
-            #{id}
-        </foreach>
-    </delete>
 </mapper>

@@ -1,17 +1,17 @@
-package com.qinweizhao.user.mapper;
+package com.qinweizhao.user.service;
 
-import com.qinweizhao.component.mybatis.mapper.QwzBaseMapper;
+import com.qinweizhao.component.mybatis.service.QwzService;
 import com.qinweizhao.user.entity.UmsIntegrationChangeHistory;
 
 import java.util.List;
 
 /**
- * 积分变化历史记录Mapper接口
+ * 积分变化历史记录Service接口
  *
  * @author qinweizhao
  * @date 2022-04-30
  */
-public interface UmsIntegrationChangeHistoryMapper extends QwzBaseMapper<UmsIntegrationChangeHistory> {
+public interface UmsIntegrationChangeHistoryService extends QwzService<UmsIntegrationChangeHistory> {
 
 
     /**
@@ -21,5 +21,6 @@ public interface UmsIntegrationChangeHistoryMapper extends QwzBaseMapper<UmsInte
      * @return 积分变化历史记录集合
      */
     List<UmsIntegrationChangeHistory> selectUmsIntegrationChangeHistoryList(UmsIntegrationChangeHistory umsIntegrationChangeHistory);
+
 
 }

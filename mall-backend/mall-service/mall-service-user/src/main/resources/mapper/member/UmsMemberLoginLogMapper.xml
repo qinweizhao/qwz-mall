@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qinweizhao.root.mapper.UmsMemberLoginLogMapper">
+<mapper namespace="com.qinweizhao.user.mapper.UmsMemberLoginLogMapper">
 
     <resultMap type="UmsMemberLoginLog" id="UmsMemberLoginLogResult">
         <result property="id" column="id"/>
@@ -28,51 +28,4 @@
         </where>
     </select>
 
-    <select id="selectUmsMemberLoginLogById" parameterType="Long" resultMap="UmsMemberLoginLogResult">
-        <include refid="selectUmsMemberLoginLogVo"/>
-        where id = #{id}
-    </select>
-
-    <insert id="insertUmsMemberLoginLog" parameterType="UmsMemberLoginLog" useGeneratedKeys="true" keyProperty="id">
-        insert into ums_member_login_log
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="memberId != null">member_id,</if>
-            <if test="createTime != null">create_time,</if>
-            <if test="ip != null">ip,</if>
-            <if test="city != null">city,</if>
-            <if test="loginType != null">login_type,</if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="memberId != null">#{memberId},</if>
-            <if test="createTime != null">#{createTime},</if>
-            <if test="ip != null">#{ip},</if>
-            <if test="city != null">#{city},</if>
-            <if test="loginType != null">#{loginType},</if>
-        </trim>
-    </insert>
-
-    <update id="updateUmsMemberLoginLog" parameterType="UmsMemberLoginLog">
-        update ums_member_login_log
-        <trim prefix="SET" suffixOverrides=",">
-            <if test="memberId != null">member_id = #{memberId},</if>
-            <if test="createTime != null">create_time = #{createTime},</if>
-            <if test="ip != null">ip = #{ip},</if>
-            <if test="city != null">city = #{city},</if>
-            <if test="loginType != null">login_type = #{loginType},</if>
-        </trim>
-        where id = #{id}
-    </update>
-
-    <delete id="deleteUmsMemberLoginLogById" parameterType="Long">
-        delete
-        from ums_member_login_log
-        where id = #{id}
-    </delete>
-
-    <delete id="deleteUmsMemberLoginLogByIds" parameterType="String">
-        delete from ums_member_login_log where id in
-        <foreach item="id" collection="array" open="(" separator="," close=")">
-            #{id}
-        </foreach>
-    </delete>
 </mapper>

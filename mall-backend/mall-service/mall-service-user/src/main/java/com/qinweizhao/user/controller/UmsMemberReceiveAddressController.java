@@ -23,6 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/address")
 public class UmsMemberReceiveAddressController extends BaseController {
+
     @Resource
     private IUmsMemberReceiveAddressService umsMemberReceiveAddressService;
 
@@ -56,7 +57,7 @@ public class UmsMemberReceiveAddressController extends BaseController {
     @RequiresPermissions("product:address:query")
     @GetMapping(value = "/{id}")
     public R<UmsMemberReceiveAddress> getInfo(@PathVariable("id") Long id) {
-        return R.success(umsMemberReceiveAddressService.selectUmsMemberReceiveAddressById(id));
+        return R.success(umsMemberReceiveAddressService.getById(id));
     }
 
     /**
@@ -66,7 +67,7 @@ public class UmsMemberReceiveAddressController extends BaseController {
     @Log(title = "会员收货地址", businessType = BusinessType.INSERT)
     @PostMapping
     public R<Void> add(@RequestBody UmsMemberReceiveAddress umsMemberReceiveAddress) {
-        return R.condition(umsMemberReceiveAddressService.insertUmsMemberReceiveAddress(umsMemberReceiveAddress));
+        return R.condition(umsMemberReceiveAddressService.save(umsMemberReceiveAddress));
     }
 
     /**
@@ -76,7 +77,7 @@ public class UmsMemberReceiveAddressController extends BaseController {
     @Log(title = "会员收货地址", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<Void> edit(@RequestBody UmsMemberReceiveAddress umsMemberReceiveAddress) {
-        return R.condition(umsMemberReceiveAddressService.updateUmsMemberReceiveAddress(umsMemberReceiveAddress));
+        return R.condition(umsMemberReceiveAddressService.updateById(umsMemberReceiveAddress));
     }
 
     /**
@@ -85,7 +86,7 @@ public class UmsMemberReceiveAddressController extends BaseController {
     @RequiresPermissions("product:address:remove")
     @Log(title = "会员收货地址", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable Long[] ids) {
-        return R.condition(umsMemberReceiveAddressService.deleteUmsMemberReceiveAddressByIds(ids));
+    public R<Void> remove(@PathVariable List<Long> ids) {
+        return R.condition(umsMemberReceiveAddressService.removeBatchByIds(ids));
     }
 }

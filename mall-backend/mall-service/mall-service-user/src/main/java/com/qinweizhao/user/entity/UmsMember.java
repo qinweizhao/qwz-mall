@@ -119,140 +119,140 @@ public class UmsMember extends BaseEntity {
     @Excel(name = "启用状态")
     private Long status;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getId() {
         return id;
     }
 
-    public void setLevelId(Long levelId) {
-        this.levelId = levelId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getLevelId() {
         return levelId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setLevelId(Long levelId) {
+        this.levelId = levelId;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getNickname() {
         return nickname;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getMobile() {
         return mobile;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setHeader(String header) {
-        this.header = header;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getHeader() {
         return header;
     }
 
-    public void setGender(Long gender) {
-        this.gender = gender;
+    public void setHeader(String header) {
+        this.header = header;
     }
 
     public Long getGender() {
         return gender;
     }
 
-    public void setBirth(Date birth) {
-        this.birth = birth;
+    public void setGender(Long gender) {
+        this.gender = gender;
     }
 
     public Date getBirth() {
         return birth;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setBirth(Date birth) {
+        this.birth = birth;
     }
 
     public String getCity() {
         return city;
     }
 
-    public void setJob(String job) {
-        this.job = job;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getJob() {
         return job;
     }
 
-    public void setSign(String sign) {
-        this.sign = sign;
+    public void setJob(String job) {
+        this.job = job;
     }
 
     public String getSign() {
         return sign;
     }
 
-    public void setSourceType(Long sourceType) {
-        this.sourceType = sourceType;
+    public void setSign(String sign) {
+        this.sign = sign;
     }
 
     public Long getSourceType() {
         return sourceType;
     }
 
-    public void setIntegration(Long integration) {
-        this.integration = integration;
+    public void setSourceType(Long sourceType) {
+        this.sourceType = sourceType;
     }
 
     public Long getIntegration() {
         return integration;
     }
 
-    public void setGrowth(Long growth) {
-        this.growth = growth;
+    public void setIntegration(Long integration) {
+        this.integration = integration;
     }
 
     public Long getGrowth() {
         return growth;
     }
 
-    public void setStatus(Long status) {
-        this.status = status;
+    public void setGrowth(Long growth) {
+        this.growth = growth;
     }
 
     public Long getStatus() {
         return status;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
     }
 
     @Override

@@ -1,12 +1,11 @@
 package com.qinweizhao.user.service.impl;
 
-import com.qinweizhao.common.core.utils.DateUtils;
+import com.qinweizhao.component.mybatis.service.impl.QwzServiceImpl;
 import com.qinweizhao.user.entity.UmsGrowthChangeHistory;
 import com.qinweizhao.user.mapper.UmsGrowthChangeHistoryMapper;
 import com.qinweizhao.user.service.UmsGrowthChangeHistoryService;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -16,20 +15,8 @@ import java.util.List;
  * @date 2022-04-30
  */
 @Service
-public class UmsGrowthChangeHistoryServiceImpl implements UmsGrowthChangeHistoryService {
-    @Resource
-    private UmsGrowthChangeHistoryMapper umsGrowthChangeHistoryMapper;
+public class UmsGrowthChangeHistoryServiceImpl extends QwzServiceImpl<UmsGrowthChangeHistoryMapper, UmsGrowthChangeHistory> implements UmsGrowthChangeHistoryService {
 
-    /**
-     * 查询成长值变化历史记录
-     *
-     * @param id 成长值变化历史记录主键
-     * @return 成长值变化历史记录
-     */
-    @Override
-    public UmsGrowthChangeHistory selectUmsGrowthChangeHistoryById(Long id) {
-        return umsGrowthChangeHistoryMapper.selectUmsGrowthChangeHistoryById(id);
-    }
 
     /**
      * 查询成长值变化历史记录列表
@@ -39,51 +26,7 @@ public class UmsGrowthChangeHistoryServiceImpl implements UmsGrowthChangeHistory
      */
     @Override
     public List<UmsGrowthChangeHistory> selectUmsGrowthChangeHistoryList(UmsGrowthChangeHistory umsGrowthChangeHistory) {
-        return umsGrowthChangeHistoryMapper.selectUmsGrowthChangeHistoryList(umsGrowthChangeHistory);
+        return this.baseMapper.selectUmsGrowthChangeHistoryList(umsGrowthChangeHistory);
     }
 
-    /**
-     * 新增成长值变化历史记录
-     *
-     * @param umsGrowthChangeHistory 成长值变化历史记录
-     * @return 结果
-     */
-    @Override
-    public int insertUmsGrowthChangeHistory(UmsGrowthChangeHistory umsGrowthChangeHistory) {
-        umsGrowthChangeHistory.setCreateTime(DateUtils.getNowDate());
-        return umsGrowthChangeHistoryMapper.insertUmsGrowthChangeHistory(umsGrowthChangeHistory);
-    }
-
-    /**
-     * 修改成长值变化历史记录
-     *
-     * @param umsGrowthChangeHistory 成长值变化历史记录
-     * @return 结果
-     */
-    @Override
-    public int updateUmsGrowthChangeHistory(UmsGrowthChangeHistory umsGrowthChangeHistory) {
-        return umsGrowthChangeHistoryMapper.updateUmsGrowthChangeHistory(umsGrowthChangeHistory);
-    }
-
-    /**
-     * 批量删除成长值变化历史记录
-     *
-     * @param ids 需要删除的成长值变化历史记录主键
-     * @return 结果
-     */
-    @Override
-    public int deleteUmsGrowthChangeHistoryByIds(Long[] ids) {
-        return umsGrowthChangeHistoryMapper.deleteUmsGrowthChangeHistoryByIds(ids);
-    }
-
-    /**
-     * 删除成长值变化历史记录信息
-     *
-     * @param id 成长值变化历史记录主键
-     * @return 结果
-     */
-    @Override
-    public int deleteUmsGrowthChangeHistoryById(Long id) {
-        return umsGrowthChangeHistoryMapper.deleteUmsGrowthChangeHistoryById(id);
-    }
 }

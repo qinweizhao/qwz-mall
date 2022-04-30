@@ -43,44 +43,44 @@ public class UmsMemberCollectSubject extends BaseEntity {
     @Excel(name = "活动url")
     private String subjectUrll;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getId() {
         return id;
     }
 
-    public void setSubjectId(Long subjectId) {
-        this.subjectId = subjectId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getSubjectId() {
         return subjectId;
     }
 
-    public void setSubjectName(String subjectName) {
-        this.subjectName = subjectName;
+    public void setSubjectId(Long subjectId) {
+        this.subjectId = subjectId;
     }
 
     public String getSubjectName() {
         return subjectName;
     }
 
-    public void setSubjectImg(String subjectImg) {
-        this.subjectImg = subjectImg;
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
     }
 
     public String getSubjectImg() {
         return subjectImg;
     }
 
-    public void setSubjectUrll(String subjectUrll) {
-        this.subjectUrll = subjectUrll;
+    public void setSubjectImg(String subjectImg) {
+        this.subjectImg = subjectImg;
     }
 
     public String getSubjectUrll() {
         return subjectUrll;
+    }
+
+    public void setSubjectUrll(String subjectUrll) {
+        this.subjectUrll = subjectUrll;
     }
 
     @Override

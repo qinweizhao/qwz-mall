@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qinweizhao.root.mapper.UmsGrowthChangeHistoryMapper">
+<mapper namespace="com.qinweizhao.user.mapper.UmsGrowthChangeHistoryMapper">
 
     <resultMap type="UmsGrowthChangeHistory" id="UmsGrowthChangeHistoryResult">
         <result property="id" column="id"/>
@@ -29,52 +29,4 @@
         </where>
     </select>
 
-    <select id="selectUmsGrowthChangeHistoryById" parameterType="Long" resultMap="UmsGrowthChangeHistoryResult">
-        <include refid="selectUmsGrowthChangeHistoryVo"/>
-        where id = #{id}
-    </select>
-
-    <insert id="insertUmsGrowthChangeHistory" parameterType="UmsGrowthChangeHistory" useGeneratedKeys="true"
-            keyProperty="id">
-        insert into ums_growth_change_history
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="memberId != null">member_id,</if>
-            <if test="createTime != null">create_time,</if>
-            <if test="changeCount != null">change_count,</if>
-            <if test="note != null">note,</if>
-            <if test="sourceType != null">source_type,</if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="memberId != null">#{memberId},</if>
-            <if test="createTime != null">#{createTime},</if>
-            <if test="changeCount != null">#{changeCount},</if>
-            <if test="note != null">#{note},</if>
-            <if test="sourceType != null">#{sourceType},</if>
-        </trim>
-    </insert>
-
-    <update id="updateUmsGrowthChangeHistory" parameterType="UmsGrowthChangeHistory">
-        update ums_growth_change_history
-        <trim prefix="SET" suffixOverrides=",">
-            <if test="memberId != null">member_id = #{memberId},</if>
-            <if test="createTime != null">create_time = #{createTime},</if>
-            <if test="changeCount != null">change_count = #{changeCount},</if>
-            <if test="note != null">note = #{note},</if>
-            <if test="sourceType != null">source_type = #{sourceType},</if>
-        </trim>
-        where id = #{id}
-    </update>
-
-    <delete id="deleteUmsGrowthChangeHistoryById" parameterType="Long">
-        delete
-        from ums_growth_change_history
-        where id = #{id}
-    </delete>
-
-    <delete id="deleteUmsGrowthChangeHistoryByIds" parameterType="String">
-        delete from ums_growth_change_history where id in
-        <foreach item="id" collection="array" open="(" separator="," close=")">
-            #{id}
-        </foreach>
-    </delete>
 </mapper>

@@ -1,5 +1,6 @@
 package com.qinweizhao.user.service.impl;
 
+import com.qinweizhao.component.mybatis.service.impl.QwzServiceImpl;
 import com.qinweizhao.user.entity.UmsMemberReceiveAddress;
 import com.qinweizhao.user.mapper.UmsMemberReceiveAddressMapper;
 import com.qinweizhao.user.service.IUmsMemberReceiveAddressService;
@@ -15,20 +16,9 @@ import java.util.List;
  * @date 2022-04-30
  */
 @Service
-public class UmsMemberReceiveAddressServiceImpl implements IUmsMemberReceiveAddressService {
+public class UmsMemberReceiveAddressServiceImpl extends QwzServiceImpl<UmsMemberReceiveAddressMapper, UmsMemberReceiveAddress> implements IUmsMemberReceiveAddressService {
     @Resource
     private UmsMemberReceiveAddressMapper umsMemberReceiveAddressMapper;
-
-    /**
-     * 查询会员收货地址
-     *
-     * @param id 会员收货地址主键
-     * @return 会员收货地址
-     */
-    @Override
-    public UmsMemberReceiveAddress selectUmsMemberReceiveAddressById(Long id) {
-        return umsMemberReceiveAddressMapper.selectUmsMemberReceiveAddressById(id);
-    }
 
     /**
      * 查询会员收货地址列表
@@ -41,47 +31,5 @@ public class UmsMemberReceiveAddressServiceImpl implements IUmsMemberReceiveAddr
         return umsMemberReceiveAddressMapper.selectUmsMemberReceiveAddressList(umsMemberReceiveAddress);
     }
 
-    /**
-     * 新增会员收货地址
-     *
-     * @param umsMemberReceiveAddress 会员收货地址
-     * @return 结果
-     */
-    @Override
-    public int insertUmsMemberReceiveAddress(UmsMemberReceiveAddress umsMemberReceiveAddress) {
-        return umsMemberReceiveAddressMapper.insertUmsMemberReceiveAddress(umsMemberReceiveAddress);
-    }
 
-    /**
-     * 修改会员收货地址
-     *
-     * @param umsMemberReceiveAddress 会员收货地址
-     * @return 结果
-     */
-    @Override
-    public int updateUmsMemberReceiveAddress(UmsMemberReceiveAddress umsMemberReceiveAddress) {
-        return umsMemberReceiveAddressMapper.updateUmsMemberReceiveAddress(umsMemberReceiveAddress);
-    }
-
-    /**
-     * 批量删除会员收货地址
-     *
-     * @param ids 需要删除的会员收货地址主键
-     * @return 结果
-     */
-    @Override
-    public int deleteUmsMemberReceiveAddressByIds(Long[] ids) {
-        return umsMemberReceiveAddressMapper.deleteUmsMemberReceiveAddressByIds(ids);
-    }
-
-    /**
-     * 删除会员收货地址信息
-     *
-     * @param id 会员收货地址主键
-     * @return 结果
-     */
-    @Override
-    public int deleteUmsMemberReceiveAddressById(Long id) {
-        return umsMemberReceiveAddressMapper.deleteUmsMemberReceiveAddressById(id);
-    }
 }

@@ -1,8 +1,9 @@
 package com.qinweizhao.user.service.impl;
 
+import com.qinweizhao.component.mybatis.service.impl.QwzServiceImpl;
 import com.qinweizhao.user.entity.UmsMemberCollectSubject;
 import com.qinweizhao.user.mapper.UmsMemberCollectSubjectMapper;
-import com.qinweizhao.user.service.IUmsMemberCollectSubjectService;
+import com.qinweizhao.user.service.UmsMemberCollectSubjectService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -15,20 +16,10 @@ import java.util.List;
  * @date 2022-04-30
  */
 @Service
-public class UmsMemberCollectSubjectServiceImpl implements IUmsMemberCollectSubjectService {
+public class UmsMemberCollectSubjectServiceImpl extends QwzServiceImpl<UmsMemberCollectSubjectMapper, UmsMemberCollectSubject> implements UmsMemberCollectSubjectService {
     @Resource
     private UmsMemberCollectSubjectMapper umsMemberCollectSubjectMapper;
 
-    /**
-     * 查询会员收藏的专题活动
-     *
-     * @param id 会员收藏的专题活动主键
-     * @return 会员收藏的专题活动
-     */
-    @Override
-    public UmsMemberCollectSubject selectUmsMemberCollectSubjectById(Long id) {
-        return umsMemberCollectSubjectMapper.selectUmsMemberCollectSubjectById(id);
-    }
 
     /**
      * 查询会员收藏的专题活动列表
@@ -41,47 +32,5 @@ public class UmsMemberCollectSubjectServiceImpl implements IUmsMemberCollectSubj
         return umsMemberCollectSubjectMapper.selectUmsMemberCollectSubjectList(umsMemberCollectSubject);
     }
 
-    /**
-     * 新增会员收藏的专题活动
-     *
-     * @param umsMemberCollectSubject 会员收藏的专题活动
-     * @return 结果
-     */
-    @Override
-    public int insertUmsMemberCollectSubject(UmsMemberCollectSubject umsMemberCollectSubject) {
-        return umsMemberCollectSubjectMapper.insertUmsMemberCollectSubject(umsMemberCollectSubject);
-    }
 
-    /**
-     * 修改会员收藏的专题活动
-     *
-     * @param umsMemberCollectSubject 会员收藏的专题活动
-     * @return 结果
-     */
-    @Override
-    public int updateUmsMemberCollectSubject(UmsMemberCollectSubject umsMemberCollectSubject) {
-        return umsMemberCollectSubjectMapper.updateUmsMemberCollectSubject(umsMemberCollectSubject);
-    }
-
-    /**
-     * 批量删除会员收藏的专题活动
-     *
-     * @param ids 需要删除的会员收藏的专题活动主键
-     * @return 结果
-     */
-    @Override
-    public int deleteUmsMemberCollectSubjectByIds(Long[] ids) {
-        return umsMemberCollectSubjectMapper.deleteUmsMemberCollectSubjectByIds(ids);
-    }
-
-    /**
-     * 删除会员收藏的专题活动信息
-     *
-     * @param id 会员收藏的专题活动主键
-     * @return 结果
-     */
-    @Override
-    public int deleteUmsMemberCollectSubjectById(Long id) {
-        return umsMemberCollectSubjectMapper.deleteUmsMemberCollectSubjectById(id);
-    }
 }
