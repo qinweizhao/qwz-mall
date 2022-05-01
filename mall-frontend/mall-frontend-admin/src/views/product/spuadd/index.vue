@@ -223,9 +223,8 @@
                       style="width:170px;float:left;margin-left:15px;margin-top:15px;"
                       :body-style="{ padding: '0px' }"
                       v-for="(img,index) in spu.images"
-                      :key="index"
                     >
-                      <img :src="img" style="width:160px;height:120px"/>
+                      <img :src=img style="width:160px;height:120px"/>
                       <div style="padding: 14px;">
                         <el-row>
                           <el-col :span="12">
@@ -236,7 +235,7 @@
                             ></el-checkbox>
                           </el-col>
                           <el-col :span="12">
-                            <el-tag v-if="scope.row.images[index].defaultImg == 1">
+                            <el-tag v-if="scope.row.images[index].defaultImg === '1'">
                               <input
                                 type="radio"
                                 checked
@@ -467,51 +466,30 @@ export default {
     },
 
     uploadImages(val) {
-      //扩展每个skus里面的imgs选项
-      let imgArr = Array.from(new Set(this.spu.images.concat(val)))
-
-      //{imgUrl:"",defaultImg:0} 由于concat每次迭代上次，有很多重复。所以我们必须得到上次+这次的总长
-
-      this.spu.skus.forEach((item, index) => {
-        let len = imgArr.length - this.spu.skus[index].images.length //还差这么多
-        if (len > 0) {
-          let imgs = new Array(len)
-          imgs = imgs.fill({imgUrl: '', defaultImg: 0})
-          this.spu.skus[index].images = item.images.concat(imgs)
-        }
-      })
-
-      this.spu.images = imgArr //去重
-      console.log('this.spu.skus', this.spu.skus)
+      console.log('uploadImages', val)
+      // //扩展每个skus里面的imgs选项
+      // let imgArr = Array.from(new Set(this.spu.images.concat(val)))
+      //
+      // //{imgUrl:"",defaultImg:0} 由于concat每次迭代上次，有很多重复。所以我们必须得到上次+这次的总长
+      //
+      // this.spu.skus.forEach((item, index) => {
+      //   let len = imgArr.length - this.spu.skus[index].images.length //还差这么多
+      //   if (len > 0) {
+      //     let imgs = new Array(len)
+      //     imgs = imgs.fill({imgUrl: '', defaultImg: 0})
+      //     this.spu.skus[index].images = item.images.concat(imgs)
+      //   }
+      // })
+      //
+      // this.spu.images = imgArr //去重
+      // console.log('this.spu.skus', this.spu.skus)
     }
   },
   //方法集合
   methods: {
-    addAgian() {
-      this.step = 0
-      this.resetSpuData()
-    },
-    resetSpuData() {
-      this.spu = {
-        name: '',
-        description: '',
-        categoryId: 0,
-        brandId: '',
-        weight: '',
-        status: 0,
-        details: [],
-        images: [],
-        bounds: {
-          buyBounds: 0,
-          growBounds: 0
-        },
-        baseAttrs: [],
-        skus: []
-      }
-    },
-    handlePriceChange(scope, mpidx, e) {
-      this.spu.skus[scope.$index].memberPrice[mpidx].price = e
-    },
+    // handlePriceChange(scope, mpidx, e) {
+    //   this.spu.skus[scope.$index].memberPrice[mpidx].price = e
+    // },
     getMemberLevels() {
       listLevel().then(response => {
         this.dataResp.memberLevels = response.data.rows
@@ -615,9 +593,19 @@ export default {
         })
         //先初始化几个images，后面的上传还要加
         let imgs = []
-        this.spu.images.forEach((img, idx) => {
-          imgs.push({imgUrl: '', defaultImg: 0})
-        })
+        // 首先将值转为数组
+        const list = Array.isArray(this.spu.images) ? this.spu.images : this.spu.images.split(',')
+        // 然后将数组转为对象数组
+        this.spu.images = list.map(item => {
+          if (typeof item === "string") {
+            item = {imgUrl: "", defaultImg: 0};
+          }
+          return imgs.push(item);
+        });
+
+        console.log("imgs")
+        console.log(imgs)
+
 
         //会员价，也必须在循环里面生成，否则会导致数据绑定问题
         let memberPrices = []
@@ -642,7 +630,7 @@ export default {
             skuTitle: this.spu.spuName + ' ' + descar.join(' '),
             skuSubtitle: '',
             images: imgs,
-            descar: descar,
+            details: descar,
             fullCount: 0,
             discount: 0,
             countStatus: 0,
@@ -800,6 +788,29 @@ export default {
             break
           }
         }
+      }
+    },
+    // 继续添加
+    addAgian() {
+      this.step = 0
+      this.resetSpuData()
+    },
+    resetSpuData() {
+      this.spu = {
+        name: '',
+        description: '',
+        categoryId: 0,
+        brandId: '',
+        weight: '',
+        status: 0,
+        details: [],
+        images: [],
+        bounds: {
+          buyBounds: 0,
+          growBounds: 0
+        },
+        baseAttrs: [],
+        skus: []
       }
     }
   },

@@ -2,7 +2,9 @@
   <div class="component-upload-image">
     <el-upload
       :action="uploadImgUrl"
-      list-type="picture-card"
+      :list-type="listType"
+      :show-file-list="showFile"
+      :file-list="fileList"
       :on-success="handleUploadSuccess"
       :before-upload="handleBeforeUpload"
       :limit="limit"
@@ -10,15 +12,13 @@
       :on-exceed="handleExceed"
       name="file"
       :on-remove="handleRemove"
-      :show-file-list="true"
       :headers="headers"
-      :file-list="fileList"
       :on-preview="handlePictureCardPreview"
       :class="{hide: this.fileList.length >= this.limit}"
     >
       <i class="el-icon-plus"></i>
     </el-upload>
-    
+
     <!-- 上传提示 -->
     <div class="el-upload__tip" slot="tip" v-if="showTip">
       请上传
@@ -42,11 +42,12 @@
 </template>
 
 <script>
-import { getToken } from "@/utils/auth";
+import {getToken} from "@/utils/auth";
 
 export default {
   props: {
     value: [String, Object, Array],
+    //最大上传图片数量
     // 图片数量限制
     limit: {
       type: Number,
@@ -64,6 +65,14 @@ export default {
     },
     // 是否显示提示
     isShowTip: {
+      type: Boolean,
+      default: true
+    },
+    listType: {
+      type: String,
+      default: "picture-card"
+    },
+    showFile: {
       type: Boolean,
       default: true
     }
