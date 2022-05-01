@@ -56,11 +56,11 @@
               </el-input-number>
             </el-form-item>
             <el-form-item label="商品介绍" prop="details">
-              <file-upload v-model="spu.details"></file-upload>
+              <image-upload v-model="spu.details"></image-upload>
             </el-form-item>
 
             <el-form-item label="商品图集" prop="images">
-              <file-upload v-model="spu.images"></file-upload>
+              <image-upload v-model="spu.images"></image-upload>
             </el-form-item>
             <el-form-item>
               <el-button type="success" @click="collectSpuBaseInfo">下一步：设置基本参数</el-button>
@@ -126,7 +126,7 @@
               <span>选择销售属性</span>
               <el-form ref="saleform" :model="spu">
                 <el-form-item
-                  :label="attr.attrName"
+                  :label="attr.name"
                   v-for="(attr,aidx) in dataResp.saleAttrs"
                   :key="attr.attrId"
                 >
@@ -358,14 +358,15 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import《组件名称》from'《组件路径》';
 import CategoryCascade from '../common/CategoryCascade'
-import FileUpload from '@/components/FileUpload'
 import {getRelation} from '@/api/product/categoryBrand'
 import {listLevel} from '@/api/user/level'
 import {getAttrGroupWithAttrs} from '@/api/product/attr/group'
+import ImageUpload from '@/components/ImageUpload'
+import {listAttr} from '@/api/product/attr/attr'
 
 export default {
   //import引入的组件需要注入到对象中才能使用
-  components: {CategoryCascade, FileUpload},
+  components: {CategoryCascade, ImageUpload},
   props: {},
   data() {
     return {
@@ -397,12 +398,12 @@ export default {
         skus: [] //所有sku信息
       },
       spuBaseInfoRules: {
-        name: [
-          {required: true, message: '请输入商品名字', trigger: 'blur'}
-        ],
-        description: [
-          {required: true, message: '请编写一个简单描述', trigger: 'blur'}
-        ],
+        // name: [
+        //   { required: true, message: '请输入商品名字', trigger: 'blur' }
+        // ],
+        // description: [
+        //   { required: true, message: '请编写一个简单描述', trigger: 'blur' }
+        // ],
         categoryId: [
           {required: true, message: '请选择一个分类', trigger: 'blur'}
         ],
@@ -513,10 +514,10 @@ export default {
     },
     getMemberLevels() {
       listLevel().then(response => {
-        this.dataResp.memberLevels = response.data.rows;
-        this.total = response.data.total;
-        this.loading = false;
-      });
+        this.dataResp.memberLevels = response.data.rows
+        this.total = response.data.total
+        this.loading = false
+      })
     },
     showInput(idx) {
       console.log('``````', this.view)
@@ -671,30 +672,23 @@ export default {
     },
     getShowSaleAttr() {
       //获取当前分类可以使用的销售属性
-      // if (!this.dataResp.steped[1]) {
-      //   this.$http({
-      //     url: this.$http.adornUrl(
-      //       `/product/attr/sale/list/${this.spu.categoryId}`
-      //     ),
-      //     method: "get",
-      //     params: this.$http.adornParams({
-      //       page: 1,
-      //       limit: 500
-      //     })
-      //   }).then(({ data }) => {
-      //     this.dataResp.saleAttrs = data.page.list;
-      //     data.page.list.forEach(item => {
-      //       this.dataResp.tempSaleAttrs.push({
-      //         attrId: item.attrId,
-      //         attrValues: [],
-      //         attrName: item.attrName
-      //       });
-      //       this.inputVisible.push({ view: false });
-      //       this.inputValue.push({ val: "" });
-      //     });
-      //     this.dataResp.steped[1] = true;
-      //   });
-      // }
+      if (!this.dataResp.steped[1]) {
+
+        listAttr({'type': 0, categoryId: this.spu.categoryId})
+          .then(response => {
+            this.dataResp.saleAttrs = response.data.rows
+            response.data.rows.forEach(item => {
+              this.dataResp.tempSaleAttrs.push({
+                attrId: item.attrId,
+                attrValues: [],
+                attrName: item.name
+              })
+              this.inputVisible.push({view: false})
+              this.inputValue.push({val: ''})
+            })
+            this.dataResp.steped[1] = true
+          })
+      }
     },
     showBaseAttrs() {
       if (!this.dataResp.steped[0]) {
@@ -718,29 +712,6 @@ export default {
           this.dataResp.attrGroups = data.data
           console.log(this.dataResp)
         })
-        //
-        // this.$http({
-        //   // url: this.$http.adornUrl(
-        //   //   `/product/attrgroup/${this.spu.categoryId}/withattr`
-        //   // ),
-        //   // method: "get",
-        //   // params: this.$http.adornParams({})
-        // }).then(({data}) => {
-        //   //先对表单的baseAttrs进行初始化
-        //   data.data.forEach(item => {
-        //     let attrArray = []
-        //     item.attrs.forEach(attr => {
-        //       attrArray.push({
-        //         attrId: attr.attrId,
-        //         attrValues: '',
-        //         showDesc: attr.showDesc
-        //       })
-        //     })
-        //     this.dataResp.baseAttrs.push(attrArray)
-        //   })
-        //   this.dataResp.steped[0] = 0
-        //   this.dataResp.attrGroups = data.data
-        // })
       }
     },
 
@@ -858,7 +829,7 @@ export default {
     // PubSub.unsubscribe(this.brandIdSub)
   }, //生命周期-销毁之前
   destroyed() {
-  }, //生命周期- 销毁完成
+  }, //生命周期-销毁完成
   activated() {
   } //如果页面有keep-alive缓存功能，这个函数会触发
 }
