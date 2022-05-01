@@ -79,7 +79,7 @@
               <!-- 遍历属性,每个tab-pane对应一个表单，每个属性是一个表单项  spu.baseAttrs[0] = [{attrId:xx,val:}]-->
               <el-form ref="form" :model="spu">
                 <el-form-item
-                  :label="attr.attrName"
+                  :label="attr.name"
                   v-for="(attr,aidx) in group.attrs"
                   :key="attr.attrId"
                 >
@@ -208,12 +208,12 @@
                 <el-row>
                   <el-col :span="24">
                     <label style="display:block;float:left">选择图集 或</label>
-                    <multi-upload
+                    <image-upload
                       style="float:left;margin-left:10px;"
                       :showFile="false"
                       :listType="'text'"
                       v-model="uploadImages"
-                    ></multi-upload>
+                    ></image-upload>
                   </el-col>
                   <el-col :span="24">
                     <el-divider></el-divider>
