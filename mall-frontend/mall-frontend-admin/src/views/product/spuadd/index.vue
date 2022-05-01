@@ -60,7 +60,7 @@
             </el-form-item>
 
             <el-form-item label="商品图集" prop="images">
-              <image-upload v-model="spu.images"></image-upload>
+              <image-upload @input="imageUploadOk"></image-upload>
             </el-form-item>
             <el-form-item>
               <el-button type="success" @click="collectSpuBaseInfo">下一步：设置基本参数</el-button>
@@ -212,6 +212,7 @@
                       style="float:left;margin-left:10px;"
                       :showFile="false"
                       :listType="'text'"
+                      @input="imageUploadOk"
                       v-model="uploadImages"
                     ></image-upload>
                   </el-col>
@@ -235,7 +236,7 @@
                             ></el-checkbox>
                           </el-col>
                           <el-col :span="12">
-                            <el-tag v-if="scope.row.images[index].defaultImg === '1'">
+                            <el-tag v-if="scope.row.images[index].defaultImg == 1">
                               <input
                                 type="radio"
                                 checked
@@ -467,22 +468,22 @@ export default {
 
     uploadImages(val) {
       console.log('uploadImages', val)
-      // //扩展每个skus里面的imgs选项
-      // let imgArr = Array.from(new Set(this.spu.images.concat(val)))
-      //
-      // //{imgUrl:"",defaultImg:0} 由于concat每次迭代上次，有很多重复。所以我们必须得到上次+这次的总长
-      //
-      // this.spu.skus.forEach((item, index) => {
-      //   let len = imgArr.length - this.spu.skus[index].images.length //还差这么多
-      //   if (len > 0) {
-      //     let imgs = new Array(len)
-      //     imgs = imgs.fill({imgUrl: '', defaultImg: 0})
-      //     this.spu.skus[index].images = item.images.concat(imgs)
-      //   }
-      // })
-      //
-      // this.spu.images = imgArr //去重
-      // console.log('this.spu.skus', this.spu.skus)
+      //扩展每个skus里面的imgs选项
+      let imgArr = Array.from(new Set(this.spu.images.concat(val)))
+
+      //{imgUrl:"",defaultImg:0} 由于concat每次迭代上次，有很多重复。所以我们必须得到上次+这次的总长
+
+      this.spu.skus.forEach((item, index) => {
+        let len = imgArr.length - this.spu.skus[index].images.length //还差这么多
+        if (len > 0) {
+          let imgs = new Array(len)
+          imgs = imgs.fill({imgUrl: '', defaultImg: 0})
+          this.spu.skus[index].images = item.images.concat(imgs)
+        }
+      })
+
+      this.spu.images = imgArr //去重
+      console.log('this.spu.skus', this.spu.skus)
     }
   },
   //方法集合
@@ -547,7 +548,6 @@ export default {
           //跳过没有录入值的属性
           if (attrValues != '') {
             if (attrValues instanceof Array) {
-
               //多个值用;隔开
               attrValues = attrValues.join(';')
             }
@@ -592,20 +592,7 @@ export default {
           attrArray.push(saleAttrItem)
         })
         //先初始化几个images，后面的上传还要加
-        let imgs = []
-        // 首先将值转为数组
-        const list = Array.isArray(this.spu.images) ? this.spu.images : this.spu.images.split(',')
-        // 然后将数组转为对象数组
-        this.spu.images = list.map(item => {
-          if (typeof item === "string") {
-            item = {imgUrl: "", defaultImg: 0};
-          }
-          return imgs.push(item);
-        });
-
-        console.log("imgs")
-        console.log(imgs)
-
+        let imgs = this.spu.images
 
         //会员价，也必须在循环里面生成，否则会导致数据绑定问题
         let memberPrices = []
@@ -651,7 +638,7 @@ export default {
       let res = null
       if (skus.length > 0) {
         for (let i = 0; i < skus.length; i++) {
-          if (skus[i].descar.join(' ') == descar.join(' ')) {
+          if (skus[i].descar.join(' ') === descar.join(' ')) {
             res = skus[i]
           }
         }
@@ -740,16 +727,17 @@ export default {
     },
     //笛卡尔积运算
     descartes(list) {
-      //parent上一级索引;count指针计数
-      var point = {}
+      let index
+//parent上一级索引;count指针计数
+      const point = {}
 
-      var result = []
-      var pIndex = null
-      var tempCount = 0
-      var temp = []
+      const result = []
+      let pIndex = null
+      let tempCount = 0
+      let temp = []
 
       //根据参数列生成指针对象
-      for (var index in list) {
+      for (index in list) {
         if (typeof list[index] == 'object') {
           point[index] = {parent: pIndex, count: 0}
           pIndex = index
@@ -763,7 +751,7 @@ export default {
 
       //动态生成笛卡尔积
       while (true) {
-        for (var index in list) {
+        for (index in list) {
           tempCount = point[index]['count']
           temp.push(list[index][tempCount])
         }
@@ -812,6 +800,9 @@ export default {
         baseAttrs: [],
         skus: []
       }
+    },
+    imageUploadOk(data) {
+      this.spu.images = data.split(',')
     }
   },
   //生命周期-创建完成（可以访问当前this实例）

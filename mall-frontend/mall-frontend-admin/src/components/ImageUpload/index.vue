@@ -97,8 +97,8 @@ export default {
           const list = Array.isArray(val) ? val : this.value.split(',');
           // 然后将数组转为对象数组
           this.fileList = list.map(item => {
-            if (typeof item === "string") {
-              item = { name: item, url: item };
+            if (typeof item == "string") {
+              item = {name: item, url: item};
             }
             return item;
           });
@@ -128,8 +128,10 @@ export default {
     },
     // 上传成功回调
     handleUploadSuccess(res) {
-      this.fileList.push({ name: res.data.url, url: res.data.url });
+
+      this.fileList.push({name: res.data.name, url: res.data.url});
       this.$emit("input", this.listToString(this.fileList));
+      this.$emit("inputArray", this.fileList);
       this.loading.close();
     },
     // 上传前loading加载
