@@ -545,14 +545,14 @@ export default {
       this.spu.baseAttrs = []
       this.dataResp.baseAttrs.forEach(item => {
         item.forEach(attr => {
-          let {attrId, attrValues, showDesc} = attr
+          let {attrId, attrValues, quickShow} = attr
           //跳过没有录入值的属性
           if (attrValues != '') {
             if (attrValues instanceof Array) {
               //多个值用;隔开
               attrValues = attrValues.join(';')
             }
-            this.spu.baseAttrs.push({attrId, attrValues, showDesc})
+            this.spu.baseAttrs.push({attrId, attrValues, quickShow})
           }
         })
       })
@@ -682,7 +682,7 @@ export default {
                 attrArray.push({
                   attrId: attr.attrId,
                   attrValues: '',
-                  showDesc: attr.quickShow
+                  quickShow: attr.quickShow
                 })
               })
             }

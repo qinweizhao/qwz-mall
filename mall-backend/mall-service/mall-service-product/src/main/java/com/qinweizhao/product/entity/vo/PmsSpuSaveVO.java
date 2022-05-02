@@ -43,7 +43,7 @@ public class PmsSpuSaveVO {
 
 
     /**
-     * 商品介绍
+     * 商品介绍(详情)
      */
     private List<String> details;
 
@@ -69,6 +69,103 @@ public class PmsSpuSaveVO {
     private List<Skus> skus;
 
 
+    @Data
+    public class BaseAttr {
+
+        /**
+         * 属性 id
+         */
+        private Long attrId;
+
+        /**
+         * 属性值
+         */
+        private String attrValues;
+
+        /**
+         * 快速展示
+         */
+        private Integer quickShow;
+
+    }
+
+    @Data
+    public class Skus {
+
+        /**
+         * 销售属性
+         */
+        private List<Attr> attr;
+
+        /**
+         * skuName
+         */
+        private String skuName;
+
+        /**
+         * 价格
+         */
+        private String price;
+
+        /**
+         * 标题
+         */
+        private String skuTitle;
+
+        /**
+         * 副标题
+         */
+        private String skuSubtitle;
+
+
+        /**
+         * 图集
+         */
+        private List<Images> images;
+
+        /**
+         * saleAttr信息
+         */
+        private List<String> details;
+
+
+        /**
+         * 满 fullCount 件
+         */
+        private int fullCount;
+
+        /**
+         * discount 折
+         */
+        private int discount;
+
+
+        /**
+         * 可叠加优惠
+         */
+        private int countStatus;
+
+
+        /**
+         * 满 fullPrice 元
+         */
+        private int fullPrice;
+
+        /**
+         * 减 reducePrice;
+         */
+        private int reducePrice;
+        /**
+         * 可叠加优惠
+         */
+        private int priceStatus;
+
+        /**
+         * 会员价格
+         */
+        private List<MemberPrice> memberPrice;
+
+    }
 }
 
 @Data
@@ -86,103 +183,9 @@ class Bounds {
 
 }
 
-@Data
-class BaseAttr {
-
-    /**
-     * 属性 id
-     */
-    private int attrId;
-
-    /**
-     * 属性值
-     */
-    private String attrValues;
-
-    /**
-     * 快速展示
-     */
-    private String showDesc;
-
-}
-
-@Data
-class Skus {
-
-    /**
-     * 销售属性
-     */
-    private List<Attr> attr;
-
-    /**
-     * skuName
-     */
-    private String skuName;
-
-    /**
-     * 价格
-     */
-    private String price;
-
-    /**
-     * 标题
-     */
-    private String skuTitle;
-
-    /**
-     * 副标题
-     */
-    private String skuSubtitle;
 
 
-    /**
-     * 图集
-     */
-    private List<Images> images;
 
-    /**
-     * saleAttr信息
-     */
-    private List<String> details;
-
-
-    /**
-     * 满 fullCount 件
-     */
-    private int fullCount;
-
-    /**
-     * discount 折
-     */
-    private int discount;
-
-
-    /**
-     * 可叠加优惠
-     */
-    private int countStatus;
-
-
-    /**
-     * 满 fullPrice 元
-     */
-    private int fullPrice;
-
-    /**
-     * 减 reducePrice;
-     */
-    private int reducePrice;
-    /**
-     * 可叠加优惠
-     */
-    private int priceStatus;
-
-    /**
-     * 会员价格
-     */
-    private List<MemberPrice> memberPrice;
-
-}
 
 @Data
 class Attr {

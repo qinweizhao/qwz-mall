@@ -53,7 +53,7 @@ public class PmsSpuAttrValue extends BaseEntity {
      * 快速展示【是否展示在介绍上；0-否 1-是】
      */
     @Excel(name = "快速展示【是否展示在介绍上；0-否 1-是】")
-    private Long quickShow;
+    private Integer quickShow;
 
     public Long getId() {
         return id;
@@ -103,11 +103,11 @@ public class PmsSpuAttrValue extends BaseEntity {
         this.sort = sort;
     }
 
-    public Long getQuickShow() {
+    public Integer getQuickShow() {
         return quickShow;
     }
 
-    public void setQuickShow(Long quickShow) {
+    public void setQuickShow(Integer quickShow) {
         this.quickShow = quickShow;
     }
 

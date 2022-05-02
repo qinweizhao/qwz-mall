@@ -2,11 +2,12 @@ package com.qinweizhao.product.service.impl;
 
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.bean.BeanUtils;
-import com.qinweizhao.product.entity.PmsSpuInfo;
+import com.qinweizhao.product.entity.*;
 import com.qinweizhao.product.entity.vo.PmsSpuSaveVO;
 import com.qinweizhao.product.mapper.PmsSpuInfoMapper;
-import com.qinweizhao.product.service.IPmsSpuInfoService;
+import com.qinweizhao.product.service.*;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -19,8 +20,30 @@ import java.util.List;
  */
 @Service
 public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
+
     @Resource
     private PmsSpuInfoMapper pmsSpuInfoMapper;
+
+    @Resource
+    private IPmsSpuInfoDetailService pmsSpuInfoDetailService;
+
+    @Resource
+    private IPmsSpuImageService pmsSpuImageService;
+
+    @Resource
+    private IPmsAttrService pmsAttrService;
+
+    @Resource
+    private IPmsSpuAttrValueService pmsSpuAttrValueService;
+
+    @Resource
+    private IPmsSkuAttrValueService pmsSkuAttrValueService;
+
+    @Resource
+    private IPmsSkuInfoService pmsSkuInfoService;
+
+    @Resource
+    private IPmsSkuImageService pmsSkuImageService;
 
     /**
      * 查询spu信息
@@ -93,6 +116,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
 
     /**
      * todo
+     * 3、5 批量保存
      * 发布商品
      *
      * @param pmsSpuSaveVO pmsSpuSaveVO
@@ -105,7 +129,58 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
         BeanUtils.copyProperties(pmsSpuSaveVO, pmsSpuInfo);
         pmsSpuInfoMapper.insertPmsSpuInfo(pmsSpuInfo);
 
-        // 2、保存spu的描述图片 pms_spu_info_desc
+
+        Long spuId = pmsSpuInfo.getSpuId();
+
+
+        // 2、保存spu的描述图片 pms_spu_info_detail
+        List<String> details = pmsSpuSaveVO.getDetails();
+        PmsSpuInfoDetail pmsSpuInfoDetail = new PmsSpuInfoDetail();
+        pmsSpuInfoDetail.setDetail(String.join(",", details));
+        pmsSpuInfoDetail.setSpuId(pmsSpuInfo.getSpuId());
+        pmsSpuInfoDetailService.insertPmsSpuInfoDetail(pmsSpuInfoDetail);
+
+        // 3、保存spu的图片集 pms_spu_image
+        List<String> images = pmsSpuSaveVO.getImages();
+
+        images.forEach(item -> {
+            PmsSpuImage pmsSpuImage = new PmsSpuImage();
+            pmsSpuImage.setSpuId(spuId);
+            pmsSpuImage.setUrl(item);
+            pmsSpuImage.setName(StringUtils.getFilename(item));
+
+            pmsSpuImageService.insertPmsSpuImage(pmsSpuImage);
+        });
+
+
+        // 4、保存spu的积分信息；mall_ams->ams_spu_bounds
+        // 暂时先搁置
+
+        // 5、保存spu的规格参数;pms_spu_attr_value
+        List<PmsSpuSaveVO.BaseAttr> baseAttrs = pmsSpuSaveVO.getBaseAttrs();
+        baseAttrs.forEach(baseAttr -> {
+            PmsSpuAttrValue pmsSpuAttrValue = new PmsSpuAttrValue();
+
+            Long attrId = baseAttr.getAttrId();
+            PmsAttr pmsAttr = pmsAttrService.selectPmsAttrByAttrId(attrId);
+            pmsSpuAttrValue.setAttrId(attrId);
+            pmsSpuAttrValue.setName(pmsAttr.getName());
+            pmsSpuAttrValue.setValue(baseAttr.getAttrValues());
+            pmsSpuAttrValue.setQuickShow(baseAttr.getQuickShow());
+            pmsSpuAttrValue.setSpuId(spuId);
+
+            pmsSpuAttrValueService.insertPmsSpuAttrValue(pmsSpuAttrValue);
+        });
+
+        // 6、保存当前spu对应的所有sku信息
+        List<PmsSpuSaveVO.Skus> skus = pmsSpuSaveVO.getSkus();
+        if (!skus.isEmpty()) {
+            skus.forEach(item -> {
+
+
+            });
+        }
+
 
         return false;
     }
