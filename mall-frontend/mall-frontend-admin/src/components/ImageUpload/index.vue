@@ -128,7 +128,6 @@ export default {
     },
     // 上传成功回调
     handleUploadSuccess(res) {
-
       this.fileList.push({name: res.data.name, url: res.data.url});
       this.$emit("input", this.listToString(this.fileList));
       this.$emit("inputArray", this.fileList);

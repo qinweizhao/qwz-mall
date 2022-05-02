@@ -236,7 +236,7 @@
                             ></el-checkbox>
                           </el-col>
                           <el-col :span="12">
-                            <el-tag v-if="scope.row.images[index].defaultImg == 1">
+                            <el-tag v-if="scope.row.images[index].defaultImg === 1">
                               <input
                                 type="radio"
                                 checked
@@ -381,12 +381,12 @@ export default {
       //spu_name  spu_description  catalog_id  brand_id  weight  publish_status
       spu: {
         //要提交的数据
-        spuName: '',
-        spuDescription: '',
+        name: '',
+        description: '',
         categoryId: 0,
         brandId: '',
         weight: '',
-        publishStatus: 0,
+        status: 0, //上架状态
         details: [], //商品详情
         images: [], //商品图集，最后sku也可以新增
         bounds: {
@@ -477,7 +477,7 @@ export default {
         let len = imgArr.length - this.spu.skus[index].images.length //还差这么多
         if (len > 0) {
           let imgs = new Array(len)
-          imgs = imgs.fill({imgUrl: '', defaultImg: 0})
+          imgs = imgs.fill({imgUrl: " ", defaultImg: 0})
           this.spu.skus[index].images = item.images.concat(imgs)
         }
       })
@@ -505,6 +505,7 @@ export default {
     },
     checkDefaultImg(row, index, img) {
       console.log('默认图片', row, index)
+      console.log('默认图片img', img)
       //这个图片被选中了，
       row.images[index].imgUrl = img //默认选中
       row.images[index].defaultImg = 1 //修改标志位;
@@ -592,7 +593,11 @@ export default {
           attrArray.push(saleAttrItem)
         })
         //先初始化几个images，后面的上传还要加
-        let imgs = this.spu.images
+        let imgs = []
+
+        this.spu.images.forEach((img, idx) => {
+          imgs.push({imgUrl: "", defaultImg: 0});
+        });
 
         //会员价，也必须在循环里面生成，否则会导致数据绑定问题
         let memberPrices = []
@@ -612,9 +617,9 @@ export default {
         if (res === null) {
           skus.push({
             attr: attrArray,
-            skuName: this.spu.spuName + ' ' + descar.join(' '),
+            skuName: this.spu.name + ' ' + descar.join(' '),
             price: 0,
-            skuTitle: this.spu.spuName + ' ' + descar.join(' '),
+            skuTitle: this.spu.name + ' ' + descar.join(' '),
             skuSubtitle: '',
             images: imgs,
             details: descar,
@@ -810,12 +815,6 @@ export default {
   },
   //生命周期-挂载完成（可以访问DOM元素）
   mounted() {
-    // this.catPathSub = PubSub.subscribe("catPath", (msg, val) => {
-    //   this.spu.categoryId = val[val.length - 1];
-    // });
-    // this.brandIdSub = PubSub.subscribe("brandId", (msg, val) => {
-    //   this.spu.brandId = val;
-    // });
     this.getMemberLevels()
   },
   beforeCreate() {
@@ -827,8 +826,6 @@ export default {
   updated() {
   }, //生命周期-更新之后
   beforeDestroy() {
-    // PubSub.unsubscribe(this.catPathSub)
-    // PubSub.unsubscribe(this.brandIdSub)
   }, //生命周期-销毁之前
   destroyed() {
   }, //生命周期-销毁完成
