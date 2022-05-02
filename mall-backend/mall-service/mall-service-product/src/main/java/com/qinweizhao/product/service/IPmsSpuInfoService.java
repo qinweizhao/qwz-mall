@@ -1,6 +1,7 @@
 package com.qinweizhao.product.service;
 
 import com.qinweizhao.product.entity.PmsSpuInfo;
+import com.qinweizhao.product.entity.vo.PmsSpuSaveVO;
 
 import java.util.List;
 
@@ -58,4 +59,13 @@ public interface IPmsSpuInfoService {
      * @return 结果
      */
     int deletePmsSpuInfoBySpuId(Long spuId);
+
+
+    /**
+     * 发布商品
+     *
+     * @param pmsSpuSaveVO pmsSpuSaveVO
+     * @return boolean
+     */
+    boolean insertSpu(PmsSpuSaveVO pmsSpuSaveVO);
 }

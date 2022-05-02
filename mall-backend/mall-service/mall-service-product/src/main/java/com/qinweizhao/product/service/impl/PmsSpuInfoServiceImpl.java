@@ -1,7 +1,9 @@
 package com.qinweizhao.product.service.impl;
 
 import com.qinweizhao.common.core.utils.DateUtils;
+import com.qinweizhao.common.core.utils.bean.BeanUtils;
 import com.qinweizhao.product.entity.PmsSpuInfo;
+import com.qinweizhao.product.entity.vo.PmsSpuSaveVO;
 import com.qinweizhao.product.mapper.PmsSpuInfoMapper;
 import com.qinweizhao.product.service.IPmsSpuInfoService;
 import org.springframework.stereotype.Service;
@@ -86,5 +88,25 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
     @Override
     public int deletePmsSpuInfoBySpuId(Long spuId) {
         return pmsSpuInfoMapper.deletePmsSpuInfoBySpuId(spuId);
+    }
+
+
+    /**
+     * todo
+     * 发布商品
+     *
+     * @param pmsSpuSaveVO pmsSpuSaveVO
+     * @return boolean
+     */
+    @Override
+    public boolean insertSpu(PmsSpuSaveVO pmsSpuSaveVO) {
+        // 1、保存spu基本信息 pms_spu_info
+        PmsSpuInfo pmsSpuInfo = new PmsSpuInfo();
+        BeanUtils.copyProperties(pmsSpuSaveVO, pmsSpuInfo);
+        pmsSpuInfoMapper.insertPmsSpuInfo(pmsSpuInfo);
+
+        // 2、保存spu的描述图片 pms_spu_info_desc
+
+        return false;
     }
 }
