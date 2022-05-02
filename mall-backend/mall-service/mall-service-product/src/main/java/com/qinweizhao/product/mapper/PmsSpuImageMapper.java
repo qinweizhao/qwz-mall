@@ -8,16 +8,16 @@ import java.util.List;
  * spu图片Mapper接口
  *
  * @author qinweizhao
- * @date 2022-04-12
+ * @date 2022-05-03
  */
 public interface PmsSpuImageMapper {
     /**
      * 查询spu图片
      *
-     * @param spuId spu图片主键
+     * @param id spu图片主键
      * @return spu图片
      */
-    PmsSpuImage selectPmsSpuImageBySpuId(Long spuId);
+    public PmsSpuImage selectPmsSpuImageById(Long id);
 
     /**
      * 查询spu图片列表
@@ -25,7 +25,7 @@ public interface PmsSpuImageMapper {
      * @param pmsSpuImage spu图片
      * @return spu图片集合
      */
-    List<PmsSpuImage> selectPmsSpuImageList(PmsSpuImage pmsSpuImage);
+    public List<PmsSpuImage> selectPmsSpuImageList(PmsSpuImage pmsSpuImage);
 
     /**
      * 新增spu图片
@@ -33,7 +33,7 @@ public interface PmsSpuImageMapper {
      * @param pmsSpuImage spu图片
      * @return 结果
      */
-    int insertPmsSpuImage(PmsSpuImage pmsSpuImage);
+    public int insertPmsSpuImage(PmsSpuImage pmsSpuImage);
 
     /**
      * 修改spu图片
@@ -41,21 +41,21 @@ public interface PmsSpuImageMapper {
      * @param pmsSpuImage spu图片
      * @return 结果
      */
-    int updatePmsSpuImage(PmsSpuImage pmsSpuImage);
+    public int updatePmsSpuImage(PmsSpuImage pmsSpuImage);
 
     /**
      * 删除spu图片
      *
-     * @param spuId spu图片主键
+     * @param id spu图片主键
      * @return 结果
      */
-    int deletePmsSpuImageBySpuId(Long spuId);
+    public int deletePmsSpuImageById(Long id);
 
     /**
      * 批量删除spu图片
      *
-     * @param spuIds 需要删除的数据主键集合
+     * @param ids 需要删除的数据主键集合
      * @return 结果
      */
-    int deletePmsSpuImageBySpuIds(Long[] spuIds);
+    public int deletePmsSpuImageByIds(Long[] ids);
 }

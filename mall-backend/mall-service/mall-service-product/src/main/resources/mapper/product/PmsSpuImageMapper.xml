@@ -5,6 +5,7 @@
 <mapper namespace="com.qinweizhao.product.mapper.PmsSpuImageMapper">
 
     <resultMap type="PmsSpuImage" id="PmsSpuImageResult">
+        <result property="id" column="id"/>
         <result property="spuId" column="spu_id"/>
         <result property="name" column="name"/>
         <result property="url" column="url"/>
@@ -18,7 +19,8 @@
     </resultMap>
 
     <sql id="selectPmsSpuImageVo">
-        select spu_id,
+        select id,
+               spu_id,
                name,
                url,
                sort,
@@ -34,6 +36,7 @@
     <select id="selectPmsSpuImageList" parameterType="PmsSpuImage" resultMap="PmsSpuImageResult">
         <include refid="selectPmsSpuImageVo"/>
         <where>
+            <if test="spuId != null ">and spu_id = #{spuId}</if>
             <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
             <if test="url != null  and url != ''">and url = #{url}</if>
             <if test="sort != null ">and sort = #{sort}</if>
@@ -41,14 +44,15 @@
         </where>
     </select>
 
-    <select id="selectPmsSpuImageBySpuId" parameterType="Long" resultMap="PmsSpuImageResult">
+    <select id="selectPmsSpuImageById" parameterType="Long" resultMap="PmsSpuImageResult">
         <include refid="selectPmsSpuImageVo"/>
-        where spu_id = #{spuId}
+        where id = #{id}
     </select>
 
     <insert id="insertPmsSpuImage" parameterType="PmsSpuImage">
         insert into pms_spu_image
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
             <if test="spuId != null">spu_id,</if>
             <if test="name != null">name,</if>
             <if test="url != null">url,</if>
@@ -61,6 +65,7 @@
             <if test="remark != null">remark,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
             <if test="spuId != null">#{spuId},</if>
             <if test="name != null">#{name},</if>
             <if test="url != null">#{url},</if>
@@ -77,6 +82,7 @@
     <update id="updatePmsSpuImage" parameterType="PmsSpuImage">
         update pms_spu_image
         <trim prefix="SET" suffixOverrides=",">
+            <if test="spuId != null">spu_id = #{spuId},</if>
             <if test="name != null">name = #{name},</if>
             <if test="url != null">url = #{url},</if>
             <if test="sort != null">sort = #{sort},</if>
@@ -87,19 +93,19 @@
             <if test="updateTime != null">update_time = #{updateTime},</if>
             <if test="remark != null">remark = #{remark},</if>
         </trim>
-        where spu_id = #{spuId}
+        where id = #{id}
     </update>
 
-    <delete id="deletePmsSpuImageBySpuId" parameterType="Long">
+    <delete id="deletePmsSpuImageById" parameterType="Long">
         delete
         from pms_spu_image
-        where spu_id = #{spuId}
+        where id = #{id}
     </delete>
 
-    <delete id="deletePmsSpuImageBySpuIds" parameterType="String">
-        delete from pms_spu_image where spu_id in
-        <foreach item="spuId" collection="array" open="(" separator="," close=")">
-            #{spuId}
+    <delete id="deletePmsSpuImageByIds" parameterType="String">
+        delete from pms_spu_image where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
         </foreach>
     </delete>
 </mapper>

@@ -13,7 +13,7 @@ import java.util.List;
  * spu图片Service业务层处理
  *
  * @author qinweizhao
- * @date 2022-04-12
+ * @date 2022-05-03
  */
 @Service
 public class PmsSpuImageServiceImpl implements IPmsSpuImageService {
@@ -23,12 +23,12 @@ public class PmsSpuImageServiceImpl implements IPmsSpuImageService {
     /**
      * 查询spu图片
      *
-     * @param spuId spu图片主键
+     * @param id spu图片主键
      * @return spu图片
      */
     @Override
-    public PmsSpuImage selectPmsSpuImageBySpuId(Long spuId) {
-        return pmsSpuImageMapper.selectPmsSpuImageBySpuId(spuId);
+    public PmsSpuImage selectPmsSpuImageById(Long id) {
+        return pmsSpuImageMapper.selectPmsSpuImageById(id);
     }
 
     /**
@@ -69,22 +69,22 @@ public class PmsSpuImageServiceImpl implements IPmsSpuImageService {
     /**
      * 批量删除spu图片
      *
-     * @param spuIds 需要删除的spu图片主键
+     * @param ids 需要删除的spu图片主键
      * @return 结果
      */
     @Override
-    public int deletePmsSpuImageBySpuIds(Long[] spuIds) {
-        return pmsSpuImageMapper.deletePmsSpuImageBySpuIds(spuIds);
+    public int deletePmsSpuImageByIds(Long[] ids) {
+        return pmsSpuImageMapper.deletePmsSpuImageByIds(ids);
     }
 
     /**
      * 删除spu图片信息
      *
-     * @param spuId spu图片主键
+     * @param id spu图片主键
      * @return 结果
      */
     @Override
-    public int deletePmsSpuImageBySpuId(Long spuId) {
-        return pmsSpuImageMapper.deletePmsSpuImageBySpuId(spuId);
+    public int deletePmsSpuImageById(Long id) {
+        return pmsSpuImageMapper.deletePmsSpuImageById(id);
     }
 }

@@ -56,7 +56,7 @@ public class PmsSpuInfo extends BaseEntity {
     /**
      * 上架状态[0 - 下架，1 - 上架]
      */
-    @Excel(name = "上架状态[0 - 下架，1 - 上架]")
+    @Excel(name = "上架状态[0 - 新建，1 - 上架，2 - 下架]")
     private Long status;
 
 }

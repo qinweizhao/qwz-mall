@@ -14,7 +14,7 @@ public class PmsSpuSaveVO {
     /**
      * 商品名称
      */
-    private String spuName;
+    private String name;
 
     /**
      * 商品描述

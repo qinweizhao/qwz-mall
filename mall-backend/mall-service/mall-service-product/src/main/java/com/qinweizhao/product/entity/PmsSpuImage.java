@@ -9,83 +9,86 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * spu图片对象 pms_spu_image
  *
  * @author qinweizhao
- * @date 2022-04-12
+ * @date 2022-05-03
  */
 public class PmsSpuImage extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * spu_id
-     */
+    /** $column.columnComment */
+    private Long id;
+
+    /** spu_id */
+    @Excel(name = "spu_id")
     private Long spuId;
 
-    /**
-     * 图片名
-     */
+    /** 图片名 */
     @Excel(name = "图片名")
     private String name;
 
-    /**
-     * 图片地址
-     */
+    /** 图片地址 */
     @Excel(name = "图片地址")
     private String url;
 
-    /**
-     * 顺序
-     */
+    /** 顺序 */
     @Excel(name = "顺序")
     private Long sort;
 
-    /**
-     * 是否默认图
-     */
+    /** 是否默认图 */
     @Excel(name = "是否默认图")
     private Long defaultImage;
 
-    public Long getSpuId() {
-        return spuId;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public void setSpuId(Long spuId) {
         this.spuId = spuId;
     }
 
-    public String getName() {
-        return name;
+    public Long getSpuId() {
+        return spuId;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getUrl() {
-        return url;
+    public String getName() {
+        return name;
     }
 
     public void setUrl(String url) {
         this.url = url;
     }
 
-    public Long getSort() {
-        return sort;
+    public String getUrl() {
+        return url;
     }
 
     public void setSort(Long sort) {
         this.sort = sort;
     }
 
-    public Long getDefaultImage() {
-        return defaultImage;
+    public Long getSort() {
+        return sort;
     }
 
     public void setDefaultImage(Long defaultImage) {
         this.defaultImage = defaultImage;
     }
 
+    public Long getDefaultImage() {
+        return defaultImage;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+                .append("id", getId())
                 .append("spuId", getSpuId())
                 .append("name", getName())
                 .append("url", getUrl())

@@ -704,7 +704,6 @@ export default {
         type: 'warning'
       })
         .then(() => {
-          addInfo(this.spu)
           addInfo(this.spu).then(response => {
             if (response.code === '200') {
               this.$modal.msgSuccess('新增商品成功!'

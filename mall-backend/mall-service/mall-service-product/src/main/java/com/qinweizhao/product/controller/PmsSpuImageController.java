@@ -18,7 +18,7 @@ import java.util.List;
  * spu图片Controller
  *
  * @author qinweizhao
- * @date 2022-04-12
+ * @date 2022-05-03
  */
 @RestController
 @RequestMapping("/image")
@@ -54,9 +54,9 @@ public class PmsSpuImageController extends BaseController {
      * 获取spu图片详细信息
      */
     @RequiresPermissions("product:image:query")
-    @GetMapping(value = "/{spuId}")
-    public R<PmsSpuImage> getInfo(@PathVariable("spuId") Long spuId) {
-        return R.success(pmsSpuImageService.selectPmsSpuImageBySpuId(spuId));
+    @GetMapping(value = "/{id}")
+    public R<PmsSpuImage> getInfo(@PathVariable("id") Long id) {
+        return R.success(pmsSpuImageService.selectPmsSpuImageById(id));
     }
 
     /**
@@ -84,8 +84,8 @@ public class PmsSpuImageController extends BaseController {
      */
     @RequiresPermissions("product:image:remove")
     @Log(title = "spu图片", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{spuIds}")
-    public R<Void> remove(@PathVariable Long[] spuIds) {
-        return R.condition(pmsSpuImageService.deletePmsSpuImageBySpuIds(spuIds));
+    @DeleteMapping("/{ids}")
+    public R<Void> remove(@PathVariable Long[] ids) {
+        return R.condition(pmsSpuImageService.deletePmsSpuImageByIds(ids));
     }
 }

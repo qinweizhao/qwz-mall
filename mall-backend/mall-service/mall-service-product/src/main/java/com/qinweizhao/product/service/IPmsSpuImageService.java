@@ -4,20 +4,21 @@ import com.qinweizhao.product.entity.PmsSpuImage;
 
 import java.util.List;
 
+
 /**
  * spu图片Service接口
  *
  * @author qinweizhao
- * @date 2022-04-12
+ * @date 2022-05-03
  */
 public interface IPmsSpuImageService {
     /**
      * 查询spu图片
      *
-     * @param spuId spu图片主键
+     * @param id spu图片主键
      * @return spu图片
      */
-    PmsSpuImage selectPmsSpuImageBySpuId(Long spuId);
+    PmsSpuImage selectPmsSpuImageById(Long id);
 
     /**
      * 查询spu图片列表
@@ -46,16 +47,16 @@ public interface IPmsSpuImageService {
     /**
      * 批量删除spu图片
      *
-     * @param spuIds 需要删除的spu图片主键集合
+     * @param ids 需要删除的spu图片主键集合
      * @return 结果
      */
-    int deletePmsSpuImageBySpuIds(Long[] spuIds);
+    int deletePmsSpuImageByIds(Long[] ids);
 
     /**
      * 删除spu图片信息
      *
-     * @param spuId spu图片主键
+     * @param id spu图片主键
      * @return 结果
      */
-    int deletePmsSpuImageBySpuId(Long spuId);
+    int deletePmsSpuImageById(Long id);
 }

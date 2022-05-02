@@ -2,11 +2,13 @@ package com.qinweizhao.product.service.impl;
 
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.bean.BeanUtils;
+import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.product.entity.*;
 import com.qinweizhao.product.entity.vo.PmsSpuSaveVO;
 import com.qinweizhao.product.mapper.PmsSpuInfoMapper;
 import com.qinweizhao.product.service.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
@@ -124,10 +126,17 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
      * @return boolean
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public boolean insertSpu(PmsSpuSaveVO pmsSpuSaveVO) {
+
+        String username = SecurityUtils.getUsername();
+
+
         // 1、保存spu基本信息 pms_spu_info
         PmsSpuInfo pmsSpuInfo = new PmsSpuInfo();
         BeanUtils.copyProperties(pmsSpuSaveVO, pmsSpuInfo);
+        pmsSpuInfo.setCreateBy(username);
+        pmsSpuInfo.setUpdateBy(username);
         pmsSpuInfoMapper.insertPmsSpuInfo(pmsSpuInfo);
 
 
@@ -140,6 +149,8 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
         String details = pmsSpuSaveVO.getDetails();
         PmsSpuInfoDetail pmsSpuInfoDetail = new PmsSpuInfoDetail();
         pmsSpuInfoDetail.setDetail(details);
+        pmsSpuInfoDetail.setCreateBy(username);
+        pmsSpuInfoDetail.setUpdateBy(username);
         pmsSpuInfoDetail.setSpuId(pmsSpuInfo.getSpuId());
         pmsSpuInfoDetailService.insertPmsSpuInfoDetail(pmsSpuInfoDetail);
 
@@ -228,6 +239,6 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
         }
 
 
-        return false;
+        return true;
     }
 }
