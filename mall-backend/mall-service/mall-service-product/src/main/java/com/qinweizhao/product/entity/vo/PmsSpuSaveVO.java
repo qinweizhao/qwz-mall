@@ -45,7 +45,7 @@ public class PmsSpuSaveVO {
     /**
      * 商品介绍(详情)
      */
-    private List<String> details;
+    private String details;
 
     /**
      * 商品图集
@@ -70,7 +70,22 @@ public class PmsSpuSaveVO {
 
 
     @Data
-    public class BaseAttr {
+    public static class Bounds {
+
+        /**
+         * 金币
+         */
+        private int buyBounds;
+
+        /**
+         * 成长值
+         */
+        private int growBounds;
+
+    }
+
+    @Data
+    public static class BaseAttr {
 
         /**
          * 属性 id
@@ -90,17 +105,17 @@ public class PmsSpuSaveVO {
     }
 
     @Data
-    public class Skus {
+    public static class Skus {
 
         /**
          * 销售属性
          */
-        private List<Attr> attr;
+        private List<SaleAttr> saleAttrs;
 
         /**
          * skuName
          */
-        private String skuName;
+        private String name;
 
         /**
          * 价格
@@ -110,12 +125,12 @@ public class PmsSpuSaveVO {
         /**
          * 标题
          */
-        private String skuTitle;
+        private String title;
 
         /**
          * 副标题
          */
-        private String skuSubtitle;
+        private String subtitle;
 
 
         /**
@@ -165,48 +180,38 @@ public class PmsSpuSaveVO {
          */
         private List<MemberPrice> memberPrice;
 
+        @Data
+        public static class SaleAttr {
+
+            private int attrId;
+            private String name;
+            private String value;
+
+        }
+
+        @Data
+        public static class Images {
+
+            private String imgUrl;
+            private Integer defaultImg;
+        }
+
+
+        @Data
+        public static class MemberPrice {
+            private int id;
+            private String name;
+            private int price;
+        }
     }
 }
 
-@Data
-class Bounds {
-
-    /**
-     * 金币
-     */
-    private int buyBounds;
-
-    /**
-     * 成长值
-     */
-    private int growBounds;
-
-}
 
 
 
 
 
-@Data
-class Attr {
-
-    private int attrId;
-    private String attrName;
-    private String attrValue;
-
-}
-
-@Data
-class Images {
-
-    private String imgUrl;
-    private int defaultImg;
-}
 
 
-@Data
-class MemberPrice {
-    private int id;
-    private String name;
-    private int price;
-}
+
+

@@ -7,6 +7,7 @@ import com.qinweizhao.product.entity.vo.PmsSpuSaveVO;
 import com.qinweizhao.product.mapper.PmsSpuInfoMapper;
 import com.qinweizhao.product.service.*;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
@@ -116,7 +117,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
 
     /**
      * todo
-     * 3、5 批量保存
+     * 3、5 、6.2批量保存
      * 发布商品
      *
      * @param pmsSpuSaveVO pmsSpuSaveVO
@@ -131,19 +132,21 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
 
 
         Long spuId = pmsSpuInfo.getSpuId();
+        Long brandId = pmsSpuInfo.getBrandId();
+        Long categoryId = pmsSpuInfo.getCategoryId();
 
 
         // 2、保存spu的描述图片 pms_spu_info_detail
-        List<String> details = pmsSpuSaveVO.getDetails();
+        String details = pmsSpuSaveVO.getDetails();
         PmsSpuInfoDetail pmsSpuInfoDetail = new PmsSpuInfoDetail();
-        pmsSpuInfoDetail.setDetail(String.join(",", details));
+        pmsSpuInfoDetail.setDetail(details);
         pmsSpuInfoDetail.setSpuId(pmsSpuInfo.getSpuId());
         pmsSpuInfoDetailService.insertPmsSpuInfoDetail(pmsSpuInfoDetail);
 
         // 3、保存spu的图片集 pms_spu_image
-        List<String> images = pmsSpuSaveVO.getImages();
+        List<String> spuImages = pmsSpuSaveVO.getImages();
 
-        images.forEach(item -> {
+        spuImages.forEach(item -> {
             PmsSpuImage pmsSpuImage = new PmsSpuImage();
             pmsSpuImage.setSpuId(spuId);
             pmsSpuImage.setUrl(item);
@@ -175,8 +178,51 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
         // 6、保存当前spu对应的所有sku信息
         List<PmsSpuSaveVO.Skus> skus = pmsSpuSaveVO.getSkus();
         if (!skus.isEmpty()) {
-            skus.forEach(item -> {
+            skus.forEach(skuItem -> {
 
+                // 6.1）、sku的基本信息；pms_sku_info
+                PmsSkuInfo pmsSkuInfo = new PmsSkuInfo();
+                BeanUtils.copyProperties(skuItem, pmsSkuInfo);
+                pmsSkuInfo.setBrandId(brandId);
+                pmsSkuInfo.setCategoryId(categoryId);
+                pmsSkuInfo.setSaleCount(0L);
+                String defaultImg = "";
+                for (PmsSpuSaveVO.Skus.Images image : skuItem.getImages()) {
+                    if (image.getDefaultImg() == 1) {
+                        defaultImg = image.getImgUrl();
+                    }
+                }
+                pmsSkuInfo.setDefaultImg(defaultImg);
+                pmsSkuInfoService.insertPmsSkuInfo(pmsSkuInfo);
+
+
+                Long skuId = pmsSkuInfo.getSkuId();
+                // 6.2）、sku的图片信息；pms_sku_image
+                List<PmsSpuSaveVO.Skus.Images> skuImages = skuItem.getImages();
+                skuImages.forEach(imageItem -> {
+                    String imgUrl = imageItem.getImgUrl();
+                    // 没有图片无需保存
+                    if (ObjectUtils.isEmpty(imgUrl)) {
+                        PmsSkuImage pmsSkuImage = new PmsSkuImage();
+                        pmsSkuImage.setSkuId(skuId);
+                        pmsSkuImage.setUrl(imgUrl);
+                        pmsSkuImage.setDefaultImage(imageItem.getDefaultImg());
+                        pmsSkuImageService.insertPmsSkuImage(pmsSkuImage);
+                    }
+                });
+
+                // 6.3）、sku的销售属性信息：pms_sku_attr_value
+                List<PmsSpuSaveVO.Skus.SaleAttr> saleAttrs = skuItem.getSaleAttrs();
+                saleAttrs.forEach(saleAttrItem -> {
+                    PmsSkuAttrValue pmsSkuAttrValue = new PmsSkuAttrValue();
+                    BeanUtils.copyProperties(saleAttrItem, pmsSkuAttrValue);
+                    pmsSkuAttrValue.setSkuId(skuId);
+                    pmsSkuAttrValueService.insertPmsSkuAttrValue(pmsSkuAttrValue);
+                });
+
+                // 6.4）、sku的优惠、满减等信息；mall_ams->ams_sku_ladder\ams_sku_full_reduction\ams_member_price
+
+                // 待完善
 
             });
         }

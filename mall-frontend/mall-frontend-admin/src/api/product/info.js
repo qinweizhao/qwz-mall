@@ -1,5 +1,17 @@
 import request from '@/utils/request'
 
+
+// 新增sku信息
+export function addInfo(data) {
+  return request({
+    url: '/product/spu/info',
+    method: 'post',
+    data: data
+  })
+}
+
+
+// todo
 // 查询sku信息列表
 export function listInfo(query) {
   return request({
@@ -17,14 +29,6 @@ export function getInfo(skuId) {
   })
 }
 
-// 新增sku信息
-export function addInfo(data) {
-  return request({
-    url: '/product/info',
-    method: 'post',
-    data: data
-  })
-}
 
 // 修改sku信息
 export function updateInfo(data) {

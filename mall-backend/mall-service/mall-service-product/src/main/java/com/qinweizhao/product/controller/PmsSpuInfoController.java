@@ -22,7 +22,7 @@ import java.util.List;
  * @date 2022-04-11
  */
 @RestController
-@RequestMapping("/info")
+@RequestMapping("/spu/info")
 public class PmsSpuInfoController extends BaseController {
     @Resource
     private IPmsSpuInfoService pmsSpuInfoService;

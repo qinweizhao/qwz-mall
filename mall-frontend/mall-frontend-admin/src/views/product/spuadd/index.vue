@@ -179,7 +179,7 @@
                 :key="item.attrId"
               >
                 <template slot-scope="scope">
-                  <span style="margin-left: 10px">{{ scope.row.attr[index].attrValue }}</span>
+                  <span style="margin-left: 10px">{{ scope.row.saleAttrs[index].value }}</span>
                 </template>
               </el-table-column>
             </el-table-column>
@@ -188,14 +188,14 @@
                 <el-input v-model="scope.row.skuName"></el-input>
               </template>
             </el-table-column>
-            <el-table-column label="标题" prop="skuTitle">
+            <el-table-column label="标题" prop="title">
               <template slot-scope="scope">
-                <el-input v-model="scope.row.skuTitle"></el-input>
+                <el-input v-model="scope.row.title"></el-input>
               </template>
             </el-table-column>
-            <el-table-column label="副标题" prop="skuSubtitle">
+            <el-table-column label="副标题" prop="subtitle">
               <template slot-scope="scope">
-                <el-input v-model="scope.row.skuSubtitle"></el-input>
+                <el-input v-model="scope.row.subtitle"></el-input>
               </template>
             </el-table-column>
             <el-table-column label="价格" prop="price">
@@ -363,6 +363,7 @@ import {listLevel} from '@/api/user/level'
 import {getAttrGroupWithAttrs} from '@/api/product/attr/group'
 import ImageUpload from '@/components/ImageUpload'
 import {listAttr} from '@/api/product/attr/attr'
+import {addInfo} from '@/api/product/info'
 
 export default {
   //import引入的组件需要注入到对象中才能使用
@@ -477,7 +478,7 @@ export default {
         let len = imgArr.length - this.spu.skus[index].images.length //还差这么多
         if (len > 0) {
           let imgs = new Array(len)
-          imgs = imgs.fill({imgUrl: " ", defaultImg: 0})
+          imgs = imgs.fill({imgUrl: ' ', defaultImg: 0})
           this.spu.skus[index].images = item.images.concat(imgs)
         }
       })
@@ -587,8 +588,8 @@ export default {
           //构造saleAttr信息
           let saleAttrItem = {
             attrId: this.dataResp.tableAttrColumn[index].attrId,
-            attrName: this.dataResp.tableAttrColumn[index].attrName,
-            attrValue: de
+            name: this.dataResp.tableAttrColumn[index].attrName,
+            value: de
           }
           attrArray.push(saleAttrItem)
         })
@@ -596,8 +597,8 @@ export default {
         let imgs = []
 
         this.spu.images.forEach((img, idx) => {
-          imgs.push({imgUrl: "", defaultImg: 0});
-        });
+          imgs.push({imgUrl: '', defaultImg: 0})
+        })
 
         //会员价，也必须在循环里面生成，否则会导致数据绑定问题
         let memberPrices = []
@@ -616,11 +617,11 @@ export default {
         let res = this.hasAndReturnSku(this.spu.skus, descar)
         if (res === null) {
           skus.push({
-            attr: attrArray,
+            saleAttrs: attrArray,
             skuName: this.spu.name + ' ' + descar.join(' '),
             price: 0,
-            skuTitle: this.spu.name + ' ' + descar.join(' '),
-            skuSubtitle: '',
+            title: this.spu.name + ' ' + descar.join(' '),
+            subtitle: '',
             images: imgs,
             details: descar,
             fullCount: 0,
@@ -697,38 +698,28 @@ export default {
 
     submitSkus() {
       console.log('~~~~~', JSON.stringify(this.spu))
-      // this.$confirm("将要提交商品数据，需要一小段时间，是否继续?", "提示", {
-      //   confirmButtonText: "确定",
-      //   cancelButtonText: "取消",
-      //   type: "warning"
-      // })
-      //   .then(() => {
-      // this.$http({
-      //   url: this.$http.adornUrl("/product/spuinfo/save"),
-      //   method: "post",
-      //   data: this.$http.adornData(this.spu, false)
-      // }).then(({ data }) => {
-      //   if (data.code == 0) {
-      //     this.$message({
-      //       type: "success",
-      //       message: "新增商品成功!"
-      //     });
-      //     this.step = 4;
-      //   } else {
-      //     this.$message({
-      //       type: "error",
-      //       message: "保存失败，原因【" + data.msg + "】"
-      //     });
-      //   }
-      // });
-      // })
-      // .catch(e => {
-      //   console.log(e);
-      //   this.$message({
-      //     type: "info",
-      //     message: "已取消"
-      //   });
-      // });
+      this.$confirm('将要提交商品数据，需要一小段时间，是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          addInfo(this.spu)
+          addInfo(this.spu).then(response => {
+            if (response.code === '200') {
+              this.$modal.msgSuccess('新增商品成功!'
+              )
+              this.step = 4
+            } else {
+              this.$modal.msgError('保存失败，原因【' + response.message + '】'
+              )
+            }
+          })
+        })
+        .catch(e => {
+          console.log(e)
+          this.$modal.msgWarning('已取消')
+        })
     },
     //笛卡尔积运算
     descartes(list) {
