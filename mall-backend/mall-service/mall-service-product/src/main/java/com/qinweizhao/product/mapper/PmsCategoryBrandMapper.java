@@ -25,7 +25,7 @@ public interface PmsCategoryBrandMapper {
      * @param pmsCategoryBrand 分类&品牌关联
      * @return 分类&品牌关联集合
      */
-    List<PmsCategoryBrand> selectPmsCategoryBrandList(PmsCategoryBrand pmsCategoryBrand);
+    List<PmsCategoryBrand> selectList(PmsCategoryBrand pmsCategoryBrand);
 
     /**
      * 新增分类&品牌关联
@@ -33,7 +33,7 @@ public interface PmsCategoryBrandMapper {
      * @param pmsCategoryBrand 分类&品牌关联
      * @return 结果
      */
-    int insertPmsCategoryBrand(PmsCategoryBrand pmsCategoryBrand);
+    int insert(PmsCategoryBrand pmsCategoryBrand);
 
     /**
      * 修改分类&品牌关联
@@ -49,7 +49,7 @@ public interface PmsCategoryBrandMapper {
      * @param id 分类&品牌关联主键
      * @return 结果
      */
-    int deletePmsCategoryBrandById(Long id);
+    int deleteById(Long id);
 
     /**
      * 批量删除分类&品牌关联
@@ -57,7 +57,7 @@ public interface PmsCategoryBrandMapper {
      * @param ids 需要删除的数据主键集合
      * @return 结果
      */
-    int deletePmsCategoryBrandByIds(Long[] ids);
+    int deleteByIds(Long[] ids);
 
     /**
      * 查询分类和品牌的关联信息

@@ -33,13 +33,13 @@ public class PmsBrandController extends BaseController {
     @GetMapping("/page")
     public R<PageResult<PmsBrand>> page(PmsBrand pmsBrand) {
         startPage();
-        List<PmsBrand> list = pmsBrandService.selectPmsBrandList(pmsBrand);
+        List<PmsBrand> list = pmsBrandService.list(pmsBrand);
         return getPageResult(list);
     }
 
 
     /**
-     * 详细信息
+     * 详情
      */
     @RequiresPermissions("product:brand:query")
     @GetMapping(value = "/{brandId}")
@@ -58,7 +58,7 @@ public class PmsBrandController extends BaseController {
     }
 
     /**
-     * 修改品牌
+     * 修改
      */
     @RequiresPermissions("product:brand:edit")
     @Log(title = "品牌", businessType = BusinessType.UPDATE)
@@ -68,7 +68,7 @@ public class PmsBrandController extends BaseController {
     }
 
     /**
-     * 删除品牌
+     * 删除
      */
     @RequiresPermissions("product:brand:remove")
     @Log(title = "品牌", businessType = BusinessType.DELETE)

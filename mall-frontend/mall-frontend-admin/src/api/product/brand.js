@@ -42,31 +42,3 @@ export function delBrand(brandId) {
     method: 'delete'
   })
 }
-
-// 品牌和分类
-// 查询与分类的关联信息
-export function getRelation(brandId) {
-  const param = {brandId: brandId}
-  return request({
-    url: '/product/brand/category/list',
-    method: 'get',
-    params: param
-  })
-}
-
-// 新增品牌
-export function addRelation(data) {
-  return request({
-    url: '/product/brand/category',
-    method: 'post',
-    data: data
-  })
-}
-
-// 删除关联
-export function delRelation(brandId) {
-  return request({
-    url: '/product/brand/category/' + brandId,
-    method: 'delete'
-  })
-}

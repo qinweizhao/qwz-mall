@@ -25,7 +25,7 @@ public interface IPmsBrandService {
      * @param pmsBrand 品牌
      * @return 品牌集合
      */
-    List<PmsBrand> selectPmsBrandList(PmsBrand pmsBrand);
+    List<PmsBrand> list(PmsBrand pmsBrand);
 
     /**
      * 新增品牌

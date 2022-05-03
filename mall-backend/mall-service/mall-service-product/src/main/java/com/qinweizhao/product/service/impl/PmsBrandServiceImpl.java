@@ -42,7 +42,7 @@ public class PmsBrandServiceImpl implements IPmsBrandService {
      * @return 品牌
      */
     @Override
-    public List<PmsBrand> selectPmsBrandList(PmsBrand pmsBrand) {
+    public List<PmsBrand> list(PmsBrand pmsBrand) {
         return pmsBrandMapper.selectPmsBrandList(pmsBrand);
     }
 

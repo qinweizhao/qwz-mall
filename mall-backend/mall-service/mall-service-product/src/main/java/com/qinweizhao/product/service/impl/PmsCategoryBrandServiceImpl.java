@@ -17,19 +17,10 @@ import java.util.List;
  */
 @Service
 public class PmsCategoryBrandServiceImpl implements IPmsCategoryBrandService {
+
+
     @Resource
     private PmsCategoryBrandMapper pmsCategoryBrandMapper;
-
-    /**
-     * 查询分类&品牌关联
-     *
-     * @param id 分类&品牌关联主键
-     * @return 分类&品牌关联
-     */
-    @Override
-    public PmsCategoryBrand selectPmsCategoryBrandById(Long id) {
-        return pmsCategoryBrandMapper.selectPmsCategoryBrandById(id);
-    }
 
     /**
      * 查询分类&品牌关联列表
@@ -38,8 +29,8 @@ public class PmsCategoryBrandServiceImpl implements IPmsCategoryBrandService {
      * @return 分类&品牌关联
      */
     @Override
-    public List<PmsCategoryBrand> selectPmsCategoryBrandList(PmsCategoryBrand pmsCategoryBrand) {
-        return pmsCategoryBrandMapper.selectPmsCategoryBrandList(pmsCategoryBrand);
+    public List<PmsCategoryBrand> list(PmsCategoryBrand pmsCategoryBrand) {
+        return pmsCategoryBrandMapper.selectList(pmsCategoryBrand);
     }
 
     /**
@@ -49,22 +40,11 @@ public class PmsCategoryBrandServiceImpl implements IPmsCategoryBrandService {
      * @return 结果
      */
     @Override
-    public int insertPmsCategoryBrand(PmsCategoryBrand pmsCategoryBrand) {
+    public int save(PmsCategoryBrand pmsCategoryBrand) {
         pmsCategoryBrand.setCreateTime(DateUtils.getNowDate());
-        return pmsCategoryBrandMapper.insertPmsCategoryBrand(pmsCategoryBrand);
+        return pmsCategoryBrandMapper.insert(pmsCategoryBrand);
     }
 
-    /**
-     * 修改分类&品牌关联
-     *
-     * @param pmsCategoryBrand 分类&品牌关联
-     * @return 结果
-     */
-    @Override
-    public int updatePmsCategoryBrand(PmsCategoryBrand pmsCategoryBrand) {
-        pmsCategoryBrand.setUpdateTime(DateUtils.getNowDate());
-        return pmsCategoryBrandMapper.updatePmsCategoryBrand(pmsCategoryBrand);
-    }
 
     /**
      * 批量删除分类&品牌关联
@@ -73,8 +53,8 @@ public class PmsCategoryBrandServiceImpl implements IPmsCategoryBrandService {
      * @return 结果
      */
     @Override
-    public int deletePmsCategoryBrandByIds(Long[] ids) {
-        return pmsCategoryBrandMapper.deletePmsCategoryBrandByIds(ids);
+    public int removeByIds(Long[] ids) {
+        return pmsCategoryBrandMapper.deleteByIds(ids);
     }
 
     /**
@@ -84,13 +64,8 @@ public class PmsCategoryBrandServiceImpl implements IPmsCategoryBrandService {
      * @return 结果
      */
     @Override
-    public int deletePmsCategoryBrandById(Long id) {
-        return pmsCategoryBrandMapper.deletePmsCategoryBrandById(id);
+    public int removeById(Long id) {
+        return pmsCategoryBrandMapper.deleteById(id);
     }
 
-
-    @Override
-    public List<PmsCategoryBrand> selectPmsCategoryBrandByBrandId(Long brandId) {
-        return pmsCategoryBrandMapper.selectPmsCategoryBrandByBrandId(brandId);
-    }
 }
