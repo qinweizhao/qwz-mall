@@ -176,7 +176,7 @@ import {
   delRelation,
   getBrand,
   getRelation,
-  listBrand,
+  pageBrand,
   updateBrand
 } from '@/api/product/brand'
 import ImageUpload from '@/components/ImageUpload'
@@ -236,7 +236,7 @@ export default {
     /** 查询品牌列表 */
     getList() {
       this.loading = true
-      listBrand(this.queryParams).then(response => {
+      pageBrand(this.queryParams).then(response => {
         this.brandList = response.data.rows
         this.total = response.data.total
         this.loading = false

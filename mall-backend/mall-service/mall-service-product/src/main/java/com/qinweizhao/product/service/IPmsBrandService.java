@@ -17,7 +17,7 @@ public interface IPmsBrandService {
      * @param brandId 品牌主键
      * @return 品牌
      */
-    PmsBrand selectPmsBrandByBrandId(Long brandId);
+    PmsBrand getById(Long brandId);
 
     /**
      * 查询品牌列表
@@ -33,7 +33,7 @@ public interface IPmsBrandService {
      * @param pmsBrand 品牌
      * @return 结果
      */
-    int insertPmsBrand(PmsBrand pmsBrand);
+    int save(PmsBrand pmsBrand);
 
     /**
      * 修改品牌
@@ -41,7 +41,7 @@ public interface IPmsBrandService {
      * @param pmsBrand 品牌
      * @return 结果
      */
-    int updatePmsBrand(PmsBrand pmsBrand);
+    int updateById(PmsBrand pmsBrand);
 
     /**
      * 批量删除品牌
@@ -49,7 +49,7 @@ public interface IPmsBrandService {
      * @param brandIds 需要删除的品牌主键集合
      * @return 结果
      */
-    int deletePmsBrandByBrandIds(Long[] brandIds);
+    int deleteByIds(Long[] brandIds);
 
     /**
      * 删除品牌信息
@@ -57,6 +57,6 @@ public interface IPmsBrandService {
      * @param brandId 品牌主键
      * @return 结果
      */
-    int deletePmsBrandByBrandId(Long brandId);
+    int removeById(Long brandId);
 
 }

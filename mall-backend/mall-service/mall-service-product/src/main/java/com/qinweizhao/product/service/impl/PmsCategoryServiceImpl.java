@@ -90,7 +90,7 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
      * @return 结果
      */
     @Override
-    public int deletePmsCategoryByCategoryId(Long categoryId) {
+    public int removeById(Long categoryId) {
         return pmsCategoryMapper.removeById(categoryId);
     }
 

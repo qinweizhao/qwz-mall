@@ -31,7 +31,7 @@ public class PmsBrandServiceImpl implements IPmsBrandService {
      * @return 品牌
      */
     @Override
-    public PmsBrand selectPmsBrandByBrandId(Long brandId) {
+    public PmsBrand getById(Long brandId) {
         return pmsBrandMapper.selectPmsBrandByBrandId(brandId);
     }
 
@@ -53,7 +53,7 @@ public class PmsBrandServiceImpl implements IPmsBrandService {
      * @return 结果
      */
     @Override
-    public int insertPmsBrand(PmsBrand pmsBrand) {
+    public int save(PmsBrand pmsBrand) {
         pmsBrand.setCreateTime(DateUtils.getNowDate());
         return pmsBrandMapper.insertPmsBrand(pmsBrand);
     }
@@ -65,7 +65,7 @@ public class PmsBrandServiceImpl implements IPmsBrandService {
      * @return 结果
      */
     @Override
-    public int updatePmsBrand(PmsBrand pmsBrand) {
+    public int updateById(PmsBrand pmsBrand) {
         pmsBrand.setUpdateTime(DateUtils.getNowDate());
         return pmsBrandMapper.updatePmsBrand(pmsBrand);
     }
@@ -77,7 +77,7 @@ public class PmsBrandServiceImpl implements IPmsBrandService {
      * @return 结果
      */
     @Override
-    public int deletePmsBrandByBrandIds(Long[] brandIds) {
+    public int deleteByIds(Long[] brandIds) {
         return pmsBrandMapper.deletePmsBrandByBrandIds(brandIds);
     }
 
@@ -88,7 +88,7 @@ public class PmsBrandServiceImpl implements IPmsBrandService {
      * @return 结果
      */
     @Override
-    public int deletePmsBrandByBrandId(Long brandId) {
+    public int removeById(Long brandId) {
         return pmsBrandMapper.deletePmsBrandByBrandId(brandId);
     }
 

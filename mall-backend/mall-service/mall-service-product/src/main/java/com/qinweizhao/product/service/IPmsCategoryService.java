@@ -58,7 +58,7 @@ public interface IPmsCategoryService {
      * @param categoryId 商品三级分类主键
      * @return 结果
      */
-    int deletePmsCategoryByCategoryId(Long categoryId);
+    int removeById(Long categoryId);
 
     /**
      * 构建分类树

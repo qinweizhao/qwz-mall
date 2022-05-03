@@ -1,15 +1,15 @@
 import request from '@/utils/request'
 
-// 查询品牌列表
-export function listBrand(query) {
+// 分页
+export function pageBrand(query) {
   return request({
-    url: '/product/brand/list',
+    url: '/product/brand/page',
     method: 'get',
     params: query
   })
 }
 
-// 查询品牌详细
+// 详细
 export function getBrand(brandId) {
   return request({
     url: '/product/brand/' + brandId,
@@ -17,7 +17,7 @@ export function getBrand(brandId) {
   })
 }
 
-// 新增品牌
+// 新增
 export function addBrand(data) {
   return request({
     url: '/product/brand',
@@ -26,7 +26,7 @@ export function addBrand(data) {
   })
 }
 
-// 修改品牌
+// 修改
 export function updateBrand(data) {
   return request({
     url: '/product/brand',
@@ -35,7 +35,7 @@ export function updateBrand(data) {
   })
 }
 
-// 删除品牌
+// 删除
 export function delBrand(brandId) {
   return request({
     url: '/product/brand/' + brandId,

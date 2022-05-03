@@ -157,7 +157,7 @@
 </template>
 
 <script>
-import {addCategory, deleteCategory, getCategory, pageCategory, updateCategory} from '@/api/product/category'
+import {addCategory, delCategory, getCategory, pageCategory, updateCategory} from '@/api/product/category'
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 
@@ -321,7 +321,7 @@ export default {
     /** 删除按钮操作 */
     handleDelete(row) {
       this.$modal.confirm('是否确认删除名称为"' + row.name + '"的数据项？').then(function() {
-        return deleteCategory(row.categoryId)
+        return delCategory(row.categoryId)
       }).then(() => {
         this.getList()
         this.$modal.msgSuccess('删除成功')

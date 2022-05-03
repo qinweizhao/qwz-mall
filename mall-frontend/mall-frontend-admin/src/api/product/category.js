@@ -44,7 +44,7 @@ export function updateCategory(data) {
 }
 
 // 删除
-export function deleteCategory(menuId) {
+export function delCategory(menuId) {
   return request({
     url: '/product/category/' + menuId,
     method: 'delete'
