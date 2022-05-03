@@ -11,7 +11,7 @@
  Target Server Version : 80028
  File Encoding         : 65001
 
- Date: 04/05/2022 01:45:29
+ Date: 04/05/2022 02:08:20
 */
 
 SET NAMES utf8mb4;
@@ -83,26 +83,27 @@ CREATE TABLE `wms_ware_info`
 -- Table structure for wms_ware_order_task
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_ware_order_task`;
-CREATE TABLE `wms_ware_order_task` (
-                                       `id`               bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
-                                       `order_id`         bigint                                                        DEFAULT NULL COMMENT 'order_id',
-                                       `order_sn`         varchar(255)                                                  DEFAULT NULL COMMENT 'order_sn',
-                                       `consignee`        varchar(100)                                                  DEFAULT NULL COMMENT '收货人',
-                                       `consignee_tel`    char(15)                                                      DEFAULT NULL COMMENT '收货人电话',
-                                       `delivery_address` varchar(500)                                                  DEFAULT NULL COMMENT '配送地址',
-                                       `order_comment`    varchar(200)                                                  DEFAULT NULL COMMENT '订单备注',
-                                       `payment_way`      tinyint(1) DEFAULT NULL COMMENT '付款方式【 1:在线付款 2:货到付款】',
-                                       `task_status`      tinyint                                                       DEFAULT NULL COMMENT '任务状态',
-                                       `order_body`       varchar(255)                                                  DEFAULT NULL COMMENT '订单描述',
-                                       `tracking_no`      char(30)                                                      DEFAULT NULL COMMENT '物流单号',
-                                       `ware_id`          bigint                                                        DEFAULT NULL COMMENT '仓库id',
-                                       `task_comment`     varchar(500)                                                  DEFAULT NULL COMMENT '工作单备注',
-                                       `create_by`        varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  DEFAULT '' COMMENT '创建者',
-                                       `update_by`        varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  DEFAULT '' COMMENT '更新者',
-                                       `create_time`      datetime                                                      DEFAULT NULL COMMENT '创建时间',
-                                       `update_time`      datetime                                                      DEFAULT NULL COMMENT '更新时间',
-                                       `remark`           varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '备注',
-                                       PRIMARY KEY (`id`) USING BTREE
+CREATE TABLE `wms_ware_order_task`
+(
+    `id`               bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
+    `order_id`         bigint                                                        DEFAULT NULL COMMENT 'order_id',
+    `order_sn`         varchar(255)                                                  DEFAULT NULL COMMENT 'order_sn',
+    `consignee`        varchar(100)                                                  DEFAULT NULL COMMENT '收货人',
+    `consignee_tel`    char(15)                                                      DEFAULT NULL COMMENT '收货人电话',
+    `delivery_address` varchar(500)                                                  DEFAULT NULL COMMENT '配送地址',
+    `order_comment`    varchar(200)                                                  DEFAULT NULL COMMENT '订单备注',
+    `payment_way`      tinyint(1) DEFAULT NULL COMMENT '付款方式【 1:在线付款 2:货到付款】',
+    `task_status`      tinyint                                                       DEFAULT NULL COMMENT '任务状态',
+    `order_body`       varchar(255)                                                  DEFAULT NULL COMMENT '订单描述',
+    `tracking_no`      char(30)                                                      DEFAULT NULL COMMENT '物流单号',
+    `ware_id`          bigint                                                        DEFAULT NULL COMMENT '仓库id',
+    `task_comment`     varchar(500)                                                  DEFAULT NULL COMMENT '工作单备注',
+    `create_by`        varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  DEFAULT '' COMMENT '创建者',
+    `update_by`        varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  DEFAULT '' COMMENT '更新者',
+    `create_time`      datetime                                                      DEFAULT NULL COMMENT '创建时间',
+    `update_time`      datetime                                                      DEFAULT NULL COMMENT '更新时间',
+    `remark`           varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '备注',
+    PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='库存工作单';
 
 -- ----------------------------

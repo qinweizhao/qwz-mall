@@ -1,7 +1,9 @@
 package com.qinweizhao.user.entity;
 
 import com.qinweizhao.common.core.annotation.Excel;
+import com.qinweizhao.common.core.web.domain.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 
@@ -12,7 +14,8 @@ import java.math.BigDecimal;
  * @date 2022-04-30
  */
 @Data
-public class UmsMemberLevel {
+@EqualsAndHashCode(callSuper = true)
+public class UmsMemberLevel extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -54,24 +57,19 @@ public class UmsMemberLevel {
      * 是否有免邮特权
      */
     @Excel(name = "是否有免邮特权")
-    private Long priviledgeFreeFreight;
+    private Long privilegeFreeFreight;
+
 
     /**
      * 是否有会员价格特权
      */
     @Excel(name = "是否有会员价格特权")
-    private Long priviledgeMemberPrice;
+    private Long privilegeMemberPrice;
 
     /**
      * 是否有生日特权
      */
     @Excel(name = "是否有生日特权")
-    private Long priviledgeBirthday;
-
-    /**
-     * 备注
-     */
-    @Excel(name = "备注")
-    private String note;
+    private Long privilegeBirthday;
 
 }

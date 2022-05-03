@@ -2,8 +2,8 @@ package com.qinweizhao.user.entity;
 
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 会员收藏的商品对象 ums_member_collect_spu
@@ -11,6 +11,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @author qinweizhao
  * @date 2022-04-30
  */
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class UmsMemberCollectSpu extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
@@ -43,55 +45,5 @@ public class UmsMemberCollectSpu extends BaseEntity {
     @Excel(name = "spu_img")
     private String spuImg;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getMemberId() {
-        return memberId;
-    }
-
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
-    }
-
-    public Long getSpuId() {
-        return spuId;
-    }
-
-    public void setSpuId(Long spuId) {
-        this.spuId = spuId;
-    }
-
-    public String getSpuName() {
-        return spuName;
-    }
-
-    public void setSpuName(String spuName) {
-        this.spuName = spuName;
-    }
-
-    public String getSpuImg() {
-        return spuImg;
-    }
-
-    public void setSpuImg(String spuImg) {
-        this.spuImg = spuImg;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("id", getId())
-                .append("memberId", getMemberId())
-                .append("spuId", getSpuId())
-                .append("spuName", getSpuName())
-                .append("spuImg", getSpuImg())
-                .append("createTime", getCreateTime())
-                .toString();
-    }
 }

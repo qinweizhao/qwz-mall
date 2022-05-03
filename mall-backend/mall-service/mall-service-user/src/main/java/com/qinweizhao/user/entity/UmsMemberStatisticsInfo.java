@@ -2,8 +2,8 @@ package com.qinweizhao.user.entity;
 
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 
@@ -13,6 +13,8 @@ import java.math.BigDecimal;
  * @author qinweizhao
  * @date 2022-04-30
  */
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class UmsMemberStatisticsInfo extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
@@ -105,144 +107,4 @@ public class UmsMemberStatisticsInfo extends BaseEntity {
     @Excel(name = "邀请的朋友数量")
     private Long inviteFriendCount;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getMemberId() {
-        return memberId;
-    }
-
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
-    }
-
-    public BigDecimal getConsumeAmount() {
-        return consumeAmount;
-    }
-
-    public void setConsumeAmount(BigDecimal consumeAmount) {
-        this.consumeAmount = consumeAmount;
-    }
-
-    public BigDecimal getCouponAmount() {
-        return couponAmount;
-    }
-
-    public void setCouponAmount(BigDecimal couponAmount) {
-        this.couponAmount = couponAmount;
-    }
-
-    public Long getOrderCount() {
-        return orderCount;
-    }
-
-    public void setOrderCount(Long orderCount) {
-        this.orderCount = orderCount;
-    }
-
-    public Long getCouponCount() {
-        return couponCount;
-    }
-
-    public void setCouponCount(Long couponCount) {
-        this.couponCount = couponCount;
-    }
-
-    public Long getCommentCount() {
-        return commentCount;
-    }
-
-    public void setCommentCount(Long commentCount) {
-        this.commentCount = commentCount;
-    }
-
-    public Long getReturnOrderCount() {
-        return returnOrderCount;
-    }
-
-    public void setReturnOrderCount(Long returnOrderCount) {
-        this.returnOrderCount = returnOrderCount;
-    }
-
-    public Long getLoginCount() {
-        return loginCount;
-    }
-
-    public void setLoginCount(Long loginCount) {
-        this.loginCount = loginCount;
-    }
-
-    public Long getAttendCount() {
-        return attendCount;
-    }
-
-    public void setAttendCount(Long attendCount) {
-        this.attendCount = attendCount;
-    }
-
-    public Long getFansCount() {
-        return fansCount;
-    }
-
-    public void setFansCount(Long fansCount) {
-        this.fansCount = fansCount;
-    }
-
-    public Long getCollectProductCount() {
-        return collectProductCount;
-    }
-
-    public void setCollectProductCount(Long collectProductCount) {
-        this.collectProductCount = collectProductCount;
-    }
-
-    public Long getCollectSubjectCount() {
-        return collectSubjectCount;
-    }
-
-    public void setCollectSubjectCount(Long collectSubjectCount) {
-        this.collectSubjectCount = collectSubjectCount;
-    }
-
-    public Long getCollectCommentCount() {
-        return collectCommentCount;
-    }
-
-    public void setCollectCommentCount(Long collectCommentCount) {
-        this.collectCommentCount = collectCommentCount;
-    }
-
-    public Long getInviteFriendCount() {
-        return inviteFriendCount;
-    }
-
-    public void setInviteFriendCount(Long inviteFriendCount) {
-        this.inviteFriendCount = inviteFriendCount;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("id", getId())
-                .append("memberId", getMemberId())
-                .append("consumeAmount", getConsumeAmount())
-                .append("couponAmount", getCouponAmount())
-                .append("orderCount", getOrderCount())
-                .append("couponCount", getCouponCount())
-                .append("commentCount", getCommentCount())
-                .append("returnOrderCount", getReturnOrderCount())
-                .append("loginCount", getLoginCount())
-                .append("attendCount", getAttendCount())
-                .append("fansCount", getFansCount())
-                .append("collectProductCount", getCollectProductCount())
-                .append("collectSubjectCount", getCollectSubjectCount())
-                .append("collectCommentCount", getCollectCommentCount())
-                .append("inviteFriendCount", getInviteFriendCount())
-                .toString();
-    }
 }

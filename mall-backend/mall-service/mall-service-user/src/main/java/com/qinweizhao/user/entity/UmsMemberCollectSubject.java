@@ -2,8 +2,8 @@ package com.qinweizhao.user.entity;
 
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 会员收藏的专题活动对象 ums_member_collect_subject
@@ -11,6 +11,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @author qinweizhao
  * @date 2022-04-30
  */
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class UmsMemberCollectSubject extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
@@ -41,56 +43,6 @@ public class UmsMemberCollectSubject extends BaseEntity {
      * 活动url
      */
     @Excel(name = "活动url")
-    private String subjectUrll;
+    private String subjectUrl;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getSubjectId() {
-        return subjectId;
-    }
-
-    public void setSubjectId(Long subjectId) {
-        this.subjectId = subjectId;
-    }
-
-    public String getSubjectName() {
-        return subjectName;
-    }
-
-    public void setSubjectName(String subjectName) {
-        this.subjectName = subjectName;
-    }
-
-    public String getSubjectImg() {
-        return subjectImg;
-    }
-
-    public void setSubjectImg(String subjectImg) {
-        this.subjectImg = subjectImg;
-    }
-
-    public String getSubjectUrll() {
-        return subjectUrll;
-    }
-
-    public void setSubjectUrll(String subjectUrll) {
-        this.subjectUrll = subjectUrll;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("id", getId())
-                .append("subjectId", getSubjectId())
-                .append("subjectName", getSubjectName())
-                .append("subjectImg", getSubjectImg())
-                .append("subjectUrll", getSubjectUrll())
-                .toString();
-    }
 }
