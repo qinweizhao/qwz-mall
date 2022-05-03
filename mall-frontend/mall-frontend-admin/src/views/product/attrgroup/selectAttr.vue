@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import {addRelation, unRelation} from '@/api/product/attr/group'
+import {addRelation, unRelation} from '@/api/product/attrAttrGroup'
 
 export default {
   name: 'selectAttr',
@@ -107,7 +107,7 @@ export default {
       this.getList();
       this.visible = true;
     },
-    /** 查询授权用户列表 */
+    /** 查询关联属性列表 */
     getList() {
       this.visible = true
       unRelation(this.queryParams).then(response => {

@@ -126,7 +126,7 @@
 </template>
 
 <script>
-import {getRelation, relationCancel} from '@/api/product/attr/group'
+import {delRelation, getRelation} from '@/api/product/attrAttrGroup'
 import selectAttr from './selectAttr'
 
 export default {
@@ -221,7 +221,7 @@ export default {
     cancelRelation(row) {
       const ids = row.attrId || this.ids
       this.$modal.confirm('确认要取消关联吗？').then(function () {
-        return relationCancel(ids)
+        return delRelation(ids)
       }).then(() => {
         this.getList()
         this.$modal.msgSuccess('取消关联成功')

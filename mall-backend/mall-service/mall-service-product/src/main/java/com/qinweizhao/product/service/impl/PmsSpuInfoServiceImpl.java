@@ -176,7 +176,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
             PmsSpuAttrValue pmsSpuAttrValue = new PmsSpuAttrValue();
 
             Long attrId = baseAttr.getAttrId();
-            PmsAttr pmsAttr = pmsAttrService.selectPmsAttrByAttrId(attrId);
+            PmsAttr pmsAttr = pmsAttrService.getById(attrId);
             pmsSpuAttrValue.setAttrId(attrId);
             pmsSpuAttrValue.setName(pmsAttr.getName());
             pmsSpuAttrValue.setValue(baseAttr.getAttrValues());

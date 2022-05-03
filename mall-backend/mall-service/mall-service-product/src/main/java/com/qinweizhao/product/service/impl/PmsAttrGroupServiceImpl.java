@@ -34,7 +34,7 @@ public class PmsAttrGroupServiceImpl implements IPmsAttrGroupService {
      * @return 属性分组
      */
     @Override
-    public PmsAttrGroup selectPmsAttrGroupByAttrGroupId(Long attrGroupId) {
+    public PmsAttrGroup getById(Long attrGroupId) {
         return pmsAttrGroupMapper.selectPmsAttrGroupByAttrGroupId(attrGroupId);
     }
 
@@ -45,7 +45,7 @@ public class PmsAttrGroupServiceImpl implements IPmsAttrGroupService {
      * @return 属性分组
      */
     @Override
-    public List<PmsAttrGroup> selectPmsAttrGroupList(PmsAttrGroup pmsAttrGroup) {
+    public List<PmsAttrGroup> list(PmsAttrGroup pmsAttrGroup) {
         return pmsAttrGroupMapper.selectPmsAttrGroupList(pmsAttrGroup);
     }
 
@@ -56,7 +56,7 @@ public class PmsAttrGroupServiceImpl implements IPmsAttrGroupService {
      * @return 结果
      */
     @Override
-    public int insertPmsAttrGroup(PmsAttrGroup pmsAttrGroup) {
+    public int save(PmsAttrGroup pmsAttrGroup) {
         pmsAttrGroup.setCreateTime(DateUtils.getNowDate());
         return pmsAttrGroupMapper.insertPmsAttrGroup(pmsAttrGroup);
     }
@@ -68,7 +68,7 @@ public class PmsAttrGroupServiceImpl implements IPmsAttrGroupService {
      * @return 结果
      */
     @Override
-    public int updatePmsAttrGroup(PmsAttrGroup pmsAttrGroup) {
+    public int updateById(PmsAttrGroup pmsAttrGroup) {
         pmsAttrGroup.setUpdateTime(DateUtils.getNowDate());
         return pmsAttrGroupMapper.updatePmsAttrGroup(pmsAttrGroup);
     }
@@ -80,7 +80,7 @@ public class PmsAttrGroupServiceImpl implements IPmsAttrGroupService {
      * @return 结果
      */
     @Override
-    public int deletePmsAttrGroupByAttrGroupIds(Long[] attrGroupIds) {
+    public int removeByIds(Long[] attrGroupIds) {
         return pmsAttrGroupMapper.deletePmsAttrGroupByAttrGroupIds(attrGroupIds);
     }
 
@@ -91,7 +91,7 @@ public class PmsAttrGroupServiceImpl implements IPmsAttrGroupService {
      * @return 结果
      */
     @Override
-    public int deletePmsAttrGroupByAttrGroupId(Long attrGroupId) {
+    public int removeById(Long attrGroupId) {
         return pmsAttrGroupMapper.deletePmsAttrGroupByAttrGroupId(attrGroupId);
     }
 

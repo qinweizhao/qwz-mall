@@ -266,13 +266,13 @@
 </template>
 
 <script>
-import {addAttr, delAttr, getAttr, listAttr, updateAttr} from '@/api/product/attr/attr'
+import {addAttr, delAttr, getAttr, pageAttr, updateAttr} from '@/api/product/attr'
 import {changeUserStatus} from '@/api/system/user'
 import Category from '@/views/product/common/Category'
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 import {treeCategory} from '@/api/product/category'
-import {listGroup} from '@/api/product/attr/group'
+import {listAttrGroup} from '@/api/product/attrGroup'
 
 export default {
   name: 'Attr',
@@ -337,7 +337,7 @@ export default {
     /** 查询商品属性列表 */
     getList() {
       this.loading = true
-      listAttr(this.queryParams).then(response => {
+      pageAttr(this.queryParams).then(response => {
         this.attrList = response.data.rows
         this.total = response.data.total
         this.loading = false
@@ -473,7 +473,7 @@ export default {
     /** 查询属性分组列表 */
     getAttrGroupList(categoryId) {
       this.loading = true
-      listGroup({'categoryId': categoryId}).then(response => {
+      listAttrGroup({'categoryId': categoryId}).then(response => {
         this.form.attrGroups = response.data.rows
       })
       this.getList()

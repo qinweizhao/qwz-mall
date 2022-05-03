@@ -1,6 +1,5 @@
 package com.qinweizhao.product.controller;
 
-import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
@@ -13,7 +12,6 @@ import com.qinweizhao.product.service.IPmsAttrGroupService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -34,24 +32,11 @@ public class PmsAttrGroupController extends BaseController {
      * 查询属性分组列表
      */
     @RequiresPermissions("product:group:list")
-    @GetMapping("/list")
+    @GetMapping("/page")
     public R<PageResult<PmsAttrGroup>> list(PmsAttrGroup pmsAttrGroup) {
         startPage();
-        List<PmsAttrGroup> list = pmsAttrGroupService.selectPmsAttrGroupList(pmsAttrGroup);
+        List<PmsAttrGroup> list = pmsAttrGroupService.list(pmsAttrGroup);
         return getPageResult(list);
-    }
-
-    /**
-     * 导出属性分组列表
-     */
-    @RequiresPermissions("product:group:export")
-    @Log(title = "属性分组", businessType = BusinessType.EXPORT)
-    @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, PmsAttrGroup pmsAttrGroup) {
-        List<PmsAttrGroup> list = pmsAttrGroupService.selectPmsAttrGroupList(pmsAttrGroup);
-        ExcelUtil<PmsAttrGroup> util = new ExcelUtil<PmsAttrGroup>(PmsAttrGroup.class);
-        util.exportExcel(response, list, "属性分组数据");
-        return R.success();
     }
 
     /**
@@ -59,20 +44,9 @@ public class PmsAttrGroupController extends BaseController {
      */
     @RequiresPermissions("product:group:query")
     @GetMapping(value = "/{attrGroupId}")
-    public R<PmsAttrGroup> getInfo(@PathVariable("attrGroupId") Long attrGroupId) {
-        return R.success(pmsAttrGroupService.selectPmsAttrGroupByAttrGroupId(attrGroupId));
+    public R<PmsAttrGroup> get(@PathVariable("attrGroupId") Long attrGroupId) {
+        return R.success(pmsAttrGroupService.getById(attrGroupId));
     }
-
-
-    /**
-     * 获取
-     */
-    @RequiresPermissions("product:group:query")
-    @GetMapping(value = "/{categoryId}/attr")
-    public R<List<PmsAttrGroupWithPmsAttrsVO>> getAttrGroupWithAttrs(@PathVariable("categoryId") Long categoryId) {
-        return R.success(pmsAttrGroupService.getPmsAttrGroupWithPmsAttrsByCatelogId(categoryId));
-    }
-
 
     /**
      * 新增属性分组
@@ -81,7 +55,7 @@ public class PmsAttrGroupController extends BaseController {
     @Log(title = "属性分组", businessType = BusinessType.INSERT)
     @PostMapping
     public R<Void> add(@RequestBody PmsAttrGroup pmsAttrGroup) {
-        return R.condition(pmsAttrGroupService.insertPmsAttrGroup(pmsAttrGroup));
+        return R.condition(pmsAttrGroupService.save(pmsAttrGroup));
     }
 
     /**
@@ -91,7 +65,7 @@ public class PmsAttrGroupController extends BaseController {
     @Log(title = "属性分组", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<Void> edit(@RequestBody PmsAttrGroup pmsAttrGroup) {
-        return R.condition(pmsAttrGroupService.updatePmsAttrGroup(pmsAttrGroup));
+        return R.condition(pmsAttrGroupService.updateById(pmsAttrGroup));
     }
 
     /**
@@ -101,6 +75,18 @@ public class PmsAttrGroupController extends BaseController {
     @Log(title = "属性分组", businessType = BusinessType.DELETE)
     @DeleteMapping("/{attrGroupIds}")
     public R<Void> remove(@PathVariable Long[] attrGroupIds) {
-        return R.condition(pmsAttrGroupService.deletePmsAttrGroupByAttrGroupIds(attrGroupIds));
+        return R.condition(pmsAttrGroupService.removeByIds(attrGroupIds));
     }
+
+
+    /**
+     * 通过分类 id 获取分属性组和组中属性
+     */
+    @RequiresPermissions("product:group:query")
+    @GetMapping(value = "/{categoryId}/attr")
+    public R<List<PmsAttrGroupWithPmsAttrsVO>> getAttrGroupWithAttrs(@PathVariable("categoryId") Long categoryId) {
+        return R.success(pmsAttrGroupService.getPmsAttrGroupWithPmsAttrsByCatelogId(categoryId));
+    }
+
+
 }

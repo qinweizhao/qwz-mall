@@ -43,7 +43,7 @@ public class PmsAttrAttrGroupController extends BaseController {
         List<PmsAttrAttrGroup> list = pmsAttrAttrGroupService.selectPmsAttrAttrGroupList(pmsAttrAttrGroup);
         List<PmsAttr> collect = list.stream().map(item -> {
             Long attrId = item.getAttrId();
-            PmsAttr attr = pmsAttrService.selectPmsAttrByAttrId(attrId);
+            PmsAttr attr = pmsAttrService.getById(attrId);
             attr.setAttrId(item.getId());
             return attr;
         }).collect(Collectors.toList());

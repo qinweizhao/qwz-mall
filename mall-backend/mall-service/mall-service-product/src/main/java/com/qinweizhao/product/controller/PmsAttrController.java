@@ -1,6 +1,5 @@
 package com.qinweizhao.product.controller;
 
-import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
@@ -13,7 +12,6 @@ import com.qinweizhao.product.service.IPmsAttrService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -25,6 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/attr")
 public class PmsAttrController extends BaseController {
+
     @Resource
     private IPmsAttrService pmsAttrService;
 
@@ -32,25 +31,13 @@ public class PmsAttrController extends BaseController {
      * 查询商品属性列表
      */
     @RequiresPermissions("product:attr:list")
-    @GetMapping("/list")
-    public R<PageResult<PmsAttr>> list(PmsAttr pmsAttr) {
+    @GetMapping("/page")
+    public R<PageResult<PmsAttr>> page(PmsAttr pmsAttr) {
         startPage();
-        List<PmsAttr> list = pmsAttrService.selectPmsAttrList(pmsAttr);
+        List<PmsAttr> list = pmsAttrService.list(pmsAttr);
         return getPageResult(list);
     }
 
-    /**
-     * 导出商品属性列表
-     */
-    @RequiresPermissions("product:attr:export")
-    @Log(title = "商品属性", businessType = BusinessType.EXPORT)
-    @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, PmsAttr pmsAttr) {
-        List<PmsAttr> list = pmsAttrService.selectPmsAttrList(pmsAttr);
-        ExcelUtil<PmsAttr> util = new ExcelUtil<PmsAttr>(PmsAttr.class);
-        util.exportExcel(response, list, "商品属性数据");
-        return R.success();
-    }
 
     /**
      * 获取商品属性详细信息
@@ -58,7 +45,7 @@ public class PmsAttrController extends BaseController {
     @RequiresPermissions("product:attr:query")
     @GetMapping(value = "/{attrId}")
     public R<PmsAttr> getInfo(@PathVariable("attrId") Long attrId) {
-        return R.success(pmsAttrService.selectPmsAttrByAttrId(attrId));
+        return R.success(pmsAttrService.getById(attrId));
     }
 
     /**
@@ -68,7 +55,7 @@ public class PmsAttrController extends BaseController {
     @Log(title = "商品属性", businessType = BusinessType.INSERT)
     @PostMapping
     public R<Void> add(@RequestBody PmsAttrVO pmsAttr) {
-        return R.condition(pmsAttrService.insertPmsAttr(pmsAttr));
+        return R.condition(pmsAttrService.save(pmsAttr));
     }
 
     /**
@@ -78,7 +65,7 @@ public class PmsAttrController extends BaseController {
     @Log(title = "商品属性", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<Void> edit(@RequestBody PmsAttrVO pmsAttr) {
-        return R.condition(pmsAttrService.updatePmsAttr(pmsAttr));
+        return R.condition(pmsAttrService.updateById(pmsAttr));
     }
 
     /**
@@ -88,6 +75,6 @@ public class PmsAttrController extends BaseController {
     @Log(title = "商品属性", businessType = BusinessType.DELETE)
     @DeleteMapping("/{attrIds}")
     public R<Void> remove(@PathVariable Long[] attrIds) {
-        return R.condition(pmsAttrService.deletePmsAttrByAttrIds(attrIds));
+        return R.condition(pmsAttrService.removeByIds(attrIds));
     }
 }

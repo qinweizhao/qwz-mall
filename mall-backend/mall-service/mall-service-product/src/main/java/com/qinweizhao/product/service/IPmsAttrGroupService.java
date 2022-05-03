@@ -18,7 +18,7 @@ public interface IPmsAttrGroupService {
      * @param attrGroupId 属性分组主键
      * @return 属性分组
      */
-    PmsAttrGroup selectPmsAttrGroupByAttrGroupId(Long attrGroupId);
+    PmsAttrGroup getById(Long attrGroupId);
 
     /**
      * 查询属性分组列表
@@ -26,7 +26,7 @@ public interface IPmsAttrGroupService {
      * @param pmsAttrGroup 属性分组
      * @return 属性分组集合
      */
-    List<PmsAttrGroup> selectPmsAttrGroupList(PmsAttrGroup pmsAttrGroup);
+    List<PmsAttrGroup> list(PmsAttrGroup pmsAttrGroup);
 
     /**
      * 新增属性分组
@@ -34,7 +34,7 @@ public interface IPmsAttrGroupService {
      * @param pmsAttrGroup 属性分组
      * @return 结果
      */
-    int insertPmsAttrGroup(PmsAttrGroup pmsAttrGroup);
+    int save(PmsAttrGroup pmsAttrGroup);
 
     /**
      * 修改属性分组
@@ -42,7 +42,7 @@ public interface IPmsAttrGroupService {
      * @param pmsAttrGroup 属性分组
      * @return 结果
      */
-    int updatePmsAttrGroup(PmsAttrGroup pmsAttrGroup);
+    int updateById(PmsAttrGroup pmsAttrGroup);
 
     /**
      * 批量删除属性分组
@@ -50,7 +50,7 @@ public interface IPmsAttrGroupService {
      * @param attrGroupIds 需要删除的属性分组主键集合
      * @return 结果
      */
-    int deletePmsAttrGroupByAttrGroupIds(Long[] attrGroupIds);
+    int removeByIds(Long[] attrGroupIds);
 
     /**
      * 删除属性分组信息
@@ -58,7 +58,7 @@ public interface IPmsAttrGroupService {
      * @param attrGroupId 属性分组主键
      * @return 结果
      */
-    int deletePmsAttrGroupByAttrGroupId(Long attrGroupId);
+    int removeById(Long attrGroupId);
 
 
     /**

@@ -360,9 +360,9 @@
 import CategoryCascade from '../common/CategoryCascade'
 import {getRelation} from '@/api/product/categoryBrand'
 import {listLevel} from '@/api/user/level'
-import {getAttrGroupWithAttrs} from '@/api/product/attr/group'
+import {getAttrGroupWithAttrs} from '@/api/product/attrGroup'
 import ImageUpload from '@/components/ImageUpload'
-import {listAttr} from '@/api/product/attr/attr'
+import {pageAttr} from '@/api/product/attr'
 import {addInfo} from '@/api/product/info'
 
 export default {
@@ -655,7 +655,7 @@ export default {
       //获取当前分类可以使用的销售属性
       if (!this.dataResp.steped[1]) {
 
-        listAttr({'type': 0, categoryId: this.spu.categoryId})
+        pageAttr({'type': 0, categoryId: this.spu.categoryId})
           .then(response => {
             this.dataResp.saleAttrs = response.data.rows
             response.data.rows.forEach(item => {

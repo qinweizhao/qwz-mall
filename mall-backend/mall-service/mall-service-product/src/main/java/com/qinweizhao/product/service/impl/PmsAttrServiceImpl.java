@@ -37,7 +37,7 @@ public class PmsAttrServiceImpl implements IPmsAttrService {
      * @return 商品属性
      */
     @Override
-    public PmsAttr selectPmsAttrByAttrId(Long attrId) {
+    public PmsAttr getById(Long attrId) {
         return pmsAttrMapper.selectPmsAttrByAttrId(attrId);
     }
 
@@ -48,7 +48,7 @@ public class PmsAttrServiceImpl implements IPmsAttrService {
      * @return 商品属性
      */
     @Override
-    public List<PmsAttr> selectPmsAttrList(PmsAttr pmsAttr) {
+    public List<PmsAttr> list(PmsAttr pmsAttr) {
         return pmsAttrMapper.selectPmsAttrList(pmsAttr);
     }
 
@@ -60,7 +60,7 @@ public class PmsAttrServiceImpl implements IPmsAttrService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int insertPmsAttr(PmsAttrVO pmsAttr) {
+    public int save(PmsAttrVO pmsAttr) {
         PmsAttr attr = new PmsAttr();
         attr.setCreateTime(DateUtils.getNowDate());
         BeanUtils.copyProperties(pmsAttr, attr);
@@ -83,7 +83,7 @@ public class PmsAttrServiceImpl implements IPmsAttrService {
      * @return 结果
      */
     @Override
-    public int updatePmsAttr(PmsAttrVO pmsAttr) {
+    public int updateById(PmsAttrVO pmsAttr) {
         PmsAttr attr = new PmsAttr();
         attr.setUpdateTime(DateUtils.getNowDate());
         BeanUtils.copyProperties(pmsAttr, attr);
@@ -109,7 +109,7 @@ public class PmsAttrServiceImpl implements IPmsAttrService {
      * @return 结果
      */
     @Override
-    public int deletePmsAttrByAttrIds(Long[] attrIds) {
+    public int removeByIds(Long[] attrIds) {
         return pmsAttrMapper.deletePmsAttrByAttrIds(attrIds);
     }
 

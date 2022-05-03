@@ -147,7 +147,7 @@
 <script>
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
-import {addGroup, delGroup, getGroup, listGroup, updateGroup} from '@/api/product/attr/group'
+import {addGroup, delGroup, getGroup, listAttrGroup, updateGroup} from '@/api/product/attrGroup'
 import {treeCategory} from '@/api/product/category'
 import Category from '@/views/product/common/Category'
 
@@ -200,7 +200,7 @@ export default {
     /** 查询属性分组列表 */
     getList() {
       this.loading = true
-      listGroup(this.queryParams).then(response => {
+      listAttrGroup(this.queryParams).then(response => {
         this.groupList = response.data.rows
         this.total = response.data.total
         this.loading = false
