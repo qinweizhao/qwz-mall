@@ -27,7 +27,7 @@ public class PmsSkuImageServiceImpl implements IPmsSkuImageService {
      * @return sku图片
      */
     @Override
-    public PmsSkuImage selectPmsSkuImageBySkuId(Long skuId) {
+    public PmsSkuImage getById(Long skuId) {
         return pmsSkuImageMapper.selectPmsSkuImageBySkuId(skuId);
     }
 
@@ -38,7 +38,7 @@ public class PmsSkuImageServiceImpl implements IPmsSkuImageService {
      * @return sku图片
      */
     @Override
-    public List<PmsSkuImage> selectPmsSkuImageList(PmsSkuImage pmsSkuImage) {
+    public List<PmsSkuImage> list(PmsSkuImage pmsSkuImage) {
         return pmsSkuImageMapper.selectPmsSkuImageList(pmsSkuImage);
     }
 
@@ -49,7 +49,7 @@ public class PmsSkuImageServiceImpl implements IPmsSkuImageService {
      * @return 结果
      */
     @Override
-    public int insertPmsSkuImage(PmsSkuImage pmsSkuImage) {
+    public int save(PmsSkuImage pmsSkuImage) {
         pmsSkuImage.setCreateTime(DateUtils.getNowDate());
         return pmsSkuImageMapper.insertPmsSkuImage(pmsSkuImage);
     }
@@ -61,7 +61,7 @@ public class PmsSkuImageServiceImpl implements IPmsSkuImageService {
      * @return 结果
      */
     @Override
-    public int updatePmsSkuImage(PmsSkuImage pmsSkuImage) {
+    public int updateById(PmsSkuImage pmsSkuImage) {
         pmsSkuImage.setUpdateTime(DateUtils.getNowDate());
         return pmsSkuImageMapper.updatePmsSkuImage(pmsSkuImage);
     }
@@ -73,7 +73,7 @@ public class PmsSkuImageServiceImpl implements IPmsSkuImageService {
      * @return 结果
      */
     @Override
-    public int deletePmsSkuImageBySkuIds(Long[] skuIds) {
+    public int removeByIds(Long[] skuIds) {
         return pmsSkuImageMapper.deletePmsSkuImageBySkuIds(skuIds);
     }
 
@@ -84,7 +84,7 @@ public class PmsSkuImageServiceImpl implements IPmsSkuImageService {
      * @return 结果
      */
     @Override
-    public int deletePmsSkuImageBySkuId(Long skuId) {
+    public int removeById(Long skuId) {
         return pmsSkuImageMapper.deletePmsSkuImageBySkuId(skuId);
     }
 }

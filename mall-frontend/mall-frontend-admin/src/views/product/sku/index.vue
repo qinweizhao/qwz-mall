@@ -9,17 +9,17 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="sku名称" prop="skuName">
+      <el-form-item label="sku名称" prop="name">
         <el-input
-          v-model="queryParams.skuName"
+          v-model="queryParams.name"
           placeholder="请输入sku名称"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="所属分类id" prop="catalogId">
+      <el-form-item label="所属分类id" prop="categoryId">
         <el-input
-          v-model="queryParams.catalogId"
+          v-model="queryParams.categoryId"
           placeholder="请输入所属分类id"
           clearable
           @keyup.enter.native="handleQuery"
@@ -33,18 +33,26 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="默认图片" prop="skuDefaultImg">
+      <el-form-item label="默认图片" prop="defaultImg">
         <el-input
-          v-model="queryParams.skuDefaultImg"
+          v-model="queryParams.defaultImg"
           placeholder="请输入默认图片"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="标题" prop="skuTitle">
+      <el-form-item label="标题" prop="title">
         <el-input
-          v-model="queryParams.skuTitle"
+          v-model="queryParams.title"
           placeholder="请输入标题"
+          clearable
+          @keyup.enter.native="handleQuery"
+        />
+      </el-form-item>
+      <el-form-item label="副标题" prop="subtitle">
+        <el-input
+          v-model="queryParams.subtitle"
+          placeholder="请输入副标题"
           clearable
           @keyup.enter.native="handleQuery"
         />
@@ -118,18 +126,19 @@
     </el-row>
 
     <el-table v-loading="loading" :data="infoList" @selection-change="handleSelectionChange">
-      <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="skuId" align="center" prop="skuId" />
-      <el-table-column label="spuId" align="center" prop="spuId" />
-      <el-table-column label="sku名称" align="center" prop="skuName" />
-      <el-table-column label="sku介绍描述" align="center" prop="skuDesc" />
-      <el-table-column label="所属分类id" align="center" prop="catalogId" />
-      <el-table-column label="品牌id" align="center" prop="brandId" />
-      <el-table-column label="默认图片" align="center" prop="skuDefaultImg" />
-      <el-table-column label="标题" align="center" prop="skuTitle" />
-      <el-table-column label="副标题" align="center" prop="skuSubtitle" />
-      <el-table-column label="价格" align="center" prop="price" />
-      <el-table-column label="销量" align="center" prop="saleCount" />
+      <el-table-column type="selection" width="55" align="center"/>
+      <el-table-column label="skuId" align="center" prop="skuId"/>
+      <el-table-column label="spuId" align="center" prop="spuId"/>
+      <el-table-column label="sku名称" align="center" prop="name"/>
+      <el-table-column label="sku介绍描述" align="center" prop="desc"/>
+      <el-table-column label="所属分类id" align="center" prop="categoryId"/>
+      <el-table-column label="品牌id" align="center" prop="brandId"/>
+      <el-table-column label="默认图片" align="center" prop="defaultImg"/>
+      <el-table-column label="标题" align="center" prop="title"/>
+      <el-table-column label="副标题" align="center" prop="subtitle"/>
+      <el-table-column label="价格" align="center" prop="price"/>
+      <el-table-column label="销量" align="center" prop="saleCount"/>
+      <el-table-column label="备注" align="center" prop="remark"/>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -162,34 +171,37 @@
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="spuId" prop="spuId">
-          <el-input v-model="form.spuId" placeholder="请输入spuId" />
+          <el-input v-model="form.spuId" placeholder="请输入spuId"/>
         </el-form-item>
-        <el-form-item label="sku名称" prop="skuName">
-          <el-input v-model="form.skuName" placeholder="请输入sku名称" />
+        <el-form-item label="sku名称" prop="name">
+          <el-input v-model="form.name" placeholder="请输入sku名称"/>
         </el-form-item>
-        <el-form-item label="sku介绍描述" prop="skuDesc">
-          <el-input v-model="form.skuDesc" type="textarea" placeholder="请输入内容" />
+        <el-form-item label="sku介绍描述" prop="desc">
+          <el-input v-model="form.desc" type="textarea" placeholder="请输入内容"/>
         </el-form-item>
-        <el-form-item label="所属分类id" prop="catalogId">
-          <el-input v-model="form.catalogId" placeholder="请输入所属分类id" />
+        <el-form-item label="所属分类id" prop="categoryId">
+          <el-input v-model="form.categoryId" placeholder="请输入所属分类id"/>
         </el-form-item>
         <el-form-item label="品牌id" prop="brandId">
-          <el-input v-model="form.brandId" placeholder="请输入品牌id" />
+          <el-input v-model="form.brandId" placeholder="请输入品牌id"/>
         </el-form-item>
-        <el-form-item label="默认图片" prop="skuDefaultImg">
-          <el-input v-model="form.skuDefaultImg" placeholder="请输入默认图片" />
+        <el-form-item label="默认图片" prop="defaultImg">
+          <el-input v-model="form.defaultImg" placeholder="请输入默认图片"/>
         </el-form-item>
-        <el-form-item label="标题" prop="skuTitle">
-          <el-input v-model="form.skuTitle" placeholder="请输入标题" />
+        <el-form-item label="标题" prop="title">
+          <el-input v-model="form.title" placeholder="请输入标题"/>
         </el-form-item>
-        <el-form-item label="副标题" prop="skuSubtitle">
-          <el-input v-model="form.skuSubtitle" type="textarea" placeholder="请输入内容" />
+        <el-form-item label="副标题" prop="subtitle">
+          <el-input v-model="form.subtitle" placeholder="请输入副标题"/>
         </el-form-item>
         <el-form-item label="价格" prop="price">
-          <el-input v-model="form.price" placeholder="请输入价格" />
+          <el-input v-model="form.price" placeholder="请输入价格"/>
         </el-form-item>
         <el-form-item label="销量" prop="saleCount">
-          <el-input v-model="form.saleCount" placeholder="请输入销量" />
+          <el-input v-model="form.saleCount" placeholder="请输入销量"/>
+        </el-form-item>
+        <el-form-item label="备注" prop="remark">
+          <el-input v-model="form.remark" placeholder="请输入备注"/>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -201,7 +213,7 @@
 </template>
 
 <script>
-import {addInfo, delInfo, getInfo, listInfo, updateInfo} from "@/api/product/info";
+import {addInfo, delInfo, getInfo, listInfo, updateInfo} from "@/api/product/sku";
 
 export default {
   name: "Info",
@@ -230,15 +242,15 @@ export default {
         pageNum: 1,
         pageSize: 10,
         spuId: null,
-        skuName: null,
-        skuDesc: null,
-        catalogId: null,
+        name: null,
+        desc: null,
+        categoryId: null,
         brandId: null,
-        skuDefaultImg: null,
-        skuTitle: null,
-        skuSubtitle: null,
+        defaultImg: null,
+        title: null,
+        subtitle: null,
         price: null,
-        saleCount: null
+        saleCount: null,
       },
       // 表单参数
       form: {},
@@ -270,15 +282,20 @@ export default {
       this.form = {
         skuId: null,
         spuId: null,
-        skuName: null,
-        skuDesc: null,
-        catalogId: null,
+        name: null,
+        desc: null,
+        categoryId: null,
         brandId: null,
-        skuDefaultImg: null,
-        skuTitle: null,
-        skuSubtitle: null,
+        defaultImg: null,
+        title: null,
+        subtitle: null,
         price: null,
-        saleCount: null
+        saleCount: null,
+        createBy: null,
+        updateBy: null,
+        createTime: null,
+        updateTime: null,
+        remark: null
       };
       this.resetForm("form");
     },

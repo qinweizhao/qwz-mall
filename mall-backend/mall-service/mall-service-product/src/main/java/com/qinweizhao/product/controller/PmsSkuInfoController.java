@@ -1,6 +1,5 @@
 package com.qinweizhao.product.controller;
 
-import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
@@ -11,7 +10,6 @@ import com.qinweizhao.product.service.IPmsSkuInfoService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -23,6 +21,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/sku/info")
 public class PmsSkuInfoController extends BaseController {
+
     @Resource
     private IPmsSkuInfoService pmsSkuInfoService;
 
@@ -32,23 +31,10 @@ public class PmsSkuInfoController extends BaseController {
     @RequiresPermissions("product:info:list")
     @GetMapping("/list")
     public R<List<PmsSkuInfo>> list(PmsSkuInfo pmsSkuInfo) {
-        startPage();
-        List<PmsSkuInfo> list = pmsSkuInfoService.selectPmsSkuInfoList(pmsSkuInfo);
+        List<PmsSkuInfo> list = pmsSkuInfoService.list(pmsSkuInfo);
         return R.success(list);
     }
 
-    /**
-     * 导出sku信息列表
-     */
-    @RequiresPermissions("product:info:export")
-    @Log(title = "sku信息", businessType = BusinessType.EXPORT)
-    @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, PmsSkuInfo pmsSkuInfo) {
-        List<PmsSkuInfo> list = pmsSkuInfoService.selectPmsSkuInfoList(pmsSkuInfo);
-        ExcelUtil<PmsSkuInfo> util = new ExcelUtil<PmsSkuInfo>(PmsSkuInfo.class);
-        util.exportExcel(response, list, "sku信息数据");
-        return R.success();
-    }
 
     /**
      * 获取sku信息详细信息
@@ -56,7 +42,7 @@ public class PmsSkuInfoController extends BaseController {
     @RequiresPermissions("product:info:query")
     @GetMapping(value = "/{skuId}")
     public R<PmsSkuInfo> getInfo(@PathVariable("skuId") Long skuId) {
-        return R.success(pmsSkuInfoService.selectPmsSkuInfoBySkuId(skuId));
+        return R.success(pmsSkuInfoService.getById(skuId));
     }
 
     /**
@@ -66,7 +52,7 @@ public class PmsSkuInfoController extends BaseController {
     @Log(title = "sku信息", businessType = BusinessType.INSERT)
     @PostMapping
     public R<Void> add(@RequestBody PmsSkuInfo pmsSkuInfo) {
-        return R.condition(pmsSkuInfoService.insertPmsSkuInfo(pmsSkuInfo));
+        return R.condition(pmsSkuInfoService.save(pmsSkuInfo));
     }
 
     /**
@@ -76,7 +62,7 @@ public class PmsSkuInfoController extends BaseController {
     @Log(title = "sku信息", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<Void> edit(@RequestBody PmsSkuInfo pmsSkuInfo) {
-        return R.condition(pmsSkuInfoService.updatePmsSkuInfo(pmsSkuInfo));
+        return R.condition(pmsSkuInfoService.updateById(pmsSkuInfo));
     }
 
     /**
@@ -86,6 +72,6 @@ public class PmsSkuInfoController extends BaseController {
     @Log(title = "sku信息", businessType = BusinessType.DELETE)
     @DeleteMapping("/{skuIds}")
     public R<Void> remove(@PathVariable Long[] skuIds) {
-        return R.condition(pmsSkuInfoService.deletePmsSkuInfoBySkuIds(skuIds));
+        return R.condition(pmsSkuInfoService.removeByIds(skuIds));
     }
 }

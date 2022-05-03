@@ -1,30 +1,31 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="属性id" prop="attrId">
+      <el-form-item label="商品名称" prop="name">
         <el-input
-          v-model="queryParams.attrId"
-          placeholder="请输入属性id"
+          v-model="queryParams.name"
+          placeholder="请输入商品名称"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="属性分组id" prop="attrGroupId">
+      <el-form-item label="所属分类id" prop="categoryId">
         <el-input
-          v-model="queryParams.attrGroupId"
-          placeholder="请输入属性分组id"
+          v-model="queryParams.categoryId"
+          placeholder="请输入所属分类id"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="属性组内排序" prop="attrSort">
+      <el-form-item label="品牌id" prop="brandId">
         <el-input
-          v-model="queryParams.attrSort"
-          placeholder="请输入属性组内排序"
+          v-model="queryParams.brandId"
+          placeholder="请输入品牌id"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
+
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
@@ -39,7 +40,7 @@
           icon="el-icon-plus"
           size="mini"
           @click="handleAdd"
-          v-hasPermi="['product:relation:add']"
+          v-hasPermi="['product:info:add']"
         >新增</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -50,7 +51,7 @@
           size="mini"
           :disabled="single"
           @click="handleUpdate"
-          v-hasPermi="['product:relation:edit']"
+          v-hasPermi="['product:info:edit']"
         >修改</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -61,7 +62,7 @@
           size="mini"
           :disabled="multiple"
           @click="handleDelete"
-          v-hasPermi="['product:relation:remove']"
+          v-hasPermi="['product:info:remove']"
         >删除</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -71,18 +72,22 @@
           icon="el-icon-download"
           size="mini"
           @click="handleExport"
-          v-hasPermi="['product:relation:export']"
+          v-hasPermi="['product:info:export']"
         >导出</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
-    <el-table v-loading="loading" :data="relationList" @selection-change="handleSelectionChange">
-      <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="id" align="center" prop="id" />
-      <el-table-column label="属性id" align="center" prop="attrId" />
-      <el-table-column label="属性分组id" align="center" prop="attrGroupId" />
-      <el-table-column label="属性组内排序" align="center" prop="attrSort" />
+    <el-table v-loading="loading" :data="infoList" @selection-change="handleSelectionChange">
+      <el-table-column type="selection" width="55" align="center"/>
+      <el-table-column label="商品id" align="center" prop="spuId"/>
+      <el-table-column label="商品名称" align="center" prop="name"/>
+      <el-table-column label="商品描述" align="center" prop="desc"/>
+      <el-table-column label="所属分类id" align="center" prop="categoryId"/>
+      <el-table-column label="品牌id" align="center" prop="brandId"/>
+      <el-table-column label="重量" align="center" prop="weight"/>
+      <el-table-column label="上架状态" align="center" prop="status"/>
+      <el-table-column label="备注" align="center" prop="remark"/>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -90,14 +95,15 @@
             type="text"
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
-            v-hasPermi="['product:relation:edit']"
-          >修改</el-button>
+            v-hasPermi="['product:info:edit']"
+          >修改
+          </el-button>
           <el-button
             size="mini"
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
-            v-hasPermi="['product:relation:remove']"
+            v-hasPermi="['product:info:remove']"
           >删除</el-button>
         </template>
       </el-table-column>
@@ -111,17 +117,26 @@
       @pagination="getList"
     />
 
-    <!-- 添加或修改属性&属性分组关联对话框 -->
+    <!-- 添加或修改spu信息对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="属性id" prop="attrId">
-          <el-input v-model="form.attrId" placeholder="请输入属性id" />
+        <el-form-item label="商品名称" prop="name">
+          <el-input v-model="form.name" placeholder="请输入商品名称"/>
         </el-form-item>
-        <el-form-item label="属性分组id" prop="attrGroupId">
-          <el-input v-model="form.attrGroupId" placeholder="请输入属性分组id" />
+        <el-form-item label="商品描述" prop="desc">
+          <el-input v-model="form.desc" type="textarea" placeholder="请输入内容"/>
         </el-form-item>
-        <el-form-item label="属性组内排序" prop="attrSort">
-          <el-input v-model="form.attrSort" placeholder="请输入属性组内排序" />
+        <el-form-item label="所属分类id" prop="categoryId">
+          <el-input v-model="form.categoryId" placeholder="请输入所属分类id"/>
+        </el-form-item>
+        <el-form-item label="品牌id" prop="brandId">
+          <el-input v-model="form.brandId" placeholder="请输入品牌id"/>
+        </el-form-item>
+        <el-form-item label="${comment}" prop="weight">
+          <el-input v-model="form.weight" placeholder="请输入${comment}"/>
+        </el-form-item>
+        <el-form-item label="备注" prop="remark">
+          <el-input v-model="form.remark" placeholder="请输入备注"/>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -133,10 +148,10 @@
 </template>
 
 <script>
-import {addRelation, delRelation, getRelation, listRelation, updateRelation} from "@/api/product/relation";
+import {addInfo, delInfo, getInfo, listInfo, updateInfo} from "@/api/product/spu";
 
 export default {
-  name: "Relation",
+  name: "SpuInfo",
   data() {
     return {
       // 遮罩层
@@ -151,8 +166,8 @@ export default {
       showSearch: true,
       // 总条数
       total: 0,
-      // 属性&属性分组关联表格数据
-      relationList: [],
+      // spu信息表格数据
+      infoList: [],
       // 弹出层标题
       title: "",
       // 是否显示弹出层
@@ -161,9 +176,12 @@ export default {
       queryParams: {
         pageNum: 1,
         pageSize: 10,
-        attrId: null,
-        attrGroupId: null,
-        attrSort: null
+        name: null,
+        desc: null,
+        categoryId: null,
+        brandId: null,
+        weight: null,
+        status: null,
       },
       // 表单参数
       form: {},
@@ -176,11 +194,11 @@ export default {
     this.getList();
   },
   methods: {
-    /** 查询属性&属性分组关联列表 */
+    /** 查询spu信息列表 */
     getList() {
       this.loading = true;
-      listRelation(this.queryParams).then(response => {
-        this.relationList = response.rows;
+      listInfo(this.queryParams).then(response => {
+        this.infoList = response.rows;
         this.total = response.total;
         this.loading = false;
       });
@@ -193,10 +211,18 @@ export default {
     // 表单重置
     reset() {
       this.form = {
-        id: null,
-        attrId: null,
-        attrGroupId: null,
-        attrSort: null
+        spuId: null,
+        name: null,
+        desc: null,
+        categoryId: null,
+        brandId: null,
+        weight: null,
+        status: 0,
+        createBy: null,
+        updateBy: null,
+        createTime: null,
+        updateTime: null,
+        remark: null
       };
       this.resetForm("form");
     },
@@ -212,38 +238,38 @@ export default {
     },
     // 多选框选中数据
     handleSelectionChange(selection) {
-      this.ids = selection.map(item => item.id)
-      this.single = selection.length!==1
+      this.ids = selection.map(item => item.spuId)
+      this.single = selection.length !== 1
       this.multiple = !selection.length
     },
     /** 新增按钮操作 */
     handleAdd() {
       this.reset();
       this.open = true;
-      this.title = "添加属性&属性分组关联";
+      this.title = "添加spu信息";
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
       this.reset();
-      const id = row.id || this.ids
-      getRelation(id).then(response => {
+      const spuId = row.spuId || this.ids
+      getInfo(spuId).then(response => {
         this.form = response.data;
         this.open = true;
-        this.title = "修改属性&属性分组关联";
+        this.title = "修改spu信息";
       });
     },
     /** 提交按钮 */
     submitForm() {
       this.$refs["form"].validate(valid => {
         if (valid) {
-          if (this.form.id != null) {
-            updateRelation(this.form).then(response => {
+          if (this.form.spuId != null) {
+            updateInfo(this.form).then(response => {
               this.$modal.msgSuccess("修改成功");
               this.open = false;
               this.getList();
             });
           } else {
-            addRelation(this.form).then(response => {
+            addInfo(this.form).then(response => {
               this.$modal.msgSuccess("新增成功");
               this.open = false;
               this.getList();
@@ -254,19 +280,20 @@ export default {
     },
     /** 删除按钮操作 */
     handleDelete(row) {
-      const ids = row.id || this.ids;
-      this.$modal.confirm('是否确认删除属性&属性分组关联编号为"' + ids + '"的数据项？').then(function() {
-        return delRelation(ids);
+      const spuIds = row.spuId || this.ids;
+      this.$modal.confirm('是否确认删除spu信息编号为"' + spuIds + '"的数据项？').then(function () {
+        return delInfo(spuIds);
       }).then(() => {
         this.getList();
         this.$modal.msgSuccess("删除成功");
-      }).catch(() => {});
+      }).catch(() => {
+      });
     },
     /** 导出按钮操作 */
     handleExport() {
-      this.download('product/relation/export', {
+      this.download('product/info/export', {
         ...this.queryParams
-      }, `relation_${new Date().getTime()}.xlsx`)
+      }, `info_${new Date().getTime()}.xlsx`)
     }
   }
 };

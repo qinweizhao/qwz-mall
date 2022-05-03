@@ -27,7 +27,7 @@ public class PmsSkuInfoServiceImpl implements IPmsSkuInfoService {
      * @return sku信息
      */
     @Override
-    public PmsSkuInfo selectPmsSkuInfoBySkuId(Long skuId) {
+    public PmsSkuInfo getById(Long skuId) {
         return pmsSkuInfoMapper.selectPmsSkuInfoBySkuId(skuId);
     }
 
@@ -38,7 +38,7 @@ public class PmsSkuInfoServiceImpl implements IPmsSkuInfoService {
      * @return sku信息
      */
     @Override
-    public List<PmsSkuInfo> selectPmsSkuInfoList(PmsSkuInfo pmsSkuInfo) {
+    public List<PmsSkuInfo> list(PmsSkuInfo pmsSkuInfo) {
         return pmsSkuInfoMapper.selectPmsSkuInfoList(pmsSkuInfo);
     }
 
@@ -49,7 +49,7 @@ public class PmsSkuInfoServiceImpl implements IPmsSkuInfoService {
      * @return 结果
      */
     @Override
-    public int insertPmsSkuInfo(PmsSkuInfo pmsSkuInfo) {
+    public int save(PmsSkuInfo pmsSkuInfo) {
         pmsSkuInfo.setCreateTime(DateUtils.getNowDate());
         return pmsSkuInfoMapper.insertPmsSkuInfo(pmsSkuInfo);
     }
@@ -61,7 +61,7 @@ public class PmsSkuInfoServiceImpl implements IPmsSkuInfoService {
      * @return 结果
      */
     @Override
-    public int updatePmsSkuInfo(PmsSkuInfo pmsSkuInfo) {
+    public int updateById(PmsSkuInfo pmsSkuInfo) {
         pmsSkuInfo.setUpdateTime(DateUtils.getNowDate());
         return pmsSkuInfoMapper.updatePmsSkuInfo(pmsSkuInfo);
     }
@@ -73,7 +73,7 @@ public class PmsSkuInfoServiceImpl implements IPmsSkuInfoService {
      * @return 结果
      */
     @Override
-    public int deletePmsSkuInfoBySkuIds(Long[] skuIds) {
+    public int removeByIds(Long[] skuIds) {
         return pmsSkuInfoMapper.deletePmsSkuInfoBySkuIds(skuIds);
     }
 
@@ -84,7 +84,7 @@ public class PmsSkuInfoServiceImpl implements IPmsSkuInfoService {
      * @return 结果
      */
     @Override
-    public int deletePmsSkuInfoBySkuId(Long skuId) {
+    public int removeById(Long skuId) {
         return pmsSkuInfoMapper.deletePmsSkuInfoBySkuId(skuId);
     }
 }

@@ -1,21 +1,9 @@
 import request from '@/utils/request'
 
-
-// 新增sku信息
-export function addInfo(data) {
-  return request({
-    url: '/product/spu/info',
-    method: 'post',
-    data: data
-  })
-}
-
-
-// todo
 // 查询sku信息列表
 export function listInfo(query) {
   return request({
-    url: '/product/info/list',
+    url: '/product/sku/info/list',
     method: 'get',
     params: query
   })
@@ -24,16 +12,24 @@ export function listInfo(query) {
 // 查询sku信息详细
 export function getInfo(skuId) {
   return request({
-    url: '/product/info/' + skuId,
+    url: '/product/sku/info/' + skuId,
     method: 'get'
   })
 }
 
+// 新增sku信息
+export function addInfo(data) {
+  return request({
+    url: '/product/sku/info',
+    method: 'post',
+    data: data
+  })
+}
 
 // 修改sku信息
 export function updateInfo(data) {
   return request({
-    url: '/product/info',
+    url: '/product/sku/info',
     method: 'put',
     data: data
   })
@@ -42,7 +38,7 @@ export function updateInfo(data) {
 // 删除sku信息
 export function delInfo(skuId) {
   return request({
-    url: '/product/info/' + skuId,
+    url: '/product/sku/info/' + skuId,
     method: 'delete'
   })
 }

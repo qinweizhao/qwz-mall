@@ -1,6 +1,5 @@
 package com.qinweizhao.product.controller;
 
-import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
@@ -11,7 +10,6 @@ import com.qinweizhao.product.service.IPmsSkuImageService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -23,6 +21,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/sku/image")
 public class PmsSkuImageController extends BaseController {
+
     @Resource
     private IPmsSkuImageService pmsSkuImageService;
 
@@ -32,22 +31,8 @@ public class PmsSkuImageController extends BaseController {
     @RequiresPermissions("product:image:list")
     @GetMapping("/list")
     public R<List<PmsSkuImage>> list(PmsSkuImage pmsSkuImage) {
-        startPage();
-        List<PmsSkuImage> list = pmsSkuImageService.selectPmsSkuImageList(pmsSkuImage);
+        List<PmsSkuImage> list = pmsSkuImageService.list(pmsSkuImage);
         return R.success(list);
-    }
-
-    /**
-     * 导出sku图片列表
-     */
-    @RequiresPermissions("product:image:export")
-    @Log(title = "sku图片", businessType = BusinessType.EXPORT)
-    @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, PmsSkuImage pmsSkuImage) {
-        List<PmsSkuImage> list = pmsSkuImageService.selectPmsSkuImageList(pmsSkuImage);
-        ExcelUtil<PmsSkuImage> util = new ExcelUtil<PmsSkuImage>(PmsSkuImage.class);
-        util.exportExcel(response, list, "sku图片数据");
-        return R.success();
     }
 
     /**
@@ -56,8 +41,9 @@ public class PmsSkuImageController extends BaseController {
     @RequiresPermissions("product:image:query")
     @GetMapping(value = "/{skuId}")
     public R<PmsSkuImage> getInfo(@PathVariable("skuId") Long skuId) {
-        return R.success(pmsSkuImageService.selectPmsSkuImageBySkuId(skuId));
+        return R.success(pmsSkuImageService.getById(skuId));
     }
+
 
     /**
      * 新增sku图片
@@ -66,7 +52,7 @@ public class PmsSkuImageController extends BaseController {
     @Log(title = "sku图片", businessType = BusinessType.INSERT)
     @PostMapping
     public R<Void> add(@RequestBody PmsSkuImage pmsSkuImage) {
-        return R.condition(pmsSkuImageService.insertPmsSkuImage(pmsSkuImage));
+        return R.condition(pmsSkuImageService.save(pmsSkuImage));
     }
 
     /**
@@ -76,7 +62,7 @@ public class PmsSkuImageController extends BaseController {
     @Log(title = "sku图片", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<Void> edit(@RequestBody PmsSkuImage pmsSkuImage) {
-        return R.condition(pmsSkuImageService.updatePmsSkuImage(pmsSkuImage));
+        return R.condition(pmsSkuImageService.updateById(pmsSkuImage));
     }
 
     /**
@@ -86,6 +72,6 @@ public class PmsSkuImageController extends BaseController {
     @Log(title = "sku图片", businessType = BusinessType.DELETE)
     @DeleteMapping("/{skuIds}")
     public R<Void> remove(@PathVariable Long[] skuIds) {
-        return R.condition(pmsSkuImageService.deletePmsSkuImageBySkuIds(skuIds));
+        return R.condition(pmsSkuImageService.removeByIds(skuIds));
     }
 }

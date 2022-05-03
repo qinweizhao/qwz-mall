@@ -1,6 +1,5 @@
 package com.qinweizhao.product.controller;
 
-import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
@@ -12,7 +11,6 @@ import com.qinweizhao.product.service.IPmsSpuInfoService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -24,6 +22,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/spu/info")
 public class PmsSpuInfoController extends BaseController {
+
     @Resource
     private IPmsSpuInfoService pmsSpuInfoService;
 
@@ -38,18 +37,6 @@ public class PmsSpuInfoController extends BaseController {
         return R.success(list);
     }
 
-    /**
-     * 导出spu信息列表
-     */
-    @RequiresPermissions("product:info:export")
-    @Log(title = "spu信息", businessType = BusinessType.EXPORT)
-    @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, PmsSpuInfo pmsSpuInfo) {
-        List<PmsSpuInfo> list = pmsSpuInfoService.selectPmsSpuInfoList(pmsSpuInfo);
-        ExcelUtil<PmsSpuInfo> util = new ExcelUtil<PmsSpuInfo>(PmsSpuInfo.class);
-        util.exportExcel(response, list, "spu信息数据");
-        return R.success();
-    }
 
     /**
      * 获取spu信息详细信息

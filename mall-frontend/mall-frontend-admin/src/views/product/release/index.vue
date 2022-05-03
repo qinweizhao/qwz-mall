@@ -363,7 +363,7 @@ import {listLevel} from '@/api/user/level'
 import {getAttrGroupWithAttrs} from '@/api/product/attrGroup'
 import ImageUpload from '@/components/ImageUpload'
 import {pageAttr} from '@/api/product/attr'
-import {addInfo} from '@/api/product/info'
+import {addInfo} from '@/api/product/spu'
 
 export default {
   //import引入的组件需要注入到对象中才能使用

@@ -204,7 +204,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
                     }
                 }
                 pmsSkuInfo.setDefaultImg(defaultImg);
-                pmsSkuInfoService.insertPmsSkuInfo(pmsSkuInfo);
+                pmsSkuInfoService.save(pmsSkuInfo);
 
 
                 Long skuId = pmsSkuInfo.getSkuId();
@@ -218,7 +218,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
                         pmsSkuImage.setSkuId(skuId);
                         pmsSkuImage.setUrl(imgUrl);
                         pmsSkuImage.setDefaultImage(imageItem.getDefaultImg());
-                        pmsSkuImageService.insertPmsSkuImage(pmsSkuImage);
+                        pmsSkuImageService.save(pmsSkuImage);
                     }
                 });
 
@@ -228,7 +228,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
                     PmsSkuAttrValue pmsSkuAttrValue = new PmsSkuAttrValue();
                     BeanUtils.copyProperties(saleAttrItem, pmsSkuAttrValue);
                     pmsSkuAttrValue.setSkuId(skuId);
-                    pmsSkuAttrValueService.insertPmsSkuAttrValue(pmsSkuAttrValue);
+                    pmsSkuAttrValueService.save(pmsSkuAttrValue);
                 });
 
                 // 6.4）、sku的优惠、满减等信息；mall_ams->ams_sku_ladder\ams_sku_full_reduction\ams_member_price

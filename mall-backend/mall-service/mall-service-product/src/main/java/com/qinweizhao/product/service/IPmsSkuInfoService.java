@@ -11,13 +11,14 @@ import java.util.List;
  * @date 2022-04-11
  */
 public interface IPmsSkuInfoService {
+
     /**
      * 查询sku信息
      *
      * @param skuId sku信息主键
      * @return sku信息
      */
-    PmsSkuInfo selectPmsSkuInfoBySkuId(Long skuId);
+    PmsSkuInfo getById(Long skuId);
 
     /**
      * 查询sku信息列表
@@ -25,7 +26,7 @@ public interface IPmsSkuInfoService {
      * @param pmsSkuInfo sku信息
      * @return sku信息集合
      */
-    List<PmsSkuInfo> selectPmsSkuInfoList(PmsSkuInfo pmsSkuInfo);
+    List<PmsSkuInfo> list(PmsSkuInfo pmsSkuInfo);
 
     /**
      * 新增sku信息
@@ -33,7 +34,7 @@ public interface IPmsSkuInfoService {
      * @param pmsSkuInfo sku信息
      * @return 结果
      */
-    int insertPmsSkuInfo(PmsSkuInfo pmsSkuInfo);
+    int save(PmsSkuInfo pmsSkuInfo);
 
     /**
      * 修改sku信息
@@ -41,7 +42,7 @@ public interface IPmsSkuInfoService {
      * @param pmsSkuInfo sku信息
      * @return 结果
      */
-    int updatePmsSkuInfo(PmsSkuInfo pmsSkuInfo);
+    int updateById(PmsSkuInfo pmsSkuInfo);
 
     /**
      * 批量删除sku信息
@@ -49,7 +50,7 @@ public interface IPmsSkuInfoService {
      * @param skuIds 需要删除的sku信息主键集合
      * @return 结果
      */
-    int deletePmsSkuInfoBySkuIds(Long[] skuIds);
+    int removeByIds(Long[] skuIds);
 
     /**
      * 删除sku信息信息
@@ -57,5 +58,5 @@ public interface IPmsSkuInfoService {
      * @param skuId sku信息主键
      * @return 结果
      */
-    int deletePmsSkuInfoBySkuId(Long skuId);
+    int removeById(Long skuId);
 }

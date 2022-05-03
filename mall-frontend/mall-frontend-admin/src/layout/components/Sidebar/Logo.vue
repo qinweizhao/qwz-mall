@@ -35,7 +35,7 @@ export default {
   },
   data() {
     return {
-      title: '后台管理系统',
+      title: 'frontend-admin',
       logo: 'mall'
     }
   }

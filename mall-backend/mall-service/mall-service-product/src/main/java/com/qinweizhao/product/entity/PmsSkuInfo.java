@@ -2,8 +2,8 @@ package com.qinweizhao.product.entity;
 
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 
@@ -13,6 +13,8 @@ import java.math.BigDecimal;
  * @author qinweizhao
  * @date 2022-04-11
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class PmsSkuInfo extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
@@ -37,7 +39,7 @@ public class PmsSkuInfo extends BaseEntity {
      * sku介绍描述
      */
     @Excel(name = "sku介绍描述")
-    private String desc;
+    private String description;
 
     /**
      * 所属分类id
@@ -81,113 +83,4 @@ public class PmsSkuInfo extends BaseEntity {
     @Excel(name = "销量")
     private Long saleCount;
 
-    public Long getSkuId() {
-        return skuId;
-    }
-
-    public void setSkuId(Long skuId) {
-        this.skuId = skuId;
-    }
-
-    public Long getSpuId() {
-        return spuId;
-    }
-
-    public void setSpuId(Long spuId) {
-        this.spuId = spuId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public Long getBrandId() {
-        return brandId;
-    }
-
-    public void setBrandId(Long brandId) {
-        this.brandId = brandId;
-    }
-
-    public String getDefaultImg() {
-        return defaultImg;
-    }
-
-    public void setDefaultImg(String defaultImg) {
-        this.defaultImg = defaultImg;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getSubtitle() {
-        return subtitle;
-    }
-
-    public void setSubtitle(String subtitle) {
-        this.subtitle = subtitle;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public Long getSaleCount() {
-        return saleCount;
-    }
-
-    public void setSaleCount(Long saleCount) {
-        this.saleCount = saleCount;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("skuId", getSkuId())
-                .append("spuId", getSpuId())
-                .append("name", getName())
-                .append("desc", getDesc())
-                .append("categoryId", getCategoryId())
-                .append("brandId", getBrandId())
-                .append("defaultImg", getDefaultImg())
-                .append("title", getTitle())
-                .append("subtitle", getSubtitle())
-                .append("price", getPrice())
-                .append("saleCount", getSaleCount())
-                .append("createBy", getCreateBy())
-                .append("updateBy", getUpdateBy())
-                .append("createTime", getCreateTime())
-                .append("updateTime", getUpdateTime())
-                .append("remark", getRemark())
-                .toString();
-    }
 }

@@ -17,7 +17,7 @@ public interface IPmsSkuAttrValueService {
      * @param id sku销售属性&值主键
      * @return sku销售属性&值
      */
-    PmsSkuAttrValue selectPmsSkuAttrValueById(Long id);
+    PmsSkuAttrValue getById(Long id);
 
     /**
      * 查询sku销售属性&值列表
@@ -25,7 +25,7 @@ public interface IPmsSkuAttrValueService {
      * @param pmsSkuAttrValue sku销售属性&值
      * @return sku销售属性&值集合
      */
-    List<PmsSkuAttrValue> selectPmsSkuAttrValueList(PmsSkuAttrValue pmsSkuAttrValue);
+    List<PmsSkuAttrValue> list(PmsSkuAttrValue pmsSkuAttrValue);
 
     /**
      * 新增sku销售属性&值
@@ -33,7 +33,7 @@ public interface IPmsSkuAttrValueService {
      * @param pmsSkuAttrValue sku销售属性&值
      * @return 结果
      */
-    int insertPmsSkuAttrValue(PmsSkuAttrValue pmsSkuAttrValue);
+    int save(PmsSkuAttrValue pmsSkuAttrValue);
 
     /**
      * 修改sku销售属性&值
@@ -41,7 +41,7 @@ public interface IPmsSkuAttrValueService {
      * @param pmsSkuAttrValue sku销售属性&值
      * @return 结果
      */
-    int updatePmsSkuAttrValue(PmsSkuAttrValue pmsSkuAttrValue);
+    int updateById(PmsSkuAttrValue pmsSkuAttrValue);
 
     /**
      * 批量删除sku销售属性&值
@@ -49,7 +49,7 @@ public interface IPmsSkuAttrValueService {
      * @param ids 需要删除的sku销售属性&值主键集合
      * @return 结果
      */
-    int deletePmsSkuAttrValueByIds(Long[] ids);
+    int removeByIds(Long[] ids);
 
     /**
      * 删除sku销售属性&值信息
@@ -57,5 +57,5 @@ public interface IPmsSkuAttrValueService {
      * @param id sku销售属性&值主键
      * @return 结果
      */
-    int deletePmsSkuAttrValueById(Long id);
+    int removeById(Long id);
 }

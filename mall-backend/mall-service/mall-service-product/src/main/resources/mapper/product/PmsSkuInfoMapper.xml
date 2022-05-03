@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="skuId" column="sku_id"/>
         <result property="spuId" column="spu_id"/>
         <result property="name" column="name"/>
-        <result property="desc" column="desc"/>
+        <result property="description" column="description"/>
         <result property="categoryId" column="category_id"/>
         <result property="brandId" column="brand_id"/>
         <result property="defaultImg" column="default_img"/>
@@ -26,7 +26,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <sql id="selectPmsSkuInfoVo">
         select sku_id,
                spu_id,
-               name, desc, category_id, brand_id, default_img, title, subtitle, price, sale_count, create_by, update_by, create_time, update_time, remark
+               name,
+               description,
+               category_id,
+               brand_id,
+               default_img,
+               title,
+               subtitle,
+               price,
+               sale_count,
+               create_by,
+               update_by,
+               create_time,
+               update_time,
+               remark
         from pms_sku_info
     </sql>
 
@@ -35,7 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <where>
             <if test="spuId != null ">and spu_id = #{spuId}</if>
             <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
-            <if test="desc != null  and desc != ''">and desc = #{desc}</if>
+            <if test="description != null  and description != ''">and description = #{description}</if>
             <if test="categoryId != null ">and category_id = #{categoryId}</if>
             <if test="brandId != null ">and brand_id = #{brandId}</if>
             <if test="defaultImg != null  and defaultImg != ''">and default_img = #{defaultImg}</if>
@@ -56,7 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="spuId != null">spu_id,</if>
             <if test="name != null">name,</if>
-            <if test="desc != null">desc,</if>
+            <if test="description != null">description,</if>
             <if test="categoryId != null">category_id,</if>
             <if test="brandId != null">brand_id,</if>
             <if test="defaultImg != null">default_img,</if>
@@ -73,7 +86,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="spuId != null">#{spuId},</if>
             <if test="name != null">#{name},</if>
-            <if test="desc != null">#{desc},</if>
+            <if test="description != null">#{description},</if>
             <if test="categoryId != null">#{categoryId},</if>
             <if test="brandId != null">#{brandId},</if>
             <if test="defaultImg != null">#{defaultImg},</if>
@@ -94,7 +107,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <trim prefix="SET" suffixOverrides=",">
             <if test="spuId != null">spu_id = #{spuId},</if>
             <if test="name != null">name = #{name},</if>
-            <if test="desc != null">desc = #{desc},</if>
+            <if test="description != null">description = #{description},</if>
             <if test="categoryId != null">category_id = #{categoryId},</if>
             <if test="brandId != null">brand_id = #{brandId},</if>
             <if test="defaultImg != null">default_img = #{defaultImg},</if>

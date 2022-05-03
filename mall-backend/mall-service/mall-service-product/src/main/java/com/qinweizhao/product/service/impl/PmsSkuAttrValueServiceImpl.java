@@ -17,6 +17,7 @@ import java.util.List;
  */
 @Service
 public class PmsSkuAttrValueServiceImpl implements IPmsSkuAttrValueService {
+
     @Resource
     private PmsSkuAttrValueMapper pmsSkuAttrValueMapper;
 
@@ -27,7 +28,7 @@ public class PmsSkuAttrValueServiceImpl implements IPmsSkuAttrValueService {
      * @return sku销售属性&值
      */
     @Override
-    public PmsSkuAttrValue selectPmsSkuAttrValueById(Long id) {
+    public PmsSkuAttrValue getById(Long id) {
         return pmsSkuAttrValueMapper.selectPmsSkuAttrValueById(id);
     }
 
@@ -38,7 +39,7 @@ public class PmsSkuAttrValueServiceImpl implements IPmsSkuAttrValueService {
      * @return sku销售属性&值
      */
     @Override
-    public List<PmsSkuAttrValue> selectPmsSkuAttrValueList(PmsSkuAttrValue pmsSkuAttrValue) {
+    public List<PmsSkuAttrValue> list(PmsSkuAttrValue pmsSkuAttrValue) {
         return pmsSkuAttrValueMapper.selectPmsSkuAttrValueList(pmsSkuAttrValue);
     }
 
@@ -49,7 +50,7 @@ public class PmsSkuAttrValueServiceImpl implements IPmsSkuAttrValueService {
      * @return 结果
      */
     @Override
-    public int insertPmsSkuAttrValue(PmsSkuAttrValue pmsSkuAttrValue) {
+    public int save(PmsSkuAttrValue pmsSkuAttrValue) {
         pmsSkuAttrValue.setCreateTime(DateUtils.getNowDate());
         return pmsSkuAttrValueMapper.insertPmsSkuAttrValue(pmsSkuAttrValue);
     }
@@ -61,7 +62,7 @@ public class PmsSkuAttrValueServiceImpl implements IPmsSkuAttrValueService {
      * @return 结果
      */
     @Override
-    public int updatePmsSkuAttrValue(PmsSkuAttrValue pmsSkuAttrValue) {
+    public int updateById(PmsSkuAttrValue pmsSkuAttrValue) {
         pmsSkuAttrValue.setUpdateTime(DateUtils.getNowDate());
         return pmsSkuAttrValueMapper.updatePmsSkuAttrValue(pmsSkuAttrValue);
     }
@@ -73,7 +74,7 @@ public class PmsSkuAttrValueServiceImpl implements IPmsSkuAttrValueService {
      * @return 结果
      */
     @Override
-    public int deletePmsSkuAttrValueByIds(Long[] ids) {
+    public int removeByIds(Long[] ids) {
         return pmsSkuAttrValueMapper.deletePmsSkuAttrValueByIds(ids);
     }
 
@@ -84,7 +85,7 @@ public class PmsSkuAttrValueServiceImpl implements IPmsSkuAttrValueService {
      * @return 结果
      */
     @Override
-    public int deletePmsSkuAttrValueById(Long id) {
+    public int removeById(Long id) {
         return pmsSkuAttrValueMapper.deletePmsSkuAttrValueById(id);
     }
 }
