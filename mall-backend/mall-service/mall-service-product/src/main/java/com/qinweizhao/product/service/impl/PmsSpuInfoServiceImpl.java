@@ -55,7 +55,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
      * @return spu信息
      */
     @Override
-    public PmsSpuInfo selectPmsSpuInfoBySpuId(Long spuId) {
+    public PmsSpuInfo getById(Long spuId) {
         return pmsSpuInfoMapper.selectPmsSpuInfoBySpuId(spuId);
     }
 
@@ -66,7 +66,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
      * @return spu信息
      */
     @Override
-    public List<PmsSpuInfo> selectPmsSpuInfoList(PmsSpuInfo pmsSpuInfo) {
+    public List<PmsSpuInfo> list(PmsSpuInfo pmsSpuInfo) {
         return pmsSpuInfoMapper.selectPmsSpuInfoList(pmsSpuInfo);
     }
 
@@ -89,7 +89,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
      * @return 结果
      */
     @Override
-    public int updatePmsSpuInfo(PmsSpuInfo pmsSpuInfo) {
+    public int updateById(PmsSpuInfo pmsSpuInfo) {
         pmsSpuInfo.setUpdateTime(DateUtils.getNowDate());
         return pmsSpuInfoMapper.updatePmsSpuInfo(pmsSpuInfo);
     }
@@ -101,7 +101,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
      * @return 结果
      */
     @Override
-    public int deletePmsSpuInfoBySpuIds(Long[] spuIds) {
+    public int removeByIds(Long[] spuIds) {
         return pmsSpuInfoMapper.deletePmsSpuInfoBySpuIds(spuIds);
     }
 
@@ -127,7 +127,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public boolean insertSpu(PmsSpuSaveVO pmsSpuSaveVO) {
+    public boolean saveSpu(PmsSpuSaveVO pmsSpuSaveVO) {
 
         String username = SecurityUtils.getUsername();
 
@@ -152,7 +152,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
         pmsSpuInfoDetail.setCreateBy(username);
         pmsSpuInfoDetail.setUpdateBy(username);
         pmsSpuInfoDetail.setSpuId(pmsSpuInfo.getSpuId());
-        pmsSpuInfoDetailService.insertPmsSpuInfoDetail(pmsSpuInfoDetail);
+        pmsSpuInfoDetailService.save(pmsSpuInfoDetail);
 
         // 3、保存spu的图片集 pms_spu_image
         List<String> spuImages = pmsSpuSaveVO.getImages();
@@ -183,7 +183,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
             pmsSpuAttrValue.setQuickShow(baseAttr.getQuickShow());
             pmsSpuAttrValue.setSpuId(spuId);
 
-            pmsSpuAttrValueService.insertPmsSpuAttrValue(pmsSpuAttrValue);
+            pmsSpuAttrValueService.save(pmsSpuAttrValue);
         });
 
         // 6、保存当前spu对应的所有sku信息

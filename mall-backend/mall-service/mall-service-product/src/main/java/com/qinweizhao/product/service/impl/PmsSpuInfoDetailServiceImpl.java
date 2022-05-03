@@ -27,7 +27,7 @@ public class PmsSpuInfoDetailServiceImpl implements IPmsSpuInfoDetailService {
      * @return spu信息介绍
      */
     @Override
-    public PmsSpuInfoDetail selectPmsSpuInfoDetailBySpuId(Long spuId) {
+    public PmsSpuInfoDetail getById(Long spuId) {
         return pmsSpuInfoDetailMapper.selectPmsSpuInfoDetailBySpuId(spuId);
     }
 
@@ -38,7 +38,7 @@ public class PmsSpuInfoDetailServiceImpl implements IPmsSpuInfoDetailService {
      * @return spu信息介绍
      */
     @Override
-    public List<PmsSpuInfoDetail> selectPmsSpuInfoDetailList(PmsSpuInfoDetail pmsSpuInfoDetail) {
+    public List<PmsSpuInfoDetail> list(PmsSpuInfoDetail pmsSpuInfoDetail) {
         return pmsSpuInfoDetailMapper.selectPmsSpuInfoDetailList(pmsSpuInfoDetail);
     }
 
@@ -49,7 +49,7 @@ public class PmsSpuInfoDetailServiceImpl implements IPmsSpuInfoDetailService {
      * @return 结果
      */
     @Override
-    public int insertPmsSpuInfoDetail(PmsSpuInfoDetail pmsSpuInfoDetail) {
+    public int save(PmsSpuInfoDetail pmsSpuInfoDetail) {
         pmsSpuInfoDetail.setCreateTime(DateUtils.getNowDate());
         return pmsSpuInfoDetailMapper.insertPmsSpuInfoDetail(pmsSpuInfoDetail);
     }
@@ -61,7 +61,7 @@ public class PmsSpuInfoDetailServiceImpl implements IPmsSpuInfoDetailService {
      * @return 结果
      */
     @Override
-    public int updatePmsSpuInfoDetail(PmsSpuInfoDetail pmsSpuInfoDetail) {
+    public int updateById(PmsSpuInfoDetail pmsSpuInfoDetail) {
         pmsSpuInfoDetail.setUpdateTime(DateUtils.getNowDate());
         return pmsSpuInfoDetailMapper.updatePmsSpuInfoDetail(pmsSpuInfoDetail);
     }
@@ -73,7 +73,7 @@ public class PmsSpuInfoDetailServiceImpl implements IPmsSpuInfoDetailService {
      * @return 结果
      */
     @Override
-    public int deletePmsSpuInfoDetailBySpuIds(Long[] spuIds) {
+    public int removeByIds(Long[] spuIds) {
         return pmsSpuInfoDetailMapper.deletePmsSpuInfoDetailBySpuIds(spuIds);
     }
 

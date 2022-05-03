@@ -27,7 +27,7 @@ public class PmsSpuAttrValueServiceImpl implements IPmsSpuAttrValueService {
      * @return spu属性值
      */
     @Override
-    public PmsSpuAttrValue selectPmsSpuAttrValueById(Long id) {
+    public PmsSpuAttrValue getById(Long id) {
         return pmsSpuAttrValueMapper.selectPmsSpuAttrValueById(id);
     }
 
@@ -38,7 +38,7 @@ public class PmsSpuAttrValueServiceImpl implements IPmsSpuAttrValueService {
      * @return spu属性值
      */
     @Override
-    public List<PmsSpuAttrValue> selectPmsSpuAttrValueList(PmsSpuAttrValue pmsSpuAttrValue) {
+    public List<PmsSpuAttrValue> list(PmsSpuAttrValue pmsSpuAttrValue) {
         return pmsSpuAttrValueMapper.selectPmsSpuAttrValueList(pmsSpuAttrValue);
     }
 
@@ -49,7 +49,7 @@ public class PmsSpuAttrValueServiceImpl implements IPmsSpuAttrValueService {
      * @return 结果
      */
     @Override
-    public int insertPmsSpuAttrValue(PmsSpuAttrValue pmsSpuAttrValue) {
+    public int save(PmsSpuAttrValue pmsSpuAttrValue) {
         pmsSpuAttrValue.setCreateTime(DateUtils.getNowDate());
         return pmsSpuAttrValueMapper.insertPmsSpuAttrValue(pmsSpuAttrValue);
     }
@@ -61,7 +61,7 @@ public class PmsSpuAttrValueServiceImpl implements IPmsSpuAttrValueService {
      * @return 结果
      */
     @Override
-    public int updatePmsSpuAttrValue(PmsSpuAttrValue pmsSpuAttrValue) {
+    public int updateById(PmsSpuAttrValue pmsSpuAttrValue) {
         pmsSpuAttrValue.setUpdateTime(DateUtils.getNowDate());
         return pmsSpuAttrValueMapper.updatePmsSpuAttrValue(pmsSpuAttrValue);
     }
@@ -73,7 +73,7 @@ public class PmsSpuAttrValueServiceImpl implements IPmsSpuAttrValueService {
      * @return 结果
      */
     @Override
-    public int deletePmsSpuAttrValueByIds(Long[] ids) {
+    public int removeByIds(Long[] ids) {
         return pmsSpuAttrValueMapper.deletePmsSpuAttrValueByIds(ids);
     }
 

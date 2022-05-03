@@ -23,6 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/image")
 public class PmsSpuImageController extends BaseController {
+
     @Resource
     private IPmsSpuImageService pmsSpuImageService;
 

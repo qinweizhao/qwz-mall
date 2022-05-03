@@ -27,7 +27,7 @@ public class PmsSpuCommentServiceImpl implements IPmsSpuCommentService {
      * @return 商品评价
      */
     @Override
-    public PmsSpuComment selectPmsSpuCommentById(Long id) {
+    public PmsSpuComment getById(Long id) {
         return pmsSpuCommentMapper.selectPmsSpuCommentById(id);
     }
 
@@ -38,7 +38,7 @@ public class PmsSpuCommentServiceImpl implements IPmsSpuCommentService {
      * @return 商品评价
      */
     @Override
-    public List<PmsSpuComment> selectPmsSpuCommentList(PmsSpuComment pmsSpuComment) {
+    public List<PmsSpuComment> list(PmsSpuComment pmsSpuComment) {
         return pmsSpuCommentMapper.selectPmsSpuCommentList(pmsSpuComment);
     }
 
@@ -49,7 +49,7 @@ public class PmsSpuCommentServiceImpl implements IPmsSpuCommentService {
      * @return 结果
      */
     @Override
-    public int insertPmsSpuComment(PmsSpuComment pmsSpuComment) {
+    public int save(PmsSpuComment pmsSpuComment) {
         pmsSpuComment.setCreateTime(DateUtils.getNowDate());
         return pmsSpuCommentMapper.insertPmsSpuComment(pmsSpuComment);
     }
@@ -61,7 +61,7 @@ public class PmsSpuCommentServiceImpl implements IPmsSpuCommentService {
      * @return 结果
      */
     @Override
-    public int updatePmsSpuComment(PmsSpuComment pmsSpuComment) {
+    public int updateById(PmsSpuComment pmsSpuComment) {
         pmsSpuComment.setUpdateTime(DateUtils.getNowDate());
         return pmsSpuCommentMapper.updatePmsSpuComment(pmsSpuComment);
     }
@@ -73,7 +73,7 @@ public class PmsSpuCommentServiceImpl implements IPmsSpuCommentService {
      * @return 结果
      */
     @Override
-    public int deletePmsSpuCommentByIds(Long[] ids) {
+    public int removeByIds(Long[] ids) {
         return pmsSpuCommentMapper.deletePmsSpuCommentByIds(ids);
     }
 

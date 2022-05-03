@@ -18,7 +18,7 @@ public interface IPmsSpuInfoDetailService {
      * @param spuId spu信息介绍主键
      * @return spu信息介绍
      */
-    PmsSpuInfoDetail selectPmsSpuInfoDetailBySpuId(Long spuId);
+    PmsSpuInfoDetail getById(Long spuId);
 
     /**
      * 查询spu信息介绍列表
@@ -26,7 +26,7 @@ public interface IPmsSpuInfoDetailService {
      * @param pmsSpuInfoDetail spu信息介绍
      * @return spu信息介绍集合
      */
-    List<PmsSpuInfoDetail> selectPmsSpuInfoDetailList(PmsSpuInfoDetail pmsSpuInfoDetail);
+    List<PmsSpuInfoDetail> list(PmsSpuInfoDetail pmsSpuInfoDetail);
 
     /**
      * 新增spu信息介绍
@@ -34,7 +34,7 @@ public interface IPmsSpuInfoDetailService {
      * @param pmsSpuInfoDetail spu信息介绍
      * @return 结果
      */
-    int insertPmsSpuInfoDetail(PmsSpuInfoDetail pmsSpuInfoDetail);
+    int save(PmsSpuInfoDetail pmsSpuInfoDetail);
 
     /**
      * 修改spu信息介绍
@@ -42,7 +42,7 @@ public interface IPmsSpuInfoDetailService {
      * @param pmsSpuInfoDetail spu信息介绍
      * @return 结果
      */
-    int updatePmsSpuInfoDetail(PmsSpuInfoDetail pmsSpuInfoDetail);
+    int updateById(PmsSpuInfoDetail pmsSpuInfoDetail);
 
     /**
      * 批量删除spu信息介绍
@@ -50,7 +50,7 @@ public interface IPmsSpuInfoDetailService {
      * @param spuIds 需要删除的spu信息介绍主键集合
      * @return 结果
      */
-    int deletePmsSpuInfoDetailBySpuIds(Long[] spuIds);
+    int removeByIds(Long[] spuIds);
 
     /**
      * 删除spu信息介绍信息

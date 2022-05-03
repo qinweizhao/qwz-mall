@@ -33,7 +33,7 @@ public class PmsSpuInfoController extends BaseController {
     @GetMapping("/list")
     public R<List<PmsSpuInfo>> list(PmsSpuInfo pmsSpuInfo) {
         startPage();
-        List<PmsSpuInfo> list = pmsSpuInfoService.selectPmsSpuInfoList(pmsSpuInfo);
+        List<PmsSpuInfo> list = pmsSpuInfoService.list(pmsSpuInfo);
         return R.success(list);
     }
 
@@ -44,18 +44,8 @@ public class PmsSpuInfoController extends BaseController {
     @RequiresPermissions("product:info:query")
     @GetMapping(value = "/{spuId}")
     public R<PmsSpuInfo> getInfo(@PathVariable("spuId") Long spuId) {
-        return R.success(pmsSpuInfoService.selectPmsSpuInfoBySpuId(spuId));
+        return R.success(pmsSpuInfoService.getById(spuId));
     }
-
-//    /**
-//     * 新增spu信息
-//     */
-//    @RequiresPermissions("product:info:add")
-//    @Log(title = "spu信息", businessType = BusinessType.INSERT)
-//    @PostMapping
-//    public R<Void> add(@RequestBody PmsSpuInfo pmsSpuInfo) {
-//        return R.condition(pmsSpuInfoService.insertPmsSpuInfo(pmsSpuInfo));
-//    }
 
     /**
      * 新增spu信息
@@ -64,7 +54,7 @@ public class PmsSpuInfoController extends BaseController {
     @Log(title = "spu信息", businessType = BusinessType.INSERT)
     @PostMapping
     public R<Void> add(@RequestBody PmsSpuSaveVO pmsSpuSaveVO) {
-        return R.condition(pmsSpuInfoService.insertSpu(pmsSpuSaveVO));
+        return R.condition(pmsSpuInfoService.saveSpu(pmsSpuSaveVO));
     }
 
     /**
@@ -74,7 +64,7 @@ public class PmsSpuInfoController extends BaseController {
     @Log(title = "spu信息", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<Void> edit(@RequestBody PmsSpuInfo pmsSpuInfo) {
-        return R.condition(pmsSpuInfoService.updatePmsSpuInfo(pmsSpuInfo));
+        return R.condition(pmsSpuInfoService.updateById(pmsSpuInfo));
     }
 
     /**
@@ -84,6 +74,6 @@ public class PmsSpuInfoController extends BaseController {
     @Log(title = "spu信息", businessType = BusinessType.DELETE)
     @DeleteMapping("/{spuIds}")
     public R<Void> remove(@PathVariable Long[] spuIds) {
-        return R.condition(pmsSpuInfoService.deletePmsSpuInfoBySpuIds(spuIds));
+        return R.condition(pmsSpuInfoService.removeByIds(spuIds));
     }
 }

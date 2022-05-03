@@ -1,6 +1,5 @@
 package com.qinweizhao.product.controller;
 
-import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
@@ -11,7 +10,6 @@ import com.qinweizhao.product.service.IPmsSpuAttrValueService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -32,22 +30,8 @@ public class PmsSpuAttrValueController extends BaseController {
     @RequiresPermissions("product:value:list")
     @GetMapping("/list")
     public R<List<PmsSpuAttrValue>> list(PmsSpuAttrValue pmsSpuAttrValue) {
-        startPage();
-        List<PmsSpuAttrValue> list = pmsSpuAttrValueService.selectPmsSpuAttrValueList(pmsSpuAttrValue);
+        List<PmsSpuAttrValue> list = pmsSpuAttrValueService.list(pmsSpuAttrValue);
         return R.success(list);
-    }
-
-    /**
-     * 导出spu属性值列表
-     */
-    @RequiresPermissions("product:value:export")
-    @Log(title = "spu属性值", businessType = BusinessType.EXPORT)
-    @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, PmsSpuAttrValue pmsSpuAttrValue) {
-        List<PmsSpuAttrValue> list = pmsSpuAttrValueService.selectPmsSpuAttrValueList(pmsSpuAttrValue);
-        ExcelUtil<PmsSpuAttrValue> util = new ExcelUtil<PmsSpuAttrValue>(PmsSpuAttrValue.class);
-        util.exportExcel(response, list, "spu属性值数据");
-        return R.success();
     }
 
     /**
@@ -56,7 +40,7 @@ public class PmsSpuAttrValueController extends BaseController {
     @RequiresPermissions("product:value:query")
     @GetMapping(value = "/{id}")
     public R<PmsSpuAttrValue> getInfo(@PathVariable("id") Long id) {
-        return R.success(pmsSpuAttrValueService.selectPmsSpuAttrValueById(id));
+        return R.success(pmsSpuAttrValueService.getById(id));
     }
 
     /**
@@ -66,7 +50,7 @@ public class PmsSpuAttrValueController extends BaseController {
     @Log(title = "spu属性值", businessType = BusinessType.INSERT)
     @PostMapping
     public R<Void> add(@RequestBody PmsSpuAttrValue pmsSpuAttrValue) {
-        return R.condition(pmsSpuAttrValueService.insertPmsSpuAttrValue(pmsSpuAttrValue));
+        return R.condition(pmsSpuAttrValueService.save(pmsSpuAttrValue));
     }
 
     /**
@@ -76,7 +60,7 @@ public class PmsSpuAttrValueController extends BaseController {
     @Log(title = "spu属性值", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<Void> edit(@RequestBody PmsSpuAttrValue pmsSpuAttrValue) {
-        return R.condition(pmsSpuAttrValueService.updatePmsSpuAttrValue(pmsSpuAttrValue));
+        return R.condition(pmsSpuAttrValueService.updateById(pmsSpuAttrValue));
     }
 
     /**
@@ -86,6 +70,6 @@ public class PmsSpuAttrValueController extends BaseController {
     @Log(title = "spu属性值", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
     public R<Void> remove(@PathVariable Long[] ids) {
-        return R.condition(pmsSpuAttrValueService.deletePmsSpuAttrValueByIds(ids));
+        return R.condition(pmsSpuAttrValueService.removeByIds(ids));
     }
 }

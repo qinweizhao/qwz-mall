@@ -17,7 +17,7 @@ public interface PmsSpuInfoDetailMapper {
      * @param spuId spu信息介绍主键
      * @return spu信息介绍
      */
-    public PmsSpuInfoDetail selectPmsSpuInfoDetailBySpuId(Long spuId);
+    PmsSpuInfoDetail selectPmsSpuInfoDetailBySpuId(Long spuId);
 
     /**
      * 查询spu信息介绍列表
@@ -25,7 +25,7 @@ public interface PmsSpuInfoDetailMapper {
      * @param pmsSpuInfoDetail spu信息介绍
      * @return spu信息介绍集合
      */
-    public List<PmsSpuInfoDetail> selectPmsSpuInfoDetailList(PmsSpuInfoDetail pmsSpuInfoDetail);
+    List<PmsSpuInfoDetail> selectPmsSpuInfoDetailList(PmsSpuInfoDetail pmsSpuInfoDetail);
 
     /**
      * 新增spu信息介绍
@@ -33,7 +33,7 @@ public interface PmsSpuInfoDetailMapper {
      * @param pmsSpuInfoDetail spu信息介绍
      * @return 结果
      */
-    public int insertPmsSpuInfoDetail(PmsSpuInfoDetail pmsSpuInfoDetail);
+    int insertPmsSpuInfoDetail(PmsSpuInfoDetail pmsSpuInfoDetail);
 
     /**
      * 修改spu信息介绍
@@ -41,7 +41,7 @@ public interface PmsSpuInfoDetailMapper {
      * @param pmsSpuInfoDetail spu信息介绍
      * @return 结果
      */
-    public int updatePmsSpuInfoDetail(PmsSpuInfoDetail pmsSpuInfoDetail);
+    int updatePmsSpuInfoDetail(PmsSpuInfoDetail pmsSpuInfoDetail);
 
     /**
      * 删除spu信息介绍
@@ -49,7 +49,7 @@ public interface PmsSpuInfoDetailMapper {
      * @param spuId spu信息介绍主键
      * @return 结果
      */
-    public int deletePmsSpuInfoDetailBySpuId(Long spuId);
+    int deletePmsSpuInfoDetailBySpuId(Long spuId);
 
     /**
      * 批量删除spu信息介绍
@@ -57,5 +57,5 @@ public interface PmsSpuInfoDetailMapper {
      * @param spuIds 需要删除的数据主键集合
      * @return 结果
      */
-    public int deletePmsSpuInfoDetailBySpuIds(Long[] spuIds);
+    int deletePmsSpuInfoDetailBySpuIds(Long[] spuIds);
 }

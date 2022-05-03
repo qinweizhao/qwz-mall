@@ -1,6 +1,5 @@
 package com.qinweizhao.product.controller;
 
-import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
@@ -11,7 +10,6 @@ import com.qinweizhao.product.service.IPmsSpuCommentService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -33,21 +31,8 @@ public class PmsSpuCommentController extends BaseController {
     @GetMapping("/list")
     public R<List<PmsSpuComment>> list(PmsSpuComment pmsSpuComment) {
         startPage();
-        List<PmsSpuComment> list = pmsSpuCommentService.selectPmsSpuCommentList(pmsSpuComment);
+        List<PmsSpuComment> list = pmsSpuCommentService.list(pmsSpuComment);
         return R.success(list);
-    }
-
-    /**
-     * 导出商品评价列表
-     */
-    @RequiresPermissions("product:comment:export")
-    @Log(title = "商品评价", businessType = BusinessType.EXPORT)
-    @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, PmsSpuComment pmsSpuComment) {
-        List<PmsSpuComment> list = pmsSpuCommentService.selectPmsSpuCommentList(pmsSpuComment);
-        ExcelUtil<PmsSpuComment> util = new ExcelUtil<PmsSpuComment>(PmsSpuComment.class);
-        util.exportExcel(response, list, "商品评价数据");
-        return R.success();
     }
 
     /**
@@ -56,7 +41,7 @@ public class PmsSpuCommentController extends BaseController {
     @RequiresPermissions("product:comment:query")
     @GetMapping(value = "/{id}")
     public R<PmsSpuComment> getInfo(@PathVariable("id") Long id) {
-        return R.success(pmsSpuCommentService.selectPmsSpuCommentById(id));
+        return R.success(pmsSpuCommentService.getById(id));
     }
 
     /**
@@ -66,7 +51,7 @@ public class PmsSpuCommentController extends BaseController {
     @Log(title = "商品评价", businessType = BusinessType.INSERT)
     @PostMapping
     public R<Void> add(@RequestBody PmsSpuComment pmsSpuComment) {
-        return R.condition(pmsSpuCommentService.insertPmsSpuComment(pmsSpuComment));
+        return R.condition(pmsSpuCommentService.save(pmsSpuComment));
     }
 
     /**
@@ -76,7 +61,7 @@ public class PmsSpuCommentController extends BaseController {
     @Log(title = "商品评价", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<Void> edit(@RequestBody PmsSpuComment pmsSpuComment) {
-        return R.condition(pmsSpuCommentService.updatePmsSpuComment(pmsSpuComment));
+        return R.condition(pmsSpuCommentService.updateById(pmsSpuComment));
     }
 
     /**
@@ -86,6 +71,6 @@ public class PmsSpuCommentController extends BaseController {
     @Log(title = "商品评价", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
     public R<Void> remove(@PathVariable Long[] ids) {
-        return R.condition(pmsSpuCommentService.deletePmsSpuCommentByIds(ids));
+        return R.condition(pmsSpuCommentService.removeByIds(ids));
     }
 }

@@ -17,7 +17,7 @@ public interface IPmsSpuCommentService {
      * @param id 商品评价主键
      * @return 商品评价
      */
-    PmsSpuComment selectPmsSpuCommentById(Long id);
+    PmsSpuComment getById(Long id);
 
     /**
      * 查询商品评价列表
@@ -25,7 +25,7 @@ public interface IPmsSpuCommentService {
      * @param pmsSpuComment 商品评价
      * @return 商品评价集合
      */
-    List<PmsSpuComment> selectPmsSpuCommentList(PmsSpuComment pmsSpuComment);
+    List<PmsSpuComment> list(PmsSpuComment pmsSpuComment);
 
     /**
      * 新增商品评价
@@ -33,7 +33,7 @@ public interface IPmsSpuCommentService {
      * @param pmsSpuComment 商品评价
      * @return 结果
      */
-    int insertPmsSpuComment(PmsSpuComment pmsSpuComment);
+    int save(PmsSpuComment pmsSpuComment);
 
     /**
      * 修改商品评价
@@ -41,7 +41,7 @@ public interface IPmsSpuCommentService {
      * @param pmsSpuComment 商品评价
      * @return 结果
      */
-    int updatePmsSpuComment(PmsSpuComment pmsSpuComment);
+    int updateById(PmsSpuComment pmsSpuComment);
 
     /**
      * 批量删除商品评价
@@ -49,7 +49,7 @@ public interface IPmsSpuCommentService {
      * @param ids 需要删除的商品评价主键集合
      * @return 结果
      */
-    int deletePmsSpuCommentByIds(Long[] ids);
+    int removeByIds(Long[] ids);
 
     /**
      * 删除商品评价信息

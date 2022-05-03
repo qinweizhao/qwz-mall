@@ -17,7 +17,7 @@ public interface IPmsSpuAttrValueService {
      * @param id spu属性值主键
      * @return spu属性值
      */
-    PmsSpuAttrValue selectPmsSpuAttrValueById(Long id);
+    PmsSpuAttrValue getById(Long id);
 
     /**
      * 查询spu属性值列表
@@ -25,7 +25,7 @@ public interface IPmsSpuAttrValueService {
      * @param pmsSpuAttrValue spu属性值
      * @return spu属性值集合
      */
-    List<PmsSpuAttrValue> selectPmsSpuAttrValueList(PmsSpuAttrValue pmsSpuAttrValue);
+    List<PmsSpuAttrValue> list(PmsSpuAttrValue pmsSpuAttrValue);
 
     /**
      * 新增spu属性值
@@ -33,7 +33,7 @@ public interface IPmsSpuAttrValueService {
      * @param pmsSpuAttrValue spu属性值
      * @return 结果
      */
-    int insertPmsSpuAttrValue(PmsSpuAttrValue pmsSpuAttrValue);
+    int save(PmsSpuAttrValue pmsSpuAttrValue);
 
     /**
      * 修改spu属性值
@@ -41,7 +41,7 @@ public interface IPmsSpuAttrValueService {
      * @param pmsSpuAttrValue spu属性值
      * @return 结果
      */
-    int updatePmsSpuAttrValue(PmsSpuAttrValue pmsSpuAttrValue);
+    int updateById(PmsSpuAttrValue pmsSpuAttrValue);
 
     /**
      * 批量删除spu属性值
@@ -49,7 +49,7 @@ public interface IPmsSpuAttrValueService {
      * @param ids 需要删除的spu属性值主键集合
      * @return 结果
      */
-    int deletePmsSpuAttrValueByIds(Long[] ids);
+    int removeByIds(Long[] ids);
 
     /**
      * 删除spu属性值信息

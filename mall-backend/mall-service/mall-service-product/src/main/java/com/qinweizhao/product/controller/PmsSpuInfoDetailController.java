@@ -1,6 +1,5 @@
 package com.qinweizhao.product.controller;
 
-import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
@@ -11,7 +10,6 @@ import com.qinweizhao.product.service.IPmsSpuInfoDetailService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -23,6 +21,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/detail")
 public class PmsSpuInfoDetailController extends BaseController {
+
     @Resource
     private IPmsSpuInfoDetailService pmsSpuInfoDetailService;
 
@@ -33,22 +32,10 @@ public class PmsSpuInfoDetailController extends BaseController {
     @GetMapping("/list")
     public R<List<PmsSpuInfoDetail>> list(PmsSpuInfoDetail pmsSpuInfoDetail) {
         startPage();
-        List<PmsSpuInfoDetail> list = pmsSpuInfoDetailService.selectPmsSpuInfoDetailList(pmsSpuInfoDetail);
+        List<PmsSpuInfoDetail> list = pmsSpuInfoDetailService.list(pmsSpuInfoDetail);
         return R.success(list);
     }
 
-    /**
-     * 导出spu信息介绍列表
-     */
-    @RequiresPermissions("product:detail:export")
-    @Log(title = "spu信息介绍", businessType = BusinessType.EXPORT)
-    @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, PmsSpuInfoDetail pmsSpuInfoDetail) {
-        List<PmsSpuInfoDetail> list = pmsSpuInfoDetailService.selectPmsSpuInfoDetailList(pmsSpuInfoDetail);
-        ExcelUtil<PmsSpuInfoDetail> util = new ExcelUtil<PmsSpuInfoDetail>(PmsSpuInfoDetail.class);
-        util.exportExcel(response, list, "spu信息介绍数据");
-        return R.success();
-    }
 
     /**
      * 获取spu信息介绍详细信息
@@ -56,7 +43,7 @@ public class PmsSpuInfoDetailController extends BaseController {
     @RequiresPermissions("product:detail:query")
     @GetMapping(value = "/{spuId}")
     public R<PmsSpuInfoDetail> getInfo(@PathVariable("spuId") Long spuId) {
-        return R.success(pmsSpuInfoDetailService.selectPmsSpuInfoDetailBySpuId(spuId));
+        return R.success(pmsSpuInfoDetailService.getById(spuId));
     }
 
     /**
@@ -66,7 +53,7 @@ public class PmsSpuInfoDetailController extends BaseController {
     @Log(title = "spu信息介绍", businessType = BusinessType.INSERT)
     @PostMapping
     public R<Void> add(@RequestBody PmsSpuInfoDetail pmsSpuInfoDetail) {
-        return R.condition(pmsSpuInfoDetailService.insertPmsSpuInfoDetail(pmsSpuInfoDetail));
+        return R.condition(pmsSpuInfoDetailService.save(pmsSpuInfoDetail));
     }
 
     /**
@@ -76,7 +63,7 @@ public class PmsSpuInfoDetailController extends BaseController {
     @Log(title = "spu信息介绍", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<Void> edit(@RequestBody PmsSpuInfoDetail pmsSpuInfoDetail) {
-        return R.condition(pmsSpuInfoDetailService.updatePmsSpuInfoDetail(pmsSpuInfoDetail));
+        return R.condition(pmsSpuInfoDetailService.updateById(pmsSpuInfoDetail));
     }
 
     /**
@@ -86,6 +73,6 @@ public class PmsSpuInfoDetailController extends BaseController {
     @Log(title = "spu信息介绍", businessType = BusinessType.DELETE)
     @DeleteMapping("/{spuIds}")
     public R<Void> remove(@PathVariable Long[] spuIds) {
-        return R.condition(pmsSpuInfoDetailService.deletePmsSpuInfoDetailBySpuIds(spuIds));
+        return R.condition(pmsSpuInfoDetailService.removeByIds(spuIds));
     }
 }
