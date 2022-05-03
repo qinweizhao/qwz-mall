@@ -45,7 +45,7 @@ public class PmsSpuImageController extends BaseController {
     @PostMapping("/export")
     public R<Void> export(HttpServletResponse response, PmsSpuImage pmsSpuImage) {
         List<PmsSpuImage> list = pmsSpuImageService.selectPmsSpuImageList(pmsSpuImage);
-        ExcelUtil<PmsSpuImage> util = new ExcelUtil<PmsSpuImage>(PmsSpuImage.class);
+        ExcelUtil<PmsSpuImage> util = new ExcelUtil<>(PmsSpuImage.class);
         util.exportExcel(response, list, "spu图片数据");
         return R.success();
     }

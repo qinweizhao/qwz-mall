@@ -1,40 +1,32 @@
 import request from '@/utils/request'
 
-// 查询菜单列表
+// 查询列表
 export function listCategory(query) {
   return request({
-    url: '/product/category/list',
+    url: '/product/category/page',
     method: 'get',
     params: query
   })
 }
 
-// 查询菜单详细
-export function getMenu(menuId) {
+// 查询下拉树结构
+export function tree() {
+  return request({
+    url: '/product/category/tree',
+    method: 'get'
+  })
+}
+
+// 查询详情
+export function getCategory(menuId) {
   return request({
     url: '/product/category/' + menuId,
     method: 'get'
   })
 }
 
-// 查询菜单下拉树结构
-export function treeselect() {
-  return request({
-    url: '/product/category/treeselect',
-    method: 'get'
-  })
-}
-
-// 根据角色ID查询菜单下拉树结构
-export function roleMenuTreeselect(roleId) {
-  return request({
-    url: '/product/category/roleMenuTreeselect/' + roleId,
-    method: 'get'
-  })
-}
-
-// 新增菜单
-export function addMenu(data) {
+// 新增
+export function addCategory(data) {
   return request({
     url: '/product/category',
     method: 'post',
@@ -42,8 +34,8 @@ export function addMenu(data) {
   })
 }
 
-// 修改菜单
-export function updateMenu(data) {
+// 修改
+export function updateCategory(data) {
   return request({
     url: '/product/category',
     method: 'put',
@@ -51,7 +43,7 @@ export function updateMenu(data) {
   })
 }
 
-// 删除菜单
+// 删除
 export function delMenu(menuId) {
   return request({
     url: '/product/category/' + menuId,

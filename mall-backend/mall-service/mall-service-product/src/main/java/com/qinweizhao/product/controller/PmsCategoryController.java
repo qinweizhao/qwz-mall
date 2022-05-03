@@ -1,6 +1,5 @@
 package com.qinweizhao.product.controller;
 
-import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
@@ -12,7 +11,6 @@ import com.qinweizhao.product.service.IPmsCategoryService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 
@@ -30,74 +28,64 @@ public class PmsCategoryController extends BaseController {
     private IPmsCategoryService pmsCategoryService;
 
     /**
-     * 查询商品三级分类列表
+     * 分页
      */
     @RequiresPermissions("product:category:list")
-    @GetMapping("/list")
+    @GetMapping("/page")
     public R<PageResult<PmsCategory>> list(PmsCategory pmsCategory) {
         startPage();
-        List<PmsCategory> list = pmsCategoryService.selectPmsCategoryList(pmsCategory);
+        List<PmsCategory> list = pmsCategoryService.list(pmsCategory);
         return getPageResult(list);
     }
 
-    /**
-     * 获取部门下拉树列表
-     */
-    @GetMapping("/treeselect")
-    public R<List<Map<String, Object>>> treeselect(PmsCategory pmsCategory) {
-        List<PmsCategory> list = pmsCategoryService.selectPmsCategoryList(pmsCategory);
-        return R.success(pmsCategoryService.buildCategoryTreeSelect(list));
-    }
 
     /**
-     * 导出商品三级分类列表
+     * 树
      */
-    @RequiresPermissions("product:category:export")
-    @Log(title = "商品三级分类", businessType = BusinessType.EXPORT)
-    @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, PmsCategory pmsCategory) {
-        List<PmsCategory> list = pmsCategoryService.selectPmsCategoryList(pmsCategory);
-        ExcelUtil<PmsCategory> util = new ExcelUtil<PmsCategory>(PmsCategory.class);
-        util.exportExcel(response, list, "商品三级分类数据");
-        return R.success();
+    @GetMapping("/tree")
+    public R<List<Map<String, Object>>> tree(PmsCategory pmsCategory) {
+        List<PmsCategory> list = pmsCategoryService.list(pmsCategory);
+        return R.success(pmsCategoryService.buildCategoryTree(list));
     }
 
+
     /**
-     * 获取商品三级分类详细信息
+     * 详情
      */
     @RequiresPermissions("product:category:query")
     @GetMapping(value = "/{categoryId}")
-    public R<PmsCategory> getInfo(@PathVariable("categoryId") Long categoryId) {
-        return R.success(pmsCategoryService.selectPmsCategoryByCategoryId(categoryId));
+    public R<PmsCategory> get(@PathVariable("categoryId") Long categoryId) {
+        return R.success(pmsCategoryService.getById(categoryId));
     }
 
+
     /**
-     * 新增商品三级分类
+     * 新增
      */
     @RequiresPermissions("product:category:add")
     @Log(title = "商品三级分类", businessType = BusinessType.INSERT)
     @PostMapping
     public R<Void> add(@RequestBody PmsCategory pmsCategory) {
-        return R.condition(pmsCategoryService.insertPmsCategory(pmsCategory));
+        return R.condition(pmsCategoryService.save(pmsCategory));
     }
 
     /**
-     * 修改商品三级分类
+     * 修改
      */
     @RequiresPermissions("product:category:edit")
     @Log(title = "商品三级分类", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<Void> edit(@RequestBody PmsCategory pmsCategory) {
-        return R.condition(pmsCategoryService.updatePmsCategory(pmsCategory));
+        return R.condition(pmsCategoryService.updateById(pmsCategory));
     }
 
     /**
-     * 删除商品三级分类
+     * 删除
      */
     @RequiresPermissions("product:category:remove")
     @Log(title = "商品三级分类", businessType = BusinessType.DELETE)
     @DeleteMapping("/{categoryIds}")
     public R<Void> remove(@PathVariable Long[] categoryIds) {
-        return R.condition(pmsCategoryService.deletePmsCategoryByCategoryIds(categoryIds));
+        return R.condition(pmsCategoryService.removeByIds(categoryIds));
     }
 }

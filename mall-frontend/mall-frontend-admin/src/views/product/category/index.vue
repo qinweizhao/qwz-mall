@@ -157,7 +157,7 @@
 </template>
 
 <script>
-import {addMenu, delMenu, getMenu, listCategory, updateMenu} from '@/api/product/category'
+import {addCategory, delMenu, getCategory, listCategory, updateCategory} from '@/api/product/category'
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 
@@ -292,7 +292,7 @@ export default {
     handleUpdate(row) {
       this.reset()
       this.getTreeSelect()
-      getMenu(row.categoryId).then(response => {
+      getCategory(row.categoryId).then(response => {
         this.form = response.data
         this.open = true
         this.title = '修改分类'
@@ -303,13 +303,13 @@ export default {
       this.$refs['form'].validate(valid => {
         if (valid) {
           if (this.form.categoryId != undefined) {
-            updateMenu(this.form).then(response => {
+            updateCategory(this.form).then(response => {
               this.$modal.msgSuccess('修改成功')
               this.open = false
               this.getList()
             })
           } else {
-            addMenu(this.form).then(response => {
+            addCategory(this.form).then(response => {
               this.$modal.msgSuccess('新增成功')
               this.open = false
               this.getList()

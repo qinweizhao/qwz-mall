@@ -29,7 +29,7 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
      * @return 商品三级分类
      */
     @Override
-    public PmsCategory selectPmsCategoryByCategoryId(Long categoryId) {
+    public PmsCategory getById(Long categoryId) {
         return pmsCategoryMapper.selectPmsCategoryByCategoryId(categoryId);
     }
 
@@ -40,7 +40,7 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
      * @return 商品三级分类
      */
     @Override
-    public List<PmsCategory> selectPmsCategoryList(PmsCategory pmsCategory) {
+    public List<PmsCategory> list(PmsCategory pmsCategory) {
         return pmsCategoryMapper.selectPmsCategoryList(pmsCategory);
     }
 
@@ -51,7 +51,7 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
      * @return 结果
      */
     @Override
-    public int insertPmsCategory(PmsCategory pmsCategory) {
+    public int save(PmsCategory pmsCategory) {
         pmsCategory.setCreateTime(DateUtils.getNowDate());
         return pmsCategoryMapper.insertPmsCategory(pmsCategory);
     }
@@ -63,7 +63,7 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
      * @return 结果
      */
     @Override
-    public int updatePmsCategory(PmsCategory pmsCategory) {
+    public int updateById(PmsCategory pmsCategory) {
         pmsCategory.setUpdateTime(DateUtils.getNowDate());
         return pmsCategoryMapper.updatePmsCategory(pmsCategory);
     }
@@ -75,7 +75,7 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
      * @return 结果
      */
     @Override
-    public int deletePmsCategoryByCategoryIds(Long[] categoryIds) {
+    public int removeByIds(Long[] categoryIds) {
         return pmsCategoryMapper.deletePmsCategoryByCategoryIds(categoryIds);
     }
 
@@ -90,8 +90,7 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
         return pmsCategoryMapper.deletePmsCategoryByCategoryId(categoryId);
     }
 
-    @Override
-    public List<Map<String, Object>> buildCategoryTreeSelect(List<PmsCategory> list) {
+    public List<Map<String, Object>> buildCategoryTree(List<PmsCategory> list) {
         List<PmsCategory> returnList = buildTree(list);
         List<Map<String, Object>> collect = returnList.stream().map(item -> {
             Map<String, Object> map = new HashMap<>(3);

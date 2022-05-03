@@ -74,7 +74,7 @@ public class PmsCategoryBrandController extends BaseController {
     @Log(title = "分类&品牌关联", businessType = BusinessType.INSERT)
     @PostMapping
     public R<Void> add(@RequestBody PmsCategoryBrand pmsCategoryBrand) {
-        pmsCategoryBrand.setCategoryName(pmsCategoryService.selectPmsCategoryByCategoryId(pmsCategoryBrand.getCategoryId()).getName());
+        pmsCategoryBrand.setCategoryName(pmsCategoryService.getById(pmsCategoryBrand.getCategoryId()).getName());
         pmsCategoryBrand.setBrandName(pmsBrandService.selectPmsBrandByBrandId(pmsCategoryBrand.getBrandId()).getName());
         return R.condition(pmsCategoryBrandService.insertPmsCategoryBrand(pmsCategoryBrand));
     }
