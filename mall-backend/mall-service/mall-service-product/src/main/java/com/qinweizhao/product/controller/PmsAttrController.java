@@ -38,7 +38,6 @@ public class PmsAttrController extends BaseController {
         return getPageResult(list);
     }
 
-
     /**
      * 获取商品属性详细信息
      */

@@ -13,6 +13,7 @@ import java.util.List;
  * @date 2022-04-25
  */
 public interface IPmsAttrService {
+
     /**
      * 查询商品属性
      *
@@ -59,8 +60,13 @@ public interface IPmsAttrService {
      * @param attrId 商品属性主键
      * @return 结果
      */
-    int deletePmsAttrByAttrId(Long attrId);
+    int removeById(Long attrId);
 
-    // todo
-    List<PmsAttr> getRelationAttr(Long attrGroupId);
+    /**
+     * 通过属性组 id 获取属性集合
+     *
+     * @param attrGroupId attrGroupId
+     * @return List
+     */
+    List<PmsAttr> getByAttrGroupId(Long attrGroupId);
 }

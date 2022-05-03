@@ -102,7 +102,7 @@ public class PmsAttrGroupServiceImpl implements IPmsAttrGroupService {
         List<PmsAttrGroupWithPmsAttrsVO> collect = list.stream().map(group -> {
             PmsAttrGroupWithPmsAttrsVO attrsVo = new PmsAttrGroupWithPmsAttrsVO();
             BeanUtils.copyProperties(group, attrsVo);
-            List<PmsAttr> attrs = pmsAttrService.getRelationAttr(attrsVo.getAttrGroupId());
+            List<PmsAttr> attrs = pmsAttrService.getByAttrGroupId(attrsVo.getAttrGroupId());
             attrsVo.setAttrs(attrs);
             return attrsVo;
         }).collect(Collectors.toList());

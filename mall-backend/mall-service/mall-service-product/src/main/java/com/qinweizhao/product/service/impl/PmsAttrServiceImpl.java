@@ -120,12 +120,12 @@ public class PmsAttrServiceImpl implements IPmsAttrService {
      * @return 结果
      */
     @Override
-    public int deletePmsAttrByAttrId(Long attrId) {
+    public int removeById(Long attrId) {
         return pmsAttrMapper.deletePmsAttrByAttrId(attrId);
     }
 
     @Override
-    public List<PmsAttr> getRelationAttr(Long attrGroupId) {
+    public List<PmsAttr> getByAttrGroupId(Long attrGroupId) {
         PmsAttrAttrGroup pmsAttrAttrGroup = new PmsAttrAttrGroup();
         pmsAttrAttrGroup.setAttrGroupId(attrGroupId);
         List<PmsAttrAttrGroup> pmsAttrAttrGroups = pmsAttrAttrGroupMapper.selectPmsAttrAttrGroupList(pmsAttrAttrGroup);
