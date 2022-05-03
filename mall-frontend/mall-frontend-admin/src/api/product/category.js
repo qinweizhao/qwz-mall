@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
-// 查询列表
-export function listCategory(query) {
+// 分页
+export function pageCategory(query) {
   return request({
     url: '/product/category/page',
     method: 'get',
@@ -9,15 +9,15 @@ export function listCategory(query) {
   })
 }
 
-// 查询下拉树结构
-export function tree() {
+// 下拉树结构
+export function treeCategory() {
   return request({
     url: '/product/category/tree',
     method: 'get'
   })
 }
 
-// 查询详情
+// 详情
 export function getCategory(menuId) {
   return request({
     url: '/product/category/' + menuId,
@@ -44,7 +44,7 @@ export function updateCategory(data) {
 }
 
 // 删除
-export function delMenu(menuId) {
+export function deleteCategory(menuId) {
   return request({
     url: '/product/category/' + menuId,
     method: 'delete'

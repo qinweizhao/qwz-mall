@@ -148,7 +148,7 @@
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 import {addGroup, delGroup, getGroup, listGroup, updateGroup} from '@/api/product/attr/group'
-import {tree} from '@/api/product/category'
+import {treeCategory} from '@/api/product/category'
 import Category from '@/views/product/common/Category'
 
 export default {
@@ -301,7 +301,7 @@ export default {
     },
     /** 查询分类下拉树结构 */
     getTreeselect() {
-      tree().then(response => {
+      treeCategory().then(response => {
         this.categoryOptions = response.data
       })
     },

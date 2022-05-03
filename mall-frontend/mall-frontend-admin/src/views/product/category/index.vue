@@ -157,7 +157,7 @@
 </template>
 
 <script>
-import {addCategory, delMenu, getCategory, listCategory, updateCategory} from '@/api/product/category'
+import {addCategory, deleteCategory, getCategory, pageCategory, updateCategory} from '@/api/product/category'
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 
@@ -215,7 +215,7 @@ export default {
     /** 查询分类列表 */
     getList() {
       this.loading = true
-      listCategory(this.queryParams).then(response => {
+      pageCategory(this.queryParams).then(response => {
         this.categoryList = this.handleTree(response.data.rows, 'categoryId')
         this.loading = false
       })
@@ -233,7 +233,7 @@ export default {
     },
     /** 查询分类下拉树结构 */
     getTreeSelect() {
-      listCategory().then(response => {
+      pageCategory().then(response => {
         this.categoryOptions = []
         const category = {categoryId: 0, name: '主类目', children: []}
         category.children = this.handleTree(response.data.rows, 'categoryId')
@@ -321,7 +321,7 @@ export default {
     /** 删除按钮操作 */
     handleDelete(row) {
       this.$modal.confirm('是否确认删除名称为"' + row.name + '"的数据项？').then(function() {
-        return delMenu(row.categoryId)
+        return deleteCategory(row.categoryId)
       }).then(() => {
         this.getList()
         this.$modal.msgSuccess('删除成功')

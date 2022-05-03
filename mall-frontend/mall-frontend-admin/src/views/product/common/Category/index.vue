@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import {listCategory} from '@/api/product/category'
+import {pageCategory} from '@/api/product/category'
 
 export default {
   name: 'category',
@@ -65,7 +65,7 @@ export default {
     /** 查询分类列表 */
     getList() {
       this.loading = true
-      listCategory(this.queryParams).then(response => {
+      pageCategory(this.queryParams).then(response => {
         this.categoryOptions = this.handleTree(response.data.rows, 'categoryId')
         this.loading = false
       })
