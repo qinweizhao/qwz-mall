@@ -6,7 +6,6 @@ import com.qinweizhao.user.mapper.UmsIntegrationChangeHistoryMapper;
 import com.qinweizhao.user.service.UmsIntegrationChangeHistoryService;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -17,8 +16,7 @@ import java.util.List;
  */
 @Service
 public class UmsIntegrationChangeHistoryServiceImpl extends QwzServiceImpl<UmsIntegrationChangeHistoryMapper, UmsIntegrationChangeHistory> implements UmsIntegrationChangeHistoryService {
-    @Resource
-    private UmsIntegrationChangeHistoryMapper umsIntegrationChangeHistoryMapper;
+
 
 
     /**
@@ -29,6 +27,6 @@ public class UmsIntegrationChangeHistoryServiceImpl extends QwzServiceImpl<UmsIn
      */
     @Override
     public List<UmsIntegrationChangeHistory> selectUmsIntegrationChangeHistoryList(UmsIntegrationChangeHistory umsIntegrationChangeHistory) {
-        return umsIntegrationChangeHistoryMapper.selectUmsIntegrationChangeHistoryList(umsIntegrationChangeHistory);
+        return this.baseMapper.selectUmsIntegrationChangeHistoryList(umsIntegrationChangeHistory);
     }
 }

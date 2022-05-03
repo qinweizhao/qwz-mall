@@ -8,7 +8,10 @@ import com.qinweizhao.product.service.IPmsCategoryService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -19,6 +22,7 @@ import java.util.stream.Collectors;
  */
 @Service
 public class PmsCategoryServiceImpl implements IPmsCategoryService {
+
     @Resource
     private PmsCategoryMapper pmsCategoryMapper;
 
@@ -30,7 +34,7 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
      */
     @Override
     public PmsCategory getById(Long categoryId) {
-        return pmsCategoryMapper.selectPmsCategoryByCategoryId(categoryId);
+        return pmsCategoryMapper.selectById(categoryId);
     }
 
     /**
@@ -41,7 +45,7 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
      */
     @Override
     public List<PmsCategory> list(PmsCategory pmsCategory) {
-        return pmsCategoryMapper.selectPmsCategoryList(pmsCategory);
+        return pmsCategoryMapper.selectList(pmsCategory);
     }
 
     /**
@@ -53,7 +57,7 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
     @Override
     public int save(PmsCategory pmsCategory) {
         pmsCategory.setCreateTime(DateUtils.getNowDate());
-        return pmsCategoryMapper.insertPmsCategory(pmsCategory);
+        return pmsCategoryMapper.insert(pmsCategory);
     }
 
     /**
@@ -65,7 +69,7 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
     @Override
     public int updateById(PmsCategory pmsCategory) {
         pmsCategory.setUpdateTime(DateUtils.getNowDate());
-        return pmsCategoryMapper.updatePmsCategory(pmsCategory);
+        return pmsCategoryMapper.updateById(pmsCategory);
     }
 
     /**
@@ -76,7 +80,7 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
      */
     @Override
     public int removeByIds(Long[] categoryIds) {
-        return pmsCategoryMapper.deletePmsCategoryByCategoryIds(categoryIds);
+        return pmsCategoryMapper.removeByIds(categoryIds);
     }
 
     /**
@@ -87,12 +91,20 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
      */
     @Override
     public int deletePmsCategoryByCategoryId(Long categoryId) {
-        return pmsCategoryMapper.deletePmsCategoryByCategoryId(categoryId);
+        return pmsCategoryMapper.removeById(categoryId);
     }
 
+
+    /**
+     * 构建分类树
+     *
+     * @param list list
+     * @return List
+     */
+    @Override
     public List<Map<String, Object>> buildCategoryTree(List<PmsCategory> list) {
         List<PmsCategory> returnList = buildTree(list);
-        List<Map<String, Object>> collect = returnList.stream().map(item -> {
+        return returnList.stream().map(item -> {
             Map<String, Object> map = new HashMap<>(3);
             map.put("id", item.getCategoryId());
             map.put("label", item.getName());
@@ -110,17 +122,21 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
             }).collect(Collectors.toList()));
             return map;
         }).collect(Collectors.toList());
-        return collect;
     }
 
+    /**
+     * 构建树
+     *
+     * @param list list
+     * @return List
+     */
     private List<PmsCategory> buildTree(List<PmsCategory> list) {
         List<PmsCategory> returnList = new ArrayList<>();
-        List<Long> tempList = new ArrayList<Long>();
+        List<Long> tempList = new ArrayList<>();
         for (PmsCategory category : list) {
             tempList.add(category.getCategoryId());
         }
-        for (Iterator<PmsCategory> iterator = list.iterator(); iterator.hasNext(); ) {
-            PmsCategory category = iterator.next();
+        for (PmsCategory category : list) {
             // 如果是顶级节点, 遍历该父节点的所有子节点
             if (!tempList.contains(category.getParentId())) {
                 recursionFn(list, category);
@@ -152,9 +168,7 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
      */
     private List<PmsCategory> getChildList(List<PmsCategory> list, PmsCategory t) {
         List<PmsCategory> tList = new ArrayList<>();
-        Iterator<PmsCategory> it = list.iterator();
-        while (it.hasNext()) {
-            PmsCategory n = it.next();
+        for (PmsCategory n : list) {
             if (StringUtils.isNotNull(n.getParentId()) && n.getParentId().longValue() == t.getCategoryId().longValue()) {
                 tList.add(n);
             }

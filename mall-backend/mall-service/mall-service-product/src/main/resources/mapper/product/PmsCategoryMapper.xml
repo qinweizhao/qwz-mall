@@ -37,7 +37,7 @@
         from pms_category
     </sql>
 
-    <select id="selectPmsCategoryList" parameterType="PmsCategory" resultMap="PmsCategoryResult">
+    <select id="selectList" parameterType="PmsCategory" resultMap="PmsCategoryResult">
         <include refid="selectPmsCategoryVo"/>
         <where>
             <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
@@ -50,12 +50,12 @@
         </where>
     </select>
 
-    <select id="selectPmsCategoryByCategoryId" parameterType="Long" resultMap="PmsCategoryResult">
+    <select id="selectById" parameterType="Long" resultMap="PmsCategoryResult">
         <include refid="selectPmsCategoryVo"/>
         where category_id = #{categoryId}
     </select>
 
-    <insert id="insertPmsCategory" parameterType="PmsCategory" useGeneratedKeys="true" keyProperty="categoryId">
+    <insert id="insert" parameterType="PmsCategory" useGeneratedKeys="true" keyProperty="categoryId">
         insert into pms_category
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="name != null">name,</if>
@@ -87,7 +87,7 @@
         </trim>
     </insert>
 
-    <update id="updatePmsCategory" parameterType="PmsCategory">
+    <update id="updateById" parameterType="PmsCategory">
         update pms_category
         <trim prefix="SET" suffixOverrides=",">
             <if test="name != null">name = #{name},</if>
@@ -106,13 +106,13 @@
         where category_id = #{categoryId}
     </update>
 
-    <delete id="deletePmsCategoryByCategoryId" parameterType="Long">
+    <delete id="removeById" parameterType="Long">
         delete
         from pms_category
         where category_id = #{categoryId}
     </delete>
 
-    <delete id="deletePmsCategoryByCategoryIds" parameterType="String">
+    <delete id="removeByIds" parameterType="String">
         delete from pms_category where category_id in
         <foreach item="categoryId" collection="array" open="(" separator="," close=")">
             #{categoryId}

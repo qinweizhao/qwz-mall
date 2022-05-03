@@ -17,7 +17,7 @@ public interface PmsCategoryMapper {
      * @param categoryId 商品三级分类主键
      * @return 商品三级分类
      */
-    PmsCategory selectPmsCategoryByCategoryId(Long categoryId);
+    PmsCategory selectById(Long categoryId);
 
     /**
      * 查询商品三级分类列表
@@ -25,7 +25,7 @@ public interface PmsCategoryMapper {
      * @param pmsCategory 商品三级分类
      * @return 商品三级分类集合
      */
-    List<PmsCategory> selectPmsCategoryList(PmsCategory pmsCategory);
+    List<PmsCategory> selectList(PmsCategory pmsCategory);
 
     /**
      * 新增商品三级分类
@@ -33,7 +33,7 @@ public interface PmsCategoryMapper {
      * @param pmsCategory 商品三级分类
      * @return 结果
      */
-    int insertPmsCategory(PmsCategory pmsCategory);
+    int insert(PmsCategory pmsCategory);
 
     /**
      * 修改商品三级分类
@@ -41,7 +41,7 @@ public interface PmsCategoryMapper {
      * @param pmsCategory 商品三级分类
      * @return 结果
      */
-    int updatePmsCategory(PmsCategory pmsCategory);
+    int updateById(PmsCategory pmsCategory);
 
     /**
      * 删除商品三级分类
@@ -49,7 +49,7 @@ public interface PmsCategoryMapper {
      * @param categoryId 商品三级分类主键
      * @return 结果
      */
-    int deletePmsCategoryByCategoryId(Long categoryId);
+    int removeById(Long categoryId);
 
     /**
      * 批量删除商品三级分类
@@ -57,5 +57,5 @@ public interface PmsCategoryMapper {
      * @param categoryIds 需要删除的数据主键集合
      * @return 结果
      */
-    int deletePmsCategoryByCategoryIds(Long[] categoryIds);
+    int removeByIds(Long[] categoryIds);
 }
