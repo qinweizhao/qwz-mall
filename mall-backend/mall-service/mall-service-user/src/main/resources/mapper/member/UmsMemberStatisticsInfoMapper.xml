@@ -20,6 +20,11 @@
         <result property="collectSubjectCount" column="collect_subject_count"/>
         <result property="collectCommentCount" column="collect_comment_count"/>
         <result property="inviteFriendCount" column="invite_friend_count"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
     </resultMap>
 
     <sql id="selectUmsMemberStatisticsInfoVo">
@@ -37,7 +42,12 @@
                collect_product_count,
                collect_subject_count,
                collect_comment_count,
-               invite_friend_count
+               invite_friend_count,
+               create_by,
+               update_by,
+               create_time,
+               update_time,
+               remark
         from ums_member_statistics_info
     </sql>
 

@@ -29,21 +29,11 @@ public class UmsMemberController extends BaseController {
     @Resource
     private UmsMemberService umsMemberService;
 
-//    /**
-//     * 查询会员列表
-//     */
-//    @RequiresPermissions("product:member:list")
-//    @GetMapping("/list")
-//    public R<List<Member>> list() {
-//        List<Member> list = umsMemberService.list();
-//        return R.success(list);
-//    }
-
     /**
      * 查询会员列表
      */
     @RequiresPermissions("product:member:list")
-    @GetMapping("/list")
+    @GetMapping("/page")
     public R<PageResult<UmsMember>> list(UmsMember umsMember) {
         startPage();
         List<UmsMember> list = umsMemberService.selectMemberList(umsMember);

@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询会员统计信息列表
 export function listInfo(query) {
   return request({
-    url: '/product/info/list',
+    url: '/user/info/list',
     method: 'get',
     params: query
   })
@@ -12,7 +12,7 @@ export function listInfo(query) {
 // 查询会员统计信息详细
 export function getInfo(id) {
   return request({
-    url: '/product/info/' + id,
+    url: '/user/info/' + id,
     method: 'get'
   })
 }
@@ -20,7 +20,7 @@ export function getInfo(id) {
 // 新增会员统计信息
 export function addInfo(data) {
   return request({
-    url: '/product/info',
+    url: '/user/info',
     method: 'post',
     data: data
   })
@@ -29,7 +29,7 @@ export function addInfo(data) {
 // 修改会员统计信息
 export function updateInfo(data) {
   return request({
-    url: '/product/info',
+    url: '/user/info',
     method: 'put',
     data: data
   })
@@ -38,7 +38,7 @@ export function updateInfo(data) {
 // 删除会员统计信息
 export function delInfo(id) {
   return request({
-    url: '/product/info/' + id,
+    url: '/user/info/' + id,
     method: 'delete'
   })
 }

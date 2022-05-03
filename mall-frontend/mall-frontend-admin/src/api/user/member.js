@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询会员列表
 export function listMember(query) {
   return request({
-    url: '/user/member/list',
+    url: '/user/member/page',
     method: 'get',
     params: query
   })

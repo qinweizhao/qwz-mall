@@ -10,11 +10,24 @@
         <result property="spuId" column="spu_id"/>
         <result property="spuName" column="spu_name"/>
         <result property="spuImg" column="spu_img"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateBy" column="update_by"/>
         <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
     </resultMap>
 
     <sql id="selectUmsMemberCollectSpuVo">
-        select id, member_id, spu_id, spu_name, spu_img, create_time
+        select id,
+               member_id,
+               spu_id,
+               spu_name,
+               spu_img,
+               create_by,
+               update_by,
+               create_time,
+               update_time,
+               remark
         from ums_member_collect_spu
     </sql>
 

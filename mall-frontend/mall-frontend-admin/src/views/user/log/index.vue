@@ -88,6 +88,7 @@
       <el-table-column label="ip" align="center" prop="ip"/>
       <el-table-column label="city" align="center" prop="city"/>
       <el-table-column label="登录类型[1-web，2-app]" align="center" prop="loginType"/>
+      <el-table-column label="备注" align="center" prop="remark"/>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -130,6 +131,9 @@
         <el-form-item label="city" prop="city">
           <el-input v-model="form.city" placeholder="请输入city"/>
         </el-form-item>
+        <el-form-item label="备注" prop="remark">
+          <el-input v-model="form.remark" placeholder="请输入备注"/>
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -171,7 +175,7 @@ export default {
         memberId: null,
         ip: null,
         city: null,
-        loginType: null
+        loginType: null,
       },
       // 表单参数
       form: {},
@@ -202,10 +206,14 @@ export default {
       this.form = {
         id: null,
         memberId: null,
-        createTime: null,
         ip: null,
         city: null,
-        loginType: null
+        loginType: null,
+        createBy: null,
+        updateBy: null,
+        createTime: null,
+        updateTime: null,
+        remark: null
       };
       this.resetForm("form");
     },

@@ -14,8 +14,13 @@
         <result property="city" column="city"/>
         <result property="region" column="region"/>
         <result property="detailAddress" column="detail_address"/>
-        <result property="areacode" column="areacode"/>
+        <result property="areaCode" column="area_code"/>
         <result property="defaultStatus" column="default_status"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
     </resultMap>
 
     <sql id="selectUmsMemberReceiveAddressVo">
@@ -28,8 +33,13 @@
                city,
                region,
                detail_address,
-               areacode,
-               default_status
+               area_code,
+               default_status,
+               create_by,
+               update_by,
+               create_time,
+               update_time,
+               remark
         from ums_member_receive_address
     </sql>
 
@@ -45,10 +55,9 @@
             <if test="city != null  and city != ''">and city = #{city}</if>
             <if test="region != null  and region != ''">and region = #{region}</if>
             <if test="detailAddress != null  and detailAddress != ''">and detail_address = #{detailAddress}</if>
-            <if test="areacode != null  and areacode != ''">and areacode = #{areacode}</if>
+            <if test="areaCode != null  and areaCode != ''">and area_code = #{areaCode}</if>
             <if test="defaultStatus != null ">and default_status = #{defaultStatus}</if>
         </where>
     </select>
-
 
 </mapper>

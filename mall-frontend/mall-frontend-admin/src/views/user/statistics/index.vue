@@ -186,6 +186,7 @@
       <el-table-column label="收藏的专题活动数量" align="center" prop="collectSubjectCount"/>
       <el-table-column label="收藏的评论数量" align="center" prop="collectCommentCount"/>
       <el-table-column label="邀请的朋友数量" align="center" prop="inviteFriendCount"/>
+      <el-table-column label="备注" align="center" prop="remark"/>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -261,6 +262,9 @@
         <el-form-item label="邀请的朋友数量" prop="inviteFriendCount">
           <el-input v-model="form.inviteFriendCount" placeholder="请输入邀请的朋友数量"/>
         </el-form-item>
+        <el-form-item label="备注" prop="remark">
+          <el-input v-model="form.remark" placeholder="请输入备注"/>
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -271,10 +275,10 @@
 </template>
 
 <script>
-import {addInfo, delInfo, getInfo, listInfo, updateInfo} from "@/api/user/info";
+import {addInfo, delInfo, getInfo, listInfo, updateInfo} from "@/api/user/statistics";
 
 export default {
-  name: "Info",
+  name: "Statistics",
   data() {
     return {
       // 遮罩层
@@ -312,7 +316,7 @@ export default {
         collectProductCount: null,
         collectSubjectCount: null,
         collectCommentCount: null,
-        inviteFriendCount: null
+        inviteFriendCount: null,
       },
       // 表单参数
       form: {},
@@ -328,8 +332,8 @@ export default {
     getList() {
       this.loading = true;
       listInfo(this.queryParams).then(response => {
-        this.infoList = response.rows;
-        this.total = response.total;
+        this.infoList = response.data.rows;
+        this.total = response.data.total;
         this.loading = false;
       });
     },
@@ -355,7 +359,12 @@ export default {
         collectProductCount: null,
         collectSubjectCount: null,
         collectCommentCount: null,
-        inviteFriendCount: null
+        inviteFriendCount: null,
+        createBy: null,
+        updateBy: null,
+        createTime: null,
+        updateTime: null,
+        remark: null
       };
       this.resetForm("form");
     },

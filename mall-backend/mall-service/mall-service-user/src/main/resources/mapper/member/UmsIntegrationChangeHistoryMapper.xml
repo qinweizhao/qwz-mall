@@ -7,14 +7,25 @@
     <resultMap type="UmsIntegrationChangeHistory" id="UmsIntegrationChangeHistoryResult">
         <result property="id" column="id"/>
         <result property="memberId" column="member_id"/>
-        <result property="createTime" column="create_time"/>
         <result property="changeCount" column="change_count"/>
-        <result property="note" column="note"/>
-        <result property="sourceTyoe" column="source_tyoe"/>
+        <result property="sourceType" column="source_type"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
     </resultMap>
 
     <sql id="selectUmsIntegrationChangeHistoryVo">
-        select id, member_id, create_time, change_count, note, source_tyoe
+        select id,
+               member_id,
+               change_count,
+               source_type,
+               create_by,
+               update_by,
+               create_time,
+               update_time,
+               remark
         from ums_integration_change_history
     </sql>
 
@@ -24,8 +35,7 @@
         <where>
             <if test="memberId != null ">and member_id = #{memberId}</if>
             <if test="changeCount != null ">and change_count = #{changeCount}</if>
-            <if test="note != null  and note != ''">and note = #{note}</if>
-            <if test="sourceTyoe != null ">and source_tyoe = #{sourceTyoe}</if>
+            <if test="sourceType != null ">and source_type = #{sourceType}</if>
         </where>
     </select>
 

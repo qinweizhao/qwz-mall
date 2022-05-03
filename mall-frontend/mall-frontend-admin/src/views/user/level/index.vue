@@ -9,6 +9,54 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
+      <el-form-item label="等级需要的成长值" prop="growthPoint">
+        <el-input
+          v-model="queryParams.growthPoint"
+          placeholder="请输入等级需要的成长值"
+          clearable
+          @keyup.enter.native="handleQuery"
+        />
+      </el-form-item>
+      <el-form-item label="免运费标准" prop="freeFreightPoint">
+        <el-input
+          v-model="queryParams.freeFreightPoint"
+          placeholder="请输入免运费标准"
+          clearable
+          @keyup.enter.native="handleQuery"
+        />
+      </el-form-item>
+      <el-form-item label="每次评价获取的成长值" prop="commentGrowthPoint">
+        <el-input
+          v-model="queryParams.commentGrowthPoint"
+          placeholder="请输入每次评价获取的成长值"
+          clearable
+          @keyup.enter.native="handleQuery"
+        />
+      </el-form-item>
+      <el-form-item label="是否有免邮特权" prop="privilegeFreeFreight">
+        <el-input
+          v-model="queryParams.privilegeFreeFreight"
+          placeholder="请输入是否有免邮特权"
+          clearable
+          @keyup.enter.native="handleQuery"
+        />
+      </el-form-item>
+      <el-form-item label="是否有会员价格特权" prop="privilegeMemberPrice">
+        <el-input
+          v-model="queryParams.privilegeMemberPrice"
+          placeholder="请输入是否有会员价格特权"
+          clearable
+          @keyup.enter.native="handleQuery"
+        />
+      </el-form-item>
+      <el-form-item label="是否有生日特权" prop="privilegeBirthday">
+        <el-input
+          v-model="queryParams.privilegeBirthday"
+          placeholder="请输入是否有生日特权"
+          clearable
+          @keyup.enter.native="handleQuery"
+        />
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
@@ -73,10 +121,10 @@
       <el-table-column label="是否为默认等级[0->不是；1->是]" align="center" prop="defaultStatus"/>
       <el-table-column label="免运费标准" align="center" prop="freeFreightPoint"/>
       <el-table-column label="每次评价获取的成长值" align="center" prop="commentGrowthPoint"/>
-      <el-table-column label="是否有免邮特权" align="center" prop="priviledgeFreeFreight"/>
-      <el-table-column label="是否有会员价格特权" align="center" prop="priviledgeMemberPrice"/>
-      <el-table-column label="是否有生日特权" align="center" prop="priviledgeBirthday"/>
-      <el-table-column label="备注" align="center" prop="note"/>
+      <el-table-column label="是否有免邮特权" align="center" prop="privilegeFreeFreight"/>
+      <el-table-column label="是否有会员价格特权" align="center" prop="privilegeMemberPrice"/>
+      <el-table-column label="是否有生日特权" align="center" prop="privilegeBirthday"/>
+      <el-table-column label="备注" align="center" prop="remark"/>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -122,17 +170,17 @@
         <el-form-item label="每次评价获取的成长值" prop="commentGrowthPoint">
           <el-input v-model="form.commentGrowthPoint" placeholder="请输入每次评价获取的成长值"/>
         </el-form-item>
-        <el-form-item label="是否有免邮特权" prop="priviledgeFreeFreight">
-          <el-input v-model="form.priviledgeFreeFreight" placeholder="请输入是否有免邮特权"/>
+        <el-form-item label="是否有免邮特权" prop="privilegeFreeFreight">
+          <el-input v-model="form.privilegeFreeFreight" placeholder="请输入是否有免邮特权"/>
         </el-form-item>
-        <el-form-item label="是否有会员价格特权" prop="priviledgeMemberPrice">
-          <el-input v-model="form.priviledgeMemberPrice" placeholder="请输入是否有会员价格特权"/>
+        <el-form-item label="是否有会员价格特权" prop="privilegeMemberPrice">
+          <el-input v-model="form.privilegeMemberPrice" placeholder="请输入是否有会员价格特权"/>
         </el-form-item>
-        <el-form-item label="是否有生日特权" prop="priviledgeBirthday">
-          <el-input v-model="form.priviledgeBirthday" placeholder="请输入是否有生日特权"/>
+        <el-form-item label="是否有生日特权" prop="privilegeBirthday">
+          <el-input v-model="form.privilegeBirthday" placeholder="请输入是否有生日特权"/>
         </el-form-item>
-        <el-form-item label="备注" prop="note">
-          <el-input v-model="form.note" placeholder="请输入备注"/>
+        <el-form-item label="备注" prop="remark">
+          <el-input v-model="form.remark" placeholder="请输入备注"/>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -177,10 +225,9 @@ export default {
         defaultStatus: null,
         freeFreightPoint: null,
         commentGrowthPoint: null,
-        priviledgeFreeFreight: null,
-        priviledgeMemberPrice: null,
-        priviledgeBirthday: null,
-        note: null
+        privilegeFreeFreight: null,
+        privilegeMemberPrice: null,
+        privilegeBirthday: null,
       },
       // 表单参数
       form: {},
@@ -215,10 +262,14 @@ export default {
         defaultStatus: 0,
         freeFreightPoint: null,
         commentGrowthPoint: null,
-        priviledgeFreeFreight: null,
-        priviledgeMemberPrice: null,
-        priviledgeBirthday: null,
-        note: null
+        privilegeFreeFreight: null,
+        privilegeMemberPrice: null,
+        privilegeBirthday: null,
+        createBy: null,
+        updateBy: null,
+        createTime: null,
+        updateTime: null,
+        remark: null
       };
       this.resetForm("form");
     },

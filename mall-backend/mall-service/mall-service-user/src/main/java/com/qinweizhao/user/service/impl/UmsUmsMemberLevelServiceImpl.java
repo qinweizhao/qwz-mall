@@ -17,6 +17,7 @@ import java.util.List;
  */
 @Service
 public class UmsUmsMemberLevelServiceImpl extends QwzServiceImpl<UmsMemberLevelMapper, UmsMemberLevel> implements UmsMemberLevelService {
+
     @Resource
     private UmsMemberLevelMapper umsMemberLevelMapper;
 

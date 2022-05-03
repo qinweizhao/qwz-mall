@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qinweizhao.user.mapper.UmsMemberMapper">
 
-    <resultMap type="UmsMember" id="MemberResult">
+    <resultMap type="UmsMember" id="UmsMemberResult">
         <result property="id" column="id"/>
         <result property="levelId" column="level_id"/>
         <result property="username" column="username"/>
@@ -20,10 +22,14 @@
         <result property="integration" column="integration"/>
         <result property="growth" column="growth"/>
         <result property="status" column="status"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateBy" column="update_by"/>
         <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
     </resultMap>
 
-    <sql id="selectMemberVo">
+    <sql id="selectUmsMemberVo">
         select id,
                level_id,
                username,
@@ -41,12 +47,16 @@
                integration,
                growth,
                status,
-               create_time
+               create_by,
+               update_by,
+               create_time,
+               update_time,
+               remark
         from ums_member
     </sql>
 
-    <select id="selectMemberList" parameterType="com.qinweizhao.user.entity.UmsMember" resultMap="MemberResult">
-        <include refid="selectMemberVo"/>
+    <select id="selectMemberList" parameterType="UmsMember" resultMap="UmsMemberResult">
+        <include refid="selectUmsMemberVo"/>
         <where>
             <if test="levelId != null ">and level_id = #{levelId}</if>
             <if test="username != null  and username != ''">and username like concat('%', #{username}, '%')</if>
@@ -66,5 +76,6 @@
             <if test="status != null ">and status = #{status}</if>
         </where>
     </select>
+
 
 </mapper>

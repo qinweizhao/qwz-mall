@@ -9,11 +9,25 @@
         <result property="subjectId" column="subject_id"/>
         <result property="subjectName" column="subject_name"/>
         <result property="subjectImg" column="subject_img"/>
-        <result property="subjectUrll" column="subject_urll"/>
+        <result property="subjectUrl" column="subject_url"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
     </resultMap>
 
     <sql id="selectUmsMemberCollectSubjectVo">
-        select id, subject_id, subject_name, subject_img, subject_urll
+        select id,
+               subject_id,
+               subject_name,
+               subject_img,
+               subject_url,
+               create_by,
+               update_by,
+               create_time,
+               update_time,
+               remark
         from ums_member_collect_subject
     </sql>
 
@@ -26,7 +40,7 @@
                 '%')
             </if>
             <if test="subjectImg != null  and subjectImg != ''">and subject_img = #{subjectImg}</if>
-            <if test="subjectUrll != null  and subjectUrll != ''">and subject_urll = #{subjectUrll}</if>
+            <if test="subjectUrl != null  and subjectUrl != ''">and subject_url = #{subjectUrl}</if>
         </where>
     </select>
 

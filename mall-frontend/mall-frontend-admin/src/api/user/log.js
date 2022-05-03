@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询会员登录记录列表
 export function listLog(query) {
   return request({
-    url: '/product/log/list',
+    url: '/user/log/list',
     method: 'get',
     params: query
   })
@@ -12,7 +12,7 @@ export function listLog(query) {
 // 查询会员登录记录详细
 export function getLog(id) {
   return request({
-    url: '/product/log/' + id,
+    url: '/user/log/' + id,
     method: 'get'
   })
 }
@@ -20,7 +20,7 @@ export function getLog(id) {
 // 新增会员登录记录
 export function addLog(data) {
   return request({
-    url: '/product/log',
+    url: '/user/log',
     method: 'post',
     data: data
   })
@@ -29,7 +29,7 @@ export function addLog(data) {
 // 修改会员登录记录
 export function updateLog(data) {
   return request({
-    url: '/product/log',
+    url: '/user/log',
     method: 'put',
     data: data
   })
@@ -38,7 +38,7 @@ export function updateLog(data) {
 // 删除会员登录记录
 export function delLog(id) {
   return request({
-    url: '/product/log/' + id,
+    url: '/user/log/' + id,
     method: 'delete'
   })
 }

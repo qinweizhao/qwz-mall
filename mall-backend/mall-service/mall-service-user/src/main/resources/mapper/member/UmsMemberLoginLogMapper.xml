@@ -7,14 +7,27 @@
     <resultMap type="UmsMemberLoginLog" id="UmsMemberLoginLogResult">
         <result property="id" column="id"/>
         <result property="memberId" column="member_id"/>
-        <result property="createTime" column="create_time"/>
         <result property="ip" column="ip"/>
         <result property="city" column="city"/>
         <result property="loginType" column="login_type"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
     </resultMap>
 
     <sql id="selectUmsMemberLoginLogVo">
-        select id, member_id, create_time, ip, city, login_type
+        select id,
+               member_id,
+               ip,
+               city,
+               login_type,
+               create_by,
+               update_by,
+               create_time,
+               update_time,
+               remark
         from ums_member_login_log
     </sql>
 
