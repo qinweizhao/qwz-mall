@@ -1,6 +1,5 @@
 package com.qinweizhao.user.controller;
 
-import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
@@ -12,7 +11,6 @@ import com.qinweizhao.user.service.UmsMemberService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 
@@ -41,19 +39,6 @@ public class UmsMemberController extends BaseController {
     }
 
     /**
-     * 导出会员列表
-     */
-    @RequiresPermissions("product:member:export")
-    @Log(title = "会员", businessType = BusinessType.EXPORT)
-    @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, UmsMember umsMember) {
-        List<UmsMember> list = umsMemberService.selectMemberList(umsMember);
-        ExcelUtil<UmsMember> util = new ExcelUtil<UmsMember>(UmsMember.class);
-        util.exportExcel(response, list, "会员数据");
-        return R.success();
-    }
-
-    /**
      * 获取会员详细信息
      */
     @RequiresPermissions("product:member:query")
@@ -68,7 +53,7 @@ public class UmsMemberController extends BaseController {
     @RequiresPermissions("product:member:add")
     @Log(title = "会员", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody UmsMember umsMember) {
+    public R<Void> save(@RequestBody UmsMember umsMember) {
         return R.condition(umsMemberService.save(umsMember));
     }
 
