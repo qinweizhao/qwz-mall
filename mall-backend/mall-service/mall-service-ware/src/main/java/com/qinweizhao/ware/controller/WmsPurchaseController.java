@@ -23,6 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/purchase")
 public class WmsPurchaseController extends BaseController {
+
     @Resource
     private IWmsPurchaseService wmsPurchaseService;
 
