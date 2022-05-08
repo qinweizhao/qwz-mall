@@ -68,7 +68,7 @@
       <el-table-column label="品牌名" align="center" prop="name"/>
       <el-table-column label="logo" align="center" prop="logo">
         <template slot-scope="scope">
-          <image-preview src="scope.row.logo" :width="'30px'"/>
+          <image-preview :src="scope.row.logo" :width="'30px'"/>
         </template>
       </el-table-column>
       <el-table-column label="介绍" align="center" prop="description"/>
@@ -155,7 +155,7 @@
             <el-button
               type="text"
               size="small"
-              @click="HandleRelationDelete(scope.row.id,scope.row.brandId)"
+              @click="new HandleRelationDelete(scope.row)"
             >移除
             </el-button>
           </template>
@@ -347,7 +347,8 @@ export default {
       }
 
     },
-    HandleRelationDelete(categoryId, brandId) {
+    HandleRelationDelete(row) {
+      const categoryId = row.id();
       this.$modal.confirm('是否确认删除品牌编号为"' + categoryId + '"的数据项？').then(function () {
         return delRelation(categoryId)
       }).then(() => {

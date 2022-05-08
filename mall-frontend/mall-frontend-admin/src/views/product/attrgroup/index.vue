@@ -307,10 +307,10 @@ export default {
       this.getList()
     },
     treeNodeClick(data, node, component) {
-      if (node.level === 3) {
+      // if (node.level === 3) {
         this.queryParams.categoryId = data.categoryId
         this.getList() //重新查询
-      }
+      // }
     },
     /** 查询分类下拉树结构 */
     getTreeselect() {

@@ -40,7 +40,12 @@
             <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
             <if test="sort != null ">and sort = #{sort}</if>
             <if test="icon != null  and icon != ''">and icon = #{icon}</if>
-            <if test="categoryId != null ">and category_id = #{categoryId}</if>
+            <if test="categoryId != null ">
+                and
+                (category_id = #{categoryId} or category_id in ( select category_id from pms_category where
+                find_in_set(#{categoryId},
+                ancestors) ))
+            </if>
         </where>
     </select>
 

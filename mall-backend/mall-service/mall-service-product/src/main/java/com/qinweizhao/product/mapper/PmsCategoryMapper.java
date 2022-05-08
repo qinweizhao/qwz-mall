@@ -58,4 +58,6 @@ public interface PmsCategoryMapper {
      * @return 结果
      */
     int removeByIds(Long[] categoryIds);
+
+
 }

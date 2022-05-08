@@ -28,43 +28,41 @@ public class PmsCategory extends BaseEntity {
     /**
      * 分类名称
      */
-    @Excel(name = "分类名称")
     private String name;
 
     /**
      * 父分类id
      */
-    @Excel(name = "父分类id")
     private Long parentId;
+
+    /**
+     * 祖级列表
+     */
+    private String ancestors;
 
     /**
      * 层级
      */
-    @Excel(name = "层级")
     private Long level;
 
     /**
      * 是否显示[0-不显示，1显示]
      */
-    @Excel(name = "是否显示[0-不显示，1显示]")
     private String status;
 
     /**
      * 排序
      */
-    @Excel(name = "排序")
     private Long sort;
 
     /**
      * 计量单位
      */
-    @Excel(name = "计量单位")
     private String unit;
 
     /**
      * 商品数量
      */
-    @Excel(name = "商品数量")
     private Long count;
 
     /**
