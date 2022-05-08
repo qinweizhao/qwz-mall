@@ -67,7 +67,7 @@ public interface IPmsAttrAttrGroupService {
      * @param attrGroupId attrGroupId
      * @return List<PmsAttr>
      */
-    List<PmsAttr> selectPmsAttrAttrGroupUnRelationList(Long attrGroupId);
+    List<PmsAttr> listUnRelationByAttrGroupId(Long attrGroupId);
 
 
     /**

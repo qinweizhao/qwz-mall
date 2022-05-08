@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询sku信息列表
 export function listInfo(query) {
   return request({
-    url: '/product/sku/info/list',
+    url: '/product/sku/info/page',
     method: 'get',
     params: query
   })

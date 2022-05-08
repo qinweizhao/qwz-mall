@@ -148,7 +148,7 @@
 </template>
 
 <script>
-import {addInfo, delInfo, getInfo, listInfo, updateInfo} from "@/api/product/spu";
+import {addInfo, delInfo, getInfo, pageInfo, updateInfo} from "@/api/product/spu";
 
 export default {
   name: "SpuInfo",
@@ -197,9 +197,9 @@ export default {
     /** 查询spu信息列表 */
     getList() {
       this.loading = true;
-      listInfo(this.queryParams).then(response => {
-        this.infoList = response.rows;
-        this.total = response.total;
+      pageInfo(this.queryParams).then(response => {
+        this.infoList = response.data.rows;
+        this.total = response.data.total;
         this.loading = false;
       });
     },

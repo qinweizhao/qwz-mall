@@ -61,12 +61,12 @@
         where attr_id = #{attrId}
     </select>
 
-    <select id="selectPmsAttrIdsByAttrGroupIds" resultType="long">
+    <select id="selectIdsByAttrGroupIds" resultType="long">
         select a.attr_id
         from pms_attr a
         left join pms_attr_attr_group aag on a.attr_id = aag.attr_id
         where aag.attr_group_id in
-        <foreach collection="list" item="id" open="(" close=")" separator=",">
+        <foreach collection="attrGroupIds" item="id" open="(" close=")" separator=",">
             #{id}
         </foreach>
     </select>

@@ -1,9 +1,9 @@
 import request from '@/utils/request'
 
 // 查询spu信息列表
-export function listInfo(query) {
+export function pageInfo(query) {
   return request({
-    url: '/product/spu/info/list',
+    url: '/product/spu/info/page',
     method: 'get',
     params: query
   })

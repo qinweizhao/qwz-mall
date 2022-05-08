@@ -1,6 +1,7 @@
 package com.qinweizhao.product.service.impl;
 
 import com.qinweizhao.common.core.utils.DateUtils;
+import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.product.entity.PmsAttr;
 import com.qinweizhao.product.entity.PmsAttrGroup;
 import com.qinweizhao.product.entity.vo.PmsAttrGroupWithPmsAttrsVO;
@@ -57,6 +58,7 @@ public class PmsAttrGroupServiceImpl implements IPmsAttrGroupService {
      */
     @Override
     public int save(PmsAttrGroup pmsAttrGroup) {
+        pmsAttrGroup.setCreateBy(SecurityUtils.getUsername());
         pmsAttrGroup.setCreateTime(DateUtils.getNowDate());
         return pmsAttrGroupMapper.insertPmsAttrGroup(pmsAttrGroup);
     }
@@ -69,6 +71,7 @@ public class PmsAttrGroupServiceImpl implements IPmsAttrGroupService {
      */
     @Override
     public int updateById(PmsAttrGroup pmsAttrGroup) {
+        pmsAttrGroup.setUpdateBy(SecurityUtils.getUsername());
         pmsAttrGroup.setUpdateTime(DateUtils.getNowDate());
         return pmsAttrGroupMapper.updatePmsAttrGroup(pmsAttrGroup);
     }

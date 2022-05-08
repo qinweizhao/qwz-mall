@@ -58,7 +58,7 @@ public class PmsAttrAttrGroupController extends BaseController {
     @GetMapping("/un-relation")
     public R<PageResult<PmsAttr>> unRelationList(Long attrGroupId) {
         startPage();
-        List<PmsAttr> list = pmsAttrAttrGroupService.selectPmsAttrAttrGroupUnRelationList(attrGroupId);
+        List<PmsAttr> list = pmsAttrAttrGroupService.listUnRelationByAttrGroupId(attrGroupId);
         return getPageResult(list);
     }
 

@@ -71,7 +71,6 @@
             <if test="createBy != null">create_by,</if>
             <if test="updateBy != null">update_by,</if>
             <if test="createTime != null">create_time,</if>
-            <if test="updateTime != null">update_time,</if>
             <if test="remark != null">remark,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -83,7 +82,6 @@
             <if test="createBy != null">#{createBy},</if>
             <if test="updateBy != null">#{updateBy},</if>
             <if test="createTime != null">#{createTime},</if>
-            <if test="updateTime != null">#{updateTime},</if>
             <if test="remark != null">#{remark},</if>
         </trim>
     </insert>

@@ -455,7 +455,7 @@ export default {
           if (response.code === '200') {
             this.brandOptions = response.data
           } else {
-            this.$modal.msgError(response.msg)
+            this.$modal.msgError(response.message)
           }
         })
 

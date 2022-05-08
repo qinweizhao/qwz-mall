@@ -66,7 +66,7 @@ public interface PmsAttrMapper {
      * @param ids ids
      * @return 结果
      */
-    List<Long> selectPmsAttrIdsByAttrGroupIds(List<Long> ids);
+    List<Long> selectIdsByAttrGroupIds(@Param("attrGroupIds") List<Long> ids);
 
     /**
      * 查询属性

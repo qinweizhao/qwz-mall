@@ -4,6 +4,7 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
+import com.qinweizhao.component.modle.result.PageResult;
 import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.product.entity.PmsSkuInfo;
 import com.qinweizhao.product.service.IPmsSkuInfoService;
@@ -25,14 +26,16 @@ public class PmsSkuInfoController extends BaseController {
     @Resource
     private IPmsSkuInfoService pmsSkuInfoService;
 
+
     /**
-     * 查询sku信息列表
+     * 查询sku信息分页
      */
     @RequiresPermissions("product:info:list")
-    @GetMapping("/list")
-    public R<List<PmsSkuInfo>> list(PmsSkuInfo pmsSkuInfo) {
+    @GetMapping("/page")
+    public R<PageResult<PmsSkuInfo>> list(PmsSkuInfo pmsSkuInfo) {
+        startPage();
         List<PmsSkuInfo> list = pmsSkuInfoService.list(pmsSkuInfo);
-        return R.success(list);
+        return getPageResult(list);
     }
 
 

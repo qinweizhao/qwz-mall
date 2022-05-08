@@ -108,7 +108,7 @@ public class PmsAttrAttrGroupServiceImpl implements IPmsAttrAttrGroupService {
     }
 
     @Override
-    public List<PmsAttr> selectPmsAttrAttrGroupUnRelationList(Long attrGroupId) {
+    public List<PmsAttr> listUnRelationByAttrGroupId(Long attrGroupId) {
         // 1、当前分组只能关联自己所属的分类里面的所有属性
         PmsAttrGroup pmsAttrGroup = pmsAttrGroupMapper.selectPmsAttrGroupByAttrGroupId(attrGroupId);
         Long categoryId = pmsAttrGroup.getCategoryId();
@@ -117,7 +117,7 @@ public class PmsAttrAttrGroupServiceImpl implements IPmsAttrAttrGroupService {
         List<Long> ids = pmsAttrGroupMapper.selectAttrGroupIdsByCategoryId(categoryId);
 
         // 2.2)、这些分组关联的属性
-        List<Long> excludeAttrIds = pmsAttrMapper.selectPmsAttrIdsByAttrGroupIds(ids);
+        List<Long> excludeAttrIds = pmsAttrMapper.selectIdsByAttrGroupIds(ids);
 
         // 2.3)、从当前分类的所有属性(基本属性)中移除这些属性
         return pmsAttrMapper.selectPmsAttrsByCategoryId(categoryId, ProductConstant.AttrEnum.ATTR_TYPE_BASE.getCode(), excludeAttrIds);

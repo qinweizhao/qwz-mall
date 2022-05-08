@@ -135,6 +135,9 @@
         <el-form-item label="所属分类" prop="categoryId">
           <treeselect v-model="form.categoryId" :options="categoryOptions" :show-count="true" placeholder="请选择所属分类"/>
         </el-form-item>
+        <el-form-item label="备注" prop="remark">
+          <el-input v-model="form.remark" placeholder="请输入描述"/>
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -187,7 +190,17 @@ export default {
       // 表单参数
       form: {},
       // 表单校验
-      rules: {},
+      rules: {
+        categoryId: [
+          { required: true, message: '请选择具分类', trigger: 'blur' },
+        ],
+        name: [
+          { required: true, message: '分组名不能为空', trigger: 'blur' }
+        ],
+        sort: [
+          { required: true, message: '排序不能为空', trigger: 'blur' },
+        ]
+      },
       categoryOptions: {}
     }
   },
