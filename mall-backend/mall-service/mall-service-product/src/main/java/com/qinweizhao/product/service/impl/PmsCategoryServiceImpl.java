@@ -5,7 +5,6 @@ import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.product.entity.PmsCategory;
 import com.qinweizhao.product.mapper.PmsCategoryMapper;
 import com.qinweizhao.product.service.IPmsCategoryService;
-import com.qinweizhao.system.api.domain.SysDept;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -71,9 +70,9 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
      */
     @Override
     public int updateById(PmsCategory pmsCategory) {
-        PmsCategory newParentCategory= pmsCategoryMapper.selectById(pmsCategory.getParentId());
-        PmsCategory oldCategory= pmsCategoryMapper.selectById(pmsCategory.getCategoryId());
-        if (StringUtils.isNotNull(newParentCategory)&&StringUtils.isNotNull(oldCategory)){
+        PmsCategory newParentCategory = pmsCategoryMapper.selectById(pmsCategory.getParentId());
+        PmsCategory oldCategory = pmsCategoryMapper.selectById(pmsCategory.getCategoryId());
+        if (StringUtils.isNotNull(newParentCategory) && StringUtils.isNotNull(oldCategory)) {
             String newAncestors = newParentCategory.getAncestors() + "," + newParentCategory.getCategoryId();
             String oldAncestors = oldCategory.getAncestors();
             pmsCategory.setAncestors(newAncestors);
@@ -87,7 +86,7 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
     /**
      * 修改该分类的子分类祖籍列表
      *
-     * @param categoryId categoryId
+     * @param categoryId   categoryId
      * @param newAncestors newAncestors
      * @param oldAncestors oldAncestors
      */
