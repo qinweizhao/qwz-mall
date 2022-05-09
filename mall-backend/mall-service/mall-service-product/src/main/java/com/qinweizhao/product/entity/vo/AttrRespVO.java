@@ -22,6 +22,10 @@ public class AttrRespVO extends BaseEntity {
      * 属性id
      */
     private Long attrId;
+    /**
+     * 属性id
+     */
+    private Long attrGroupId;
 
     /**
      * 属性名

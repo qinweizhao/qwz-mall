@@ -139,4 +139,9 @@ public class PmsAttrAttrGroupServiceImpl implements IPmsAttrAttrGroupService {
         }).collect(Collectors.toList());
         return pmsAttrAttrGroupMapper.insertPmsAttrAttrGroups(list);
     }
+
+    @Override
+    public PmsAttrAttrGroup selectByAttrId(Long attrId) {
+        return pmsAttrAttrGroupMapper.selectByAttrId(attrId);
+    }
 }

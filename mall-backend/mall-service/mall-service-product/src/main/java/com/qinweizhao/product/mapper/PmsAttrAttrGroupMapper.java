@@ -68,4 +68,26 @@ public interface PmsAttrAttrGroupMapper {
      * @return int
      */
     int insertPmsAttrAttrGroups(@Param("pmsAttrAttrGroups") List<PmsAttrAttrGroup> pmsAttrAttrGroups);
+
+    /**
+     * 统计关联个数
+     * @param attrId attrId
+     * @return int
+     */
+    int selectCountByAttrId(Long attrId);
+
+    /**
+     * 更新关联关系
+     * @param attrGroupId attrGroupId
+     * @param attrId attrId
+     * @return int
+     */
+    int updateByAttrId(@Param("attrGroupId")Long attrGroupId,@Param("attrId")Long attrId);
+
+    /**
+     * 查询
+     * @param attrId attrId
+     * @return PmsAttrAttrGroup
+     */
+    PmsAttrAttrGroup selectByAttrId(Long attrId);
 }

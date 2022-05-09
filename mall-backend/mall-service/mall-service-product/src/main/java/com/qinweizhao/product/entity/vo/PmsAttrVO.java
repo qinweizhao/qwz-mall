@@ -41,7 +41,7 @@ public class PmsAttrVO {
     /**
      * 启用状态[0 - 禁用，1 - 启用]
      */
-    private Long enable;
+    private Long status;
 
     /**
      * 所属分类

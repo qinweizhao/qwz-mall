@@ -114,7 +114,6 @@
                 v-model="scope.row.status"
                 :active-value="1"
                 :inactive-value="0"
-                @change="handleStatusChange(scope.row)"
               ></el-switch>
             </template>
           </el-table-column>
@@ -194,7 +193,7 @@
         <el-form-item label="所属分组" prop="attrGroupId" v-show="form.type !== 0&&form.type!=null">
           <el-select ref="groupSelect" v-model="form.attrGroupId" placeholder="请选择">
             <el-option
-              v-for="item in form.attrGroups"
+              v-for="item in attrGroups"
               :key="item.attrGroupId"
               :label="item.name"
               :value="item.attrGroupId"
@@ -244,8 +243,8 @@
         <el-form-item label="状态" prop="status">
           <el-switch
             v-model="form.status"
-            active-value="1"
-            inactive-value="0"
+            :active-value="1"
+            :inactive-value="0"
           ></el-switch>
         </el-form-item>
 
@@ -310,6 +309,7 @@ export default {
       form: {},
       // 表单校验
       rules: {},
+      attrGroups: [],
       categoryPath: []
     }
   },
@@ -405,7 +405,7 @@ export default {
       const attrId = row.attrId || this.ids
       getAttr(attrId).then(response => {
         this.form = response.data
-        this.categoryPath=this.form.categoryPath
+        this.categoryPath = this.form.categoryPath
         this.open = true
         this.title = '修改商品属性'
       })
@@ -413,7 +413,7 @@ export default {
     /** 提交按钮 */
     submitForm() {
       this.$refs['form'].validate(valid => {
-        this.form.categoryPath = this.categoryPath.join(',');
+        this.form.categoryPath = this.categoryPath.join(',')
         if (valid) {
           if (this.form.attrId != null) {
             updateAttr(this.form).then(response => {
@@ -451,17 +451,6 @@ export default {
       }, `attr_${new Date().getTime()}.xlsx`)
     },
     // wz-code
-    // 用户状态修改
-    handleStatusChange(row) {
-      let text = row.status === '0' ? '启用' : '停用'
-      this.$modal.confirm('确认要"' + text + '""' + row.userName + '"用户吗？').then(function() {
-        return changeUserStatus(row.userId, row.status)
-      }).then(() => {
-        this.$modal.msgSuccess(text + '成功')
-      }).catch(function() {
-        row.status = row.status === '0' ? '1' : '0'
-      })
-    },
     handleQueryAll() {
       this.queryParams.pageNum = 1
       this.queryParams.categoryId = null
@@ -478,7 +467,7 @@ export default {
     getAttrGroupList(categoryId) {
       this.loading = true
       listAttrGroup({ 'categoryId': categoryId }).then(response => {
-        this.form.attrGroups = response.data.rows
+        this.attrGroups = response.data.rows
       })
       this.getList()
     }

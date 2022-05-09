@@ -7,10 +7,13 @@ import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.modle.result.PageResult;
 import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.product.constant.ProductConstant;
 import com.qinweizhao.product.entity.PmsAttr;
+import com.qinweizhao.product.entity.PmsAttrAttrGroup;
 import com.qinweizhao.product.entity.vo.AttrGroupRespVO;
 import com.qinweizhao.product.entity.vo.AttrRespVO;
 import com.qinweizhao.product.entity.vo.PmsAttrVO;
+import com.qinweizhao.product.service.IPmsAttrAttrGroupService;
 import com.qinweizhao.product.service.IPmsAttrService;
 import org.springframework.web.bind.annotation.*;
 import org.w3c.dom.Attr;
@@ -32,6 +35,8 @@ public class PmsAttrController extends BaseController {
 
     @Resource
     private IPmsAttrService pmsAttrService;
+    @Resource
+    private IPmsAttrAttrGroupService pmsAttrAttrGroupService;
 
     /**
      * 查询商品属性列表
@@ -56,6 +61,12 @@ public class PmsAttrController extends BaseController {
         List<Long> categoryPath = Arrays.stream(dbCategoryPath.split(",")).map(Long::parseLong).collect(Collectors.toList());
         attrRespVO.setCategoryPath(categoryPath);
         BeanUtils.copyProperties(pmsAttr,attrRespVO);
+        if(pmsAttr.getType() == ProductConstant.AttrEnum.ATTR_TYPE_BASE.getCode()){
+            PmsAttrAttrGroup pmsAttrAttrGroup = pmsAttrAttrGroupService.selectByAttrId(attrId);
+            if (pmsAttrAttrGroup!=null){
+                attrRespVO.setAttrGroupId(pmsAttrAttrGroup.getAttrGroupId());
+            }
+        }
         return R.success(attrRespVO);
     }
 

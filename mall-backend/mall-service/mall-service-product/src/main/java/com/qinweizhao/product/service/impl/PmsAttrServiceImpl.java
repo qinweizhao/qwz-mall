@@ -65,7 +65,7 @@ public class PmsAttrServiceImpl implements IPmsAttrService {
         attr.setCreateTime(DateUtils.getNowDate());
         BeanUtils.copyProperties(pmsAttr, attr);
         int count = pmsAttrMapper.insertPmsAttr(attr);
-        Long attrId = pmsAttr.getAttrId();
+        Long attrId = attr.getAttrId();
         Long attrGroupId = pmsAttr.getAttrGroupId();
         if (attrId != null && attrGroupId != null) {
             PmsAttrAttrGroup pmsAttrAttrGroup = new PmsAttrAttrGroup();
@@ -88,13 +88,14 @@ public class PmsAttrServiceImpl implements IPmsAttrService {
         attr.setUpdateTime(DateUtils.getNowDate());
         BeanUtils.copyProperties(pmsAttr, attr);
         Long attrGroupId = pmsAttr.getAttrGroupId();
+        Long attrId = attr.getAttrId();
         PmsAttrAttrGroup pmsAttrAttrGroup = new PmsAttrAttrGroup();
         pmsAttrAttrGroup.setAttrGroupId(attrGroupId);
         pmsAttrAttrGroup.setAttrId(pmsAttr.getAttrId());
         if (attrGroupId != null) {
-            PmsAttrAttrGroup attrAttrGroup = pmsAttrAttrGroupMapper.selectPmsAttrAttrGroupById(attrGroupId);
-            if (attrAttrGroup != null) {
-                pmsAttrAttrGroupMapper.updatePmsAttrAttrGroup(pmsAttrAttrGroup);
+            int count = pmsAttrAttrGroupMapper.selectCountByAttrId(attrId);
+            if (count >0) {
+                pmsAttrAttrGroupMapper.updateByAttrId(attrGroupId,attrId);
             } else {
                 pmsAttrAttrGroupMapper.insertPmsAttrAttrGroup(pmsAttrAttrGroup);
             }

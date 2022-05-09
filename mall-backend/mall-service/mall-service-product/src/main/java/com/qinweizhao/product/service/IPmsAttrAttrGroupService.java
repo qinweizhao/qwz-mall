@@ -77,4 +77,11 @@ public interface IPmsAttrAttrGroupService {
      * @return int
      */
     int insertPmsAttrAttrGroups(PmsAttrAttrGroupSaveBatchVO pmsAttrAttrGroupSaveBatch);
+
+    /**
+     * 查询
+     * @param attrId attrId
+     * @return PmsAttrAttrGroup
+     */
+    PmsAttrAttrGroup selectByAttrId(Long attrId);
 }

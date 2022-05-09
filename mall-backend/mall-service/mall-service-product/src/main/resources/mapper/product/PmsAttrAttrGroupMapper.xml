@@ -43,6 +43,16 @@
         where id = #{id}
     </select>
 
+    <select id="selectCountByAttrId" resultType="java.lang.Integer">
+        select count(0) from pms_attr_attr_group
+        where attr_id = #{attrId}
+    </select>
+
+    <select id="selectByAttrId" resultMap="PmsAttrAttrGroupResult">
+        <include refid="selectPmsAttrAttrGroupVo"/>
+        where attr_id = #{attrId}
+    </select>
+
     <insert id="insertPmsAttrAttrGroup" parameterType="PmsAttrAttrGroup" useGeneratedKeys="true" keyProperty="id">
         insert into pms_attr_attr_group
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -91,6 +101,11 @@
             <if test="remark != null">remark = #{remark},</if>
         </trim>
         where id = #{id}
+    </update>
+    <update id="updateByAttrId">
+        update pms_attr_attr_group set
+            attr_group_id = #{attrGroupId}
+        where attr_id = #{attrId}
     </update>
 
     <delete id="deletePmsAttrAttrGroupById" parameterType="Long">
