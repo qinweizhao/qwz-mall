@@ -164,8 +164,7 @@
 </template>
 
 <script>
-import Treeselect from '@riophae/vue-treeselect'
-import '@riophae/vue-treeselect/dist/vue-treeselect.css'
+
 import { addGroup, delGroup, getGroup, listAttrGroup, updateGroup } from '@/api/product/attrGroup'
 import { treeCategory } from '@/api/product/category'
 import Category from '@/views/product/common/Category'
@@ -173,7 +172,7 @@ import CategoryCascade from '@/views/product/common/CategoryCascade'
 
 export default {
   name: 'Group',
-  components: { Category, CategoryCascade, Treeselect },
+  components: { Category, CategoryCascade },
   data() {
     return {
       // 遮罩层
@@ -219,14 +218,12 @@ export default {
         sort: [
           { required: true, message: '排序不能为空', trigger: 'blur' }
         ]
-      },
+      }
 
-      categoryOptions: {}
     }
   },
   created() {
     this.getList()
-    this.getTreeselect()
   },
   methods: {
 
@@ -328,16 +325,10 @@ export default {
       this.getList()
     },
     treeNodeClick(data, node, component) {
-      // if (node.level === 3) {
+      if (node.level === 3) {
       this.queryParams.categoryId = data.categoryId
       this.getList() //重新查询
-      // }
-    },
-    /** 查询分类下拉树结构 */
-    getTreeselect() {
-      treeCategory().then(response => {
-        this.categoryOptions = response.data
-      })
+      }
     },
     /** 关联属性操作 */
     handleRelation: function(row) {
