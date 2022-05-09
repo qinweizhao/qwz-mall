@@ -123,21 +123,37 @@
     <!-- 添加或修改属性分组对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="600px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="组名" prop="name">
-          <el-input v-model="form.name" placeholder="请输入组名"/>
-        </el-form-item>
-        <el-form-item label="排序" prop="sort">
-          <el-input v-model="form.sort" placeholder="请输入排序"/>
-        </el-form-item>
+        <el-row>
+          <el-col :span="12">
+            <el-form-item label="组名" prop="name">
+              <el-input v-model="form.name" placeholder="请输入组名"/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="排序" prop="sort">
+              <el-input v-model="form.sort" placeholder="请输入排序"/>
+            </el-form-item>
+          </el-col>
+
+        </el-row>
+        <el-row>
+          <el-col :span="12">
+            <el-form-item label="分类" prop="categoryId">
+              <category-cascade :categoryPath.sync="form.categoryPath"/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="备注" prop="remark">
+              <el-input v-model="form.remark" placeholder="请输入描述"/>
+            </el-form-item>
+          </el-col>
+        </el-row>
+
         <el-form-item label="描述" prop="description">
           <el-input v-model="form.description" placeholder="请输入描述"/>
         </el-form-item>
-        <el-form-item label="所属分类" prop="categoryId">
-          <treeselect v-model="form.categoryId" :options="categoryOptions" :show-count="true" placeholder="请选择所属分类"/>
-        </el-form-item>
-        <el-form-item label="备注" prop="remark">
-          <el-input v-model="form.remark" placeholder="请输入描述"/>
-        </el-form-item>
+
+
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -150,13 +166,14 @@
 <script>
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
-import {addGroup, delGroup, getGroup, listAttrGroup, updateGroup} from '@/api/product/attrGroup'
-import {treeCategory} from '@/api/product/category'
+import { addGroup, delGroup, getGroup, listAttrGroup, updateGroup } from '@/api/product/attrGroup'
+import { treeCategory } from '@/api/product/category'
 import Category from '@/views/product/common/Category'
+import CategoryCascade from '@/views/product/common/CategoryCascade'
 
 export default {
   name: 'Group',
-  components: {Category, Treeselect},
+  components: { Category, CategoryCascade, Treeselect },
   data() {
     return {
       // 遮罩层
@@ -188,19 +205,22 @@ export default {
         categoryId: null
       },
       // 表单参数
-      form: {},
+      form: {
+        categoryPath: []
+      },
       // 表单校验
       rules: {
         categoryId: [
-          { required: true, message: '请选择具分类', trigger: 'blur' },
+          { required: true, message: '请选择具分类', trigger: 'blur' }
         ],
         name: [
           { required: true, message: '分组名不能为空', trigger: 'blur' }
         ],
         sort: [
-          { required: true, message: '排序不能为空', trigger: 'blur' },
+          { required: true, message: '排序不能为空', trigger: 'blur' }
         ]
       },
+
       categoryOptions: {}
     }
   },
@@ -271,6 +291,7 @@ export default {
     },
     /** 提交按钮 */
     submitForm() {
+      this.form.categoryId = this.form.categoryPath[this.categoryPath.length - 1]
       this.$refs['form'].validate(valid => {
         if (valid) {
           if (this.form.attrGroupId != null) {
@@ -292,7 +313,7 @@ export default {
     /** 删除按钮操作 */
     handleDelete(row) {
       const attrGroupIds = row.attrGroupId || this.ids
-      this.$modal.confirm('是否确认删除属性分组编号为"' + attrGroupIds + '"的数据项？').then(function () {
+      this.$modal.confirm('是否确认删除属性分组编号为"' + attrGroupIds + '"的数据项？').then(function() {
         return delGroup(attrGroupIds)
       }).then(() => {
         this.getList()
@@ -308,8 +329,8 @@ export default {
     },
     treeNodeClick(data, node, component) {
       // if (node.level === 3) {
-        this.queryParams.categoryId = data.categoryId
-        this.getList() //重新查询
+      this.queryParams.categoryId = data.categoryId
+      this.getList() //重新查询
       // }
     },
     /** 查询分类下拉树结构 */
@@ -319,12 +340,11 @@ export default {
       })
     },
     /** 关联属性操作 */
-    handleRelation: function (row) {
-      const attrGroupId = row.attrGroupId;
+    handleRelation: function(row) {
+      const attrGroupId = row.attrGroupId
       console.log(row)
-      this.$router.push("/product/relation/attr-attrgroup/" + attrGroupId);
-    },
-
+      this.$router.push('/product/relation/attr-attrgroup/' + attrGroupId)
+    }
 
   }
 }

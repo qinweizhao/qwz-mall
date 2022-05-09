@@ -77,10 +77,13 @@
 
     <select id="selectPmsAttrsByCategoryId" resultMap="PmsAttrResult">
         <include refid="selectPmsAttrVo"/>
-        where category_id = #{categoryId} and type=#{type} and attr_id not in
-        <foreach collection="excludeAttrIds" item="attrId" open="(" close=")" separator=",">
-            #{attrId}
-        </foreach>
+        where category_id = #{categoryId} and type=#{type}
+         <if test="excludeAttrIds!=null and excludeAttrIds.size() > 0">
+             and attr_id not in
+             <foreach collection="excludeAttrIds" item="attrId" open="(" close=")" separator=",">
+                 #{attrId}
+             </foreach>
+         </if>
     </select>
 
     <select id="selectPmsAttrsByPmsAttrIds" resultMap="PmsAttrResult">

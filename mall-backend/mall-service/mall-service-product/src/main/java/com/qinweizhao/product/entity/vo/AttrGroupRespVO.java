@@ -1,9 +1,10 @@
-package com.qinweizhao.product.entity;
+package com.qinweizhao.product.entity.vo;
 
-import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.util.List;
 
 /**
  * 属性分组对象 pms_attr_group
@@ -13,7 +14,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class PmsAttrGroup extends BaseEntity {
+public class AttrGroupRespVO extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -39,7 +40,7 @@ public class PmsAttrGroup extends BaseEntity {
     /**
      * 组图标
      */
-    private String icon;
+    private List<Long> categoryPath;
 
     /**
      * 所属分类id
