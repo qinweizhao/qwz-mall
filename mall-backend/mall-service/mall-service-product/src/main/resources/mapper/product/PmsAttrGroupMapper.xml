@@ -11,6 +11,7 @@
         <result property="description" column="description"/>
         <result property="icon" column="icon"/>
         <result property="categoryId" column="category_id"/>
+        <result property="categoryPath" column="category_path"/>
         <result property="createBy" column="create_by"/>
         <result property="updateBy" column="update_by"/>
         <result property="createTime" column="create_time"/>
@@ -25,6 +26,7 @@
                description,
                icon,
                category_id,
+               category_path,
                create_by,
                update_by,
                create_time,
@@ -34,16 +36,12 @@
     </sql>
 
     <select id="selectPmsAttrGroupList" parameterType="PmsAttrGroup" resultMap="PmsAttrGroupResult">
-        select *
-        from pms_attr_group
+        <include refid="selectPmsAttrGroupVo"/>
         <where>
             <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
             <if test="sort != null ">and sort = #{sort}</if>
             <if test="icon != null  and icon != ''">and icon = #{icon}</if>
-            <if test="categoryId != null ">
-                and
-                (category_id = #{categoryId} or category_id in ( select ancestors from pms_category WHERE category_id = #{categoryId} ))
-            </if>
+            <if test="categoryId != null ">and category_id = #{categoryId}</if>
         </where>
     </select>
 
@@ -71,6 +69,7 @@
             <if test="description != null">description,</if>
             <if test="icon != null">icon,</if>
             <if test="categoryId != null">category_id,</if>
+            <if test="categoryPath != null">category_path,</if>
             <if test="createBy != null">create_by,</if>
             <if test="updateBy != null">update_by,</if>
             <if test="createTime != null">create_time,</if>
@@ -82,6 +81,7 @@
             <if test="description != null">#{description},</if>
             <if test="icon != null">#{icon},</if>
             <if test="categoryId != null">#{categoryId},</if>
+            <if test="categoryPath != null">#{categoryPath},</if>
             <if test="createBy != null">#{createBy},</if>
             <if test="updateBy != null">#{updateBy},</if>
             <if test="createTime != null">#{createTime},</if>
@@ -97,6 +97,7 @@
             <if test="description != null">description = #{description},</if>
             <if test="icon != null">icon = #{icon},</if>
             <if test="categoryId != null">category_id = #{categoryId},</if>
+            <if test="categoryPath != null">category_path = #{categoryPath},</if>
             <if test="createBy != null">create_by = #{createBy},</if>
             <if test="updateBy != null">update_by = #{updateBy},</if>
             <if test="createTime != null">create_time = #{createTime},</if>

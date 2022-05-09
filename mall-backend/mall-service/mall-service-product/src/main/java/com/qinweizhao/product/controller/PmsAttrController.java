@@ -1,5 +1,6 @@
 package com.qinweizhao.product.controller;
 
+import com.qinweizhao.common.core.utils.bean.BeanUtils;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
@@ -7,12 +8,17 @@ import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.modle.result.PageResult;
 import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.product.entity.PmsAttr;
+import com.qinweizhao.product.entity.vo.AttrGroupRespVO;
+import com.qinweizhao.product.entity.vo.AttrRespVO;
 import com.qinweizhao.product.entity.vo.PmsAttrVO;
 import com.qinweizhao.product.service.IPmsAttrService;
 import org.springframework.web.bind.annotation.*;
+import org.w3c.dom.Attr;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 商品属性Controller
@@ -43,8 +49,14 @@ public class PmsAttrController extends BaseController {
      */
     @RequiresPermissions("product:attr:query")
     @GetMapping(value = "/{attrId}")
-    public R<PmsAttr> getInfo(@PathVariable("attrId") Long attrId) {
-        return R.success(pmsAttrService.getById(attrId));
+    public R<AttrRespVO> getInfo(@PathVariable("attrId") Long attrId) {
+        PmsAttr pmsAttr = pmsAttrService.getById(attrId);
+        String dbCategoryPath = pmsAttr.getCategoryPath();
+        AttrRespVO attrRespVO = new AttrRespVO();
+        List<Long> categoryPath = Arrays.stream(dbCategoryPath.split(",")).map(Long::parseLong).collect(Collectors.toList());
+        attrRespVO.setCategoryPath(categoryPath);
+        BeanUtils.copyProperties(pmsAttr,attrRespVO);
+        return R.success(attrRespVO);
     }
 
     /**

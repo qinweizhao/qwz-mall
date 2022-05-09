@@ -14,6 +14,7 @@
         <result property="type" column="type"/>
         <result property="status" column="status"/>
         <result property="categoryId" column="category_id"/>
+        <result property="categoryPath" column="category_path"/>
         <result property="quickShow" column="quick_show"/>
         <result property="createBy" column="create_by"/>
         <result property="updateBy" column="update_by"/>
@@ -32,6 +33,7 @@
                type,
                status,
                category_id,
+               category_path,
                quick_show,
                create_by,
                update_by,
@@ -51,11 +53,7 @@
             <if test="searchType != null ">and search_type = #{searchType}</if>
             <if test="type != null ">and type = #{type}</if>
             <if test="status != null ">and status = #{status}</if>
-            <if test="categoryId != null ">and
-                (category_id = #{categoryId} or category_id in ( select category_id from pms_category where
-                find_in_set(#{categoryId},
-                ancestors) ))
-            </if>
+            <if test="categoryId != null ">and category_id = #{categoryId}</if>
             <if test="quickShow != null ">and quick_show = #{quickShow}</if>
         </where>
     </select>
@@ -105,6 +103,7 @@
             <if test="type != null">type,</if>
             <if test="status != null">status,</if>
             <if test="categoryId != null">category_id,</if>
+            <if test="categoryPath != null">category_path,</if>
             <if test="quickShow != null">quick_show,</if>
             <if test="createBy != null">create_by,</if>
             <if test="updateBy != null">update_by,</if>
@@ -121,6 +120,7 @@
             <if test="type != null">#{type},</if>
             <if test="status != null">#{status},</if>
             <if test="categoryId != null">#{categoryId},</if>
+            <if test="categoryPath != null">#{categoryPath},</if>
             <if test="quickShow != null">#{quickShow},</if>
             <if test="createBy != null">#{createBy},</if>
             <if test="updateBy != null">#{updateBy},</if>
@@ -141,6 +141,7 @@
             <if test="type != null">type = #{type},</if>
             <if test="status != null">status = #{status},</if>
             <if test="categoryId != null">category_id = #{categoryId},</if>
+            <if test="categoryPath != null">category_path = #{categoryPath},</if>
             <if test="quickShow != null">quick_show = #{quickShow},</if>
             <if test="createBy != null">create_by = #{createBy},</if>
             <if test="updateBy != null">update_by = #{updateBy},</if>

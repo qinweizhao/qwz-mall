@@ -1,13 +1,23 @@
+
 package com.qinweizhao.product.entity.vo;
 
+import com.qinweizhao.common.core.web.domain.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import java.util.List;
 
 /**
+ * 商品属性对象 pms_attr
+ *
  * @author qinweizhao
- * @since 2022/4/25
+ * @date 2022-04-25
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class PmsAttrVO {
+public class AttrRespVO extends BaseEntity {
+    private static final long serialVersionUID = 1L;
+
     /**
      * 属性id
      */
@@ -17,11 +27,6 @@ public class PmsAttrVO {
      * 属性名
      */
     private String name;
-
-    /**
-     * 是否需要检索[0-不需要，1-需要]
-     */
-    private Long searchType;
 
     /**
      * 属性图标
@@ -34,6 +39,16 @@ public class PmsAttrVO {
     private String valueSelect;
 
     /**
+     * 值类型[0-单值，1-多值]
+     */
+    private Long valueType;
+
+    /**
+     * 是否需要检索[0-不需要，1-需要]
+     */
+    private Long searchType;
+
+    /**
      * 属性类型[0-销售属性，1-基本属性，2-既是销售属性又是基本属性]
      */
     private Long type;
@@ -41,7 +56,7 @@ public class PmsAttrVO {
     /**
      * 启用状态[0 - 禁用，1 - 启用]
      */
-    private Long enable;
+    private Long status;
 
     /**
      * 所属分类
@@ -49,18 +64,13 @@ public class PmsAttrVO {
     private Long categoryId;
 
     /**
-     * 所属分类三级分类路径
+     * 所属分类
      */
-    private String categoryPath;
+    private List<Long> categoryPath;
 
     /**
      * 快速展示【是否展示在介绍上；0-否 1-是】，在sku中仍然可以调整
      */
     private Long quickShow;
-
-    /**
-     * add 属性分组 id
-     */
-    private Long attrGroupId;
 
 }

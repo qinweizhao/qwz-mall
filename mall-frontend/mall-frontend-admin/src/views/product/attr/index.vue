@@ -170,11 +170,9 @@
           <el-input v-model="form.name" placeholder="请输入属性名"/>
         </el-form-item>
 
-
         <el-form-item label="所属分类" prop="categoryId">
-          <treeselect v-model="form.categoryId" :options="categoryOptions" :show-count="true" placeholder="请选择所属分类"/>
+          <category-cascade :categoryPath.sync="categoryPath"/>
         </el-form-item>
-
 
         <el-form-item label="类型" prop="icon">
           <el-select
@@ -243,13 +241,11 @@
           </el-radio-group>
         </el-form-item>
 
-
         <el-form-item label="状态" prop="status">
           <el-switch
             v-model="form.status"
-            :active-value="1"
-            :inactive-value="0"
-            @change="handleStatusChange(scope.row)"
+            active-value="1"
+            inactive-value="0"
           ></el-switch>
         </el-form-item>
 
@@ -266,17 +262,15 @@
 </template>
 
 <script>
-import {addAttr, delAttr, getAttr, pageAttr, updateAttr} from '@/api/product/attr'
-import {changeUserStatus} from '@/api/system/user'
+import { addAttr, delAttr, getAttr, pageAttr, updateAttr } from '@/api/product/attr'
+import { changeUserStatus } from '@/api/system/user'
 import Category from '@/views/product/common/Category'
-import Treeselect from '@riophae/vue-treeselect'
-import '@riophae/vue-treeselect/dist/vue-treeselect.css'
-import {treeCategory} from '@/api/product/category'
-import {listAttrGroup} from '@/api/product/attrGroup'
+import { listAttrGroup } from '@/api/product/attrGroup'
+import CategoryCascade from '@/views/product/common/CategoryCascade'
 
 export default {
   name: 'Attr',
-  components: {Category, Treeselect},
+  components: { Category, CategoryCascade },
   dicts: ['pms_attr_value_type', 'pms_attr_search_type', 'pms_attr_type', 'pms_attr_quick_show'],
   data() {
     return {
@@ -316,22 +310,34 @@ export default {
       form: {},
       // 表单校验
       rules: {},
-      categoryOptions: []
+      categoryPath: []
     }
   },
   created() {
     this.getList()
   },
   watch: {
-    form: { // 深度监听
-      handler(form) {
-        // 但是这两个值打印出来却都是一样的,因为它们的引用指向同一个对象/数组
-        if (form.type !== 1 && form.categoryId !== null) {
-          console.log(form.categoryId)
-          this.getAttrGroupList(form.categoryId)
+    /*    form: { // 深度监听
+          handler(form) {
+            console.log('jianting')
+            // if (form.categoryPath.length === 3) {
+            // this.getAttrGroupList(form.categoryPath[form.categoryPath.length - 1])
+            // }
+          },
+          deep: true
         }
-      },
-      deep: true
+      },*/
+    categoryPath(path) {
+      this.attrGroups = []
+      this.form.categoryId = path[path.length - 1]
+      if (path && path.length === 3) {
+        this.getAttrGroupList(this.form.categoryId)
+      } else if (path.length === 0) {
+        this.form.categoryId = ''
+      } else {
+        this.$message.error('请选择正确的分类')
+        this.form.categoryId = ''
+      }
     }
   },
   methods: {
@@ -368,6 +374,7 @@ export default {
         updateTime: null,
         remark: null
       }
+      this.categoryPath = []
       this.resetForm('form')
     },
     /** 搜索按钮操作 */
@@ -389,17 +396,16 @@ export default {
     /** 新增按钮操作 */
     handleAdd() {
       this.reset()
-      this.getTreeselect()
       this.open = true
       this.title = '添加商品属性'
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
-      this.getTreeselect()
       this.reset()
       const attrId = row.attrId || this.ids
       getAttr(attrId).then(response => {
         this.form = response.data
+        this.categoryPath=this.form.categoryPath
         this.open = true
         this.title = '修改商品属性'
       })
@@ -407,6 +413,7 @@ export default {
     /** 提交按钮 */
     submitForm() {
       this.$refs['form'].validate(valid => {
+        this.form.categoryPath = this.categoryPath.join(',');
         if (valid) {
           if (this.form.attrId != null) {
             updateAttr(this.form).then(response => {
@@ -416,6 +423,8 @@ export default {
             })
           } else {
             addAttr(this.form).then(response => {
+              console.log('form')
+              console.log(this.form)
               this.$modal.msgSuccess('新增成功')
               this.open = false
               this.getList()
@@ -427,7 +436,7 @@ export default {
     /** 删除按钮操作 */
     handleDelete(row) {
       const attrIds = row.attrId || this.ids
-      this.$modal.confirm('是否确认删除商品属性编号为"' + attrIds + '"的数据项？').then(function () {
+      this.$modal.confirm('是否确认删除商品属性编号为"' + attrIds + '"的数据项？').then(function() {
         return delAttr(attrIds)
       }).then(() => {
         this.getList()
@@ -445,11 +454,11 @@ export default {
     // 用户状态修改
     handleStatusChange(row) {
       let text = row.status === '0' ? '启用' : '停用'
-      this.$modal.confirm('确认要"' + text + '""' + row.userName + '"用户吗？').then(function () {
+      this.$modal.confirm('确认要"' + text + '""' + row.userName + '"用户吗？').then(function() {
         return changeUserStatus(row.userId, row.status)
       }).then(() => {
         this.$modal.msgSuccess(text + '成功')
-      }).catch(function () {
+      }).catch(function() {
         row.status = row.status === '0' ? '1' : '0'
       })
     },
@@ -459,22 +468,16 @@ export default {
       this.getList()
     },
     treeNodeClick(data, node, component) {
-      // if (node.level === 3) {
+      if (node.level === 3) {
         this.queryParams.categoryId = data.categoryId
         this.getList() //重新查询
-      // }
-    },
-    /** 查询分类下拉树结构 */
-    getTreeselect() {
-      treeCategory().then(response => {
-        this.categoryOptions = response.data
-      })
+      }
     },
 
     /** 查询属性分组列表 */
     getAttrGroupList(categoryId) {
       this.loading = true
-      listAttrGroup({'categoryId': categoryId}).then(response => {
+      listAttrGroup({ 'categoryId': categoryId }).then(response => {
         this.form.attrGroups = response.data.rows
       })
       this.getList()

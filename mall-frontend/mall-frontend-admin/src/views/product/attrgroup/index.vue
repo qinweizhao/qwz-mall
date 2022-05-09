@@ -166,7 +166,6 @@
 <script>
 
 import { addGroup, delGroup, getGroup, listAttrGroup, updateGroup } from '@/api/product/attrGroup'
-import { treeCategory } from '@/api/product/category'
 import Category from '@/views/product/common/Category'
 import CategoryCascade from '@/views/product/common/CategoryCascade'
 
@@ -288,7 +287,8 @@ export default {
     },
     /** 提交按钮 */
     submitForm() {
-      this.form.categoryId = this.form.categoryPath[this.categoryPath.length - 1]
+      this.form.categoryId = this.form.categoryPath[this.form.categoryPath.length - 1]
+      this.form.categoryPath = this.form.categoryPath.join(',');
       this.$refs['form'].validate(valid => {
         if (valid) {
           if (this.form.attrGroupId != null) {

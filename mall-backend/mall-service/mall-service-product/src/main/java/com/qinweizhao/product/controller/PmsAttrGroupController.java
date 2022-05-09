@@ -36,11 +36,6 @@ public class PmsAttrGroupController extends BaseController {
     @Resource
     private IPmsAttrGroupService pmsAttrGroupService;
 
-
-    @Resource
-    private IPmsCategoryService pmsCategoryService;
-
-
     /**
      * 查询属性分组列表
      */
@@ -59,10 +54,9 @@ public class PmsAttrGroupController extends BaseController {
     @GetMapping(value = "/{attrGroupId}")
     public R<AttrGroupRespVO> get(@PathVariable("attrGroupId") Long attrGroupId) {
         PmsAttrGroup pmsAttrGroup = pmsAttrGroupService.getById(attrGroupId);
-        Long categoryId = pmsAttrGroup.getCategoryId();
+        String dbCategoryPath = pmsAttrGroup.getCategoryPath();
         AttrGroupRespVO attrGroupRespVO = new AttrGroupRespVO();
-        String ancestors = pmsCategoryService.getById(categoryId).getAncestors();
-        List<Long> categoryPath = Arrays.stream(ancestors.split(",")).map(Long::parseLong).collect(Collectors.toList());
+        List<Long> categoryPath = Arrays.stream(dbCategoryPath.split(",")).map(Long::parseLong).collect(Collectors.toList());
         attrGroupRespVO.setCategoryPath(categoryPath);
         BeanUtils.copyProperties(pmsAttrGroup,attrGroupRespVO);
         return R.success(attrGroupRespVO);

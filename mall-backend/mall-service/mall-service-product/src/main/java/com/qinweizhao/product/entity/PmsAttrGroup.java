@@ -1,9 +1,10 @@
 package com.qinweizhao.product.entity;
 
-import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.util.List;
 
 /**
  * 属性分组对象 pms_attr_group
@@ -45,5 +46,10 @@ public class PmsAttrGroup extends BaseEntity {
      * 所属分类id
      */
     private Long categoryId;
+
+    /**
+     * 所属分类三级分类路径
+     */
+    private String categoryPath;
 
 }
