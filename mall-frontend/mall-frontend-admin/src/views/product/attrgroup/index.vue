@@ -322,7 +322,7 @@ export default {
     handleRelation: function (row) {
       const attrGroupId = row.attrGroupId;
       console.log(row)
-      this.$router.push("/product/relation/platformattr-platformattr-attrgroup/" + attrGroupId);
+      this.$router.push("/product/relation/attr-attrgroup/" + attrGroupId);
     },
 
 

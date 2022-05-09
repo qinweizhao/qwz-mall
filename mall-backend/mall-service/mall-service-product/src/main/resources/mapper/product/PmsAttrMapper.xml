@@ -51,7 +51,11 @@
             <if test="searchType != null ">and search_type = #{searchType}</if>
             <if test="type != null ">and type = #{type}</if>
             <if test="status != null ">and status = #{status}</if>
-            <if test="categoryId != null ">and category_id = #{categoryId}</if>
+            <if test="categoryId != null ">and
+                (category_id = #{categoryId} or category_id in ( select category_id from pms_category where
+                find_in_set(#{categoryId},
+                ancestors) ))
+            </if>
             <if test="quickShow != null ">and quick_show = #{quickShow}</if>
         </where>
     </select>

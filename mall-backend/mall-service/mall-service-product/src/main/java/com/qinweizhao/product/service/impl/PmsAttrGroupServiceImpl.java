@@ -4,8 +4,11 @@ import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.product.entity.PmsAttr;
 import com.qinweizhao.product.entity.PmsAttrGroup;
+import com.qinweizhao.product.entity.PmsCategory;
+import com.qinweizhao.product.entity.vo.AttrGroupPageReqVO;
 import com.qinweizhao.product.entity.vo.PmsAttrGroupWithPmsAttrsVO;
 import com.qinweizhao.product.mapper.PmsAttrGroupMapper;
+import com.qinweizhao.product.mapper.PmsCategoryMapper;
 import com.qinweizhao.product.service.IPmsAttrGroupService;
 import com.qinweizhao.product.service.IPmsAttrService;
 import org.springframework.beans.BeanUtils;
@@ -25,6 +28,7 @@ import java.util.stream.Collectors;
 public class PmsAttrGroupServiceImpl implements IPmsAttrGroupService {
     @Resource
     private PmsAttrGroupMapper pmsAttrGroupMapper;
+
     @Resource
     private IPmsAttrService pmsAttrService;
 

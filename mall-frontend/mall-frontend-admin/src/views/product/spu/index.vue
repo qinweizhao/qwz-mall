@@ -14,6 +14,7 @@
           v-model="queryParams.categoryId"
           placeholder="请输入所属分类id"
           clearable
+          aria-multiline=""
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>

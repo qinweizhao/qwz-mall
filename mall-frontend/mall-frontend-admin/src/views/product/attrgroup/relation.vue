@@ -193,7 +193,7 @@ export default {
     },
     // 返回按钮
     handleClose() {
-      const obj = {path: '/product/platformattr/attrgroup'}
+      const obj = {path: '/product/attr/attrgroup'}
       this.$tab.closeOpenPage(obj)
     },
     /** 搜索按钮操作 */

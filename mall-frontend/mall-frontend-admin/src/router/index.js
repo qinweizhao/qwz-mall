@@ -170,10 +170,10 @@ export const dynamicRoutes = [
     permissions: ['product:attrgroup:edit'],
     children: [
       {
-        path: 'platformattr-platformattr-attrgroup/:attrGroupId(\\d+)',
+        path: 'attr-attrgroup/:attrGroupId(\\d+)',
         component: () => import('@/views/product/attrgroup/relation'),
         name: 'Relation',
-        meta: {title: '关联分类', activeMenu: '/product/platformattr/attrgroup'}
+        meta: {title: '关联分类', activeMenu: '/product/attr/attrgroup'}
       }
     ]
   },

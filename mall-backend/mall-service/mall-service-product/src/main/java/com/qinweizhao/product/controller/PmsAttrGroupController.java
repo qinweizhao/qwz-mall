@@ -7,6 +7,7 @@ import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.modle.result.PageResult;
 import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.product.entity.PmsAttrGroup;
+import com.qinweizhao.product.entity.vo.AttrGroupPageReqVO;
 import com.qinweizhao.product.entity.vo.PmsAttrGroupWithPmsAttrsVO;
 import com.qinweizhao.product.service.IPmsAttrGroupService;
 import org.springframework.web.bind.annotation.*;

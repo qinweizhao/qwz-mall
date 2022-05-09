@@ -138,8 +138,8 @@
 
     <!-- 关联分类对话框 -->
     <el-dialog title="关联分类" :visible.sync="cateRelationDialogVisible" width="30%">
-      <el-popover width="280" placement="right-end" v-model="popCategorySelectVisible">
-        <category @tree-node-click="treeNodeClick"/>
+      <el-popover placement="right-end" v-model="popCategorySelectVisible">
+        <category-cascade :category-path.sync="categoryPath"/>
         <div style="text-align: right; margin: 0">
           <el-button size="mini" type="text" @click="popCategorySelectVisible = false">取消</el-button>
           <el-button type="primary" size="mini" @click="handleRelationAdd">确定</el-button>
@@ -155,7 +155,7 @@
             <el-button
               type="text"
               size="small"
-              @click="new HandleRelationDelete(scope.row)"
+              @click="HandleRelationDelete(scope.row)"
             >移除
             </el-button>
           </template>
@@ -172,12 +172,12 @@
 import {addBrand, delBrand, getBrand, pageBrand, updateBrand} from '@/api/product/brand'
 import {addRelation, delRelation, getRelation,} from "@/api/product/categoryBrand"
 import ImageUpload from '@/components/ImageUpload'
-import category from '@/views/product/common/Category'
+import CategoryCascade from '@/views/product/common/CategoryCascade'
 import ImagePreview from '@/components/ImagePreview'
 
 export default {
   name: 'Brand',
-  components: {ImageUpload, ImagePreview, category},
+  components: {ImageUpload, ImagePreview, CategoryCascade},
   data() {
     return {
       // 遮罩层
@@ -213,6 +213,7 @@ export default {
       form: {},
       // 表单校验
       rules: {},
+      categoryPath:[],
       // 关联表单
       relationForm: {},
       cateRelationDialogVisible: false,
@@ -336,19 +337,20 @@ export default {
       })
     },
     handleRelationAdd() {
-      if (this.relationForm.categoryId != null) {
+      if (this.categoryPath!= null) {
+        this.relationForm.categoryId=this.categoryPath[this.categoryPath.length-1]
         addRelation(this.relationForm).then(response => {
           this.$modal.msgSuccess('新增成功')
           this.popCategorySelectVisible = false
           this.getCateRelation()
         })
       } else {
-        this.$modal.msgError('请选择具体分类')
+        this.$modal.msgError('请选择分类')
       }
 
     },
     HandleRelationDelete(row) {
-      const categoryId = row.id();
+      const categoryId = row.id;
       this.$modal.confirm('是否确认删除品牌编号为"' + categoryId + '"的数据项？').then(function () {
         return delRelation(categoryId)
       }).then(() => {
@@ -367,7 +369,6 @@ export default {
 </script>
 <style>
 .el-popover {
-  height: 500px;
   overflow: auto;
 }
 </style>
