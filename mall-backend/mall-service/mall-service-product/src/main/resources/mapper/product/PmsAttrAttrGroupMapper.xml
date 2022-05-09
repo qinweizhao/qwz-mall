@@ -8,7 +8,6 @@
         <result property="id" column="id"/>
         <result property="attrId" column="attr_id"/>
         <result property="attrGroupId" column="attr_group_id"/>
-        <result property="sort" column="sort"/>
         <result property="createBy" column="create_by"/>
         <result property="updateBy" column="update_by"/>
         <result property="createTime" column="create_time"/>
@@ -20,7 +19,6 @@
         select id,
                attr_id,
                attr_group_id,
-               sort,
                create_by,
                update_by,
                create_time,
@@ -34,7 +32,6 @@
         <where>
             <if test="attrId != null ">and attr_id = #{attrId}</if>
             <if test="attrGroupId != null ">and attr_group_id = #{attrGroupId}</if>
-            <if test="sort != null ">and sort = #{sort}</if>
         </where>
     </select>
 
@@ -58,7 +55,6 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="attrId != null">attr_id,</if>
             <if test="attrGroupId != null">attr_group_id,</if>
-            <if test="sort != null">sort,</if>
             <if test="createBy != null">create_by,</if>
             <if test="updateBy != null">update_by,</if>
             <if test="createTime != null">create_time,</if>
@@ -68,7 +64,6 @@
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="attrId != null">#{attrId},</if>
             <if test="attrGroupId != null">#{attrGroupId},</if>
-            <if test="sort != null">#{sort},</if>
             <if test="createBy != null">#{createBy},</if>
             <if test="updateBy != null">#{updateBy},</if>
             <if test="createTime != null">#{createTime},</if>
@@ -93,7 +88,6 @@
         <trim prefix="SET" suffixOverrides=",">
             <if test="attrId != null">attr_id = #{attrId},</if>
             <if test="attrGroupId != null">attr_group_id = #{attrGroupId},</if>
-            <if test="sort != null">sort = #{sort},</if>
             <if test="createBy != null">create_by = #{createBy},</if>
             <if test="updateBy != null">update_by = #{updateBy},</if>
             <if test="createTime != null">create_time = #{createTime},</if>

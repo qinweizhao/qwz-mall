@@ -24,19 +24,12 @@ public class PmsAttrAttrGroup extends BaseEntity {
     /**
      * 属性id
      */
-    @Excel(name = "属性id")
     private Long attrId;
 
     /**
      * 属性分组id
      */
-    @Excel(name = "属性分组id")
     private Long attrGroupId;
 
-    /**
-     * 属性组内排序
-     */
-    @Excel(name = "属性组内排序")
-    private Long sort;
 
 }
