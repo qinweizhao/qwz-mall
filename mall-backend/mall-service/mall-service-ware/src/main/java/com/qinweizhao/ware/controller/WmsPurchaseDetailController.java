@@ -21,7 +21,7 @@ import java.util.List;
  * @date 2022-05-04
  */
 @RestController
-@RequestMapping("/detail")
+@RequestMapping("/purchase/detail")
 public class WmsPurchaseDetailController extends BaseController {
     @Resource
     private IWmsPurchaseDetailService wmsPurchaseDetailService;

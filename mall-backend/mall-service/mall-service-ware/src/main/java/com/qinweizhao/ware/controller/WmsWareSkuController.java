@@ -5,6 +5,7 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
+import com.qinweizhao.component.modle.result.PageResult;
 import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.ware.domain.WmsWareSku;
 import com.qinweizhao.ware.service.IWmsWareSkuService;
@@ -30,11 +31,11 @@ public class WmsWareSkuController extends BaseController {
      * 查询商品库存列表
      */
     @RequiresPermissions("product:sku:list")
-    @GetMapping("/list")
-    public R<List<WmsWareSku>> list(WmsWareSku wmsWareSku) {
+    @GetMapping("/page")
+    public R<PageResult<WmsWareSku>> list(WmsWareSku wmsWareSku) {
         startPage();
         List<WmsWareSku> list = wmsWareSkuService.selectWmsWareSkuList(wmsWareSku);
-        return R.success(list);
+        return getPageResult(list);
     }
 
     /**

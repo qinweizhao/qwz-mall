@@ -5,6 +5,7 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
+import com.qinweizhao.component.modle.result.PageResult;
 import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.ware.domain.WmsWareInfo;
 import com.qinweizhao.ware.service.IWmsWareInfoService;
@@ -30,11 +31,11 @@ public class WmsWareInfoController extends BaseController {
      * 查询仓库信息列表
      */
     @RequiresPermissions("product:info:list")
-    @GetMapping("/list")
-    public R<List<WmsWareInfo>> list(WmsWareInfo wmsWareInfo) {
+    @GetMapping("/page")
+    public R<PageResult<WmsWareInfo>> list(WmsWareInfo wmsWareInfo) {
         startPage();
         List<WmsWareInfo> list = wmsWareInfoService.selectWmsWareInfoList(wmsWareInfo);
-        return R.success(list);
+        return getPageResult(list);
     }
 
     /**

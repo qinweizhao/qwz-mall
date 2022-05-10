@@ -47,6 +47,13 @@ spring:
             - Path=/user/**
           filters:
             - StripPrefix=1
+        # 仓库模块
+        - id: mall-user
+          uri: lb://mall-ware
+          predicates:
+            - Path=/ware/**
+          filters:
+            - StripPrefix=1
         # 文件服务
         - id: mall-file
           uri: lb://mall-file

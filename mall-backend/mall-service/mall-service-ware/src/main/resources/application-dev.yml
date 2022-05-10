@@ -18,3 +18,5 @@ spring:
 #  mapperLocations: classpath:mapper/**/*.xml
 mybatis-plus:
   type-aliases-package: com.qinweizhao.ware
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

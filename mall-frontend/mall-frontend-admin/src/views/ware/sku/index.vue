@@ -17,7 +17,7 @@
       <el-form-item label="sku_name" prop="skuName">
         <el-input
           v-model="queryParams.skuName"
-          placeholder="请输入sku_name"
+          placeholder="请输入SKU名称"
           clearable
           @keyup.enter.native="handleQuery"
         />
@@ -64,16 +64,6 @@
         >删除
         </el-button>
       </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="warning"
-          plain
-          icon="el-icon-download"
-          size="mini"
-          @click="handleExport"
-          v-hasPermi="['product:sku:export']"
-        >导出
-        </el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
@@ -81,10 +71,10 @@
     <el-table v-loading="loading" :data="skuList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
       <el-table-column label="id" align="center" prop="id"/>
-      <el-table-column label="sku_id" align="center" prop="skuId"/>
+      <el-table-column label="SKU编号" align="center" prop="skuId"/>
       <el-table-column label="仓库id" align="center" prop="wareId"/>
       <el-table-column label="库存数" align="center" prop="stock"/>
-      <el-table-column label="sku_name" align="center" prop="skuName"/>
+      <el-table-column label="SKU名称" align="center" prop="skuName"/>
       <el-table-column label="锁定库存" align="center" prop="stockLocked"/>
       <el-table-column label="备注" align="center" prop="remark"/>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
@@ -288,12 +278,6 @@ export default {
         this.$modal.msgSuccess('删除成功')
       }).catch(() => {
       })
-    },
-    /** 导出按钮操作 */
-    handleExport() {
-      this.download('product/sku/export', {
-        ...this.queryParams
-      }, `sku_${new Date().getTime()}.xlsx`)
     },
     getWareList() {
       pageInfo().then(response => {
