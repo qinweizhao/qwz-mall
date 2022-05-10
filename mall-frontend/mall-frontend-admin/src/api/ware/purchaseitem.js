@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询采购单详情列表
 export function listDetail(query) {
   return request({
-    url: '/product/detail/list',
+    url: '/ware/purchase/detail/list',
     method: 'get',
     params: query
   })
@@ -12,7 +12,7 @@ export function listDetail(query) {
 // 查询采购单详情详细
 export function getDetail(id) {
   return request({
-    url: '/product/detail/' + id,
+    url: '/ware/purchase/detail/' + id,
     method: 'get'
   })
 }
@@ -20,7 +20,7 @@ export function getDetail(id) {
 // 新增采购单详情
 export function addDetail(data) {
   return request({
-    url: '/product/detail',
+    url: '/ware/purchase/detail',
     method: 'post',
     data: data
   })
@@ -29,7 +29,7 @@ export function addDetail(data) {
 // 修改采购单详情
 export function updateDetail(data) {
   return request({
-    url: '/product/detail',
+    url: '/ware/purchase/detail',
     method: 'put',
     data: data
   })
@@ -38,7 +38,7 @@ export function updateDetail(data) {
 // 删除采购单详情
 export function delDetail(id) {
   return request({
-    url: '/product/detail/' + id,
+    url: '/ware/purchase/detail/' + id,
     method: 'delete'
   })
 }

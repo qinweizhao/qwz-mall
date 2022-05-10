@@ -55,7 +55,7 @@
           icon="el-icon-plus"
           size="mini"
           @click="handleAdd"
-          v-hasPermi="['product:detail:add']"
+          v-hasPermi="['product:purchaseitem:add']"
         >新增</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -66,7 +66,7 @@
           size="mini"
           :disabled="single"
           @click="handleUpdate"
-          v-hasPermi="['product:detail:edit']"
+          v-hasPermi="['product:purchaseitem:edit']"
         >修改</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -77,7 +77,7 @@
           size="mini"
           :disabled="multiple"
           @click="handleDelete"
-          v-hasPermi="['product:detail:remove']"
+          v-hasPermi="['product:purchaseitem:remove']"
         >删除</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -87,7 +87,7 @@
           icon="el-icon-download"
           size="mini"
           @click="handleExport"
-          v-hasPermi="['product:detail:export']"
+          v-hasPermi="['product:purchaseitem:export']"
         >导出</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
@@ -110,14 +110,14 @@
             type="text"
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
-            v-hasPermi="['product:detail:edit']"
+            v-hasPermi="['product:purchaseitem:edit']"
           >修改</el-button>
           <el-button
             size="mini"
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
-            v-hasPermi="['product:detail:remove']"
+            v-hasPermi="['product:purchaseitem:remove']"
           >删除</el-button>
         </template>
       </el-table-column>
@@ -162,7 +162,7 @@
 </template>
 
 <script>
-  import {addDetail, delDetail, getDetail, listDetail, updateDetail} from "@/api/ware/detail";
+  import {addDetail, delDetail, getDetail, listDetail, updateDetail} from "@/api/ware/purchaseitem";
 
   export default {
   name: "Detail",
@@ -304,7 +304,7 @@
     },
     /** 导出按钮操作 */
     handleExport() {
-      this.download('product/detail/export', {
+      this.download('product/purchaseitem/export', {
         ...this.queryParams
       }, `detail_${new Date().getTime()}.xlsx`)
     }

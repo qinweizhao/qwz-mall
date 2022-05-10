@@ -1,20 +1,7 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="仓库" prop="wareId">
-        <el-select v-model="queryParams.wareId" placeholder="请选择仓库" clearable @keyup.enter.native="handleQuery">
-          <el-option :label="w.name" :value="w.id" v-for="w in wareList" :key="w.id"></el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="库存数" prop="stock">
-        <el-input
-          v-model="queryParams.stock"
-          placeholder="请输入库存数"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="sku_name" prop="skuName">
+      <el-form-item label="SKU名称" label-width="80px" prop="skuName">
         <el-input
           v-model="queryParams.skuName"
           placeholder="请输入SKU名称"
@@ -22,6 +9,13 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
+
+      <el-form-item label="仓库" prop="wareId">
+        <el-select v-model="queryParams.wareId" placeholder="请选择仓库" clearable @keyup.enter.native="handleQuery">
+          <el-option :label="w.name" :value="w.id" v-for="w in wareList" :key="w.id"></el-option>
+        </el-select>
+      </el-form-item>
+
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
