@@ -76,8 +76,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="status != null">#{status},</if>
             <if test="createBy != null">#{createBy},</if>
             <if test="updateBy != null">#{updateBy},</if>
-            <if test="createTime != null">sysdate(),</if>
-            <if test="updateTime != null">sysdate(),</if>
+            sysdate(),
+            sysdate(),
             <if test="remark != null">#{remark},</if>
         </trim>
     </insert>

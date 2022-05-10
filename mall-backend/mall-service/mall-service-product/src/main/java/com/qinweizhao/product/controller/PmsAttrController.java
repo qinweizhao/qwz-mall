@@ -10,13 +10,11 @@ import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.product.constant.ProductConstant;
 import com.qinweizhao.product.entity.PmsAttr;
 import com.qinweizhao.product.entity.PmsAttrAttrGroup;
-import com.qinweizhao.product.entity.vo.AttrGroupRespVO;
 import com.qinweizhao.product.entity.vo.AttrRespVO;
 import com.qinweizhao.product.entity.vo.PmsAttrVO;
 import com.qinweizhao.product.service.IPmsAttrAttrGroupService;
 import com.qinweizhao.product.service.IPmsAttrService;
 import org.springframework.web.bind.annotation.*;
-import org.w3c.dom.Attr;
 
 import javax.annotation.Resource;
 import java.util.Arrays;

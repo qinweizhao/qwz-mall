@@ -1,14 +1,6 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="spuId" prop="spuId">
-        <el-input
-          v-model="queryParams.spuId"
-          placeholder="请输入spuId"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
       <el-form-item label="sku名称" prop="name">
         <el-input
           v-model="queryParams.name"
@@ -17,61 +9,8 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="所属分类id" prop="categoryId">
-        <el-input
-          v-model="queryParams.categoryId"
-          placeholder="请输入所属分类id"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="品牌id" prop="brandId">
-        <el-input
-          v-model="queryParams.brandId"
-          placeholder="请输入品牌id"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="默认图片" prop="defaultImg">
-        <el-input
-          v-model="queryParams.defaultImg"
-          placeholder="请输入默认图片"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="标题" prop="title">
-        <el-input
-          v-model="queryParams.title"
-          placeholder="请输入标题"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="副标题" prop="subtitle">
-        <el-input
-          v-model="queryParams.subtitle"
-          placeholder="请输入副标题"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="价格" prop="price">
-        <el-input
-          v-model="queryParams.price"
-          placeholder="请输入价格"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="销量" prop="saleCount">
-        <el-input
-          v-model="queryParams.saleCount"
-          placeholder="请输入销量"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
+      <el-form-item label="所属分类" prop="categoryId">
+        <category-cascade v-model="queryParams.categoryId" @keyup.enter.native="handleQuery"/>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
@@ -88,7 +27,8 @@
           size="mini"
           @click="handleAdd"
           v-hasPermi="['product:info:add']"
-        >新增</el-button>
+        >新增
+        </el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
@@ -99,7 +39,8 @@
           :disabled="single"
           @click="handleUpdate"
           v-hasPermi="['product:info:edit']"
-        >修改</el-button>
+        >修改
+        </el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
@@ -110,30 +51,24 @@
           :disabled="multiple"
           @click="handleDelete"
           v-hasPermi="['product:info:remove']"
-        >删除</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="warning"
-          plain
-          icon="el-icon-download"
-          size="mini"
-          @click="handleExport"
-          v-hasPermi="['product:info:export']"
-        >导出</el-button>
+        >删除
+        </el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
     <el-table v-loading="loading" :data="infoList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
-      <el-table-column label="skuId" align="center" prop="skuId"/>
-      <el-table-column label="spuId" align="center" prop="spuId"/>
+      <el-table-column label="编号" align="center" prop="skuId"/>
+      <!--      <el-table-column label="spuId" align="center" prop="spuId"/>-->
       <el-table-column label="sku名称" align="center" prop="name"/>
-      <el-table-column label="sku介绍描述" align="center" prop="desc"/>
-      <el-table-column label="所属分类id" align="center" prop="categoryId"/>
-      <el-table-column label="品牌id" align="center" prop="brandId"/>
-      <el-table-column label="默认图片" align="center" prop="defaultImg"/>
+      <el-table-column label="所属分类" align="center" prop="categoryId"/>
+      <el-table-column label="品牌" align="center" prop="brandId"/>
+      <el-table-column label="默认图片" align="center" prop="defaultImg">
+        <template slot-scope="scope">
+          <image-preview :src="scope.row.defaultImg" :width="'30px'"/>
+        </template>
+      </el-table-column>
       <el-table-column label="标题" align="center" prop="title"/>
       <el-table-column label="副标题" align="center" prop="subtitle"/>
       <el-table-column label="价格" align="center" prop="price"/>
@@ -147,14 +82,33 @@
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
             v-hasPermi="['product:info:edit']"
-          >修改</el-button>
+          >修改
+          </el-button>
           <el-button
             size="mini"
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
             v-hasPermi="['product:info:remove']"
-          >删除</el-button>
+          >删除
+          </el-button>
+          <!--          v-hasPermi="['product:info:resetPwd', 'system:user:edit']"-->
+          <el-dropdown size="mini" @command="(command) => handleCommand(command, scope.row)"
+          >
+                <span class="el-dropdown-link">
+                  <i class="el-icon-d-arrow-right el-icon--right"></i>更多
+                </span>
+            <el-dropdown-menu slot="dropdown">
+<!--              v-hasPermi="['system:user:resetPwd']"-->
+              <el-dropdown-item command="handleResetPwd" icon="el-icon-key"
+              >重置密码
+              </el-dropdown-item>
+<!--              v-hasPermi="['system:user:edit']"-->
+              <el-dropdown-item command="handleAuthRole" icon="el-icon-circle-check"
+              >分配角色
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
         </template>
       </el-table-column>
     </el-table>
@@ -213,10 +167,13 @@
 </template>
 
 <script>
-import {addInfo, delInfo, getInfo, listInfo, updateInfo} from "@/api/product/sku";
+import { addInfo, delInfo, getInfo, listInfo, updateInfo } from '@/api/product/sku'
+import CategoryCascade from '../common/CategoryCascade'
+import ImagePreview from '@/components/ImagePreview'
 
 export default {
-  name: "Info",
+  name: 'Info',
+  components: { CategoryCascade, ImagePreview },
   data() {
     return {
       // 遮罩层
@@ -234,7 +191,7 @@ export default {
       // sku信息表格数据
       infoList: [],
       // 弹出层标题
-      title: "",
+      title: '',
       // 是否显示弹出层
       open: false,
       // 查询参数
@@ -250,32 +207,31 @@ export default {
         title: null,
         subtitle: null,
         price: null,
-        saleCount: null,
+        saleCount: null
       },
       // 表单参数
       form: {},
       // 表单校验
-      rules: {
-      }
-    };
+      rules: {}
+    }
   },
   created() {
-    this.getList();
+    this.getList()
   },
   methods: {
     /** 查询sku信息列表 */
     getList() {
-      this.loading = true;
+      this.loading = true
       listInfo(this.queryParams).then(response => {
-        this.infoList = response.rows;
-        this.total = response.total;
-        this.loading = false;
-      });
+        this.infoList = response.data.rows
+        this.total = response.data.total
+        this.loading = false
+      })
     },
     // 取消按钮
     cancel() {
-      this.open = false;
-      this.reset();
+      this.open = false
+      this.reset()
     },
     // 表单重置
     reset() {
@@ -296,77 +252,72 @@ export default {
         createTime: null,
         updateTime: null,
         remark: null
-      };
-      this.resetForm("form");
+      }
+      this.resetForm('form')
     },
     /** 搜索按钮操作 */
     handleQuery() {
-      this.queryParams.pageNum = 1;
-      this.getList();
+      this.queryParams.pageNum = 1
+      this.getList()
     },
     /** 重置按钮操作 */
     resetQuery() {
-      this.resetForm("queryForm");
-      this.handleQuery();
+      this.resetForm('queryForm')
+      this.handleQuery()
     },
     // 多选框选中数据
     handleSelectionChange(selection) {
       this.ids = selection.map(item => item.skuId)
-      this.single = selection.length!==1
+      this.single = selection.length !== 1
       this.multiple = !selection.length
     },
     /** 新增按钮操作 */
     handleAdd() {
-      this.reset();
-      this.open = true;
-      this.title = "添加sku信息";
+      this.reset()
+      this.open = true
+      this.title = '添加sku信息'
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
-      this.reset();
+      this.reset()
       const skuId = row.skuId || this.ids
       getInfo(skuId).then(response => {
-        this.form = response.data;
-        this.open = true;
-        this.title = "修改sku信息";
-      });
+        this.form = response.data
+        this.open = true
+        this.title = '修改sku信息'
+      })
     },
     /** 提交按钮 */
     submitForm() {
-      this.$refs["form"].validate(valid => {
+      this.$refs['form'].validate(valid => {
         if (valid) {
           if (this.form.skuId != null) {
             updateInfo(this.form).then(response => {
-              this.$modal.msgSuccess("修改成功");
-              this.open = false;
-              this.getList();
-            });
+              this.$modal.msgSuccess('修改成功')
+              this.open = false
+              this.getList()
+            })
           } else {
             addInfo(this.form).then(response => {
-              this.$modal.msgSuccess("新增成功");
-              this.open = false;
-              this.getList();
-            });
+              this.$modal.msgSuccess('新增成功')
+              this.open = false
+              this.getList()
+            })
           }
         }
-      });
+      })
     },
     /** 删除按钮操作 */
     handleDelete(row) {
-      const skuIds = row.skuId || this.ids;
+      const skuIds = row.skuId || this.ids
       this.$modal.confirm('是否确认删除sku信息编号为"' + skuIds + '"的数据项？').then(function() {
-        return delInfo(skuIds);
+        return delInfo(skuIds)
       }).then(() => {
-        this.getList();
-        this.$modal.msgSuccess("删除成功");
-      }).catch(() => {});
-    },
-    /** 导出按钮操作 */
-    handleExport() {
-      this.download('product/info/export', {
-        ...this.queryParams
-      }, `info_${new Date().getTime()}.xlsx`)
+        this.getList()
+        this.$modal.msgSuccess('删除成功')
+      }).catch(() => {
+      })
     }
   }
-};
+}
 </script>

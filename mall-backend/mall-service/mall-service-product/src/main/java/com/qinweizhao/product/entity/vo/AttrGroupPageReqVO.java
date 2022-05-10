@@ -1,6 +1,5 @@
 package com.qinweizhao.product.entity.vo;
 
-import com.qinweizhao.common.core.annotation.Excel;
 import lombok.Data;
 
 /**

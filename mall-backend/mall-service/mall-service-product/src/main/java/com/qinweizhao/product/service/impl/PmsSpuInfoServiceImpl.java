@@ -194,6 +194,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
                 // 6.1）、sku的基本信息；pms_sku_info
                 PmsSkuInfo pmsSkuInfo = new PmsSkuInfo();
                 BeanUtils.copyProperties(skuItem, pmsSkuInfo);
+                pmsSkuInfo.setSpuId(spuId);
                 pmsSkuInfo.setBrandId(brandId);
                 pmsSkuInfo.setCategoryId(categoryId);
                 pmsSkuInfo.setSaleCount(0L);

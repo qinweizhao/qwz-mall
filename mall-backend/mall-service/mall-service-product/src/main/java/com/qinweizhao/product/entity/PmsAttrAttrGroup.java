@@ -1,6 +1,5 @@
 package com.qinweizhao.product.entity;
 
-import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

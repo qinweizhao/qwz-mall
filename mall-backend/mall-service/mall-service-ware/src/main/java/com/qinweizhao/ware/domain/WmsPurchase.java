@@ -21,37 +21,49 @@ public class WmsPurchase extends BaseEntity {
      */
     private Long id;
 
-    /** 采购人id
+    /**
+     * 采购人id
      */
-    @Excel(name = "采购人id
-            ")
-            private Long assigneeId;
+    @Excel(name = "采购人id")
+    private Long assigneeId;
 
-            /** 采购人名 */
-            @Excel(name = "采购人名")
-            private String assigneeName;
+    /**
+     * 采购人名
+     */
+    @Excel(name = "采购人名")
+    private String assigneeName;
 
-            /** 联系方式 */
-            @Excel(name = "联系方式")
-            private String phone;
+    /**
+     * 联系方式
+     */
+    @Excel(name = "联系方式")
+    private String phone;
 
-            /** 优先级 */
-            @Excel(name = "优先级")
-            private Long priority;
+    /**
+     * 优先级
+     */
+    @Excel(name = "优先级")
+    private Long priority;
 
-            /** 状态 */
-            @Excel(name = "状态")
-            private Long status;
+    /**
+     * 状态
+     */
+    @Excel(name = "状态")
+    private Long status;
 
-            /** 仓库id */
-            @Excel(name = "仓库id")
-            private Long wareId;
+    /**
+     * 仓库id
+     */
+    @Excel(name = "仓库id")
+    private Long wareId;
 
-            /** 总金额 */
-            @Excel(name = "总金额")
-            private BigDecimal amount;
+    /**
+     * 总金额
+     */
+    @Excel(name = "总金额")
+    private BigDecimal amount;
 
-            public void setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

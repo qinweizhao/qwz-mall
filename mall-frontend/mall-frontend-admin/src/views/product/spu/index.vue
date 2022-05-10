@@ -9,22 +9,18 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="所属分类id" prop="categoryId">
-        <el-input
-          v-model="queryParams.categoryId"
-          placeholder="请输入所属分类id"
-          clearable
-          aria-multiline=""
-          @keyup.enter.native="handleQuery"
-        />
+      <el-form-item label="所属分类" prop="categoryId">
+        <category-cascade v-model="queryParams.categoryId"/>
       </el-form-item>
-      <el-form-item label="品牌id" prop="brandId">
-        <el-input
-          v-model="queryParams.brandId"
-          placeholder="请输入品牌id"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
+      <el-form-item label="状态" prop="status">
+        <el-select v-model="queryParams.status" placeholder="分类状态" clearable size="small">
+          <el-option
+            v-for="dict in dict.type.pms_spu_status"
+            :key="dict.value"
+            :label="dict.label"
+            :value="dict.value"
+          />
+        </el-select>
       </el-form-item>
 
       <el-form-item>
@@ -66,28 +62,22 @@
           v-hasPermi="['product:info:remove']"
         >删除</el-button>
       </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="warning"
-          plain
-          icon="el-icon-download"
-          size="mini"
-          @click="handleExport"
-          v-hasPermi="['product:info:export']"
-        >导出</el-button>
-      </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
     <el-table v-loading="loading" :data="infoList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
-      <el-table-column label="商品id" align="center" prop="spuId"/>
+      <el-table-column label="商品编号" align="center" prop="spuId"/>
       <el-table-column label="商品名称" align="center" prop="name"/>
       <el-table-column label="商品描述" align="center" prop="desc"/>
-      <el-table-column label="所属分类id" align="center" prop="categoryId"/>
-      <el-table-column label="品牌id" align="center" prop="brandId"/>
+      <el-table-column label="所属分类" align="center" prop="categoryId"/>
+      <el-table-column label="品牌" align="center" prop="brandId"/>
       <el-table-column label="重量" align="center" prop="weight"/>
-      <el-table-column label="上架状态" align="center" prop="status"/>
+      <el-table-column label="状态" align="center" prop="status">
+        <template slot-scope="scope">
+          <dict-tag :options="dict.type.pms_spu_status" :value="scope.row.status"/>
+        </template>
+      </el-table-column>
       <el-table-column label="备注" align="center" prop="remark"/>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
@@ -127,13 +117,13 @@
         <el-form-item label="商品描述" prop="desc">
           <el-input v-model="form.desc" type="textarea" placeholder="请输入内容"/>
         </el-form-item>
-        <el-form-item label="所属分类id" prop="categoryId">
+        <el-form-item label="所属分类" prop="categoryId">
           <el-input v-model="form.categoryId" placeholder="请输入所属分类id"/>
         </el-form-item>
-        <el-form-item label="品牌id" prop="brandId">
+        <el-form-item label="品牌" prop="brandId">
           <el-input v-model="form.brandId" placeholder="请输入品牌id"/>
         </el-form-item>
-        <el-form-item label="${comment}" prop="weight">
+        <el-form-item label="重量" prop="weight">
           <el-input v-model="form.weight" placeholder="请输入${comment}"/>
         </el-form-item>
         <el-form-item label="备注" prop="remark">
@@ -150,9 +140,11 @@
 
 <script>
 import {addInfo, delInfo, getInfo, pageInfo, updateInfo} from "@/api/product/spu";
-
+import CategoryCascade from '../common/CategoryCascade'
 export default {
   name: "SpuInfo",
+  dicts:['pms_spu_status'],
+  components: {CategoryCascade},
   data() {
     return {
       // 遮罩层
@@ -289,12 +281,6 @@ export default {
         this.$modal.msgSuccess("删除成功");
       }).catch(() => {
       });
-    },
-    /** 导出按钮操作 */
-    handleExport() {
-      this.download('product/info/export', {
-        ...this.queryParams
-      }, `info_${new Date().getTime()}.xlsx`)
     }
   }
 };

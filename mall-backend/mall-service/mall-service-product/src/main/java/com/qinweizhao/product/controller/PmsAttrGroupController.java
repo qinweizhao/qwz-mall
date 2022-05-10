@@ -1,6 +1,5 @@
 package com.qinweizhao.product.controller;
 
-import com.alibaba.nacos.common.utils.ConvertUtils;
 import com.qinweizhao.common.core.utils.bean.BeanUtils;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
@@ -9,13 +8,9 @@ import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.modle.result.PageResult;
 import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.product.entity.PmsAttrGroup;
-import com.qinweizhao.product.entity.PmsCategory;
-import com.qinweizhao.product.entity.vo.AttrGroupPageReqVO;
 import com.qinweizhao.product.entity.vo.AttrGroupRespVO;
 import com.qinweizhao.product.entity.vo.PmsAttrGroupWithPmsAttrsVO;
 import com.qinweizhao.product.service.IPmsAttrGroupService;
-import com.qinweizhao.product.service.IPmsCategoryService;
-import com.qinweizhao.product.service.impl.PmsCategoryServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

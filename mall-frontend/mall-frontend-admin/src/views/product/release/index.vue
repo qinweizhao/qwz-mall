@@ -183,9 +183,9 @@
                 </template>
               </el-table-column>
             </el-table-column>
-            <el-table-column label="商品名称" prop="skuName">
+            <el-table-column label="商品名称" prop="name">
               <template slot-scope="scope">
-                <el-input v-model="scope.row.skuName"></el-input>
+                <el-input v-model="scope.row.name"></el-input>
               </template>
             </el-table-column>
             <el-table-column label="标题" prop="title">
@@ -240,14 +240,14 @@
                               <input
                                 type="radio"
                                 checked
-                                :name="scope.row.skuName"
+                                :name="scope.row.name"
                                 @change="checkDefaultImg(scope.row,index,img)"
                               />设为默认
                             </el-tag>
                             <el-tag v-else>
                               <input
                                 type="radio"
-                                :name="scope.row.skuName"
+                                :name="scope.row.name"
                                 @change="checkDefaultImg(scope.row,index,img)"
                               />设为默认
                             </el-tag>
@@ -500,9 +500,7 @@ export default {
       })
     },
     showInput(idx) {
-      console.log('``````', this.view)
       this.inputVisible[idx].view = true
-      // this.$refs['saveTagInput'+idx].$refs.input.focus();
     },
     checkDefaultImg(row, index, img) {
       console.log('默认图片', row, index)
@@ -548,7 +546,7 @@ export default {
         item.forEach(attr => {
           let {attrId, attrValues, quickShow} = attr
           //跳过没有录入值的属性
-          if (attrValues != '') {
+          if (attrValues !== '') {
             if (attrValues instanceof Array) {
               //多个值用;隔开
               attrValues = attrValues.join(';')
@@ -582,9 +580,10 @@ export default {
       //有多少descartes就有多少sku
       let skus = []
 
-      descartes.forEach((descar, descaridx) => {
+      descartes.forEach(desecrate => {
+        console.log(desecrate)
         let attrArray = [] //sku属性组
-        descar.forEach((de, index) => {
+        desecrate.forEach((de, index) => {
           //构造saleAttr信息
           let saleAttrItem = {
             attrId: this.dataResp.tableAttrColumn[index].attrId,
@@ -604,7 +603,7 @@ export default {
         let memberPrices = []
         if (this.dataResp.memberLevels.length > 0) {
           for (let i = 0; i < this.dataResp.memberLevels.length; i++) {
-            if (this.dataResp.memberLevels[i].priviledgeMemberPrice == 1) {
+            if (this.dataResp.memberLevels[i].privilegeMemberPrice === 1) {
               memberPrices.push({
                 id: this.dataResp.memberLevels[i].id,
                 name: this.dataResp.memberLevels[i].name,
@@ -613,24 +612,23 @@ export default {
             }
           }
         }
-        //;descaridx，判断如果之前有就用之前的值;
-        let res = this.hasAndReturnSku(this.spu.skus, descar)
+        let res = this.hasAndReturnSku(this.spu.skus, desecrate)
         if (res === null) {
           skus.push({
             saleAttrs: attrArray,
-            skuName: this.spu.name + ' ' + descar.join(' '),
+            name: this.spu.name + ' ' + desecrate.join(' '),
             price: 0,
-            title: this.spu.name + ' ' + descar.join(' '),
+            title: this.spu.name + ' ' + desecrate.join(' '),
             subtitle: '',
             images: imgs,
-            details: descar,
+            details: desecrate,
             fullCount: 0,
             discount: 0,
             countStatus: 0,
             fullPrice: 0.0,
             reducePrice: 0.0,
             priceStatus: 0,
-            memberPrice: new Array().concat(memberPrices)
+            memberPrice: [].concat(memberPrices)
           })
         } else {
           skus.push(res)
@@ -644,7 +642,7 @@ export default {
       let res = null
       if (skus.length > 0) {
         for (let i = 0; i < skus.length; i++) {
-          if (skus[i].descar.join(' ') === descar.join(' ')) {
+          if (skus[i].details.join(' ') === descar.join(' ')) {
             res = skus[i]
           }
         }
