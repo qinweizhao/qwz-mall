@@ -52,6 +52,16 @@
         where id = #{id}
     </select>
 
+
+    <select id="selectSearchAttrValueListBySpuId" resultMap="PmsSpuAttrValueResult">
+        select sav.*, a.search_type
+        from pms_spu_attr_value sav
+                 left join pms_attr a on sav.attr_id = a.attr_id
+        where a.search_type = #{searchType}
+          and sav.spu_id = #{spuId}
+    </select>
+
+
     <insert id="insertPmsSpuAttrValue" parameterType="PmsSpuAttrValue" useGeneratedKeys="true" keyProperty="id">
         insert into pms_spu_attr_value
         <trim prefix="(" suffix=")" suffixOverrides=",">

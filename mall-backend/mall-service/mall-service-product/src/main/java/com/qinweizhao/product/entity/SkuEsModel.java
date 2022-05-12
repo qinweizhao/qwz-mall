@@ -1,6 +1,7 @@
 package com.qinweizhao.product.entity;
 
 
+import jdk.internal.util.xml.impl.Attrs;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -56,11 +57,11 @@ public class SkuEsModel {
 
     private String catalogName;
 
-    private List<Attrs> attrs;
+    private List<Attr> attrs;
 
 
     @Data
-    public static class Attrs{
+    public static class Attr{
 
         private Long attrId;
         private String attrName;

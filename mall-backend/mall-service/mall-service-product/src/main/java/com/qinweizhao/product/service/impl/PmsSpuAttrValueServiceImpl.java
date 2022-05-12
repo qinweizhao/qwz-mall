@@ -87,4 +87,9 @@ public class PmsSpuAttrValueServiceImpl implements IPmsSpuAttrValueService {
     public int deletePmsSpuAttrValueById(Long id) {
         return pmsSpuAttrValueMapper.deletePmsSpuAttrValueById(id);
     }
+
+    @Override
+    public List<PmsSpuAttrValue> listSearchAttrValueBySpuId(Long spuId, Long searchType) {
+        return pmsSpuAttrValueMapper.selectSearchAttrValueListBySpuId(spuId,searchType);
+    }
 }

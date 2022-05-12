@@ -1,6 +1,4 @@
 package com.qinweizhao.product.service.impl;
-import java.math.BigDecimal;
-import com.google.common.collect.Lists;
 
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.bean.BeanUtils;
@@ -17,6 +15,7 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * spu信息Service业务层处理
@@ -284,7 +283,20 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
 
         // 2.封装每个sku信息
 
-        for (PmsSkuInfo sku:pmsSkuInfos){
+        // 查询所有spu属性
+
+        List<PmsSpuAttrValue> pmsSpuAttrValues = pmsSpuAttrValueService.listSearchAttrValueBySpuId(spuId, ProductConstant.SearchEnum.Yes.getCode());
+        List<SkuEsModel.Attr> esAttrs = pmsSpuAttrValues.stream()
+                .map(item -> {
+                    SkuEsModel.Attr esAttr = new SkuEsModel.Attr();
+                    esAttr.setAttrId(item.getAttrId());
+                    esAttr.setAttrName(item.getName());
+                    esAttr.setAttrValue(item.getValue());
+                    return esAttr;
+                }).collect(Collectors.toList());
+
+
+        for (PmsSkuInfo sku : pmsSkuInfos) {
             SkuEsModel skuEsModel = new SkuEsModel();
             skuEsModel.setSkuId(sku.getSkuId());
             skuEsModel.setSpuId(sku.getSpuId());
@@ -310,7 +322,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
             skuEsModel.setCatalogName(pmsCategory.getName());
 
             // 设置属性信息
-            skuEsModel.setAttrs(Lists.newArrayList());
+            skuEsModel.setAttrs(esAttrs);
 
         }
     }

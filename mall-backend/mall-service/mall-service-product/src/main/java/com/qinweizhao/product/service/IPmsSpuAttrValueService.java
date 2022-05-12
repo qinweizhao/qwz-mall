@@ -1,5 +1,6 @@
 package com.qinweizhao.product.service;
 
+import com.qinweizhao.product.constant.ProductConstant;
 import com.qinweizhao.product.entity.PmsSpuAttrValue;
 
 import java.util.List;
@@ -58,4 +59,12 @@ public interface IPmsSpuAttrValueService {
      * @return 结果
      */
     int deletePmsSpuAttrValueById(Long id);
+
+    /**
+     * 查询需要检索的属性
+     * @param spuId spuId
+     * @param searchType searchType
+     * @return List
+     */
+    List<PmsSpuAttrValue> listSearchAttrValueBySpuId(Long spuId, Long searchType);
 }

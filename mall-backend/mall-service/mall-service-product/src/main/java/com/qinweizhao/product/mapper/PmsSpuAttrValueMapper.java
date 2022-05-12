@@ -1,6 +1,7 @@
 package com.qinweizhao.product.mapper;
 
 import com.qinweizhao.product.entity.PmsSpuAttrValue;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -58,4 +59,12 @@ public interface PmsSpuAttrValueMapper {
      * @return 结果
      */
     int deletePmsSpuAttrValueByIds(Long[] ids);
+
+    /**
+     * 查询需要检索的属性
+     * @param spuId spuId
+     * @param searchType searchType
+     * @return List
+     */
+    List<PmsSpuAttrValue> selectSearchAttrValueListBySpuId(@Param("spuId") Long spuId,@Param("searchType") Long searchType);
 }
