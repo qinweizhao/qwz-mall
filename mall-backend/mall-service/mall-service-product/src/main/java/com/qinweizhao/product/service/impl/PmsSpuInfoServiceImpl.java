@@ -1,4 +1,6 @@
 package com.qinweizhao.product.service.impl;
+import java.math.BigDecimal;
+import com.google.common.collect.Lists;
 
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.bean.BeanUtils;
@@ -48,6 +50,12 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
 
     @Resource
     private IPmsSkuImageService pmsSkuImageService;
+
+    @Resource
+    private IPmsBrandService pmsBrandService;
+
+    @Resource
+    private IPmsCategoryService pmsCategoryService;
 
     /**
      * 查询spu信息
@@ -264,6 +272,49 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
         return pmsSpuInfoMapper.updatePmsSpuInfo(spuInfo);
     }
 
+
+    /**
+     * 上架
+     *
+     * @param spuId spuId
+     */
+    private void productUp(Long spuId) {
+        // 1、查出当前spu对应的所有sku信息，品牌的名字
+        List<PmsSkuInfo> pmsSkuInfos = pmsSkuInfoService.listBySpuId(spuId);
+
+        // 2.封装每个sku信息
+
+        for (PmsSkuInfo sku:pmsSkuInfos){
+            SkuEsModel skuEsModel = new SkuEsModel();
+            skuEsModel.setSkuId(sku.getSkuId());
+            skuEsModel.setSpuId(sku.getSpuId());
+            skuEsModel.setSkuTitle(sku.getTitle());
+            skuEsModel.setSkuPrice(sku.getPrice());
+            skuEsModel.setSkuImg(sku.getDefaultImg());
+            skuEsModel.setSaleCount(sku.getSaleCount());
+            // 是否有库存
+            skuEsModel.setHasStock(false);
+            // 热度评分
+            skuEsModel.setHotScore(0L);
+
+            // 查询品牌信息
+            PmsBrand pmsBrand = pmsBrandService.getById(sku.getBrandId());
+
+            skuEsModel.setBrandId(sku.getBrandId());
+            skuEsModel.setBrandName(pmsBrand.getName());
+            skuEsModel.setBrandImg(pmsBrand.getLogo());
+
+            // 查询分类信息
+            PmsCategory pmsCategory = pmsCategoryService.getById(sku.getCategoryId());
+            skuEsModel.setCategoryId(sku.getCategoryId());
+            skuEsModel.setCatalogName(pmsCategory.getName());
+
+            // 设置属性信息
+            skuEsModel.setAttrs(Lists.newArrayList());
+
+        }
+    }
+
     /**
      * 下架
      *
@@ -273,12 +324,4 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
 
     }
 
-    /**
-     * 上架
-     *
-     * @param spuId spuId
-     */
-    private void productUp(Long spuId) {
-
-    }
 }

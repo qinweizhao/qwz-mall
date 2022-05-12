@@ -58,4 +58,11 @@ public interface PmsSkuInfoMapper {
      * @return 结果
      */
     int deletePmsSkuInfoBySkuIds(Long[] skuIds);
+
+    /**
+     * 查询列表
+     * @param spuId spuId
+     * @return List
+     */
+    List<PmsSkuInfo> selectListBySpuId(Long spuId);
 }

@@ -87,4 +87,9 @@ public class PmsSkuInfoServiceImpl implements IPmsSkuInfoService {
     public int removeById(Long skuId) {
         return pmsSkuInfoMapper.deletePmsSkuInfoBySkuId(skuId);
     }
+
+    @Override
+    public List<PmsSkuInfo> listBySpuId(Long spuId) {
+        return pmsSkuInfoMapper.selectListBySpuId(spuId);
+    }
 }

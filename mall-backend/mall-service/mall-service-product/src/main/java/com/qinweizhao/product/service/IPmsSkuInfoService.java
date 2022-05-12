@@ -59,4 +59,11 @@ public interface IPmsSkuInfoService {
      * @return 结果
      */
     int removeById(Long skuId);
+
+    /**
+     * 查询列表
+     * @param spuId spuId
+     * @return List
+     */
+    List<PmsSkuInfo> listBySpuId(Long spuId);
 }

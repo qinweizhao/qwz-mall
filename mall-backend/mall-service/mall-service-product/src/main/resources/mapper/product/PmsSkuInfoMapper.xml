@@ -63,7 +63,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectPmsSkuInfoVo"/>
         where sku_id = #{skuId}
     </select>
-        
+    <select id="selectListBySpuId" resultMap="PmsSkuInfoResult">
+        <include refid="selectPmsSkuInfoVo"/>
+        where spu_id = #{skuId}
+    </select>
+
     <insert id="insertPmsSkuInfo" parameterType="PmsSkuInfo" useGeneratedKeys="true" keyProperty="skuId">
         insert into pms_sku_info
         <trim prefix="(" suffix=")" suffixOverrides=",">
