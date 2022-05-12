@@ -59,6 +59,16 @@ public class PmsSpuInfoController extends BaseController {
     }
 
     /**
+     * 修改spu状态
+     */
+    @RequiresPermissions("product:info:edit")
+    @Log(title = "spu信息", businessType = BusinessType.UPDATE)
+    @PutMapping("/{spuId}")
+    public R<Void> updateSpuStatus(@PathVariable Long spuId) {
+        return R.condition(pmsSpuInfoService.updateSpuStatus(spuId));
+    }
+
+    /**
      * 修改spu信息
      */
     @RequiresPermissions("product:info:edit")

@@ -23,16 +23,16 @@ public class ProductConstant {
     }
 
     public enum StatusEnum {
-        NEW_SPU(0, "新建"), SPU_UP(1, "商品上架"), SPU_DOWN(2, "商品下架");
-        private int code;
+        NEW_SPU(0L, "新建"), SPU_UP(1L, "商品上架"), SPU_DOWN(2L, "商品下架");
+        private Long code;
         private String msg;
 
-        StatusEnum(int code, String msg) {
+        StatusEnum(Long code, String msg) {
             this.code = code;
             this.msg = msg;
         }
 
-        public int getCode() {
+        public Long getCode() {
             return code;
         }
 

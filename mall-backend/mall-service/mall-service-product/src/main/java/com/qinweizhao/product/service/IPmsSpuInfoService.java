@@ -68,4 +68,12 @@ public interface IPmsSpuInfoService {
      * @return boolean
      */
     boolean saveSpu(PmsSpuSaveVO pmsSpuSaveVO);
+
+
+    /**
+     * 更改商品状态（上架或下架）
+     * @param spuId spuId
+     * @return int
+     */
+    int updateSpuStatus(Long spuId);
 }

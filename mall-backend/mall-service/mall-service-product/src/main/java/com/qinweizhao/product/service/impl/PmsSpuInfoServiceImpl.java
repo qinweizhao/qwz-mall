@@ -3,6 +3,7 @@ package com.qinweizhao.product.service.impl;
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.bean.BeanUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
+import com.qinweizhao.product.constant.ProductConstant;
 import com.qinweizhao.product.entity.*;
 import com.qinweizhao.product.entity.vo.PmsSpuSaveVO;
 import com.qinweizhao.product.mapper.PmsSpuInfoMapper;
@@ -241,5 +242,43 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
 
 
         return true;
+    }
+
+    @Override
+    public int updateSpuStatus(Long spuId) {
+        PmsSpuInfo pmsSpuInfo = pmsSpuInfoMapper.selectPmsSpuInfoBySpuId(spuId);
+        Long status = pmsSpuInfo.getStatus();
+
+        PmsSpuInfo spuInfo = new PmsSpuInfo();
+
+        if (ProductConstant.StatusEnum.SPU_DOWN.getCode().equals(status)) {
+            // 上架
+            this.productUp(spuId);
+            spuInfo.setStatus(ProductConstant.StatusEnum.SPU_UP.getCode());
+        } else {
+            // 下架
+            this.productDown(spuId);
+            spuInfo.setStatus(ProductConstant.StatusEnum.SPU_DOWN.getCode());
+        }
+
+        return pmsSpuInfoMapper.updatePmsSpuInfo(spuInfo);
+    }
+
+    /**
+     * 下架
+     *
+     * @param spuId spuId
+     */
+    private void productDown(Long spuId) {
+
+    }
+
+    /**
+     * 上架
+     *
+     * @param spuId spuId
+     */
+    private void productUp(Long spuId) {
+
     }
 }
