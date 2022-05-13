@@ -282,7 +282,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
             this.productUp(spuId);
             spuInfo.setStatus(ProductConstant.StatusEnum.SPU_UP.getCode());
         }
-
+        pmsSpuInfo.setSpuId(spuId);
         return pmsSpuInfoMapper.updatePmsSpuInfo(spuInfo);
     }
 

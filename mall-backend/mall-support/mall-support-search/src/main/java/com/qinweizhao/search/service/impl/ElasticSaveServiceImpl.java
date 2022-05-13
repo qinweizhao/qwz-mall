@@ -67,7 +67,7 @@ public class ElasticSaveServiceImpl implements ElasticSaveService {
             }
         }
 
-        return result.errors();
+        return !result.errors();
     }
 
 }

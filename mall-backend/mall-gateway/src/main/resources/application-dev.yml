@@ -48,7 +48,7 @@ spring:
           filters:
             - StripPrefix=1
         # 仓库模块
-        - id: mall-user
+        - id: mall-ware
           uri: lb://mall-ware
           predicates:
             - Path=/ware/**
