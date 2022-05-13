@@ -27,8 +27,8 @@ public class ElasticSaveController {
      * 商品上架
      */
     @PostMapping("/product")
-    public R<Void> add(@RequestBody List<EsSkuSaveDTO> esSkuSaveDTOList) {
-        return R.condition(elasticSaveService.saveProduct(esSkuSaveDTOList));
+    public R<Void> saveSku(@RequestBody List<EsSkuSaveDTO> esSkuSaveDTOList) {
+        return R.condition(elasticSaveService.saveSku(esSkuSaveDTOList));
     }
 
 

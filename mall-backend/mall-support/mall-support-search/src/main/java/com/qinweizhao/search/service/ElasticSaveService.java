@@ -2,6 +2,7 @@ package com.qinweizhao.search.service;
 
 import com.qinweizhao.api.search.dto.EsSkuSaveDTO;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -15,5 +16,5 @@ public interface ElasticSaveService {
      * @param esSkuSaveDTOList esSkuSaveDTOList
      * @return int
      */
-    int saveProduct(List<EsSkuSaveDTO> esSkuSaveDTOList);
+    boolean saveSku(List<EsSkuSaveDTO> esSkuSaveDTOList) throws IOException;
 }

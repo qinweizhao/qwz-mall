@@ -359,7 +359,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
 
     }
 
-    /**
+    /**]
      * 下架
      *
      * @param spuId spuId
