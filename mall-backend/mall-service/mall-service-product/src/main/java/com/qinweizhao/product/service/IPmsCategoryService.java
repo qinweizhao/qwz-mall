@@ -1,6 +1,6 @@
 package com.qinweizhao.product.service;
 
-import com.qinweizhao.product.entity.PmsCategory;
+import com.qinweizhao.product.model.entity.PmsCategory;
 
 import java.util.List;
 import java.util.Map;

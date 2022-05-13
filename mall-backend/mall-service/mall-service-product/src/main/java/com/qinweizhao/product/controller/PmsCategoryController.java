@@ -6,7 +6,7 @@ import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.modle.result.PageResult;
 import com.qinweizhao.component.modle.result.R;
-import com.qinweizhao.product.entity.PmsCategory;
+import com.qinweizhao.product.model.entity.PmsCategory;
 import com.qinweizhao.product.service.IPmsCategoryService;
 import org.springframework.web.bind.annotation.*;
 

@@ -2,9 +2,9 @@ package com.qinweizhao.product.service.impl;
 
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.bean.BeanUtils;
-import com.qinweizhao.product.entity.PmsAttr;
-import com.qinweizhao.product.entity.PmsAttrAttrGroup;
-import com.qinweizhao.product.entity.vo.PmsAttrVO;
+import com.qinweizhao.product.model.entity.PmsAttr;
+import com.qinweizhao.product.model.entity.PmsAttrAttrGroup;
+import com.qinweizhao.product.model.vo.PmsAttrVO;
 import com.qinweizhao.product.mapper.PmsAttrAttrGroupMapper;
 import com.qinweizhao.product.mapper.PmsAttrMapper;
 import com.qinweizhao.product.service.IPmsAttrService;
@@ -94,8 +94,8 @@ public class PmsAttrServiceImpl implements IPmsAttrService {
         pmsAttrAttrGroup.setAttrId(pmsAttr.getAttrId());
         if (attrGroupId != null) {
             int count = pmsAttrAttrGroupMapper.selectCountByAttrId(attrId);
-            if (count >0) {
-                pmsAttrAttrGroupMapper.updateByAttrId(attrGroupId,attrId);
+            if (count > 0) {
+                pmsAttrAttrGroupMapper.updateByAttrId(attrGroupId, attrId);
             } else {
                 pmsAttrAttrGroupMapper.insertPmsAttrAttrGroup(pmsAttrAttrGroup);
             }

@@ -1,6 +1,6 @@
 package com.qinweizhao.product.mapper;
 
-import com.qinweizhao.product.entity.PmsAttrAttrGroup;
+import com.qinweizhao.product.model.entity.PmsAttrAttrGroup;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

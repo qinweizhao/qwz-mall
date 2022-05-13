@@ -1,7 +1,7 @@
 package com.qinweizhao.product.service.impl;
 
 import com.qinweizhao.common.core.utils.DateUtils;
-import com.qinweizhao.product.entity.PmsSkuAttrValue;
+import com.qinweizhao.product.model.entity.PmsSkuAttrValue;
 import com.qinweizhao.product.mapper.PmsSkuAttrValueMapper;
 import com.qinweizhao.product.service.IPmsSkuAttrValueService;
 import org.springframework.stereotype.Service;

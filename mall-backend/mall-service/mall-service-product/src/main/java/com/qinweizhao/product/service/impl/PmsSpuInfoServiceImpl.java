@@ -1,20 +1,24 @@
 package com.qinweizhao.product.service.impl;
 
 
+import com.qinweizhao.api.search.dto.EsSkuSaveDTO;
+import com.qinweizhao.api.search.feign.ElasticSaveFeignService;
 import com.qinweizhao.api.ware.dto.SkuHasStockDTO;
 import com.qinweizhao.api.ware.feign.WareSkuFeignService;
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.bean.BeanUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.component.modle.result.R;
-import com.qinweizhao.product.constant.ProductConstant;
-import com.qinweizhao.product.entity.*;
-import com.qinweizhao.product.entity.vo.PmsSpuSaveVO;
+import com.qinweizhao.component.modle.result.ResultCodeEnum;
 import com.qinweizhao.product.mapper.PmsSpuInfoMapper;
+import com.qinweizhao.product.model.constant.ProductConstant;
+import com.qinweizhao.product.model.entity.*;
+import com.qinweizhao.product.model.vo.PmsSpuSaveVO;
 import com.qinweizhao.product.service.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
+import org.springframework.util.SocketUtils;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
@@ -63,6 +67,9 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
 
     @Resource
     private WareSkuFeignService wareSkuFeignService;
+
+    @Resource
+    private ElasticSaveFeignService elasticSaveFeignService;
 
     /**
      * 查询spu信息
@@ -294,9 +301,9 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
 
         // 封装可检索属性
         List<PmsSpuAttrValue> pmsSpuAttrValues = pmsSpuAttrValueService.listSearchAttrValueBySpuId(spuId, ProductConstant.SearchEnum.Yes.getCode());
-        List<SkuEsModel.Attr> esAttrs = pmsSpuAttrValues.stream()
+        List<EsSkuSaveDTO.Attr> esAttrs = pmsSpuAttrValues.stream()
                 .map(item -> {
-                    SkuEsModel.Attr esAttr = new SkuEsModel.Attr();
+                    EsSkuSaveDTO.Attr esAttr = new EsSkuSaveDTO.Attr();
                     esAttr.setAttrId(item.getAttrId());
                     esAttr.setAttrName(item.getName());
                     esAttr.setAttrValue(item.getValue());
@@ -311,37 +318,45 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
         Map<Long, Boolean> hasStockMap = data.stream().collect(Collectors.toMap(SkuHasStockDTO::getSkuId, SkuHasStockDTO::getHasStock));
 
 
-        for (PmsSkuInfo sku : pmsSkuInfos) {
-            SkuEsModel skuEsModel = new SkuEsModel();
-            skuEsModel.setSkuId(sku.getSkuId());
-            skuEsModel.setSpuId(sku.getSpuId());
-            skuEsModel.setSkuTitle(sku.getTitle());
-            skuEsModel.setSkuPrice(sku.getPrice());
-            skuEsModel.setSkuImg(sku.getDefaultImg());
-            skuEsModel.setSaleCount(sku.getSaleCount());
+        List<EsSkuSaveDTO> esSkuSaveDTOList = pmsSkuInfos.stream().map(sku -> {
+            EsSkuSaveDTO esSkuSaveDTO = new EsSkuSaveDTO();
+            esSkuSaveDTO.setSkuId(sku.getSkuId());
+            esSkuSaveDTO.setSpuId(sku.getSpuId());
+            esSkuSaveDTO.setSkuTitle(sku.getTitle());
+            esSkuSaveDTO.setSkuPrice(sku.getPrice());
+            esSkuSaveDTO.setSkuImg(sku.getDefaultImg());
+            esSkuSaveDTO.setSaleCount(sku.getSaleCount());
             // 是否有库存
 
-            skuEsModel.setHasStock(hasStockMap.get(sku.getSkuId()));
+            esSkuSaveDTO.setHasStock(hasStockMap.get(sku.getSkuId()));
 
             // 热度评分
-            skuEsModel.setHotScore(0L);
+            esSkuSaveDTO.setHotScore(0L);
 
             // 查询品牌信息
             PmsBrand pmsBrand = pmsBrandService.getById(sku.getBrandId());
 
-            skuEsModel.setBrandId(sku.getBrandId());
-            skuEsModel.setBrandName(pmsBrand.getName());
-            skuEsModel.setBrandImg(pmsBrand.getLogo());
+            esSkuSaveDTO.setBrandId(sku.getBrandId());
+            esSkuSaveDTO.setBrandName(pmsBrand.getName());
+            esSkuSaveDTO.setBrandImg(pmsBrand.getLogo());
 
             // 查询分类信息
             PmsCategory pmsCategory = pmsCategoryService.getById(sku.getCategoryId());
-            skuEsModel.setCategoryId(sku.getCategoryId());
-            skuEsModel.setCatalogName(pmsCategory.getName());
+            esSkuSaveDTO.setCategoryId(sku.getCategoryId());
+            esSkuSaveDTO.setCatalogName(pmsCategory.getName());
 
             // 设置属性信息
-            skuEsModel.setAttrs(esAttrs);
+            esSkuSaveDTO.setAttrs(esAttrs);
+            return esSkuSaveDTO;
+        }).collect(Collectors.toList());
 
+
+        R<Void> result = elasticSaveFeignService.saveEsSkuList(esSkuSaveDTOList);
+        if (!result.getCode().equals(ResultCodeEnum.SUCCESS.getCode())) {
+            System.out.println("远程调用失败");
+            //TODO 7、重复调用？接口幂等性；重试机制？
         }
+
     }
 
     /**

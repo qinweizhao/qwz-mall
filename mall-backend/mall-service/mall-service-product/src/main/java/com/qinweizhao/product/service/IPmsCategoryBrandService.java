@@ -1,6 +1,6 @@
 package com.qinweizhao.product.service;
 
-import com.qinweizhao.product.entity.PmsCategoryBrand;
+import com.qinweizhao.product.model.entity.PmsCategoryBrand;
 
 import java.util.List;
 

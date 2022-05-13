@@ -2,7 +2,7 @@ package com.qinweizhao.product.service.impl;
 
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
-import com.qinweizhao.product.entity.PmsCategory;
+import com.qinweizhao.product.model.entity.PmsCategory;
 import com.qinweizhao.product.mapper.PmsCategoryMapper;
 import com.qinweizhao.product.service.IPmsCategoryService;
 import org.springframework.stereotype.Service;

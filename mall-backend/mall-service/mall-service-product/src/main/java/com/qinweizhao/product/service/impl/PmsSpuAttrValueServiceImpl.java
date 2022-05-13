@@ -1,7 +1,7 @@
 package com.qinweizhao.product.service.impl;
 
 import com.qinweizhao.common.core.utils.DateUtils;
-import com.qinweizhao.product.entity.PmsSpuAttrValue;
+import com.qinweizhao.product.model.entity.PmsSpuAttrValue;
 import com.qinweizhao.product.mapper.PmsSpuAttrValueMapper;
 import com.qinweizhao.product.service.IPmsSpuAttrValueService;
 import org.springframework.stereotype.Service;
@@ -90,6 +90,6 @@ public class PmsSpuAttrValueServiceImpl implements IPmsSpuAttrValueService {
 
     @Override
     public List<PmsSpuAttrValue> listSearchAttrValueBySpuId(Long spuId, Long searchType) {
-        return pmsSpuAttrValueMapper.selectSearchAttrValueListBySpuId(spuId,searchType);
+        return pmsSpuAttrValueMapper.selectSearchAttrValueListBySpuId(spuId, searchType);
     }
 }

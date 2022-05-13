@@ -1,7 +1,7 @@
 package com.qinweizhao.product.service;
 
-import com.qinweizhao.product.entity.PmsSpuInfo;
-import com.qinweizhao.product.entity.vo.PmsSpuSaveVO;
+import com.qinweizhao.product.model.entity.PmsSpuInfo;
+import com.qinweizhao.product.model.vo.PmsSpuSaveVO;
 
 import java.util.List;
 
@@ -72,6 +72,7 @@ public interface IPmsSpuInfoService {
 
     /**
      * 更改商品状态（上架或下架）
+     *
      * @param spuId spuId
      * @return int
      */

@@ -1,7 +1,7 @@
 package com.qinweizhao.product.service.impl;
 
 import com.qinweizhao.common.core.utils.DateUtils;
-import com.qinweizhao.product.entity.PmsSpuInfoDetail;
+import com.qinweizhao.product.model.entity.PmsSpuInfoDetail;
 import com.qinweizhao.product.mapper.PmsSpuInfoDetailMapper;
 import com.qinweizhao.product.service.IPmsSpuInfoDetailService;
 import org.springframework.stereotype.Service;

@@ -1,8 +1,8 @@
 package com.qinweizhao.product.service;
 
-import com.qinweizhao.product.entity.PmsAttr;
-import com.qinweizhao.product.entity.PmsAttrAttrGroup;
-import com.qinweizhao.product.entity.vo.PmsAttrAttrGroupSaveBatchVO;
+import com.qinweizhao.product.model.entity.PmsAttr;
+import com.qinweizhao.product.model.entity.PmsAttrAttrGroup;
+import com.qinweizhao.product.model.vo.PmsAttrAttrGroupSaveBatchVO;
 
 import java.util.List;
 
@@ -80,6 +80,7 @@ public interface IPmsAttrAttrGroupService {
 
     /**
      * 查询
+     *
      * @param attrId attrId
      * @return PmsAttrAttrGroup
      */

@@ -1,6 +1,7 @@
 package com.qinweizhao.product.service;
 
-import com.qinweizhao.product.entity.PmsBrand;
+
+import com.qinweizhao.product.model.entity.PmsBrand;
 
 import java.util.List;
 

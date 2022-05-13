@@ -2,9 +2,9 @@ package com.qinweizhao.product.service.impl;
 
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
-import com.qinweizhao.product.entity.PmsAttr;
-import com.qinweizhao.product.entity.PmsAttrGroup;
-import com.qinweizhao.product.entity.vo.PmsAttrGroupWithPmsAttrsVO;
+import com.qinweizhao.product.model.entity.PmsAttr;
+import com.qinweizhao.product.model.entity.PmsAttrGroup;
+import com.qinweizhao.product.model.vo.PmsAttrGroupWithPmsAttrsVO;
 import com.qinweizhao.product.mapper.PmsAttrGroupMapper;
 import com.qinweizhao.product.service.IPmsAttrGroupService;
 import com.qinweizhao.product.service.IPmsAttrService;

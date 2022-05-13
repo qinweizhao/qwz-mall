@@ -1,6 +1,6 @@
 package com.qinweizhao.product.mapper;
 
-import com.qinweizhao.product.entity.PmsSkuAttrValue;
+import com.qinweizhao.product.model.entity.PmsSkuAttrValue;
 
 import java.util.List;
 

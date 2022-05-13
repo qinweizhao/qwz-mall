@@ -1,7 +1,7 @@
 package com.qinweizhao.product.service;
 
-import com.qinweizhao.product.entity.PmsAttrGroup;
-import com.qinweizhao.product.entity.vo.PmsAttrGroupWithPmsAttrsVO;
+import com.qinweizhao.product.model.entity.PmsAttrGroup;
+import com.qinweizhao.product.model.vo.PmsAttrGroupWithPmsAttrsVO;
 
 import java.util.List;
 

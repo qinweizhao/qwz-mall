@@ -1,6 +1,6 @@
 package com.qinweizhao.product.mapper;
 
-import com.qinweizhao.product.entity.PmsCommentReplay;
+import com.qinweizhao.product.model.entity.PmsCommentReplay;
 
 import java.util.List;
 

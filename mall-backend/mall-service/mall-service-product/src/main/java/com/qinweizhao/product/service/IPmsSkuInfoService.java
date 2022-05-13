@@ -1,6 +1,6 @@
 package com.qinweizhao.product.service;
 
-import com.qinweizhao.product.entity.PmsSkuInfo;
+import com.qinweizhao.product.model.entity.PmsSkuInfo;
 
 import java.util.List;
 
@@ -62,6 +62,7 @@ public interface IPmsSkuInfoService {
 
     /**
      * 查询列表
+     *
      * @param spuId spuId
      * @return List
      */

@@ -1,6 +1,6 @@
 package com.qinweizhao.product.mapper;
 
-import com.qinweizhao.product.entity.PmsAttrGroup;
+import com.qinweizhao.product.model.entity.PmsAttrGroup;
 
 import java.util.List;
 

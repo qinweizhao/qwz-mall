@@ -5,7 +5,7 @@ import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.modle.result.R;
-import com.qinweizhao.product.entity.PmsSkuAttrValue;
+import com.qinweizhao.product.model.entity.PmsSkuAttrValue;
 import com.qinweizhao.product.service.IPmsSkuAttrValueService;
 import org.springframework.web.bind.annotation.*;
 

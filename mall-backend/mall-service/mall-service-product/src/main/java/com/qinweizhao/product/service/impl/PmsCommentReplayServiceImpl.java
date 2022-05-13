@@ -1,7 +1,7 @@
 package com.qinweizhao.product.service.impl;
 
 import com.qinweizhao.common.core.utils.DateUtils;
-import com.qinweizhao.product.entity.PmsCommentReplay;
+import com.qinweizhao.product.model.entity.PmsCommentReplay;
 import com.qinweizhao.product.mapper.PmsCommentReplayMapper;
 import com.qinweizhao.product.service.IPmsCommentReplayService;
 import org.springframework.stereotype.Service;

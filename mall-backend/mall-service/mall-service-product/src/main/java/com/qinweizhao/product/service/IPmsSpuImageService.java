@@ -1,6 +1,6 @@
 package com.qinweizhao.product.service;
 
-import com.qinweizhao.product.entity.PmsSpuImage;
+import com.qinweizhao.product.model.entity.PmsSpuImage;
 
 import java.util.List;
 

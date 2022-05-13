@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.qinweizhao.file.api.factory.RemoteFileFallbackFactory
+com.qinweizhao.api.file.factory.RemoteFileFallbackFactory

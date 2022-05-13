@@ -6,7 +6,7 @@ import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.modle.result.R;
-import com.qinweizhao.product.entity.PmsSpuImage;
+import com.qinweizhao.product.model.entity.PmsSpuImage;
 import com.qinweizhao.product.service.IPmsSpuImageService;
 import org.springframework.web.bind.annotation.*;
 

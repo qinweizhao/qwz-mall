@@ -1,7 +1,7 @@
 package com.qinweizhao.product.service.impl;
 
 import com.qinweizhao.common.core.utils.DateUtils;
-import com.qinweizhao.product.entity.PmsSkuImage;
+import com.qinweizhao.product.model.entity.PmsSkuImage;
 import com.qinweizhao.product.mapper.PmsSkuImageMapper;
 import com.qinweizhao.product.service.IPmsSkuImageService;
 import org.springframework.stereotype.Service;
