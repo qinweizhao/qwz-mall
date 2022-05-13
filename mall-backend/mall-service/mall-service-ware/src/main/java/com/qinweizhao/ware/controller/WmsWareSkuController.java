@@ -1,5 +1,6 @@
 package com.qinweizhao.ware.controller;
 
+import com.qinweizhao.api.ware.dto.SkuHasStockDTO;
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
@@ -11,6 +12,7 @@ import com.qinweizhao.ware.domain.WmsWareSku;
 import com.qinweizhao.ware.service.IWmsWareSkuService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -22,8 +24,10 @@ import java.util.List;
  * @date 2022-05-04
  */
 @RestController
-@RequestMapping("/sku")
+@RequestMapping("/ware-sku")
 public class WmsWareSkuController extends BaseController {
+
+
     @Resource
     private IWmsWareSkuService wmsWareSkuService;
 
@@ -36,6 +40,16 @@ public class WmsWareSkuController extends BaseController {
         startPage();
         List<WmsWareSku> list = wmsWareSkuService.selectWmsWareSkuList(wmsWareSku);
         return getPageResult(list);
+    }
+
+    /**
+     * 查询商品库存列表
+     */
+    @RequiresPermissions("product:sku:list")
+    @PostMapping("/stock")
+    public R<List<SkuHasStockDTO>> stock(@RequestBody List<Long> skuIds) {
+        List<SkuHasStockDTO> maps = wmsWareSkuService.listHasStockBySkuIds(skuIds);
+        return R.success(maps);
     }
 
     /**

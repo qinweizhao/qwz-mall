@@ -1,8 +1,12 @@
 package com.qinweizhao.product.service.impl;
 
+
+import com.qinweizhao.api.ware.dto.SkuHasStockDTO;
+import com.qinweizhao.api.ware.feign.WareSkuFeignService;
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.bean.BeanUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
+import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.product.constant.ProductConstant;
 import com.qinweizhao.product.entity.*;
 import com.qinweizhao.product.entity.vo.PmsSpuSaveVO;
@@ -15,6 +19,7 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -55,6 +60,9 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
 
     @Resource
     private IPmsCategoryService pmsCategoryService;
+
+    @Resource
+    private WareSkuFeignService wareSkuFeignService;
 
     /**
      * 查询spu信息
@@ -258,14 +266,14 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
 
         PmsSpuInfo spuInfo = new PmsSpuInfo();
 
-        if (ProductConstant.StatusEnum.SPU_DOWN.getCode().equals(status)) {
-            // 上架
-            this.productUp(spuId);
-            spuInfo.setStatus(ProductConstant.StatusEnum.SPU_UP.getCode());
-        } else {
+        if (ProductConstant.StatusEnum.SPU_UP.getCode().equals(status)) {
             // 下架
             this.productDown(spuId);
             spuInfo.setStatus(ProductConstant.StatusEnum.SPU_DOWN.getCode());
+        } else {
+            // 上架
+            this.productUp(spuId);
+            spuInfo.setStatus(ProductConstant.StatusEnum.SPU_UP.getCode());
         }
 
         return pmsSpuInfoMapper.updatePmsSpuInfo(spuInfo);
@@ -281,10 +289,10 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
         // 1、查出当前spu对应的所有sku信息，品牌的名字
         List<PmsSkuInfo> pmsSkuInfos = pmsSkuInfoService.listBySpuId(spuId);
 
+
         // 2.封装每个sku信息
 
-        // 查询所有spu属性
-
+        // 封装可检索属性
         List<PmsSpuAttrValue> pmsSpuAttrValues = pmsSpuAttrValueService.listSearchAttrValueBySpuId(spuId, ProductConstant.SearchEnum.Yes.getCode());
         List<SkuEsModel.Attr> esAttrs = pmsSpuAttrValues.stream()
                 .map(item -> {
@@ -294,6 +302,13 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
                     esAttr.setAttrValue(item.getValue());
                     return esAttr;
                 }).collect(Collectors.toList());
+
+        // 查询是否有库存
+        List<Long> skuIds = pmsSkuInfos.stream().map(PmsSkuInfo::getSkuId).collect(Collectors.toList());
+
+        R<List<SkuHasStockDTO>> listR = wareSkuFeignService.listHasStockBySkuIds(skuIds);
+        List<SkuHasStockDTO> data = listR.getData();
+        Map<Long, Boolean> hasStockMap = data.stream().collect(Collectors.toMap(SkuHasStockDTO::getSkuId, SkuHasStockDTO::getHasStock));
 
 
         for (PmsSkuInfo sku : pmsSkuInfos) {
@@ -305,7 +320,9 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
             skuEsModel.setSkuImg(sku.getDefaultImg());
             skuEsModel.setSaleCount(sku.getSaleCount());
             // 是否有库存
-            skuEsModel.setHasStock(false);
+
+            skuEsModel.setHasStock(hasStockMap.get(sku.getSkuId()));
+
             // 热度评分
             skuEsModel.setHotScore(0L);
 

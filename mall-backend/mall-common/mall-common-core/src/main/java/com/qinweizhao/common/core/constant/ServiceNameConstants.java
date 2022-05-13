@@ -20,4 +20,9 @@ public class ServiceNameConstants {
      * 文件服务的serviceid
      */
     public static final String FILE_SERVICE = "mall-file";
+
+    /**
+     * 仓库服务的serviceid
+     */
+    public static final String WARE_SERVICE = "mall-ware";
 }

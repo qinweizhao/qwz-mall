@@ -57,5 +57,14 @@ public interface WmsWareSkuMapper {
      * @param ids 需要删除的数据主键集合
      * @return 结果
      */
-    public int deleteWmsWareSkuByIds(Long[] ids);
+    int deleteWmsWareSkuByIds(Long[] ids);
+
+    /**
+     * 查询库存
+     *
+     * @param skuId skuId
+     * @return Long
+     */
+    Long selectSkuStock(Long skuId);
+
 }

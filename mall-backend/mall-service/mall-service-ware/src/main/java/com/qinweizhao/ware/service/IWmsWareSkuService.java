@@ -1,8 +1,11 @@
 package com.qinweizhao.ware.service;
 
+import com.qinweizhao.api.ware.dto.SkuHasStockDTO;
+import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.ware.domain.WmsWareSku;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 商品库存Service接口
@@ -58,4 +61,11 @@ public interface IWmsWareSkuService {
      * @return 结果
      */
     int deleteWmsWareSkuById(Long id);
+
+    /**
+     * 查询是否有库存
+     * @param skuIds skuIds
+     * @return List
+     */
+    List<SkuHasStockDTO> listHasStockBySkuIds(List<Long> skuIds);
 }

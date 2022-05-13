@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询商品库存列表
 export function pageSku(query) {
   return request({
-    url: '/ware/sku/page',
+    url: '/ware/ware-sku/page',
     method: 'get',
     params: query
   })
@@ -12,7 +12,7 @@ export function pageSku(query) {
 // 查询商品库存详细
 export function getSku(id) {
   return request({
-    url: '/ware/sku/' + id,
+    url: '/ware/ware-sku/' + id,
     method: 'get'
   })
 }
@@ -20,7 +20,7 @@ export function getSku(id) {
 // 新增商品库存
 export function addSku(data) {
   return request({
-    url: '/ware/sku',
+    url: '/ware/ware-sku',
     method: 'post',
     data: data
   })
@@ -29,7 +29,7 @@ export function addSku(data) {
 // 修改商品库存
 export function updateSku(data) {
   return request({
-    url: '/ware/sku',
+    url: '/ware/ware-sku',
     method: 'put',
     data: data
   })
@@ -38,7 +38,7 @@ export function updateSku(data) {
 // 删除商品库存
 export function delSku(id) {
   return request({
-    url: '/ware/sku/' + id,
+    url: '/ware/ware-sku/' + id,
     method: 'delete'
   })
 }

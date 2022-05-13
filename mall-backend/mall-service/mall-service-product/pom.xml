@@ -71,6 +71,12 @@
             <artifactId>qwz-component-starter-log</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.qinweizhao</groupId>
+            <artifactId>mall-api-ware</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>

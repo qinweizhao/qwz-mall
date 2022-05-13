@@ -1,5 +1,6 @@
 package com.qinweizhao.ware.service.impl;
 
+import com.qinweizhao.api.ware.dto.SkuHasStockDTO;
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.ware.domain.WmsWareSku;
 import com.qinweizhao.ware.mapper.WmsWareSkuMapper;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * 商品库存Service业务层处理
@@ -86,5 +89,20 @@ public class WmsWareSkuServiceImpl implements IWmsWareSkuService {
     @Override
     public int deleteWmsWareSkuById(Long id) {
         return wmsWareSkuMapper.deleteWmsWareSkuById(id);
+    }
+
+    @Override
+    public List<SkuHasStockDTO> listHasStockBySkuIds(List<Long> skuIds) {
+        return skuIds.stream().map(skuId -> {
+            SkuHasStockDTO hasStockDTO = new SkuHasStockDTO();
+
+            //查询当前sku的总库存量
+
+            Long count = wmsWareSkuMapper.selectSkuStock(skuId);
+
+            hasStockDTO.setSkuId(skuId);
+            hasStockDTO.setHasStock(count != null && count > 0);
+            return hasStockDTO;
+        }).collect(Collectors.toList());
     }
 }

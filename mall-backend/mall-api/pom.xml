@@ -11,6 +11,7 @@
     <modules>
         <module>mall-api-file</module>
         <module>mall-api-system</module>
+        <module>mall-api-ware</module>
     </modules>
 
     <artifactId>mall-api</artifactId>

@@ -85,7 +85,7 @@
             size="mini"
             type="text"
             icon="el-icon-edit"
-            @click="handleDelete(scope.row)"
+            @click="handleUpdateStatus(scope.row)"
             v-hasPermi="['product:info:up']"
           >上架</el-button>
           <el-button
@@ -146,7 +146,7 @@
 </template>
 
 <script>
-import {addInfo, delInfo, getInfo, pageInfo, updateInfo} from "@/api/product/spu";
+import { addInfo, delInfo, getInfo, pageInfo, updateInfo, updateSpuStatus } from '@/api/product/spu'
 import CategoryCascade from '../common/CategoryCascade'
 export default {
   name: "SpuInfo",
@@ -286,6 +286,13 @@ export default {
       }).then(() => {
         this.getList();
         this.$modal.msgSuccess("删除成功");
+      }).catch(() => {
+      });
+    },
+    handleUpdateStatus(row){
+      updateSpuStatus(row.spuId).then(() => {
+        this.getList();
+        this.$modal.msgSuccess("修改成功");
       }).catch(() => {
       });
     }

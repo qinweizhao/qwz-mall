@@ -42,3 +42,10 @@ export function delInfo(spuId) {
     method: 'delete'
   })
 }
+// 修改spu状态
+export function updateSpuStatus(spuId) {
+  return request({
+    url: '/product/spu/info/status/'+spuId,
+    method: 'put'
+  })
+}
