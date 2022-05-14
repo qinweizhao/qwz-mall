@@ -10,7 +10,7 @@ import java.util.List;
  * @author weizhao
  */
 @Data
-public class PmsAttrGroupWithPmsAttrsVO {
+public class AttrGroupWithPmsAttrsVO {
 
     /**
      * 分组id

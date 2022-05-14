@@ -7,7 +7,7 @@ import lombok.Data;
  * @since 2022/4/25
  */
 @Data
-public class PmsAttrVO {
+public class AttrVO {
     /**
      * 属性id
      */

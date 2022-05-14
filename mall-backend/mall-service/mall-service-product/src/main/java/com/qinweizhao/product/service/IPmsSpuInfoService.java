@@ -1,7 +1,7 @@
 package com.qinweizhao.product.service;
 
 import com.qinweizhao.product.model.entity.PmsSpuInfo;
-import com.qinweizhao.product.model.vo.PmsSpuSaveVO;
+import com.qinweizhao.product.model.vo.SpuSaveVO;
 
 import java.util.List;
 
@@ -64,10 +64,10 @@ public interface IPmsSpuInfoService {
     /**
      * 发布商品
      *
-     * @param pmsSpuSaveVO pmsSpuSaveVO
+     * @param spuSaveVO pmsSpuSaveVO
      * @return boolean
      */
-    boolean saveSpu(PmsSpuSaveVO pmsSpuSaveVO);
+    boolean saveSpu(SpuSaveVO spuSaveVO);
 
 
     /**

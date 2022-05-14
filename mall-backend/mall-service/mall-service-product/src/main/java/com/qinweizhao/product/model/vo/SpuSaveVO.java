@@ -9,7 +9,7 @@ import java.util.List;
  * @author qinweizhao
  */
 @Data
-public class PmsSpuSaveVO {
+public class SpuSaveVO {
 
     /**
      * 商品名称

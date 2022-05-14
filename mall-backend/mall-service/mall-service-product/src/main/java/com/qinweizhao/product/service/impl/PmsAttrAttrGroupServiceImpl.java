@@ -7,7 +7,7 @@ import com.qinweizhao.product.model.constant.ProductConstant;
 import com.qinweizhao.product.model.entity.PmsAttr;
 import com.qinweizhao.product.model.entity.PmsAttrAttrGroup;
 import com.qinweizhao.product.model.entity.PmsAttrGroup;
-import com.qinweizhao.product.model.vo.PmsAttrAttrGroupSaveBatchVO;
+import com.qinweizhao.product.model.vo.AttrAttrGroupSaveBatchVO;
 import com.qinweizhao.product.mapper.PmsAttrAttrGroupMapper;
 import com.qinweizhao.product.mapper.PmsAttrGroupMapper;
 import com.qinweizhao.product.mapper.PmsAttrMapper;
@@ -125,7 +125,7 @@ public class PmsAttrAttrGroupServiceImpl implements IPmsAttrAttrGroupService {
 
 
     @Override
-    public int insertPmsAttrAttrGroups(PmsAttrAttrGroupSaveBatchVO pmsAttrAttrGroupSaveBatch) {
+    public int insertPmsAttrAttrGroups(AttrAttrGroupSaveBatchVO pmsAttrAttrGroupSaveBatch) {
         String ids = pmsAttrAttrGroupSaveBatch.getAttrIds();
         String[] attrIds = ids.split(",");
         List<PmsAttrAttrGroup> list = Arrays.stream(attrIds).map(item -> {

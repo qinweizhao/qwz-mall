@@ -8,7 +8,7 @@ import com.qinweizhao.component.modle.result.PageResult;
 import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.product.model.entity.PmsAttr;
 import com.qinweizhao.product.model.entity.PmsAttrAttrGroup;
-import com.qinweizhao.product.model.vo.PmsAttrAttrGroupSaveBatchVO;
+import com.qinweizhao.product.model.vo.AttrAttrGroupSaveBatchVO;
 import com.qinweizhao.product.service.IPmsAttrAttrGroupService;
 import com.qinweizhao.product.service.IPmsAttrService;
 import org.springframework.web.bind.annotation.*;
@@ -97,7 +97,7 @@ public class PmsAttrAttrGroupController extends BaseController {
     @RequiresPermissions("product:group:edit")
     @Log(title = "属性&属性分组关联", businessType = BusinessType.GRANT)
     @PostMapping
-    public R<Void> selectAuthUserAll(@RequestBody PmsAttrAttrGroupSaveBatchVO pmsAttrAttrGroupSaveBatchVO) {
-        return R.condition(pmsAttrAttrGroupService.insertPmsAttrAttrGroups(pmsAttrAttrGroupSaveBatchVO));
+    public R<Void> selectAuthUserAll(@RequestBody AttrAttrGroupSaveBatchVO attrAttrGroupSaveBatchVO) {
+        return R.condition(pmsAttrAttrGroupService.insertPmsAttrAttrGroups(attrAttrGroupSaveBatchVO));
     }
 }

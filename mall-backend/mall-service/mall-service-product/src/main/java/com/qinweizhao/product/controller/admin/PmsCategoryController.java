@@ -6,13 +6,15 @@ import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.modle.result.PageResult;
 import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.product.convert.CategoryConvert;
+import com.qinweizhao.product.model.dto.CategoryTreeDTO;
 import com.qinweizhao.product.model.entity.PmsCategory;
+import com.qinweizhao.product.model.vo.CategoryTreeRespVO;
 import com.qinweizhao.product.service.IPmsCategoryService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 商品三级分类 Controller
@@ -43,9 +45,10 @@ public class PmsCategoryController extends BaseController {
      * 树
      */
     @GetMapping("/tree")
-    public R<List<Map<String, Object>>> tree(PmsCategory pmsCategory) {
-        List<PmsCategory> list = pmsCategoryService.list(pmsCategory);
-        return R.success(pmsCategoryService.buildCategoryTree(list));
+    public R<List<CategoryTreeRespVO>> tree() {
+        List<PmsCategory> list = pmsCategoryService.list(new PmsCategory());
+        List<CategoryTreeDTO> categoryTreeDTOList = pmsCategoryService.buildCategoryTree(list);
+        return R.success(CategoryConvert.INSTANCE.convertToVO(categoryTreeDTOList));
     }
 
 

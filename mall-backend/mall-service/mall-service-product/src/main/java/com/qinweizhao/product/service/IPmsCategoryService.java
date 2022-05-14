@@ -1,9 +1,9 @@
 package com.qinweizhao.product.service;
 
+import com.qinweizhao.product.model.dto.CategoryTreeDTO;
 import com.qinweizhao.product.model.entity.PmsCategory;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 商品三级分类Service接口
@@ -66,7 +66,7 @@ public interface IPmsCategoryService {
      * @param list list
      * @return List<PmsCategory>
      */
-    List<Map<String, Object>> buildCategoryTree(List<PmsCategory> list);
+    List<CategoryTreeDTO> buildCategoryTree(List<PmsCategory> list);
 
 
 }

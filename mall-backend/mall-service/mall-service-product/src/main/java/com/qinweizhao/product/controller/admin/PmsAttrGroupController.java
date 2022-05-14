@@ -9,7 +9,7 @@ import com.qinweizhao.component.modle.result.PageResult;
 import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.product.model.entity.PmsAttrGroup;
 import com.qinweizhao.product.model.vo.AttrGroupRespVO;
-import com.qinweizhao.product.model.vo.PmsAttrGroupWithPmsAttrsVO;
+import com.qinweizhao.product.model.vo.AttrGroupWithPmsAttrsVO;
 import com.qinweizhao.product.service.IPmsAttrGroupService;
 import org.springframework.web.bind.annotation.*;
 
@@ -93,7 +93,7 @@ public class PmsAttrGroupController extends BaseController {
      */
     @RequiresPermissions("product:group:query")
     @GetMapping(value = "/{categoryId}/attr")
-    public R<List<PmsAttrGroupWithPmsAttrsVO>> getAttrGroupWithAttrs(@PathVariable("categoryId") Long categoryId) {
+    public R<List<AttrGroupWithPmsAttrsVO>> getAttrGroupWithAttrs(@PathVariable("categoryId") Long categoryId) {
         return R.success(pmsAttrGroupService.getPmsAttrGroupWithPmsAttrsByCatelogId(categoryId));
     }
 

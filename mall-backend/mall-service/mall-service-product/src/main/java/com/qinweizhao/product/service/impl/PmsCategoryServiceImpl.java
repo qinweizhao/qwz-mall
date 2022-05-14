@@ -2,16 +2,15 @@ package com.qinweizhao.product.service.impl;
 
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
-import com.qinweizhao.product.model.entity.PmsCategory;
+import com.qinweizhao.product.convert.CategoryConvert;
 import com.qinweizhao.product.mapper.PmsCategoryMapper;
+import com.qinweizhao.product.model.dto.CategoryTreeDTO;
+import com.qinweizhao.product.model.entity.PmsCategory;
 import com.qinweizhao.product.service.IPmsCategoryService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -22,6 +21,8 @@ import java.util.stream.Collectors;
  */
 @Service
 public class PmsCategoryServiceImpl implements IPmsCategoryService {
+
+    private static final Long LONG_ZERO = 0L;
 
     @Resource
     private PmsCategoryMapper pmsCategoryMapper;
@@ -131,26 +132,9 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
      * @return List
      */
     @Override
-    public List<Map<String, Object>> buildCategoryTree(List<PmsCategory> list) {
-        List<PmsCategory> returnList = buildTree(list);
-        return returnList.stream().map(item -> {
-            Map<String, Object> map = new HashMap<>(3);
-            map.put("id", item.getCategoryId());
-            map.put("label", item.getName());
-            map.put("children", item.getChildren().stream().map(cItem -> {
-                Map<String, Object> cMap = new HashMap<>(3);
-                cMap.put("id", cItem.getCategoryId());
-                cMap.put("label", cItem.getName());
-                cMap.put("children", cItem.getChildren().stream().map(ccItem -> {
-                    Map<String, Object> ccMap = new HashMap<>(3);
-                    ccMap.put("id", ccItem.getCategoryId());
-                    ccMap.put("label", ccItem.getName());
-                    return ccMap;
-                }).collect(Collectors.toList()));
-                return cMap;
-            }).collect(Collectors.toList()));
-            return map;
-        }).collect(Collectors.toList());
+    public List<CategoryTreeDTO> buildCategoryTree(List<PmsCategory> list) {
+        List<CategoryTreeDTO> categoryTreeDTOList = CategoryConvert.INSTANCE.convertToDTO(list);
+        return buildTree(categoryTreeDTOList);
     }
 
     /**
@@ -159,57 +143,28 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
      * @param list list
      * @return List
      */
-    private List<PmsCategory> buildTree(List<PmsCategory> list) {
-        List<PmsCategory> returnList = new ArrayList<>();
-        List<Long> tempList = new ArrayList<>();
-        for (PmsCategory category : list) {
-            tempList.add(category.getCategoryId());
-        }
-        for (PmsCategory category : list) {
-            // 如果是顶级节点, 遍历该父节点的所有子节点
-            if (!tempList.contains(category.getParentId())) {
-                recursionFn(list, category);
-                returnList.add(category);
-            }
-        }
-        if (returnList.isEmpty()) {
-            returnList = list;
-        }
-        return returnList;
+    private List<CategoryTreeDTO> buildTree(List<CategoryTreeDTO> list) {
+        return list.stream().filter(item ->
+                LONG_ZERO.equals(item.getParentId())
+        ).peek(item -> item.setChildren(getCategoryChildren(item, list))).collect(Collectors.toList());
     }
 
     /**
-     * 递归列表
+     * 获取子分类
+     *
+     * @param category   category
+     * @param categories categories
+     * @return List
      */
-    private void recursionFn(List<PmsCategory> list, PmsCategory category) {
-        // 得到子节点列表
-        List<PmsCategory> childList = getChildList(list, category);
-        category.setChildren(childList);
-        for (PmsCategory tChild : childList) {
-            if (hasChild(list, tChild)) {
-                recursionFn(list, tChild);
-            }
-        }
+    private List<CategoryTreeDTO> getCategoryChildren(CategoryTreeDTO category, List<CategoryTreeDTO> categories) {
+        return categories.stream()
+                .filter(
+                        i ->
+                                category.getCategoryId().equals(i.getParentId())
+                ).peek(item ->
+                        item.setChildren(getCategoryChildren(item, categories)))
+                .collect(Collectors.toList());
     }
 
-    /**
-     * 得到子节点列表
-     */
-    private List<PmsCategory> getChildList(List<PmsCategory> list, PmsCategory t) {
-        List<PmsCategory> tList = new ArrayList<>();
-        for (PmsCategory n : list) {
-            if (StringUtils.isNotNull(n.getParentId()) && n.getParentId().longValue() == t.getCategoryId().longValue()) {
-                tList.add(n);
-            }
-        }
-        return tList;
-    }
-
-    /**
-     * 判断是否有子节点
-     */
-    private boolean hasChild(List<PmsCategory> list, PmsCategory t) {
-        return getChildList(list, t).size() > 0;
-    }
 
 }

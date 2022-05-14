@@ -64,9 +64,4 @@ public class PmsCategory extends BaseEntity {
      */
     private Long count;
 
-    /**
-     * 数据库中不存在
-     */
-    private List<PmsCategory> children = new ArrayList<>();
-
 }

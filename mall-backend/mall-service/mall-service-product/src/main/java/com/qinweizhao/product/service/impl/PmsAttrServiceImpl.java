@@ -4,7 +4,7 @@ import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.bean.BeanUtils;
 import com.qinweizhao.product.model.entity.PmsAttr;
 import com.qinweizhao.product.model.entity.PmsAttrAttrGroup;
-import com.qinweizhao.product.model.vo.PmsAttrVO;
+import com.qinweizhao.product.model.vo.AttrVO;
 import com.qinweizhao.product.mapper.PmsAttrAttrGroupMapper;
 import com.qinweizhao.product.mapper.PmsAttrMapper;
 import com.qinweizhao.product.service.IPmsAttrService;
@@ -60,7 +60,7 @@ public class PmsAttrServiceImpl implements IPmsAttrService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int save(PmsAttrVO pmsAttr) {
+    public int save(AttrVO pmsAttr) {
         PmsAttr attr = new PmsAttr();
         attr.setCreateTime(DateUtils.getNowDate());
         BeanUtils.copyProperties(pmsAttr, attr);
@@ -83,7 +83,7 @@ public class PmsAttrServiceImpl implements IPmsAttrService {
      * @return 结果
      */
     @Override
-    public int updateById(PmsAttrVO pmsAttr) {
+    public int updateById(AttrVO pmsAttr) {
         PmsAttr attr = new PmsAttr();
         attr.setUpdateTime(DateUtils.getNowDate());
         BeanUtils.copyProperties(pmsAttr, attr);

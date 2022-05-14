@@ -4,7 +4,7 @@ import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.product.model.entity.PmsAttr;
 import com.qinweizhao.product.model.entity.PmsAttrGroup;
-import com.qinweizhao.product.model.vo.PmsAttrGroupWithPmsAttrsVO;
+import com.qinweizhao.product.model.vo.AttrGroupWithPmsAttrsVO;
 import com.qinweizhao.product.mapper.PmsAttrGroupMapper;
 import com.qinweizhao.product.service.IPmsAttrGroupService;
 import com.qinweizhao.product.service.IPmsAttrService;
@@ -100,11 +100,11 @@ public class PmsAttrGroupServiceImpl implements IPmsAttrGroupService {
     }
 
     @Override
-    public List<PmsAttrGroupWithPmsAttrsVO> getPmsAttrGroupWithPmsAttrsByCatelogId(Long categoryId) {
+    public List<AttrGroupWithPmsAttrsVO> getPmsAttrGroupWithPmsAttrsByCatelogId(Long categoryId) {
         List<PmsAttrGroup> list = pmsAttrGroupMapper.selectPmsAttrGroupByCategoryId(categoryId);
         //2、查询所有属性
-        List<PmsAttrGroupWithPmsAttrsVO> collect = list.stream().map(group -> {
-            PmsAttrGroupWithPmsAttrsVO attrsVo = new PmsAttrGroupWithPmsAttrsVO();
+        List<AttrGroupWithPmsAttrsVO> collect = list.stream().map(group -> {
+            AttrGroupWithPmsAttrsVO attrsVo = new AttrGroupWithPmsAttrsVO();
             BeanUtils.copyProperties(group, attrsVo);
             List<PmsAttr> attrs = pmsAttrService.getByAttrGroupId(attrsVo.getAttrGroupId());
             attrsVo.setAttrs(attrs);

@@ -1,7 +1,7 @@
 package com.qinweizhao.product.service;
 
 import com.qinweizhao.product.model.entity.PmsAttrGroup;
-import com.qinweizhao.product.model.vo.PmsAttrGroupWithPmsAttrsVO;
+import com.qinweizhao.product.model.vo.AttrGroupWithPmsAttrsVO;
 
 import java.util.List;
 
@@ -67,5 +67,5 @@ public interface IPmsAttrGroupService {
      * @param categoryId categoryId
      * @return 结果
      */
-    List<PmsAttrGroupWithPmsAttrsVO> getPmsAttrGroupWithPmsAttrsByCatelogId(Long categoryId);
+    List<AttrGroupWithPmsAttrsVO> getPmsAttrGroupWithPmsAttrsByCatelogId(Long categoryId);
 }

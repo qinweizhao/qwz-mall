@@ -11,7 +11,7 @@ import com.qinweizhao.product.model.constant.ProductConstant;
 import com.qinweizhao.product.model.entity.PmsAttr;
 import com.qinweizhao.product.model.entity.PmsAttrAttrGroup;
 import com.qinweizhao.product.model.vo.AttrRespVO;
-import com.qinweizhao.product.model.vo.PmsAttrVO;
+import com.qinweizhao.product.model.vo.AttrVO;
 import com.qinweizhao.product.service.IPmsAttrAttrGroupService;
 import com.qinweizhao.product.service.IPmsAttrService;
 import org.springframework.web.bind.annotation.*;
@@ -74,7 +74,7 @@ public class PmsAttrController extends BaseController {
     @RequiresPermissions("product:attr:add")
     @Log(title = "商品属性", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody PmsAttrVO pmsAttr) {
+    public R<Void> add(@RequestBody AttrVO pmsAttr) {
         return R.condition(pmsAttrService.save(pmsAttr));
     }
 
@@ -84,7 +84,7 @@ public class PmsAttrController extends BaseController {
     @RequiresPermissions("product:attr:edit")
     @Log(title = "商品属性", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody PmsAttrVO pmsAttr) {
+    public R<Void> edit(@RequestBody AttrVO pmsAttr) {
         return R.condition(pmsAttrService.updateById(pmsAttr));
     }
 

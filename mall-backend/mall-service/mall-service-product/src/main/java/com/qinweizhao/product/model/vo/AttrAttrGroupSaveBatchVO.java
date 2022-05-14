@@ -12,7 +12,7 @@ import java.util.Date;
  * @date 2022-04-11
  */
 @Data
-public class PmsAttrAttrGroupSaveBatchVO {
+public class AttrAttrGroupSaveBatchVO {
     private static final long serialVersionUID = 1L;
 
     /**

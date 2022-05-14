@@ -7,8 +7,7 @@ import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.modle.result.PageResult;
 import com.qinweizhao.component.modle.result.R;
 import com.qinweizhao.product.model.entity.PmsSpuInfo;
-import com.qinweizhao.product.model.vo.PmsSpuSaveVO;
-import com.qinweizhao.product.model.vo.PmsSpuSaveVO;
+import com.qinweizhao.product.model.vo.SpuSaveVO;
 import com.qinweizhao.product.service.IPmsSpuInfoService;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,8 +54,8 @@ public class PmsSpuInfoController extends BaseController {
     @RequiresPermissions("product:info:add")
     @Log(title = "spu信息", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody PmsSpuSaveVO pmsSpuSaveVO) {
-        return R.condition(pmsSpuInfoService.saveSpu(pmsSpuSaveVO));
+    public R<Void> add(@RequestBody SpuSaveVO spuSaveVO) {
+        return R.condition(pmsSpuInfoService.saveSpu(spuSaveVO));
     }
 
     /**
