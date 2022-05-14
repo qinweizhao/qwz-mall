@@ -81,3 +81,4 @@ security:
       - /auth/register
       - /*/v2/api-docs
       - /csrf
+      - /*/ua/**

@@ -1,4 +1,4 @@
-package com.qinweizhao.product.controller;
+package com.qinweizhao.product.controller.admin;
 
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;

@@ -1,11 +1,17 @@
 module.exports = {
   productionSourceMap:false,
-  // 关闭ESLINT校验工具
-  lintOnSave: false,
+  // ESLINT校验工具
+  lintOnSave: true,
   devServer:{
+    host: '0.0.0.0',
+    port: 8888,
+    open: true,
     proxy:{
       '/api':{
-        target:'http://gmall-h5-api.atguigu.cn',
+        target:'http://localhost:8080',
+         pathRewrite: {
+          ['^/api']: ''
+        }
       }
     }
   }
