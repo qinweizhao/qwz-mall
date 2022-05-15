@@ -1,4 +1,4 @@
-<template xmlns="">
+<template>
   <div class="type-nav">
     <div class="container">
       <!--事件的委派   -->

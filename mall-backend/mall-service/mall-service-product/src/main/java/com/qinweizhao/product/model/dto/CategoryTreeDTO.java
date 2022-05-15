@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Data
 @Accessors(chain = true)
-public class CategoryTreeDTO {
+public class CategoryTreeDTO {  
 
     /**
      * id

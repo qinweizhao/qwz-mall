@@ -40,18 +40,6 @@ public class PmsCategoryController extends BaseController {
         return getPageResult(list);
     }
 
-
-    /**
-     * 树
-     */
-    @GetMapping("/tree")
-    public R<List<CategoryTreeRespVO>> tree() {
-        List<PmsCategory> list = pmsCategoryService.list(new PmsCategory());
-        List<CategoryTreeDTO> categoryTreeDTOList = pmsCategoryService.buildCategoryTree(list);
-        return R.success(CategoryConvert.INSTANCE.convertToVO(categoryTreeDTOList));
-    }
-
-
     /**
      * 详情
      */
