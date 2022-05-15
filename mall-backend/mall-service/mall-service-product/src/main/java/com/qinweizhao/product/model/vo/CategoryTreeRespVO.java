@@ -15,12 +15,12 @@ public class CategoryTreeRespVO {
     /**
      * id
      */
-    private Long id;
+    private Long categoryId;
 
     /**
      * label
      */
-    private String label;
+    private String name;
 
 
     /**

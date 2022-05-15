@@ -5,7 +5,7 @@ export default {
     //三级联动
     async categoryList({commit}){
       let result = await reqCategoryList();
-      if (result.code === 200){
+      if (result.code === "200"){
         commit('CATEGORYLIST',result.data)
       }
     },

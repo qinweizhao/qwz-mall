@@ -9,14 +9,6 @@ export function pageCategory(query) {
   })
 }
 
-// 下拉树结构
-export function treeCategory() {
-  return request({
-    url: '/product/category/tree',
-    method: 'get'
-  })
-}
-
 // 详情
 export function getCategory(menuId) {
   return request({

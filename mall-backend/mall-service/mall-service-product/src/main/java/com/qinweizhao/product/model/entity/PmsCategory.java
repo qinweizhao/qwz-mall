@@ -3,6 +3,7 @@ package com.qinweizhao.product.model.entity;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
+@Accessors(chain = true)
 public class PmsCategory extends BaseEntity {
     private static final long serialVersionUID = 1L;
 

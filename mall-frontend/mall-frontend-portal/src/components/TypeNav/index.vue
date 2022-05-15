@@ -11,19 +11,19 @@
               <div class="item" v-for="(c1, index) in categoryList" :class="{ cur: currentIndex === index }"
                 :key="c1.categoryId">
                 <h3 @mouseenter="changeIndex(index)">
-                  <a :data-categoryName="c1.categoryName" :data-category1Id="c1.categoryId">{{ c1.categoryName }}</a>
+                  <a :data-name="c1.name" :data-category1Id="c1.categoryId">{{ c1.name }}</a>
                 </h3>
                 <!--              二三级分类-->
                 <div class="item-list clearfix" :style="{ display: currentIndex === index ? 'block' : 'none' }">
-                  <div class="subitem" v-for="(c2, index) in c1.categoryChild" :key="c2.categoryId">
+                  <div class="subitem" v-for="c2 in c1.children" :key="c2.categoryId">
                     <dl class="fore">
                       <dt>
-                        <a :data-categoryName="c2.categoryName" :data-category2Id="c2.categoryId">{{ c2.categoryName
+                        <a :data-name="c2.name" :data-category2Id="c2.categoryId">{{ c2.name
                         }}</a>
                       </dt>
                       <dd>
-                        <em v-for="(c3, index) in c2.categoryChild" :key="c3.categoryId">
-                          <a :data-categoryName="c3.categoryName" :data-category3Id="c3.categoryId">{{ c3.categoryName
+                        <em v-for="c3 in c2.children" :key="c3.categoryId">
+                          <a :data-name="c3.name" :data-category3Id="c3.categoryId">{{ c3.name
                           }}</a>
                         </em>
                       </dd>
@@ -96,11 +96,11 @@ export default {
     goSearch() {
       //在众多子节点中选择a标签 通过自定义属性
       let dataset = event.target.dataset
-      let { categoryname, category1id, category2id, category3id } = dataset
+      let { name, category1id, category2id, category3id } = dataset
       //如果是a标签
-      if (categoryname) {
+      if (name) {
         let location = { name: 'search' }
-        let query = { categoryName: categoryname }
+        let query = { name: name }
 
         if (category1id) {                //一级目录
           query.category1id = category1id

@@ -20,7 +20,7 @@ import java.util.List;
  * @author qinweizhao
  * @since 2021-12-06
  */
-@Mapper
+@Mapper(componentModel = "spring")
 public interface CategoryConvert {
 
     CategoryConvert INSTANCE = Mappers.getMapper(CategoryConvert.class);
@@ -28,24 +28,17 @@ public interface CategoryConvert {
     /**
      * DO 转 DTO
      *
-     * @param pmsCategory pmsCategory
+     * @param pmsCategoryList pmsCategory
      * @return List
      */
-
-    @Mapping(source = "name" ,target = "categoryName")
-    List<CategoryTreeDTO> convertToDTO(List<PmsCategory> pmsCategory);
+    List<CategoryTreeDTO> convertToDTO(List<PmsCategory> pmsCategoryList);
 
     /**
-     * DO 转 DTO
+     * DTO 转 VO
      *
-     * @param categoryTreeDTO categoryTreeDTO
+     * @param categoryTreeDTOList categoryTreeDTOList
      * @return List
      */
-    @Mappings({
-            @Mapping(source = "categoryId" , target = "id"),
-            @Mapping(source = "categoryName" , target = "label")
-    })
-    List<CategoryTreeRespVO> convertToVO(List<CategoryTreeDTO> categoryTreeDTO);
-
+    List<CategoryTreeRespVO> convertToVO(List<CategoryTreeDTO> categoryTreeDTOList);
 
 }

@@ -30,8 +30,8 @@ public class IndexController {
      * 树
      */
     @GetMapping("/category/tree")
-    public R<List<CategoryTreeRespVO>> tree(PmsCategory pmsCategory) {
-        List<PmsCategory> list = pmsCategoryService.list(pmsCategory);
+    public R<List<CategoryTreeRespVO>> tree() {
+        List<PmsCategory> list = pmsCategoryService.list(new PmsCategory());
         List<CategoryTreeDTO> categoryTreeDTOList = pmsCategoryService.buildCategoryTree(list);
         return R.success(CategoryConvert.INSTANCE.convertToVO(categoryTreeDTOList));
     }

@@ -1,6 +1,7 @@
 package com.qinweizhao.product.model.dto;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
  * @since 2022/5/14
  */
 @Data
+@Accessors(chain = true)
 public class CategoryTreeDTO {
 
     /**
@@ -24,7 +26,7 @@ public class CategoryTreeDTO {
     /**
      * name
      */
-    private String categoryName;
+    private String name;
 
 
     /**
