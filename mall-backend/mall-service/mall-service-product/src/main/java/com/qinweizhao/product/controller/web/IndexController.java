@@ -31,8 +31,7 @@ public class IndexController {
      */
     @GetMapping("/category/tree")
     public R<List<CategoryTreeRespVO>> tree() {
-        List<PmsCategory> list = pmsCategoryService.list(new PmsCategory());
-        List<CategoryTreeDTO> categoryTreeDTOList = pmsCategoryService.buildCategoryTree(list);
+        List<CategoryTreeDTO> categoryTreeDTOList = pmsCategoryService.getCategoryTree();
         return R.success(CategoryConvert.INSTANCE.convertToVO(categoryTreeDTOList));
     }
 }

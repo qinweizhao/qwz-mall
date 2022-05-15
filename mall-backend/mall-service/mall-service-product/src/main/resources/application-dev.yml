@@ -17,6 +17,8 @@ spring:
   web:
     resources:
       static-locations: classpath:/static
+  cache:
+    type: redis
 
 # seata配置
 seata:

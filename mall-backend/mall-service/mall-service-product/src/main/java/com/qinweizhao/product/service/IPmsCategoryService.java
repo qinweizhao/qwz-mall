@@ -69,4 +69,11 @@ public interface IPmsCategoryService {
     List<CategoryTreeDTO> buildCategoryTree(List<PmsCategory> list);
 
 
+    /**
+     * 获取分类树
+     * @return List
+     */
+    List<CategoryTreeDTO> getCategoryTree();
+
+
 }

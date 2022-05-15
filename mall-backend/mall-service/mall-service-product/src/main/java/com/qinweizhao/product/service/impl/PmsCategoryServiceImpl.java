@@ -7,6 +7,8 @@ import com.qinweizhao.product.mapper.PmsCategoryMapper;
 import com.qinweizhao.product.model.dto.CategoryTreeDTO;
 import com.qinweizhao.product.model.entity.PmsCategory;
 import com.qinweizhao.product.service.IPmsCategoryService;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -69,6 +71,7 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
      * @param pmsCategory 商品三级分类
      * @return 结果
      */
+    @CacheEvict(value = "category",allEntries = true)
     @Override
     public int updateById(PmsCategory pmsCategory) {
         PmsCategory newParentCategory = pmsCategoryMapper.selectById(pmsCategory.getParentId());
@@ -125,6 +128,14 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
     }
 
 
+
+    @Cacheable(value = {"category"},key = "#root.method.name",sync = true)
+    @Override
+    public List<CategoryTreeDTO> getCategoryTree() {
+        List<PmsCategory> list = this.list(new PmsCategory());
+        return buildCategoryTree(list);
+    }
+
     /**
      * 构建分类树
      *
@@ -136,6 +147,7 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
         List<CategoryTreeDTO> categoryTreeDTOList = CategoryConvert.INSTANCE.convertToDTO(list);
         return buildTree(categoryTreeDTOList);
     }
+
 
     /**
      * 构建树
