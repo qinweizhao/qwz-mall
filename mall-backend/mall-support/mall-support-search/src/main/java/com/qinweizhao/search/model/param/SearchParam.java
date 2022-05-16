@@ -1,6 +1,8 @@
 package com.qinweizhao.search.model.param;
 
+import com.qinweizhao.component.modle.request.PageParam;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
@@ -8,8 +10,9 @@ import java.util.List;
  * @author qinweizhao
  * @since 2022/5/16
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class SearchParam {
+public class SearchParam extends PageParam {
 
     /**
      * 关键字
@@ -28,13 +31,14 @@ public class SearchParam {
     private List<Long> brandId;
 
     /**
+     * "1:asc"
      * 排序
      */
-    private String sorts;
+    private String sort;
 
     /**
-     * props: ["23:8G:运行内存"]
+     * attrs: ["23:8G:运行内存"]
      */
-    private List<String> props;
+    private List<String> attrs;
 
 }

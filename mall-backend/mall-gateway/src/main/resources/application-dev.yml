@@ -61,6 +61,13 @@ spring:
             - Path=/file/**
           filters:
             - StripPrefix=1
+        # 检索服务
+        - id: mall-search
+          uri: lb://mall-search
+          predicates:
+            - Path=/search/**
+          filters:
+            - StripPrefix=1
 
 # 安全配置
 security:

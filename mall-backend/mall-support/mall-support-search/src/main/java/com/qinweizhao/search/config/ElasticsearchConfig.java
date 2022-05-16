@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 public class ElasticsearchConfig {
 
     @Bean
-     ElasticsearchClient elasticsearchClient() {
+     public ElasticsearchClient elasticsearchClient() {
         // 创建低级客户端
         RestClient restClient = RestClient.builder(
                 new HttpHost("localhost", 9200)).build();
