@@ -33,6 +33,7 @@ public class PmsAttrController extends BaseController {
 
     @Resource
     private IPmsAttrService pmsAttrService;
+
     @Resource
     private IPmsAttrAttrGroupService pmsAttrAttrGroupService;
 

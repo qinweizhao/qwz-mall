@@ -120,7 +120,7 @@ public class SpuSaveVO {
         /**
          * 价格
          */
-        private String price;
+        private BigDecimal price;
 
         /**
          * 标题

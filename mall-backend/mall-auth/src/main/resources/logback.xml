@@ -62,7 +62,7 @@
     <!-- Spring日志级别控制  -->
     <logger name="org.springframework" level="warn"/>
 
-    <root level="debug">
+    <root level="info">
         <appender-ref ref="console"/>
     </root>
 
