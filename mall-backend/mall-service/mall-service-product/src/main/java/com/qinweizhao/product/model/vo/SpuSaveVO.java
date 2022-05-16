@@ -183,7 +183,7 @@ public class SpuSaveVO {
         @Data
         public static class SaleAttr {
 
-            private int attrId;
+            private Long attrId;
             private String name;
             private String value;
 

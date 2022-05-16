@@ -1,11 +1,13 @@
 package com.qinweizhao.api.ware.feign;
 
 import com.qinweizhao.api.ware.dto.SkuHasStockDTO;
+import com.qinweizhao.common.core.constant.SecurityConstants;
 import com.qinweizhao.common.core.constant.ServiceNameConstants;
 import com.qinweizhao.component.modle.result.R;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import java.util.List;
 import java.util.Map;
@@ -24,5 +26,5 @@ public interface WareSkuFeignService {
      * @return R
      */
     @PostMapping("/ware-sku/stock")
-    R<List<SkuHasStockDTO>> listHasStockBySkuIds(@RequestBody List<Long> skuIds);
+    R<List<SkuHasStockDTO>> listHasStockBySkuIds(@RequestBody List<Long> skuIds,@RequestHeader(SecurityConstants.FROM_SOURCE) String source);
 }

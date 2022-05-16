@@ -1,6 +1,6 @@
 # 本地文件上传
 file:
-  domain: http://127.0.0.1:9300
+  domain: http://127.0.0.1:9101
   path: /Users/weizhao/uploadPath
   prefix: /statics
 

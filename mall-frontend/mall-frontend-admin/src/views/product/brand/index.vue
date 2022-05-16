@@ -331,7 +331,8 @@ export default {
       this.getCateRelation();
     },
     getCateRelation() {
-      getRelation(this.relationForm.brandId).then(response => {
+      console.log(this.relationForm)
+      getRelation(this.relationForm).then(response => {
         this.relationTableData = response.data
         this.loading = false
       })

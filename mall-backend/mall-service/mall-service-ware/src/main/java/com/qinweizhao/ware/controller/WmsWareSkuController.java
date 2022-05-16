@@ -3,6 +3,7 @@ package com.qinweizhao.ware.controller;
 import com.qinweizhao.api.ware.dto.SkuHasStockDTO;
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.core.web.controller.BaseController;
+import com.qinweizhao.common.security.annotation.InnerAuth;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
@@ -45,7 +46,8 @@ public class WmsWareSkuController extends BaseController {
     /**
      * 查询商品库存列表
      */
-    @RequiresPermissions("product:sku:list")
+//    @RequiresPermissions("product:sku:list")
+    @InnerAuth
     @PostMapping("/stock")
     public R<List<SkuHasStockDTO>> stock(@RequestBody List<Long> skuIds) {
         List<SkuHasStockDTO> maps = wmsWareSkuService.listHasStockBySkuIds(skuIds);

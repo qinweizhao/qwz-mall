@@ -5,6 +5,7 @@ import com.qinweizhao.api.search.dto.EsSkuSaveDTO;
 import com.qinweizhao.api.search.feign.ElasticSaveFeignService;
 import com.qinweizhao.api.ware.dto.SkuHasStockDTO;
 import com.qinweizhao.api.ware.feign.WareSkuFeignService;
+import com.qinweizhao.common.core.constant.SecurityConstants;
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.bean.BeanUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
@@ -237,7 +238,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
                 skuImages.forEach(imageItem -> {
                     String imgUrl = imageItem.getImgUrl();
                     // 没有图片无需保存
-                    if (ObjectUtils.isEmpty(imgUrl)) {
+                    if (!ObjectUtils.isEmpty(imgUrl)) {
                         PmsSkuImage pmsSkuImage = new PmsSkuImage();
                         pmsSkuImage.setSkuId(skuId);
                         pmsSkuImage.setUrl(imgUrl);
@@ -252,6 +253,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
                     PmsSkuAttrValue pmsSkuAttrValue = new PmsSkuAttrValue();
                     BeanUtils.copyProperties(saleAttrItem, pmsSkuAttrValue);
                     pmsSkuAttrValue.setSkuId(skuId);
+                    pmsSkuAttrValue.setAttrId(saleAttrItem.getAttrId());
                     pmsSkuAttrValueService.save(pmsSkuAttrValue);
                 });
 
@@ -283,7 +285,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
             spuInfo.setStatus(ProductConstant.StatusEnum.SPU_UP.getCode());
         }
         pmsSpuInfo.setSpuId(spuId);
-        return pmsSpuInfoMapper.updatePmsSpuInfo(spuInfo);
+        return pmsSpuInfoMapper.updatePmsSpuInfo(pmsSpuInfo);
     }
 
 
@@ -313,7 +315,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
         // 查询是否有库存
         List<Long> skuIds = pmsSkuInfos.stream().map(PmsSkuInfo::getSkuId).collect(Collectors.toList());
 
-        R<List<SkuHasStockDTO>> listR = wareSkuFeignService.listHasStockBySkuIds(skuIds);
+        R<List<SkuHasStockDTO>> listR = wareSkuFeignService.listHasStockBySkuIds(skuIds,SecurityConstants.INNER);
         List<SkuHasStockDTO> data = listR.getData();
         Map<Long, Boolean> hasStockMap = data.stream().collect(Collectors.toMap(SkuHasStockDTO::getSkuId, SkuHasStockDTO::getHasStock));
 
