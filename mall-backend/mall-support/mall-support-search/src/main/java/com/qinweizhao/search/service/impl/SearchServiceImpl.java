@@ -1,12 +1,14 @@
 package com.qinweizhao.search.service.impl;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.elasticsearch._types.*;
+import co.elastic.clients.elasticsearch._types.FieldValue;
+import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.elasticsearch._types.query_dsl.BoolQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
+import com.alibaba.fastjson.JSON;
 import com.qinweizhao.api.search.dto.EsSkuSaveDTO;
 import com.qinweizhao.common.core.exception.ServiceException;
 import com.qinweizhao.common.core.utils.StringUtils;
@@ -39,7 +41,7 @@ public class SearchServiceImpl implements SearchService {
     private static final String BRAND_ID = "brandId";
     private static final String NESTED_PATH = "attrs";
     private static final String ATTRS_ATTR_ID = "attrs.attrId";
-    private static final String ATTRS_ATTR_VALUE = "attrs.value";
+    private static final String ATTRS_ATTR_VALUE = "attrs.attrValue";
 
 
     @Resource
@@ -47,11 +49,15 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public PageResult<SearchVO> search(SearchParam param) {
-        SearchRequest searchRequest = buildSearchRequest(param);
-        System.out.println("dsl" + searchRequest.toString());
+        SearchRequest searchRequest = this.buildSearchRequest(param);
         PageResult<SearchVO> result;
         try {
             SearchResponse<EsSkuSaveDTO> searchResponse = elasticsearchClient.search(searchRequest, EsSkuSaveDTO.class);
+            searchResponse.hits().hits().forEach(h -> {
+                assert h.source() != null;
+                System.out.println(h.source());
+            });
+
             System.out.println(searchResponse);
             //            result = buildSearchResult(searchResponse);
         } catch (Exception e) {
@@ -72,6 +78,8 @@ public class SearchServiceImpl implements SearchService {
 
         // query
         Query query = this.buildQuery(param);
+        String s1 = JSON.toJSONString(query._get());
+        System.out.println("dsl"+s1);
         builder.query(query);
 
 
@@ -84,15 +92,14 @@ public class SearchServiceImpl implements SearchService {
         String sort = param.getOrder();
         if (StringUtils.isNotEmpty(sort)) {
             String[] ss = sort.split("_");
-            String attr = ss[0];
+            String attrId = ss[0];
             String order = ss[1];
             {
-               // SortOptions sortOptions = buildSortOptions(sort);
-                builder.sort(s->
-                        s.field(f->
-                                f.field(attr).order(SortOrder.Asc.toString().equals(order) ? SortOrder.Asc : SortOrder.Desc)
-                                )
-                        );
+                builder.sort(s ->
+                        s.field(f ->
+                                f.field(attrId).order(SortOrder.Asc.toString().equals(order) ? SortOrder.Asc : SortOrder.Desc)
+                        )
+                );
             }
         }
 
@@ -121,23 +128,6 @@ public class SearchServiceImpl implements SearchService {
 
         // size
         builder.size(pageSize);
-    }
-
-
-    /**
-     * 构建排序
-     *
-     * @param sort sort
-     * @return SortOptions
-     */
-    private SortOptions buildSortOptions(String sort) {
-        String[] s = sort.split("_");
-        String attr = s[0];
-        String order = s[1];
-        ScoreSort.Builder builder2 = new ScoreSort.Builder();
-        builder2.order(SortOrder.Asc.toString().equals(order) ? SortOrder.Asc : SortOrder.Desc);
-        SortOptionsVariant sortOptionsVariant = builder2.build();
-        return new SortOptions(sortOptionsVariant);
     }
 
 
@@ -187,9 +177,7 @@ public class SearchServiceImpl implements SearchService {
         }
 
         // 属性
-        // ["23:8G:运行内存"]  id value name
-        // attrs=1_5寸:8寸&attrs=2_16G:8G
-        // 新规范  id_value1:value2
+        //   id_value1:value2
         List<String> attrs = param.getAttrs();
         if (!ObjectUtils.isEmpty(attrs)) {
             for (String attr : attrs) {
@@ -216,7 +204,7 @@ public class SearchServiceImpl implements SearchService {
                 );
                 boolBuilder.filter(f ->
                         f.nested(n ->
-                                n.query(new Query(nestedBuilder.build())).path(NESTED_PATH)
+                                n.path(NESTED_PATH).query(new Query(nestedBuilder.build()))
                         )
                 );
             }
