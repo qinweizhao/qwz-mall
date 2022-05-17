@@ -7,7 +7,6 @@ import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
-import co.elastic.clients.elasticsearch.core.search.HighlightField;
 import com.qinweizhao.api.search.dto.EsSkuSaveDTO;
 import com.qinweizhao.common.core.exception.ServiceException;
 import com.qinweizhao.common.core.utils.StringUtils;
@@ -49,13 +48,10 @@ public class SearchServiceImpl implements SearchService {
     @Override
     public PageResult<SearchVO> search(SearchParam param) {
         SearchRequest searchRequest = buildSearchRequest(param);
-        System.out.println("dsl"+searchRequest.toString());
+        System.out.println("dsl" + searchRequest.toString());
         PageResult<SearchVO> result;
         try {
             SearchResponse<EsSkuSaveDTO> searchResponse = elasticsearchClient.search(searchRequest, EsSkuSaveDTO.class);
-            long value = searchResponse.hits().total().value();
-
-            System.out.println(value);
             //            result = buildSearchResult(searchResponse);
         } catch (Exception e) {
             throw new ServiceException("检索失败");
@@ -71,24 +67,15 @@ public class SearchServiceImpl implements SearchService {
      */
     private SearchRequest buildSearchRequest(SearchParam param) {
         SearchRequest.Builder builder = new SearchRequest.Builder();
-        builder.index("mall_product");
+        builder.index(EsConstant.PRODUCT_INDEX);
 
         // query
         Query query = buildQuery(param);
         builder.query(query);
 
-        int pageNum = param.getPageNum();
-        int pageSize = param.getPageSize();
-        // from
-        builder.from((pageNum - 1) * pageSize);
 
-        // size
-        builder.size(pageSize);
-//
-//        // highlighter
-//        builder.highlight(h ->
-//                h.fields(TITLE, (HighlightField) null).preTags("<b style='color:red'>").postTags("</b>")
-//        );
+        // page
+        this.buildPage(param, builder);
 
 
         // sort
@@ -101,10 +88,31 @@ public class SearchServiceImpl implements SearchService {
             }
         }
 
+        // highlight
+        builder.highlight(h ->
+                h.fields(TITLE, i -> i.preTags("<font color='red'>").postTags("</font>"))
+        );
 
-        String s = builder.toString();
-        System.out.println("builder.build()"+s);
+
         return builder.build();
+    }
+
+
+    /**
+     * 构建分页
+     *
+     * @param param   param
+     * @param builder builder
+     */
+    private void buildPage(SearchParam param, SearchRequest.Builder builder) {
+        int pageNum = param.getPageNum();
+        int pageSize = param.getPageSize();
+
+        // from
+        builder.from((pageNum - 1) * pageSize);
+
+        // size
+        builder.size(pageSize);
     }
 
 
@@ -207,9 +215,6 @@ public class SearchServiceImpl implements SearchService {
             }
         }
 
-
-        String s = boolBuilder.toString();
-        System.out.println("Sssss----"+s);
         // Query
         return new Query(boolBuilder.build());
     }
