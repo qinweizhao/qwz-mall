@@ -17,6 +17,7 @@
         <module>mall-service-user</module>
         <module>mall-service-payment</module>
         <module>mall-service-product</module>
+        <module>mall-service-search</module>
         <module>mall-service-system</module>
         <module>mall-service-ware</module>
     </modules>

@@ -7,7 +7,7 @@
         <artifactId>mall-support</artifactId>
         <version>1.0.0</version>
     </parent>
-    <artifactId>mall-support-search</artifactId>
+    <artifactId>mall-service-search</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>mall-support-search</name>
     <description>检索服务</description>
@@ -64,12 +64,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.qinweizhao.component</groupId>
             <artifactId>qwz-component-model</artifactId>
             <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>
+
         <dependency>
             <groupId>com.qinweizhao</groupId>
             <artifactId>mall-api-search</artifactId>
