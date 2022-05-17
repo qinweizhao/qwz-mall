@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.qinweizhao</groupId>
-        <artifactId>mall-support</artifactId>
+        <artifactId>mall-service</artifactId>
         <version>1.0.0</version>
     </parent>
     <artifactId>mall-service-search</artifactId>
