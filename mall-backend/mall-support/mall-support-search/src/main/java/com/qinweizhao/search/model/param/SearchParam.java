@@ -31,10 +31,10 @@ public class SearchParam extends PageParam {
     private List<Long> brandId;
 
     /**
-     * "1:asc"
+     * categoryId_asc
      * 排序
      */
-    private String sort;
+    private String order;
 
     /**
      * attrs: ["23:8G:运行内存"]

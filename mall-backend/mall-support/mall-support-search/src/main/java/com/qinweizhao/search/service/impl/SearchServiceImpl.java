@@ -52,6 +52,7 @@ public class SearchServiceImpl implements SearchService {
         PageResult<SearchVO> result;
         try {
             SearchResponse<EsSkuSaveDTO> searchResponse = elasticsearchClient.search(searchRequest, EsSkuSaveDTO.class);
+            System.out.println(searchResponse);
             //            result = buildSearchResult(searchResponse);
         } catch (Exception e) {
             throw new ServiceException("检索失败");
@@ -70,7 +71,7 @@ public class SearchServiceImpl implements SearchService {
         builder.index(EsConstant.PRODUCT_INDEX);
 
         // query
-        Query query = buildQuery(param);
+        Query query = this.buildQuery(param);
         builder.query(query);
 
 
@@ -80,11 +81,18 @@ public class SearchServiceImpl implements SearchService {
 
         // sort
         // sort=hotScore_asc/desc
-        String sort = param.getSort();
+        String sort = param.getOrder();
         if (StringUtils.isNotEmpty(sort)) {
+            String[] ss = sort.split("_");
+            String attr = ss[0];
+            String order = ss[1];
             {
-                SortOptions sortOptions = buildSortOptions(sort);
-                builder.sort(sortOptions);
+               // SortOptions sortOptions = buildSortOptions(sort);
+                builder.sort(s->
+                        s.field(f->
+                                f.field(attr).order(SortOrder.Asc.toString().equals(order) ? SortOrder.Asc : SortOrder.Desc)
+                                )
+                        );
             }
         }
 
@@ -126,8 +134,7 @@ public class SearchServiceImpl implements SearchService {
         String[] s = sort.split("_");
         String attr = s[0];
         String order = s[1];
-        GeoDistanceSort.Builder builder2 = new GeoDistanceSort.Builder();
-        builder2.field(attr);
+        ScoreSort.Builder builder2 = new ScoreSort.Builder();
         builder2.order(SortOrder.Asc.toString().equals(order) ? SortOrder.Asc : SortOrder.Desc);
         SortOptionsVariant sortOptionsVariant = builder2.build();
         return new SortOptions(sortOptionsVariant);
