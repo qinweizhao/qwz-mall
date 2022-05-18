@@ -353,15 +353,15 @@ public class SearchServiceImpl implements SearchService {
                     brand.setBrandId(Long.parseLong(item.key()));
                     Aggregate categoryNameAgg = item.aggregations().get(AGG_BRAND_NAME);
                     List<StringTermsBucket> list = categoryNameAgg.sterms().buckets().array();
-                    list.forEach(i -> {
-                                brand.setBrandName(i.key());
-                            }
+                    list.forEach(i ->
+                            brand.setBrandName(i.key())
+
                     );
                     Aggregate aggBrandName = item.aggregations().get(AGG_BRAND_IMG);
                     List<StringTermsBucket> aggBrandNameBucketList = aggBrandName.sterms().buckets().array();
-                    aggBrandNameBucketList.forEach(i -> {
-                                brand.setBrandImg(i.key());
-                            }
+                    aggBrandNameBucketList.forEach(i ->
+                            brand.setBrandImg(i.key())
+
                     );
                     brandList.add(brand);
                 }
@@ -384,9 +384,8 @@ public class SearchServiceImpl implements SearchService {
                     );
                     List<StringTermsBucket> attrValueAgg = a.aggregations().get(AGG_ATTR_VALUE).sterms().buckets().array();
                     List<String> attrValues = new ArrayList<>();
-                    attrValueAgg.forEach(av -> {
-                                attrValues.add(av.key());
-                            }
+                    attrValueAgg.forEach(av ->
+                            attrValues.add(av.key())
                     );
                     attr.setAttrValue(attrValues);
                     attrList.add(attr);
