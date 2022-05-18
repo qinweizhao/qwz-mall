@@ -8,7 +8,6 @@ import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
-import com.alibaba.fastjson.JSON;
 import com.qinweizhao.api.search.dto.EsSkuSaveDTO;
 import com.qinweizhao.common.core.exception.ServiceException;
 import com.qinweizhao.common.core.utils.StringUtils;
@@ -38,10 +37,23 @@ public class SearchServiceImpl implements SearchService {
      */
     private static final String TITLE = "skuTitle";
     private static final String CATEGORY_ID = "categoryId";
+    private static final String CATEGORY_NAME = "categoryName";
     private static final String BRAND_ID = "brandId";
+    private static final String BRAND_NAME = "brandName";
+    private static final String BRAND_IMG = "brandImg";
     private static final String NESTED_PATH = "attrs";
     private static final String ATTRS_ATTR_ID = "attrs.attrId";
     private static final String ATTRS_ATTR_VALUE = "attrs.attrValue";
+    private static final String ATTRS_ATTR_NAME = "attrs.attrName";
+    private static final String AGG_CATEGORY = "agg_category";
+    private static final String AGG_CATEGORY_NAME = "agg_category_name";
+    private static final String AGG_BRAND = "agg_brand";
+    private static final String AGG_BRAND_NAME = "agg_brand_name";
+    private static final String AGG_BRAND_URL = "agg_brand_url";
+    private static final String AGG_ATTR = "agg_attr";
+    private static final String AGG_ATTR_ID = "agg_attr_id";
+    private static final String AGG_ATTR_NAME = "agg_attr_name";
+    private static final String AGG_ATTR_VALUE = "agg_attr_value";
 
 
     @Resource
@@ -61,6 +73,7 @@ public class SearchServiceImpl implements SearchService {
             System.out.println(searchResponse);
             //            result = buildSearchResult(searchResponse);
         } catch (Exception e) {
+            e.printStackTrace();
             throw new ServiceException("检索失败");
         }
         return null;
@@ -78,8 +91,6 @@ public class SearchServiceImpl implements SearchService {
 
         // query
         Query query = this.buildQuery(param);
-        String s1 = JSON.toJSONString(query._get());
-        System.out.println("dsl"+s1);
         builder.query(query);
 
 
@@ -109,7 +120,71 @@ public class SearchServiceImpl implements SearchService {
         );
 
 
+        // aggregations
+        this.buildAggregations(builder);
+
+
         return builder.build();
+    }
+
+    /**
+     * 构建聚合
+     *
+     * @param builder builder
+     */
+    private void buildAggregations(SearchRequest.Builder builder) {
+        // categoryId
+        builder.aggregations(AGG_CATEGORY, a ->
+                a.terms(t ->
+                                t.field(CATEGORY_ID)
+                        )
+                        .aggregations(
+                                AGG_CATEGORY_NAME, subA ->
+                                        subA.terms(subT ->
+                                                subT.field(CATEGORY_NAME)
+                                        )
+                        )
+        );
+
+        // brandId
+        builder.aggregations(AGG_BRAND, a ->
+                a.terms(t ->
+                                t.field(BRAND_ID)
+                        )
+                        .aggregations(AGG_BRAND_NAME, subA ->
+                                subA.terms(subT ->
+                                        subT.field(BRAND_NAME)
+                                )
+                        )
+                        .aggregations(AGG_BRAND_URL, subA ->
+                                subA.terms(subT ->
+                                        subT.field(BRAND_IMG)
+                                )
+                        )
+        );
+
+        // attr
+        builder.aggregations(AGG_ATTR, a ->
+                a.nested(n ->
+                        n.path(NESTED_PATH)
+                ).aggregations(
+                        AGG_ATTR_ID, na ->
+                                na.terms(t ->
+                                                t.field(ATTRS_ATTR_ID)
+                                        )
+                                        .aggregations(AGG_ATTR_VALUE, subA ->
+                                                subA.terms(subT ->
+                                                        subT.field(ATTRS_ATTR_VALUE)
+                                                )
+                                        )
+                                        .aggregations(AGG_ATTR_NAME, subA ->
+                                                subA.terms(subT ->
+                                                        subT.field(ATTRS_ATTR_NAME)
+                                                )
+                                        )
+                )
+
+        );
     }
 
 
