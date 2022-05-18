@@ -65,18 +65,12 @@ public class SearchServiceImpl implements SearchService {
         PageResult<SearchVO> result;
         try {
             SearchResponse<EsSkuSaveDTO> searchResponse = elasticsearchClient.search(searchRequest, EsSkuSaveDTO.class);
-            searchResponse.hits().hits().forEach(h -> {
-                assert h.source() != null;
-                System.out.println(h.source());
-            });
-
-            System.out.println(searchResponse);
-            //            result = buildSearchResult(searchResponse);
+            result = buildSearchResult(searchResponse);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new ServiceException("检索失败");
+            throw new ServiceException("检索异常");
         }
-        return null;
+        return result;
     }
 
     /**
@@ -295,7 +289,8 @@ public class SearchServiceImpl implements SearchService {
      * @param searchResponse searchResponse
      * @return PageResult
      */
-    private PageResult<SearchVO> buildSearchResult(SearchResponse<SearchVO> searchResponse) {
+    private PageResult<SearchVO> buildSearchResult(SearchResponse<EsSkuSaveDTO> searchResponse) {
+        System.out.println(searchResponse.toString());
         return null;
     }
 }
