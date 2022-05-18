@@ -15,5 +15,5 @@ public interface SearchService {
      * @param param param
      * @return PageResult
      */
-    PageResult<SearchVO> search(SearchParam param);
+    SearchVO search(SearchParam param);
 }

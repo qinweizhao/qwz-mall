@@ -37,7 +37,7 @@ public class EsSkuSaveDTO {
 
     private String skuTitle;
 
-    private BigDecimal skuPrice;
+    private Long skuPrice;
 
     private String skuImg;
 
@@ -55,7 +55,7 @@ public class EsSkuSaveDTO {
 
     private String brandImg;
 
-    private String catalogName;
+    private String categoryName;
 
     private List<Attr> attrs;
 

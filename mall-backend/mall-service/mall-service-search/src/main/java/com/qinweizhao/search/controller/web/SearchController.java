@@ -8,6 +8,7 @@ import com.qinweizhao.search.service.SearchService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author qinweizhao
@@ -21,8 +22,8 @@ public class SearchController {
     private SearchService searchService;
 
     @PostMapping("/search")
-    public R<PageResult<SearchVO>> listPage(@RequestBody SearchParam param) {
-        PageResult<SearchVO> result = searchService.search(param);
+    public R<SearchVO> listPage(@RequestBody SearchParam param) {
+        SearchVO result = searchService.search(param);
         return R.success(result);
     }
 }

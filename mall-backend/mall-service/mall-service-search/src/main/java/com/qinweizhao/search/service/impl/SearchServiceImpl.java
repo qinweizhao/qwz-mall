@@ -3,15 +3,19 @@ package com.qinweizhao.search.service.impl;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.SortOrder;
+import co.elastic.clients.elasticsearch._types.aggregations.Aggregate;
+import co.elastic.clients.elasticsearch._types.aggregations.LongTermsBucket;
+import co.elastic.clients.elasticsearch._types.aggregations.StringTermsBucket;
 import co.elastic.clients.elasticsearch._types.query_dsl.BoolQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.search.Hit;
 import com.qinweizhao.api.search.dto.EsSkuSaveDTO;
 import com.qinweizhao.common.core.exception.ServiceException;
 import com.qinweizhao.common.core.utils.StringUtils;
-import com.qinweizhao.component.modle.result.PageResult;
+import com.qinweizhao.search.convert.SearchConvert;
 import com.qinweizhao.search.model.constant.EsConstant;
 import com.qinweizhao.search.model.param.SearchParam;
 import com.qinweizhao.search.model.vo.SearchVO;
@@ -20,8 +24,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -49,7 +55,7 @@ public class SearchServiceImpl implements SearchService {
     private static final String AGG_CATEGORY_NAME = "agg_category_name";
     private static final String AGG_BRAND = "agg_brand";
     private static final String AGG_BRAND_NAME = "agg_brand_name";
-    private static final String AGG_BRAND_URL = "agg_brand_url";
+    private static final String AGG_BRAND_IMG = "agg_brand_img";
     private static final String AGG_ATTR = "agg_attr";
     private static final String AGG_ATTR_ID = "agg_attr_id";
     private static final String AGG_ATTR_NAME = "agg_attr_name";
@@ -60,17 +66,17 @@ public class SearchServiceImpl implements SearchService {
     private ElasticsearchClient elasticsearchClient;
 
     @Override
-    public PageResult<SearchVO> search(SearchParam param) {
+    public SearchVO search(SearchParam param) {
         SearchRequest searchRequest = this.buildSearchRequest(param);
-        PageResult<SearchVO> result;
+        SearchVO result;
         try {
             SearchResponse<EsSkuSaveDTO> searchResponse = elasticsearchClient.search(searchRequest, EsSkuSaveDTO.class);
-            result = buildSearchResult(searchResponse);
+           // result = this.buildSearchResult(searchResponse);
         } catch (Exception e) {
             e.printStackTrace();
             throw new ServiceException("检索异常");
         }
-        return result;
+        return null;
     }
 
     /**
@@ -150,7 +156,7 @@ public class SearchServiceImpl implements SearchService {
                                         subT.field(BRAND_NAME)
                                 )
                         )
-                        .aggregations(AGG_BRAND_URL, subA ->
+                        .aggregations(AGG_BRAND_IMG, subA ->
                                 subA.terms(subT ->
                                         subT.field(BRAND_IMG)
                                 )
@@ -286,11 +292,85 @@ public class SearchServiceImpl implements SearchService {
     /**
      * 构建结果
      *
-     * @param searchResponse searchResponse
+     * @param response response
      * @return PageResult
      */
-    private PageResult<SearchVO> buildSearchResult(SearchResponse<EsSkuSaveDTO> searchResponse) {
-        System.out.println(searchResponse.toString());
-        return null;
+    private SearchVO buildSearchResult(SearchResponse<EsSkuSaveDTO> response) {
+        System.out.println(response.toString());
+        SearchVO searchVO = new SearchVO();
+        List<Hit<EsSkuSaveDTO>> hits = response.hits().hits();
+        if (ObjectUtils.isEmpty(hits)) {
+            return new SearchVO();
+        }
+
+        // products
+        List<EsSkuSaveDTO> esSkus = new ArrayList<>();
+        hits.forEach(item -> {
+            EsSkuSaveDTO source = item.source();
+            Map<String, List<String>> highlight = item.highlight();
+            if (highlight != null) {
+                List<String> strings = highlight.get(TITLE);
+                String s = strings.get(0);
+                assert source != null;
+                source.setSkuTitle(s);
+            }
+            esSkus.add(source);
+        });
+
+
+        List<SearchVO.Product> products = SearchConvert.INSTANCE.convertToVO(esSkus);
+        searchVO.setProducts(products);
+
+        Map<String, Aggregate> aggregations = response.aggregations();
+
+        // category
+        ArrayList<SearchVO.Category> categoryList = new ArrayList<>();
+        Aggregate aggregate = aggregations.get(AGG_CATEGORY);
+        List<LongTermsBucket> array = aggregate.lterms().buckets().array();
+        array.forEach(item ->
+                {
+                    SearchVO.Category category = new SearchVO.Category();
+                    category.setCategoryId(Long.parseLong(item.key()));
+                    Aggregate categoryNameAgg = item.aggregations().get(AGG_CATEGORY_NAME);
+                    List<StringTermsBucket> list = categoryNameAgg.sterms().buckets().array();
+                    list.forEach(i -> {
+                                category.setCategoryName(i.key());
+                                categoryList.add(category);
+                            }
+
+                    );
+                }
+        );
+        searchVO.setCategories(categoryList);
+
+        // brand
+        ArrayList<SearchVO.Brand> brandList = new ArrayList<>();
+        Aggregate aggBrand = aggregations.get(AGG_BRAND);
+        List<LongTermsBucket> brandArray = aggBrand.lterms().buckets().array();
+        brandArray.forEach(item ->
+                {
+                    SearchVO.Brand brand = new SearchVO.Brand();
+                    brand.setBrandId(Long.parseLong(item.key()));
+                    Aggregate categoryNameAgg = item.aggregations().get(AGG_BRAND_NAME);
+                    List<StringTermsBucket> list = categoryNameAgg.sterms().buckets().array();
+                    list.forEach(i -> {
+                                brand.setBrandName(i.key());
+                            }
+                    );
+                    Aggregate aggBrandName = item.aggregations().get(AGG_BRAND_IMG);
+                    List<StringTermsBucket> aggBrandNameBucketList = aggBrandName.sterms().buckets().array();
+                    aggBrandNameBucketList.forEach(i -> {
+                                brand.setBrandImg(i.key());
+                            }
+                    );
+                    brandList.add(brand);
+                }
+        );
+        searchVO.setBrands(brandList);
+
+
+
+
+        return searchVO;
     }
 }

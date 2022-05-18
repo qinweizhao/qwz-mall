@@ -22,6 +22,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -315,6 +316,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
         // 查询是否有库存
         List<Long> skuIds = pmsSkuInfos.stream().map(PmsSkuInfo::getSkuId).collect(Collectors.toList());
 
+        // TODO 调用失败？
         R<List<SkuHasStockDTO>> listR = wareSkuFeignService.listHasStockBySkuIds(skuIds,SecurityConstants.INNER);
         List<SkuHasStockDTO> data = listR.getData();
         Map<Long, Boolean> hasStockMap = data.stream().collect(Collectors.toMap(SkuHasStockDTO::getSkuId, SkuHasStockDTO::getHasStock));
@@ -345,7 +347,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
             // 查询分类信息
             PmsCategory pmsCategory = pmsCategoryService.getById(sku.getCategoryId());
             esSkuSaveDTO.setCategoryId(sku.getCategoryId());
-            esSkuSaveDTO.setCatalogName(pmsCategory.getName());
+            esSkuSaveDTO.setCategoryName(pmsCategory.getName());
 
             // 设置属性信息
             esSkuSaveDTO.setAttrs(esAttrs);
