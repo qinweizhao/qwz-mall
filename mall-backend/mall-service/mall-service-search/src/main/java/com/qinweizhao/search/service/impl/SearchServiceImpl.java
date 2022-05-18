@@ -71,12 +71,12 @@ public class SearchServiceImpl implements SearchService {
         SearchVO result;
         try {
             SearchResponse<EsSkuSaveDTO> searchResponse = elasticsearchClient.search(searchRequest, EsSkuSaveDTO.class);
-           // result = this.buildSearchResult(searchResponse);
+            result = this.buildSearchResult(searchResponse);
         } catch (Exception e) {
             e.printStackTrace();
             throw new ServiceException("检索异常");
         }
-        return null;
+        return result;
     }
 
     /**
@@ -308,7 +308,7 @@ public class SearchServiceImpl implements SearchService {
         hits.forEach(item -> {
             EsSkuSaveDTO source = item.source();
             Map<String, List<String>> highlight = item.highlight();
-            if (highlight != null) {
+            if (!ObjectUtils.isEmpty(highlight)) {
                 List<String> strings = highlight.get(TITLE);
                 String s = strings.get(0);
                 assert source != null;
@@ -368,7 +368,31 @@ public class SearchServiceImpl implements SearchService {
         );
         searchVO.setBrands(brandList);
 
-
+        // attrs
+        ArrayList<SearchVO.Attr> attrList = new ArrayList<>();
+        Aggregate aggAttr = aggregations.get(AGG_ATTR);
+        Map<String, Aggregate> attrAggregate = aggAttr.nested().aggregations();
+        List<LongTermsBucket> attrIdAgg = attrAggregate.get(AGG_ATTR_ID).lterms().buckets().array();
+        attrIdAgg.forEach(a ->
+                {
+                    SearchVO.Attr attr = new SearchVO.Attr();
+                    String attrId = a.key();
+                    attr.setAttrId(Long.parseLong(attrId));
+                    List<StringTermsBucket> attrNameAgg = a.aggregations().get(AGG_ATTR_NAME).sterms().buckets().array();
+                    attrNameAgg.forEach(an ->
+                            attr.setAttrName(an.key())
+                    );
+                    List<StringTermsBucket> attrValueAgg = a.aggregations().get(AGG_ATTR_VALUE).sterms().buckets().array();
+                    List<String> attrValues = new ArrayList<>();
+                    attrValueAgg.forEach(av -> {
+                                attrValues.add(av.key());
+                            }
+                    );
+                    attr.setAttrValue(attrValues);
+                    attrList.add(attr);
+                }
+        );
+        searchVO.setAttrs(attrList);
 
 
         return searchVO;
