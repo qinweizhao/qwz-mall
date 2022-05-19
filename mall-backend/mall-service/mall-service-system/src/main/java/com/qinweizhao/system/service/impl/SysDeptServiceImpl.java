@@ -50,25 +50,25 @@ public class SysDeptServiceImpl implements ISysDeptService {
     /**
      * 构建前端所需要树结构
      *
-     * @param depts 部门列表
+     * @param deptList 部门列表
      * @return 树结构列表
      */
     @Override
-    public List<SysDept> buildDeptTree(List<SysDept> depts) {
+    public List<SysDept> buildDeptTree(List<SysDept> deptList) {
         List<SysDept> returnList = new ArrayList<>();
         List<Long> tempList = new ArrayList<>();
-        for (SysDept dept : depts) {
+        for (SysDept dept : deptList) {
             tempList.add(dept.getDeptId());
         }
-        for (SysDept dept : depts) {
+        for (SysDept dept : deptList) {
             // 如果是顶级节点, 遍历该父节点的所有子节点
             if (!tempList.contains(dept.getParentId())) {
-                recursionFn(depts, dept);
+                recursionFn(deptList, dept);
                 returnList.add(dept);
             }
         }
         if (returnList.isEmpty()) {
-            returnList = depts;
+            returnList = deptList;
         }
         return returnList;
     }
@@ -76,12 +76,12 @@ public class SysDeptServiceImpl implements ISysDeptService {
     /**
      * 构建前端所需要下拉树结构
      *
-     * @param depts 部门列表
+     * @param deptList 部门列表
      * @return 下拉树结构列表
      */
     @Override
-    public List<TreeSelect> buildDeptTreeSelect(List<SysDept> depts) {
-        List<SysDept> deptTrees = buildDeptTree(depts);
+    public List<TreeSelect> buildDeptTreeSelect(List<SysDept> deptList) {
+        List<SysDept> deptTrees = buildDeptTree(deptList);
         return deptTrees.stream().map(TreeSelect::new).collect(Collectors.toList());
     }
 
@@ -169,8 +169,8 @@ public class SysDeptServiceImpl implements ISysDeptService {
         if (!SysUser.isAdmin(SecurityUtils.getUserId())) {
             SysDept dept = new SysDept();
             dept.setDeptId(deptId);
-            List<SysDept> depts = SpringUtils.getAopProxy(this).selectDeptList(dept);
-            if (StringUtils.isEmpty(depts)) {
+            List<SysDept> deptList = SpringUtils.getAopProxy(this).selectDeptList(dept);
+            if (StringUtils.isEmpty(deptList)) {
                 throw new ServiceException("没有权限访问部门数据！");
             }
         }
@@ -275,13 +275,13 @@ public class SysDeptServiceImpl implements ISysDeptService {
      * 得到子节点列表
      */
     private List<SysDept> getChildList(List<SysDept> list, SysDept t) {
-        List<SysDept> tlist = new ArrayList<>();
+        List<SysDept> tList = new ArrayList<>();
         for (SysDept n : list) {
             if (StringUtils.isNotNull(n.getParentId()) && n.getParentId().longValue() == t.getDeptId().longValue()) {
-                tlist.add(n);
+                tList.add(n);
             }
         }
-        return tlist;
+        return tList;
     }
 
     /**

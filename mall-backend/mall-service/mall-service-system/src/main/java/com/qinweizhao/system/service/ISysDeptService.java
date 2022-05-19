@@ -22,18 +22,18 @@ public interface ISysDeptService {
     /**
      * 构建前端所需要树结构
      *
-     * @param depts 部门列表
+     * @param deptList 部门列表
      * @return 树结构列表
      */
-    List<SysDept> buildDeptTree(List<SysDept> depts);
+    List<SysDept> buildDeptTree(List<SysDept> deptList);
 
     /**
      * 构建前端所需要下拉树结构
      *
-     * @param depts 部门列表
+     * @param deptList 部门列表
      * @return 下拉树结构列表
      */
-    List<TreeSelect> buildDeptTreeSelect(List<SysDept> depts);
+    List<TreeSelect> buildDeptTreeSelect(List<SysDept> deptList);
 
     /**
      * 根据角色ID查询部门树信息
