@@ -37,6 +37,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/user")
 public class SysUserController extends BaseController {
+
     @Autowired
     private ISysUserService userService;
 
