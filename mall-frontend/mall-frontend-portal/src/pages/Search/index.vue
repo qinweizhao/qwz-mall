@@ -34,10 +34,10 @@
           <div class="sui-navbar">
             <div class="navbar-inner filter">
               <ul class="sui-nav">
-                <li :class="{active:isOne}" @click="changeOrder('1')">
+                <li :class="{active:isOne}" @click="changeOrder('hotScore')">
                   <a>综合<i v-show="isOne" class="iconfont" :class="{'icon-up':isAsc,'icon-arrowdown':isDesc}"></i></a>
                 </li>
-                <li :class="{active:isTwo}" @click="changeOrder('2')">
+                <li :class="{active:isTwo}" @click="changeOrder('skuPrice')">
                   <a>价格<i v-show="isTwo" class="iconfont" :class="{'icon-up':isAsc,'icon-arrowdown':isDesc}"></i></a>
                 </li>
               </ul>
@@ -46,18 +46,18 @@
           <!--商品列表-->
           <div class="goods-list">
             <ul class="yui3-g">
-              <li class="yui3-u-1-5" v-for="(good,index) in goodsList" :key="good.id">
+              <li class="yui3-u-1-5" v-for="(good,index) in goodsList" :key="good.skuId">
                 <div class="list-wrap">
                   <div class="p-img">
                     <!--路由跳转时带上参数-->
-                    <router-link :to="`/detail/${good.id}`">
-                      <img v-lazy="good.defaultImg" />
+                    <router-link :to="`/detail/${good.skuId}`">
+                      <img v-lazy="good.skuImg" />
                     </router-link>
                   </div>
                   <div class="price">
                     <strong>
                       <em>¥ </em>
-                      <i>{{ good.price }}</i>
+                      <i>{{ good.skuPrice }}</i>
                     </strong>
                   </div>
                   <div class="attr">
@@ -75,7 +75,7 @@
             </ul>
           </div>
           <!--分页器-->
-          <Pagination :pageNo="searchParams.pageNo" :pageSize="searchParams.pageSize" :total="total" continues="5" @getPageNo="getPageNo"/>
+          <Pagination :pageNum="searchParams.pageNum" :pageSize="searchParams.pageSize" :total="total" continues="5" @getpageNum="getpageNum"/>
         </div>
       </div>
     </div>
@@ -92,13 +92,11 @@
     data() {
       return {
         searchParams: {
-          "category1id": "",//一级分类id
-          "category2id": "",//二级分类id
-          "category3id": "",//三级分类id
+          "categoryId": null,//一级分类id
           "categoryName": "",//分类名字
           "keyword": "",//搜索关键字
-          "order": "1:desc",//排序 默认综合降序 1:综合2:价格asc升序desc降序
-          "pageNo": 1,//当前页
+          "order": "categoryId_desc",//排序 默认综合降序 1:综合2:价格asc升序desc降序
+          "pageNum": 1,//当前页
           "pageSize": 10,//每页的商品数
           "props": [],//售卖属性
           "trademark": ""//商标
@@ -146,9 +144,7 @@
       removeCategory() {
         //不发送这些请求
         this.searchParams.categoryName = undefined
-        this.searchParams.category1id = undefined
-        this.searchParams.category2id = undefined
-        this.searchParams.category3id = undefined
+        this.searchParams.categoryId = undefined
         this.getData()
         //修改地址栏 进行路由跳转
         this.$router.push({name: "search", params: this.$route.params || undefined})
@@ -189,14 +185,14 @@
       changeOrder(flag) {
         //flag 1综合 2价格
         let originFlag = this.searchParams.order.split(":")[0]
-        let originSort = this.searchParams.order.split(":")[1]
-
-        this.searchParams.order = `${flag}:${originSort==="desc"?"asc":"desc"}`
+        let originSort = this.searchParams.order.split("_")[1]
+        // TODO
+        // this.searchParams.order = `categoryId_${originSort==="desc"?"asc":"desc"}`
         this.getData()
       },
       //获取子组件的当前页数
-      getPageNo(pageNo){
-        this.searchParams.pageNo = pageNo
+      getpageNum(pageNum){
+        this.searchParams.pageNum = pageNum
         this.getData()
       }
     },
@@ -208,9 +204,7 @@
           Object.assign(this.searchParams, this.$route.query, this.$route.params)
           this.getData()
           //请求后清除分类id的数据
-          this.searchParams.category1id = undefined
-          this.searchParams.category2id = undefined
-          this.searchParams.category3id = undefined
+          this.searchParams.categoryId = undefined
         }
       }
     }

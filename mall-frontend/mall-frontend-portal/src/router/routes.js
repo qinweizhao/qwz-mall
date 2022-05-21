@@ -61,7 +61,7 @@ export default [
   {
     name:'search',
     //params参数:keyword ?代表可传可不传
-    path:'/search/:keyword?',
+    path:'/search',
     component:Search,
     meta:{show:true},
   },

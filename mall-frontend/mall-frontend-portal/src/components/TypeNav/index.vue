@@ -9,7 +9,7 @@
             <!--   事件的委派 把子节点的事件委派给父节点   -->
             <div class="all-sort-list2" @click="goSearch">
               <div class="item" v-for="(c1, index) in categoryList" :class="{ cur: currentIndex === index }"
-                :key="c1.categoryId">
+                   :key="c1.categoryId">
                 <h3 @mouseenter="changeIndex(index)">
                   <a :data-name="c1.name" :data-category1Id="c1.categoryId">{{ c1.name }}</a>
                 </h3>
@@ -18,13 +18,15 @@
                   <div class="subitem" v-for="c2 in c1.children" :key="c2.categoryId">
                     <dl class="fore">
                       <dt>
-                        <a :data-name="c2.name" :data-category2Id="c2.categoryId">{{ c2.name
-                        }}</a>
+                        <a :data-name="c2.name" :data-category2Id="c2.categoryId">{{
+                            c2.name
+                          }}</a>
                       </dt>
                       <dd>
                         <em v-for="c3 in c2.children" :key="c3.categoryId">
-                          <a :data-name="c3.name" :data-category3Id="c3.categoryId">{{ c3.name
-                          }}</a>
+                          <a :data-name="c3.name" :data-category3Id="c3.categoryId">{{
+                              c3.name
+                            }}</a>
                         </em>
                       </dd>
                     </dl>
@@ -50,7 +52,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import {mapState} from 'vuex'
 import throttle from 'lodash/throttle'
 
 export default {
@@ -96,25 +98,28 @@ export default {
     goSearch() {
       //在众多子节点中选择a标签 通过自定义属性
       let dataset = event.target.dataset
-      let { name, category1id, category2id, category3id } = dataset
+      let {name, category1id, category2id, category3id} = dataset
       //如果是a标签
       if (name) {
-        let location = { name: 'search' }
-        let query = { name: name }
+        let location = {name: 'search'}
+        let query = {name: name}
 
         if (category1id) {                //一级目录
-          query.category1id = category1id
+          query.categoryId = category1id
         } else if (category2id) {          //二级目录
-          query.category2id = category2id
+          query.categoryId = category2id
         } else {                           //三级目录
-          query.category3id = category3id
+          query.categoryId = category3id
         }
 
-        if (this.$route.params) {
-          location.params = this.$route.params
-        }
+        // if (this.$route.params) {
+        //   location.params = this.$route.params
+        // }
         location.query = query
-        this.$router.push(location)
+        this.$router.push({
+          name: "search",
+          query: { categoryId: query.categoryId },
+        })
       }
     },
     enterShow() {

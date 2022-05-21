@@ -18,7 +18,7 @@ export const reqGetFloorList = ()=> mockRequest.get('/floor')
 //获取搜索模块  ///api/list post (带参数)
 export const reqGetSearchInfo = (params)=>{
   return request({
-    url:'/list',
+    url:'/search/ua/search',
     method:'post',
     data:params,
   })
