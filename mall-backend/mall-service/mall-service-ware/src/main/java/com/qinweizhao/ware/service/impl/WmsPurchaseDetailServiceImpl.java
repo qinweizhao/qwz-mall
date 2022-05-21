@@ -1,7 +1,7 @@
 package com.qinweizhao.ware.service.impl;
 
 import com.qinweizhao.common.core.utils.DateUtils;
-import com.qinweizhao.ware.domain.WmsPurchaseDetail;
+import com.qinweizhao.ware.model.WmsPurchaseDetail;
 import com.qinweizhao.ware.mapper.WmsPurchaseDetailMapper;
 import com.qinweizhao.ware.service.IWmsPurchaseDetailService;
 import org.springframework.stereotype.Service;

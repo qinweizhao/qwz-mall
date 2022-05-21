@@ -2,14 +2,13 @@ package com.qinweizhao.ware.service.impl;
 
 import com.qinweizhao.api.ware.dto.SkuHasStockDTO;
 import com.qinweizhao.common.core.utils.DateUtils;
-import com.qinweizhao.ware.domain.WmsWareSku;
+import com.qinweizhao.ware.model.WmsWareSku;
 import com.qinweizhao.ware.mapper.WmsWareSkuMapper;
 import com.qinweizhao.ware.service.IWmsWareSkuService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /**

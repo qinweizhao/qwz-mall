@@ -7,7 +7,7 @@ import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.modle.result.PageResult;
 import com.qinweizhao.component.modle.result.R;
-import com.qinweizhao.ware.domain.WmsWareInfo;
+import com.qinweizhao.ware.model.WmsWareInfo;
 import com.qinweizhao.ware.service.IWmsWareInfoService;
 import org.springframework.web.bind.annotation.*;
 

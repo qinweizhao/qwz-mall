@@ -1,11 +1,9 @@
 package com.qinweizhao.ware.service;
 
 import com.qinweizhao.api.ware.dto.SkuHasStockDTO;
-import com.qinweizhao.component.modle.result.R;
-import com.qinweizhao.ware.domain.WmsWareSku;
+import com.qinweizhao.ware.model.WmsWareSku;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 商品库存Service接口

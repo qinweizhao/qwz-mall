@@ -6,7 +6,7 @@ import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.modle.result.R;
-import com.qinweizhao.ware.domain.WmsPurchaseDetail;
+import com.qinweizhao.ware.model.WmsPurchaseDetail;
 import com.qinweizhao.ware.service.IWmsPurchaseDetailService;
 import org.springframework.web.bind.annotation.*;
 

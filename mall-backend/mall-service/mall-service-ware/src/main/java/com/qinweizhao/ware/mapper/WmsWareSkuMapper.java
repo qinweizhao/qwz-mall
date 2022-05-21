@@ -1,6 +1,6 @@
 package com.qinweizhao.ware.mapper;
 
-import com.qinweizhao.ware.domain.WmsWareSku;
+import com.qinweizhao.ware.model.WmsWareSku;
 
 import java.util.List;
 

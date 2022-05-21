@@ -1,6 +1,6 @@
 package com.qinweizhao.ware.service;
 
-import com.qinweizhao.ware.domain.WmsPurchaseDetail;
+import com.qinweizhao.ware.model.WmsPurchaseDetail;
 
 import java.util.List;
 
