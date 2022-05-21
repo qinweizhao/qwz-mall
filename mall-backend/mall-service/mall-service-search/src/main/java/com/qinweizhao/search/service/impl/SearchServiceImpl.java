@@ -229,6 +229,7 @@ public class SearchServiceImpl implements SearchService {
         }
 
         // 分类
+        // terms
         String categoryId = param.getCategoryId();
         if (StringUtils.isNotNull(categoryId)) {
             boolBuilder.filter(f ->
@@ -296,7 +297,6 @@ public class SearchServiceImpl implements SearchService {
      * @return PageResult
      */
     private SearchVO buildSearchResult(SearchResponse<EsSkuSaveDTO> response) {
-        System.out.println(response.toString());
         SearchVO searchVO = new SearchVO();
         List<Hit<EsSkuSaveDTO>> hits = response.hits().hits();
         if (ObjectUtils.isEmpty(hits)) {
@@ -316,10 +316,7 @@ public class SearchServiceImpl implements SearchService {
             }
             esSkus.add(source);
         });
-
-
-        List<SearchVO.Product> products = SearchConvert.INSTANCE.convertToVO(esSkus);
-        searchVO.setProducts(products);
+        searchVO.setProducts(SearchConvert.INSTANCE.convertToVO(esSkus));
 
         Map<String, Aggregate> aggregations = response.aggregations();
 
@@ -337,7 +334,6 @@ public class SearchServiceImpl implements SearchService {
                                 category.setCategoryName(i.key());
                                 categoryList.add(category);
                             }
-
                     );
                 }
         );
@@ -355,13 +351,11 @@ public class SearchServiceImpl implements SearchService {
                     List<StringTermsBucket> list = categoryNameAgg.sterms().buckets().array();
                     list.forEach(i ->
                             brand.setBrandName(i.key())
-
                     );
                     Aggregate aggBrandName = item.aggregations().get(AGG_BRAND_IMG);
                     List<StringTermsBucket> aggBrandNameBucketList = aggBrandName.sterms().buckets().array();
                     aggBrandNameBucketList.forEach(i ->
                             brand.setBrandImg(i.key())
-
                     );
                     brandList.add(brand);
                 }
@@ -392,7 +386,6 @@ public class SearchServiceImpl implements SearchService {
                 }
         );
         searchVO.setAttrs(attrList);
-
 
         return searchVO;
     }
