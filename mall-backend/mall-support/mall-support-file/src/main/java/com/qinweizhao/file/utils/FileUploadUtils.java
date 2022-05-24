@@ -7,7 +7,7 @@ import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.IdUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.utils.file.MimeTypeUtils;
-import com.qinweizhao.component.exception.BizException;
+import com.qinweizhao.common.core.exception.BizException;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -64,7 +64,7 @@ public class FileUploadUtils {
             InvalidExtensionException {
         int fileNamelength = file.getOriginalFilename().length();
         if (fileNamelength > FileUploadUtils.DEFAULT_FILE_NAME_LENGTH) {
-            throw new BizException(ErrorEnum.USER_UPLOAD_FILE_EXCEPTION, FileUploadUtils.DEFAULT_FILE_NAME_LENGTH);
+//            throw new BizException(ErrorEnum.USER_UPLOAD_FILE_EXCEPTION, FileUploadUtils.DEFAULT_FILE_NAME_LENGTH);
         }
 
         assertAllowed(file, allowedExtension);

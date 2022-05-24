@@ -1,6 +1,6 @@
 package com.qinweizhao.common.core.enums;
 
-import com.qinweizhao.component.modle.result.ResultCode;
+import com.qinweizhao.component.core.response.ResultCode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -16,28 +16,7 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public enum ErrorEnum implements ResultCode {
-
-    /**
-     * 一级宏观错误码
-     * 用户
-     */
-    USER_ERROR("A0001", "用户端错误"),
-
-    USER_UPLOAD_FILE_EXCEPTION("A0700", "用户上传文件异常"),
-
-
-    /**
-     * 一级宏观错误码
-     * 当前系统
-     */
-    SYSTEM_RUN_ERROR("B0001", "系统执行出错"),
-
-
-    /**
-     * 中间件服务出错
-     */
-    REMOTE_SERVER_ERROR("C0001", "调用第三方服务出错");
+public class ErrorEnum implements ResultCode {
 
     private final String code;
 

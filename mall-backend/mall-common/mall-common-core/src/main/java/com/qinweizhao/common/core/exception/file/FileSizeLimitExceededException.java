@@ -1,5 +1,10 @@
 package com.qinweizhao.common.core.exception.file;
 
+import com.qinweizhao.common.core.enums.ErrorEnum;
+import com.qinweizhao.common.core.exception.BizException;
+import com.qinweizhao.component.core.response.ResultCode;
+import com.qinweizhao.component.core.response.ResultCodeEnum;
+
 /**
  * 文件名大小限制异常类
  *
@@ -10,6 +15,6 @@ public class FileSizeLimitExceededException extends FileException {
 
     // TODO
     public FileSizeLimitExceededException(long defaultMaxSize) {
-        super("500", "upload.exceed.maxSize{}" + defaultMaxSize);
+        super("upload.exceed.maxSize{}" + defaultMaxSize);
     }
 }

@@ -1,18 +1,21 @@
 package com.qinweizhao.common.core.exception.file;
 
 
-import com.qinweizhao.component.exception.base.BaseException;
+import com.qinweizhao.common.core.enums.ErrorEnum;
+import com.qinweizhao.common.core.exception.BizException;
+import com.qinweizhao.component.core.exception.BaseException;
+import com.qinweizhao.component.core.response.ResultCodeEnum;
 
 /**
  * 文件信息异常类
  *
  * @author qinweizhao
  */
-public class FileException extends BaseException {
+public class FileException extends BizException {
     private static final long serialVersionUID = 1L;
 
-    public FileException(String code, String errMag) {
-        super(code, errMag);
+    public FileException(String errMag) {
+        super(errMag);
     }
 
 }

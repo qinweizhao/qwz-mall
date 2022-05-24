@@ -124,15 +124,16 @@
 
         <dependency>
             <groupId>com.qinweizhao.component</groupId>
-            <artifactId>qwz-component-model</artifactId>
+            <artifactId>qwz-component-core</artifactId>
             <version>1.0.0</version>
         </dependency>
 
         <dependency>
             <groupId>com.qinweizhao.component</groupId>
-            <artifactId>qwz-component-exception</artifactId>
+            <artifactId>qwz-component-util</artifactId>
             <version>1.0.0</version>
         </dependency>
+
 
     </dependencies>
 
