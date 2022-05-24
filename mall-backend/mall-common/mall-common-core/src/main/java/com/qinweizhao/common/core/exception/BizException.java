@@ -1,8 +1,7 @@
 package com.qinweizhao.common.core.exception;
 
-import com.qinweizhao.common.core.enums.ErrorEnum;
 import com.qinweizhao.component.core.exception.BaseException;
-import com.qinweizhao.component.core.response.ResultCodeEnum;
+import com.qinweizhao.component.core.response.SystemResultCodeEnum;
 
 /**
  * BizException 业务异常
@@ -12,14 +11,12 @@ import com.qinweizhao.component.core.response.ResultCodeEnum;
  */
 public class BizException extends BaseException {
 
-    public BizException(String errMag) {
-        super(new ErrorEnum(ResultCodeEnum.FAILED.getCode(), errMag));
-
+    public BizException(String errMsg) {
+        super(SystemResultCodeEnum.SERVER_ERROR.getCode(), errMsg);
     }
 
-
-    public BizException(Throwable e, String errMag) {
-        super(new ErrorEnum(ResultCodeEnum.FAILED.getCode(), errMag), e);
+    public BizException(String errMsg, Throwable e) {
+        super(SystemResultCodeEnum.SERVER_ERROR.getCode(), errMsg, e);
     }
 
 }
