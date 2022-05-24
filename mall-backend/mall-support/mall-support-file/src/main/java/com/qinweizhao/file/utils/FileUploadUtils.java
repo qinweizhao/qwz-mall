@@ -1,13 +1,11 @@
 package com.qinweizhao.file.utils;
 
-import com.qinweizhao.common.core.enums.ErrorEnum;
 import com.qinweizhao.common.core.exception.file.FileSizeLimitExceededException;
 import com.qinweizhao.common.core.exception.file.InvalidExtensionException;
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.IdUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.utils.file.MimeTypeUtils;
-import com.qinweizhao.common.core.exception.BizException;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.multipart.MultipartFile;
 

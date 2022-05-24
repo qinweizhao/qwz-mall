@@ -1,7 +1,7 @@
 package com.qinweizhao.common.core.exception.file;
 
 
-import com.qinweizhao.common.core.exception.BizException;
+import com.qinweizhao.component.core.exception.BizException;
 
 /**
  * 文件信息异常类

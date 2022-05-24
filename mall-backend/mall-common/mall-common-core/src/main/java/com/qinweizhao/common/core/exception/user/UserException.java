@@ -1,7 +1,7 @@
 package com.qinweizhao.common.core.exception.user;
 
 
-import com.qinweizhao.common.core.exception.BizException;
+import com.qinweizhao.component.core.exception.BizException;
 
 /**
  * 用户信息异常类
