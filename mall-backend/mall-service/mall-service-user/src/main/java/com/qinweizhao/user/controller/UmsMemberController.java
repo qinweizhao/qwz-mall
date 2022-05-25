@@ -4,8 +4,8 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.PageResult;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.PageResult;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.user.entity.UmsMember;
 import com.qinweizhao.user.service.UmsMemberService;
 import org.springframework.web.bind.annotation.*;
@@ -53,8 +53,8 @@ public class UmsMemberController extends BaseController {
     @RequiresPermissions("product:member:add")
     @Log(title = "会员", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> save(@RequestBody UmsMember umsMember) {
-        return R.condition(umsMemberService.save(umsMember));
+    public R<?> save(@RequestBody UmsMember umsMember) {
+        return R.success(umsMemberService.save(umsMember));
     }
 
     /**
@@ -63,8 +63,8 @@ public class UmsMemberController extends BaseController {
     @RequiresPermissions("product:member:edit")
     @Log(title = "会员", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody UmsMember umsMember) {
-        return R.condition(umsMemberService.save(umsMember));
+    public R<?> edit(@RequestBody UmsMember umsMember) {
+        return R.success(umsMemberService.save(umsMember));
     }
 
     /**
@@ -73,7 +73,7 @@ public class UmsMemberController extends BaseController {
     @RequiresPermissions("product:member:remove")
     @Log(title = "会员", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable List<Long> ids) {
-        return R.condition(umsMemberService.removeByIds(ids));
+    public R<?> remove(@PathVariable List<Long> ids) {
+        return R.success(umsMemberService.removeByIds(ids));
     }
 }

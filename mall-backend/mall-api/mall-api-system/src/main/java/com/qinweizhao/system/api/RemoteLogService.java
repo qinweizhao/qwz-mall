@@ -4,7 +4,7 @@ import com.qinweizhao.common.core.constant.SecurityConstants;
 import com.qinweizhao.common.core.constant.ServiceNameConstants;
 import com.qinweizhao.component.log.SysOperLog;
 import com.qinweizhao.component.log.service.QwzLogService;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.system.api.domain.SysLogininfor;
 import com.qinweizhao.system.api.factory.RemoteLogFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;

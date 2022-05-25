@@ -5,8 +5,8 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.PageResult;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.PageResult;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.user.entity.UmsMemberLevel;
 import com.qinweizhao.user.service.UmsMemberLevelService;
 import org.springframework.web.bind.annotation.*;
@@ -45,7 +45,7 @@ public class UmsMemberLevelController extends BaseController {
     @RequiresPermissions("product:level:export")
     @Log(title = "会员等级", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, UmsMemberLevel umsMemberLevel) {
+    public R<?> export(HttpServletResponse response, UmsMemberLevel umsMemberLevel) {
         List<UmsMemberLevel> list = umsMemberLevelService.selectUmsMemberLevelList(umsMemberLevel);
         ExcelUtil<UmsMemberLevel> util = new ExcelUtil<UmsMemberLevel>(UmsMemberLevel.class);
         util.exportExcel(response, list, "会员等级数据");
@@ -67,8 +67,8 @@ public class UmsMemberLevelController extends BaseController {
     @RequiresPermissions("product:level:add")
     @Log(title = "会员等级", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody UmsMemberLevel umsMemberLevel) {
-        return R.condition(umsMemberLevelService.save(umsMemberLevel));
+    public R<?> add(@RequestBody UmsMemberLevel umsMemberLevel) {
+        return R.success(umsMemberLevelService.save(umsMemberLevel));
     }
 
     /**
@@ -77,8 +77,8 @@ public class UmsMemberLevelController extends BaseController {
     @RequiresPermissions("product:level:edit")
     @Log(title = "会员等级", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody UmsMemberLevel umsMemberLevel) {
-        return R.condition(umsMemberLevelService.updateById(umsMemberLevel));
+    public R<?> edit(@RequestBody UmsMemberLevel umsMemberLevel) {
+        return R.success(umsMemberLevelService.updateById(umsMemberLevel));
     }
 
     /**
@@ -87,7 +87,7 @@ public class UmsMemberLevelController extends BaseController {
     @RequiresPermissions("product:level:remove")
     @Log(title = "会员等级", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable List<Long> ids) {
-        return R.condition(umsMemberLevelService.removeBatchByIds(ids));
+    public R<?> remove(@PathVariable List<Long> ids) {
+        return R.success(umsMemberLevelService.removeBatchByIds(ids));
     }
 }

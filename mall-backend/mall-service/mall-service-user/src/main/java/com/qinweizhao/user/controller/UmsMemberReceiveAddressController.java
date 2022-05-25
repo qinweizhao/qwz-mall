@@ -5,7 +5,7 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.user.entity.UmsMemberReceiveAddress;
 import com.qinweizhao.user.service.UmsMemberReceiveAddressService;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +44,7 @@ public class UmsMemberReceiveAddressController extends BaseController {
     @RequiresPermissions("product:address:export")
     @Log(title = "会员收货地址", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, UmsMemberReceiveAddress umsMemberReceiveAddress) {
+    public R<?> export(HttpServletResponse response, UmsMemberReceiveAddress umsMemberReceiveAddress) {
         List<UmsMemberReceiveAddress> list = umsMemberReceiveAddressService.selectUmsMemberReceiveAddressList(umsMemberReceiveAddress);
         ExcelUtil<UmsMemberReceiveAddress> util = new ExcelUtil<UmsMemberReceiveAddress>(UmsMemberReceiveAddress.class);
         util.exportExcel(response, list, "会员收货地址数据");
@@ -66,8 +66,8 @@ public class UmsMemberReceiveAddressController extends BaseController {
     @RequiresPermissions("product:address:add")
     @Log(title = "会员收货地址", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody UmsMemberReceiveAddress umsMemberReceiveAddress) {
-        return R.condition(umsMemberReceiveAddressService.save(umsMemberReceiveAddress));
+    public R<?> add(@RequestBody UmsMemberReceiveAddress umsMemberReceiveAddress) {
+        return R.success(umsMemberReceiveAddressService.save(umsMemberReceiveAddress));
     }
 
     /**
@@ -76,8 +76,8 @@ public class UmsMemberReceiveAddressController extends BaseController {
     @RequiresPermissions("product:address:edit")
     @Log(title = "会员收货地址", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody UmsMemberReceiveAddress umsMemberReceiveAddress) {
-        return R.condition(umsMemberReceiveAddressService.updateById(umsMemberReceiveAddress));
+    public R<?> edit(@RequestBody UmsMemberReceiveAddress umsMemberReceiveAddress) {
+        return R.success(umsMemberReceiveAddressService.updateById(umsMemberReceiveAddress));
     }
 
     /**
@@ -86,7 +86,7 @@ public class UmsMemberReceiveAddressController extends BaseController {
     @RequiresPermissions("product:address:remove")
     @Log(title = "会员收货地址", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable List<Long> ids) {
-        return R.condition(umsMemberReceiveAddressService.removeBatchByIds(ids));
+    public R<?> remove(@PathVariable List<Long> ids) {
+        return R.success(umsMemberReceiveAddressService.removeBatchByIds(ids));
     }
 }

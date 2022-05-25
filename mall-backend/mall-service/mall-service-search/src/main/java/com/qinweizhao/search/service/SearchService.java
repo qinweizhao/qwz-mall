@@ -1,6 +1,6 @@
 package com.qinweizhao.search.service;
 
-import com.qinweizhao.component.modle.result.PageResult;
+import com.qinweizhao.component.core.response.PageResult;
 import com.qinweizhao.search.model.param.SearchParam;
 import com.qinweizhao.search.model.vo.SearchVO;
 

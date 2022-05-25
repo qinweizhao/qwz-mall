@@ -1,7 +1,7 @@
 package com.qinweizhao.gateway.handler;
 
 import com.qinweizhao.common.core.exception.CaptchaException;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.gateway.service.ValidateCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,7 +28,7 @@ public class ValidateCodeHandler implements HandlerFunction<ServerResponse> {
     public Mono<ServerResponse> handle(ServerRequest serverRequest) {
         R<Object> result;
         try {
-            result = validateCodeService.createCapcha();
+            result = validateCodeService.createCaptcha();
         } catch (CaptchaException | IOException e) {
             return Mono.error(e);
         }

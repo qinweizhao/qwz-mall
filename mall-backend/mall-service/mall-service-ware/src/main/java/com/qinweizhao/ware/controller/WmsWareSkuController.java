@@ -7,8 +7,8 @@ import com.qinweizhao.common.security.annotation.InnerAuth;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.PageResult;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.PageResult;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.ware.model.WmsWareSku;
 import com.qinweizhao.ware.service.IWmsWareSkuService;
 import org.springframework.web.bind.annotation.*;
@@ -59,7 +59,7 @@ public class WmsWareSkuController extends BaseController {
     @RequiresPermissions("product:sku:export")
     @Log(title = "商品库存", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, WmsWareSku wmsWareSku) {
+    public R<?> export(HttpServletResponse response, WmsWareSku wmsWareSku) {
         List<WmsWareSku> list = wmsWareSkuService.selectWmsWareSkuList(wmsWareSku);
         ExcelUtil<WmsWareSku> util = new ExcelUtil<WmsWareSku>(WmsWareSku.class);
         util.exportExcel(response, list, "商品库存数据");
@@ -81,8 +81,8 @@ public class WmsWareSkuController extends BaseController {
     @RequiresPermissions("product:sku:add")
     @Log(title = "商品库存", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody WmsWareSku wmsWareSku) {
-        return R.condition(wmsWareSkuService.insertWmsWareSku(wmsWareSku));
+    public R<?> add(@RequestBody WmsWareSku wmsWareSku) {
+        return R.success(wmsWareSkuService.insertWmsWareSku(wmsWareSku));
     }
 
     /**
@@ -91,8 +91,8 @@ public class WmsWareSkuController extends BaseController {
     @RequiresPermissions("product:sku:edit")
     @Log(title = "商品库存", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody WmsWareSku wmsWareSku) {
-        return R.condition(wmsWareSkuService.updateWmsWareSku(wmsWareSku));
+    public R<?> edit(@RequestBody WmsWareSku wmsWareSku) {
+        return R.success(wmsWareSkuService.updateWmsWareSku(wmsWareSku));
     }
 
     /**
@@ -101,7 +101,7 @@ public class WmsWareSkuController extends BaseController {
     @RequiresPermissions("product:sku:remove")
     @Log(title = "商品库存", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable Long[] ids) {
-        return R.condition(wmsWareSkuService.deleteWmsWareSkuByIds(ids));
+    public R<?> remove(@PathVariable Long[] ids) {
+        return R.success(wmsWareSkuService.deleteWmsWareSkuByIds(ids));
     }
 }

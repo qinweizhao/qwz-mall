@@ -2,7 +2,7 @@ package com.qinweizhao.system.api;
 
 import com.qinweizhao.common.core.constant.SecurityConstants;
 import com.qinweizhao.common.core.constant.ServiceNameConstants;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.system.api.domain.SysUser;
 import com.qinweizhao.system.api.factory.RemoteUserFallbackFactory;
 import com.qinweizhao.system.api.model.LoginUser;

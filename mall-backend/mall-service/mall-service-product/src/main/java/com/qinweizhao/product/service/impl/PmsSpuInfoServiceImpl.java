@@ -6,11 +6,12 @@ import com.qinweizhao.api.search.feign.ElasticSaveFeignService;
 import com.qinweizhao.api.ware.dto.SkuHasStockDTO;
 import com.qinweizhao.api.ware.feign.WareSkuFeignService;
 import com.qinweizhao.common.core.constant.SecurityConstants;
+import com.qinweizhao.common.core.enums.MallResultCodeEnum;
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.bean.BeanUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
-import com.qinweizhao.component.modle.result.R;
-import com.qinweizhao.component.modle.result.ResultCodeEnum;
+import com.qinweizhao.component.core.response.R;
+import com.qinweizhao.component.core.response.SystemResultCodeEnum;
 import com.qinweizhao.product.mapper.PmsSpuInfoMapper;
 import com.qinweizhao.product.model.constant.ProductConstant;
 import com.qinweizhao.product.model.entity.*;
@@ -327,7 +328,8 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
             esSkuSaveDTO.setSkuId(sku.getSkuId());
             esSkuSaveDTO.setSpuId(sku.getSpuId());
             esSkuSaveDTO.setSkuTitle(sku.getTitle());
-            esSkuSaveDTO.setSkuPrice(sku.getPrice());
+            // todo
+            esSkuSaveDTO.setSkuPrice(sku.getPrice().longValue());
             esSkuSaveDTO.setSkuImg(sku.getDefaultImg());
             esSkuSaveDTO.setSaleCount(sku.getSaleCount());
             // 是否有库存
@@ -355,8 +357,8 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
         }).collect(Collectors.toList());
 
 
-        R<Void> result = elasticSaveFeignService.saveEsSkuList(esSkuSaveDTOList);
-        if (!result.getCode().equals(ResultCodeEnum.SUCCESS.getCode())) {
+        R<?> result = elasticSaveFeignService.saveEsSkuList(esSkuSaveDTOList);
+        if (!result.getCode().equals(SystemResultCodeEnum.SUCCESS.getCode())) {
             System.out.println("远程调用失败");
             //TODO 7、重复调用？接口幂等性；重试机制？
         }

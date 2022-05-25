@@ -4,8 +4,8 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.PageResult;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.PageResult;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.product.model.entity.PmsBrand;
 import com.qinweizhao.product.service.IPmsBrandService;
 import org.springframework.web.bind.annotation.*;
@@ -53,8 +53,8 @@ public class PmsBrandController extends BaseController {
     @RequiresPermissions("product:brand:add")
     @Log(title = "品牌", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> save(@RequestBody PmsBrand pmsBrand) {
-        return R.condition(pmsBrandService.save(pmsBrand));
+    public R<?> save(@RequestBody PmsBrand pmsBrand) {
+        return R.success(pmsBrandService.save(pmsBrand));
     }
 
     /**
@@ -63,8 +63,8 @@ public class PmsBrandController extends BaseController {
     @RequiresPermissions("product:brand:edit")
     @Log(title = "品牌", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody PmsBrand pmsBrand) {
-        return R.condition(pmsBrandService.updateById(pmsBrand));
+    public R<?> edit(@RequestBody PmsBrand pmsBrand) {
+        return R.success(pmsBrandService.updateById(pmsBrand));
     }
 
     /**
@@ -73,7 +73,7 @@ public class PmsBrandController extends BaseController {
     @RequiresPermissions("product:brand:remove")
     @Log(title = "品牌", businessType = BusinessType.DELETE)
     @DeleteMapping("/{brandIds}")
-    public R<Void> remove(@PathVariable Long[] brandIds) {
-        return R.condition(pmsBrandService.deleteByIds(brandIds));
+    public R<?> remove(@PathVariable Long[] brandIds) {
+        return R.success(pmsBrandService.deleteByIds(brandIds));
     }
 }

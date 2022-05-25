@@ -5,7 +5,7 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.ware.model.WmsPurchase;
 import com.qinweizhao.ware.service.IWmsPurchaseService;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +44,7 @@ public class WmsPurchaseController extends BaseController {
     @RequiresPermissions("product:purchase:export")
     @Log(title = "采购单", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, WmsPurchase wmsPurchase) {
+    public R<?> export(HttpServletResponse response, WmsPurchase wmsPurchase) {
         List<WmsPurchase> list = wmsPurchaseService.selectWmsPurchaseList(wmsPurchase);
         ExcelUtil<WmsPurchase> util = new ExcelUtil<WmsPurchase>(WmsPurchase.class);
         util.exportExcel(response, list, "采购单数据");
@@ -66,8 +66,8 @@ public class WmsPurchaseController extends BaseController {
     @RequiresPermissions("product:purchase:add")
     @Log(title = "采购单", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody WmsPurchase wmsPurchase) {
-        return R.condition(wmsPurchaseService.insertWmsPurchase(wmsPurchase));
+    public R<?> add(@RequestBody WmsPurchase wmsPurchase) {
+        return R.success(wmsPurchaseService.insertWmsPurchase(wmsPurchase));
     }
 
     /**
@@ -76,8 +76,8 @@ public class WmsPurchaseController extends BaseController {
     @RequiresPermissions("product:purchase:edit")
     @Log(title = "采购单", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody WmsPurchase wmsPurchase) {
-        return R.condition(wmsPurchaseService.updateWmsPurchase(wmsPurchase));
+    public R<?> edit(@RequestBody WmsPurchase wmsPurchase) {
+        return R.success(wmsPurchaseService.updateWmsPurchase(wmsPurchase));
     }
 
     /**
@@ -86,7 +86,7 @@ public class WmsPurchaseController extends BaseController {
     @RequiresPermissions("product:purchase:remove")
     @Log(title = "采购单", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable Long[] ids) {
-        return R.condition(wmsPurchaseService.deleteWmsPurchaseByIds(ids));
+    public R<?> remove(@PathVariable Long[] ids) {
+        return R.success(wmsPurchaseService.deleteWmsPurchaseByIds(ids));
     }
 }

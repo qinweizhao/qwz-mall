@@ -6,7 +6,7 @@ import com.qinweizhao.common.core.exception.CaptchaException;
 import com.qinweizhao.common.core.utils.IdUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.utils.sign.Base64;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.redis.service.RedisService;
 import com.qinweizhao.gateway.config.properties.CaptchaProperties;
 import com.qinweizhao.gateway.service.ValidateCodeService;
@@ -45,7 +45,7 @@ public class ValidateCodeServiceImpl implements ValidateCodeService {
      * 生成验证码
      */
     @Override
-    public R<Object> createCapcha() throws CaptchaException {
+    public R<Object> createCaptcha() throws CaptchaException {
         R<Object> result = R.success();
         Map<String, Object> map = new LinkedHashMap<>();
 
@@ -84,7 +84,7 @@ public class ValidateCodeServiceImpl implements ValidateCodeService {
             ImageIO.write(image, "jpg", os);
         } catch (IOException e) {
             // TODO
-            return R.failure(e.getMessage());
+            return R.failure();
         }
 
         map.put("uuid", uuid);

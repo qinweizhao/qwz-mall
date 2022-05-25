@@ -2,7 +2,7 @@ package com.qinweizhao.api.search.feign;
 
 import com.qinweizhao.api.search.dto.EsSkuSaveDTO;
 import com.qinweizhao.common.core.constant.ServiceNameConstants;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,5 +22,5 @@ public interface ElasticSaveFeignService {
      * @return R
      */
     @PostMapping("/elastic/save/product")
-    R<Void> saveEsSkuList(List<EsSkuSaveDTO> esSkuSaveDTOList);
+    R<?> saveEsSkuList(List<EsSkuSaveDTO> esSkuSaveDTOList);
 }

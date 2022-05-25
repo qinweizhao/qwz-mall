@@ -4,8 +4,8 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.PageResult;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.PageResult;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.product.model.entity.PmsCategory;
 import com.qinweizhao.product.service.IPmsCategoryService;
 import org.springframework.web.bind.annotation.*;
@@ -53,8 +53,8 @@ public class PmsCategoryController extends BaseController {
     @RequiresPermissions("product:category:add")
     @Log(title = "商品三级分类", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody PmsCategory pmsCategory) {
-        return R.condition(pmsCategoryService.save(pmsCategory));
+    public R<?> add(@RequestBody PmsCategory pmsCategory) {
+        return R.success(pmsCategoryService.save(pmsCategory));
     }
 
     /**
@@ -63,8 +63,8 @@ public class PmsCategoryController extends BaseController {
     @RequiresPermissions("product:category:edit")
     @Log(title = "商品三级分类", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody PmsCategory pmsCategory) {
-        return R.condition(pmsCategoryService.updateById(pmsCategory));
+    public R<?> edit(@RequestBody PmsCategory pmsCategory) {
+        return R.success(pmsCategoryService.updateById(pmsCategory));
     }
 
     /**
@@ -73,7 +73,7 @@ public class PmsCategoryController extends BaseController {
     @RequiresPermissions("product:category:remove")
     @Log(title = "商品三级分类", businessType = BusinessType.DELETE)
     @DeleteMapping("/{categoryIds}")
-    public R<Void> remove(@PathVariable Long[] categoryIds) {
-        return R.condition(pmsCategoryService.removeByIds(categoryIds));
+    public R<?> remove(@PathVariable Long[] categoryIds) {
+        return R.success(pmsCategoryService.removeByIds(categoryIds));
     }
 }

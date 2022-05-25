@@ -1,6 +1,6 @@
 package com.qinweizhao.product.controller.web;
 
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.product.convert.CategoryConvert;
 import com.qinweizhao.product.model.dto.CategoryTreeDTO;
 import com.qinweizhao.product.model.entity.PmsCategory;

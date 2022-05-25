@@ -5,7 +5,7 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.product.model.entity.PmsSpuImage;
 import com.qinweizhao.product.service.IPmsSpuImageService;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +44,7 @@ public class PmsSpuImageController extends BaseController {
     @RequiresPermissions("product:image:export")
     @Log(title = "spu图片", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, PmsSpuImage pmsSpuImage) {
+    public R<?> export(HttpServletResponse response, PmsSpuImage pmsSpuImage) {
         List<PmsSpuImage> list = pmsSpuImageService.selectPmsSpuImageList(pmsSpuImage);
         ExcelUtil<PmsSpuImage> util = new ExcelUtil<>(PmsSpuImage.class);
         util.exportExcel(response, list, "spu图片数据");
@@ -66,8 +66,8 @@ public class PmsSpuImageController extends BaseController {
     @RequiresPermissions("product:image:add")
     @Log(title = "spu图片", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody PmsSpuImage pmsSpuImage) {
-        return R.condition(pmsSpuImageService.insertPmsSpuImage(pmsSpuImage));
+    public R<?> add(@RequestBody PmsSpuImage pmsSpuImage) {
+        return R.success(pmsSpuImageService.insertPmsSpuImage(pmsSpuImage));
     }
 
     /**
@@ -76,8 +76,8 @@ public class PmsSpuImageController extends BaseController {
     @RequiresPermissions("product:image:edit")
     @Log(title = "spu图片", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody PmsSpuImage pmsSpuImage) {
-        return R.condition(pmsSpuImageService.updatePmsSpuImage(pmsSpuImage));
+    public R<?> edit(@RequestBody PmsSpuImage pmsSpuImage) {
+        return R.success(pmsSpuImageService.updatePmsSpuImage(pmsSpuImage));
     }
 
     /**
@@ -86,7 +86,7 @@ public class PmsSpuImageController extends BaseController {
     @RequiresPermissions("product:image:remove")
     @Log(title = "spu图片", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable Long[] ids) {
-        return R.condition(pmsSpuImageService.deletePmsSpuImageByIds(ids));
+    public R<?> remove(@PathVariable Long[] ids) {
+        return R.success(pmsSpuImageService.deletePmsSpuImageByIds(ids));
     }
 }

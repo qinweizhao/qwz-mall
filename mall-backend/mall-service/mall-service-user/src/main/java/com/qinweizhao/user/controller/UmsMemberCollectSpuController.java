@@ -5,7 +5,7 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.user.entity.UmsMemberCollectSpu;
 import com.qinweizhao.user.service.UmsMemberCollectSpuService;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +44,7 @@ public class UmsMemberCollectSpuController extends BaseController {
     @RequiresPermissions("product:spu:export")
     @Log(title = "会员收藏的商品", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, UmsMemberCollectSpu umsMemberCollectSpu) {
+    public R<?> export(HttpServletResponse response, UmsMemberCollectSpu umsMemberCollectSpu) {
         List<UmsMemberCollectSpu> list = umsMemberCollectSpuService.selectUmsMemberCollectSpuList(umsMemberCollectSpu);
         ExcelUtil<UmsMemberCollectSpu> util = new ExcelUtil<>(UmsMemberCollectSpu.class);
         util.exportExcel(response, list, "会员收藏的商品数据");
@@ -66,8 +66,8 @@ public class UmsMemberCollectSpuController extends BaseController {
     @RequiresPermissions("product:spu:add")
     @Log(title = "会员收藏的商品", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody UmsMemberCollectSpu umsMemberCollectSpu) {
-        return R.condition(umsMemberCollectSpuService.save(umsMemberCollectSpu));
+    public R<?> add(@RequestBody UmsMemberCollectSpu umsMemberCollectSpu) {
+        return R.success(umsMemberCollectSpuService.save(umsMemberCollectSpu));
     }
 
     /**
@@ -76,8 +76,8 @@ public class UmsMemberCollectSpuController extends BaseController {
     @RequiresPermissions("product:spu:edit")
     @Log(title = "会员收藏的商品", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody UmsMemberCollectSpu umsMemberCollectSpu) {
-        return R.condition(umsMemberCollectSpuService.updateById(umsMemberCollectSpu));
+    public R<?> edit(@RequestBody UmsMemberCollectSpu umsMemberCollectSpu) {
+        return R.success(umsMemberCollectSpuService.updateById(umsMemberCollectSpu));
     }
 
     /**
@@ -86,7 +86,7 @@ public class UmsMemberCollectSpuController extends BaseController {
     @RequiresPermissions("product:spu:remove")
     @Log(title = "会员收藏的商品", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable List<Long> ids) {
-        return R.condition(umsMemberCollectSpuService.removeBatchByIds(ids));
+    public R<?> remove(@PathVariable List<Long> ids) {
+        return R.success(umsMemberCollectSpuService.removeBatchByIds(ids));
     }
 }

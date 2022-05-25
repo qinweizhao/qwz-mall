@@ -8,7 +8,7 @@ import com.qinweizhao.common.security.service.TokenService;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.api.file.RemoteFileService;
 import com.qinweizhao.api.file.domain.SysFile;
 import com.qinweizhao.system.api.domain.SysUser;

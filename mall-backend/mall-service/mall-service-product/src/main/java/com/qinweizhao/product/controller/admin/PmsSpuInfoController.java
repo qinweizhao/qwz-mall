@@ -4,8 +4,8 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.PageResult;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.PageResult;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.product.model.entity.PmsSpuInfo;
 import com.qinweizhao.product.model.vo.SpuSaveVO;
 import com.qinweizhao.product.service.IPmsSpuInfoService;
@@ -54,8 +54,8 @@ public class PmsSpuInfoController extends BaseController {
     @RequiresPermissions("product:info:add")
     @Log(title = "spu信息", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody SpuSaveVO spuSaveVO) {
-        return R.condition(pmsSpuInfoService.saveSpu(spuSaveVO));
+    public R<?> add(@RequestBody SpuSaveVO spuSaveVO) {
+        return R.success(pmsSpuInfoService.saveSpu(spuSaveVO));
     }
 
     /**
@@ -64,8 +64,8 @@ public class PmsSpuInfoController extends BaseController {
     @RequiresPermissions("product:info:edit")
     @Log(title = "spu信息", businessType = BusinessType.UPDATE)
     @PutMapping("/status/{spuId}")
-    public R<Void> updateSpuStatus(@PathVariable Long spuId) {
-        return R.condition(pmsSpuInfoService.updateSpuStatus(spuId));
+    public R<?> updateSpuStatus(@PathVariable Long spuId) {
+        return R.success(pmsSpuInfoService.updateSpuStatus(spuId));
     }
 
     /**
@@ -74,8 +74,8 @@ public class PmsSpuInfoController extends BaseController {
     @RequiresPermissions("product:info:edit")
     @Log(title = "spu信息", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody PmsSpuInfo pmsSpuInfo) {
-        return R.condition(pmsSpuInfoService.updateById(pmsSpuInfo));
+    public R<?> edit(@RequestBody PmsSpuInfo pmsSpuInfo) {
+        return R.success(pmsSpuInfoService.updateById(pmsSpuInfo));
     }
 
     /**
@@ -84,7 +84,7 @@ public class PmsSpuInfoController extends BaseController {
     @RequiresPermissions("product:info:remove")
     @Log(title = "spu信息", businessType = BusinessType.DELETE)
     @DeleteMapping("/{spuIds}")
-    public R<Void> remove(@PathVariable Long[] spuIds) {
-        return R.condition(pmsSpuInfoService.removeByIds(spuIds));
+    public R<?> remove(@PathVariable Long[] spuIds) {
+        return R.success(pmsSpuInfoService.removeByIds(spuIds));
     }
 }

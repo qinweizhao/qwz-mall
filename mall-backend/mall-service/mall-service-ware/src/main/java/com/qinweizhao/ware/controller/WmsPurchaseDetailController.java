@@ -5,7 +5,7 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.ware.model.WmsPurchaseDetail;
 import com.qinweizhao.ware.service.IWmsPurchaseDetailService;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +43,7 @@ public class WmsPurchaseDetailController extends BaseController {
     @RequiresPermissions("product:detail:export")
     @Log(title = "采购单详情", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, WmsPurchaseDetail wmsPurchaseDetail) {
+    public R<?> export(HttpServletResponse response, WmsPurchaseDetail wmsPurchaseDetail) {
         List<WmsPurchaseDetail> list = wmsPurchaseDetailService.selectWmsPurchaseDetailList(wmsPurchaseDetail);
         ExcelUtil<WmsPurchaseDetail> util = new ExcelUtil<WmsPurchaseDetail>(WmsPurchaseDetail.class);
         util.exportExcel(response, list, "采购单详情数据");
@@ -65,8 +65,8 @@ public class WmsPurchaseDetailController extends BaseController {
     @RequiresPermissions("product:detail:add")
     @Log(title = "采购单详情", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody WmsPurchaseDetail wmsPurchaseDetail) {
-        return R.condition(wmsPurchaseDetailService.insertWmsPurchaseDetail(wmsPurchaseDetail));
+    public R<?> add(@RequestBody WmsPurchaseDetail wmsPurchaseDetail) {
+        return R.success(wmsPurchaseDetailService.insertWmsPurchaseDetail(wmsPurchaseDetail));
     }
 
     /**
@@ -75,8 +75,8 @@ public class WmsPurchaseDetailController extends BaseController {
     @RequiresPermissions("product:detail:edit")
     @Log(title = "采购单详情", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody WmsPurchaseDetail wmsPurchaseDetail) {
-        return R.condition(wmsPurchaseDetailService.updateWmsPurchaseDetail(wmsPurchaseDetail));
+    public R<?> edit(@RequestBody WmsPurchaseDetail wmsPurchaseDetail) {
+        return R.success(wmsPurchaseDetailService.updateWmsPurchaseDetail(wmsPurchaseDetail));
     }
 
     /**
@@ -85,7 +85,7 @@ public class WmsPurchaseDetailController extends BaseController {
     @RequiresPermissions("product:detail:remove")
     @Log(title = "采购单详情", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable Long[] ids) {
-        return R.condition(wmsPurchaseDetailService.deleteWmsPurchaseDetailByIds(ids));
+    public R<?> remove(@PathVariable Long[] ids) {
+        return R.success(wmsPurchaseDetailService.deleteWmsPurchaseDetailByIds(ids));
     }
 }

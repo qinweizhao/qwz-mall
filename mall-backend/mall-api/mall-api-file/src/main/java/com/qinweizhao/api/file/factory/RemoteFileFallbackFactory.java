@@ -1,7 +1,7 @@
 package com.qinweizhao.api.file.factory;
 
-import com.qinweizhao.common.core.enums.ErrorEnum;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.common.core.enums.MallResultCodeEnum;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.api.file.RemoteFileService;
 import com.qinweizhao.api.file.domain.SysFile;
 import org.slf4j.Logger;
@@ -27,7 +27,7 @@ public class RemoteFileFallbackFactory implements FallbackFactory<RemoteFileServ
             public R<SysFile> upload(MultipartFile file) {
                 // TODO
 //                return R.failure("上传文件失败:" + throwable.getMessage());
-                return R.failure(ErrorEnum.USER_ERROR);
+                return R.failure();
             }
         };
     }

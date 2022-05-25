@@ -1,16 +1,17 @@
 package com.qinweizhao.file.utils;
 
-import com.qinweizhao.common.core.exception.file.FileSizeLimitExceededException;
-import com.qinweizhao.common.core.exception.file.InvalidExtensionException;
+import com.qinweizhao.common.core.enums.MallResultCodeEnum;
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.IdUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.utils.file.MimeTypeUtils;
+import com.qinweizhao.component.core.exception.BizException;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * 文件上传工具类
@@ -53,16 +54,14 @@ public class FileUploadUtils {
      * @param file             上传的文件
      * @param allowedExtension 上传文件类型
      * @return 返回上传成功的文件名
-     * @throws FileSizeLimitExceededException 如果超出最大大小
-     * @throws IOException                    比如读写文件出错时
-     * @throws InvalidExtensionException      文件校验异常
+     * @throws BizException 如果超出最大大小
+     * @throws IOException  比如读写文件出错时
      */
-    public static final String upload(String baseDir, MultipartFile file, String[] allowedExtension)
-            throws FileSizeLimitExceededException, IOException,
-            InvalidExtensionException {
-        int fileNamelength = file.getOriginalFilename().length();
-        if (fileNamelength > FileUploadUtils.DEFAULT_FILE_NAME_LENGTH) {
-//            throw new BizException(ErrorEnum.USER_UPLOAD_FILE_EXCEPTION, FileUploadUtils.DEFAULT_FILE_NAME_LENGTH);
+    public static String upload(String baseDir, MultipartFile file, String[] allowedExtension)
+            throws BizException, IOException {
+        int fileNameLength = Objects.requireNonNull(file.getOriginalFilename()).length();
+        if (fileNameLength > FileUploadUtils.DEFAULT_FILE_NAME_LENGTH) {
+            throw new BizException(MallResultCodeEnum.FILE_NAME_LENGTH_LIMIT);
         }
 
         assertAllowed(file, allowedExtension);
@@ -71,8 +70,7 @@ public class FileUploadUtils {
 
         File desc = getAbsoluteFile(baseDir, fileName);
         file.transferTo(desc);
-        String pathFileName = getPathFileName(fileName);
-        return pathFileName;
+        return getPathFileName(fileName);
     }
 
     /**
@@ -105,34 +103,34 @@ public class FileUploadUtils {
      * 文件大小校验
      *
      * @param file 上传的文件
-     * @throws FileSizeLimitExceededException 如果超出最大大小
-     * @throws InvalidExtensionException      文件校验异常
+     * @throws BizException 如果超出最大大小
      */
-    public static final void assertAllowed(MultipartFile file, String[] allowedExtension)
-            throws FileSizeLimitExceededException, InvalidExtensionException {
+    public static void assertAllowed(MultipartFile file, String[] allowedExtension)
+            throws BizException {
         long size = file.getSize();
-        if (DEFAULT_MAX_SIZE != -1 && size > DEFAULT_MAX_SIZE) {
-            throw new FileSizeLimitExceededException(DEFAULT_MAX_SIZE / 1024 / 1024);
+        if (size > DEFAULT_MAX_SIZE) {
+            throw new BizException(MallResultCodeEnum.FILE_SIZE_LIMIT);
         }
 
         String fileName = file.getOriginalFilename();
         String extension = getExtension(file);
         if (allowedExtension != null && !isAllowedExtension(extension, allowedExtension)) {
-            if (allowedExtension == MimeTypeUtils.IMAGE_EXTENSION) {
-                throw new InvalidExtensionException.InvalidImageExtensionException(allowedExtension, extension,
-                        fileName);
-            } else if (allowedExtension == MimeTypeUtils.FLASH_EXTENSION) {
-                throw new InvalidExtensionException.InvalidFlashExtensionException(allowedExtension, extension,
-                        fileName);
-            } else if (allowedExtension == MimeTypeUtils.MEDIA_EXTENSION) {
-                throw new InvalidExtensionException.InvalidMediaExtensionException(allowedExtension, extension,
-                        fileName);
-            } else if (allowedExtension == MimeTypeUtils.VIDEO_EXTENSION) {
-                throw new InvalidExtensionException.InvalidVideoExtensionException(allowedExtension, extension,
-                        fileName);
-            } else {
-                throw new InvalidExtensionException(allowedExtension, extension, fileName);
-            }
+//            if (allowedExtension == MimeTypeUtils.IMAGE_EXTENSION) {
+//                throw new InvalidExtensionException.InvalidImageExtensionException(allowedExtension, extension,
+//                        fileName);
+//            } else if (allowedExtension == MimeTypeUtils.FLASH_EXTENSION) {
+//                throw new InvalidExtensionException.InvalidFlashExtensionException(allowedExtension, extension,
+//                        fileName);
+//            } else if (allowedExtension == MimeTypeUtils.MEDIA_EXTENSION) {
+//                throw new InvalidExtensionException.InvalidMediaExtensionException(allowedExtension, extension,
+//                        fileName);
+//            } else if (allowedExtension == MimeTypeUtils.VIDEO_EXTENSION) {
+//                throw new InvalidExtensionException.InvalidVideoExtensionException(allowedExtension, extension,
+//                        fileName);
+//            } else {
+//                throw new InvalidExtensionException(allowedExtension, extension, fileName);
+//            }
+            throw new BizException(MallResultCodeEnum.FILE_UPLOAD_ERROR);
         }
     }
 
@@ -143,7 +141,7 @@ public class FileUploadUtils {
      * @param allowedExtension 允许上传文件类型
      * @return true/false
      */
-    public static final boolean isAllowedExtension(String extension, String[] allowedExtension) {
+    public static boolean isAllowedExtension(String extension, String[] allowedExtension) {
         for (String str : allowedExtension) {
             if (str.equalsIgnoreCase(extension)) {
                 return true;

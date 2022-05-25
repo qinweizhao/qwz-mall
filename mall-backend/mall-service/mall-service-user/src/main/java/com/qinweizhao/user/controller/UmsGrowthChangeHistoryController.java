@@ -5,7 +5,7 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.user.entity.UmsGrowthChangeHistory;
 import com.qinweizhao.user.service.UmsGrowthChangeHistoryService;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +44,7 @@ public class UmsGrowthChangeHistoryController extends BaseController {
     @RequiresPermissions("product:history:export")
     @Log(title = "成长值变化历史记录", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, UmsGrowthChangeHistory umsGrowthChangeHistory) {
+    public R<?> export(HttpServletResponse response, UmsGrowthChangeHistory umsGrowthChangeHistory) {
         List<UmsGrowthChangeHistory> list = umsGrowthChangeHistoryService.selectUmsGrowthChangeHistoryList(umsGrowthChangeHistory);
         ExcelUtil<UmsGrowthChangeHistory> util = new ExcelUtil<UmsGrowthChangeHistory>(UmsGrowthChangeHistory.class);
         util.exportExcel(response, list, "成长值变化历史记录数据");
@@ -66,8 +66,8 @@ public class UmsGrowthChangeHistoryController extends BaseController {
     @RequiresPermissions("product:history:add")
     @Log(title = "成长值变化历史记录", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody UmsGrowthChangeHistory umsGrowthChangeHistory) {
-        return R.condition(umsGrowthChangeHistoryService.save(umsGrowthChangeHistory));
+    public R<?> add(@RequestBody UmsGrowthChangeHistory umsGrowthChangeHistory) {
+        return R.success(umsGrowthChangeHistoryService.save(umsGrowthChangeHistory));
     }
 
     /**
@@ -76,8 +76,8 @@ public class UmsGrowthChangeHistoryController extends BaseController {
     @RequiresPermissions("product:history:edit")
     @Log(title = "成长值变化历史记录", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody UmsGrowthChangeHistory umsGrowthChangeHistory) {
-        return R.condition(umsGrowthChangeHistoryService.updateById(umsGrowthChangeHistory));
+    public R<?> edit(@RequestBody UmsGrowthChangeHistory umsGrowthChangeHistory) {
+        return R.success(umsGrowthChangeHistoryService.updateById(umsGrowthChangeHistory));
     }
 
     /**
@@ -86,7 +86,7 @@ public class UmsGrowthChangeHistoryController extends BaseController {
     @RequiresPermissions("product:history:remove")
     @Log(title = "成长值变化历史记录", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable List<Long> ids) {
-        return R.condition(umsGrowthChangeHistoryService.removeBatchByIds(ids));
+    public R<?> remove(@PathVariable List<Long> ids) {
+        return R.success(umsGrowthChangeHistoryService.removeBatchByIds(ids));
     }
 }

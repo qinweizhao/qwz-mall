@@ -4,8 +4,8 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.PageResult;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.PageResult;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.product.model.entity.PmsAttr;
 import com.qinweizhao.product.model.entity.PmsAttrAttrGroup;
 import com.qinweizhao.product.model.vo.AttrAttrGroupSaveBatchVO;
@@ -77,8 +77,8 @@ public class PmsAttrAttrGroupController extends BaseController {
     @RequiresPermissions("product:group:edit")
     @Log(title = "属性&属性分组关联", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody PmsAttrAttrGroup pmsAttrAttrGroup) {
-        return R.condition(pmsAttrAttrGroupService.updatePmsAttrAttrGroup(pmsAttrAttrGroup));
+    public R<?> edit(@RequestBody PmsAttrAttrGroup pmsAttrAttrGroup) {
+        return R.success(pmsAttrAttrGroupService.updatePmsAttrAttrGroup(pmsAttrAttrGroup));
     }
 
     /**
@@ -87,8 +87,8 @@ public class PmsAttrAttrGroupController extends BaseController {
     @RequiresPermissions("product:attr:remove")
     @Log(title = "属性&属性分组关联", businessType = BusinessType.DELETE)
     @DeleteMapping("/{attrIds}")
-    public R<Void> remove(@PathVariable Long[] attrIds) {
-        return R.condition(pmsAttrAttrGroupService.deletePmsAttrAttrGroupByIds(attrIds));
+    public R<?> remove(@PathVariable Long[] attrIds) {
+        return R.success(pmsAttrAttrGroupService.deletePmsAttrAttrGroupByIds(attrIds));
     }
 
     /**
@@ -97,7 +97,7 @@ public class PmsAttrAttrGroupController extends BaseController {
     @RequiresPermissions("product:group:edit")
     @Log(title = "属性&属性分组关联", businessType = BusinessType.GRANT)
     @PostMapping
-    public R<Void> selectAuthUserAll(@RequestBody AttrAttrGroupSaveBatchVO attrAttrGroupSaveBatchVO) {
-        return R.condition(pmsAttrAttrGroupService.insertPmsAttrAttrGroups(attrAttrGroupSaveBatchVO));
+    public R<?> selectAuthUserAll(@RequestBody AttrAttrGroupSaveBatchVO attrAttrGroupSaveBatchVO) {
+        return R.success(pmsAttrAttrGroupService.insertPmsAttrAttrGroups(attrAttrGroupSaveBatchVO));
     }
 }

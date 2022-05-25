@@ -4,7 +4,7 @@ import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.member.entity.Member;
 import com.qinweizhao.member.service.MemberService;
 import org.springframework.web.bind.annotation.*;
@@ -53,7 +53,7 @@ public class MemberController {
     @RequiresPermissions("product:member:export")
     @Log(title = "会员", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, Member member) {
+    public R<?> export(HttpServletResponse response, Member member) {
         List<Member> list = memberService.selectMemberList(member);
         ExcelUtil<Member> util = new ExcelUtil<Member>(Member.class);
         util.exportExcel(response, list, "会员数据");
@@ -75,8 +75,8 @@ public class MemberController {
     @RequiresPermissions("product:member:add")
     @Log(title = "会员", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody Member member) {
-        return R.condition(memberService.save(member));
+    public R<?> add(@RequestBody Member member) {
+        return R.success(memberService.save(member));
     }
 
     /**
@@ -85,8 +85,8 @@ public class MemberController {
     @RequiresPermissions("product:member:edit")
     @Log(title = "会员", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody Member member) {
-        return R.condition(memberService.save(member));
+    public R<?> edit(@RequestBody Member member) {
+        return R.success(memberService.save(member));
     }
 
     /**
@@ -95,7 +95,7 @@ public class MemberController {
     @RequiresPermissions("product:member:remove")
     @Log(title = "会员", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable List<Long> ids) {
-        return R.condition(memberService.removeByIds(ids));
+    public R<?> remove(@PathVariable List<Long> ids) {
+        return R.success(memberService.removeByIds(ids));
     }
 }

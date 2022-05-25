@@ -4,7 +4,7 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.product.model.entity.PmsSkuImage;
 import com.qinweizhao.product.service.IPmsSkuImageService;
 import org.springframework.web.bind.annotation.*;
@@ -51,8 +51,8 @@ public class PmsSkuImageController extends BaseController {
     @RequiresPermissions("product:image:add")
     @Log(title = "sku图片", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody PmsSkuImage pmsSkuImage) {
-        return R.condition(pmsSkuImageService.save(pmsSkuImage));
+    public R<?> add(@RequestBody PmsSkuImage pmsSkuImage) {
+        return R.success(pmsSkuImageService.save(pmsSkuImage));
     }
 
     /**
@@ -61,8 +61,8 @@ public class PmsSkuImageController extends BaseController {
     @RequiresPermissions("product:image:edit")
     @Log(title = "sku图片", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody PmsSkuImage pmsSkuImage) {
-        return R.condition(pmsSkuImageService.updateById(pmsSkuImage));
+    public R<?> edit(@RequestBody PmsSkuImage pmsSkuImage) {
+        return R.success(pmsSkuImageService.updateById(pmsSkuImage));
     }
 
     /**
@@ -71,7 +71,7 @@ public class PmsSkuImageController extends BaseController {
     @RequiresPermissions("product:image:remove")
     @Log(title = "sku图片", businessType = BusinessType.DELETE)
     @DeleteMapping("/{skuIds}")
-    public R<Void> remove(@PathVariable Long[] skuIds) {
-        return R.condition(pmsSkuImageService.removeByIds(skuIds));
+    public R<?> remove(@PathVariable Long[] skuIds) {
+        return R.success(pmsSkuImageService.removeByIds(skuIds));
     }
 }

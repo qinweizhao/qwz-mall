@@ -3,7 +3,7 @@ package ${packageName}.controller;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 
 import javax.annotation.Resource;
 
@@ -61,7 +61,7 @@ public class ${ClassName}Controller extends BaseController {
     @RequiresPermissions("${permissionPrefix}:export")
     @Log(title = "${functionName}", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, ${ClassName} ${className}) {
+    public R<?> export(HttpServletResponse response, ${ClassName} ${className}) {
         List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
         ExcelUtil<${ClassName}> util = new ExcelUtil<${ClassName}>(${ClassName}. class);
         util.exportExcel(response, list, "${functionName}数据");
@@ -83,8 +83,8 @@ public class ${ClassName}Controller extends BaseController {
     @RequiresPermissions("${permissionPrefix}:add")
     @Log(title = "${functionName}", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody ${ClassName} ${className}) {
-        return R.condition(${className}Service.insert${ClassName}(${className}));
+    public R<?> add(@RequestBody ${ClassName} ${className}) {
+        return R.success(${className}Service.insert${ClassName}(${className}));
     }
 
     /**
@@ -93,8 +93,8 @@ public class ${ClassName}Controller extends BaseController {
     @RequiresPermissions("${permissionPrefix}:edit")
     @Log(title = "${functionName}", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody ${ClassName} ${className}) {
-        return R.condition(${className}Service.update${ClassName}(${className}));
+    public R<?> edit(@RequestBody ${ClassName} ${className}) {
+        return R.success(${className}Service.update${ClassName}(${className}));
     }
 
     /**
@@ -103,7 +103,7 @@ public class ${ClassName}Controller extends BaseController {
     @RequiresPermissions("${permissionPrefix}:remove")
     @Log(title = "${functionName}", businessType = BusinessType.DELETE)
     @DeleteMapping("/{${pkColumn.javaField}s}")
-    public R<Void> remove(@PathVariable ${pkColumn.javaType}[] ${pkColumn.javaField}s) {
-        return R.condition(${className}Service.delete${ClassName}By${pkColumn.capJavaField}s(${pkColumn.javaField}s));
+    public R<?> remove(@PathVariable ${pkColumn.javaType}[] ${pkColumn.javaField}s) {
+        return R.success(${className}Service.delete${ClassName}By${pkColumn.capJavaField}s(${pkColumn.javaField}s));
     }
 }

@@ -4,7 +4,7 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.product.model.entity.PmsCategoryBrand;
 import com.qinweizhao.product.service.IPmsBrandService;
 import com.qinweizhao.product.service.IPmsCategoryBrandService;
@@ -49,10 +49,10 @@ public class PmsCategoryBrandController extends BaseController {
     @RequiresPermissions("product:brand:add")
     @Log(title = "分类&品牌关联", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody PmsCategoryBrand pmsCategoryBrand) {
+    public R<?> add(@RequestBody PmsCategoryBrand pmsCategoryBrand) {
         pmsCategoryBrand.setCategoryName(pmsCategoryService.getById(pmsCategoryBrand.getCategoryId()).getName());
         pmsCategoryBrand.setBrandName(pmsBrandService.getById(pmsCategoryBrand.getBrandId()).getName());
-        return R.condition(pmsCategoryBrandService.save(pmsCategoryBrand));
+        return R.success(pmsCategoryBrandService.save(pmsCategoryBrand));
     }
 
     /**
@@ -61,8 +61,8 @@ public class PmsCategoryBrandController extends BaseController {
     @RequiresPermissions("product:brand:remove")
     @Log(title = "分类&品牌关联", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable Long[] ids) {
-        return R.condition(pmsCategoryBrandService.removeByIds(ids));
+    public R<?> remove(@PathVariable Long[] ids) {
+        return R.success(pmsCategoryBrandService.removeByIds(ids));
     }
 
 }

@@ -3,7 +3,7 @@ package com.qinweizhao.api.file;
 import com.qinweizhao.api.file.domain.SysFile;
 import com.qinweizhao.api.file.factory.RemoteFileFallbackFactory;
 import com.qinweizhao.common.core.constant.ServiceNameConstants;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;

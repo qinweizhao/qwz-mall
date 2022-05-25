@@ -5,7 +5,7 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.ware.model.WmsWareOrderTaskDetail;
 import com.qinweizhao.ware.service.IWmsWareOrderTaskDetailService;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +43,7 @@ public class WmsWareOrderTaskDetailController extends BaseController {
     @RequiresPermissions("product:detail:export")
     @Log(title = "库存工作单详情", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, WmsWareOrderTaskDetail wmsWareOrderTaskDetail) {
+    public R<?> export(HttpServletResponse response, WmsWareOrderTaskDetail wmsWareOrderTaskDetail) {
         List<WmsWareOrderTaskDetail> list = wmsWareOrderTaskDetailService.selectWmsWareOrderTaskDetailList(wmsWareOrderTaskDetail);
         ExcelUtil<WmsWareOrderTaskDetail> util = new ExcelUtil<WmsWareOrderTaskDetail>(WmsWareOrderTaskDetail.class);
         util.exportExcel(response, list, "库存工作单详情数据");
@@ -65,8 +65,8 @@ public class WmsWareOrderTaskDetailController extends BaseController {
     @RequiresPermissions("product:detail:add")
     @Log(title = "库存工作单详情", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody WmsWareOrderTaskDetail wmsWareOrderTaskDetail) {
-        return R.condition(wmsWareOrderTaskDetailService.insertWmsWareOrderTaskDetail(wmsWareOrderTaskDetail));
+    public R<?> add(@RequestBody WmsWareOrderTaskDetail wmsWareOrderTaskDetail) {
+        return R.success(wmsWareOrderTaskDetailService.insertWmsWareOrderTaskDetail(wmsWareOrderTaskDetail));
     }
 
     /**
@@ -75,8 +75,8 @@ public class WmsWareOrderTaskDetailController extends BaseController {
     @RequiresPermissions("product:detail:edit")
     @Log(title = "库存工作单详情", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody WmsWareOrderTaskDetail wmsWareOrderTaskDetail) {
-        return R.condition(wmsWareOrderTaskDetailService.updateWmsWareOrderTaskDetail(wmsWareOrderTaskDetail));
+    public R<?> edit(@RequestBody WmsWareOrderTaskDetail wmsWareOrderTaskDetail) {
+        return R.success(wmsWareOrderTaskDetailService.updateWmsWareOrderTaskDetail(wmsWareOrderTaskDetail));
     }
 
     /**
@@ -85,7 +85,7 @@ public class WmsWareOrderTaskDetailController extends BaseController {
     @RequiresPermissions("product:detail:remove")
     @Log(title = "库存工作单详情", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable Long[] ids) {
-        return R.condition(wmsWareOrderTaskDetailService.deleteWmsWareOrderTaskDetailByIds(ids));
+    public R<?> remove(@PathVariable Long[] ids) {
+        return R.success(wmsWareOrderTaskDetailService.deleteWmsWareOrderTaskDetailByIds(ids));
     }
 }

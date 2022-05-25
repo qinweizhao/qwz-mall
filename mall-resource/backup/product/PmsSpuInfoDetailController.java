@@ -4,7 +4,7 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.product.model.entity.PmsSpuInfoDetail;
 import com.qinweizhao.product.service.IPmsSpuInfoDetailService;
 import org.springframework.web.bind.annotation.*;
@@ -52,8 +52,8 @@ public class PmsSpuInfoDetailController extends BaseController {
     @RequiresPermissions("product:detail:add")
     @Log(title = "spu信息介绍", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody PmsSpuInfoDetail pmsSpuInfoDetail) {
-        return R.condition(pmsSpuInfoDetailService.save(pmsSpuInfoDetail));
+    public R<?> add(@RequestBody PmsSpuInfoDetail pmsSpuInfoDetail) {
+        return R.success(pmsSpuInfoDetailService.save(pmsSpuInfoDetail));
     }
 
     /**
@@ -62,8 +62,8 @@ public class PmsSpuInfoDetailController extends BaseController {
     @RequiresPermissions("product:detail:edit")
     @Log(title = "spu信息介绍", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody PmsSpuInfoDetail pmsSpuInfoDetail) {
-        return R.condition(pmsSpuInfoDetailService.updateById(pmsSpuInfoDetail));
+    public R<?> edit(@RequestBody PmsSpuInfoDetail pmsSpuInfoDetail) {
+        return R.success(pmsSpuInfoDetailService.updateById(pmsSpuInfoDetail));
     }
 
     /**
@@ -72,7 +72,7 @@ public class PmsSpuInfoDetailController extends BaseController {
     @RequiresPermissions("product:detail:remove")
     @Log(title = "spu信息介绍", businessType = BusinessType.DELETE)
     @DeleteMapping("/{spuIds}")
-    public R<Void> remove(@PathVariable Long[] spuIds) {
-        return R.condition(pmsSpuInfoDetailService.removeByIds(spuIds));
+    public R<?> remove(@PathVariable Long[] spuIds) {
+        return R.success(pmsSpuInfoDetailService.removeByIds(spuIds));
     }
 }

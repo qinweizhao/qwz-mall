@@ -1,7 +1,7 @@
 package com.qinweizhao.file.controller;
 
 import com.qinweizhao.common.core.utils.file.FileUtils;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.api.file.domain.SysFile;
 import com.qinweizhao.file.service.ISysFileService;
 import org.slf4j.Logger;
@@ -41,7 +41,8 @@ public class SysFileController
         }
         catch (Exception e) {
             log.error("上传文件失败", e);
-            return R.failure(e.getMessage());
+//            return R.failure(e.getMessage());
+        return R.failure();
         }
     }
 }

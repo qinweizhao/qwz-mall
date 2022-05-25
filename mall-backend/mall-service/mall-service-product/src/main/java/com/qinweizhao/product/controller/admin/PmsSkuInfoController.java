@@ -4,8 +4,8 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.PageResult;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.PageResult;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.product.model.entity.PmsSkuInfo;
 import com.qinweizhao.product.service.IPmsSkuInfoService;
 import org.springframework.web.bind.annotation.*;
@@ -54,8 +54,8 @@ public class PmsSkuInfoController extends BaseController {
     @RequiresPermissions("product:info:add")
     @Log(title = "sku信息", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody PmsSkuInfo pmsSkuInfo) {
-        return R.condition(pmsSkuInfoService.save(pmsSkuInfo));
+    public R<?> add(@RequestBody PmsSkuInfo pmsSkuInfo) {
+        return R.success(pmsSkuInfoService.save(pmsSkuInfo));
     }
 
     /**
@@ -64,8 +64,8 @@ public class PmsSkuInfoController extends BaseController {
     @RequiresPermissions("product:info:edit")
     @Log(title = "sku信息", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody PmsSkuInfo pmsSkuInfo) {
-        return R.condition(pmsSkuInfoService.updateById(pmsSkuInfo));
+    public R<?> edit(@RequestBody PmsSkuInfo pmsSkuInfo) {
+        return R.success(pmsSkuInfoService.updateById(pmsSkuInfo));
     }
 
     /**
@@ -74,7 +74,7 @@ public class PmsSkuInfoController extends BaseController {
     @RequiresPermissions("product:info:remove")
     @Log(title = "sku信息", businessType = BusinessType.DELETE)
     @DeleteMapping("/{skuIds}")
-    public R<Void> remove(@PathVariable Long[] skuIds) {
-        return R.condition(pmsSkuInfoService.removeByIds(skuIds));
+    public R<?> remove(@PathVariable Long[] skuIds) {
+        return R.success(pmsSkuInfoService.removeByIds(skuIds));
     }
 }

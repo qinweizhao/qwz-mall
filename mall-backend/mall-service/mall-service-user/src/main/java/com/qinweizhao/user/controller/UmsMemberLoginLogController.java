@@ -5,7 +5,7 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.user.entity.UmsMemberLoginLog;
 import com.qinweizhao.user.service.UmsMemberLoginLogService;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +43,7 @@ public class UmsMemberLoginLogController extends BaseController {
     @RequiresPermissions("product:log:export")
     @Log(title = "会员登录记录", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, UmsMemberLoginLog umsMemberLoginLog) {
+    public R<?> export(HttpServletResponse response, UmsMemberLoginLog umsMemberLoginLog) {
         List<UmsMemberLoginLog> list = umsMemberLoginLogService.selectUmsMemberLoginLogList(umsMemberLoginLog);
         ExcelUtil<UmsMemberLoginLog> util = new ExcelUtil<>(UmsMemberLoginLog.class);
         util.exportExcel(response, list, "会员登录记录数据");
@@ -65,8 +65,8 @@ public class UmsMemberLoginLogController extends BaseController {
     @RequiresPermissions("product:log:add")
     @Log(title = "会员登录记录", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody UmsMemberLoginLog umsMemberLoginLog) {
-        return R.condition(umsMemberLoginLogService.save(umsMemberLoginLog));
+    public R<?> add(@RequestBody UmsMemberLoginLog umsMemberLoginLog) {
+        return R.success(umsMemberLoginLogService.save(umsMemberLoginLog));
     }
 
     /**
@@ -75,8 +75,8 @@ public class UmsMemberLoginLogController extends BaseController {
     @RequiresPermissions("product:log:edit")
     @Log(title = "会员登录记录", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody UmsMemberLoginLog umsMemberLoginLog) {
-        return R.condition(umsMemberLoginLogService.updateById(umsMemberLoginLog));
+    public R<?> edit(@RequestBody UmsMemberLoginLog umsMemberLoginLog) {
+        return R.success(umsMemberLoginLogService.updateById(umsMemberLoginLog));
     }
 
     /**
@@ -85,7 +85,7 @@ public class UmsMemberLoginLogController extends BaseController {
     @RequiresPermissions("product:log:remove")
     @Log(title = "会员登录记录", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable List<Long> ids) {
-        return R.condition(umsMemberLoginLogService.removeBatchByIds(ids));
+    public R<?> remove(@PathVariable List<Long> ids) {
+        return R.success(umsMemberLoginLogService.removeBatchByIds(ids));
     }
 }

@@ -4,7 +4,7 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.product.model.entity.PmsSkuAttrValue;
 import com.qinweizhao.product.service.IPmsSkuAttrValueService;
 import org.springframework.web.bind.annotation.*;
@@ -50,8 +50,8 @@ public class PmsSkuAttrValueController extends BaseController {
     @RequiresPermissions("product:value:add")
     @Log(title = "sku销售属性&值", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody PmsSkuAttrValue pmsSkuAttrValue) {
-        return R.condition(pmsSkuAttrValueService.save(pmsSkuAttrValue));
+    public R<?> add(@RequestBody PmsSkuAttrValue pmsSkuAttrValue) {
+        return R.success(pmsSkuAttrValueService.save(pmsSkuAttrValue));
     }
 
     /**
@@ -60,8 +60,8 @@ public class PmsSkuAttrValueController extends BaseController {
     @RequiresPermissions("product:value:edit")
     @Log(title = "sku销售属性&值", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody PmsSkuAttrValue pmsSkuAttrValue) {
-        return R.condition(pmsSkuAttrValueService.updateById(pmsSkuAttrValue));
+    public R<?> edit(@RequestBody PmsSkuAttrValue pmsSkuAttrValue) {
+        return R.success(pmsSkuAttrValueService.updateById(pmsSkuAttrValue));
     }
 
     /**
@@ -70,7 +70,7 @@ public class PmsSkuAttrValueController extends BaseController {
     @RequiresPermissions("product:value:remove")
     @Log(title = "sku销售属性&值", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable Long[] ids) {
-        return R.condition(pmsSkuAttrValueService.removeByIds(ids));
+    public R<?> remove(@PathVariable Long[] ids) {
+        return R.success(pmsSkuAttrValueService.removeByIds(ids));
     }
 }

@@ -4,7 +4,7 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.product.model.entity.PmsSpuComment;
 import com.qinweizhao.product.service.IPmsSpuCommentService;
 import org.springframework.web.bind.annotation.*;
@@ -50,8 +50,8 @@ public class PmsSpuCommentController extends BaseController {
     @RequiresPermissions("product:comment:add")
     @Log(title = "商品评价", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody PmsSpuComment pmsSpuComment) {
-        return R.condition(pmsSpuCommentService.save(pmsSpuComment));
+    public R<?> add(@RequestBody PmsSpuComment pmsSpuComment) {
+        return R.success(pmsSpuCommentService.save(pmsSpuComment));
     }
 
     /**
@@ -60,8 +60,8 @@ public class PmsSpuCommentController extends BaseController {
     @RequiresPermissions("product:comment:edit")
     @Log(title = "商品评价", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody PmsSpuComment pmsSpuComment) {
-        return R.condition(pmsSpuCommentService.updateById(pmsSpuComment));
+    public R<?> edit(@RequestBody PmsSpuComment pmsSpuComment) {
+        return R.success(pmsSpuCommentService.updateById(pmsSpuComment));
     }
 
     /**
@@ -70,7 +70,7 @@ public class PmsSpuCommentController extends BaseController {
     @RequiresPermissions("product:comment:remove")
     @Log(title = "商品评价", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable Long[] ids) {
-        return R.condition(pmsSpuCommentService.removeByIds(ids));
+    public R<?> remove(@PathVariable Long[] ids) {
+        return R.success(pmsSpuCommentService.removeByIds(ids));
     }
 }

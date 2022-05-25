@@ -1,6 +1,6 @@
 package com.qinweizhao.search.model.vo;
 
-import com.qinweizhao.component.modle.result.PageResult;
+import com.qinweizhao.component.core.response.PageResult;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

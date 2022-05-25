@@ -4,7 +4,7 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.product.model.entity.PmsSpuAttrValue;
 import com.qinweizhao.product.service.IPmsSpuAttrValueService;
 import org.springframework.web.bind.annotation.*;
@@ -49,8 +49,8 @@ public class PmsSpuAttrValueController extends BaseController {
     @RequiresPermissions("product:value:add")
     @Log(title = "spu属性值", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody PmsSpuAttrValue pmsSpuAttrValue) {
-        return R.condition(pmsSpuAttrValueService.save(pmsSpuAttrValue));
+    public R<?> add(@RequestBody PmsSpuAttrValue pmsSpuAttrValue) {
+        return R.success(pmsSpuAttrValueService.save(pmsSpuAttrValue));
     }
 
     /**
@@ -59,8 +59,8 @@ public class PmsSpuAttrValueController extends BaseController {
     @RequiresPermissions("product:value:edit")
     @Log(title = "spu属性值", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody PmsSpuAttrValue pmsSpuAttrValue) {
-        return R.condition(pmsSpuAttrValueService.updateById(pmsSpuAttrValue));
+    public R<?> edit(@RequestBody PmsSpuAttrValue pmsSpuAttrValue) {
+        return R.success(pmsSpuAttrValueService.updateById(pmsSpuAttrValue));
     }
 
     /**
@@ -69,7 +69,7 @@ public class PmsSpuAttrValueController extends BaseController {
     @RequiresPermissions("product:value:remove")
     @Log(title = "spu属性值", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable Long[] ids) {
-        return R.condition(pmsSpuAttrValueService.removeByIds(ids));
+    public R<?> remove(@PathVariable Long[] ids) {
+        return R.success(pmsSpuAttrValueService.removeByIds(ids));
     }
 }

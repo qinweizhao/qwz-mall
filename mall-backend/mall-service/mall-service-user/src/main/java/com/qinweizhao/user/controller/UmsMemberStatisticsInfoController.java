@@ -5,7 +5,7 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.user.entity.UmsMemberStatisticsInfo;
 import com.qinweizhao.user.service.UmsMemberStatisticsInfoService;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +43,7 @@ public class UmsMemberStatisticsInfoController extends BaseController {
     @RequiresPermissions("product:info:export")
     @Log(title = "会员统计信息", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, UmsMemberStatisticsInfo umsMemberStatisticsInfo) {
+    public R<?> export(HttpServletResponse response, UmsMemberStatisticsInfo umsMemberStatisticsInfo) {
         List<UmsMemberStatisticsInfo> list = umsMemberStatisticsInfoService.selectUmsMemberStatisticsInfoList(umsMemberStatisticsInfo);
         ExcelUtil<UmsMemberStatisticsInfo> util = new ExcelUtil<UmsMemberStatisticsInfo>(UmsMemberStatisticsInfo.class);
         util.exportExcel(response, list, "会员统计信息数据");
@@ -65,8 +65,8 @@ public class UmsMemberStatisticsInfoController extends BaseController {
     @RequiresPermissions("product:info:add")
     @Log(title = "会员统计信息", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody UmsMemberStatisticsInfo umsMemberStatisticsInfo) {
-        return R.condition(umsMemberStatisticsInfoService.save(umsMemberStatisticsInfo));
+    public R<?> add(@RequestBody UmsMemberStatisticsInfo umsMemberStatisticsInfo) {
+        return R.success(umsMemberStatisticsInfoService.save(umsMemberStatisticsInfo));
     }
 
     /**
@@ -75,8 +75,8 @@ public class UmsMemberStatisticsInfoController extends BaseController {
     @RequiresPermissions("product:info:edit")
     @Log(title = "会员统计信息", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody UmsMemberStatisticsInfo umsMemberStatisticsInfo) {
-        return R.condition(umsMemberStatisticsInfoService.updateById(umsMemberStatisticsInfo));
+    public R<?> edit(@RequestBody UmsMemberStatisticsInfo umsMemberStatisticsInfo) {
+        return R.success(umsMemberStatisticsInfoService.updateById(umsMemberStatisticsInfo));
     }
 
     /**
@@ -85,7 +85,7 @@ public class UmsMemberStatisticsInfoController extends BaseController {
     @RequiresPermissions("product:info:remove")
     @Log(title = "会员统计信息", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable List<Long> ids) {
-        return R.condition(umsMemberStatisticsInfoService.removeBatchByIds(ids));
+    public R<?> remove(@PathVariable List<Long> ids) {
+        return R.success(umsMemberStatisticsInfoService.removeBatchByIds(ids));
     }
 }

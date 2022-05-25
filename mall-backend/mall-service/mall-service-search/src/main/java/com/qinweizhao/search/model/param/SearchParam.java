@@ -1,6 +1,6 @@
 package com.qinweizhao.search.model.param;
 
-import com.qinweizhao.component.modle.request.PageParam;
+import com.qinweizhao.component.core.request.PageParam;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

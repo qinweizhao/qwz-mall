@@ -5,7 +5,7 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.user.entity.UmsMemberCollectSubject;
 import com.qinweizhao.user.service.UmsMemberCollectSubjectService;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +44,7 @@ public class UmsMemberCollectSubjectController extends BaseController {
     @RequiresPermissions("product:subject:export")
     @Log(title = "会员收藏的专题活动", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public R<Void> export(HttpServletResponse response, UmsMemberCollectSubject umsMemberCollectSubject) {
+    public R<?> export(HttpServletResponse response, UmsMemberCollectSubject umsMemberCollectSubject) {
         List<UmsMemberCollectSubject> list = umsMemberCollectSubjectService.selectUmsMemberCollectSubjectList(umsMemberCollectSubject);
         ExcelUtil<UmsMemberCollectSubject> util = new ExcelUtil<UmsMemberCollectSubject>(UmsMemberCollectSubject.class);
         util.exportExcel(response, list, "会员收藏的专题活动数据");
@@ -66,8 +66,8 @@ public class UmsMemberCollectSubjectController extends BaseController {
     @RequiresPermissions("product:subject:add")
     @Log(title = "会员收藏的专题活动", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody UmsMemberCollectSubject umsMemberCollectSubject) {
-        return R.condition(umsMemberCollectSubjectService.save(umsMemberCollectSubject));
+    public R<?> add(@RequestBody UmsMemberCollectSubject umsMemberCollectSubject) {
+        return R.success(umsMemberCollectSubjectService.save(umsMemberCollectSubject));
     }
 
     /**
@@ -76,8 +76,8 @@ public class UmsMemberCollectSubjectController extends BaseController {
     @RequiresPermissions("product:subject:edit")
     @Log(title = "会员收藏的专题活动", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody UmsMemberCollectSubject umsMemberCollectSubject) {
-        return R.condition(umsMemberCollectSubjectService.updateById(umsMemberCollectSubject));
+    public R<?> edit(@RequestBody UmsMemberCollectSubject umsMemberCollectSubject) {
+        return R.success(umsMemberCollectSubjectService.updateById(umsMemberCollectSubject));
     }
 
     /**
@@ -86,7 +86,7 @@ public class UmsMemberCollectSubjectController extends BaseController {
     @RequiresPermissions("product:subject:remove")
     @Log(title = "会员收藏的专题活动", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<Void> remove(@PathVariable List<Long> ids) {
-        return R.condition(umsMemberCollectSubjectService.removeBatchByIds(ids));
+    public R<?> remove(@PathVariable List<Long> ids) {
+        return R.success(umsMemberCollectSubjectService.removeBatchByIds(ids));
     }
 }

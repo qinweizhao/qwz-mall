@@ -5,8 +5,8 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.PageResult;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.PageResult;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.product.model.entity.PmsAttrGroup;
 import com.qinweizhao.product.model.vo.AttrGroupRespVO;
 import com.qinweizhao.product.model.vo.AttrGroupWithPmsAttrsVO;
@@ -63,8 +63,8 @@ public class PmsAttrGroupController extends BaseController {
     @RequiresPermissions("product:group:add")
     @Log(title = "属性分组", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody PmsAttrGroup pmsAttrGroup) {
-        return R.condition(pmsAttrGroupService.save(pmsAttrGroup));
+    public R<?> add(@RequestBody PmsAttrGroup pmsAttrGroup) {
+        return R.success(pmsAttrGroupService.save(pmsAttrGroup));
     }
 
     /**
@@ -73,8 +73,8 @@ public class PmsAttrGroupController extends BaseController {
     @RequiresPermissions("product:group:edit")
     @Log(title = "属性分组", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody PmsAttrGroup pmsAttrGroup) {
-        return R.condition(pmsAttrGroupService.updateById(pmsAttrGroup));
+    public R<?> edit(@RequestBody PmsAttrGroup pmsAttrGroup) {
+        return R.success(pmsAttrGroupService.updateById(pmsAttrGroup));
     }
 
     /**
@@ -83,8 +83,8 @@ public class PmsAttrGroupController extends BaseController {
     @RequiresPermissions("product:group:remove")
     @Log(title = "属性分组", businessType = BusinessType.DELETE)
     @DeleteMapping("/{attrGroupIds}")
-    public R<Void> remove(@PathVariable Long[] attrGroupIds) {
-        return R.condition(pmsAttrGroupService.removeByIds(attrGroupIds));
+    public R<?> remove(@PathVariable Long[] attrGroupIds) {
+        return R.success(pmsAttrGroupService.removeByIds(attrGroupIds));
     }
 
 

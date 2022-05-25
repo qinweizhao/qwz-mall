@@ -5,8 +5,8 @@ import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.modle.result.PageResult;
-import com.qinweizhao.component.modle.result.R;
+import com.qinweizhao.component.core.response.PageResult;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.product.model.constant.ProductConstant;
 import com.qinweizhao.product.model.entity.PmsAttr;
 import com.qinweizhao.product.model.entity.PmsAttrAttrGroup;
@@ -75,8 +75,8 @@ public class PmsAttrController extends BaseController {
     @RequiresPermissions("product:attr:add")
     @Log(title = "商品属性", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Void> add(@RequestBody AttrVO pmsAttr) {
-        return R.condition(pmsAttrService.save(pmsAttr));
+    public R<?> add(@RequestBody AttrVO pmsAttr) {
+        return R.success(pmsAttrService.save(pmsAttr));
     }
 
     /**
@@ -85,8 +85,8 @@ public class PmsAttrController extends BaseController {
     @RequiresPermissions("product:attr:edit")
     @Log(title = "商品属性", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<Void> edit(@RequestBody AttrVO pmsAttr) {
-        return R.condition(pmsAttrService.updateById(pmsAttr));
+    public R<?> edit(@RequestBody AttrVO pmsAttr) {
+        return R.success(pmsAttrService.updateById(pmsAttr));
     }
 
     /**
@@ -95,7 +95,7 @@ public class PmsAttrController extends BaseController {
     @RequiresPermissions("product:attr:remove")
     @Log(title = "商品属性", businessType = BusinessType.DELETE)
     @DeleteMapping("/{attrIds}")
-    public R<Void> remove(@PathVariable Long[] attrIds) {
-        return R.condition(pmsAttrService.removeByIds(attrIds));
+    public R<?> remove(@PathVariable Long[] attrIds) {
+        return R.success(pmsAttrService.removeByIds(attrIds));
     }
 }
