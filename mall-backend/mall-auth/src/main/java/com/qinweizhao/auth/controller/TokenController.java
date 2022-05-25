@@ -1,5 +1,6 @@
 package com.qinweizhao.auth.controller;
 
+
 import com.qinweizhao.auth.form.LoginBody;
 import com.qinweizhao.auth.form.RegisterBody;
 import com.qinweizhao.auth.service.SysLoginService;

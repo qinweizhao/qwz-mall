@@ -14,7 +14,6 @@
         <module>mall-frontend</module>
         <module>mall-backend</module>
         <module>mall-resource</module>
-        <module>mall-backend/mall-api/mall-api-search</module>
     </modules>
 
 </project>
