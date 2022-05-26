@@ -1,7 +1,7 @@
 package com.qinweizhao.user.service.impl;
 
 import com.qinweizhao.component.mybatis.service.impl.QwzServiceImpl;
-import com.qinweizhao.user.entity.UmsMemberReceiveAddress;
+import com.qinweizhao.user.model.entity.UmsMemberReceiveAddress;
 import com.qinweizhao.user.mapper.UmsMemberReceiveAddressMapper;
 import com.qinweizhao.user.service.UmsMemberReceiveAddressService;
 import org.springframework.stereotype.Service;

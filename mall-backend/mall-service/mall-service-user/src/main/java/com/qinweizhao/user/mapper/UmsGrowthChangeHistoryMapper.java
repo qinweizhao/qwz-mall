@@ -1,7 +1,7 @@
 package com.qinweizhao.user.mapper;
 
 import com.qinweizhao.component.mybatis.mapper.QwzBaseMapper;
-import com.qinweizhao.user.entity.UmsGrowthChangeHistory;
+import com.qinweizhao.user.model.entity.UmsGrowthChangeHistory;
 
 import java.util.List;
 

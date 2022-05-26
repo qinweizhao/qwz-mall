@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qinweizhao.user.mapper.UmsMemberMapper">
 
-    <resultMap type="UmsMember" id="UmsMemberResult">
+    <resultMap type="com.qinweizhao.user.model.entity.UmsMember" id="UmsMemberResult">
         <result property="id" column="id"/>
         <result property="levelId" column="level_id"/>
         <result property="username" column="username"/>
@@ -55,7 +55,7 @@
         from ums_member
     </sql>
 
-    <select id="selectMemberList" parameterType="UmsMember" resultMap="UmsMemberResult">
+    <select id="selectMemberList" parameterType="com.qinweizhao.user.model.entity.UmsMember" resultMap="UmsMemberResult">
         <include refid="selectUmsMemberVo"/>
         <where>
             <if test="levelId != null ">and level_id = #{levelId}</if>

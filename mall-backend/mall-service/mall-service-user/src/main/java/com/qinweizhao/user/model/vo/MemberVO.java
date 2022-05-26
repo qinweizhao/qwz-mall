@@ -1,4 +1,4 @@
-package com.qinweizhao.user.entity;
+package com.qinweizhao.user.model.vo;
 
 import com.qinweizhao.common.core.web.domain.BaseEntity;
 import lombok.Data;
@@ -15,7 +15,7 @@ import java.util.Date;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class UmsMember extends BaseEntity {
+public class MemberVO extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**

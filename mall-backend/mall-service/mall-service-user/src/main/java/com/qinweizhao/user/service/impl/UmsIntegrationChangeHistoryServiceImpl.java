@@ -1,7 +1,7 @@
 package com.qinweizhao.user.service.impl;
 
 import com.qinweizhao.component.mybatis.service.impl.QwzServiceImpl;
-import com.qinweizhao.user.entity.UmsIntegrationChangeHistory;
+import com.qinweizhao.user.model.entity.UmsIntegrationChangeHistory;
 import com.qinweizhao.user.mapper.UmsIntegrationChangeHistoryMapper;
 import com.qinweizhao.user.service.UmsIntegrationChangeHistoryService;
 import org.springframework.stereotype.Service;

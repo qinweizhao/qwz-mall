@@ -1,12 +1,14 @@
 package com.qinweizhao.user.controller;
 
-import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
-import com.qinweizhao.component.log.annotation.Log;
-import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.core.response.PageResult;
 import com.qinweizhao.component.core.response.R;
-import com.qinweizhao.user.entity.UmsMember;
+import com.qinweizhao.component.log.annotation.Log;
+import com.qinweizhao.component.log.enums.BusinessType;
+import com.qinweizhao.user.convert.MemberConvert;
+import com.qinweizhao.user.model.entity.UmsMember;
+import com.qinweizhao.user.model.param.MemberPageParam;
+import com.qinweizhao.user.model.vo.MemberVO;
 import com.qinweizhao.user.service.UmsMemberService;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +24,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/member")
-public class UmsMemberController extends BaseController {
+public class UmsMemberController {
 
     @Resource
     private UmsMemberService umsMemberService;
@@ -32,10 +34,20 @@ public class UmsMemberController extends BaseController {
      */
     @RequiresPermissions("product:member:list")
     @GetMapping("/page")
-    public R<PageResult<UmsMember>> list(UmsMember umsMember) {
-        startPage();
+    public R<PageResult<MemberVO>> page(MemberPageParam pageParam) {
+        PageResult<UmsMember> pageResult = umsMemberService.page(pageParam);
+        return R.success(MemberConvert.INSTANCE.convertToVO(pageResult));
+    }
+
+
+    /**
+     * 查询会员列表
+     */
+    @RequiresPermissions("product:member:list")
+    @GetMapping("/list")
+    public R<List<UmsMember>> page(UmsMember umsMember) {
         List<UmsMember> list = umsMemberService.selectMemberList(umsMember);
-        return getPageResult(list);
+        return R.success(list);
     }
 
     /**

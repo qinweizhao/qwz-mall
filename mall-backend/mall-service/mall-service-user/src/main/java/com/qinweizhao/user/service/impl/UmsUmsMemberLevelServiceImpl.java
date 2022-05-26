@@ -1,7 +1,7 @@
 package com.qinweizhao.user.service.impl;
 
 import com.qinweizhao.component.mybatis.service.impl.QwzServiceImpl;
-import com.qinweizhao.user.entity.UmsMemberLevel;
+import com.qinweizhao.user.model.entity.UmsMemberLevel;
 import com.qinweizhao.user.mapper.UmsMemberLevelMapper;
 import com.qinweizhao.user.service.UmsMemberLevelService;
 import org.springframework.stereotype.Service;

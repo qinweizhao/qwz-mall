@@ -1,9 +1,11 @@
 package com.qinweizhao.user.service.impl;
 
 
+import com.qinweizhao.component.core.response.PageResult;
 import com.qinweizhao.component.mybatis.service.impl.QwzServiceImpl;
-import com.qinweizhao.user.entity.UmsMember;
+import com.qinweizhao.user.model.entity.UmsMember;
 import com.qinweizhao.user.mapper.UmsMemberMapper;
+import com.qinweizhao.user.model.param.MemberPageParam;
 import com.qinweizhao.user.service.UmsMemberService;
 import org.springframework.stereotype.Service;
 
@@ -22,15 +24,14 @@ public class UmsMemberServiceImpl extends QwzServiceImpl<UmsMemberMapper, UmsMem
     @Resource
     private UmsMemberMapper umsMemberMapper;
 
-    /**
-     * 查询会员列表
-     *
-     * @param umsMember 会员
-     * @return 会员
-     */
     @Override
     public List<UmsMember> selectMemberList(UmsMember umsMember) {
         return umsMemberMapper.selectMemberList(umsMember);
     }
 
+    @Override
+    public PageResult<UmsMember> page(MemberPageParam pageParam) {
+        PageResult<UmsMember> pageResult = this.baseMapper.selectPage(pageParam);
+        return pageResult;
+    }
 }

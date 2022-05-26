@@ -1,7 +1,7 @@
 package com.qinweizhao.user.service;
 
 import com.qinweizhao.component.mybatis.service.QwzService;
-import com.qinweizhao.user.entity.UmsMemberStatisticsInfo;
+import com.qinweizhao.user.model.entity.UmsMemberStatisticsInfo;
 
 import java.util.List;
 

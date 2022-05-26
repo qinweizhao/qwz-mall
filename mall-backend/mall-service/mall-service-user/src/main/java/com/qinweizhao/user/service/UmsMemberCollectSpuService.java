@@ -1,7 +1,7 @@
 package com.qinweizhao.user.service;
 
 import com.qinweizhao.component.mybatis.service.QwzService;
-import com.qinweizhao.user.entity.UmsMemberCollectSpu;
+import com.qinweizhao.user.model.entity.UmsMemberCollectSpu;
 
 import java.util.List;
 

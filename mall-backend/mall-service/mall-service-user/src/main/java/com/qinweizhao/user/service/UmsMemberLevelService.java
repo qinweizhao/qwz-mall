@@ -1,7 +1,7 @@
 package com.qinweizhao.user.service;
 
 import com.qinweizhao.component.mybatis.service.QwzService;
-import com.qinweizhao.user.entity.UmsMemberLevel;
+import com.qinweizhao.user.model.entity.UmsMemberLevel;
 
 import java.util.List;
 

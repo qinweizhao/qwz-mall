@@ -1,7 +1,7 @@
 package com.qinweizhao.user.mapper;
 
 import com.qinweizhao.component.mybatis.mapper.QwzBaseMapper;
-import com.qinweizhao.user.entity.UmsMemberLoginLog;
+import com.qinweizhao.user.model.entity.UmsMemberLoginLog;
 
 import java.util.List;
 

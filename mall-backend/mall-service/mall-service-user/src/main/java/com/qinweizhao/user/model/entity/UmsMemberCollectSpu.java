@@ -1,4 +1,4 @@
-package com.qinweizhao.user.entity;
+package com.qinweizhao.user.model.entity;
 
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;

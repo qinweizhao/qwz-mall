@@ -1,7 +1,7 @@
 package com.qinweizhao.user.service.impl;
 
 import com.qinweizhao.component.mybatis.service.impl.QwzServiceImpl;
-import com.qinweizhao.user.entity.UmsMemberCollectSpu;
+import com.qinweizhao.user.model.entity.UmsMemberCollectSpu;
 import com.qinweizhao.user.mapper.UmsMemberCollectSpuMapper;
 import com.qinweizhao.user.service.UmsMemberCollectSpuService;
 import org.springframework.stereotype.Service;

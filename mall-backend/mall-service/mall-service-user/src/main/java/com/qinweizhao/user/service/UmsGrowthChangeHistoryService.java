@@ -1,7 +1,7 @@
 package com.qinweizhao.user.service;
 
 import com.qinweizhao.component.mybatis.service.QwzService;
-import com.qinweizhao.user.entity.UmsGrowthChangeHistory;
+import com.qinweizhao.user.model.entity.UmsGrowthChangeHistory;
 
 import java.util.List;
 

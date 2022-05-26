@@ -1,8 +1,10 @@
 package com.qinweizhao.user.service;
 
 
+import com.qinweizhao.component.core.response.PageResult;
 import com.qinweizhao.component.mybatis.service.QwzService;
-import com.qinweizhao.user.entity.UmsMember;
+import com.qinweizhao.user.model.entity.UmsMember;
+import com.qinweizhao.user.model.param.MemberPageParam;
 
 import java.util.List;
 
@@ -22,4 +24,10 @@ public interface UmsMemberService extends QwzService<UmsMember> {
      */
     List<UmsMember> selectMemberList(UmsMember umsMember);
 
+    /**
+     * 查询分页信息
+     * @param pageParam pageParam
+     * @return List
+     */
+    PageResult<UmsMember> page(MemberPageParam pageParam);
 }

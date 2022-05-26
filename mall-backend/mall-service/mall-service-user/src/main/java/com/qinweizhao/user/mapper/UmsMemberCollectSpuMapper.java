@@ -1,7 +1,7 @@
 package com.qinweizhao.user.mapper;
 
 import com.qinweizhao.component.mybatis.mapper.QwzBaseMapper;
-import com.qinweizhao.user.entity.UmsMemberCollectSpu;
+import com.qinweizhao.user.model.entity.UmsMemberCollectSpu;
 
 import java.util.List;
 
