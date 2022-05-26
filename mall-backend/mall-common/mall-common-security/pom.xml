@@ -28,6 +28,11 @@
             <artifactId>mall-api-system</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.qinweizhao.component</groupId>
+            <artifactId>qwz-component-starter-web</artifactId>
+            <version>1.0.0</version>
+        </dependency>
         <!-- Redis-->
         <dependency>
             <groupId>com.qinweizhao.component</groupId>
