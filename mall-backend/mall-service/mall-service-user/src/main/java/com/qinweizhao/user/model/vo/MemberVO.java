@@ -1,8 +1,6 @@
 package com.qinweizhao.user.model.vo;
 
-import com.qinweizhao.common.core.web.domain.BaseEntity;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.util.Date;
 
@@ -14,8 +12,7 @@ import java.util.Date;
  * @since 2022-04-29
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class MemberVO extends BaseEntity {
+public class MemberVO {
     private static final long serialVersionUID = 1L;
 
     /**

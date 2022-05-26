@@ -4,14 +4,12 @@ import com.qinweizhao.component.core.request.PageParam;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.Date;
-
 /**
  * @author qinweizhao
  * @since 2022/5/26
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class MemberPageParam extends PageParam {
 
 
