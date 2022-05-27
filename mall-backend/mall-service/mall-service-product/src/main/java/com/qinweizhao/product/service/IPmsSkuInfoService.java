@@ -1,6 +1,7 @@
 package com.qinweizhao.product.service;
 
 import com.qinweizhao.product.model.entity.PmsSkuInfo;
+import com.qinweizhao.product.model.vo.SkuItemVo;
 
 import java.util.List;
 
@@ -67,4 +68,7 @@ public interface IPmsSkuInfoService {
      * @return List
      */
     List<PmsSkuInfo> listBySpuId(Long spuId);
+
+
+    SkuItemVo getItemById(Long skuId);
 }

@@ -59,7 +59,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </where>
     </select>
     
-    <select id="selectPmsSkuInfoBySkuId" parameterType="Long" resultMap="PmsSkuInfoResult">
+    <select id="selectById" parameterType="Long" resultMap="PmsSkuInfoResult">
         <include refid="selectPmsSkuInfoVo"/>
         where sku_id = #{skuId}
     </select>

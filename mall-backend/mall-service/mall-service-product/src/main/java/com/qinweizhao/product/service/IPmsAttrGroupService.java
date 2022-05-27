@@ -1,5 +1,6 @@
 package com.qinweizhao.product.service;
 
+import com.qinweizhao.product.model.dto.SpuItemAttrGroupDTO;
 import com.qinweizhao.product.model.entity.PmsAttrGroup;
 import com.qinweizhao.product.model.vo.AttrGroupWithPmsAttrsVO;
 
@@ -62,10 +63,19 @@ public interface IPmsAttrGroupService {
 
 
     /**
-     * 查询分组属性和属性
-     *
+     * 查询分组属性和属性(不包含属性值)
+     * 此方法用于发布商品时填写 spu attr 时使用
      * @param categoryId categoryId
      * @return 结果
      */
-    List<AttrGroupWithPmsAttrsVO> getPmsAttrGroupWithPmsAttrsByCatelogId(Long categoryId);
+    List<AttrGroupWithPmsAttrsVO> listAttrGroupWithAttrsByCategoryId(Long categoryId);
+
+    /**
+     * 查询分组属性和属性(包含属性值)
+     * 此方法用于发布商品时填写 spu attr 时使用
+     * @param categoryId categoryId
+     * @param spuId spuId
+     * @return 结果
+     */
+    List<SpuItemAttrGroupDTO> listAttrGroupWithAttrsByCategoryId(Long categoryId, Long spuId);
 }

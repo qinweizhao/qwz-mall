@@ -1,5 +1,6 @@
 package com.qinweizhao.product.service;
 
+import com.qinweizhao.product.model.dto.SkuItemAttrDTO;
 import com.qinweizhao.product.model.entity.PmsSkuAttrValue;
 
 import java.util.List;
@@ -58,4 +59,11 @@ public interface IPmsSkuAttrValueService {
      * @return 结果
      */
     int removeById(Long id);
+
+    /**
+     * 查询 spu 的销售属性组合
+     * @param spuId spuId
+     * @return List
+     */
+    List<SkuItemAttrDTO> listSkuItemAttrBySpuId(Long spuId);
 }

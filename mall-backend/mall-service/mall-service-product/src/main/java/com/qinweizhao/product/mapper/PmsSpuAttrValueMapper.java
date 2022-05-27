@@ -67,4 +67,12 @@ public interface PmsSpuAttrValueMapper {
      * @return List
      */
     List<PmsSpuAttrValue> selectSearchAttrValueListBySpuId(@Param("spuId") Long spuId,@Param("searchType") Long searchType);
+
+    /**
+     * 查询属性值
+     * @param spuId spuId
+     * @param attrId attrId
+     * @return PmsSpuAttrValue
+     */
+    PmsSpuAttrValue selectBySpuIdAndAttrId(@Param("spuId")Long spuId,@Param("attrId") Long attrId);
 }

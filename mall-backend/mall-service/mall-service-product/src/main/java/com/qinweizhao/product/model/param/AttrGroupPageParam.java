@@ -1,4 +1,4 @@
-package com.qinweizhao.product.model.vo;
+package com.qinweizhao.product.model.param;
 
 import lombok.Data;
 
@@ -7,7 +7,7 @@ import lombok.Data;
  * @since 2022/5/9
  */
 @Data
-public class AttrGroupPageReqVO {
+public class AttrGroupPageParam {
 
     /**
      * 组名

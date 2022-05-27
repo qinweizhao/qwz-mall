@@ -49,6 +49,19 @@
         where id = #{id}
     </select>
 
+    <select id="selectListBySpuId" resultMap="PmsSkuAttrValueResult">
+        SELECT
+            sav.`attr_id`,
+            sav.`name` ,
+            sav.`value`,
+            si.`sku_id`
+        FROM
+            `pms_sku_info` si
+                LEFT JOIN `pms_sku_attr_value` sav ON sav.`sku_id` = si.`sku_id`
+        WHERE
+            si.`spu_id` = #{spuId}
+    </select>
+
     <insert id="insertPmsSkuAttrValue" parameterType="PmsSkuAttrValue" useGeneratedKeys="true" keyProperty="id">
         insert into pms_sku_attr_value
         <trim prefix="(" suffix=")" suffixOverrides=",">

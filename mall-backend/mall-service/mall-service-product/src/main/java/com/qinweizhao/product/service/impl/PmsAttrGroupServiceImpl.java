@@ -2,16 +2,22 @@ package com.qinweizhao.product.service.impl;
 
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
+import com.qinweizhao.product.mapper.PmsAttrGroupMapper;
+import com.qinweizhao.product.model.dto.SpuItemAttrGroupDTO;
 import com.qinweizhao.product.model.entity.PmsAttr;
 import com.qinweizhao.product.model.entity.PmsAttrGroup;
+import com.qinweizhao.product.model.entity.PmsSpuAttrValue;
 import com.qinweizhao.product.model.vo.AttrGroupWithPmsAttrsVO;
-import com.qinweizhao.product.mapper.PmsAttrGroupMapper;
 import com.qinweizhao.product.service.IPmsAttrGroupService;
 import com.qinweizhao.product.service.IPmsAttrService;
+import com.qinweizhao.product.service.IPmsSkuAttrValueService;
+import com.qinweizhao.product.service.IPmsSpuAttrValueService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,6 +34,9 @@ public class PmsAttrGroupServiceImpl implements IPmsAttrGroupService {
 
     @Resource
     private IPmsAttrService pmsAttrService;
+
+    @Resource
+    private IPmsSpuAttrValueService pmsSpuAttrValueService;
 
     /**
      * 查询属性分组
@@ -100,17 +109,49 @@ public class PmsAttrGroupServiceImpl implements IPmsAttrGroupService {
     }
 
     @Override
-    public List<AttrGroupWithPmsAttrsVO> getPmsAttrGroupWithPmsAttrsByCatelogId(Long categoryId) {
+    public List<AttrGroupWithPmsAttrsVO> listAttrGroupWithAttrsByCategoryId(Long categoryId) {
         List<PmsAttrGroup> list = pmsAttrGroupMapper.selectPmsAttrGroupByCategoryId(categoryId);
         //2、查询所有属性
-        List<AttrGroupWithPmsAttrsVO> collect = list.stream().map(group -> {
+        return list.stream().map(group -> {
             AttrGroupWithPmsAttrsVO attrsVo = new AttrGroupWithPmsAttrsVO();
             BeanUtils.copyProperties(group, attrsVo);
             List<PmsAttr> attrs = pmsAttrService.getByAttrGroupId(attrsVo.getAttrGroupId());
             attrsVo.setAttrs(attrs);
             return attrsVo;
         }).collect(Collectors.toList());
+    }
 
-        return collect;
+    @Override
+    public List<SpuItemAttrGroupDTO> listAttrGroupWithAttrsByCategoryId(Long categoryId, Long spuId) {
+        List<AttrGroupWithPmsAttrsVO> attrGroupWithPmsAttrs = this.listAttrGroupWithAttrsByCategoryId(categoryId);
+        List<SpuItemAttrGroupDTO> returnList = new ArrayList<>();
+        attrGroupWithPmsAttrs.forEach(item -> {
+            SpuItemAttrGroupDTO spuItemAttrGroupDTO = new SpuItemAttrGroupDTO();
+            spuItemAttrGroupDTO.setName(item.getName());
+            List<SpuItemAttrGroupDTO.AttrDTO> attrDTOList = new ArrayList<>();
+            List<PmsAttr> attrs = item.getAttrs();
+            if (!ObjectUtils.isEmpty(attrs)) {
+                attrs.forEach(sourceAttr->{
+                    SpuItemAttrGroupDTO.AttrDTO attrDTO = new SpuItemAttrGroupDTO.AttrDTO();
+                    attrDTO.setAttrId(sourceAttr.getAttrId());
+                    attrDTO.setName(sourceAttr.getName());
+                    attrDTOList.add(attrDTO);
+                });
+                spuItemAttrGroupDTO.setAttrs(attrDTOList);
+            }
+            returnList.add(spuItemAttrGroupDTO);
+        });
+        returnList.forEach(item -> {
+            List<SpuItemAttrGroupDTO.AttrDTO> attrs = item.getAttrs();
+            if (!ObjectUtils.isEmpty(attrs)) {
+                attrs.forEach(attr -> {
+                    PmsSpuAttrValue spuAttrValue = pmsSpuAttrValueService.getBySpuIdAndAttrId(spuId,attr.getAttrId());
+                    if (spuAttrValue!=null){
+                        attr.setValue(spuAttrValue.getValue());
+                    }
+                });
+            }
+        });
+        return returnList;
     }
 }

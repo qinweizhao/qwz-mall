@@ -61,6 +61,13 @@
           and sav.spu_id = #{spuId}
     </select>
 
+    <select id="selectBySpuIdAndAttrId" resultMap="PmsSpuAttrValueResult">
+        <include refid="selectPmsSpuAttrValueVo"/>
+        where
+        spu_id=#{spuId} and
+        attr_id=#{attrId}
+    </select>
+
 
     <insert id="insertPmsSpuAttrValue" parameterType="PmsSpuAttrValue" useGeneratedKeys="true" keyProperty="id">
         insert into pms_spu_attr_value

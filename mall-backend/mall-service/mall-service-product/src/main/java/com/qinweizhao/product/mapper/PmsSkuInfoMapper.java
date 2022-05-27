@@ -17,7 +17,7 @@ public interface PmsSkuInfoMapper {
      * @param skuId sku信息主键
      * @return sku信息
      */
-    PmsSkuInfo selectPmsSkuInfoBySkuId(Long skuId);
+    PmsSkuInfo selectById(Long skuId);
 
     /**
      * 查询sku信息列表

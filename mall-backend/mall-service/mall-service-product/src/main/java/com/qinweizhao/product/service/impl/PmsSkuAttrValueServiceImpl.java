@@ -1,13 +1,19 @@
 package com.qinweizhao.product.service.impl;
 
+import cn.hutool.core.collection.CollUtil;
 import com.qinweizhao.common.core.utils.DateUtils;
-import com.qinweizhao.product.model.entity.PmsSkuAttrValue;
 import com.qinweizhao.product.mapper.PmsSkuAttrValueMapper;
+import com.qinweizhao.product.model.dto.SkuItemAttrDTO;
+import com.qinweizhao.product.model.entity.PmsSkuAttrValue;
 import com.qinweizhao.product.service.IPmsSkuAttrValueService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * sku销售属性&值Service业务层处理
@@ -87,5 +93,41 @@ public class PmsSkuAttrValueServiceImpl implements IPmsSkuAttrValueService {
     @Override
     public int removeById(Long id) {
         return pmsSkuAttrValueMapper.deletePmsSkuAttrValueById(id);
+    }
+
+    @Override
+    public List<SkuItemAttrDTO> listSkuItemAttrBySpuId(Long spuId) {
+        List<PmsSkuAttrValue> pmsSkuAttrValues = pmsSkuAttrValueMapper.selectListBySpuId(spuId);
+
+        List<SkuItemAttrDTO> returnList = new ArrayList<>();
+
+        // 按照属性值分组
+        Map<String, List<PmsSkuAttrValue>> collect = pmsSkuAttrValues.stream().collect(Collectors.groupingBy(PmsSkuAttrValue::getValue));
+        Set<String> keySet = collect.keySet();
+
+        for (String key : keySet) {
+            List<PmsSkuAttrValue> temList = collect.get(key);
+
+            SkuItemAttrDTO skuItemAttrDTO = new SkuItemAttrDTO();
+            PmsSkuAttrValue pmsSkuAttrValue = temList.get(0);
+            skuItemAttrDTO.setAttrId(pmsSkuAttrValue.getAttrId());
+            skuItemAttrDTO.setAttrName(pmsSkuAttrValue.getName());
+
+            SkuItemAttrDTO.AttrValueWithSkuIdDTO attrValueWithSkuIdDTO = new SkuItemAttrDTO.AttrValueWithSkuIdDTO();
+            List<SkuItemAttrDTO.AttrValueWithSkuIdDTO> attrList = new ArrayList<>();
+            List<Long> ids = new ArrayList<>();
+            temList.forEach(item -> {
+                attrValueWithSkuIdDTO.setAttrValue(item.getValue());
+                ids.add(item.getSkuId());
+            });
+            String skuIds = CollUtil.join(ids, ",");
+            attrValueWithSkuIdDTO.setSkuIds(skuIds);
+            attrList.add(attrValueWithSkuIdDTO);
+
+            skuItemAttrDTO.setAttrValues(attrList);
+            returnList.add(skuItemAttrDTO);
+        }
+
+        return returnList;
     }
 }

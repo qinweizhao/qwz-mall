@@ -67,4 +67,12 @@ public interface IPmsSpuAttrValueService {
      * @return List
      */
     List<PmsSpuAttrValue> listSearchAttrValueBySpuId(Long spuId, Long searchType);
+
+    /**
+     * 查询属性值
+     * @param spuId spuId
+     * @param attrId attrId
+     * @return PmsSpuAttrValue
+     */
+    PmsSpuAttrValue getBySpuIdAndAttrId(Long spuId, Long attrId);
 }

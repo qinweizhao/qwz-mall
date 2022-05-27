@@ -94,7 +94,7 @@ public class PmsAttrGroupController extends BaseController {
     @RequiresPermissions("product:group:query")
     @GetMapping(value = "/{categoryId}/attr")
     public R<List<AttrGroupWithPmsAttrsVO>> getAttrGroupWithAttrs(@PathVariable("categoryId") Long categoryId) {
-        return R.success(pmsAttrGroupService.getPmsAttrGroupWithPmsAttrsByCatelogId(categoryId));
+        return R.success(pmsAttrGroupService.listAttrGroupWithAttrsByCategoryId(categoryId));
     }
 
 
