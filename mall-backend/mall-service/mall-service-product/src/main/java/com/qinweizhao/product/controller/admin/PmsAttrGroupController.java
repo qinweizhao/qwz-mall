@@ -3,13 +3,15 @@ package com.qinweizhao.product.controller.admin;
 import com.qinweizhao.common.core.utils.bean.BeanUtils;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
-import com.qinweizhao.component.log.annotation.Log;
-import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.core.response.PageResult;
 import com.qinweizhao.component.core.response.R;
+import com.qinweizhao.component.log.annotation.Log;
+import com.qinweizhao.component.log.enums.BusinessType;
+import com.qinweizhao.product.convert.AttrGroupConvert;
+import com.qinweizhao.product.model.dto.AttrGroupWithAttrsDTO;
 import com.qinweizhao.product.model.entity.PmsAttrGroup;
 import com.qinweizhao.product.model.vo.AttrGroupRespVO;
-import com.qinweizhao.product.model.vo.AttrGroupWithPmsAttrsVO;
+import com.qinweizhao.product.model.vo.AttrGroupWithAttrsVO;
 import com.qinweizhao.product.service.IPmsAttrGroupService;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,7 +55,7 @@ public class PmsAttrGroupController extends BaseController {
         AttrGroupRespVO attrGroupRespVO = new AttrGroupRespVO();
         List<Long> categoryPath = Arrays.stream(dbCategoryPath.split(",")).map(Long::parseLong).collect(Collectors.toList());
         attrGroupRespVO.setCategoryPath(categoryPath);
-        BeanUtils.copyProperties(pmsAttrGroup,attrGroupRespVO);
+        BeanUtils.copyProperties(pmsAttrGroup, attrGroupRespVO);
         return R.success(attrGroupRespVO);
     }
 
@@ -93,8 +95,9 @@ public class PmsAttrGroupController extends BaseController {
      */
     @RequiresPermissions("product:group:query")
     @GetMapping(value = "/{categoryId}/attr")
-    public R<List<AttrGroupWithPmsAttrsVO>> getAttrGroupWithAttrs(@PathVariable("categoryId") Long categoryId) {
-        return R.success(pmsAttrGroupService.listAttrGroupWithAttrsByCategoryId(categoryId));
+    public R<List<AttrGroupWithAttrsVO>> getAttrGroupWithAttrs(@PathVariable("categoryId") Long categoryId) {
+        List<AttrGroupWithAttrsDTO> attrGroupWithAttrs = pmsAttrGroupService.listAttrGroupWithAttrsByCategoryId(categoryId);
+        return R.success(AttrGroupConvert.INSTANCE.convertToVO(attrGroupWithAttrs));
     }
 
 

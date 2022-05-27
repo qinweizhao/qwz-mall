@@ -2,15 +2,15 @@ package com.qinweizhao.product.service.impl;
 
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
+import com.qinweizhao.product.convert.AttrConvert;
 import com.qinweizhao.product.mapper.PmsAttrGroupMapper;
-import com.qinweizhao.product.model.dto.SpuItemAttrGroupDTO;
+import com.qinweizhao.product.model.dto.AttrDTO;
+import com.qinweizhao.product.model.dto.AttrGroupWithAttrsDTO;
 import com.qinweizhao.product.model.entity.PmsAttr;
 import com.qinweizhao.product.model.entity.PmsAttrGroup;
 import com.qinweizhao.product.model.entity.PmsSpuAttrValue;
-import com.qinweizhao.product.model.vo.AttrGroupWithPmsAttrsVO;
 import com.qinweizhao.product.service.IPmsAttrGroupService;
 import com.qinweizhao.product.service.IPmsAttrService;
-import com.qinweizhao.product.service.IPmsSkuAttrValueService;
 import com.qinweizhao.product.service.IPmsSpuAttrValueService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -109,30 +109,32 @@ public class PmsAttrGroupServiceImpl implements IPmsAttrGroupService {
     }
 
     @Override
-    public List<AttrGroupWithPmsAttrsVO> listAttrGroupWithAttrsByCategoryId(Long categoryId) {
+    public List<AttrGroupWithAttrsDTO> listAttrGroupWithAttrsByCategoryId(Long categoryId) {
         List<PmsAttrGroup> list = pmsAttrGroupMapper.selectPmsAttrGroupByCategoryId(categoryId);
         //2、查询所有属性
         return list.stream().map(group -> {
-            AttrGroupWithPmsAttrsVO attrsVo = new AttrGroupWithPmsAttrsVO();
+            AttrGroupWithAttrsDTO attrsVo = new AttrGroupWithAttrsDTO();
             BeanUtils.copyProperties(group, attrsVo);
             List<PmsAttr> attrs = pmsAttrService.getByAttrGroupId(attrsVo.getAttrGroupId());
-            attrsVo.setAttrs(attrs);
+            attrsVo.setAttrs(AttrConvert.INSTANCE.convertToDTO(attrs));
             return attrsVo;
         }).collect(Collectors.toList());
     }
 
+    //todo
+
     @Override
-    public List<SpuItemAttrGroupDTO> listAttrGroupWithAttrsByCategoryId(Long categoryId, Long spuId) {
-        List<AttrGroupWithPmsAttrsVO> attrGroupWithPmsAttrs = this.listAttrGroupWithAttrsByCategoryId(categoryId);
-        List<SpuItemAttrGroupDTO> returnList = new ArrayList<>();
+    public List<AttrGroupWithAttrsDTO> listAttrGroupWithAttrsByCategoryId(Long categoryId, Long spuId) {
+        List<AttrGroupWithAttrsDTO> attrGroupWithPmsAttrs = this.listAttrGroupWithAttrsByCategoryId(categoryId);
+        List<AttrGroupWithAttrsDTO> returnList = new ArrayList<>();
         attrGroupWithPmsAttrs.forEach(item -> {
-            SpuItemAttrGroupDTO spuItemAttrGroupDTO = new SpuItemAttrGroupDTO();
+            AttrGroupWithAttrsDTO spuItemAttrGroupDTO = new AttrGroupWithAttrsDTO();
             spuItemAttrGroupDTO.setName(item.getName());
-            List<SpuItemAttrGroupDTO.AttrDTO> attrDTOList = new ArrayList<>();
-            List<PmsAttr> attrs = item.getAttrs();
+            List<AttrDTO> attrDTOList = new ArrayList<>();
+            List<AttrDTO> attrs = item.getAttrs();
             if (!ObjectUtils.isEmpty(attrs)) {
-                attrs.forEach(sourceAttr->{
-                    SpuItemAttrGroupDTO.AttrDTO attrDTO = new SpuItemAttrGroupDTO.AttrDTO();
+                attrs.forEach(sourceAttr -> {
+                    AttrDTO attrDTO = new AttrDTO();
                     attrDTO.setAttrId(sourceAttr.getAttrId());
                     attrDTO.setName(sourceAttr.getName());
                     attrDTOList.add(attrDTO);
@@ -142,11 +144,11 @@ public class PmsAttrGroupServiceImpl implements IPmsAttrGroupService {
             returnList.add(spuItemAttrGroupDTO);
         });
         returnList.forEach(item -> {
-            List<SpuItemAttrGroupDTO.AttrDTO> attrs = item.getAttrs();
+            List<AttrDTO> attrs = item.getAttrs();
             if (!ObjectUtils.isEmpty(attrs)) {
                 attrs.forEach(attr -> {
-                    PmsSpuAttrValue spuAttrValue = pmsSpuAttrValueService.getBySpuIdAndAttrId(spuId,attr.getAttrId());
-                    if (spuAttrValue!=null){
+                    PmsSpuAttrValue spuAttrValue = pmsSpuAttrValueService.getBySpuIdAndAttrId(spuId, attr.getAttrId());
+                    if (spuAttrValue != null) {
                         attr.setValue(spuAttrValue.getValue());
                     }
                 });

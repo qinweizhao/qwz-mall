@@ -1,5 +1,6 @@
 package com.qinweizhao.product.convert;
 
+import com.qinweizhao.product.model.dto.AttrDTO;
 import com.qinweizhao.product.model.dto.SkuImageDTO;
 import com.qinweizhao.product.model.entity.PmsAttr;
 import com.qinweizhao.product.model.entity.PmsSkuImage;
@@ -23,5 +24,13 @@ public interface AttrConvert {
      * @param pmsSkuImage pmsSkuInfo
      * @return List
      */
-    List<SkuImageDTO> convertToDTO(List<PmsAttr> pmsSkuImage);
+    AttrDTO convert(PmsAttr pmsSkuImage);
+
+    /**
+     * DO 转 DTO
+     *
+     * @param pmsSkuImage pmsSkuInfo
+     * @return List
+     */
+    List<AttrDTO> convertToDTO(List<PmsAttr> pmsSkuImage);
 }

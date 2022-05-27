@@ -23,6 +23,8 @@ spring:
       cache-null-values: true
       time-to-live: 3600000
       use-key-prefix: true
+  jackson:
+    default-property-inclusion: non_null
 # seata配置
 seata:
   # 默认关闭，如需启用spring.datasource.dynami.seata需要同时开启
@@ -59,4 +61,3 @@ mybatis:
   mapperLocations: classpath:mapper/**/*.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-

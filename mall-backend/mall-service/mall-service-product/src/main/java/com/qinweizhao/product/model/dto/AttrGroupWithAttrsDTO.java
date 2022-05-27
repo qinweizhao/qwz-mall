@@ -1,7 +1,5 @@
-package com.qinweizhao.product.model.vo;
+package com.qinweizhao.product.model.dto;
 
-import com.qinweizhao.common.core.annotation.Excel;
-import com.qinweizhao.product.model.entity.PmsAttr;
 import lombok.Data;
 
 import java.util.List;
@@ -10,7 +8,7 @@ import java.util.List;
  * @author weizhao
  */
 @Data
-public class AttrGroupWithPmsAttrsVO {
+public class AttrGroupWithAttrsDTO {
 
     /**
      * 分组id
@@ -37,5 +35,9 @@ public class AttrGroupWithPmsAttrsVO {
      */
     private String icon;
 
-    private List<PmsAttr> attrs;
+
+    /**
+     * 属性
+     */
+    private List<AttrDTO> attrs;
 }

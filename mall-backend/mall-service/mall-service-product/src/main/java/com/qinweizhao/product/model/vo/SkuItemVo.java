@@ -39,15 +39,12 @@ public class SkuItemVo {
     /**
      * 获取spu的规格参数信息
      */
-    List<SpuItemAttrGroupDTO> groupAttrs;
+    List<AttrGroupWithAttrsDTO> groupAttrs;
 
     /**
      * 当前商品的秒杀优惠信息
      */
 //    SeckillInfoVo seckillInfo;
-
-
-
 
 
 }

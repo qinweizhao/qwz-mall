@@ -7,12 +7,11 @@ import com.qinweizhao.product.convert.SpuInfoDetailConvert;
 import com.qinweizhao.product.mapper.PmsSkuImageMapper;
 import com.qinweizhao.product.mapper.PmsSkuInfoMapper;
 import com.qinweizhao.product.mapper.PmsSpuInfoDetailMapper;
+import com.qinweizhao.product.model.dto.AttrGroupWithAttrsDTO;
 import com.qinweizhao.product.model.dto.SkuItemAttrDTO;
-import com.qinweizhao.product.model.dto.SpuItemAttrGroupDTO;
 import com.qinweizhao.product.model.entity.PmsSkuImage;
 import com.qinweizhao.product.model.entity.PmsSkuInfo;
 import com.qinweizhao.product.model.entity.PmsSpuInfoDetail;
-import com.qinweizhao.product.model.vo.AttrGroupWithPmsAttrsVO;
 import com.qinweizhao.product.model.vo.SkuItemVo;
 import com.qinweizhao.product.service.IPmsAttrGroupService;
 import com.qinweizhao.product.service.IPmsSkuAttrValueService;
@@ -148,7 +147,7 @@ public class PmsSkuInfoServiceImpl implements IPmsSkuInfoService {
 
         // 5.获取spu的规格参数信息
         Long categoryId = pmsSkuInfo.getCategoryId();
-        List<SpuItemAttrGroupDTO> spuItemAttrGroupDTOList = pmsAttrGroupService.listAttrGroupWithAttrsByCategoryId(categoryId,spuId);
+        List<AttrGroupWithAttrsDTO> spuItemAttrGroupDTOList = pmsAttrGroupService.listAttrGroupWithAttrsByCategoryId(categoryId, spuId);
         skuItem.setGroupAttrs(spuItemAttrGroupDTOList);
 
 
