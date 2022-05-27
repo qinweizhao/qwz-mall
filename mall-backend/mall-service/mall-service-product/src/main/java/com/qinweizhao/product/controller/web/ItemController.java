@@ -1,7 +1,7 @@
 package com.qinweizhao.product.controller.web;
 
 import com.qinweizhao.component.core.response.R;
-import com.qinweizhao.product.model.vo.SkuItemVo;
+import com.qinweizhao.product.model.vo.SkuItemVO;
 import com.qinweizhao.product.service.IPmsSkuInfoService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +24,7 @@ public class ItemController {
 
     @GetMapping("/{skuId}")
     public R<?> info(@PathVariable("skuId") Long skuId) {
-        SkuItemVo skuItem = pmsSkuInfoService.getItemById(skuId);
+        SkuItemVO skuItem = pmsSkuInfoService.getItemById(skuId);
         return R.success(skuItem);
     }
 }

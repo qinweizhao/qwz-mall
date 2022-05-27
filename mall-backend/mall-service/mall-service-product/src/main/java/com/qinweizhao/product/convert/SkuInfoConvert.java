@@ -2,7 +2,6 @@ package com.qinweizhao.product.convert;
 
 import com.qinweizhao.product.model.dto.SkuInfoDTO;
 import com.qinweizhao.product.model.entity.PmsSkuInfo;
-import com.qinweizhao.product.model.vo.SkuItemVo;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

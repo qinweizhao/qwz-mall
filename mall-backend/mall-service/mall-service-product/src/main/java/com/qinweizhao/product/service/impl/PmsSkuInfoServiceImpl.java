@@ -12,7 +12,7 @@ import com.qinweizhao.product.model.dto.SkuItemAttrDTO;
 import com.qinweizhao.product.model.entity.PmsSkuImage;
 import com.qinweizhao.product.model.entity.PmsSkuInfo;
 import com.qinweizhao.product.model.entity.PmsSpuInfoDetail;
-import com.qinweizhao.product.model.vo.SkuItemVo;
+import com.qinweizhao.product.model.vo.SkuItemVO;
 import com.qinweizhao.product.service.IPmsAttrGroupService;
 import com.qinweizhao.product.service.IPmsSkuAttrValueService;
 import com.qinweizhao.product.service.IPmsSkuInfoService;
@@ -120,8 +120,8 @@ public class PmsSkuInfoServiceImpl implements IPmsSkuInfoService {
     }
 
     @Override
-    public SkuItemVo getItemById(Long skuId) {
-        SkuItemVo skuItem = new SkuItemVo();
+    public SkuItemVO getItemById(Long skuId) {
+        SkuItemVO skuItem = new SkuItemVO();
 
         // 1.sku 基本信息获取
         PmsSkuInfo pmsSkuInfo = pmsSkuInfoMapper.selectById(skuId);
