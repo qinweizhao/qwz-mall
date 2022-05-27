@@ -1,5 +1,6 @@
 package com.qinweizhao.user.model.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
 import lombok.Data;
@@ -13,6 +14,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
+@TableName("ums_growth_change_history")
 public class UmsGrowthChangeHistory extends BaseEntity {
     private static final long serialVersionUID = 1L;
 

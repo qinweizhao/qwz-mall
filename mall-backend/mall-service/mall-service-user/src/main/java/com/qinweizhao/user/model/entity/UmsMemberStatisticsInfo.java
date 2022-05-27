@@ -1,5 +1,6 @@
 package com.qinweizhao.user.model.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
 import lombok.Data;
@@ -15,6 +16,7 @@ import java.math.BigDecimal;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
+@TableName("ums_member_statistics_info")
 public class UmsMemberStatisticsInfo extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
