@@ -1,4 +1,4 @@
-package com.qinweizhao.product.model.vo;
+package com.qinweizhao.product.model.param;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -12,7 +12,7 @@ import java.util.Date;
  * @date 2022-04-11
  */
 @Data
-public class AttrAttrGroupSaveBatchVO {
+public class AttrAttrGroupSaveBatchParam {
     private static final long serialVersionUID = 1L;
 
     /**

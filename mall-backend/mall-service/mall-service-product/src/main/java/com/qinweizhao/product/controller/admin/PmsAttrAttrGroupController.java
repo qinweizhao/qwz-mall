@@ -2,13 +2,13 @@ package com.qinweizhao.product.controller.admin;
 
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
-import com.qinweizhao.component.log.annotation.Log;
-import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.core.response.PageResult;
 import com.qinweizhao.component.core.response.R;
+import com.qinweizhao.component.log.annotation.Log;
+import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.product.model.entity.PmsAttr;
 import com.qinweizhao.product.model.entity.PmsAttrAttrGroup;
-import com.qinweizhao.product.model.vo.AttrAttrGroupSaveBatchVO;
+import com.qinweizhao.product.model.param.AttrAttrGroupSaveBatchParam;
 import com.qinweizhao.product.service.IPmsAttrAttrGroupService;
 import com.qinweizhao.product.service.IPmsAttrService;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +26,6 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/attr/attr-group")
 public class PmsAttrAttrGroupController extends BaseController {
-
 
     @Resource
     private IPmsAttrAttrGroupService pmsAttrAttrGroupService;
@@ -97,7 +96,7 @@ public class PmsAttrAttrGroupController extends BaseController {
     @RequiresPermissions("product:group:edit")
     @Log(title = "属性&属性分组关联", businessType = BusinessType.GRANT)
     @PostMapping
-    public R<?> selectAuthUserAll(@RequestBody AttrAttrGroupSaveBatchVO attrAttrGroupSaveBatchVO) {
-        return R.success(pmsAttrAttrGroupService.insertPmsAttrAttrGroups(attrAttrGroupSaveBatchVO));
+    public R<?> selectAuthUserAll(@RequestBody AttrAttrGroupSaveBatchParam attrAttrGroupSaveBatchParam) {
+        return R.success(pmsAttrAttrGroupService.insertPmsAttrAttrGroups(attrAttrGroupSaveBatchParam));
     }
 }

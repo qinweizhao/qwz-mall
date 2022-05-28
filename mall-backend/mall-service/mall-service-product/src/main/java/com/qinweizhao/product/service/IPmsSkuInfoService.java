@@ -4,6 +4,7 @@ import com.qinweizhao.product.model.entity.PmsSkuInfo;
 import com.qinweizhao.product.model.vo.SkuItemVO;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * sku信息Service接口
@@ -70,5 +71,5 @@ public interface IPmsSkuInfoService {
     List<PmsSkuInfo> listBySpuId(Long spuId);
 
 
-    SkuItemVO getItemById(Long skuId);
+    SkuItemVO getItemById(Long skuId) throws ExecutionException, InterruptedException;
 }

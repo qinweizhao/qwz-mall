@@ -20,6 +20,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * sku信息Service业务层处理
@@ -45,6 +48,9 @@ public class PmsSkuInfoServiceImpl implements IPmsSkuInfoService {
 
     @Resource
     private PmsSkuImageMapper pmsSkuImageMapper;
+
+    @Resource
+    private ThreadPoolExecutor executor;
 
     /**
      * 查询sku信息
@@ -120,36 +126,52 @@ public class PmsSkuInfoServiceImpl implements IPmsSkuInfoService {
     }
 
     @Override
-    public SkuItemVO getItemById(Long skuId) {
+    public SkuItemVO getItemById(Long skuId) throws ExecutionException, InterruptedException {
         SkuItemVO skuItem = new SkuItemVO();
 
-        // 1.sku 基本信息获取
-        PmsSkuInfo pmsSkuInfo = pmsSkuInfoMapper.selectById(skuId);
-        skuItem.setSkuInfo(SkuInfoConvert.INSTANCE.convert(pmsSkuInfo));
 
-        // 2.sku 图片信息
-        PmsSkuImage pmsSkuImage = new PmsSkuImage();
-        pmsSkuImage.setSkuId(skuId);
-        List<PmsSkuImage> imageList = pmsSkuImageMapper.selectPmsSkuImageList(pmsSkuImage);
-        skuItem.setSkuImages(SkuImageConvert.INSTANCE.convertToDTO(imageList));
+        CompletableFuture<PmsSkuInfo> infoFuture = CompletableFuture.supplyAsync(() -> {
+            // 1.sku 基本信息获取
+            PmsSkuInfo pmsSkuInfo = pmsSkuInfoMapper.selectById(skuId);
+            skuItem.setSkuInfo(SkuInfoConvert.INSTANCE.convert(pmsSkuInfo));
+            return pmsSkuInfo;
+        }, executor);
 
 
-        Long spuId = pmsSkuInfo.getSpuId();
+        CompletableFuture<Void> imageFuture = CompletableFuture.runAsync(() -> {
+                    // 2.sku 图片信息
+                    PmsSkuImage pmsSkuImage = new PmsSkuImage();
+                    pmsSkuImage.setSkuId(skuId);
+                    List<PmsSkuImage> imageList = pmsSkuImageMapper.selectPmsSkuImageList(pmsSkuImage);
+                    skuItem.setSkuImages(SkuImageConvert.INSTANCE.convertToDTO(imageList));
+                }
+                , executor);
 
-        // 3.获取spu的销售组合
-        List<SkuItemAttrDTO> saleAttrList = pmsSkuAttrValueService.listSkuItemAttrBySpuId(spuId);
-        skuItem.setSaleAttr(saleAttrList);
+        infoFuture.thenAcceptAsync(response -> {
+            Long spuId = response.getSpuId();
+            // 3.获取spu的销售组合
+            List<SkuItemAttrDTO> saleAttrList = pmsSkuAttrValueService.listSkuItemAttrBySpuId(spuId);
+            skuItem.setSaleAttr(saleAttrList);
+        }, executor);
+
+        infoFuture.thenAcceptAsync(response -> {
+            // 4.获取 spu 详情（介绍）
+            Long spuId = response.getSpuId();
+            PmsSpuInfoDetail pmsSpuInfoDetail = pmsSpuInfoDetailMapper.selectPmsSpuInfoDetailBySpuId(spuId);
+            skuItem.setSpuInfoDetail(SpuInfoDetailConvert.INSTANCE.convert(pmsSpuInfoDetail));
+        }, executor);
+
+        infoFuture.thenAcceptAsync(response -> {
+            // 5.获取spu的规格参数信息
+            Long spuId = response.getSpuId();
+            Long categoryId = response.getCategoryId();
+            List<AttrGroupWithAttrsDTO> spuItemAttrGroupDTOList = pmsAttrGroupService.listAttrGroupWithAttrsByCategoryId(categoryId, spuId);
+            skuItem.setGroupAttrs(spuItemAttrGroupDTOList);
+
+        }, executor);
 
 
-        // 4.获取 spu 详情（介绍）
-        PmsSpuInfoDetail pmsSpuInfoDetail = pmsSpuInfoDetailMapper.selectPmsSpuInfoDetailBySpuId(spuId);
-        skuItem.setSpuInfoDetail(SpuInfoDetailConvert.INSTANCE.convert(pmsSpuInfoDetail));
-
-        // 5.获取spu的规格参数信息
-        Long categoryId = pmsSkuInfo.getCategoryId();
-        List<AttrGroupWithAttrsDTO> spuItemAttrGroupDTOList = pmsAttrGroupService.listAttrGroupWithAttrsByCategoryId(categoryId, spuId);
-        skuItem.setGroupAttrs(spuItemAttrGroupDTOList);
-
+        CompletableFuture.allOf(infoFuture, imageFuture).get();
 
         return skuItem;
     }
