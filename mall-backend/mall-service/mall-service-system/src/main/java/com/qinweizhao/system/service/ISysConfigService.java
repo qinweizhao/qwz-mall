@@ -1,6 +1,6 @@
 package com.qinweizhao.system.service;
 
-import com.qinweizhao.system.domain.SysConfig;
+import com.qinweizhao.system.modle.entity.SysConfig;
 
 import java.util.List;
 

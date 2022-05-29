@@ -1,7 +1,7 @@
 package com.qinweizhao.system.service;
 
 import com.qinweizhao.system.api.domain.SysRole;
-import com.qinweizhao.system.domain.SysUserRole;
+import com.qinweizhao.system.modle.entity.SysUserRole;
 
 import java.util.List;
 import java.util.Set;

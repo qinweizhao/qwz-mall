@@ -10,7 +10,7 @@ import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.redis.service.RedisService;
 import com.qinweizhao.system.api.model.LoginUser;
-import com.qinweizhao.system.domain.SysUserOnline;
+import com.qinweizhao.system.modle.entity.SysUserOnline;
 import com.qinweizhao.system.service.ISysUserOnlineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

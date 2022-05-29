@@ -1,4 +1,4 @@
-package com.qinweizhao.system.domain;
+package com.qinweizhao.system.modle.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.qinweizhao.common.core.annotation.Excel;

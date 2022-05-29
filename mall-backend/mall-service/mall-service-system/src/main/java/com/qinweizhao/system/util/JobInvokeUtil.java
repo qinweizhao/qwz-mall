@@ -2,7 +2,7 @@ package com.qinweizhao.system.util;
 
 import com.qinweizhao.common.core.utils.SpringUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
-import com.qinweizhao.system.domain.SysJob;
+import com.qinweizhao.system.modle.entity.SysJob;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

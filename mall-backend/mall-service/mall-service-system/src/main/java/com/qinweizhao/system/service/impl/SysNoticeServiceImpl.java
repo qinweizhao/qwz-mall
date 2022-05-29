@@ -1,6 +1,6 @@
 package com.qinweizhao.system.service.impl;
 
-import com.qinweizhao.system.domain.SysNotice;
+import com.qinweizhao.system.modle.entity.SysNotice;
 import com.qinweizhao.system.mapper.SysNoticeMapper;
 import com.qinweizhao.system.service.ISysNoticeService;
 import org.springframework.beans.factory.annotation.Autowired;

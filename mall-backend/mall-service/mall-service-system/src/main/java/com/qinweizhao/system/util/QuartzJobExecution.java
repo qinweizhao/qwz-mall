@@ -1,6 +1,6 @@
 package com.qinweizhao.system.util;
 
-import com.qinweizhao.system.domain.SysJob;
+import com.qinweizhao.system.modle.entity.SysJob;
 import org.quartz.JobExecutionContext;
 
 /**

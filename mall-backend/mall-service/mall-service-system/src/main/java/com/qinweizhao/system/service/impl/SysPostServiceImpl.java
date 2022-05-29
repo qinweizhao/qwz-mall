@@ -3,7 +3,7 @@ package com.qinweizhao.system.service.impl;
 import com.qinweizhao.common.core.constant.UserConstants;
 import com.qinweizhao.common.core.exception.ServiceException;
 import com.qinweizhao.common.core.utils.StringUtils;
-import com.qinweizhao.system.domain.SysPost;
+import com.qinweizhao.system.modle.entity.SysPost;
 import com.qinweizhao.system.mapper.SysPostMapper;
 import com.qinweizhao.system.mapper.SysUserPostMapper;
 import com.qinweizhao.system.service.ISysPostService;

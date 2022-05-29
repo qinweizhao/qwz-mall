@@ -1,7 +1,7 @@
 package com.qinweizhao.system.mapper;
 
 
-import com.qinweizhao.system.domain.SysJobLog;
+import com.qinweizhao.system.modle.entity.SysJobLog;
 
 import java.util.List;
 

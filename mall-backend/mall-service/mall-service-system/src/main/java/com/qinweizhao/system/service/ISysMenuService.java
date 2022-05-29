@@ -1,8 +1,8 @@
 package com.qinweizhao.system.service;
 
-import com.qinweizhao.system.domain.SysMenu;
-import com.qinweizhao.system.domain.vo.RouterVo;
-import com.qinweizhao.system.domain.vo.TreeSelect;
+import com.qinweizhao.system.modle.entity.SysMenu;
+import com.qinweizhao.system.modle.vo.RouterVo;
+import com.qinweizhao.system.modle.vo.TreeSelect;
 
 import java.util.List;
 import java.util.Set;

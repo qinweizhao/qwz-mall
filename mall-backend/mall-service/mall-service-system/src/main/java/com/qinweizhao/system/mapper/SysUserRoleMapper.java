@@ -1,6 +1,6 @@
 package com.qinweizhao.system.mapper;
 
-import com.qinweizhao.system.domain.SysUserRole;
+import com.qinweizhao.system.modle.entity.SysUserRole;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

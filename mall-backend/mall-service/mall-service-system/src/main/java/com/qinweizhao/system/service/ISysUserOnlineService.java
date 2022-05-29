@@ -1,7 +1,7 @@
 package com.qinweizhao.system.service;
 
 import com.qinweizhao.system.api.model.LoginUser;
-import com.qinweizhao.system.domain.SysUserOnline;
+import com.qinweizhao.system.modle.entity.SysUserOnline;
 
 /**
  * 在线用户 服务层

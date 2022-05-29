@@ -1,4 +1,4 @@
-package com.qinweizhao.system.domain.vo;
+package com.qinweizhao.system.modle.vo;
 
 import com.qinweizhao.common.core.utils.StringUtils;
 

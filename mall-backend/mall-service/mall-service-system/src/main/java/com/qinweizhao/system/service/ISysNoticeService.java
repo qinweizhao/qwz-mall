@@ -1,6 +1,6 @@
 package com.qinweizhao.system.service;
 
-import com.qinweizhao.system.domain.SysNotice;
+import com.qinweizhao.system.modle.entity.SysNotice;
 
 import java.util.List;
 

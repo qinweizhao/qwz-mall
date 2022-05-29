@@ -1,7 +1,7 @@
 package com.qinweizhao.system.service;
 
 import com.qinweizhao.common.core.exception.job.TaskException;
-import com.qinweizhao.system.domain.SysJob;
+import com.qinweizhao.system.modle.entity.SysJob;
 import org.quartz.SchedulerException;
 
 import java.util.List;

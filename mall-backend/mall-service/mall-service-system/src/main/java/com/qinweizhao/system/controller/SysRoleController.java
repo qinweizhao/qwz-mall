@@ -11,7 +11,7 @@ import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.system.api.domain.SysRole;
 import com.qinweizhao.system.api.domain.SysUser;
-import com.qinweizhao.system.domain.SysUserRole;
+import com.qinweizhao.system.modle.entity.SysUserRole;
 import com.qinweizhao.system.service.ISysRoleService;
 import com.qinweizhao.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;

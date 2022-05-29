@@ -1,6 +1,6 @@
 package com.qinweizhao.system.mapper;
 
-import com.qinweizhao.system.domain.SysRoleMenu;
+import com.qinweizhao.system.modle.entity.SysRoleMenu;
 
 import java.util.List;
 
