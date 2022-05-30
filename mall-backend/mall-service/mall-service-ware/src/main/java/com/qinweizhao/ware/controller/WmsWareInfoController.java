@@ -1,18 +1,16 @@
 package com.qinweizhao.ware.controller;
 
-import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
-import com.qinweizhao.component.log.annotation.Log;
-import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.core.response.PageResult;
 import com.qinweizhao.component.core.response.R;
+import com.qinweizhao.component.log.annotation.Log;
+import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.ware.model.WmsWareInfo;
 import com.qinweizhao.ware.service.IWmsWareInfoService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -24,6 +22,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/info")
 public class WmsWareInfoController extends BaseController {
+
+
     @Resource
     private IWmsWareInfoService wmsWareInfoService;
 
@@ -39,25 +39,12 @@ public class WmsWareInfoController extends BaseController {
     }
 
     /**
-     * 导出仓库信息列表
-     */
-    @RequiresPermissions("product:info:export")
-    @Log(title = "仓库信息", businessType = BusinessType.EXPORT)
-    @PostMapping("/export")
-    public R<?> export(HttpServletResponse response, WmsWareInfo wmsWareInfo) {
-        List<WmsWareInfo> list = wmsWareInfoService.selectWmsWareInfoList(wmsWareInfo);
-        ExcelUtil<WmsWareInfo> util = new ExcelUtil<WmsWareInfo>(WmsWareInfo.class);
-        util.exportExcel(response, list, "仓库信息数据");
-        return R.success();
-    }
-
-    /**
      * 获取仓库信息详细信息
      */
     @RequiresPermissions("product:info:query")
     @GetMapping(value = "/{id}")
     public R<WmsWareInfo> getInfo(@PathVariable("id") Long id) {
-        return R.success(wmsWareInfoService.selectWmsWareInfoById(id));
+        return R.success(wmsWareInfoService.getById(id));
     }
 
     /**
@@ -67,7 +54,7 @@ public class WmsWareInfoController extends BaseController {
     @Log(title = "仓库信息", businessType = BusinessType.INSERT)
     @PostMapping
     public R<?> add(@RequestBody WmsWareInfo wmsWareInfo) {
-        return R.success(wmsWareInfoService.insertWmsWareInfo(wmsWareInfo));
+        return R.success(wmsWareInfoService.save(wmsWareInfo));
     }
 
     /**
@@ -77,7 +64,7 @@ public class WmsWareInfoController extends BaseController {
     @Log(title = "仓库信息", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<?> edit(@RequestBody WmsWareInfo wmsWareInfo) {
-        return R.success(wmsWareInfoService.updateWmsWareInfo(wmsWareInfo));
+        return R.success(wmsWareInfoService.updateById(wmsWareInfo));
     }
 
     /**
@@ -86,7 +73,7 @@ public class WmsWareInfoController extends BaseController {
     @RequiresPermissions("product:info:remove")
     @Log(title = "仓库信息", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<?> remove(@PathVariable Long[] ids) {
-        return R.success(wmsWareInfoService.deleteWmsWareInfoByIds(ids));
+    public R<?> remove(@PathVariable List<Long> ids) {
+        return R.success(wmsWareInfoService.removeBatchByIds(ids));
     }
 }
