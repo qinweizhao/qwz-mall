@@ -1,7 +1,7 @@
 package com.qinweizhao.ware.service;
 
 import com.qinweizhao.api.ware.dto.SkuHasStockDTO;
-import com.qinweizhao.ware.model.WmsWareSku;
+import com.qinweizhao.ware.model.entity.WmsWareSku;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.qinweizhao.ware.service.impl;
 
 import com.qinweizhao.common.core.utils.DateUtils;
-import com.qinweizhao.ware.model.WmsWareOrderTask;
+import com.qinweizhao.ware.model.entity.WmsWareOrderTask;
 import com.qinweizhao.ware.mapper.WmsWareOrderTaskMapper;
 import com.qinweizhao.ware.service.IWmsWareOrderTaskService;
 import org.springframework.stereotype.Service;

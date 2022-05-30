@@ -1,6 +1,6 @@
 package com.qinweizhao.ware.service;
 
-import com.qinweizhao.ware.model.WmsWareOrderTask;
+import com.qinweizhao.ware.model.entity.WmsWareOrderTask;
 
 import java.util.List;
 

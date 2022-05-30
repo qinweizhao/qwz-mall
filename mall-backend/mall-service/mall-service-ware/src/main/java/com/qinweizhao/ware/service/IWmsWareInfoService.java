@@ -1,7 +1,9 @@
 package com.qinweizhao.ware.service;
 
+import com.qinweizhao.component.core.response.PageResult;
 import com.qinweizhao.component.mybatis.service.QwzService;
-import com.qinweizhao.ware.model.WmsWareInfo;
+import com.qinweizhao.ware.model.entity.WmsWareInfo;
+import com.qinweizhao.ware.model.param.WareInfoPageParam;
 
 import java.util.List;
 
@@ -21,4 +23,10 @@ public interface IWmsWareInfoService extends QwzService<WmsWareInfo> {
      */
     List<WmsWareInfo> selectWmsWareInfoList(WmsWareInfo wmsWareInfo);
 
+    /**
+     * 分页查询
+     * @param pageParam pageParam
+     * @return PageResult
+     */
+    PageResult<WmsWareInfo> page(WareInfoPageParam pageParam);
 }

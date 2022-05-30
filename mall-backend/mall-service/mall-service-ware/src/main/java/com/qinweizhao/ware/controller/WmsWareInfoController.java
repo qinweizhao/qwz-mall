@@ -6,7 +6,8 @@ import com.qinweizhao.component.core.response.PageResult;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.ware.model.WmsWareInfo;
+import com.qinweizhao.ware.model.entity.WmsWareInfo;
+import com.qinweizhao.ware.model.param.WareInfoPageParam;
 import com.qinweizhao.ware.service.IWmsWareInfoService;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/info")
-public class WmsWareInfoController extends BaseController {
+public class WmsWareInfoController{
 
 
     @Resource
@@ -32,10 +33,9 @@ public class WmsWareInfoController extends BaseController {
      */
     @RequiresPermissions("product:info:list")
     @GetMapping("/page")
-    public R<PageResult<WmsWareInfo>> list(WmsWareInfo wmsWareInfo) {
-        startPage();
-        List<WmsWareInfo> list = wmsWareInfoService.selectWmsWareInfoList(wmsWareInfo);
-        return getPageResult(list);
+    public R<PageResult<WmsWareInfo>> list(WareInfoPageParam pageParam) {
+        PageResult<WmsWareInfo> pageResult = wmsWareInfoService.page(pageParam);
+        return R.success(pageResult);
     }
 
     /**

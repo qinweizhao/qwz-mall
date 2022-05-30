@@ -1,22 +1,21 @@
-package com.qinweizhao.ware.model;
+package com.qinweizhao.ware.model.entity;
 
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
-import jdk.jfr.DataAmount;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- * 仓库信息对象 wms_ware_info
+ * 商品库存对象 wms_ware_sku
  *
  * @author qinweizhao
  * @date 2022-05-04
  */
-@Data
 @EqualsAndHashCode(callSuper = true)
-public class WmsWareInfo extends BaseEntity {
+@Data
+public class WmsWareSku extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -25,19 +24,28 @@ public class WmsWareInfo extends BaseEntity {
     private Long id;
 
     /**
-     * 仓库名
+     * sku_id
      */
-    private String name;
+    private Long skuId;
 
     /**
-     * 仓库地址
+     * 仓库id
      */
-    private String address;
+    private Long wareId;
 
     /**
-     * 区域编码
+     * 库存数
      */
-    private String areacode;
+    private Long stock;
 
+    /**
+     * sku_name
+     */
+    private String skuName;
+
+    /**
+     * 锁定库存
+     */
+    private Long stockLocked;
 
 }

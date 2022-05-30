@@ -1,7 +1,10 @@
 package com.qinweizhao.ware.mapper;
 
+import com.qinweizhao.component.core.response.PageResult;
 import com.qinweizhao.component.mybatis.mapper.QwzBaseMapper;
-import com.qinweizhao.ware.model.WmsWareInfo;
+import com.qinweizhao.component.mybatis.query.QwzLambdaQueryWrapper;
+import com.qinweizhao.ware.model.entity.WmsWareInfo;
+import com.qinweizhao.ware.model.param.WareInfoPageParam;
 
 import java.util.List;
 
@@ -21,4 +24,15 @@ public interface WmsWareInfoMapper extends QwzBaseMapper<WmsWareInfo> {
      */
     List<WmsWareInfo> selectWmsWareInfoList(WmsWareInfo wmsWareInfo);
 
+
+    /**
+     * 查询分页信息
+     * @param pageParam pageParam
+     * @return PageResult
+     */
+    default PageResult<WmsWareInfo> selectPage(WareInfoPageParam pageParam){
+        return selectPage(pageParam, new QwzLambdaQueryWrapper<WmsWareInfo>()
+                .likeIfPresent(WmsWareInfo::getName, pageParam.getName())
+                .orderByDesc(WmsWareInfo::getCreateTime));
+    }
 }

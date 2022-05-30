@@ -21,17 +21,13 @@ import java.util.List;
 @Service
 public class UmsMemberServiceImpl extends QwzServiceImpl<UmsMemberMapper, UmsMember> implements UmsMemberService {
 
-    @Resource
-    private UmsMemberMapper umsMemberMapper;
-
     @Override
     public List<UmsMember> selectMemberList(UmsMember umsMember) {
-        return umsMemberMapper.selectMemberList(umsMember);
+        return this.baseMapper.selectMemberList(umsMember);
     }
 
     @Override
     public PageResult<UmsMember> page(MemberPageParam pageParam) {
-        PageResult<UmsMember> pageResult = this.baseMapper.selectPage(pageParam);
-        return pageResult;
+        return this.baseMapper.selectPage(pageParam);
     }
 }

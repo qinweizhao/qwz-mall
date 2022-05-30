@@ -1,6 +1,6 @@
 package com.qinweizhao.ware.mapper;
 
-import com.qinweizhao.ware.model.WmsWareOrderTaskDetail;
+import com.qinweizhao.ware.model.entity.WmsWareOrderTaskDetail;
 
 import java.util.List;
 

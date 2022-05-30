@@ -1,4 +1,4 @@
-package com.qinweizhao.ware.model;
+package com.qinweizhao.ware.model.entity;
 
 import com.qinweizhao.component.core.entity.BaseEntity;
 import lombok.Data;

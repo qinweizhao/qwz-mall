@@ -9,7 +9,7 @@ import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.core.response.PageResult;
 import com.qinweizhao.component.core.response.R;
-import com.qinweizhao.ware.model.WmsWareSku;
+import com.qinweizhao.ware.model.entity.WmsWareSku;
 import com.qinweizhao.ware.service.IWmsWareSkuService;
 import org.springframework.web.bind.annotation.*;
 
