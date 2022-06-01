@@ -1,17 +1,15 @@
 package com.qinweizhao.user.controller;
 
-import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.user.model.entity.UmsGrowthChangeHistory;
 import com.qinweizhao.user.service.UmsGrowthChangeHistoryService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -36,19 +34,6 @@ public class UmsGrowthChangeHistoryController extends BaseController {
         startPage();
         List<UmsGrowthChangeHistory> list = umsGrowthChangeHistoryService.selectUmsGrowthChangeHistoryList(umsGrowthChangeHistory);
         return R.success(list);
-    }
-
-    /**
-     * 导出成长值变化历史记录列表
-     */
-    @RequiresPermissions("product:history:export")
-    @Log(title = "成长值变化历史记录", businessType = BusinessType.EXPORT)
-    @PostMapping("/export")
-    public R<?> export(HttpServletResponse response, UmsGrowthChangeHistory umsGrowthChangeHistory) {
-        List<UmsGrowthChangeHistory> list = umsGrowthChangeHistoryService.selectUmsGrowthChangeHistoryList(umsGrowthChangeHistory);
-        ExcelUtil<UmsGrowthChangeHistory> util = new ExcelUtil<UmsGrowthChangeHistory>(UmsGrowthChangeHistory.class);
-        util.exportExcel(response, list, "成长值变化历史记录数据");
-        return R.success();
     }
 
     /**

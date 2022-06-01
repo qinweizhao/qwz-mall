@@ -3,6 +3,9 @@ package com.qinweizhao.order;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * @author weizhao
+ */
 @SpringBootApplication
 public class OrderApplication {
 
