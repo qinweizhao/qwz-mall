@@ -1,6 +1,6 @@
 package com.qinweizhao.system.service.impl;
 
-import com.qinweizhao.system.api.domain.SysLogininfor;
+import com.qinweizhao.system.api.model.entity.SysLogininfor;
 import com.qinweizhao.system.mapper.SysLogininforMapper;
 import com.qinweizhao.system.service.ISysLogininforService;
 import org.springframework.beans.factory.annotation.Autowired;

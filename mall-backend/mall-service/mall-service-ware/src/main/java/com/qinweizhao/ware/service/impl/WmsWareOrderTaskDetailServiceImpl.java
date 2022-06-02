@@ -50,7 +50,6 @@ public class WmsWareOrderTaskDetailServiceImpl implements IWmsWareOrderTaskDetai
      */
     @Override
     public int insertWmsWareOrderTaskDetail(WmsWareOrderTaskDetail wmsWareOrderTaskDetail) {
-        wmsWareOrderTaskDetail.setCreateTime(DateUtils.getNowDate());
         return wmsWareOrderTaskDetailMapper.insertWmsWareOrderTaskDetail(wmsWareOrderTaskDetail);
     }
 
@@ -62,7 +61,6 @@ public class WmsWareOrderTaskDetailServiceImpl implements IWmsWareOrderTaskDetai
      */
     @Override
     public int updateWmsWareOrderTaskDetail(WmsWareOrderTaskDetail wmsWareOrderTaskDetail) {
-        wmsWareOrderTaskDetail.setUpdateTime(DateUtils.getNowDate());
         return wmsWareOrderTaskDetailMapper.updateWmsWareOrderTaskDetail(wmsWareOrderTaskDetail);
     }
 

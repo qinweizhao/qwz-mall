@@ -3,7 +3,7 @@ package com.qinweizhao.system.api.factory;
 import com.qinweizhao.component.log.SysOperLog;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.system.api.RemoteLogService;
-import com.qinweizhao.system.api.domain.SysLogininfor;
+import com.qinweizhao.system.api.model.entity.SysLogininfor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.openfeign.FallbackFactory;

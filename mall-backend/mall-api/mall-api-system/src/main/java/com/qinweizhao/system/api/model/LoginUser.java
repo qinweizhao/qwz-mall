@@ -1,6 +1,6 @@
 package com.qinweizhao.system.api.model;
 
-import com.qinweizhao.system.api.domain.SysUser;
+import com.qinweizhao.system.api.model.entity.SysUser;
 
 import java.io.Serializable;
 import java.util.Set;

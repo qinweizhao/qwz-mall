@@ -50,7 +50,6 @@ public class WmsPurchaseServiceImpl implements IWmsPurchaseService {
      */
     @Override
     public int insertWmsPurchase(WmsPurchase wmsPurchase) {
-        wmsPurchase.setCreateTime(DateUtils.getNowDate());
         return wmsPurchaseMapper.insertWmsPurchase(wmsPurchase);
     }
 
@@ -62,7 +61,6 @@ public class WmsPurchaseServiceImpl implements IWmsPurchaseService {
      */
     @Override
     public int updateWmsPurchase(WmsPurchase wmsPurchase) {
-        wmsPurchase.setUpdateTime(DateUtils.getNowDate());
         return wmsPurchaseMapper.updateWmsPurchase(wmsPurchase);
     }
 

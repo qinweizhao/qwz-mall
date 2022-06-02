@@ -1,6 +1,6 @@
 package com.qinweizhao.system.mapper;
 
-import com.qinweizhao.system.api.domain.SysDictData;
+import com.qinweizhao.system.api.model.entity.SysDictData;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

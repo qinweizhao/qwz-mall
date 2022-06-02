@@ -11,7 +11,7 @@ import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.api.file.RemoteFileService;
 import com.qinweizhao.api.file.domain.SysFile;
-import com.qinweizhao.system.api.domain.SysUser;
+import com.qinweizhao.system.api.model.entity.SysUser;
 import com.qinweizhao.system.api.model.LoginUser;
 import com.qinweizhao.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;

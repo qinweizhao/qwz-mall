@@ -2,7 +2,7 @@ package com.qinweizhao.system.api.factory;
 
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.system.api.RemoteUserService;
-import com.qinweizhao.system.api.domain.SysUser;
+import com.qinweizhao.system.api.model.entity.SysUser;
 import com.qinweizhao.system.api.model.LoginUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

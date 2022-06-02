@@ -1,6 +1,6 @@
 package com.qinweizhao.system.service;
 
-import com.qinweizhao.system.api.domain.SysOperLog;
+import com.qinweizhao.system.api.model.entity.SysOperLog;
 
 import java.util.List;
 

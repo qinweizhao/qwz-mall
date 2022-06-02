@@ -1,4 +1,4 @@
-package com.qinweizhao.system.api.domain;
+package com.qinweizhao.system.api.model.entity;
 
 import com.qinweizhao.common.core.web.domain.BaseEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;

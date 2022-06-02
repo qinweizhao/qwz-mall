@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.concurrent.ExecutionException;
 
 /**
  * @author qinweizhao
@@ -23,7 +24,7 @@ public class ItemController {
 
 
     @GetMapping("/{skuId}")
-    public R<?> info(@PathVariable("skuId") Long skuId) {
+    public R<?> info(@PathVariable("skuId") Long skuId) throws ExecutionException, InterruptedException {
         SkuItemVO skuItem = pmsSkuInfoService.getItemById(skuId);
         return R.success(skuItem);
     }

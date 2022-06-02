@@ -1,6 +1,6 @@
 package com.qinweizhao.system.service;
 
-import com.qinweizhao.system.api.domain.SysLogininfor;
+import com.qinweizhao.system.api.model.entity.SysLogininfor;
 
 import java.util.List;
 

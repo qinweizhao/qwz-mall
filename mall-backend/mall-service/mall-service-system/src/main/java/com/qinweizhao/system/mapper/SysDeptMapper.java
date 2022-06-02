@@ -1,6 +1,6 @@
 package com.qinweizhao.system.mapper;
 
-import com.qinweizhao.system.api.domain.SysDept;
+import com.qinweizhao.system.api.model.entity.SysDept;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

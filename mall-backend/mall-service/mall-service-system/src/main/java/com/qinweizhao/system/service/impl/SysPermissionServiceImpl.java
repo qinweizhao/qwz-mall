@@ -1,6 +1,6 @@
 package com.qinweizhao.system.service.impl;
 
-import com.qinweizhao.system.api.domain.SysUser;
+import com.qinweizhao.system.api.model.entity.SysUser;
 import com.qinweizhao.system.service.ISysMenuService;
 import com.qinweizhao.system.service.ISysPermissionService;
 import com.qinweizhao.system.service.ISysRoleService;

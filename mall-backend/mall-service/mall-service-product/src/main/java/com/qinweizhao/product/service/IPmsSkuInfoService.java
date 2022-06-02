@@ -71,5 +71,12 @@ public interface IPmsSkuInfoService {
     List<PmsSkuInfo> listBySpuId(Long spuId);
 
 
+    /**
+     * 获取商品详情
+     * @param skuId skuId
+     * @return SkuItemVO
+     * @throws ExecutionException e
+     * @throws InterruptedException e
+     */
     SkuItemVO getItemById(Long skuId) throws ExecutionException, InterruptedException;
 }
