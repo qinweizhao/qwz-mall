@@ -13,6 +13,7 @@
 
     <modules>
         <module>mall-service-activity</module>
+        <module>mall-service-cart</module>
         <module>mall-service-order</module>
         <module>mall-service-user</module>
         <module>mall-service-payment</module>
