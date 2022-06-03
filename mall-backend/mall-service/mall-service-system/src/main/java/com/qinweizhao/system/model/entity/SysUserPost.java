@@ -1,23 +1,23 @@
-package com.qinweizhao.system.modle.entity;
+package com.qinweizhao.system.model.entity;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- * 用户和角色关联 sys_user_role
+ * 用户和岗位关联 sys_user_post
  *
  * @author ruoyi
  */
-public class SysUserRole {
+public class SysUserPost {
     /**
      * 用户ID
      */
     private Long userId;
 
     /**
-     * 角色ID
+     * 岗位ID
      */
-    private Long roleId;
+    private Long postId;
 
     public Long getUserId() {
         return userId;
@@ -27,19 +27,19 @@ public class SysUserRole {
         this.userId = userId;
     }
 
-    public Long getRoleId() {
-        return roleId;
+    public Long getPostId() {
+        return postId;
     }
 
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
+    public void setPostId(Long postId) {
+        this.postId = postId;
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
                 .append("userId", getUserId())
-                .append("roleId", getRoleId())
+                .append("postId", getPostId())
                 .toString();
     }
 }

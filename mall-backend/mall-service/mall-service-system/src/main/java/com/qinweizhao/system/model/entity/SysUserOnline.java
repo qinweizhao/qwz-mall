@@ -1,4 +1,4 @@
-package com.qinweizhao.system.modle.entity;
+package com.qinweizhao.system.model.entity;
 
 /**
  * 当前在线会话

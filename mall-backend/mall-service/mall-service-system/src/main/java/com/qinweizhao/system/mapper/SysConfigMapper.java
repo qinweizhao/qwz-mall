@@ -1,6 +1,6 @@
 package com.qinweizhao.system.mapper;
 
-import com.qinweizhao.system.modle.entity.SysConfig;
+import com.qinweizhao.system.model.entity.SysConfig;
 
 import java.util.List;
 

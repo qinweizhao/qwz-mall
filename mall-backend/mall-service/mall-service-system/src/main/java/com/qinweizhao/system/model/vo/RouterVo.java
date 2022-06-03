@@ -1,4 +1,4 @@
-package com.qinweizhao.system.modle.vo;
+package com.qinweizhao.system.model.vo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

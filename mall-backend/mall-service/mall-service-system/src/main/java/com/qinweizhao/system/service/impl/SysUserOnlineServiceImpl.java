@@ -2,7 +2,7 @@ package com.qinweizhao.system.service.impl;
 
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.system.api.model.LoginUser;
-import com.qinweizhao.system.modle.entity.SysUserOnline;
+import com.qinweizhao.system.model.entity.SysUserOnline;
 import com.qinweizhao.system.service.ISysUserOnlineService;
 import org.springframework.stereotype.Service;
 

@@ -2,7 +2,7 @@ package com.qinweizhao.system.service.impl;
 
 import com.qinweizhao.common.core.constant.ScheduleConstants;
 import com.qinweizhao.common.core.exception.job.TaskException;
-import com.qinweizhao.system.modle.entity.SysJob;
+import com.qinweizhao.system.model.entity.SysJob;
 import com.qinweizhao.system.mapper.SysJobMapper;
 import com.qinweizhao.system.service.ISysJobService;
 import com.qinweizhao.system.util.CronUtils;

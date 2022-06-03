@@ -1,6 +1,6 @@
 package com.qinweizhao.system.mapper;
 
-import com.qinweizhao.system.modle.entity.SysJob;
+import com.qinweizhao.system.model.entity.SysJob;
 
 import java.util.List;
 

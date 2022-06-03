@@ -6,7 +6,7 @@ import com.qinweizhao.common.core.exception.ServiceException;
 import com.qinweizhao.common.core.text.Convert;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.component.redis.service.RedisService;
-import com.qinweizhao.system.modle.entity.SysConfig;
+import com.qinweizhao.system.model.entity.SysConfig;
 import com.qinweizhao.system.mapper.SysConfigMapper;
 import com.qinweizhao.system.service.ISysConfigService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -3,7 +3,7 @@ package com.qinweizhao.system.util;
 import com.qinweizhao.common.core.constant.ScheduleConstants;
 import com.qinweizhao.common.core.exception.job.TaskException;
 import com.qinweizhao.common.core.exception.job.TaskException.Code;
-import com.qinweizhao.system.modle.entity.SysJob;
+import com.qinweizhao.system.model.entity.SysJob;
 import org.quartz.*;
 
 /**

@@ -10,7 +10,7 @@ import com.qinweizhao.system.annotation.DataScope;
 import com.qinweizhao.system.api.model.entity.SysDept;
 import com.qinweizhao.system.api.model.entity.SysRole;
 import com.qinweizhao.system.api.model.entity.SysUser;
-import com.qinweizhao.system.modle.vo.TreeSelect;
+import com.qinweizhao.system.model.vo.TreeSelect;
 import com.qinweizhao.system.mapper.SysDeptMapper;
 import com.qinweizhao.system.mapper.SysRoleMapper;
 import com.qinweizhao.system.service.ISysDeptService;

@@ -8,7 +8,7 @@ import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.system.modle.entity.SysMenu;
+import com.qinweizhao.system.model.entity.SysMenu;
 import com.qinweizhao.system.service.ISysMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;

@@ -1,6 +1,6 @@
 package com.qinweizhao.system.mapper;
 
-import com.qinweizhao.system.modle.entity.SysUserPost;
+import com.qinweizhao.system.model.entity.SysUserPost;
 
 import java.util.List;
 

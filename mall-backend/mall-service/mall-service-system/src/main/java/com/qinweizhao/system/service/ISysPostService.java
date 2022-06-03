@@ -1,6 +1,6 @@
 package com.qinweizhao.system.service;
 
-import com.qinweizhao.system.modle.entity.SysPost;
+import com.qinweizhao.system.model.entity.SysPost;
 
 import java.util.List;
 

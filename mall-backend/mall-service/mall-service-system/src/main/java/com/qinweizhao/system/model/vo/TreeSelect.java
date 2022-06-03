@@ -1,8 +1,8 @@
-package com.qinweizhao.system.modle.vo;
+package com.qinweizhao.system.model.vo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.qinweizhao.system.api.model.entity.SysDept;
-import com.qinweizhao.system.modle.entity.SysMenu;
+import com.qinweizhao.system.model.entity.SysMenu;
 
 import java.io.Serializable;
 import java.util.List;

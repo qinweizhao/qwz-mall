@@ -1,7 +1,7 @@
 package com.qinweizhao.system.service;
 
 import com.qinweizhao.system.api.model.entity.SysDept;
-import com.qinweizhao.system.modle.vo.TreeSelect;
+import com.qinweizhao.system.model.vo.TreeSelect;
 
 import java.util.List;
 

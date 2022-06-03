@@ -1,7 +1,7 @@
 package com.qinweizhao.system.service;
 
 
-import com.qinweizhao.system.modle.entity.SysJobLog;
+import com.qinweizhao.system.model.entity.SysJobLog;
 
 import java.util.List;
 

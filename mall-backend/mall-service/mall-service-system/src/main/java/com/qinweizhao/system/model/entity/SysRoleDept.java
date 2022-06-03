@@ -1,23 +1,23 @@
-package com.qinweizhao.system.modle.entity;
+package com.qinweizhao.system.model.entity;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- * 角色和菜单关联 sys_role_menu
+ * 角色和部门关联 sys_role_dept
  *
  * @author ruoyi
  */
-public class SysRoleMenu {
+public class SysRoleDept {
     /**
      * 角色ID
      */
     private Long roleId;
 
     /**
-     * 菜单ID
+     * 部门ID
      */
-    private Long menuId;
+    private Long deptId;
 
     public Long getRoleId() {
         return roleId;
@@ -27,19 +27,19 @@ public class SysRoleMenu {
         this.roleId = roleId;
     }
 
-    public Long getMenuId() {
-        return menuId;
+    public Long getDeptId() {
+        return deptId;
     }
 
-    public void setMenuId(Long menuId) {
-        this.menuId = menuId;
+    public void setDeptId(Long deptId) {
+        this.deptId = deptId;
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
                 .append("roleId", getRoleId())
-                .append("menuId", getMenuId())
+                .append("deptId", getDeptId())
                 .toString();
     }
 }

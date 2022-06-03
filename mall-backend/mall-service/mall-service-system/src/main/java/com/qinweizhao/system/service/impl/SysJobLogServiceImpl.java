@@ -1,7 +1,7 @@
 package com.qinweizhao.system.service.impl;
 
 
-import com.qinweizhao.system.modle.entity.SysJobLog;
+import com.qinweizhao.system.model.entity.SysJobLog;
 import com.qinweizhao.system.mapper.SysJobLogMapper;
 import com.qinweizhao.system.service.ISysJobLogService;
 import org.springframework.beans.factory.annotation.Autowired;

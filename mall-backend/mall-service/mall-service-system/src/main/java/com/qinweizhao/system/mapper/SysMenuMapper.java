@@ -1,6 +1,6 @@
 package com.qinweizhao.system.mapper;
 
-import com.qinweizhao.system.modle.entity.SysMenu;
+import com.qinweizhao.system.model.entity.SysMenu;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

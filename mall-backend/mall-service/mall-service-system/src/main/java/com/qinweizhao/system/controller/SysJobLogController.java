@@ -7,7 +7,7 @@ import com.qinweizhao.common.core.web.page.TableDataInfo;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.system.modle.entity.SysJobLog;
+import com.qinweizhao.system.model.entity.SysJobLog;
 import com.qinweizhao.system.service.ISysJobLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
