@@ -1,6 +1,7 @@
 package com.qinweizhao.cart.model.entity;
 
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.qinweizhao.component.core.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,6 +14,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
+@TableName("cms_cart_item")
 public class CartItem extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
