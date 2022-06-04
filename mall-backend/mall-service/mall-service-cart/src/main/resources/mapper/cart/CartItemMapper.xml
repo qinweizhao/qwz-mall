@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qinweizhao.cart.mapper.CartItemMapper">
+    
+    <resultMap type="com.qinweizhao.cart.model.entity.CartItem" id="CmsCartItemResult">
+        <result property="cartItemId"    column="cart_item_id"    />
+        <result property="shopId"    column="shop_id"    />
+        <result property="spuId"    column="spu_id"    />
+        <result property="skuId"    column="sku_id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="count"    column="count"    />
+        <result property="priceFee"    column="price_fee"    />
+        <result property="checked"    column="checked"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectCmsCartItemVo">
+        select cart_item_id, shop_id, spu_id, sku_id, user_id, count, price_fee, checked, create_by, update_by, create_time, update_time from cms_cart_item
+    </sql>
+
+</mapper>

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2022/6/2
  */
 @RestController
-@RequestMapping("/shop-cart")
+@RequestMapping("/item")
 public class CartController {
 
     @GetMapping("list")
