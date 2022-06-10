@@ -3,9 +3,9 @@ package com.qinweizhao.system.api;
 import com.qinweizhao.common.core.constant.SecurityConstants;
 import com.qinweizhao.common.core.constant.ServiceNameConstants;
 import com.qinweizhao.component.core.response.R;
-import com.qinweizhao.system.api.model.entity.SysUser;
 import com.qinweizhao.system.api.factory.RemoteUserFallbackFactory;
 import com.qinweizhao.system.api.model.LoginUser;
+import com.qinweizhao.system.api.model.entity.SysUser;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +24,7 @@ public interface RemoteUserService {
      * @return 结果
      */
     @GetMapping("/user/info/{username}")
-    public R<LoginUser> getUserInfo(@PathVariable("username") String username, @RequestHeader(SecurityConstants.FROM_SOURCE) String source);
+    R<LoginUser> getUserInfo(@PathVariable("username") String username, @RequestHeader(SecurityConstants.FROM_SOURCE) String source);
 
     /**
      * 注册用户信息
@@ -34,5 +34,5 @@ public interface RemoteUserService {
      * @return 结果
      */
     @PostMapping("/user/register")
-    public R<Boolean> registerUserInfo(@RequestBody SysUser sysUser, @RequestHeader(SecurityConstants.FROM_SOURCE) String source);
+    R<Boolean> registerUserInfo(@RequestBody SysUser sysUser, @RequestHeader(SecurityConstants.FROM_SOURCE) String source);
 }

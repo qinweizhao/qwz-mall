@@ -12,6 +12,7 @@ import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 
 /**
@@ -21,7 +22,8 @@ import java.io.IOException;
  */
 @Component
 public class ValidateCodeHandler implements HandlerFunction<ServerResponse> {
-    @Autowired
+
+    @Resource
     private ValidateCodeService validateCodeService;
 
     @Override

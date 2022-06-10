@@ -14,6 +14,7 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 
+import javax.annotation.Resource;
 import java.nio.CharBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.atomic.AtomicReference;
@@ -28,9 +29,9 @@ public class ValidateCodeFilter extends AbstractGatewayFilterFactory<Object> {
     private final static String[] VALIDATE_URL = new String[]{"/auth/login", "/auth/register"};
     private static final String CODE = "code";
     private static final String UUID = "uuid";
-    @Autowired
+    @Resource
     private ValidateCodeService validateCodeService;
-    @Autowired
+    @Resource
     private CaptchaProperties captchaProperties;
 
     @Override

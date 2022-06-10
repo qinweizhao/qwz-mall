@@ -21,6 +21,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+import javax.annotation.Resource;
+
 /**
  * 网关鉴权
  *
@@ -31,10 +33,10 @@ public class AuthFilter implements GlobalFilter, Ordered {
     private static final Logger log = LoggerFactory.getLogger(AuthFilter.class);
 
     // 排除过滤的 uri 地址，nacos自行添加
-    @Autowired
+    @Resource
     private IgnoreWhiteProperties ignoreWhite;
 
-    @Autowired
+    @Resource
     private RedisService redisService;
 
 
