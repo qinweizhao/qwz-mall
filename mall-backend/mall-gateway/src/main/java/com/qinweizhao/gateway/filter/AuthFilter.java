@@ -71,9 +71,9 @@ public class AuthFilter implements GlobalFilter, Ordered {
         }
 
         // 设置用户信息到请求
-        addHeader(mutate, SecurityConstants.USER_KEY, userKey);
-        addHeader(mutate, SecurityConstants.DETAILS_USER_ID, userid);
-        addHeader(mutate, SecurityConstants.DETAILS_USERNAME, username);
+        this.addHeader(mutate, SecurityConstants.USER_KEY, userKey);
+        this.addHeader(mutate, SecurityConstants.DETAILS_USER_ID, userid);
+        this.addHeader(mutate, SecurityConstants.DETAILS_USERNAME, username);
         // 内部请求来源参数清除
         removeHeader(mutate, SecurityConstants.FROM_SOURCE);
         return chain.filter(exchange.mutate().request(mutate.build()).build());
@@ -102,7 +102,6 @@ public class AuthFilter implements GlobalFilter, Ordered {
      * 获取缓存key
      */
     private String getTokenKey(String token) {
-        String sss =CacheConstants.LOGIN_TOKEN_KEY + token;
         return CacheConstants.LOGIN_TOKEN_KEY + token;
     }
 
@@ -112,8 +111,11 @@ public class AuthFilter implements GlobalFilter, Ordered {
     private String getToken(ServerHttpRequest request) {
         String token = request.getHeaders().getFirst(TokenConstants.AUTHENTICATION);
         // 如果前端设置了令牌前缀，则裁剪掉前缀
-        if (StringUtils.isNotEmpty(token) && token.startsWith(TokenConstants.PREFIX)) {
-            token = token.replaceFirst(TokenConstants.PREFIX, StringUtils.EMPTY);
+        if (StringUtils.isNotEmpty(token)) {
+            assert token != null;
+            if (token.startsWith(TokenConstants.PREFIX)) {
+                token = token.replaceFirst(TokenConstants.PREFIX, StringUtils.EMPTY);
+            }
         }
         return token;
     }

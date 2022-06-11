@@ -2,6 +2,7 @@ package com.qinweizhao.auth.form;
 
 import lombok.Data;
 
+
 /**
  * 用户登录对象
  *
@@ -19,4 +20,8 @@ public class LoginBody {
      */
     private String password;
 
+    /**
+     * sysType 参考SysTypeEnum
+     */
+    protected Integer sysType;
 }

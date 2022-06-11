@@ -13,6 +13,7 @@ import com.qinweizhao.system.api.model.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +33,7 @@ public class TokenService {
     private final static String ACCESS_TOKEN = CacheConstants.LOGIN_TOKEN_KEY;
     private final static Long MILLIS_MINUTE_TEN = CacheConstants.REFRESH_TIME * MILLIS_MINUTE;
 
-    @Autowired
+    @Resource
     private RedisService redisService;
 
     /**

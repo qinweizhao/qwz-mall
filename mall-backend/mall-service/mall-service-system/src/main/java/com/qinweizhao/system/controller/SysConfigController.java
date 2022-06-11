@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
@@ -22,13 +23,14 @@ import java.util.List;
  * 参数配置 信息操作处理
  *
  * @author ruoyi
+ * @author qinweizhao
  */
 @RestController
 @RequestMapping("/config")
 public class SysConfigController extends BaseController {
 
 
-    @Autowired
+    @Resource
     private ISysConfigService configService;
 
     /**
@@ -47,7 +49,7 @@ public class SysConfigController extends BaseController {
     @PostMapping("/export")
     public void export(HttpServletResponse response, SysConfig config) {
         List<SysConfig> list = configService.selectConfigList(config);
-        ExcelUtil<SysConfig> util = new ExcelUtil<SysConfig>(SysConfig.class);
+        ExcelUtil<SysConfig> util = new ExcelUtil<>(SysConfig.class);
         util.exportExcel(response, list, "参数数据");
     }
 

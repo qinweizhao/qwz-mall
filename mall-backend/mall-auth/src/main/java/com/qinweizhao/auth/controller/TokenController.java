@@ -37,7 +37,7 @@ public class TokenController {
     @PostMapping("login")
     public R<?> login(@RequestBody LoginBody form) {
         // 用户登录
-        LoginUser userInfo = sysLoginService.login(form.getUsername(), form.getPassword());
+        LoginUser userInfo = sysLoginService.login(form.getUsername(), form.getPassword(),form.getSysType());
         // 获取登录token
         return R.success(tokenService.createToken(userInfo));
     }
