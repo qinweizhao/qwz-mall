@@ -6,13 +6,13 @@ import com.qinweizhao.common.core.exception.ServiceException;
 import com.qinweizhao.common.core.text.Convert;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.component.redis.service.RedisService;
-import com.qinweizhao.system.model.entity.SysConfig;
 import com.qinweizhao.system.mapper.SysConfigMapper;
+import com.qinweizhao.system.model.entity.SysConfig;
 import com.qinweizhao.system.service.ISysConfigService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.List;
 
@@ -23,10 +23,10 @@ import java.util.List;
  */
 @Service
 public class SysConfigServiceImpl implements ISysConfigService {
-    @Autowired
+    @Resource
     private SysConfigMapper configMapper;
 
-    @Autowired
+    @Resource
     private RedisService redisService;
 
     /**

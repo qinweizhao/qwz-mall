@@ -10,9 +10,9 @@ import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.system.api.model.entity.SysLogininfor;
 import com.qinweizhao.system.service.ISysLogininforService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
@@ -24,7 +24,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/logininfor")
 public class SysLogininforController extends BaseController {
-    @Autowired
+    @Resource
     private ISysLogininforService logininforService;
 
     @RequiresPermissions("system:logininfor:list")

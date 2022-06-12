@@ -12,10 +12,10 @@ import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.system.api.model.entity.SysDictData;
 import com.qinweizhao.system.service.ISysDictDataService;
 import com.qinweizhao.system.service.ISysDictTypeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +28,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/dict/data")
 public class SysDictDataController extends BaseController {
-    @Autowired
+    @Resource
     private ISysDictDataService dictDataService;
 
-    @Autowired
+    @Resource
     private ISysDictTypeService dictTypeService;
 
     @RequiresPermissions("system:dict:list")

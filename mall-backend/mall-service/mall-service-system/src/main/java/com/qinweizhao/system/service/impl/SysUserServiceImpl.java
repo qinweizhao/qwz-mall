@@ -9,19 +9,19 @@ import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.system.annotation.DataScope;
 import com.qinweizhao.system.api.model.entity.SysRole;
 import com.qinweizhao.system.api.model.entity.SysUser;
+import com.qinweizhao.system.mapper.*;
 import com.qinweizhao.system.model.entity.SysPost;
 import com.qinweizhao.system.model.entity.SysUserPost;
 import com.qinweizhao.system.model.entity.SysUserRole;
-import com.qinweizhao.system.mapper.*;
 import com.qinweizhao.system.service.ISysConfigService;
 import com.qinweizhao.system.service.ISysUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import javax.annotation.Resource;
 import javax.validation.Validator;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,19 +35,19 @@ import java.util.stream.Collectors;
 @Service
 public class SysUserServiceImpl implements ISysUserService {
     private static final Logger log = LoggerFactory.getLogger(SysUserServiceImpl.class);
-    @Autowired
+    @Resource
     protected Validator validator;
-    @Autowired
+    @Resource
     private SysUserMapper userMapper;
-    @Autowired
+    @Resource
     private SysRoleMapper roleMapper;
-    @Autowired
+    @Resource
     private SysPostMapper postMapper;
-    @Autowired
+    @Resource
     private SysUserRoleMapper userRoleMapper;
-    @Autowired
+    @Resource
     private SysUserPostMapper userPostMapper;
-    @Autowired
+    @Resource
     private ISysConfigService configService;
 
     /**

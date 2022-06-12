@@ -6,17 +6,17 @@ import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.system.api.model.entity.SysRole;
 import com.qinweizhao.system.api.model.entity.SysUser;
+import com.qinweizhao.system.mapper.SysMenuMapper;
+import com.qinweizhao.system.mapper.SysRoleMapper;
+import com.qinweizhao.system.mapper.SysRoleMenuMapper;
 import com.qinweizhao.system.model.entity.SysMenu;
 import com.qinweizhao.system.model.vo.MetaVo;
 import com.qinweizhao.system.model.vo.RouterVo;
 import com.qinweizhao.system.model.vo.TreeSelect;
-import com.qinweizhao.system.mapper.SysMenuMapper;
-import com.qinweizhao.system.mapper.SysRoleMapper;
-import com.qinweizhao.system.mapper.SysRoleMenuMapper;
 import com.qinweizhao.system.service.ISysMenuService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -29,13 +29,13 @@ import java.util.stream.Collectors;
 public class SysMenuServiceImpl implements ISysMenuService {
     public static final String PREMISSION_STRING = "perms[\"{0}\"]";
 
-    @Autowired
+    @Resource
     private SysMenuMapper menuMapper;
 
-    @Autowired
+    @Resource
     private SysRoleMapper roleMapper;
 
-    @Autowired
+    @Resource
     private SysRoleMenuMapper roleMenuMapper;
 
     /**

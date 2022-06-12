@@ -14,10 +14,10 @@ import com.qinweizhao.system.api.model.entity.SysUser;
 import com.qinweizhao.system.model.entity.SysUserRole;
 import com.qinweizhao.system.service.ISysRoleService;
 import com.qinweizhao.system.service.ISysUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
@@ -29,10 +29,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/role")
 public class SysRoleController extends BaseController {
-    @Autowired
+    @Resource
     private ISysRoleService roleService;
 
-    @Autowired
+    @Resource
     private ISysUserService userService;
 
     @RequiresPermissions("system:role:list")

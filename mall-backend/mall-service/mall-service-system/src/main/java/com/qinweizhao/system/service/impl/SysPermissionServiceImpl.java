@@ -4,18 +4,18 @@ import com.qinweizhao.system.api.model.entity.SysUser;
 import com.qinweizhao.system.service.ISysMenuService;
 import com.qinweizhao.system.service.ISysPermissionService;
 import com.qinweizhao.system.service.ISysRoleService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.HashSet;
 import java.util.Set;
 
 @Service
 public class SysPermissionServiceImpl implements ISysPermissionService {
-    @Autowired
+    @Resource
     private ISysRoleService roleService;
 
-    @Autowired
+    @Resource
     private ISysMenuService menuService;
 
     /**

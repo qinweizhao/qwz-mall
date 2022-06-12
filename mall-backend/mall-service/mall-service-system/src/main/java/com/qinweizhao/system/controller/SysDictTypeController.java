@@ -11,10 +11,10 @@ import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.system.api.model.entity.SysDictType;
 import com.qinweizhao.system.service.ISysDictTypeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
@@ -26,7 +26,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/dict/type")
 public class SysDictTypeController extends BaseController {
-    @Autowired
+    @Resource
     private ISysDictTypeService dictTypeService;
 
     @RequiresPermissions("system:dict:list")

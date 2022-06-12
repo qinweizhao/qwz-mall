@@ -1,23 +1,23 @@
 package com.qinweizhao.system.controller;
 
+import com.qinweizhao.api.file.RemoteFileService;
+import com.qinweizhao.api.file.domain.SysFile;
 import com.qinweizhao.common.core.constant.UserConstants;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.core.web.domain.AjaxResult;
 import com.qinweizhao.common.security.service.TokenService;
 import com.qinweizhao.common.security.utils.SecurityUtils;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.core.response.R;
-import com.qinweizhao.api.file.RemoteFileService;
-import com.qinweizhao.api.file.domain.SysFile;
-import com.qinweizhao.system.api.model.entity.SysUser;
 import com.qinweizhao.system.api.model.LoginUser;
+import com.qinweizhao.system.api.model.entity.SysUser;
 import com.qinweizhao.system.service.ISysUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 
 /**
@@ -28,13 +28,13 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/user/profile")
 public class SysProfileController extends BaseController {
-    @Autowired
+    @Resource
     private ISysUserService userService;
 
-    @Autowired
+    @Resource
     private TokenService tokenService;
 
-    @Autowired
+    @Resource
     private RemoteFileService remoteFileService;
 
     /**

@@ -11,21 +11,23 @@ import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.system.api.model.entity.SysDept;
 import com.qinweizhao.system.service.ISysDeptService;
 import org.apache.commons.lang3.ArrayUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
  * 部门信息
  *
  * @author ruoyi
+ * @author qinweizhao
  */
 @RestController
 @RequestMapping("/dept")
 public class SysDeptController extends BaseController {
-    @Autowired
+
+    @Resource
     private ISysDeptService deptService;
 
     /**
@@ -34,8 +36,7 @@ public class SysDeptController extends BaseController {
     @RequiresPermissions("system:dept:list")
     @GetMapping("/list")
     public AjaxResult list(SysDept dept) {
-        List<SysDept> depts = deptService.selectDeptList(dept);
-        return AjaxResult.success(depts);
+        return AjaxResult.success(deptService.selectDeptList(dept));
     }
 
     /**

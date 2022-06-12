@@ -9,10 +9,10 @@ import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.system.model.entity.SysNotice;
 import com.qinweizhao.system.service.ISysNoticeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -23,7 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/notice")
 public class SysNoticeController extends BaseController {
-    @Autowired
+    @Resource
     private ISysNoticeService noticeService;
 
     /**

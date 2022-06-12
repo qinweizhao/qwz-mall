@@ -15,9 +15,9 @@ import com.qinweizhao.system.model.entity.SysJob;
 import com.qinweizhao.system.service.ISysJobService;
 import com.qinweizhao.system.util.CronUtils;
 import org.quartz.SchedulerException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
@@ -29,7 +29,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/job")
 public class SysJobController extends BaseController {
-    @Autowired
+    @Resource
     private ISysJobService jobService;
 
     /**

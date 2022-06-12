@@ -10,19 +10,19 @@ import com.qinweizhao.common.core.web.page.TableDataInfo;
 import com.qinweizhao.common.security.annotation.InnerAuth;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.common.security.utils.SecurityUtils;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.core.response.R;
+import com.qinweizhao.system.api.model.LoginUser;
 import com.qinweizhao.system.api.model.entity.SysRole;
 import com.qinweizhao.system.api.model.entity.SysUser;
-import com.qinweizhao.system.api.model.LoginUser;
 import com.qinweizhao.system.service.*;
 import org.apache.commons.lang3.ArrayUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
@@ -38,19 +38,19 @@ import java.util.stream.Collectors;
 @RequestMapping("/user")
 public class SysUserController extends BaseController {
 
-    @Autowired
+    @Resource
     private ISysUserService userService;
 
-    @Autowired
+    @Resource
     private ISysRoleService roleService;
 
-    @Autowired
+    @Resource
     private ISysPostService postService;
 
-    @Autowired
+    @Resource
     private ISysPermissionService permissionService;
 
-    @Autowired
+    @Resource
     private ISysConfigService configService;
 
     /**

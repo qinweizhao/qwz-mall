@@ -9,11 +9,11 @@ import com.qinweizhao.system.api.model.entity.SysDictType;
 import com.qinweizhao.system.mapper.SysDictDataMapper;
 import com.qinweizhao.system.mapper.SysDictTypeMapper;
 import com.qinweizhao.system.service.ISysDictTypeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -23,10 +23,10 @@ import java.util.List;
  */
 @Service
 public class SysDictTypeServiceImpl implements ISysDictTypeService {
-    @Autowired
+    @Resource
     private SysDictTypeMapper dictTypeMapper;
 
-    @Autowired
+    @Resource
     private SysDictDataMapper dictDataMapper;
 
     /**

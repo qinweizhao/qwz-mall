@@ -3,9 +3,9 @@ package com.qinweizhao.system.service.impl;
 import com.qinweizhao.system.api.model.entity.SysLogininfor;
 import com.qinweizhao.system.mapper.SysLogininforMapper;
 import com.qinweizhao.system.service.ISysLogininforService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 public class SysLogininforServiceImpl implements ISysLogininforService {
 
-    @Autowired
+    @Resource
     private SysLogininforMapper logininforMapper;
 
     /**

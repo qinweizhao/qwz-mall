@@ -8,18 +8,18 @@ import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.system.annotation.DataScope;
 import com.qinweizhao.system.api.model.entity.SysRole;
 import com.qinweizhao.system.api.model.entity.SysUser;
-import com.qinweizhao.system.model.entity.SysRoleDept;
-import com.qinweizhao.system.model.entity.SysRoleMenu;
-import com.qinweizhao.system.model.entity.SysUserRole;
 import com.qinweizhao.system.mapper.SysRoleDeptMapper;
 import com.qinweizhao.system.mapper.SysRoleMapper;
 import com.qinweizhao.system.mapper.SysRoleMenuMapper;
 import com.qinweizhao.system.mapper.SysUserRoleMapper;
+import com.qinweizhao.system.model.entity.SysRoleDept;
+import com.qinweizhao.system.model.entity.SysRoleMenu;
+import com.qinweizhao.system.model.entity.SysUserRole;
 import com.qinweizhao.system.service.ISysRoleService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.*;
 
 /**
@@ -29,16 +29,16 @@ import java.util.*;
  */
 @Service
 public class SysRoleServiceImpl implements ISysRoleService {
-    @Autowired
+    @Resource
     private SysRoleMapper roleMapper;
 
-    @Autowired
+    @Resource
     private SysRoleMenuMapper roleMenuMapper;
 
-    @Autowired
+    @Resource
     private SysUserRoleMapper userRoleMapper;
 
-    @Autowired
+    @Resource
     private SysRoleDeptMapper roleDeptMapper;
 
     /**

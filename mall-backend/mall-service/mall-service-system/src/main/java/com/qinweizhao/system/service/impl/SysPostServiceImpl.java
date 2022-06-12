@@ -3,13 +3,13 @@ package com.qinweizhao.system.service.impl;
 import com.qinweizhao.common.core.constant.UserConstants;
 import com.qinweizhao.common.core.exception.ServiceException;
 import com.qinweizhao.common.core.utils.StringUtils;
-import com.qinweizhao.system.model.entity.SysPost;
 import com.qinweizhao.system.mapper.SysPostMapper;
 import com.qinweizhao.system.mapper.SysUserPostMapper;
+import com.qinweizhao.system.model.entity.SysPost;
 import com.qinweizhao.system.service.ISysPostService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -19,10 +19,10 @@ import java.util.List;
  */
 @Service
 public class SysPostServiceImpl implements ISysPostService {
-    @Autowired
+    @Resource
     private SysPostMapper postMapper;
 
-    @Autowired
+    @Resource
     private SysUserPostMapper userPostMapper;
 
     /**

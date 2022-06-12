@@ -1,11 +1,11 @@
 package com.qinweizhao.system.service.impl;
 
-import com.qinweizhao.system.model.entity.SysNotice;
 import com.qinweizhao.system.mapper.SysNoticeMapper;
+import com.qinweizhao.system.model.entity.SysNotice;
 import com.qinweizhao.system.service.ISysNoticeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -15,7 +15,7 @@ import java.util.List;
  */
 @Service
 public class SysNoticeServiceImpl implements ISysNoticeService {
-    @Autowired
+    @Resource
     private SysNoticeMapper noticeMapper;
 
     /**

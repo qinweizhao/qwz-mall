@@ -12,9 +12,9 @@ import com.qinweizhao.component.redis.service.RedisService;
 import com.qinweizhao.system.api.model.LoginUser;
 import com.qinweizhao.system.model.entity.SysUserOnline;
 import com.qinweizhao.system.service.ISysUserOnlineService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -28,10 +28,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/online")
 public class SysUserOnlineController extends BaseController {
-    @Autowired
+    @Resource
     private ISysUserOnlineService userOnlineService;
 
-    @Autowired
+    @Resource
     private RedisService redisService;
 
     @RequiresPermissions("monitor:online:list")
