@@ -9,9 +9,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <modules>
+        <module>mall-api-cart</module>
         <module>mall-api-file</module>
+        <module>mall-api-order</module>
+        <module>mall-api-product</module>
         <module>mall-api-system</module>
         <module>mall-api-search</module>
+        <module>mall-api-user</module>
         <module>mall-api-ware</module>
     </modules>
 
