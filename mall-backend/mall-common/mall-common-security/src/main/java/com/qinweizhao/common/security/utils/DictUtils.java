@@ -4,7 +4,7 @@ import com.qinweizhao.common.core.constant.Constants;
 import com.qinweizhao.common.core.utils.SpringUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.component.redis.service.RedisService;
-import com.qinweizhao.system.api.model.entity.SysDictData;
+import com.qinweizhao.api.system.model.entity.SysDictData;
 
 import java.util.Collection;
 import java.util.List;

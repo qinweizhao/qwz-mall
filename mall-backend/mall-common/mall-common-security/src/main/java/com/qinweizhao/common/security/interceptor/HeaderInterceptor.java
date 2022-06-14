@@ -1,12 +1,12 @@
 package com.qinweizhao.common.security.interceptor;
 
+import com.qinweizhao.common.core.model.LoginUser;
 import com.qinweizhao.common.core.constant.SecurityConstants;
 import com.qinweizhao.common.core.context.SecurityContextHolder;
 import com.qinweizhao.common.core.utils.ServletUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.security.auth.AuthUtil;
 import com.qinweizhao.common.security.utils.SecurityUtils;
-import com.qinweizhao.system.api.model.LoginUser;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.AsyncHandlerInterceptor;
 
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class HeaderInterceptor implements AsyncHandlerInterceptor {
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         if (!(handler instanceof HandlerMethod)) {
             return true;
         }
@@ -42,8 +42,7 @@ public class HeaderInterceptor implements AsyncHandlerInterceptor {
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
-            throws Exception {
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
         SecurityContextHolder.remove();
     }
 }

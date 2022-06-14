@@ -1,9 +1,9 @@
-package com.qinweizhao.system.api.factory;
+package com.qinweizhao.api.system.factory;
 
+import com.qinweizhao.api.system.feign.UserFeignClient;
+import com.qinweizhao.common.core.model.LoginUser;
+import com.qinweizhao.api.system.model.entity.SysUser;
 import com.qinweizhao.component.core.response.R;
-import com.qinweizhao.system.api.RemoteUserService;
-import com.qinweizhao.system.api.model.entity.SysUser;
-import com.qinweizhao.system.api.model.LoginUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.openfeign.FallbackFactory;
@@ -15,14 +15,14 @@ import org.springframework.stereotype.Component;
  * @author ruoyi
  */
 @Component
-public class RemoteUserFallbackFactory implements FallbackFactory<RemoteUserService> {
+public class RemoteUserFallbackFactory implements FallbackFactory<UserFeignClient> {
     private static final Logger log = LoggerFactory.getLogger(RemoteUserFallbackFactory.class);
 
     @Override
-    public RemoteUserService create(Throwable throwable) {
+    public UserFeignClient create(Throwable throwable) {
         log.error("用户服务调用失败:{}", throwable.getMessage());
         System.out.println("throwable======="+throwable);
-        return new RemoteUserService() {
+        return new UserFeignClient() {
             @Override
             public R<LoginUser> getUserInfo(String username, String source) {
                 // todo

@@ -1,5 +1,6 @@
 package com.qinweizhao.common.security.service;
 
+import com.qinweizhao.common.core.model.LoginUser;
 import com.qinweizhao.common.core.constant.CacheConstants;
 import com.qinweizhao.common.core.constant.SecurityConstants;
 import com.qinweizhao.common.core.utils.IdUtils;
@@ -9,8 +10,6 @@ import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.utils.ip.IpUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.component.redis.service.RedisService;
-import com.qinweizhao.system.api.model.LoginUser;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -143,7 +142,7 @@ public class TokenService {
         // 根据uuid将loginUser缓存
         String userKey = getTokenKey(loginUser.getToken());
         redisService.setCacheObject(userKey, loginUser, EXPIRE_TIME, TimeUnit.MINUTES);
-        System.out.println("保存token"+userKey);
+        System.out.println("保存token" + userKey);
     }
 
     private String getTokenKey(String token) {

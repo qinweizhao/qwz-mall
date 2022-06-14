@@ -1,6 +1,6 @@
 package com.qinweizhao.system.service;
 
-import com.qinweizhao.system.api.model.entity.SysUser;
+import com.qinweizhao.api.system.model.entity.SysUser;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.qinweizhao.system.service;
 
-import com.qinweizhao.system.api.model.LoginUser;
+import com.qinweizhao.common.core.model.LoginUser;
 import com.qinweizhao.system.model.entity.SysUserOnline;
 
 /**

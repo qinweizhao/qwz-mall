@@ -11,7 +11,7 @@ import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.common.security.annotation.RequiresRoles;
 import com.qinweizhao.common.security.service.TokenService;
 import com.qinweizhao.common.security.utils.SecurityUtils;
-import com.qinweizhao.system.api.model.LoginUser;
+import com.qinweizhao.common.core.model.LoginUser;
 import org.springframework.util.PatternMatchUtils;
 
 import java.util.Collection;

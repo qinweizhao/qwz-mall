@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class InnerAuthAspect implements Ordered {
+
     @Around("@annotation(innerAuth)")
     public Object innerAround(ProceedingJoinPoint point, InnerAuth innerAuth) throws Throwable {
         String source = ServletUtils.getRequest().getHeader(SecurityConstants.FROM_SOURCE);

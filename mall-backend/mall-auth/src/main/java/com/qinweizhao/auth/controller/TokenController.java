@@ -1,8 +1,8 @@
 package com.qinweizhao.auth.controller;
 
 
-import com.qinweizhao.auth.form.LoginBody;
-import com.qinweizhao.auth.form.RegisterBody;
+import com.qinweizhao.auth.model.LoginBody;
+import com.qinweizhao.auth.model.RegisterBody;
 import com.qinweizhao.auth.service.SysLoginService;
 import com.qinweizhao.common.core.utils.JwtUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
@@ -10,8 +10,7 @@ import com.qinweizhao.common.security.auth.AuthUtil;
 import com.qinweizhao.common.security.service.TokenService;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.component.core.response.R;
-import com.qinweizhao.system.api.model.LoginUser;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.qinweizhao.common.core.model.LoginUser;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * token 控制
@@ -35,9 +35,9 @@ public class TokenController {
     private SysLoginService sysLoginService;
 
     @PostMapping("login")
-    public R<?> login(@RequestBody LoginBody form) {
+    public R<Map<String, Object>> login(@RequestBody LoginBody form) {
         // 用户登录
-        LoginUser userInfo = sysLoginService.login(form.getUsername(), form.getPassword(),form.getSysType());
+        LoginUser userInfo = sysLoginService.login(form.getUsername(), form.getPassword(), form.getSysType());
         // 获取登录token
         return R.success(tokenService.createToken(userInfo));
     }

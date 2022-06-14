@@ -8,25 +8,31 @@ package com.qinweizhao.auth.constant;
 public enum SysTypeEnum {
 
 	/**
+	 * app 前台系统
+	 */
+	APP("app"),
+
+	/**
 	 * web前台系统
 	 */
-	WEB(0),
+	WEB("web"),
 
 	/**
 	 * 后台管理系统
 	 */
-	ADMIN(1),
+	ADMIN("admin"),
+
 
 
 	;
 
-	private final Integer value;
+	private final String value;
 
-	public Integer value() {
+	public String value() {
 		return value;
 	}
 
-	SysTypeEnum(Integer value) {
+	SysTypeEnum(String value) {
 		this.value = value;
 	}
 

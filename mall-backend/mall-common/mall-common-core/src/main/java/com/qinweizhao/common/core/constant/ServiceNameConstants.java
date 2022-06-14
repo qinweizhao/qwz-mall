@@ -26,6 +26,12 @@ public class ServiceNameConstants {
      */
     public static final String WARE_SERVICE = "mall-ware";
 
+
+    /**
+     * 会员服务的serviceid
+     */
+    public static final String USER_SERVICE = "mall-user";
+
     /**
      * 检索服务的serviceid
      */

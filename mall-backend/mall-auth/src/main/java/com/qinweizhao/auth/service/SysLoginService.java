@@ -1,5 +1,7 @@
 package com.qinweizhao.auth.service;
 
+import com.qinweizhao.api.user.feign.MemberFeignClient;
+import com.qinweizhao.auth.constant.SysTypeEnum;
 import com.qinweizhao.common.core.constant.Constants;
 import com.qinweizhao.common.core.constant.SecurityConstants;
 import com.qinweizhao.common.core.constant.UserConstants;
@@ -10,12 +12,11 @@ import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.utils.ip.IpUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.component.core.response.R;
-import com.qinweizhao.system.api.RemoteLogService;
-import com.qinweizhao.system.api.RemoteUserService;
-import com.qinweizhao.system.api.model.entity.SysLogininfor;
-import com.qinweizhao.system.api.model.entity.SysUser;
-import com.qinweizhao.system.api.model.LoginUser;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.qinweizhao.api.system.feign.LogFeignClient;
+import com.qinweizhao.api.system.feign.UserFeignClient;
+import com.qinweizhao.common.core.model.LoginUser;
+import com.qinweizhao.api.system.model.entity.SysLogininfor;
+import com.qinweizhao.api.system.model.entity.SysUser;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -23,21 +24,24 @@ import javax.annotation.Resource;
 /**
  * 登录校验方法
  *
- * @author ruoyi
+ * @author qinweizhao
  */
 @Component
 public class SysLoginService {
 
     @Resource
-    private RemoteLogService remoteLogService;
+    private LogFeignClient logFeignClient;
 
     @Resource
-    private RemoteUserService remoteUserService;
+    private UserFeignClient userFeignClient;
+
+    @Resource
+    private MemberFeignClient memberFeignClient;
 
     /**
      * 登录
      */
-    public LoginUser login(String username, String password,Integer sysType) {
+    public LoginUser login(String username, String password, String sysType) {
         // 用户名或密码为空 错误
         if (StringUtils.isAnyBlank(username, password)) {
             recordLogininfor(username, Constants.LOGIN_FAIL, "用户/密码必须填写");
@@ -55,9 +59,20 @@ public class SysLoginService {
             recordLogininfor(username, Constants.LOGIN_FAIL, "用户名不在指定范围");
             throw new ServiceException("用户名不在指定范围");
         }
-        // 查询用户信息
-        R<LoginUser> userResult = remoteUserService.getUserInfo(username, SecurityConstants.INNER);
 
+        R<LoginUser> userResult = null;
+
+        // app 验证
+        if (SysTypeEnum.APP.value().equals(sysType)){
+            memberFeignClient.getMemberByUsername(username,SecurityConstants.INNER);
+        }
+        // admin 验证
+        if (SysTypeEnum.ADMIN.value().equals(sysType)){
+            // 查询用户信息
+           userResult = userFeignClient.getUserInfo(username, SecurityConstants.INNER);
+        }
+
+        assert userResult != null;
         if (Constants.FAIL.equals(userResult.getCode())) {
             throw new ServiceException(userResult.getMessage());
         }
@@ -110,7 +125,7 @@ public class SysLoginService {
         sysUser.setUserName(username);
         sysUser.setNickName(username);
         sysUser.setPassword(SecurityUtils.encryptPassword(password));
-        R<?> registerResult = remoteUserService.registerUserInfo(sysUser, SecurityConstants.INNER);
+        R<?> registerResult = userFeignClient.registerUserInfo(sysUser, SecurityConstants.INNER);
 
         if (Constants.FAIL == registerResult.getCode()) {
             throw new ServiceException(registerResult.getMessage());
@@ -137,6 +152,6 @@ public class SysLoginService {
         } else if (Constants.LOGIN_FAIL.equals(status)) {
             logininfor.setStatus("1");
         }
-        remoteLogService.saveLogininfor(logininfor, SecurityConstants.INNER);
+        logFeignClient.saveLogininfor(logininfor, SecurityConstants.INNER);
     }
 }

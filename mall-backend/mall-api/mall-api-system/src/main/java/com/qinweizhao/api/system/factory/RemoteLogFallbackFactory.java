@@ -1,9 +1,9 @@
-package com.qinweizhao.system.api.factory;
+package com.qinweizhao.api.system.factory;
 
+import com.qinweizhao.api.system.feign.LogFeignClient;
+import com.qinweizhao.api.system.model.entity.SysLogininfor;
 import com.qinweizhao.component.log.SysOperLog;
 import com.qinweizhao.component.core.response.R;
-import com.qinweizhao.system.api.RemoteLogService;
-import com.qinweizhao.system.api.model.entity.SysLogininfor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.openfeign.FallbackFactory;
@@ -15,13 +15,13 @@ import org.springframework.stereotype.Component;
  * @author ruoyi
  */
 @Component
-public class RemoteLogFallbackFactory implements FallbackFactory<RemoteLogService> {
+public class RemoteLogFallbackFactory implements FallbackFactory<LogFeignClient> {
     private static final Logger log = LoggerFactory.getLogger(RemoteLogFallbackFactory.class);
 
     @Override
-    public RemoteLogService create(Throwable throwable) {
+    public LogFeignClient create(Throwable throwable) {
         log.error("日志服务调用失败:{}", throwable.getMessage());
-        return new RemoteLogService() {
+        return new LogFeignClient() {
 
             @Override
             public void saveLog(SysOperLog sysOperLog, String source) {

@@ -2,7 +2,7 @@ package com.qinweizhao.common.security.auth;
 
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.common.security.annotation.RequiresRoles;
-import com.qinweizhao.system.api.model.LoginUser;
+import com.qinweizhao.common.core.model.LoginUser;
 
 /**
  * Token 权限验证工具类

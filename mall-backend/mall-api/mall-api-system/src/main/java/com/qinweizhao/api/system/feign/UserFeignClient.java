@@ -1,21 +1,21 @@
-package com.qinweizhao.system.api;
+package com.qinweizhao.api.system.feign;
 
+import com.qinweizhao.common.core.model.LoginUser;
+import com.qinweizhao.api.system.model.entity.SysUser;
 import com.qinweizhao.common.core.constant.SecurityConstants;
 import com.qinweizhao.common.core.constant.ServiceNameConstants;
 import com.qinweizhao.component.core.response.R;
-import com.qinweizhao.system.api.factory.RemoteUserFallbackFactory;
-import com.qinweizhao.system.api.model.LoginUser;
-import com.qinweizhao.system.api.model.entity.SysUser;
+import com.qinweizhao.api.system.factory.RemoteUserFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * 用户服务
  *
- * @author ruoyi
+ * @author qinweizhao
  */
-@FeignClient(contextId = "remoteUserService", value = ServiceNameConstants.SYSTEM_SERVICE, fallbackFactory = RemoteUserFallbackFactory.class)
-public interface RemoteUserService {
+@FeignClient(contextId = "userFeignClient", value = ServiceNameConstants.SYSTEM_SERVICE, fallbackFactory = RemoteUserFallbackFactory.class)
+public interface UserFeignClient {
     /**
      * 通过用户名查询用户信息
      *

@@ -8,7 +8,7 @@ import com.qinweizhao.common.security.annotation.InnerAuth;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.system.api.model.entity.SysOperLog;
+import com.qinweizhao.api.system.model.entity.SysOperLog;
 import com.qinweizhao.system.service.ISysOperLogService;
 import org.springframework.web.bind.annotation.*;
 

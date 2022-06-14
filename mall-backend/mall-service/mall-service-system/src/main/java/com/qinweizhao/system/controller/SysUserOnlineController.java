@@ -9,7 +9,7 @@ import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.redis.service.RedisService;
-import com.qinweizhao.system.api.model.LoginUser;
+import com.qinweizhao.common.core.model.LoginUser;
 import com.qinweizhao.system.model.entity.SysUserOnline;
 import com.qinweizhao.system.service.ISysUserOnlineService;
 import org.springframework.web.bind.annotation.*;

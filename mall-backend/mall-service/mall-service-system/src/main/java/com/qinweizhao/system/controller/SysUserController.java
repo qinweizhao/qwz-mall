@@ -13,9 +13,9 @@ import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.system.api.model.LoginUser;
-import com.qinweizhao.system.api.model.entity.SysRole;
-import com.qinweizhao.system.api.model.entity.SysUser;
+import com.qinweizhao.common.core.model.LoginUser;
+import com.qinweizhao.api.system.model.entity.SysRole;
+import com.qinweizhao.api.system.model.entity.SysUser;
 import com.qinweizhao.system.service.*;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.validation.annotation.Validated;
@@ -24,7 +24,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -85,8 +84,8 @@ public class SysUserController extends BaseController {
     }
 
     @PostMapping("/importTemplate")
-    public void importTemplate(HttpServletResponse response) throws IOException {
-        ExcelUtil<SysUser> util = new ExcelUtil<SysUser>(SysUser.class);
+    public void importTemplate(HttpServletResponse response) {
+        ExcelUtil<SysUser> util = new ExcelUtil<>(SysUser.class);
         util.importTemplateExcel(response, "用户数据");
     }
 

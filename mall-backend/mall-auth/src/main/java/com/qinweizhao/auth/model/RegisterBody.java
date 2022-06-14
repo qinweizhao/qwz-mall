@@ -1,4 +1,4 @@
-package com.qinweizhao.auth.form;
+package com.qinweizhao.auth.model;
 
 /**
  * 用户注册对象

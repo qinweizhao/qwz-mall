@@ -1,12 +1,12 @@
-package com.qinweizhao.system.api;
+package com.qinweizhao.api.system.feign;
 
+import com.qinweizhao.api.system.model.entity.SysLogininfor;
 import com.qinweizhao.common.core.constant.SecurityConstants;
 import com.qinweizhao.common.core.constant.ServiceNameConstants;
 import com.qinweizhao.component.log.SysOperLog;
 import com.qinweizhao.component.log.service.QwzLogService;
 import com.qinweizhao.component.core.response.R;
-import com.qinweizhao.system.api.model.entity.SysLogininfor;
-import com.qinweizhao.system.api.factory.RemoteLogFallbackFactory;
+import com.qinweizhao.api.system.factory.RemoteLogFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
  * @author ruoyi
  */
 @FeignClient(contextId = "remoteLogService", value = ServiceNameConstants.SYSTEM_SERVICE, fallbackFactory = RemoteLogFallbackFactory.class)
-public interface RemoteLogService extends QwzLogService {
+public interface LogFeignClient extends QwzLogService {
 
     /**
      * 保存系统日志

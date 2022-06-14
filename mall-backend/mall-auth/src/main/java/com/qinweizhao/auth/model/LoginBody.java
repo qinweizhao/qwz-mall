@@ -1,4 +1,4 @@
-package com.qinweizhao.auth.form;
+package com.qinweizhao.auth.model;
 
 import lombok.Data;
 
@@ -23,5 +23,5 @@ public class LoginBody {
     /**
      * sysType 参考SysTypeEnum
      */
-    protected Integer sysType;
+    protected String sysType;
 }

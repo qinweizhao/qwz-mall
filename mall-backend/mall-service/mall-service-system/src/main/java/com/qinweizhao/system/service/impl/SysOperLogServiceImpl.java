@@ -1,6 +1,6 @@
 package com.qinweizhao.system.service.impl;
 
-import com.qinweizhao.system.api.model.entity.SysOperLog;
+import com.qinweizhao.api.system.model.entity.SysOperLog;
 import com.qinweizhao.system.mapper.SysOperLogMapper;
 import com.qinweizhao.system.service.ISysOperLogService;
 import org.springframework.stereotype.Service;

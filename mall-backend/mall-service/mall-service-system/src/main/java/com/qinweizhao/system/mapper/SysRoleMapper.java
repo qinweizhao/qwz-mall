@@ -1,6 +1,6 @@
 package com.qinweizhao.system.mapper;
 
-import com.qinweizhao.system.api.model.entity.SysRole;
+import com.qinweizhao.api.system.model.entity.SysRole;
 
 import java.util.List;
 

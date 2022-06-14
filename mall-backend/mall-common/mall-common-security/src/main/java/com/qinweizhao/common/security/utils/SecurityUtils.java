@@ -5,7 +5,7 @@ import com.qinweizhao.common.core.constant.TokenConstants;
 import com.qinweizhao.common.core.context.SecurityContextHolder;
 import com.qinweizhao.common.core.utils.ServletUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
-import com.qinweizhao.system.api.model.LoginUser;
+import com.qinweizhao.common.core.model.LoginUser;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.servlet.http.HttpServletRequest;
