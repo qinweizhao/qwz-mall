@@ -1,5 +1,6 @@
 package com.qinweizhao.common.core.model;
 
+import com.qinweizhao.common.core.annotation.Excel;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -54,10 +55,21 @@ public class LoginUser implements Serializable {
      */
     private Set<String> roles;
 
-//    /**
-//     * 用户信息
-//     */
-//    private SysUser sysUser;
+    /**
+     * 密码
+     */
+    private String password;
+
+    /**
+     * 帐号状态（0正常 1停用）
+     */
+    private String status;
+
+    /**
+     * 删除标志（0代表存在 2代表删除）
+     */
+    private String delFlag;
+
 
 
 }

@@ -1,8 +1,8 @@
 package com.qinweizhao.api.user.feign;
 
-import com.qinweizhao.api.user.model.LoginUser;
 import com.qinweizhao.common.core.constant.SecurityConstants;
 import com.qinweizhao.common.core.constant.ServiceNameConstants;
+import com.qinweizhao.common.core.model.LoginUser;
 import com.qinweizhao.component.core.response.R;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

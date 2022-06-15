@@ -104,7 +104,9 @@ public class SysUserController extends BaseController {
         // 权限集合
         Set<String> permissions = permissionService.getMenuPermission(sysUser.getUserId());
         LoginUser sysUserVo = new LoginUser();
-        sysUserVo.setSysUser(sysUser);
+        sysUserVo.setStatus(sysUser.getStatus());
+        sysUserVo.setPassword(sysUser.getPassword());
+        sysUserVo.setDelFlag(sysUser.getDelFlag());
         sysUserVo.setRoles(roles);
         sysUserVo.setPermissions(permissions);
         return R.success(sysUserVo);
