@@ -24,7 +24,7 @@ import java.util.Map;
  * @author ruoyi
  */
 @RestController
-public class TokenController {
+public class AuthController {
 
     @Resource
     private TokenService tokenService;
