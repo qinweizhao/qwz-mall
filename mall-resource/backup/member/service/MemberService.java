@@ -1,8 +1,8 @@
-package com.qinweizhao.member.service;
+package com.qinweizhao.user.service;
 
 
 import com.qinweizhao.component.mybatis.service.QwzService;
-import com.qinweizhao.member.entity.Member;
+import com.qinweizhao.user.entity.Member;
 
 import java.util.List;
 

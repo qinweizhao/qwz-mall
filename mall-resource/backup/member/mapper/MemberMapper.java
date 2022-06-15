@@ -1,8 +1,8 @@
-package com.qinweizhao.member.mapper;
+package com.qinweizhao.user.mapper;
 
 
 import com.qinweizhao.component.mybatis.mapper.QwzBaseMapper;
-import com.qinweizhao.member.entity.Member;
+import com.qinweizhao.user.entity.Member;
 
 import java.util.List;
 

@@ -1,10 +1,10 @@
-package com.qinweizhao.member.service.impl;
+package com.qinweizhao.user.service.impl;
 
 
 import com.qinweizhao.component.mybatis.service.impl.QwzServiceImpl;
-import com.qinweizhao.member.entity.Member;
-import com.qinweizhao.member.mapper.MemberMapper;
-import com.qinweizhao.member.service.MemberService;
+import com.qinweizhao.user.entity.Member;
+import com.qinweizhao.user.mapper.MemberMapper;
+import com.qinweizhao.user.service.MemberService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

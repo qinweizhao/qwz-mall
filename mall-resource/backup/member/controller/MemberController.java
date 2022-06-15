@@ -1,12 +1,12 @@
-package com.qinweizhao.member.controller;
+package com.qinweizhao.user.controller;
 
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.core.response.R;
-import com.qinweizhao.member.entity.Member;
-import com.qinweizhao.member.service.MemberService;
+import com.qinweizhao.user.entity.Member;
+import com.qinweizhao.user.service.MemberService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

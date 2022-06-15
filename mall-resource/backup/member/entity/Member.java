@@ -1,4 +1,4 @@
-package com.qinweizhao.member.entity;
+package com.qinweizhao.user.entity;
 
 import com.qinweizhao.component.core.entity.BaseEntity;
 import lombok.Data;

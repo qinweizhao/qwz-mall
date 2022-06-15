@@ -21,6 +21,11 @@ public class LoginBody {
     private String password;
 
     /**
+     * 验证码
+     */
+    private String code;
+
+    /**
      * sysType 参考SysTypeEnum
      */
     protected String sysType;

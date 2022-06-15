@@ -1,4 +1,4 @@
-package com.qinweizhao.gateway.config.properties;
+package com.qinweizhao.auth.config.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * 验证码配置
  *
- * @author ruoyi
+ * @author qinweizhao
  */
 @Configuration
 @RefreshScope

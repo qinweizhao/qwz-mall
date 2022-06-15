@@ -1,4 +1,4 @@
-package com.qinweizhao.gateway.config;
+package com.qinweizhao.auth.config;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
@@ -12,10 +12,11 @@ import static com.google.code.kaptcha.Constants.*;
 /**
  * 验证码配置
  *
- * @author ruoyi
+ * @author qinweizhao
  */
 @Configuration
 public class CaptchaConfig {
+
     @Bean(name = "captchaProducer")
     public DefaultKaptcha getKaptchaBean() {
         DefaultKaptcha defaultKaptcha = new DefaultKaptcha();
@@ -62,7 +63,7 @@ public class CaptchaConfig {
         // KAPTCHA_SESSION_KEY
         properties.setProperty(KAPTCHA_SESSION_CONFIG_KEY, "kaptchaCodeMath");
         // 验证码文本生成器
-        properties.setProperty(KAPTCHA_TEXTPRODUCER_IMPL, "com.qinweizhao.gateway.config.KaptchaTextCreator");
+        properties.setProperty(KAPTCHA_TEXTPRODUCER_IMPL, "com.qinweizhao.auth.config.KaptchaTextCreator");
         // 验证码文本字符间距 默认为2
         properties.setProperty(KAPTCHA_TEXTPRODUCER_CHAR_SPACE, "3");
         // 验证码文本字符长度 默认为5

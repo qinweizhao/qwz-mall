@@ -3,6 +3,7 @@ package com.qinweizhao.common.security.auth;
 import com.qinweizhao.common.core.exception.auth.NotLoginException;
 import com.qinweizhao.common.core.exception.auth.NotPermissionException;
 import com.qinweizhao.common.core.exception.auth.NotRoleException;
+import com.qinweizhao.common.core.model.LoginUser;
 import com.qinweizhao.common.core.utils.SpringUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.security.annotation.Logical;
@@ -11,7 +12,6 @@ import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.common.security.annotation.RequiresRoles;
 import com.qinweizhao.common.security.service.TokenService;
 import com.qinweizhao.common.security.utils.SecurityUtils;
-import com.qinweizhao.common.core.model.LoginUser;
 import org.springframework.util.PatternMatchUtils;
 
 import java.util.Collection;
@@ -111,7 +111,6 @@ public class AuthLogic {
      * 验证用户是否具备某权限, 如果验证未通过，则抛出异常: NotPermissionException
      *
      * @param permission 权限字符串
-     * @return 用户是否具备某权限
      */
     public void checkPermi(String permission) {
         if (!hasPermi(getPermiList(), permission)) {

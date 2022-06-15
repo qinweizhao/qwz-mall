@@ -4,17 +4,15 @@ package com.qinweizhao.auth.controller;
 import com.qinweizhao.auth.model.LoginBody;
 import com.qinweizhao.auth.model.RegisterBody;
 import com.qinweizhao.auth.service.SysLoginService;
+import com.qinweizhao.auth.service.ValidateCodeService;
+import com.qinweizhao.common.core.model.LoginUser;
 import com.qinweizhao.common.core.utils.JwtUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.security.auth.AuthUtil;
 import com.qinweizhao.common.security.service.TokenService;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.component.core.response.R;
-import com.qinweizhao.common.core.model.LoginUser;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +31,20 @@ public class TokenController {
 
     @Resource
     private SysLoginService sysLoginService;
+
+    @Resource
+    private ValidateCodeService validateCodeService;
+
+
+    @GetMapping("/code")
+    public R<Object> code() {
+        try {
+            return validateCodeService.createCaptcha();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return R.failure();
+        }
+    }
 
     @PostMapping("login")
     public R<Map<String, Object>> login(@RequestBody LoginBody form) {

@@ -24,8 +24,7 @@ public class JwtUtils {
      * @return 令牌
      */
     public static String createToken(Map<String, Object> claims) {
-        String token = Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.HS512, secret).compact();
-        return token;
+        return Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.HS512, secret).compact();
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.qinweizhao.gateway.service;
+package com.qinweizhao.auth.service;
 
 import com.qinweizhao.common.core.exception.CaptchaException;
 import com.qinweizhao.component.core.response.R;

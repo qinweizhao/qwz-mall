@@ -1,6 +1,7 @@
-package com.qinweizhao.gateway.service.impl;
+package com.qinweizhao.auth.service.impl;
 
 import com.google.code.kaptcha.Producer;
+import com.qinweizhao.auth.config.properties.CaptchaProperties;
 import com.qinweizhao.common.core.constant.Constants;
 import com.qinweizhao.common.core.exception.CaptchaException;
 import com.qinweizhao.common.core.utils.IdUtils;
@@ -8,8 +9,7 @@ import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.utils.sign.Base64;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.redis.service.RedisService;
-import com.qinweizhao.gateway.config.properties.CaptchaProperties;
-import com.qinweizhao.gateway.service.ValidateCodeService;
+import com.qinweizhao.auth.service.ValidateCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FastByteArrayOutputStream;
@@ -25,20 +25,21 @@ import java.util.concurrent.TimeUnit;
 /**
  * 验证码实现处理
  *
- * @author ruoyi
+ * @author qinweizhao
  */
 @Service
 public class ValidateCodeServiceImpl implements ValidateCodeService {
+
     @Resource(name = "captchaProducer")
     private Producer captchaProducer;
 
     @Resource(name = "captchaProducerMath")
     private Producer captchaProducerMath;
 
-    @Autowired
+    @Resource
     private RedisService redisService;
 
-    @Autowired
+    @Resource
     private CaptchaProperties captchaProperties;
 
     /**

@@ -1,4 +1,4 @@
-package com.qinweizhao.gateway.config;
+package com.qinweizhao.auth.config;
 
 import com.google.code.kaptcha.text.impl.DefaultTextCreator;
 
@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * 验证码文本生成器
  *
- * @author ruoyi
+ * @author qinweizhao
  */
 public class KaptchaTextCreator extends DefaultTextCreator {
     private static final String[] CNUMBERS = "0,1,2,3,4,5,6,7,8,9,10".split(",");

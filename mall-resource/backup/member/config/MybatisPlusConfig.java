@@ -1,4 +1,4 @@
-package com.qinweizhao.member.config;
+package com.qinweizhao.user.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.annotation.FieldFill;
