@@ -26,6 +26,11 @@ public class LoginBody {
     private String code;
 
     /**
+     * uuid
+     */
+    private String uuid;
+
+    /**
      * sysType 参考SysTypeEnum
      */
     protected String sysType;
