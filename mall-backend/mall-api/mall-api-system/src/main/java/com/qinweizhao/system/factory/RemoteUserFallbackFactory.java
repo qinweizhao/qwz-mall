@@ -1,8 +1,8 @@
-package com.qinweizhao.api.system.factory;
+package com.qinweizhao.system.factory;
 
-import com.qinweizhao.api.system.feign.UserFeignClient;
+import com.qinweizhao.system.feign.UserFeignClient;
 import com.qinweizhao.common.core.model.LoginUser;
-import com.qinweizhao.api.system.model.entity.SysUser;
+import com.qinweizhao.system.model.entity.SysUser;
 import com.qinweizhao.component.core.response.R;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,9 +1,9 @@
 package com.qinweizhao.auth.service;
 
-import com.qinweizhao.api.system.feign.LogFeignClient;
-import com.qinweizhao.api.system.feign.UserFeignClient;
-import com.qinweizhao.api.system.model.entity.SysLogininfor;
-import com.qinweizhao.api.system.model.entity.SysUser;
+import com.qinweizhao.system.feign.LogFeignClient;
+import com.qinweizhao.system.feign.UserFeignClient;
+import com.qinweizhao.system.model.entity.SysLogininfor;
+import com.qinweizhao.system.model.entity.SysUser;
 import com.qinweizhao.api.user.feign.MemberFeignClient;
 import com.qinweizhao.auth.constant.SysTypeEnum;
 import com.qinweizhao.common.core.constant.Constants;
@@ -45,17 +45,16 @@ public class SysLoginService {
 
         this.preCheck(username, password);
 
-        R<LoginUser> userResult = null;
+        R<LoginUser> userResult;
+
         if (SysTypeEnum.APP.value().equals(sysType)) {
             // app 验证
-            memberFeignClient.getMemberByUsername(username, SecurityConstants.INNER);
+            userResult = memberFeignClient.getMemberInfo(username, SecurityConstants.INNER);
         } else {
             // admin 验证
-            // 查询用户信息
             userResult = userFeignClient.getUserInfo(username, SecurityConstants.INNER);
         }
 
-        assert userResult != null;
         if (Constants.FAIL.equals(userResult.getCode())) {
             throw new ServiceException(userResult.getMessage());
         }
@@ -64,7 +63,7 @@ public class SysLoginService {
         LoginUser userInfo = userResult.getData();
 
 
-        this.postCheck(username, password, userInfo);
+        this.postCheck(username, password, sysType, userInfo);
 
         recordLoginInfo(username, Constants.LOGIN_SUCCESS, "登录成功");
 
@@ -77,23 +76,27 @@ public class SysLoginService {
      *
      * @param username  username
      * @param password  password
+     * @param sysType   sysType
      * @param loginUser loginUser
      */
-    private void postCheck(String username, String password, LoginUser loginUser) {
-
-        if (StringUtils.isNull(loginUser)) {
-            recordLoginInfo(username, Constants.LOGIN_FAIL, "登录用户不存在");
-            throw new ServiceException("登录用户：" + username + " 不存在");
+    private void postCheck(String username, String password, String sysType, LoginUser loginUser) {
+        // 后台校验
+        if (SysTypeEnum.ADMIN.value().equals(sysType)) {
+            if (StringUtils.isNull(loginUser)) {
+                recordLoginInfo(username, Constants.LOGIN_FAIL, "登录用户不存在");
+                throw new ServiceException("登录用户：" + username + " 不存在");
+            }
+            if (UserStatus.DELETED.getCode().equals(loginUser.getDelFlag())) {
+                recordLoginInfo(username, Constants.LOGIN_FAIL, "对不起，您的账号已被删除");
+                throw new ServiceException("对不起，您的账号：" + username + " 已被删除");
+            }
+            if (UserStatus.DISABLE.getCode().equals(loginUser.getStatus())) {
+                recordLoginInfo(username, Constants.LOGIN_FAIL, "用户已停用，请联系管理员");
+                throw new ServiceException("对不起，您的账号：" + username + " 已停用");
+            }
         }
 
-        if (UserStatus.DELETED.getCode().equals(loginUser.getDelFlag())) {
-            recordLoginInfo(username, Constants.LOGIN_FAIL, "对不起，您的账号已被删除");
-            throw new ServiceException("对不起，您的账号：" + username + " 已被删除");
-        }
-        if (UserStatus.DISABLE.getCode().equals(loginUser.getStatus())) {
-            recordLoginInfo(username, Constants.LOGIN_FAIL, "用户已停用，请联系管理员");
-            throw new ServiceException("对不起，您的账号：" + username + " 已停用");
-        }
+
         if (!SecurityUtils.matchesPassword(password, loginUser.getPassword())) {
             recordLoginInfo(username, Constants.LOGIN_FAIL, "用户密码错误");
             throw new ServiceException("用户不存在/密码错误");

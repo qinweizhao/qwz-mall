@@ -14,10 +14,11 @@ import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.common.core.model.LoginUser;
-import com.qinweizhao.api.system.model.entity.SysRole;
-import com.qinweizhao.api.system.model.entity.SysUser;
+import com.qinweizhao.system.model.entity.SysRole;
+import com.qinweizhao.system.model.entity.SysUser;
 import com.qinweizhao.system.service.*;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -68,7 +69,7 @@ public class SysUserController extends BaseController {
     @PostMapping("/export")
     public void export(HttpServletResponse response, SysUser user) {
         List<SysUser> list = userService.selectUserList(user);
-        ExcelUtil<SysUser> util = new ExcelUtil<SysUser>(SysUser.class);
+        ExcelUtil<SysUser> util = new ExcelUtil<>(SysUser.class);
         util.exportExcel(response, list, "用户数据");
     }
 
@@ -76,10 +77,9 @@ public class SysUserController extends BaseController {
     @RequiresPermissions("system:user:import")
     @PostMapping("/importData")
     public AjaxResult importData(MultipartFile file, boolean updateSupport) throws Exception {
-        ExcelUtil<SysUser> util = new ExcelUtil<SysUser>(SysUser.class);
+        ExcelUtil<SysUser> util = new ExcelUtil<>(SysUser.class);
         List<SysUser> userList = util.importExcel(file.getInputStream());
-        String operName = SecurityUtils.getUsername();
-        String message = userService.importUser(userList, updateSupport, operName);
+        String message = userService.importUser(userList, updateSupport, SecurityUtils.getUsername());
         return AjaxResult.success(message);
     }
 
@@ -104,11 +104,15 @@ public class SysUserController extends BaseController {
         // 权限集合
         Set<String> permissions = permissionService.getMenuPermission(sysUser.getUserId());
         LoginUser sysUserVo = new LoginUser();
+        sysUserVo.setUserid(sysUser.getUserId());
+        sysUserVo.setUsername(sysUser.getUserName());
         sysUserVo.setStatus(sysUser.getStatus());
         sysUserVo.setPassword(sysUser.getPassword());
         sysUserVo.setDelFlag(sysUser.getDelFlag());
         sysUserVo.setRoles(roles);
         sysUserVo.setPermissions(permissions);
+        sysUserVo.setDetails(sysUser);
+
         return R.success(sysUserVo);
     }
 
@@ -119,7 +123,7 @@ public class SysUserController extends BaseController {
     @PostMapping("/register")
     public R<Boolean> register(@RequestBody SysUser sysUser) {
         String username = sysUser.getUserName();
-        if (!("true".equals(configService.selectConfigByKey("sys.account.registerUser")))) {
+        if (!(BooleanUtils.TRUE.equals(configService.selectConfigByKey("sys.account.registerUser")))) {
             throw new ServiceException("当前系统没有开启注册功能！");
         }
         if (UserConstants.NOT_UNIQUE.equals(userService.checkUserNameUnique(username))) {

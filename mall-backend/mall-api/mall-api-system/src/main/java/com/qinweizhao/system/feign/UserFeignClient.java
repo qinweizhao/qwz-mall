@@ -1,11 +1,11 @@
-package com.qinweizhao.api.system.feign;
+package com.qinweizhao.system.feign;
 
 import com.qinweizhao.common.core.model.LoginUser;
-import com.qinweizhao.api.system.model.entity.SysUser;
+import com.qinweizhao.system.model.entity.SysUser;
 import com.qinweizhao.common.core.constant.SecurityConstants;
 import com.qinweizhao.common.core.constant.ServiceNameConstants;
 import com.qinweizhao.component.core.response.R;
-import com.qinweizhao.api.system.factory.RemoteUserFallbackFactory;
+import com.qinweizhao.system.factory.RemoteUserFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 

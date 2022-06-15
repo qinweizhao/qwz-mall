@@ -1,12 +1,12 @@
 package com.qinweizhao.system.aspect;
 
+import com.qinweizhao.common.core.model.LoginUser;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.web.domain.BaseEntity;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.system.annotation.DataScope;
-import com.qinweizhao.common.core.model.LoginUser;
-import com.qinweizhao.api.system.model.entity.SysRole;
-import com.qinweizhao.api.system.model.entity.SysUser;
+import com.qinweizhao.system.model.entity.SysRole;
+import com.qinweizhao.system.model.entity.SysUser;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -105,7 +105,7 @@ public class DataScopeAspect {
         // 获取当前的用户
         LoginUser loginUser = SecurityUtils.getLoginUser();
         if (StringUtils.isNotNull(loginUser)) {
-            SysUser currentUser = loginUser.getSysUser();
+            SysUser currentUser = (SysUser) loginUser.getDetails();
             // 如果是超级管理员，则不过滤数据
             if (StringUtils.isNotNull(currentUser) && !currentUser.isAdmin()) {
                 dataScopeFilter(joinPoint, currentUser, controllerDataScope.deptAlias(),

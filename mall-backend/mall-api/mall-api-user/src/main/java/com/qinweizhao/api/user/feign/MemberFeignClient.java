@@ -19,11 +19,11 @@ public interface MemberFeignClient {
     /**
      * 通过用户名查询用户信息
      *
-     * @param username 用户名
+     * @param username 用户名LoginUser
      * @param source   请求来源
      * @return 结果
      */
-    @GetMapping("/member/{username}")
-    R<LoginUser> getMemberByUsername(@PathVariable("username") String username, @RequestHeader(SecurityConstants.FROM_SOURCE) String source);
+    @GetMapping("/member/info/{username}")
+    R<LoginUser> getMemberInfo(@PathVariable("username") String username, @RequestHeader(SecurityConstants.FROM_SOURCE) String source);
 
 }

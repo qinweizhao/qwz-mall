@@ -3,6 +3,7 @@ package com.qinweizhao.system.controller;
 import com.qinweizhao.api.file.RemoteFileService;
 import com.qinweizhao.api.file.domain.SysFile;
 import com.qinweizhao.common.core.constant.UserConstants;
+import com.qinweizhao.common.core.model.LoginUser;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.core.web.domain.AjaxResult;
@@ -11,8 +12,7 @@ import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.common.core.model.LoginUser;
-import com.qinweizhao.api.system.model.entity.SysUser;
+import com.qinweizhao.system.model.entity.SysUser;
 import com.qinweizhao.system.service.ISysUserService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -57,7 +57,7 @@ public class SysProfileController extends BaseController {
     @PutMapping
     public AjaxResult updateProfile(@RequestBody SysUser user) {
         LoginUser loginUser = SecurityUtils.getLoginUser();
-        SysUser sysUser = loginUser.getSysUser();
+        SysUser sysUser = (SysUser) loginUser.getDetails();
         user.setUserName(sysUser.getUserName());
         if (StringUtils.isNotEmpty(user.getPhonenumber())
                 && UserConstants.NOT_UNIQUE.equals(userService.checkPhoneUnique(user))) {
@@ -70,10 +70,10 @@ public class SysProfileController extends BaseController {
         user.setPassword(null);
         if (userService.updateUserProfile(user) > 0) {
             // 更新缓存用户信息
-            loginUser.getSysUser().setNickName(user.getNickName());
-            loginUser.getSysUser().setPhonenumber(user.getPhonenumber());
-            loginUser.getSysUser().setEmail(user.getEmail());
-            loginUser.getSysUser().setSex(user.getSex());
+            sysUser.setNickName(user.getNickName());
+            sysUser.setPhonenumber(user.getPhonenumber());
+            sysUser.setEmail(user.getEmail());
+            sysUser.setSex(user.getSex());
             tokenService.setLoginUser(loginUser);
             return AjaxResult.success();
         }
@@ -98,7 +98,8 @@ public class SysProfileController extends BaseController {
         if (userService.resetUserPwd(username, SecurityUtils.encryptPassword(newPassword)) > 0) {
             // 更新缓存用户密码
             LoginUser loginUser = SecurityUtils.getLoginUser();
-            loginUser.getSysUser().setPassword(SecurityUtils.encryptPassword(newPassword));
+            SysUser details = (SysUser) loginUser.getDetails();
+            details.setPassword(SecurityUtils.encryptPassword(newPassword));
             tokenService.setLoginUser(loginUser);
             return AjaxResult.success();
         }
@@ -122,7 +123,8 @@ public class SysProfileController extends BaseController {
                 AjaxResult ajax = AjaxResult.success();
                 ajax.put("imgUrl", url);
                 // 更新缓存用户头像
-                loginUser.getSysUser().setAvatar(url);
+                SysUser details = (SysUser) loginUser.getDetails();
+                details.setAvatar(url);
                 tokenService.setLoginUser(loginUser);
                 return ajax;
             }

@@ -9,7 +9,7 @@ import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.api.system.model.entity.SysDictType;
+import com.qinweizhao.system.model.entity.SysDictType;
 import com.qinweizhao.system.service.ISysDictTypeService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;

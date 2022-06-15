@@ -1,7 +1,5 @@
-package com.qinweizhao.user.model.entity;
+package com.qinweizhao.user.model.dto;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.qinweizhao.component.core.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -15,9 +13,7 @@ import java.util.Date;
  * @since 2022-04-29
  */
 @Data
-@TableName("ums_member")
-@EqualsAndHashCode(callSuper = true)
-public class UmsMember extends BaseEntity {
+public class MemberDTO {
     private static final long serialVersionUID = 1L;
 
     /**

@@ -55,7 +55,7 @@ public class KaptchaTextCreator extends DefaultTextCreator {
             suChinese.append("+");
             suChinese.append(CNUMBERS[y]);
         }
-        suChinese.append("=?@" + result);
+        suChinese.append("=?@").append(result);
         return suChinese.toString();
     }
 }

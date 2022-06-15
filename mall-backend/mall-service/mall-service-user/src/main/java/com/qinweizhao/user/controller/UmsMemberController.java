@@ -1,11 +1,13 @@
 package com.qinweizhao.user.controller;
 
+import com.qinweizhao.common.core.model.LoginUser;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.core.response.PageResult;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.user.convert.MemberConvert;
+import com.qinweizhao.user.model.dto.MemberDTO;
 import com.qinweizhao.user.model.entity.UmsMember;
 import com.qinweizhao.user.model.param.MemberPageParam;
 import com.qinweizhao.user.model.vo.MemberVO;
@@ -28,6 +30,14 @@ public class UmsMemberController {
 
     @Resource
     private UmsMemberService umsMemberService;
+
+    @GetMapping("/info/{username}")
+    public R<LoginUser> info(@PathVariable("username") String username) {
+        MemberDTO memberDTO = umsMemberService.getByUsername(username);
+        LoginUser loginUser = MemberConvert.INSTANCE.convert(memberDTO);
+        loginUser.setUserid(memberDTO.getId());
+        return R.success(loginUser);
+    }
 
     /**
      * 查询会员列表

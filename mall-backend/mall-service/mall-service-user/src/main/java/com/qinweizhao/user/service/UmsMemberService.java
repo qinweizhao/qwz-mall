@@ -3,6 +3,7 @@ package com.qinweizhao.user.service;
 
 import com.qinweizhao.component.core.response.PageResult;
 import com.qinweizhao.component.mybatis.service.QwzService;
+import com.qinweizhao.user.model.dto.MemberDTO;
 import com.qinweizhao.user.model.entity.UmsMember;
 import com.qinweizhao.user.model.param.MemberPageParam;
 
@@ -30,4 +31,11 @@ public interface UmsMemberService extends QwzService<UmsMember> {
      * @return List
      */
     PageResult<UmsMember> page(MemberPageParam pageParam);
+
+    /**
+     * 查询会员（登陆使用）
+     * @param username username
+     * @return MemberDTO
+     */
+    MemberDTO getByUsername(String username);
 }

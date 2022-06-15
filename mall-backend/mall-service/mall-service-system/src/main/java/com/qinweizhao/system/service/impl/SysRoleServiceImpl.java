@@ -6,8 +6,8 @@ import com.qinweizhao.common.core.utils.SpringUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.system.annotation.DataScope;
-import com.qinweizhao.api.system.model.entity.SysRole;
-import com.qinweizhao.api.system.model.entity.SysUser;
+import com.qinweizhao.system.model.entity.SysRole;
+import com.qinweizhao.system.model.entity.SysUser;
 import com.qinweizhao.system.mapper.SysRoleDeptMapper;
 import com.qinweizhao.system.mapper.SysRoleMapper;
 import com.qinweizhao.system.mapper.SysRoleMenuMapper;
@@ -29,6 +29,8 @@ import java.util.*;
  */
 @Service
 public class SysRoleServiceImpl implements ISysRoleService {
+
+
     @Resource
     private SysRoleMapper roleMapper;
 

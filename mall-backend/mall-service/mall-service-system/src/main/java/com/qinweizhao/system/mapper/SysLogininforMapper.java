@@ -1,6 +1,6 @@
 package com.qinweizhao.system.mapper;
 
-import com.qinweizhao.api.system.model.entity.SysLogininfor;
+import com.qinweizhao.system.model.entity.SysLogininfor;
 
 import java.util.List;
 

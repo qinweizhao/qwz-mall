@@ -1,6 +1,5 @@
 package com.qinweizhao.common.core.model;
 
-import com.qinweizhao.common.core.annotation.Excel;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -70,6 +69,10 @@ public class LoginUser implements Serializable {
      */
     private String delFlag;
 
+    /**
+     * 用户详细信息
+     */
+    private Object details;
 
 
 }

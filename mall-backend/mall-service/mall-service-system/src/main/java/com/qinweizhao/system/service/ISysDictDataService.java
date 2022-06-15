@@ -1,6 +1,6 @@
 package com.qinweizhao.system.service;
 
-import com.qinweizhao.api.system.model.entity.SysDictData;
+import com.qinweizhao.system.model.entity.SysDictData;
 
 import java.util.List;
 

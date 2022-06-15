@@ -1,6 +1,6 @@
 package com.qinweizhao.system.mapper;
 
-import com.qinweizhao.api.system.model.entity.SysOperLog;
+import com.qinweizhao.system.model.entity.SysOperLog;
 
 import java.util.List;
 

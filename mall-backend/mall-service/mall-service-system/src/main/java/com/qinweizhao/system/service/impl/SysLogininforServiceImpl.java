@@ -1,6 +1,6 @@
 package com.qinweizhao.system.service.impl;
 
-import com.qinweizhao.api.system.model.entity.SysLogininfor;
+import com.qinweizhao.system.model.entity.SysLogininfor;
 import com.qinweizhao.system.mapper.SysLogininforMapper;
 import com.qinweizhao.system.service.ISysLogininforService;
 import org.springframework.stereotype.Service;

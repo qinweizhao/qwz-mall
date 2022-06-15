@@ -1,7 +1,7 @@
-package com.qinweizhao.api.system.factory;
+package com.qinweizhao.system.factory;
 
-import com.qinweizhao.api.system.feign.LogFeignClient;
-import com.qinweizhao.api.system.model.entity.SysLogininfor;
+import com.qinweizhao.system.feign.LogFeignClient;
+import com.qinweizhao.system.model.entity.SysLogininfor;
 import com.qinweizhao.component.log.SysOperLog;
 import com.qinweizhao.component.core.response.R;
 import org.slf4j.Logger;

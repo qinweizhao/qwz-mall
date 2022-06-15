@@ -1,8 +1,8 @@
 package com.qinweizhao.common.security.service;
 
-import com.qinweizhao.common.core.model.LoginUser;
 import com.qinweizhao.common.core.constant.CacheConstants;
 import com.qinweizhao.common.core.constant.SecurityConstants;
+import com.qinweizhao.common.core.model.LoginUser;
 import com.qinweizhao.common.core.utils.IdUtils;
 import com.qinweizhao.common.core.utils.JwtUtils;
 import com.qinweizhao.common.core.utils.ServletUtils;
@@ -40,19 +40,15 @@ public class TokenService {
      */
     public Map<String, Object> createToken(LoginUser loginUser) {
         String token = IdUtils.fastUUID();
-        Long userId = loginUser.getSysUser().getUserId();
-        String userName = loginUser.getSysUser().getUserName();
         loginUser.setToken(token);
-        loginUser.setUserid(userId);
-        loginUser.setUsername(userName);
         loginUser.setIpaddr(IpUtils.getIpAddr(ServletUtils.getRequest()));
         refreshToken(loginUser);
 
         // Jwt存储信息
         Map<String, Object> claimsMap = new HashMap<>();
         claimsMap.put(SecurityConstants.USER_KEY, token);
-        claimsMap.put(SecurityConstants.DETAILS_USER_ID, userId);
-        claimsMap.put(SecurityConstants.DETAILS_USERNAME, userName);
+        claimsMap.put(SecurityConstants.DETAILS_USER_ID, loginUser.getUserid());
+        claimsMap.put(SecurityConstants.DETAILS_USERNAME, loginUser.getUsername());
 
         // 接口返回信息
         Map<String, Object> rspMap = new HashMap<>();
@@ -120,8 +116,6 @@ public class TokenService {
 
     /**
      * 验证令牌有效期，相差不足120分钟，自动刷新缓存
-     *
-     * @param loginUser
      */
     public void verifyToken(LoginUser loginUser) {
         long expireTime = loginUser.getExpireTime();
@@ -132,7 +126,7 @@ public class TokenService {
     }
 
     /**
-     * 刷新令牌有效期
+     * 刷新令牌有效期 更新缓存用户信
      *
      * @param loginUser 登录信息
      */

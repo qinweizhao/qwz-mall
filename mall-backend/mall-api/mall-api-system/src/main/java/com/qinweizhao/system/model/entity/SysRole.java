@@ -1,4 +1,4 @@
-package com.qinweizhao.api.system.model.entity;
+package com.qinweizhao.system.model.entity;
 
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.annotation.Excel.ColumnType;

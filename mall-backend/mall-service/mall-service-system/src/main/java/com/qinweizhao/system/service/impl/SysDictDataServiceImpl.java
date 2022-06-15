@@ -1,7 +1,7 @@
 package com.qinweizhao.system.service.impl;
 
 import com.qinweizhao.common.security.utils.DictUtils;
-import com.qinweizhao.api.system.model.entity.SysDictData;
+import com.qinweizhao.system.model.entity.SysDictData;
 import com.qinweizhao.system.mapper.SysDictDataMapper;
 import com.qinweizhao.system.service.ISysDictDataService;
 import org.springframework.stereotype.Service;
