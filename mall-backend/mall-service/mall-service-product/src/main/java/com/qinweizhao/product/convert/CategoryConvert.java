@@ -3,10 +3,8 @@ package com.qinweizhao.product.convert;
 
 import com.qinweizhao.product.model.dto.CategoryTreeDTO;
 import com.qinweizhao.product.model.entity.PmsCategory;
-import com.qinweizhao.product.model.vo.CategoryTreeRespVO;
+import com.qinweizhao.product.model.vo.CategoryTreeVO;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -39,6 +37,6 @@ public interface CategoryConvert {
      * @param categoryTreeDTOList categoryTreeDTOList
      * @return List
      */
-    List<CategoryTreeRespVO> convertToVO(List<CategoryTreeDTO> categoryTreeDTOList);
+    List<CategoryTreeVO> convertToVO(List<CategoryTreeDTO> categoryTreeDTOList);
 
 }

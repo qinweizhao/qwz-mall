@@ -9,9 +9,9 @@ import java.util.List;
 /**
  * @author qinweizhao
  */
-// todo 更改为vo
 @Data
 public class SkuItemVO {
+
     boolean hasStock = true;
 
     /**

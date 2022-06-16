@@ -1,4 +1,4 @@
-package com.qinweizhao.product.model.vo;
+package com.qinweizhao.product.model.param;
 
 import lombok.Data;
 
@@ -9,7 +9,7 @@ import java.util.List;
  * @author qinweizhao
  */
 @Data
-public class SpuSaveVO {
+public class SpuSaveParam {
 
     /**
      * 商品名称

@@ -10,7 +10,7 @@ import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.product.convert.AttrGroupConvert;
 import com.qinweizhao.product.model.dto.AttrGroupWithAttrsDTO;
 import com.qinweizhao.product.model.entity.PmsAttrGroup;
-import com.qinweizhao.product.model.vo.AttrGroupRespVO;
+import com.qinweizhao.product.model.vo.AttrGroupVO;
 import com.qinweizhao.product.model.vo.AttrGroupWithAttrsVO;
 import com.qinweizhao.product.service.IPmsAttrGroupService;
 import org.springframework.web.bind.annotation.*;
@@ -49,14 +49,14 @@ public class PmsAttrGroupController extends BaseController {
      */
     @RequiresPermissions("product:group:query")
     @GetMapping(value = "/{attrGroupId}")
-    public R<AttrGroupRespVO> get(@PathVariable("attrGroupId") Long attrGroupId) {
+    public R<AttrGroupVO> get(@PathVariable("attrGroupId") Long attrGroupId) {
         PmsAttrGroup pmsAttrGroup = pmsAttrGroupService.getById(attrGroupId);
         String dbCategoryPath = pmsAttrGroup.getCategoryPath();
-        AttrGroupRespVO attrGroupRespVO = new AttrGroupRespVO();
+        AttrGroupVO attrGroupVO = new AttrGroupVO();
         List<Long> categoryPath = Arrays.stream(dbCategoryPath.split(",")).map(Long::parseLong).collect(Collectors.toList());
-        attrGroupRespVO.setCategoryPath(categoryPath);
-        BeanUtils.copyProperties(pmsAttrGroup, attrGroupRespVO);
-        return R.success(attrGroupRespVO);
+        attrGroupVO.setCategoryPath(categoryPath);
+        BeanUtils.copyProperties(pmsAttrGroup, attrGroupVO);
+        return R.success(attrGroupVO);
     }
 
     /**

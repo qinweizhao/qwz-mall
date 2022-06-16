@@ -3,8 +3,7 @@ package com.qinweizhao.product.controller.web;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.product.convert.CategoryConvert;
 import com.qinweizhao.product.model.dto.CategoryTreeDTO;
-import com.qinweizhao.product.model.entity.PmsCategory;
-import com.qinweizhao.product.model.vo.CategoryTreeRespVO;
+import com.qinweizhao.product.model.vo.CategoryTreeVO;
 import com.qinweizhao.product.service.IPmsCategoryService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +29,7 @@ public class IndexController {
      * 树
      */
     @GetMapping("/category/tree")
-    public R<List<CategoryTreeRespVO>> tree() {
+    public R<List<CategoryTreeVO>> tree() {
         List<CategoryTreeDTO> categoryTreeDTOList = pmsCategoryService.getCategoryTree();
         return R.success(CategoryConvert.INSTANCE.convertToVO(categoryTreeDTOList));
     }

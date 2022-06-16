@@ -9,7 +9,7 @@ import java.util.List;
  * @since 2022/5/14
  */
 @Data
-public class CategoryTreeRespVO {
+public class CategoryTreeVO {
 
 
     /**
@@ -26,6 +26,6 @@ public class CategoryTreeRespVO {
     /**
      * children
      */
-    private List<CategoryTreeRespVO> children;
+    private List<CategoryTreeVO> children;
 
 }

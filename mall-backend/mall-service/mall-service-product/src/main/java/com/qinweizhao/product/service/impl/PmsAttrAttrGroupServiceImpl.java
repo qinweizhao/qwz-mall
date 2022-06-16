@@ -3,7 +3,7 @@ package com.qinweizhao.product.service.impl;
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.bean.BeanUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
-import com.qinweizhao.product.model.constant.ProductConstant;
+import com.qinweizhao.product.constant.ProductConstant;
 import com.qinweizhao.product.model.entity.PmsAttr;
 import com.qinweizhao.product.model.entity.PmsAttrAttrGroup;
 import com.qinweizhao.product.model.entity.PmsAttrGroup;

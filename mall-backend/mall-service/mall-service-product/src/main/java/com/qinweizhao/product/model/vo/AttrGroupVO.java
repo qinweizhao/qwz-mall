@@ -14,7 +14,7 @@ import java.util.List;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class AttrGroupRespVO extends BaseEntity {
+public class AttrGroupVO extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**

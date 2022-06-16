@@ -1,7 +1,7 @@
 package com.qinweizhao.product.service;
 
 import com.qinweizhao.product.model.entity.PmsAttr;
-import com.qinweizhao.product.model.vo.AttrVO;
+import com.qinweizhao.product.model.param.AttrParam;
 
 import java.util.List;
 
@@ -36,7 +36,7 @@ public interface IPmsAttrService {
      * @param pmsAttr 商品属性
      * @return 结果
      */
-    int save(AttrVO pmsAttr);
+    int save(AttrParam pmsAttr);
 
     /**
      * 修改商品属性
@@ -44,7 +44,7 @@ public interface IPmsAttrService {
      * @param pmsAttr 商品属性
      * @return 结果
      */
-    int updateById(AttrVO pmsAttr);
+    int updateById(AttrParam pmsAttr);
 
     /**
      * 批量删除商品属性

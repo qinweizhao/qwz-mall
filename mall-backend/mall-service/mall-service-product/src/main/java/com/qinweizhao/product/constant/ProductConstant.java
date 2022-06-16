@@ -1,4 +1,4 @@
-package com.qinweizhao.product.model.constant;
+package com.qinweizhao.product.constant;
 
 /**
  * @author weizhao

@@ -6,16 +6,15 @@ import com.qinweizhao.api.search.feign.ElasticSaveFeignService;
 import com.qinweizhao.api.ware.dto.SkuHasStockDTO;
 import com.qinweizhao.api.ware.feign.WareSkuFeignService;
 import com.qinweizhao.common.core.constant.SecurityConstants;
-import com.qinweizhao.common.core.enums.MallResultCodeEnum;
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.bean.BeanUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.core.response.SystemResultCodeEnum;
 import com.qinweizhao.product.mapper.PmsSpuInfoMapper;
-import com.qinweizhao.product.model.constant.ProductConstant;
+import com.qinweizhao.product.constant.ProductConstant;
 import com.qinweizhao.product.model.entity.*;
-import com.qinweizhao.product.model.vo.SpuSaveVO;
+import com.qinweizhao.product.model.param.SpuSaveParam;
 import com.qinweizhao.product.service.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +22,6 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -147,19 +145,19 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
      * 3、5 、6.2批量保存
      * 发布商品
      *
-     * @param spuSaveVO pmsSpuSaveVO
+     * @param spuSaveParam pmsSpuSaveVO
      * @return boolean
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public boolean saveSpu(SpuSaveVO spuSaveVO) {
+    public boolean saveSpu(SpuSaveParam spuSaveParam) {
 
         String username = SecurityUtils.getUsername();
 
 
         // 1、保存spu基本信息 pms_spu_info
         PmsSpuInfo pmsSpuInfo = new PmsSpuInfo();
-        BeanUtils.copyProperties(spuSaveVO, pmsSpuInfo);
+        BeanUtils.copyProperties(spuSaveParam, pmsSpuInfo);
         pmsSpuInfo.setCreateBy(username);
         pmsSpuInfo.setUpdateBy(username);
         pmsSpuInfoMapper.insertPmsSpuInfo(pmsSpuInfo);
@@ -171,7 +169,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
 
 
         // 2、保存spu的描述图片 pms_spu_info_detail
-        String details = spuSaveVO.getDetails();
+        String details = spuSaveParam.getDetails();
         PmsSpuInfoDetail pmsSpuInfoDetail = new PmsSpuInfoDetail();
         pmsSpuInfoDetail.setDetail(details);
         pmsSpuInfoDetail.setCreateBy(username);
@@ -180,7 +178,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
         pmsSpuInfoDetailService.save(pmsSpuInfoDetail);
 
         // 3、保存spu的图片集 pms_spu_image
-        List<String> spuImages = spuSaveVO.getImages();
+        List<String> spuImages = spuSaveParam.getImages();
 
         spuImages.forEach(item -> {
             PmsSpuImage pmsSpuImage = new PmsSpuImage();
@@ -196,7 +194,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
         // 暂时先搁置
 
         // 5、保存spu的规格参数;pms_spu_attr_value
-        List<SpuSaveVO.BaseAttr> baseAttrs = spuSaveVO.getBaseAttrs();
+        List<SpuSaveParam.BaseAttr> baseAttrs = spuSaveParam.getBaseAttrs();
         baseAttrs.forEach(baseAttr -> {
             PmsSpuAttrValue pmsSpuAttrValue = new PmsSpuAttrValue();
 
@@ -212,7 +210,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
         });
 
         // 6、保存当前spu对应的所有sku信息
-        List<SpuSaveVO.Skus> skus = spuSaveVO.getSkus();
+        List<SpuSaveParam.Skus> skus = spuSaveParam.getSkus();
         if (!skus.isEmpty()) {
             skus.forEach(skuItem -> {
 
@@ -225,7 +223,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
                 pmsSkuInfo.setCategoryId(categoryId);
                 pmsSkuInfo.setSaleCount(0L);
                 String defaultImg = "";
-                for (SpuSaveVO.Skus.Images image : skuItem.getImages()) {
+                for (SpuSaveParam.Skus.Images image : skuItem.getImages()) {
                     if (image.getDefaultImg() == 1) {
                         defaultImg = image.getImgUrl();
                     }
@@ -236,7 +234,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
 
                 Long skuId = pmsSkuInfo.getSkuId();
                 // 6.2）、sku的图片信息；pms_sku_image
-                List<SpuSaveVO.Skus.Images> skuImages = skuItem.getImages();
+                List<SpuSaveParam.Skus.Images> skuImages = skuItem.getImages();
                 skuImages.forEach(imageItem -> {
                     String imgUrl = imageItem.getImgUrl();
                     // 没有图片无需保存
@@ -250,7 +248,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
                 });
 
                 // 6.3）、sku的销售属性信息：pms_sku_attr_value
-                List<SpuSaveVO.Skus.SaleAttr> saleAttrs = skuItem.getSaleAttrs();
+                List<SpuSaveParam.Skus.SaleAttr> saleAttrs = skuItem.getSaleAttrs();
                 saleAttrs.forEach(saleAttrItem -> {
                     PmsSkuAttrValue pmsSkuAttrValue = new PmsSkuAttrValue();
                     BeanUtils.copyProperties(saleAttrItem, pmsSkuAttrValue);
