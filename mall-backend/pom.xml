@@ -243,6 +243,12 @@
 
             <dependency>
                 <groupId>com.qinweizhao.component</groupId>
+                <artifactId>qwz-component-core</artifactId>
+                <version>${qwz.component.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.qinweizhao.component</groupId>
                 <artifactId>qwz-component-util</artifactId>
                 <version>${qwz.component.version}</version>
             </dependency>

@@ -11,9 +11,10 @@
     <artifactId>mall-service</artifactId>
     <packaging>pom</packaging>
 
+    <description>业务模块</description>
+
     <modules>
         <module>mall-service-activity</module>
-        <module>mall-service-cart</module>
         <module>mall-service-order</module>
         <module>mall-service-user</module>
         <module>mall-service-payment</module>
@@ -24,7 +25,5 @@
     </modules>
 
 
-
-    <description>业务模块</description>
 
 </project>
