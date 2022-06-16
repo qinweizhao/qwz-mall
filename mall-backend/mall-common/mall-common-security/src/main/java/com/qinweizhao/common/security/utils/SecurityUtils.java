@@ -9,6 +9,7 @@ import com.qinweizhao.common.core.model.LoginUser;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Objects;
 
 /**
  * 权限获取工具类
@@ -48,7 +49,7 @@ public class SecurityUtils {
      * 获取请求token
      */
     public static String getToken() {
-        return getToken(ServletUtils.getRequest());
+        return getToken(Objects.requireNonNull(ServletUtils.getRequest()));
     }
 
     /**

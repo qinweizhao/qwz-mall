@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 /**
  * 日志服务
  *
- * @author ruoyi
+ * @author qinweizhao
  */
 @FeignClient(contextId = "logFeignClient", value = ServiceNameConstants.SYSTEM_SERVICE, fallbackFactory = RemoteLogFallbackFactory.class)
 public interface LogFeignClient extends QwzLogService {
