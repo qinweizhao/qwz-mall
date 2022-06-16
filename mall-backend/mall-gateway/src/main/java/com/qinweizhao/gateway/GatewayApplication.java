@@ -11,7 +11,6 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  * @author qinweizhao
  * @since 2021-12-22
  */
-//@ComponentScan("com.qinweizhao")
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class GatewayApplication {
     public static void main(String[] args) {

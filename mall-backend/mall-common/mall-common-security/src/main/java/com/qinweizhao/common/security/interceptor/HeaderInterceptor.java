@@ -1,8 +1,8 @@
 package com.qinweizhao.common.security.interceptor;
 
-import com.qinweizhao.common.core.model.LoginUser;
 import com.qinweizhao.common.core.constant.SecurityConstants;
 import com.qinweizhao.common.core.context.SecurityContextHolder;
+import com.qinweizhao.common.core.model.LoginUser;
 import com.qinweizhao.common.core.utils.ServletUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.security.auth.AuthUtil;
@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author ruoyi
  */
 public class HeaderInterceptor implements AsyncHandlerInterceptor {
+
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         if (!(handler instanceof HandlerMethod)) {

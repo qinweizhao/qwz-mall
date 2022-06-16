@@ -24,6 +24,7 @@ import java.util.List;
  */
 @Component
 public class CacheRequestFilter extends AbstractGatewayFilterFactory<CacheRequestFilter.Config> {
+
     public CacheRequestFilter() {
         super(Config.class);
     }
