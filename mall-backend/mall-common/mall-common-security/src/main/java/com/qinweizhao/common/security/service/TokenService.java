@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -45,7 +46,7 @@ public class TokenService {
         refreshToken(loginUser);
 
         // Jwt存储信息
-        Map<String, Object> claimsMap = new HashMap<>();
+        Map<String, Object> claimsMap = new LinkedHashMap<>();
         claimsMap.put(SecurityConstants.USER_KEY, token);
         claimsMap.put(SecurityConstants.DETAILS_USER_ID, loginUser.getUserid());
         claimsMap.put(SecurityConstants.DETAILS_USERNAME, loginUser.getUsername());
@@ -95,8 +96,8 @@ public class TokenService {
         LoginUser user = null;
         try {
             if (StringUtils.isNotEmpty(token)) {
-                String userkey = JwtUtils.getUserKey(token);
-                user = redisService.getCacheObject(getTokenKey(userkey));
+                String userKey = JwtUtils.getUserKey(token);
+                user = redisService.getCacheObject(getTokenKey(userKey));
                 return user;
             }
         } catch (Exception e) {
@@ -109,8 +110,8 @@ public class TokenService {
      */
     public void delLoginUser(String token) {
         if (StringUtils.isNotEmpty(token)) {
-            String userkey = JwtUtils.getUserKey(token);
-            redisService.deleteObject(getTokenKey(userkey));
+            String userKey = JwtUtils.getUserKey(token);
+            redisService.deleteObject(getTokenKey(userKey));
         }
     }
 
@@ -136,7 +137,6 @@ public class TokenService {
         // 根据uuid将loginUser缓存
         String userKey = getTokenKey(loginUser.getToken());
         redisService.setCacheObject(userKey, loginUser, EXPIRE_TIME, TimeUnit.MINUTES);
-        System.out.println("保存token" + userKey);
     }
 
     private String getTokenKey(String token) {

@@ -2,22 +2,19 @@ package com.qinweizhao.auth.service.impl;
 
 import com.google.code.kaptcha.Producer;
 import com.qinweizhao.auth.config.properties.CaptchaProperties;
+import com.qinweizhao.auth.service.ValidateCodeService;
 import com.qinweizhao.common.core.constant.Constants;
 import com.qinweizhao.common.core.exception.CaptchaException;
 import com.qinweizhao.common.core.utils.IdUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.utils.sign.Base64;
-import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.redis.service.RedisService;
-import com.qinweizhao.auth.service.ValidateCodeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FastByteArrayOutputStream;
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -46,8 +43,7 @@ public class ValidateCodeServiceImpl implements ValidateCodeService {
      * 生成验证码
      */
     @Override
-    public R<Object> createCaptcha() throws CaptchaException {
-        R<Object> result = R.success();
+    public Map<String, Object> createCaptcha() throws CaptchaException{
         Map<String, Object> map = new LinkedHashMap<>();
 
         boolean captchaOnOff = captchaProperties.getEnabled();
@@ -55,15 +51,14 @@ public class ValidateCodeServiceImpl implements ValidateCodeService {
         map.put("captchaOnOff", captchaOnOff);
 
         if (!captchaOnOff) {
-            result.setData(map);
-            return result;
+            return map;
         }
 
         // 保存验证码信息
         String uuid = IdUtils.simpleUUID();
         String verifyKey = Constants.CAPTCHA_CODE_KEY + uuid;
 
-        String capStr = null, code = null;
+        String capStr, code = null;
         BufferedImage image = null;
 
         String captchaType = captchaProperties.getType();
@@ -81,19 +76,18 @@ public class ValidateCodeServiceImpl implements ValidateCodeService {
         redisService.setCacheObject(verifyKey, code, Constants.CAPTCHA_EXPIRATION, TimeUnit.MINUTES);
         // 转换流信息写出
         FastByteArrayOutputStream os = new FastByteArrayOutputStream();
+
         try {
+            assert image != null;
             ImageIO.write(image, "jpg", os);
-        } catch (IOException e) {
-            // TODO
-            return R.failure();
+        }catch (Exception e){
+            throw new CaptchaException("生成验证码失败");
         }
 
         map.put("uuid", uuid);
         map.put("img", Base64.encode(os.toByteArray()));
-        result.setData(map);
-        result.setMessage("成功");
-        result.setCode("200");
-        return result;
+
+        return map;
     }
 
     /**

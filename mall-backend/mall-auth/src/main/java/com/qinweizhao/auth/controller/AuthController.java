@@ -38,18 +38,14 @@ public class AuthController {
 
     @GetMapping("/code")
     public R<Object> code() {
-        try {
-            return validateCodeService.createCaptcha();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return R.failure();
-        }
+        Map<String, Object> captcha = validateCodeService.createCaptcha();
+        return R.success(captcha);
     }
 
     @PostMapping("login")
     public R<Map<String, Object>> login(@RequestBody LoginBody form) {
         // 校验验证码
-        validateCodeService.checkCapcha(form.getCode(),form.getUuid());
+        validateCodeService.checkCapcha(form.getCode(), form.getUuid());
         // 用户登录
         LoginUser userInfo = sysLoginService.login(form.getUsername(), form.getPassword(), form.getSysType());
         // 获取登录token

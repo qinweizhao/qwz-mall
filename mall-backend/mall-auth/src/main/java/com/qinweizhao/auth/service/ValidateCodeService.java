@@ -1,9 +1,8 @@
 package com.qinweizhao.auth.service;
 
 import com.qinweizhao.common.core.exception.CaptchaException;
-import com.qinweizhao.component.core.response.R;
 
-import java.io.IOException;
+import java.util.Map;
 
 /**
  * 验证码处理
@@ -15,10 +14,9 @@ public interface ValidateCodeService {
     /**
      * 生成验证码
      * @return R
-     * @throws IOException e
      * @throws CaptchaException e
      */
-    R<Object> createCaptcha() throws IOException, CaptchaException;
+    Map<String, Object> createCaptcha() throws CaptchaException;
 
 
     /**

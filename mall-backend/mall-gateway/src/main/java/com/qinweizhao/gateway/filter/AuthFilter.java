@@ -25,13 +25,15 @@ import javax.annotation.Resource;
 /**
  * 网关鉴权
  *
- * @author ruoyi
+ * @author qinweizhao
  */
 @Component
 public class AuthFilter implements GlobalFilter, Ordered {
     private static final Logger log = LoggerFactory.getLogger(AuthFilter.class);
 
-    // 排除过滤的 uri 地址，nacos自行添加
+    /**
+     * 排除过滤的 uri 地址
+     */
     @Resource
     private IgnoreWhiteProperties ignoreWhite;
 
@@ -91,7 +93,6 @@ public class AuthFilter implements GlobalFilter, Ordered {
         mutate.headers(httpHeaders -> httpHeaders.remove(name)).build();
     }
 
-    // TODO
     private Mono<Void> unauthorizedResponse(ServerWebExchange exchange, String msg) {
         log.error("[鉴权异常处理]请求路径:{}", exchange.getRequest().getPath());
         return ServletUtils.webFluxResponseWriter(exchange.getResponse(), msg, String.valueOf(HttpStatus.UNAUTHORIZED.value()));
