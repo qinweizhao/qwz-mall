@@ -1,6 +1,7 @@
 package com.qinweizhao.product.service;
 
 import com.qinweizhao.product.model.dto.CartItemDTO;
+import com.qinweizhao.product.model.entity.PmsCartItem;
 
 import java.util.List;
 
@@ -23,13 +24,14 @@ public interface IPmsCartService {
      * 清空购物车
      * @return boolean
      */
-    void removeCart();
+    boolean removeCart();
 
     /**
      * 添加商品到购物车
      * @param skuId skuId
+     * @return boolean
      */
-    void saveCartItem(Long skuId);
+    boolean saveCartItem(Long skuId);
 
     /**
      * 全选
@@ -50,5 +52,5 @@ public interface IPmsCartService {
      * @param cartItem cartItem
      * @return boolean
      */
-    boolean updateCartItem(CartItemDTO cartItem);
+    boolean updateCartItem(PmsCartItem cartItem);
 }

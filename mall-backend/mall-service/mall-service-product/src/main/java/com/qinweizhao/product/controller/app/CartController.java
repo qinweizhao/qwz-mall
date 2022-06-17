@@ -3,6 +3,7 @@ package com.qinweizhao.product.controller.app;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.product.model.dto.CartItemDTO;
+import com.qinweizhao.product.model.entity.PmsCartItem;
 import com.qinweizhao.product.service.IPmsCartService;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,7 +41,7 @@ public class CartController {
     }
 
     @PutMapping("/skuId/{skuId}")
-    public  R<?> updateCartItem(@PathVariable Long skuId, @RequestBody CartItemDTO cartItem) {
+    public  R<?> updateCartItem(@PathVariable Long skuId, @RequestBody PmsCartItem cartItem) {
         cartItem.setSkuId(skuId);
         boolean result = pmsCartItemService.updateCartItem(cartItem);
         return R.success(result);
