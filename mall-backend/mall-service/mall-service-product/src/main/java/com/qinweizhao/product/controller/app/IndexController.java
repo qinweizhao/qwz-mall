@@ -1,4 +1,4 @@
-package com.qinweizhao.product.controller.web;
+package com.qinweizhao.product.controller.app;
 
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.product.convert.CategoryConvert;

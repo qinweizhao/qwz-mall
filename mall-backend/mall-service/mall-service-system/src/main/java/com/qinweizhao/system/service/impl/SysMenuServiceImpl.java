@@ -4,12 +4,12 @@ import com.qinweizhao.common.core.constant.Constants;
 import com.qinweizhao.common.core.constant.UserConstants;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
-import com.qinweizhao.system.model.entity.SysRole;
-import com.qinweizhao.system.model.entity.SysUser;
 import com.qinweizhao.system.mapper.SysMenuMapper;
 import com.qinweizhao.system.mapper.SysRoleMapper;
 import com.qinweizhao.system.mapper.SysRoleMenuMapper;
 import com.qinweizhao.system.model.entity.SysMenu;
+import com.qinweizhao.system.model.entity.SysRole;
+import com.qinweizhao.system.model.entity.SysUser;
 import com.qinweizhao.system.model.vo.MetaVo;
 import com.qinweizhao.system.model.vo.RouterVo;
 import com.qinweizhao.system.model.vo.TreeSelect;
@@ -57,7 +57,7 @@ public class SysMenuServiceImpl implements ISysMenuService {
      */
     @Override
     public List<SysMenu> selectMenuList(SysMenu menu, Long userId) {
-        List<SysMenu> menuList = null;
+        List<SysMenu> menuList;
         // 管理员显示所有菜单信息
         if (SysUser.isAdmin(userId)) {
             menuList = menuMapper.selectMenuList(menu);

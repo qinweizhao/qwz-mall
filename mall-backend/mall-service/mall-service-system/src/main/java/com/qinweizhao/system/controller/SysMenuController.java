@@ -24,6 +24,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/menu")
 public class SysMenuController extends BaseController {
+
+
     @Resource
     private ISysMenuService menuService;
 
