@@ -1,13 +1,13 @@
 {
-    "name" : "有来小店",
-    "appid" : "__UNI__C4E2002",
+    "name" : "电商模板 更新下单流程、分类、列表",
+    "appid" : "",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
     "transformPx" : false,
     "app-plus" : {
         /* 5+App特有相关 */
-        "usingComponents" : true,
+		"usingComponents":true,
         "splashscreen" : {
             "alwaysShowBeforeRender" : true,
             "waiting" : true,
@@ -47,20 +47,7 @@
             },
             "ios" : {},
             /* ios打包配置 */
-            "sdkConfigs" : {
-                "ad" : {}
-            },
-            "icons" : {
-                "android" : {
-                    "hdpi" : "C:/Users/xianrui/Desktop/logo.png",
-                    "xhdpi" : "C:/Users/xianrui/Desktop/logo.png",
-                    "xxxhdpi" : "C:/Users/xianrui/Desktop/logo.png",
-                    "xxhdpi" : "C:/Users/xianrui/Desktop/logo.png"
-                },
-                "ios" : {
-                    "appstore" : "C:/Users/xianrui/Desktop/logo.png"
-                }
-            }
+            "sdkConfigs" : {}
         }
     },
     /* SDK配置 */
@@ -68,16 +55,10 @@
     /* 快应用特有相关 */
     "mp-weixin" : {
         /* 小程序特有相关 */
-        "usingComponents" : true,
-        "appid" : "wx99a151dc43d2637b",
+		"usingComponents":true,
+        "appid" : "",
         "setting" : {
-            "urlCheck" : false,
-            "minified" : true
-        },
-        "permission" : {}
-    },
-    "h5" : {
-        "title" : "有来商城H5",
-        "domain" : "www.youlai.tech"
+            "urlCheck" : true
+        }
     }
 }
