@@ -4,6 +4,8 @@
 com.qinweizhao    
 ├── mall-api             // 接口模块
 │       └── mall-api-file                            // 文件接口 
+│       └── mall-api-order                           // 订单接口 
+│       └── mall-api-product                         // 商品接口 
 │       └── mall-api-search                          // 检索接口 
 │       └── mall-api-system                          // 系统接口 
 │       └── mall-api-ware                            // 库存接口 
@@ -14,7 +16,6 @@ com.qinweizhao
 ├── mall-gateway         // 网关模块 [8080]
 ├── mall-service         // 业务模块
 │       └── mall-service-activity                    // 营销服务 [9009]
-│       └── mall-service-cart                        // 购物车服务 [9006]
 │       └── mall-service-order                       // 订单服务 [9007]
 │       └── mall-service-payment                     // 支付服务 [9008]
 │       └── mall-service-product                     // 商品服务 [9002]
