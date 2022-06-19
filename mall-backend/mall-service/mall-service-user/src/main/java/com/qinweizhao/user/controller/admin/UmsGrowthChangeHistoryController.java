@@ -1,4 +1,4 @@
-package com.qinweizhao.user.controller;
+package com.qinweizhao.user.controller.admin;
 
 import cn.hutool.core.io.resource.ResourceUtil;
 import com.qinweizhao.common.core.web.controller.BaseController;

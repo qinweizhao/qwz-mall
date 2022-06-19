@@ -1,4 +1,4 @@
-package com.qinweizhao.system.controller;
+package com.qinweizhao.system.controller.admin;
 
 import com.qinweizhao.api.file.RemoteFileService;
 import com.qinweizhao.api.file.domain.SysFile;

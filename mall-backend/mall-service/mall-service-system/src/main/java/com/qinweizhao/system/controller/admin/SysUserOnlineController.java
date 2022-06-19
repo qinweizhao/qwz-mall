@@ -1,4 +1,4 @@
-package com.qinweizhao.system.controller;
+package com.qinweizhao.system.controller.admin;
 
 import com.qinweizhao.common.core.constant.CacheConstants;
 import com.qinweizhao.common.core.utils.StringUtils;

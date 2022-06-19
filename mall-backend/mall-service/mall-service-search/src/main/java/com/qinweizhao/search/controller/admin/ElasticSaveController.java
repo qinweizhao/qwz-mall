@@ -1,4 +1,4 @@
-package com.qinweizhao.search.controller.api;
+package com.qinweizhao.search.controller.admin;
 
 import com.qinweizhao.api.search.dto.EsSkuSaveDTO;
 import com.qinweizhao.component.core.response.R;

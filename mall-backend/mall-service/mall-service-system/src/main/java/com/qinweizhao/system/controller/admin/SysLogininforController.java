@@ -1,4 +1,4 @@
-package com.qinweizhao.system.controller;
+package com.qinweizhao.system.controller.admin;
 
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.core.web.controller.BaseController;

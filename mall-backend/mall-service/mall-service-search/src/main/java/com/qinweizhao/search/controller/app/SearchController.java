@@ -1,4 +1,4 @@
-package com.qinweizhao.search.controller.web;
+package com.qinweizhao.search.controller.app;
 
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.search.model.param.SearchParam;

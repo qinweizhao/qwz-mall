@@ -1,4 +1,4 @@
-package com.qinweizhao.user.controller;
+package com.qinweizhao.user.controller.admin;
 
 import com.qinweizhao.common.core.model.LoginUser;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
