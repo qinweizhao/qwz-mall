@@ -1,7 +1,8 @@
 package com.qinweizhao.product.mapper;
 
+import com.qinweizhao.product.model.entity.PmsCartItem;
+
 import java.util.List;
-import com.qinweizhao.product.domain.PmsCartItem;
 
 /**
  * 购物车Mapper接口

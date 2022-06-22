@@ -1,12 +1,12 @@
 package com.qinweizhao.product.service.impl;
 
-import com.qinweizhao.common.core.utils.DateUtils;
-import com.qinweizhao.product.model.entity.PmsCommentReplay;
 import com.qinweizhao.product.mapper.PmsCommentReplayMapper;
+import com.qinweizhao.product.model.entity.PmsCommentReplay;
 import com.qinweizhao.product.service.IPmsCommentReplayService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -50,7 +50,7 @@ public class PmsCommentReplayServiceImpl implements IPmsCommentReplayService {
      */
     @Override
     public int insertPmsCommentReplay(PmsCommentReplay pmsCommentReplay) {
-        pmsCommentReplay.setCreateTime(DateUtils.getNowDate());
+        pmsCommentReplay.setCreateTime(LocalDateTime.now());
         return pmsCommentReplayMapper.insertPmsCommentReplay(pmsCommentReplay);
     }
 
@@ -62,7 +62,7 @@ public class PmsCommentReplayServiceImpl implements IPmsCommentReplayService {
      */
     @Override
     public int updatePmsCommentReplay(PmsCommentReplay pmsCommentReplay) {
-        pmsCommentReplay.setUpdateTime(DateUtils.getNowDate());
+        pmsCommentReplay.setUpdateTime(LocalDateTime.now());
         return pmsCommentReplayMapper.updatePmsCommentReplay(pmsCommentReplay);
     }
 

@@ -1,12 +1,12 @@
 package com.qinweizhao.product.service.impl;
 
-import com.qinweizhao.common.core.utils.DateUtils;
-import com.qinweizhao.product.model.entity.PmsSpuInfoDetail;
 import com.qinweizhao.product.mapper.PmsSpuInfoDetailMapper;
+import com.qinweizhao.product.model.entity.PmsSpuInfoDetail;
 import com.qinweizhao.product.service.IPmsSpuInfoDetailService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -50,7 +50,7 @@ public class PmsSpuInfoDetailServiceImpl implements IPmsSpuInfoDetailService {
      */
     @Override
     public int save(PmsSpuInfoDetail pmsSpuInfoDetail) {
-        pmsSpuInfoDetail.setCreateTime(DateUtils.getNowDate());
+        pmsSpuInfoDetail.setCreateTime(LocalDateTime.now());
         return pmsSpuInfoDetailMapper.insertPmsSpuInfoDetail(pmsSpuInfoDetail);
     }
 
@@ -62,7 +62,7 @@ public class PmsSpuInfoDetailServiceImpl implements IPmsSpuInfoDetailService {
      */
     @Override
     public int updateById(PmsSpuInfoDetail pmsSpuInfoDetail) {
-        pmsSpuInfoDetail.setUpdateTime(DateUtils.getNowDate());
+        pmsSpuInfoDetail.setUpdateTime(LocalDateTime.now());
         return pmsSpuInfoDetailMapper.updatePmsSpuInfoDetail(pmsSpuInfoDetail);
     }
 

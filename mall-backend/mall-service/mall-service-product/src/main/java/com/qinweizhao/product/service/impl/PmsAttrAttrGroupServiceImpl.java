@@ -1,22 +1,21 @@
 package com.qinweizhao.product.service.impl;
 
-import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.bean.BeanUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.product.constant.ProductConstant;
+import com.qinweizhao.product.mapper.PmsAttrAttrGroupMapper;
+import com.qinweizhao.product.mapper.PmsAttrGroupMapper;
+import com.qinweizhao.product.mapper.PmsAttrMapper;
 import com.qinweizhao.product.model.entity.PmsAttr;
 import com.qinweizhao.product.model.entity.PmsAttrAttrGroup;
 import com.qinweizhao.product.model.entity.PmsAttrGroup;
 import com.qinweizhao.product.model.param.AttrAttrGroupSaveBatchParam;
-import com.qinweizhao.product.mapper.PmsAttrAttrGroupMapper;
-import com.qinweizhao.product.mapper.PmsAttrGroupMapper;
-import com.qinweizhao.product.mapper.PmsAttrMapper;
 import com.qinweizhao.product.service.IPmsAttrAttrGroupService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -69,7 +68,7 @@ public class PmsAttrAttrGroupServiceImpl implements IPmsAttrAttrGroupService {
      */
     @Override
     public int insertPmsAttrAttrGroup(PmsAttrAttrGroup pmsAttrAttrGroup) {
-        pmsAttrAttrGroup.setCreateTime(DateUtils.getNowDate());
+        pmsAttrAttrGroup.setCreateTime(LocalDateTime.now());
         return pmsAttrAttrGroupMapper.insertPmsAttrAttrGroup(pmsAttrAttrGroup);
     }
 
@@ -81,7 +80,7 @@ public class PmsAttrAttrGroupServiceImpl implements IPmsAttrAttrGroupService {
      */
     @Override
     public int updatePmsAttrAttrGroup(PmsAttrAttrGroup pmsAttrAttrGroup) {
-        pmsAttrAttrGroup.setUpdateTime(DateUtils.getNowDate());
+        pmsAttrAttrGroup.setUpdateTime(LocalDateTime.now());
         return pmsAttrAttrGroupMapper.updatePmsAttrAttrGroup(pmsAttrAttrGroup);
     }
 
@@ -132,8 +131,7 @@ public class PmsAttrAttrGroupServiceImpl implements IPmsAttrAttrGroupService {
             PmsAttrAttrGroup attrAttrGroup = new PmsAttrAttrGroup();
             BeanUtils.copyProperties(pmsAttrAttrGroupSaveBatch, attrAttrGroup);
             attrAttrGroup.setAttrId(Long.parseLong(item));
-            attrAttrGroup.setCreateTime(new Date());
-            attrAttrGroup.setRemark("");
+            attrAttrGroup.setCreateTime(LocalDateTime.now());
             attrAttrGroup.setCreateBy(SecurityUtils.getUsername());
             return attrAttrGroup;
         }).collect(Collectors.toList());

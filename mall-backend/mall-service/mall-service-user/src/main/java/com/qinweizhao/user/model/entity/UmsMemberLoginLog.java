@@ -2,7 +2,7 @@ package com.qinweizhao.user.model.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.qinweizhao.common.core.annotation.Excel;
-import com.qinweizhao.common.core.web.domain.BaseEntity;
+import com.qinweizhao.component.core.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

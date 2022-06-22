@@ -2,7 +2,7 @@ package com.qinweizhao.system.model.entity;
 
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.annotation.Excel.ColumnType;
-import com.qinweizhao.common.core.web.domain.BaseEntity;
+import com.qinweizhao.system.model.domain.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

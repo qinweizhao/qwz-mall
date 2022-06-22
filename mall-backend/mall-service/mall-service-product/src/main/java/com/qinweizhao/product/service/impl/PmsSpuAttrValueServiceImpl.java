@@ -51,7 +51,6 @@ public class PmsSpuAttrValueServiceImpl implements IPmsSpuAttrValueService {
      */
     @Override
     public int save(PmsSpuAttrValue pmsSpuAttrValue) {
-        pmsSpuAttrValue.setCreateTime(DateUtils.getNowDate());
         return pmsSpuAttrValueMapper.insertPmsSpuAttrValue(pmsSpuAttrValue);
     }
 
@@ -63,7 +62,6 @@ public class PmsSpuAttrValueServiceImpl implements IPmsSpuAttrValueService {
      */
     @Override
     public int updateById(PmsSpuAttrValue pmsSpuAttrValue) {
-        pmsSpuAttrValue.setUpdateTime(DateUtils.getNowDate());
         return pmsSpuAttrValueMapper.updatePmsSpuAttrValue(pmsSpuAttrValue);
     }
 

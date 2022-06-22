@@ -5,7 +5,7 @@ import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.annotation.Excel.ColumnType;
 import com.qinweizhao.common.core.annotation.Excel.Type;
 import com.qinweizhao.common.core.annotation.Excels;
-import com.qinweizhao.common.core.web.domain.BaseEntity;
+import com.qinweizhao.system.model.domain.BaseEntity;
 import com.qinweizhao.common.core.xss.Xss;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

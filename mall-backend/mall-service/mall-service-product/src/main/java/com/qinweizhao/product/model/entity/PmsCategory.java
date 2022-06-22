@@ -1,12 +1,9 @@
 package com.qinweizhao.product.model.entity;
 
-import com.qinweizhao.common.core.web.domain.BaseEntity;
+import com.qinweizhao.component.core.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 商品三级分类对象 pms_category

@@ -1,9 +1,8 @@
 package com.qinweizhao.ware.service.impl;
 
 import com.qinweizhao.api.ware.dto.SkuHasStockDTO;
-import com.qinweizhao.common.core.utils.DateUtils;
-import com.qinweizhao.ware.model.entity.WmsWareSku;
 import com.qinweizhao.ware.mapper.WmsWareSkuMapper;
+import com.qinweizhao.ware.model.entity.WmsWareSku;
 import com.qinweizhao.ware.service.IWmsWareSkuService;
 import org.springframework.stereotype.Service;
 
@@ -52,7 +51,6 @@ public class WmsWareSkuServiceImpl implements IWmsWareSkuService {
      */
     @Override
     public int insertWmsWareSku(WmsWareSku wmsWareSku) {
-        wmsWareSku.setCreateTime(DateUtils.getNowDate());
         return wmsWareSkuMapper.insertWmsWareSku(wmsWareSku);
     }
 
@@ -64,7 +62,6 @@ public class WmsWareSkuServiceImpl implements IWmsWareSkuService {
      */
     @Override
     public int updateWmsWareSku(WmsWareSku wmsWareSku) {
-        wmsWareSku.setUpdateTime(DateUtils.getNowDate());
         return wmsWareSkuMapper.updateWmsWareSku(wmsWareSku);
     }
 

@@ -1,8 +1,7 @@
 package com.qinweizhao.product.service.impl;
 
-import com.qinweizhao.common.core.utils.DateUtils;
-import com.qinweizhao.product.model.entity.PmsSpuImage;
 import com.qinweizhao.product.mapper.PmsSpuImageMapper;
+import com.qinweizhao.product.model.entity.PmsSpuImage;
 import com.qinweizhao.product.service.IPmsSpuImageService;
 import org.springframework.stereotype.Service;
 
@@ -50,7 +49,6 @@ public class PmsSpuImageServiceImpl implements IPmsSpuImageService {
      */
     @Override
     public int insertPmsSpuImage(PmsSpuImage pmsSpuImage) {
-        pmsSpuImage.setCreateTime(DateUtils.getNowDate());
         return pmsSpuImageMapper.insertPmsSpuImage(pmsSpuImage);
     }
 
@@ -62,7 +60,6 @@ public class PmsSpuImageServiceImpl implements IPmsSpuImageService {
      */
     @Override
     public int updatePmsSpuImage(PmsSpuImage pmsSpuImage) {
-        pmsSpuImage.setUpdateTime(DateUtils.getNowDate());
         return pmsSpuImageMapper.updatePmsSpuImage(pmsSpuImage);
     }
 

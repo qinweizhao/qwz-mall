@@ -1,4 +1,4 @@
-package com.qinweizhao.common.core.web.domain;
+package com.qinweizhao.system.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

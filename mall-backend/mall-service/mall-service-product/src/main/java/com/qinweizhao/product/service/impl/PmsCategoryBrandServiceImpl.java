@@ -1,8 +1,7 @@
 package com.qinweizhao.product.service.impl;
 
-import com.qinweizhao.common.core.utils.DateUtils;
-import com.qinweizhao.product.model.entity.PmsCategoryBrand;
 import com.qinweizhao.product.mapper.PmsCategoryBrandMapper;
+import com.qinweizhao.product.model.entity.PmsCategoryBrand;
 import com.qinweizhao.product.service.IPmsCategoryBrandService;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +40,6 @@ public class PmsCategoryBrandServiceImpl implements IPmsCategoryBrandService {
      */
     @Override
     public int save(PmsCategoryBrand pmsCategoryBrand) {
-        pmsCategoryBrand.setCreateTime(DateUtils.getNowDate());
         return pmsCategoryBrandMapper.insert(pmsCategoryBrand);
     }
 

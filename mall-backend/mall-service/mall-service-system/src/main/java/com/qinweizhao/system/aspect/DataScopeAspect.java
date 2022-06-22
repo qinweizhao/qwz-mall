@@ -2,7 +2,7 @@ package com.qinweizhao.system.aspect;
 
 import com.qinweizhao.common.core.model.LoginUser;
 import com.qinweizhao.common.core.utils.StringUtils;
-import com.qinweizhao.common.core.web.domain.BaseEntity;
+import com.qinweizhao.system.model.domain.BaseEntity;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.system.annotation.DataScope;
 import com.qinweizhao.system.model.entity.SysRole;

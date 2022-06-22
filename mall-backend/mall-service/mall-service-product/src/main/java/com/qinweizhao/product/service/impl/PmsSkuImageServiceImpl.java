@@ -1,12 +1,12 @@
 package com.qinweizhao.product.service.impl;
 
-import com.qinweizhao.common.core.utils.DateUtils;
-import com.qinweizhao.product.model.entity.PmsSkuImage;
 import com.qinweizhao.product.mapper.PmsSkuImageMapper;
+import com.qinweizhao.product.model.entity.PmsSkuImage;
 import com.qinweizhao.product.service.IPmsSkuImageService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -50,7 +50,7 @@ public class PmsSkuImageServiceImpl implements IPmsSkuImageService {
      */
     @Override
     public int save(PmsSkuImage pmsSkuImage) {
-        pmsSkuImage.setCreateTime(DateUtils.getNowDate());
+        pmsSkuImage.setCreateTime(LocalDateTime.now());
         return pmsSkuImageMapper.insertPmsSkuImage(pmsSkuImage);
     }
 
@@ -62,7 +62,7 @@ public class PmsSkuImageServiceImpl implements IPmsSkuImageService {
      */
     @Override
     public int updateById(PmsSkuImage pmsSkuImage) {
-        pmsSkuImage.setUpdateTime(DateUtils.getNowDate());
+        pmsSkuImage.setUpdateTime(LocalDateTime.now());
         return pmsSkuImageMapper.updatePmsSkuImage(pmsSkuImage);
     }
 

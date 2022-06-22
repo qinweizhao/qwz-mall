@@ -5,7 +5,7 @@ import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.annotation.Excel.ColumnType;
 import com.qinweizhao.common.core.constant.ScheduleConstants;
 import com.qinweizhao.common.core.utils.StringUtils;
-import com.qinweizhao.common.core.web.domain.BaseEntity;
+import com.qinweizhao.system.model.domain.BaseEntity;
 import com.qinweizhao.system.util.CronUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

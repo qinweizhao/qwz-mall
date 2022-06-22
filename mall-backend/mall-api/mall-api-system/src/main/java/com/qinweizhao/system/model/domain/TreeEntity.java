@@ -1,4 +1,4 @@
-package com.qinweizhao.common.core.web.domain;
+package com.qinweizhao.system.model.domain;
 
 import java.util.ArrayList;
 import java.util.List;

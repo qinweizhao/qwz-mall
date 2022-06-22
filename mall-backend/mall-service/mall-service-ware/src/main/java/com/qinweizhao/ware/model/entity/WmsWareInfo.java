@@ -1,12 +1,8 @@
 package com.qinweizhao.ware.model.entity;
 
-import com.qinweizhao.common.core.annotation.Excel;
-import com.qinweizhao.common.core.web.domain.BaseEntity;
-import jdk.jfr.DataAmount;
+import com.qinweizhao.component.core.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * 仓库信息对象 wms_ware_info

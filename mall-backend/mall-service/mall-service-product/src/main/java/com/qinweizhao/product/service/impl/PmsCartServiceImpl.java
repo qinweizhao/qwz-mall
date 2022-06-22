@@ -11,7 +11,7 @@ import com.qinweizhao.product.model.entity.PmsSkuInfo;
 import com.qinweizhao.product.service.IPmsCartService;
 import com.qinweizhao.product.service.IPmsSkuInfoService;
 import org.springframework.data.redis.core.BoundHashOperations;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -29,7 +29,7 @@ import java.util.concurrent.CompletableFuture;
 public class PmsCartServiceImpl implements IPmsCartService {
 
     @Resource
-    private StringRedisTemplate redisTemplate;
+    private RedisTemplate<String,Object> redisTemplate;
 
     @Resource
     private IPmsSkuInfoService pmsSkuInfoService;

@@ -6,13 +6,12 @@ import com.qinweizhao.api.search.feign.ElasticSaveFeignService;
 import com.qinweizhao.api.ware.dto.SkuHasStockDTO;
 import com.qinweizhao.api.ware.feign.WareSkuFeignService;
 import com.qinweizhao.common.core.constant.SecurityConstants;
-import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.bean.BeanUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.core.response.SystemResultCodeEnum;
-import com.qinweizhao.product.mapper.PmsSpuInfoMapper;
 import com.qinweizhao.product.constant.ProductConstant;
+import com.qinweizhao.product.mapper.PmsSpuInfoMapper;
 import com.qinweizhao.product.model.entity.*;
 import com.qinweizhao.product.model.param.SpuSaveParam;
 import com.qinweizhao.product.service.*;
@@ -22,6 +21,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -101,7 +101,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
      */
     @Override
     public int insertPmsSpuInfo(PmsSpuInfo pmsSpuInfo) {
-        pmsSpuInfo.setCreateTime(DateUtils.getNowDate());
+        pmsSpuInfo.setCreateTime(LocalDateTime.now());
         return pmsSpuInfoMapper.insertPmsSpuInfo(pmsSpuInfo);
     }
 
@@ -113,7 +113,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
      */
     @Override
     public int updateById(PmsSpuInfo pmsSpuInfo) {
-        pmsSpuInfo.setUpdateTime(DateUtils.getNowDate());
+        pmsSpuInfo.setUpdateTime(LocalDateTime.now());
         return pmsSpuInfoMapper.updatePmsSpuInfo(pmsSpuInfo);
     }
 

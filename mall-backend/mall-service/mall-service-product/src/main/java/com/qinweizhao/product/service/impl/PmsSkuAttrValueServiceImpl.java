@@ -1,7 +1,6 @@
 package com.qinweizhao.product.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
-import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.product.mapper.PmsSkuAttrValueMapper;
 import com.qinweizhao.product.model.dto.SkuItemAttrDTO;
 import com.qinweizhao.product.model.entity.PmsSkuAttrValue;
@@ -9,6 +8,7 @@ import com.qinweizhao.product.service.IPmsSkuAttrValueService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -57,7 +57,7 @@ public class PmsSkuAttrValueServiceImpl implements IPmsSkuAttrValueService {
      */
     @Override
     public int save(PmsSkuAttrValue pmsSkuAttrValue) {
-        pmsSkuAttrValue.setCreateTime(DateUtils.getNowDate());
+        pmsSkuAttrValue.setCreateTime(LocalDateTime.now());
         return pmsSkuAttrValueMapper.insertPmsSkuAttrValue(pmsSkuAttrValue);
     }
 
@@ -69,7 +69,7 @@ public class PmsSkuAttrValueServiceImpl implements IPmsSkuAttrValueService {
      */
     @Override
     public int updateById(PmsSkuAttrValue pmsSkuAttrValue) {
-        pmsSkuAttrValue.setUpdateTime(DateUtils.getNowDate());
+        pmsSkuAttrValue.setUpdateTime(LocalDateTime.now());
         return pmsSkuAttrValueMapper.updatePmsSkuAttrValue(pmsSkuAttrValue);
     }
 

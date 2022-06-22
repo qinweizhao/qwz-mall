@@ -1,12 +1,12 @@
 package com.qinweizhao.product.service.impl;
 
-import com.qinweizhao.common.core.utils.DateUtils;
-import com.qinweizhao.product.model.entity.PmsSpuComment;
 import com.qinweizhao.product.mapper.PmsSpuCommentMapper;
+import com.qinweizhao.product.model.entity.PmsSpuComment;
 import com.qinweizhao.product.service.IPmsSpuCommentService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -50,7 +50,7 @@ public class PmsSpuCommentServiceImpl implements IPmsSpuCommentService {
      */
     @Override
     public int save(PmsSpuComment pmsSpuComment) {
-        pmsSpuComment.setCreateTime(DateUtils.getNowDate());
+        pmsSpuComment.setCreateTime(LocalDateTime.now());
         return pmsSpuCommentMapper.insertPmsSpuComment(pmsSpuComment);
     }
 
@@ -62,7 +62,7 @@ public class PmsSpuCommentServiceImpl implements IPmsSpuCommentService {
      */
     @Override
     public int updateById(PmsSpuComment pmsSpuComment) {
-        pmsSpuComment.setUpdateTime(DateUtils.getNowDate());
+        pmsSpuComment.setUpdateTime(LocalDateTime.now());
         return pmsSpuCommentMapper.updatePmsSpuComment(pmsSpuComment);
     }
 

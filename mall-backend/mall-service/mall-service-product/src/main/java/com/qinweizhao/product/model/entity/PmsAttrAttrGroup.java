@@ -1,6 +1,6 @@
 package com.qinweizhao.product.model.entity;
 
-import com.qinweizhao.common.core.web.domain.BaseEntity;
+import com.qinweizhao.component.core.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

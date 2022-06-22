@@ -1,7 +1,8 @@
 package com.qinweizhao.product.model.dto;
 
-import com.qinweizhao.common.core.web.domain.BaseEntity;
+import com.qinweizhao.component.core.entity.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 购物车对象 pms_cart_item
@@ -9,6 +10,7 @@ import lombok.Data;
  * @author qinweizhao
  * @date 2022-06-16
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class CartItemDTO extends BaseEntity {
     private static final long serialVersionUID = 1L;
@@ -51,6 +53,6 @@ public class CartItemDTO extends BaseEntity {
     /**
      * 是否已勾选
      */
-    private Long checked;
+    private Boolean checked;
 
 }

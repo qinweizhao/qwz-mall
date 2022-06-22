@@ -1,6 +1,6 @@
 package com.qinweizhao.system.model.entity;
 
-import com.qinweizhao.common.core.web.domain.BaseEntity;
+import com.qinweizhao.system.model.domain.BaseEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 

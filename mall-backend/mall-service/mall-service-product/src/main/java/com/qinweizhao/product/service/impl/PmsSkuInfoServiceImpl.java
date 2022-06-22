@@ -1,6 +1,5 @@
 package com.qinweizhao.product.service.impl;
 
-import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.product.convert.SkuImageConvert;
 import com.qinweizhao.product.convert.SkuInfoConvert;
 import com.qinweizhao.product.convert.SpuInfoDetailConvert;
@@ -19,6 +18,7 @@ import com.qinweizhao.product.service.IPmsSkuInfoService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -82,7 +82,7 @@ public class PmsSkuInfoServiceImpl implements IPmsSkuInfoService {
      */
     @Override
     public int save(PmsSkuInfo pmsSkuInfo) {
-        pmsSkuInfo.setCreateTime(DateUtils.getNowDate());
+        pmsSkuInfo.setCreateTime(LocalDateTime.now());
         return pmsSkuInfoMapper.insertPmsSkuInfo(pmsSkuInfo);
     }
 
@@ -94,7 +94,7 @@ public class PmsSkuInfoServiceImpl implements IPmsSkuInfoService {
      */
     @Override
     public int updateById(PmsSkuInfo pmsSkuInfo) {
-        pmsSkuInfo.setUpdateTime(DateUtils.getNowDate());
+        pmsSkuInfo.setUpdateTime(LocalDateTime.now());
         return pmsSkuInfoMapper.updatePmsSkuInfo(pmsSkuInfo);
     }
 

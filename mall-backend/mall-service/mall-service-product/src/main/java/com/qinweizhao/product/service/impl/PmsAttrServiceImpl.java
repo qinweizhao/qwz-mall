@@ -1,17 +1,17 @@
 package com.qinweizhao.product.service.impl;
 
-import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.bean.BeanUtils;
+import com.qinweizhao.product.mapper.PmsAttrAttrGroupMapper;
+import com.qinweizhao.product.mapper.PmsAttrMapper;
 import com.qinweizhao.product.model.entity.PmsAttr;
 import com.qinweizhao.product.model.entity.PmsAttrAttrGroup;
 import com.qinweizhao.product.model.param.AttrParam;
-import com.qinweizhao.product.mapper.PmsAttrAttrGroupMapper;
-import com.qinweizhao.product.mapper.PmsAttrMapper;
 import com.qinweizhao.product.service.IPmsAttrService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -62,7 +62,7 @@ public class PmsAttrServiceImpl implements IPmsAttrService {
     @Transactional(rollbackFor = Exception.class)
     public int save(AttrParam pmsAttr) {
         PmsAttr attr = new PmsAttr();
-        attr.setCreateTime(DateUtils.getNowDate());
+        attr.setCreateTime(LocalDateTime.now());
         BeanUtils.copyProperties(pmsAttr, attr);
         int count = pmsAttrMapper.insertPmsAttr(attr);
         Long attrId = attr.getAttrId();
@@ -85,7 +85,7 @@ public class PmsAttrServiceImpl implements IPmsAttrService {
     @Override
     public int updateById(AttrParam pmsAttr) {
         PmsAttr attr = new PmsAttr();
-        attr.setUpdateTime(DateUtils.getNowDate());
+        attr.setUpdateTime(LocalDateTime.now());
         BeanUtils.copyProperties(pmsAttr, attr);
         Long attrGroupId = pmsAttr.getAttrGroupId();
         Long attrId = attr.getAttrId();

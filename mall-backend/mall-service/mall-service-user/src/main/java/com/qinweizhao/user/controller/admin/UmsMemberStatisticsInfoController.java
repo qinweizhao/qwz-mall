@@ -23,6 +23,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/info")
 public class UmsMemberStatisticsInfoController extends BaseController {
+
+
     @Resource
     private UmsMemberStatisticsInfoService umsMemberStatisticsInfoService;
 
@@ -45,7 +47,7 @@ public class UmsMemberStatisticsInfoController extends BaseController {
     @PostMapping("/export")
     public R<?> export(HttpServletResponse response, UmsMemberStatisticsInfo umsMemberStatisticsInfo) {
         List<UmsMemberStatisticsInfo> list = umsMemberStatisticsInfoService.selectUmsMemberStatisticsInfoList(umsMemberStatisticsInfo);
-        ExcelUtil<UmsMemberStatisticsInfo> util = new ExcelUtil<UmsMemberStatisticsInfo>(UmsMemberStatisticsInfo.class);
+        ExcelUtil<UmsMemberStatisticsInfo> util = new ExcelUtil<>(UmsMemberStatisticsInfo.class);
         util.exportExcel(response, list, "会员统计信息数据");
         return R.success();
     }

@@ -1,6 +1,5 @@
 package com.qinweizhao.product.service.impl;
 
-import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.product.convert.CategoryConvert;
 import com.qinweizhao.product.mapper.PmsCategoryMapper;
@@ -12,6 +11,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -61,7 +61,7 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
     public int save(PmsCategory pmsCategory) {
         PmsCategory info = pmsCategoryMapper.selectById(pmsCategory.getParentId());
         pmsCategory.setAncestors(info.getAncestors() + "," + pmsCategory.getParentId());
-        pmsCategory.setCreateTime(DateUtils.getNowDate());
+        pmsCategory.setCreateTime(LocalDateTime.now());
         return pmsCategoryMapper.insert(pmsCategory);
     }
 
@@ -83,7 +83,7 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
             updateCategoryChildren(pmsCategory.getParentId(), newAncestors, oldAncestors);
         }
 
-        pmsCategory.setUpdateTime(DateUtils.getNowDate());
+        pmsCategory.setUpdateTime(LocalDateTime.now());
         return pmsCategoryMapper.updateById(pmsCategory);
     }
 

@@ -1,6 +1,6 @@
 package com.qinweizhao.ware.model.param;
 
-import com.qinweizhao.common.core.web.domain.BaseEntity;
+import com.qinweizhao.component.core.entity.BaseEntity;
 import com.qinweizhao.component.core.request.PageParam;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

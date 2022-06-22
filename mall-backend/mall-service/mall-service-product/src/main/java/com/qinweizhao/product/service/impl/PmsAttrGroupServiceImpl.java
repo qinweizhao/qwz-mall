@@ -1,6 +1,5 @@
 package com.qinweizhao.product.service.impl;
 
-import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.product.convert.AttrConvert;
 import com.qinweizhao.product.mapper.PmsAttrGroupMapper;
@@ -17,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -69,7 +69,7 @@ public class PmsAttrGroupServiceImpl implements IPmsAttrGroupService {
     @Override
     public int save(PmsAttrGroup pmsAttrGroup) {
         pmsAttrGroup.setCreateBy(SecurityUtils.getUsername());
-        pmsAttrGroup.setCreateTime(DateUtils.getNowDate());
+        pmsAttrGroup.setCreateTime(LocalDateTime.now());
         return pmsAttrGroupMapper.insertPmsAttrGroup(pmsAttrGroup);
     }
 
@@ -82,7 +82,7 @@ public class PmsAttrGroupServiceImpl implements IPmsAttrGroupService {
     @Override
     public int updateById(PmsAttrGroup pmsAttrGroup) {
         pmsAttrGroup.setUpdateBy(SecurityUtils.getUsername());
-        pmsAttrGroup.setUpdateTime(DateUtils.getNowDate());
+        pmsAttrGroup.setUpdateTime(LocalDateTime.now());
         return pmsAttrGroupMapper.updatePmsAttrGroup(pmsAttrGroup);
     }
 
