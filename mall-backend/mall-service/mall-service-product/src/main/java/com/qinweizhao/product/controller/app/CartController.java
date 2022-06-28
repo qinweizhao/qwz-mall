@@ -18,6 +18,7 @@ import java.util.List;
 @RequestMapping("/app/cart")
 public class CartController {
 
+
     @Resource
     private IPmsCartService pmsCartItemService;
 
@@ -29,19 +30,19 @@ public class CartController {
     }
 
     @DeleteMapping
-    public  R<Boolean> removeAll() {
+    public R<Boolean> removeAll() {
         boolean result = pmsCartItemService.removeCart();
         return R.success(result);
     }
 
     @PostMapping
-    public  R<?> addCartItem(@RequestParam Long skuId) {
-        pmsCartItemService.saveCartItem(skuId);
-        return R.success();
+    public R<Boolean> addCartItem(@RequestParam Long skuId) {
+        boolean result = pmsCartItemService.saveCartItem(skuId);
+        return R.success(result);
     }
 
     @PutMapping("/skuId/{skuId}")
-    public  R<?> updateCartItem(@PathVariable Long skuId, @RequestBody PmsCartItem cartItem) {
+    public R<?> updateCartItem(@PathVariable Long skuId, @RequestBody PmsCartItem cartItem) {
         cartItem.setSkuId(skuId);
         boolean result = pmsCartItemService.updateCartItem(cartItem);
         return R.success(result);
