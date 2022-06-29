@@ -24,6 +24,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/operlog")
 public class SysOperlogController extends BaseController {
+
     @Resource
     private ISysOperLogService operLogService;
 

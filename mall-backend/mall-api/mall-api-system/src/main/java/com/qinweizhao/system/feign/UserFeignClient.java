@@ -5,7 +5,7 @@ import com.qinweizhao.common.core.constant.ServiceNameConstants;
 import com.qinweizhao.common.core.model.LoginUser;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.system.factory.RemoteUserFallbackFactory;
-import com.qinweizhao.system.model.dto.SysUserDTO;
+import com.qinweizhao.system.model.param.SysUserParam;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @FeignClient(contextId = "userFeignClient", value = ServiceNameConstants.SYSTEM_SERVICE, fallbackFactory = RemoteUserFallbackFactory.class)
 public interface UserFeignClient {
+
     /**
      * 通过用户名查询用户信息
      *
@@ -34,5 +35,5 @@ public interface UserFeignClient {
      * @return 结果
      */
     @PostMapping("/user/register")
-    R<Boolean> registerUserInfo(@RequestBody SysUserDTO sysUser, @RequestHeader(SecurityConstants.FROM_SOURCE) String source);
+    R<Boolean> registerUserInfo(@RequestBody SysUserParam sysUser, @RequestHeader(SecurityConstants.FROM_SOURCE) String source);
 }

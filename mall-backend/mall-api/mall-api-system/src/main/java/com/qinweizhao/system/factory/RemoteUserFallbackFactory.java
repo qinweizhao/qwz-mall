@@ -3,7 +3,7 @@ package com.qinweizhao.system.factory;
 import com.qinweizhao.common.core.model.LoginUser;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.system.feign.UserFeignClient;
-import com.qinweizhao.system.model.dto.SysUserDTO;
+import com.qinweizhao.system.model.param.SysUserParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.openfeign.FallbackFactory;
@@ -31,7 +31,7 @@ public class RemoteUserFallbackFactory implements FallbackFactory<UserFeignClien
             }
 
             @Override
-            public R<Boolean> registerUserInfo(SysUserDTO sysUser, String source) {
+            public R<Boolean> registerUserInfo(SysUserParam sysUser, String source) {
 //                return R.failure("注册用户失败:" + throwable.getMessage());
                 return R.failure();
             }

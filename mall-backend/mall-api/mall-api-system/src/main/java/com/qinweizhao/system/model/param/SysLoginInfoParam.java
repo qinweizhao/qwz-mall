@@ -1,11 +1,9 @@
-package com.qinweizhao.system.model.dto;
+package com.qinweizhao.system.model.param;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.qinweizhao.common.core.annotation.Excel;
-import com.qinweizhao.system.model.domain.BaseEntity;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -14,8 +12,8 @@ import java.util.Date;
  * @author qinweizhao
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class SysLoginInfoDTO extends BaseEntity {
+public class SysLoginInfoParam implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -41,7 +39,6 @@ public class SysLoginInfoDTO extends BaseEntity {
     /**
      * 描述
      */
-    @Excel(name = "描述")
     private String msg;
 
     /**

@@ -15,8 +15,8 @@ import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.system.feign.LogFeignClient;
 import com.qinweizhao.system.feign.UserFeignClient;
-import com.qinweizhao.system.model.dto.SysLoginInfoDTO;
-import com.qinweizhao.system.model.dto.SysUserDTO;
+import com.qinweizhao.system.model.param.SysLoginInfoParam;
+import com.qinweizhao.system.model.param.SysUserParam;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -150,7 +150,7 @@ public class SysLoginService {
         }
 
         // 注册用户信息
-        SysUserDTO sysUser = new SysUserDTO();
+        SysUserParam sysUser = new SysUserParam();
         sysUser.setUserName(username);
         sysUser.setNickName(username);
         sysUser.setPassword(SecurityUtils.encryptPassword(password));
@@ -170,7 +170,7 @@ public class SysLoginService {
      * @param message  消息内容
      */
     public void recordLoginInfo(String username, String status, String message) {
-        SysLoginInfoDTO loginInfo = new SysLoginInfoDTO();
+        SysLoginInfoParam loginInfo = new SysLoginInfoParam();
         loginInfo.setUserName(username);
         loginInfo.setIpaddr(IpUtils.getIpAddr(ServletUtils.getRequest()));
         loginInfo.setMsg(message);
@@ -180,6 +180,6 @@ public class SysLoginService {
         } else if (Constants.LOGIN_FAIL.equals(status)) {
             loginInfo.setStatus("1");
         }
-        logFeignClient.saveLogininfor(loginInfo, SecurityConstants.INNER);
+        logFeignClient.saveLoginInfo(loginInfo, SecurityConstants.INNER);
     }
 }

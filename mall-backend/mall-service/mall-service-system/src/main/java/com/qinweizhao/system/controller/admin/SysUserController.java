@@ -1,5 +1,6 @@
 package com.qinweizhao.system.controller.admin;
 
+import com.alibaba.fastjson.JSON;
 import com.qinweizhao.common.core.constant.UserConstants;
 import com.qinweizhao.common.core.exception.ServiceException;
 import com.qinweizhao.common.core.utils.StringUtils;
@@ -111,7 +112,9 @@ public class SysUserController extends BaseController {
         sysUserVo.setDelFlag(sysUser.getDelFlag());
         sysUserVo.setRoles(roles);
         sysUserVo.setPermissions(permissions);
-        sysUserVo.setDetails(sysUser);
+
+        // 防止出现类型转换异常
+        sysUserVo.setDetails(JSON.toJSONString(sysUser));
 
         return R.success(sysUserVo);
     }

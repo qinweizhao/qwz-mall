@@ -4,7 +4,7 @@ import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.core.BulkRequest;
 import co.elastic.clients.elasticsearch.core.BulkResponse;
 import co.elastic.clients.elasticsearch.core.bulk.BulkResponseItem;
-import com.qinweizhao.api.search.dto.EsSkuSaveDTO;
+import com.qinweizhao.api.search.model.param.EsSkuSaveParam;
 import com.qinweizhao.search.model.constant.EsConstant;
 import com.qinweizhao.search.service.ElasticSaveService;
 import lombok.extern.slf4j.Slf4j;
@@ -35,12 +35,12 @@ public class ElasticSaveServiceImpl implements ElasticSaveService {
      * IndexResponse json = client.index(i -> i.index("bank").withJson(stringReader));
      * </p>
      *
-     * @param esSkuSaveDTOList esSkuSaveDTOList
+     * @param esSkuSaveParamList esSkuSaveDTOList
      * @return boolean
      * @throws IOException e
      */
     @Override
-    public boolean saveSku(List<EsSkuSaveDTO> esSkuSaveDTOList) throws IOException {
+    public boolean saveSku(List<EsSkuSaveParam> esSkuSaveParamList) throws IOException {
 
         //保存到es
         //1、给es中建立索引。product，建立好映射关系
@@ -48,11 +48,11 @@ public class ElasticSaveServiceImpl implements ElasticSaveService {
 
         BulkRequest.Builder br = new BulkRequest.Builder();
 
-        for (EsSkuSaveDTO esSkuSaveDTO : esSkuSaveDTOList) {
+        for (EsSkuSaveParam esSkuSaveParam : esSkuSaveParamList) {
             br.operations(op -> op
                     .index(idx -> idx
                             .index(EsConstant.PRODUCT_INDEX)
-                            .document(esSkuSaveDTO)
+                            .document(esSkuSaveParam)
 
                     )
             );

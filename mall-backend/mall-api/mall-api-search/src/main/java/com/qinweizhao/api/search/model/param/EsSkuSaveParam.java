@@ -1,9 +1,8 @@
-package com.qinweizhao.api.search.dto;
+package com.qinweizhao.api.search.model.param;
 
 
 import lombok.Data;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -29,7 +28,7 @@ import java.util.List;
  * @author weizhao
  */
 @Data
-public class EsSkuSaveDTO {
+public class EsSkuSaveParam {
 
     private Long skuId;
 

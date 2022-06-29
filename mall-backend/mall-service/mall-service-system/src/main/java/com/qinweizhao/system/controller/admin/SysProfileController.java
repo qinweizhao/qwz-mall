@@ -1,5 +1,6 @@
 package com.qinweizhao.system.controller.admin;
 
+import com.alibaba.fastjson.JSON;
 import com.qinweizhao.api.file.RemoteFileService;
 import com.qinweizhao.api.file.domain.SysFile;
 import com.qinweizhao.common.core.constant.UserConstants;
@@ -57,7 +58,7 @@ public class SysProfileController extends BaseController {
     @PutMapping
     public AjaxResult updateProfile(@RequestBody SysUser user) {
         LoginUser loginUser = SecurityUtils.getLoginUser();
-        SysUser sysUser = (SysUser) loginUser.getDetails();
+        SysUser sysUser = JSON.parseObject(loginUser.getDetails(),SysUser.class);
         user.setUserName(sysUser.getUserName());
         if (StringUtils.isNotEmpty(user.getPhonenumber())
                 && UserConstants.NOT_UNIQUE.equals(userService.checkPhoneUnique(user))) {
@@ -98,8 +99,8 @@ public class SysProfileController extends BaseController {
         if (userService.resetUserPwd(username, SecurityUtils.encryptPassword(newPassword)) > 0) {
             // 更新缓存用户密码
             LoginUser loginUser = SecurityUtils.getLoginUser();
-            SysUser details = (SysUser) loginUser.getDetails();
-            details.setPassword(SecurityUtils.encryptPassword(newPassword));
+            SysUser sysUser = JSON.parseObject(loginUser.getDetails(),SysUser.class);
+            sysUser.setPassword(SecurityUtils.encryptPassword(newPassword));
             tokenService.setLoginUser(loginUser);
             return AjaxResult.success();
         }
@@ -123,8 +124,8 @@ public class SysProfileController extends BaseController {
                 AjaxResult ajax = AjaxResult.success();
                 ajax.put("imgUrl", url);
                 // 更新缓存用户头像
-                SysUser details = (SysUser) loginUser.getDetails();
-                details.setAvatar(url);
+                SysUser sysUser = JSON.parseObject(loginUser.getDetails(),SysUser.class);
+                sysUser.setAvatar(url);
                 tokenService.setLoginUser(loginUser);
                 return ajax;
             }

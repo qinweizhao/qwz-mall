@@ -6,7 +6,7 @@ import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.log.SysOperLog;
 import com.qinweizhao.component.log.service.QwzLogService;
 import com.qinweizhao.system.factory.RemoteLogFallbackFactory;
-import com.qinweizhao.system.model.dto.SysLoginInfoDTO;
+import com.qinweizhao.system.model.param.SysLoginInfoParam;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,10 +33,10 @@ public interface LogFeignClient extends QwzLogService {
     /**
      * 保存访问记录
      *
-     * @param sysLoginInfoDTO 访问实体
-     * @param source        请求来源
+     * @param sysLoginInfoParam 访问实体
+     * @param source            请求来源
      * @return 结果
      */
     @PostMapping("/logininfor")
-    R<Boolean> saveLogininfor(@RequestBody SysLoginInfoDTO sysLoginInfoDTO, @RequestHeader(SecurityConstants.FROM_SOURCE) String source);
+    R<Boolean> saveLoginInfo(@RequestBody SysLoginInfoParam sysLoginInfoParam, @RequestHeader(SecurityConstants.FROM_SOURCE) String source);
 }

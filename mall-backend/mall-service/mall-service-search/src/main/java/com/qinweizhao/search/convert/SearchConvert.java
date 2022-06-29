@@ -1,7 +1,7 @@
 package com.qinweizhao.search.convert;
 
 
-import com.qinweizhao.api.search.dto.EsSkuSaveDTO;
+import com.qinweizhao.api.search.model.param.EsSkuSaveParam;
 import com.qinweizhao.search.model.vo.SearchVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -26,9 +26,9 @@ public interface SearchConvert {
     /**
      * DTO 转 VO
      *
-     * @param esSkuSaveDTOList esSkuSaveDTOList
+     * @param esSkuSaveParamList esSkuSaveDTOList
      * @return List
      */
-    List<SearchVO.Product> convertToVO(List<EsSkuSaveDTO> esSkuSaveDTOList);
+    List<SearchVO.Product> convertToVO(List<EsSkuSaveParam> esSkuSaveParamList);
 
 }

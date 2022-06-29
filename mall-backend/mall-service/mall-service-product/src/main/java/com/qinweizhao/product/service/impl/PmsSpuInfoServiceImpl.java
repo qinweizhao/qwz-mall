@@ -1,8 +1,8 @@
 package com.qinweizhao.product.service.impl;
 
 
-import com.qinweizhao.api.search.dto.EsSkuSaveDTO;
 import com.qinweizhao.api.search.feign.ElasticSaveFeignService;
+import com.qinweizhao.api.search.model.param.EsSkuSaveParam;
 import com.qinweizhao.api.ware.dto.SkuHasStockDTO;
 import com.qinweizhao.api.ware.feign.WareSkuFeignService;
 import com.qinweizhao.common.core.constant.SecurityConstants;
@@ -303,9 +303,9 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
 
         // 封装可检索属性
         List<PmsSpuAttrValue> pmsSpuAttrValues = pmsSpuAttrValueService.listSearchAttrValueBySpuId(spuId, ProductConstant.SearchEnum.Yes.getCode());
-        List<EsSkuSaveDTO.Attr> esAttrs = pmsSpuAttrValues.stream()
+        List<EsSkuSaveParam.Attr> esAttrs = pmsSpuAttrValues.stream()
                 .map(item -> {
-                    EsSkuSaveDTO.Attr esAttr = new EsSkuSaveDTO.Attr();
+                    EsSkuSaveParam.Attr esAttr = new EsSkuSaveParam.Attr();
                     esAttr.setAttrId(item.getAttrId());
                     esAttr.setAttrName(item.getName());
                     esAttr.setAttrValue(item.getValue());
@@ -316,46 +316,46 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
         List<Long> skuIds = pmsSkuInfos.stream().map(PmsSkuInfo::getSkuId).collect(Collectors.toList());
 
         // TODO 调用失败？
-        R<List<SkuHasStockDTO>> listR = wareSkuFeignService.listHasStockBySkuIds(skuIds,SecurityConstants.INNER);
+        R<List<SkuHasStockDTO>> listR = wareSkuFeignService.listHasStockBySkuIds(skuIds, SecurityConstants.INNER);
         List<SkuHasStockDTO> data = listR.getData();
         Map<Long, Boolean> hasStockMap = data.stream().collect(Collectors.toMap(SkuHasStockDTO::getSkuId, SkuHasStockDTO::getHasStock));
 
 
-        List<EsSkuSaveDTO> esSkuSaveDTOList = pmsSkuInfos.stream().map(sku -> {
-            EsSkuSaveDTO esSkuSaveDTO = new EsSkuSaveDTO();
-            esSkuSaveDTO.setSkuId(sku.getSkuId());
-            esSkuSaveDTO.setSpuId(sku.getSpuId());
-            esSkuSaveDTO.setSkuTitle(sku.getTitle());
+        List<EsSkuSaveParam> esSkuSaveParamList = pmsSkuInfos.stream().map(sku -> {
+            EsSkuSaveParam esSkuSaveParam = new EsSkuSaveParam();
+            esSkuSaveParam.setSkuId(sku.getSkuId());
+            esSkuSaveParam.setSpuId(sku.getSpuId());
+            esSkuSaveParam.setSkuTitle(sku.getTitle());
             // todo
-            esSkuSaveDTO.setSkuPrice(sku.getPrice().longValue());
-            esSkuSaveDTO.setSkuImg(sku.getDefaultImg());
-            esSkuSaveDTO.setSaleCount(sku.getSaleCount());
+            esSkuSaveParam.setSkuPrice(sku.getPrice().longValue());
+            esSkuSaveParam.setSkuImg(sku.getDefaultImg());
+            esSkuSaveParam.setSaleCount(sku.getSaleCount());
             // 是否有库存
 
-            esSkuSaveDTO.setHasStock(hasStockMap.get(sku.getSkuId()));
+            esSkuSaveParam.setHasStock(hasStockMap.get(sku.getSkuId()));
 
             // 热度评分
-            esSkuSaveDTO.setHotScore(0L);
+            esSkuSaveParam.setHotScore(0L);
 
             // 查询品牌信息
             PmsBrand pmsBrand = pmsBrandService.getById(sku.getBrandId());
 
-            esSkuSaveDTO.setBrandId(sku.getBrandId());
-            esSkuSaveDTO.setBrandName(pmsBrand.getName());
-            esSkuSaveDTO.setBrandImg(pmsBrand.getLogo());
+            esSkuSaveParam.setBrandId(sku.getBrandId());
+            esSkuSaveParam.setBrandName(pmsBrand.getName());
+            esSkuSaveParam.setBrandImg(pmsBrand.getLogo());
 
             // 查询分类信息
             PmsCategory pmsCategory = pmsCategoryService.getById(sku.getCategoryId());
-            esSkuSaveDTO.setCategoryId(sku.getCategoryId());
-            esSkuSaveDTO.setCategoryName(pmsCategory.getName());
+            esSkuSaveParam.setCategoryId(sku.getCategoryId());
+            esSkuSaveParam.setCategoryName(pmsCategory.getName());
 
             // 设置属性信息
-            esSkuSaveDTO.setAttrs(esAttrs);
-            return esSkuSaveDTO;
+            esSkuSaveParam.setAttrs(esAttrs);
+            return esSkuSaveParam;
         }).collect(Collectors.toList());
 
 
-        R<?> result = elasticSaveFeignService.saveEsSkuList(esSkuSaveDTOList);
+        R<?> result = elasticSaveFeignService.saveEsSkuList(esSkuSaveParamList);
         if (!result.getCode().equals(SystemResultCodeEnum.SUCCESS.getCode())) {
             System.out.println("远程调用失败");
             //TODO 7、重复调用？接口幂等性；重试机制？
@@ -363,7 +363,8 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
 
     }
 
-    /**]
+    /**
+     * ]
      * 下架
      *
      * @param spuId spuId

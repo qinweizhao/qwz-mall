@@ -12,7 +12,7 @@ import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.search.Hit;
-import com.qinweizhao.api.search.dto.EsSkuSaveDTO;
+import com.qinweizhao.api.search.model.param.EsSkuSaveParam;
 import com.qinweizhao.common.core.exception.ServiceException;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.search.convert.SearchConvert;
@@ -70,7 +70,7 @@ public class SearchServiceImpl implements SearchService {
         SearchRequest searchRequest = this.buildSearchRequest(param);
         SearchVO result;
         try {
-            SearchResponse<EsSkuSaveDTO> searchResponse = elasticsearchClient.search(searchRequest, EsSkuSaveDTO.class);
+            SearchResponse<EsSkuSaveParam> searchResponse = elasticsearchClient.search(searchRequest, EsSkuSaveParam.class);
             result = this.buildSearchResult(searchResponse);
         } catch (Exception e) {
             e.printStackTrace();
@@ -296,17 +296,17 @@ public class SearchServiceImpl implements SearchService {
      * @param response response
      * @return PageResult
      */
-    private SearchVO buildSearchResult(SearchResponse<EsSkuSaveDTO> response) {
+    private SearchVO buildSearchResult(SearchResponse<EsSkuSaveParam> response) {
         SearchVO searchVO = new SearchVO();
-        List<Hit<EsSkuSaveDTO>> hits = response.hits().hits();
+        List<Hit<EsSkuSaveParam>> hits = response.hits().hits();
         if (ObjectUtils.isEmpty(hits)) {
             return new SearchVO();
         }
 
         // products
-        List<EsSkuSaveDTO> esSkus = new ArrayList<>();
+        List<EsSkuSaveParam> esSkus = new ArrayList<>();
         hits.forEach(item -> {
-            EsSkuSaveDTO source = item.source();
+            EsSkuSaveParam source = item.source();
             Map<String, List<String>> highlight = item.highlight();
             if (!ObjectUtils.isEmpty(highlight)) {
                 List<String> strings = highlight.get(TITLE);

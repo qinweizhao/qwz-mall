@@ -1,6 +1,6 @@
 package com.qinweizhao.search.controller.admin;
 
-import com.qinweizhao.api.search.dto.EsSkuSaveDTO;
+import com.qinweizhao.api.search.model.param.EsSkuSaveParam;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.search.service.ElasticSaveService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,8 +28,8 @@ public class ElasticSaveController {
      * 商品上架
      */
     @PostMapping("/product")
-    public R<?> saveSku(@RequestBody List<EsSkuSaveDTO> esSkuSaveDTOList) throws IOException {
-        return R.success(elasticSaveService.saveSku(esSkuSaveDTOList));
+    public R<?> saveSku(@RequestBody List<EsSkuSaveParam> esSkuSaveParamList) throws IOException {
+        return R.success(elasticSaveService.saveSku(esSkuSaveParamList));
     }
 
 

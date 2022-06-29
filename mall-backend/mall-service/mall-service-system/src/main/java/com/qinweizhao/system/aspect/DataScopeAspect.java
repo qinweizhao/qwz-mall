@@ -1,10 +1,11 @@
 package com.qinweizhao.system.aspect;
 
+import com.alibaba.fastjson.JSON;
 import com.qinweizhao.common.core.model.LoginUser;
 import com.qinweizhao.common.core.utils.StringUtils;
-import com.qinweizhao.system.model.domain.BaseEntity;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.system.annotation.DataScope;
+import com.qinweizhao.system.model.base.BaseEntity;
 import com.qinweizhao.system.model.entity.SysRole;
 import com.qinweizhao.system.model.entity.SysUser;
 import org.aspectj.lang.JoinPoint;
@@ -96,7 +97,7 @@ public class DataScopeAspect {
     }
 
     @Before("@annotation(controllerDataScope)")
-    public void doBefore(JoinPoint point, DataScope controllerDataScope) throws Throwable {
+    public void doBefore(JoinPoint point, DataScope controllerDataScope) {
         clearDataScope(point);
         handleDataScope(point, controllerDataScope);
     }
@@ -105,7 +106,7 @@ public class DataScopeAspect {
         // 获取当前的用户
         LoginUser loginUser = SecurityUtils.getLoginUser();
         if (StringUtils.isNotNull(loginUser)) {
-            SysUser currentUser = (SysUser) loginUser.getDetails();
+            SysUser currentUser = JSON.parseObject(loginUser.getDetails(), SysUser.class);
             // 如果是超级管理员，则不过滤数据
             if (StringUtils.isNotNull(currentUser) && !currentUser.isAdmin()) {
                 dataScopeFilter(joinPoint, currentUser, controllerDataScope.deptAlias(),

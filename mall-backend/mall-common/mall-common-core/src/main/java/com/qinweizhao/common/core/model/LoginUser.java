@@ -72,7 +72,6 @@ public class LoginUser implements Serializable {
     /**
      * 用户详细信息
      */
-    private Object details;
-
+    private String details;
 
 }

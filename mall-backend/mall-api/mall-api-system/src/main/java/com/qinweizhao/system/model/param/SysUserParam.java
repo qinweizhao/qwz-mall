@@ -1,9 +1,8 @@
-package com.qinweizhao.system.model.dto;
+package com.qinweizhao.system.model.param;
 
-import com.qinweizhao.system.model.domain.BaseEntity;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,13 +10,14 @@ import java.util.Date;
  *
  * @author qinweizhao
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class SysUserDTO extends BaseEntity {
+public class SysUserParam implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**
      * 用户ID
+     *
      */
     private Long userId;
 
