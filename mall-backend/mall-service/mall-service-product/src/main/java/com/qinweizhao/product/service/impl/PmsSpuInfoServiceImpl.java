@@ -370,7 +370,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
      * @param spuId spuId
      */
     private void productDown(Long spuId) {
-
+        System.out.println("下架"+spuId);
     }
 
 }
