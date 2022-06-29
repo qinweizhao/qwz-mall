@@ -1,4 +1,4 @@
-package com.qinweizhao.common.security.utils;
+package com.qinweizhao.system.util;
 
 import com.qinweizhao.common.core.constant.Constants;
 import com.qinweizhao.common.core.utils.SpringUtils;

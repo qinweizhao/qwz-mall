@@ -1,9 +1,5 @@
 package com.qinweizhao.auth.service;
 
-import com.qinweizhao.system.feign.LogFeignClient;
-import com.qinweizhao.system.feign.UserFeignClient;
-import com.qinweizhao.system.model.entity.SysLogininfor;
-import com.qinweizhao.system.model.entity.SysUser;
 import com.qinweizhao.api.user.feign.MemberFeignClient;
 import com.qinweizhao.auth.constant.SysTypeEnum;
 import com.qinweizhao.common.core.constant.Constants;
@@ -17,6 +13,10 @@ import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.utils.ip.IpUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.component.core.response.R;
+import com.qinweizhao.system.feign.LogFeignClient;
+import com.qinweizhao.system.feign.UserFeignClient;
+import com.qinweizhao.system.model.dto.SysLoginInfoDTO;
+import com.qinweizhao.system.model.dto.SysUserDTO;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -150,7 +150,7 @@ public class SysLoginService {
         }
 
         // 注册用户信息
-        SysUser sysUser = new SysUser();
+        SysUserDTO sysUser = new SysUserDTO();
         sysUser.setUserName(username);
         sysUser.setNickName(username);
         sysUser.setPassword(SecurityUtils.encryptPassword(password));
@@ -170,7 +170,7 @@ public class SysLoginService {
      * @param message  消息内容
      */
     public void recordLoginInfo(String username, String status, String message) {
-        SysLogininfor loginInfo = new SysLogininfor();
+        SysLoginInfoDTO loginInfo = new SysLoginInfoDTO();
         loginInfo.setUserName(username);
         loginInfo.setIpaddr(IpUtils.getIpAddr(ServletUtils.getRequest()));
         loginInfo.setMsg(message);

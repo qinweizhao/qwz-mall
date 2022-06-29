@@ -3,7 +3,7 @@ package com.qinweizhao.system.service.impl;
 import com.qinweizhao.common.core.constant.UserConstants;
 import com.qinweizhao.common.core.exception.ServiceException;
 import com.qinweizhao.common.core.utils.StringUtils;
-import com.qinweizhao.common.security.utils.DictUtils;
+import com.qinweizhao.system.util.DictUtils;
 import com.qinweizhao.system.model.entity.SysDictData;
 import com.qinweizhao.system.model.entity.SysDictType;
 import com.qinweizhao.system.mapper.SysDictDataMapper;

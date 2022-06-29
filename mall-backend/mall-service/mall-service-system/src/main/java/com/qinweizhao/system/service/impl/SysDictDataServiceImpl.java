@@ -1,6 +1,6 @@
 package com.qinweizhao.system.service.impl;
 
-import com.qinweizhao.common.security.utils.DictUtils;
+import com.qinweizhao.system.util.DictUtils;
 import com.qinweizhao.system.model.entity.SysDictData;
 import com.qinweizhao.system.mapper.SysDictDataMapper;
 import com.qinweizhao.system.service.ISysDictDataService;

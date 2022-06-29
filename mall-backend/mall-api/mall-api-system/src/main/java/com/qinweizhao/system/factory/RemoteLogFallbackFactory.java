@@ -1,9 +1,9 @@
 package com.qinweizhao.system.factory;
 
-import com.qinweizhao.system.feign.LogFeignClient;
-import com.qinweizhao.system.model.entity.SysLogininfor;
-import com.qinweizhao.component.log.SysOperLog;
 import com.qinweizhao.component.core.response.R;
+import com.qinweizhao.component.log.SysOperLog;
+import com.qinweizhao.system.feign.LogFeignClient;
+import com.qinweizhao.system.model.dto.SysLoginInfoDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.openfeign.FallbackFactory;
@@ -28,7 +28,7 @@ public class RemoteLogFallbackFactory implements FallbackFactory<LogFeignClient>
             }
 
             @Override
-            public R<Boolean> saveLogininfor(SysLogininfor sysLogininfor, String source) {
+            public R<Boolean> saveLogininfor(SysLoginInfoDTO sysLoginInfoDTO, String source) {
                 return null;
             }
         };

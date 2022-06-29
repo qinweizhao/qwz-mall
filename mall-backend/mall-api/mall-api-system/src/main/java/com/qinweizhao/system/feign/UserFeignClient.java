@@ -1,11 +1,11 @@
 package com.qinweizhao.system.feign;
 
-import com.qinweizhao.common.core.model.LoginUser;
-import com.qinweizhao.system.model.entity.SysUser;
 import com.qinweizhao.common.core.constant.SecurityConstants;
 import com.qinweizhao.common.core.constant.ServiceNameConstants;
+import com.qinweizhao.common.core.model.LoginUser;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.system.factory.RemoteUserFallbackFactory;
+import com.qinweizhao.system.model.dto.SysUserDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,5 +34,5 @@ public interface UserFeignClient {
      * @return 结果
      */
     @PostMapping("/user/register")
-    R<Boolean> registerUserInfo(@RequestBody SysUser sysUser, @RequestHeader(SecurityConstants.FROM_SOURCE) String source);
+    R<Boolean> registerUserInfo(@RequestBody SysUserDTO sysUser, @RequestHeader(SecurityConstants.FROM_SOURCE) String source);
 }
