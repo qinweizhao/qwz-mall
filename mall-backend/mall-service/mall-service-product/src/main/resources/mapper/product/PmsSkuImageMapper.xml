@@ -13,7 +13,6 @@
         <result property="updateBy" column="update_by"/>
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
-        <result property="remark" column="remark"/>
     </resultMap>
 
     <sql id="selectPmsSkuImageVo">
@@ -24,8 +23,7 @@
                create_by,
                update_by,
                create_time,
-               update_time,
-               remark
+               update_time
         from pms_sku_image
     </sql>
 
@@ -54,7 +52,6 @@
             <if test="updateBy != null">update_by,</if>
             <if test="createTime != null">create_time,</if>
             <if test="updateTime != null">update_time,</if>
-            <if test="remark != null">remark,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="skuId != null">#{skuId},</if>
@@ -65,7 +62,6 @@
             <if test="updateBy != null">#{updateBy},</if>
             <if test="createTime != null">#{createTime},</if>
             <if test="updateTime != null">#{updateTime},</if>
-            <if test="remark != null">#{remark},</if>
         </trim>
     </insert>
 
@@ -79,7 +75,6 @@
             <if test="updateBy != null">update_by = #{updateBy},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="updateTime != null">update_time = #{updateTime},</if>
-            <if test="remark != null">remark = #{remark},</if>
         </trim>
         where sku_id = #{skuId}
     </update>

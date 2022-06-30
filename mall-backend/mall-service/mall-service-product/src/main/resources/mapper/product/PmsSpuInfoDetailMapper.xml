@@ -11,11 +11,10 @@
         <result property="updateBy" column="update_by"/>
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
-        <result property="remark" column="remark"/>
     </resultMap>
 
     <sql id="selectPmsSpuInfoDetailVo">
-        select spu_id, detail, create_by, update_by, create_time, update_time, remark
+        select spu_id, detail, create_by, update_by, create_time, update_time
         from pms_spu_info_detail
     </sql>
 
@@ -40,7 +39,6 @@
             <if test="updateBy != null">update_by,</if>
             <if test="createTime != null">create_time,</if>
             <if test="updateTime != null">update_time,</if>
-            <if test="remark != null">remark,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="spuId != null">#{spuId},</if>
@@ -49,7 +47,6 @@
             <if test="updateBy != null">#{updateBy},</if>
             <if test="createTime != null">#{createTime},</if>
             <if test="updateTime != null">#{updateTime},</if>
-            <if test="remark != null">#{remark},</if>
         </trim>
     </insert>
 
@@ -61,7 +58,6 @@
             <if test="updateBy != null">update_by = #{updateBy},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="updateTime != null">update_time = #{updateTime},</if>
-            <if test="remark != null">remark = #{remark},</if>
         </trim>
         where spu_id = #{spuId}
     </update>
