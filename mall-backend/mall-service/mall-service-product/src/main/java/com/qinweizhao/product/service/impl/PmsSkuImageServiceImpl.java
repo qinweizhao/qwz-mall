@@ -28,7 +28,7 @@ public class PmsSkuImageServiceImpl implements IPmsSkuImageService {
      */
     @Override
     public PmsSkuImage getById(Long skuId) {
-        return pmsSkuImageMapper.selectPmsSkuImageBySkuId(skuId);
+        return pmsSkuImageMapper.selectPmsSkuImageBySkuImageId(skuId);
     }
 
     /**
@@ -74,7 +74,7 @@ public class PmsSkuImageServiceImpl implements IPmsSkuImageService {
      */
     @Override
     public int removeByIds(Long[] skuIds) {
-        return pmsSkuImageMapper.deletePmsSkuImageBySkuIds(skuIds);
+        return pmsSkuImageMapper.deletePmsSkuImageBySkuImageIds(skuIds);
     }
 
     /**
@@ -85,6 +85,6 @@ public class PmsSkuImageServiceImpl implements IPmsSkuImageService {
      */
     @Override
     public int removeById(Long skuId) {
-        return pmsSkuImageMapper.deletePmsSkuImageBySkuId(skuId);
+        return pmsSkuImageMapper.deletePmsSkuImageBySkuImageId(skuId);
     }
 }

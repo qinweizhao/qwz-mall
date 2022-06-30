@@ -14,7 +14,13 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class PmsSkuImage extends BaseEntity {
+
     private static final long serialVersionUID = 1L;
+
+    /**
+     * sku_id
+     */
+    private Long skuImageId;
 
     /**
      * sku_id

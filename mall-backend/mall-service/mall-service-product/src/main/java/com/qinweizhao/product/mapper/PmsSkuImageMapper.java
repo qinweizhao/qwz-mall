@@ -17,7 +17,7 @@ public interface PmsSkuImageMapper {
      * @param skuId sku图片主键
      * @return sku图片
      */
-    PmsSkuImage selectPmsSkuImageBySkuId(Long skuId);
+    PmsSkuImage selectPmsSkuImageBySkuImageId(Long skuId);
 
     /**
      * 查询sku图片列表
@@ -49,7 +49,7 @@ public interface PmsSkuImageMapper {
      * @param skuId sku图片主键
      * @return 结果
      */
-    int deletePmsSkuImageBySkuId(Long skuId);
+    int deletePmsSkuImageBySkuImageId(Long skuId);
 
     /**
      * 批量删除sku图片
@@ -57,5 +57,5 @@ public interface PmsSkuImageMapper {
      * @param skuIds 需要删除的数据主键集合
      * @return 结果
      */
-    int deletePmsSkuImageBySkuIds(Long[] skuIds);
+    int deletePmsSkuImageBySkuImageIds(Long[] skuIds);
 }

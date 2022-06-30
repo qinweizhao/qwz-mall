@@ -1,9 +1,11 @@
 package com.qinweizhao.generator.domain;
 
 import com.qinweizhao.common.core.utils.StringUtils;
-import com.qinweizhao.system.model.domain.BaseEntity;
+import com.qinweizhao.component.core.entity.BaseEntity;
 
 import javax.validation.constraints.NotBlank;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -104,6 +106,41 @@ public class GenTableColumn extends BaseEntity {
      * 排序
      */
     private Integer sort;
+
+    /**
+     * 搜索值
+     */
+    private String searchValue;
+
+    /**
+     * 备注
+     */
+    private String remark;
+
+    /**
+     * 请求参数
+     */
+    private Map<String, Object> params;
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public Map<String, Object> getParams() {
+        if (params == null) {
+            params = new HashMap<>();
+        }
+        return params;
+    }
+
+    public void setParams(Map<String, Object> params) {
+        this.params = params;
+    }
+
 
     public void setColumnId(Long columnId) {
         this.columnId = columnId;

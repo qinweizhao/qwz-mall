@@ -2,12 +2,14 @@ package com.qinweizhao.generator.domain;
 
 import com.qinweizhao.common.core.constant.GenConstants;
 import com.qinweizhao.common.core.utils.StringUtils;
-import com.qinweizhao.system.model.domain.BaseEntity;
+import com.qinweizhao.component.core.entity.BaseEntity;
 import org.apache.commons.lang3.ArrayUtils;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 业务表 gen_table
@@ -140,6 +142,35 @@ public class GenTable extends BaseEntity {
      * 上级菜单名称字段
      */
     private String parentMenuName;
+
+    /**
+     * 备注
+     */
+    private String remark;
+
+    /**
+     * 请求参数
+     */
+    private Map<String, Object> params;
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public Map<String, Object> getParams() {
+        if (params == null) {
+            params = new HashMap<>();
+        }
+        return params;
+    }
+
+    public void setParams(Map<String, Object> params) {
+        this.params = params;
+    }
 
     public Long getTableId() {
         return tableId;

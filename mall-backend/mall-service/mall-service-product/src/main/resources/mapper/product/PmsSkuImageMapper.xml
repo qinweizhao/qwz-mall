@@ -5,6 +5,7 @@
 <mapper namespace="com.qinweizhao.product.mapper.PmsSkuImageMapper">
 
     <resultMap type="PmsSkuImage" id="PmsSkuImageResult">
+        <result property="skuImageId" column="sku_image_id"/>
         <result property="skuId" column="sku_id"/>
         <result property="url" column="url"/>
         <result property="sort" column="sort"/>
@@ -16,7 +17,8 @@
     </resultMap>
 
     <sql id="selectPmsSkuImageVo">
-        select sku_id,
+        select sku_image_id,
+               sku_id,
                url,
                sort,
                default_image,
@@ -27,21 +29,24 @@
         from pms_sku_image
     </sql>
 
+
     <select id="selectPmsSkuImageList" parameterType="PmsSkuImage" resultMap="PmsSkuImageResult">
         <include refid="selectPmsSkuImageVo"/>
         <where>
-            <if test="url != null  and url != ''">and url = #{url}</if>
-            <if test="sort != null ">and sort = #{sort}</if>
-            <if test="defaultImage != null ">and default_image = #{defaultImage}</if>
+            <if test="skuId != null "> and sku_id = #{skuId}</if>
+            <if test="url != null  and url != ''"> and url = #{url}</if>
+            <if test="sort != null "> and sort = #{sort}</if>
+            <if test="defaultImage != null "> and default_image = #{defaultImage}</if>
         </where>
     </select>
 
-    <select id="selectPmsSkuImageBySkuId" parameterType="Long" resultMap="PmsSkuImageResult">
+    <select id="selectPmsSkuImageBySkuImageId" parameterType="Long" resultMap="PmsSkuImageResult">
         <include refid="selectPmsSkuImageVo"/>
-        where sku_id = #{skuId}
+        where sku_image_id = #{skuImageId}
     </select>
 
-    <insert id="insertPmsSkuImage" parameterType="PmsSkuImage">
+
+    <insert id="insertPmsSkuImage" parameterType="PmsSkuImage" useGeneratedKeys="true" keyProperty="skuImageId">
         insert into pms_sku_image
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="skuId != null">sku_id,</if>
@@ -68,6 +73,7 @@
     <update id="updatePmsSkuImage" parameterType="PmsSkuImage">
         update pms_sku_image
         <trim prefix="SET" suffixOverrides=",">
+            <if test="skuId != null">sku_id = #{skuId},</if>
             <if test="url != null">url = #{url},</if>
             <if test="sort != null">sort = #{sort},</if>
             <if test="defaultImage != null">default_image = #{defaultImage},</if>
@@ -76,19 +82,17 @@
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="updateTime != null">update_time = #{updateTime},</if>
         </trim>
-        where sku_id = #{skuId}
+        where sku_image_id = #{skuImageId}
     </update>
 
-    <delete id="deletePmsSkuImageBySkuId" parameterType="Long">
-        delete
-        from pms_sku_image
-        where sku_id = #{skuId}
+    <delete id="deletePmsSkuImageBySkuImageId" parameterType="Long">
+        delete from pms_sku_image where sku_image_id = #{skuImageId}
     </delete>
 
-    <delete id="deletePmsSkuImageBySkuIds" parameterType="String">
-        delete from pms_sku_image where sku_id in
-        <foreach item="skuId" collection="array" open="(" separator="," close=")">
-            #{skuId}
+    <delete id="deletePmsSkuImageBySkuImageIds" parameterType="String">
+        delete from pms_sku_image where sku_image_id in
+        <foreach item="skuImageId" collection="array" open="(" separator="," close=")">
+            #{skuImageId}
         </foreach>
     </delete>
 </mapper>
