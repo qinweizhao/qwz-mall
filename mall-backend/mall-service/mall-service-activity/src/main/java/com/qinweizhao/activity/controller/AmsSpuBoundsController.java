@@ -1,6 +1,6 @@
 package com.qinweizhao.activity.controller;
 
-import com.qinweizhao.activity.domain.AmsSpuBounds;
+import com.qinweizhao.activity.model.entity.AmsSpuBounds;
 import com.qinweizhao.activity.service.IAmsSpuBoundsService;
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;

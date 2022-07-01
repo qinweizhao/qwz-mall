@@ -1,6 +1,6 @@
 package com.qinweizhao.activity.service;
 
-import com.qinweizhao.activity.domain.AmsMemberPrice;
+import com.qinweizhao.activity.model.entity.AmsMemberPrice;
 
 import java.util.List;
 

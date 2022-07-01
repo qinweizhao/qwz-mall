@@ -1,12 +1,12 @@
 package com.qinweizhao.activity.service.impl;
 
-import com.qinweizhao.activity.domain.AmsSeckillSkuRelation;
 import com.qinweizhao.activity.mapper.AmsSeckillSkuRelationMapper;
+import com.qinweizhao.activity.model.entity.AmsSeckillSkuRelation;
 import com.qinweizhao.activity.service.IAmsSeckillSkuRelationService;
-import com.qinweizhao.common.core.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -50,7 +50,7 @@ public class AmsSeckillSkuRelationServiceImpl implements IAmsSeckillSkuRelationS
      */
     @Override
     public int insertAmsSeckillSkuRelation(AmsSeckillSkuRelation amsSeckillSkuRelation) {
-        amsSeckillSkuRelation.setCreateTime(DateUtils.getNowDate());
+        amsSeckillSkuRelation.setCreateTime(LocalDateTime.now());
         return amsSeckillSkuRelationMapper.insertAmsSeckillSkuRelation(amsSeckillSkuRelation);
     }
 
@@ -62,7 +62,7 @@ public class AmsSeckillSkuRelationServiceImpl implements IAmsSeckillSkuRelationS
      */
     @Override
     public int updateAmsSeckillSkuRelation(AmsSeckillSkuRelation amsSeckillSkuRelation) {
-        amsSeckillSkuRelation.setUpdateTime(DateUtils.getNowDate());
+        amsSeckillSkuRelation.setUpdateTime(LocalDateTime.now());
         return amsSeckillSkuRelationMapper.updateAmsSeckillSkuRelation(amsSeckillSkuRelation);
     }
 

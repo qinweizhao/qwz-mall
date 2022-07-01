@@ -1,6 +1,6 @@
 package com.qinweizhao.activity.controller;
 
-import com.qinweizhao.activity.domain.AmsSkuLadder;
+import com.qinweizhao.activity.model.entity.AmsSkuLadder;
 import com.qinweizhao.activity.service.IAmsSkuLadderService;
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;

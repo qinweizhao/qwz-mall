@@ -1,6 +1,6 @@
 package com.qinweizhao.activity.controller;
 
-import com.qinweizhao.activity.domain.AmsSeckillSession;
+import com.qinweizhao.activity.model.entity.AmsSeckillSession;
 import com.qinweizhao.activity.service.IAmsSeckillSessionService;
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;

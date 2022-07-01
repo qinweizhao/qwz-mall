@@ -1,6 +1,6 @@
 package com.qinweizhao.activity.controller;
 
-import com.qinweizhao.activity.domain.AmsCouponSpuCategoryRelation;
+import com.qinweizhao.activity.model.entity.AmsCouponSpuCategoryRelation;
 import com.qinweizhao.activity.service.IAmsCouponSpuCategoryRelationService;
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;

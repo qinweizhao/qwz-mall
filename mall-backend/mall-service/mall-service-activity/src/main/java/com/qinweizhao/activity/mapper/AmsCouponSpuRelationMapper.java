@@ -1,6 +1,6 @@
 package com.qinweizhao.activity.mapper;
 
-import com.qinweizhao.activity.domain.AmsCouponSpuRelation;
+import com.qinweizhao.activity.model.entity.AmsCouponSpuRelation;
 
 import java.util.List;
 

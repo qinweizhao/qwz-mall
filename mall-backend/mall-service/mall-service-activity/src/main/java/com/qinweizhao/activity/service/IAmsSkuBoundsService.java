@@ -1,6 +1,6 @@
 package com.qinweizhao.activity.service;
 
-import com.qinweizhao.activity.domain.AmsSkuBounds;
+import com.qinweizhao.activity.model.entity.AmsSkuBounds;
 
 import java.util.List;
 

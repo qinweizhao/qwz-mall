@@ -1,12 +1,12 @@
 package com.qinweizhao.activity.service.impl;
 
-import com.qinweizhao.activity.domain.AmsCouponSpuCategoryRelation;
 import com.qinweizhao.activity.mapper.AmsCouponSpuCategoryRelationMapper;
+import com.qinweizhao.activity.model.entity.AmsCouponSpuCategoryRelation;
 import com.qinweizhao.activity.service.IAmsCouponSpuCategoryRelationService;
-import com.qinweizhao.common.core.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -50,7 +50,7 @@ public class AmsCouponSpuCategoryRelationServiceImpl implements IAmsCouponSpuCat
      */
     @Override
     public int insertAmsCouponSpuCategoryRelation(AmsCouponSpuCategoryRelation amsCouponSpuCategoryRelation) {
-        amsCouponSpuCategoryRelation.setCreateTime(DateUtils.getNowDate());
+        amsCouponSpuCategoryRelation.setCreateTime(LocalDateTime.now());
         return amsCouponSpuCategoryRelationMapper.insertAmsCouponSpuCategoryRelation(amsCouponSpuCategoryRelation);
     }
 
@@ -62,7 +62,7 @@ public class AmsCouponSpuCategoryRelationServiceImpl implements IAmsCouponSpuCat
      */
     @Override
     public int updateAmsCouponSpuCategoryRelation(AmsCouponSpuCategoryRelation amsCouponSpuCategoryRelation) {
-        amsCouponSpuCategoryRelation.setUpdateTime(DateUtils.getNowDate());
+        amsCouponSpuCategoryRelation.setUpdateTime(LocalDateTime.now());
         return amsCouponSpuCategoryRelationMapper.updateAmsCouponSpuCategoryRelation(amsCouponSpuCategoryRelation);
     }
 

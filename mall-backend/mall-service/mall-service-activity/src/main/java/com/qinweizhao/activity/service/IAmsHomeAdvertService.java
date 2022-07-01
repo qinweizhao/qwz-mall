@@ -1,6 +1,6 @@
 package com.qinweizhao.activity.service;
 
-import com.qinweizhao.activity.domain.AmsHomeAdvert;
+import com.qinweizhao.activity.model.entity.AmsHomeAdvert;
 
 import java.util.List;
 

@@ -1,12 +1,12 @@
 package com.qinweizhao.activity.service.impl;
 
-import com.qinweizhao.activity.domain.AmsHomeSubjectSpu;
 import com.qinweizhao.activity.mapper.AmsHomeSubjectSpuMapper;
+import com.qinweizhao.activity.model.entity.AmsHomeSubjectSpu;
 import com.qinweizhao.activity.service.IAmsHomeSubjectSpuService;
-import com.qinweizhao.common.core.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -50,7 +50,7 @@ public class AmsHomeSubjectSpuServiceImpl implements IAmsHomeSubjectSpuService {
      */
     @Override
     public int insertAmsHomeSubjectSpu(AmsHomeSubjectSpu amsHomeSubjectSpu) {
-        amsHomeSubjectSpu.setCreateTime(DateUtils.getNowDate());
+        amsHomeSubjectSpu.setCreateTime(LocalDateTime.now());
         return amsHomeSubjectSpuMapper.insertAmsHomeSubjectSpu(amsHomeSubjectSpu);
     }
 
@@ -62,7 +62,7 @@ public class AmsHomeSubjectSpuServiceImpl implements IAmsHomeSubjectSpuService {
      */
     @Override
     public int updateAmsHomeSubjectSpu(AmsHomeSubjectSpu amsHomeSubjectSpu) {
-        amsHomeSubjectSpu.setUpdateTime(DateUtils.getNowDate());
+        amsHomeSubjectSpu.setUpdateTime(LocalDateTime.now());
         return amsHomeSubjectSpuMapper.updateAmsHomeSubjectSpu(amsHomeSubjectSpu);
     }
 

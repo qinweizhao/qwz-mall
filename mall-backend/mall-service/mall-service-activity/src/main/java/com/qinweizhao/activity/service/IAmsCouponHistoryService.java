@@ -1,6 +1,6 @@
 package com.qinweizhao.activity.service;
 
-import com.qinweizhao.activity.domain.AmsCouponHistory;
+import com.qinweizhao.activity.model.entity.AmsCouponHistory;
 
 import java.util.List;
 

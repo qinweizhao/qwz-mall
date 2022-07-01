@@ -1,6 +1,6 @@
 package com.qinweizhao.activity.controller;
 
-import com.qinweizhao.activity.domain.AmsSeckillSkuNotice;
+import com.qinweizhao.activity.model.entity.AmsSeckillSkuNotice;
 import com.qinweizhao.activity.service.IAmsSeckillSkuNoticeService;
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;

@@ -1,12 +1,12 @@
 package com.qinweizhao.activity.service.impl;
 
-import com.qinweizhao.activity.domain.AmsHomeAdvert;
 import com.qinweizhao.activity.mapper.AmsHomeAdvertMapper;
+import com.qinweizhao.activity.model.entity.AmsHomeAdvert;
 import com.qinweizhao.activity.service.IAmsHomeAdvertService;
-import com.qinweizhao.common.core.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -50,7 +50,7 @@ public class AmsHomeAdvertServiceImpl implements IAmsHomeAdvertService {
      */
     @Override
     public int insertAmsHomeAdvert(AmsHomeAdvert amsHomeAdvert) {
-        amsHomeAdvert.setCreateTime(DateUtils.getNowDate());
+        amsHomeAdvert.setCreateTime(LocalDateTime.now());
         return amsHomeAdvertMapper.insertAmsHomeAdvert(amsHomeAdvert);
     }
 
@@ -62,7 +62,7 @@ public class AmsHomeAdvertServiceImpl implements IAmsHomeAdvertService {
      */
     @Override
     public int updateAmsHomeAdvert(AmsHomeAdvert amsHomeAdvert) {
-        amsHomeAdvert.setUpdateTime(DateUtils.getNowDate());
+        amsHomeAdvert.setUpdateTime(LocalDateTime.now());
         return amsHomeAdvertMapper.updateAmsHomeAdvert(amsHomeAdvert);
     }
 

@@ -1,6 +1,6 @@
 package com.qinweizhao.activity.controller;
 
-import com.qinweizhao.activity.domain.AmsCouponHistory;
+import com.qinweizhao.activity.model.entity.AmsCouponHistory;
 import com.qinweizhao.activity.service.IAmsCouponHistoryService;
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;

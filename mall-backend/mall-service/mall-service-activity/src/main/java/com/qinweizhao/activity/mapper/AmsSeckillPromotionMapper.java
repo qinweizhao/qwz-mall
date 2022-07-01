@@ -1,6 +1,6 @@
 package com.qinweizhao.activity.mapper;
 
-import com.qinweizhao.activity.domain.AmsSeckillPromotion;
+import com.qinweizhao.activity.model.entity.AmsSeckillPromotion;
 
 import java.util.List;
 

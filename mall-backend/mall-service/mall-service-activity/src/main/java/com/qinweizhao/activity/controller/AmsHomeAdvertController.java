@@ -1,6 +1,6 @@
 package com.qinweizhao.activity.controller;
 
-import com.qinweizhao.activity.domain.AmsHomeAdvert;
+import com.qinweizhao.activity.model.entity.AmsHomeAdvert;
 import com.qinweizhao.activity.service.IAmsHomeAdvertService;
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;

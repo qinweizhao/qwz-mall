@@ -1,6 +1,6 @@
 package com.qinweizhao.activity.service;
 
-import com.qinweizhao.activity.domain.AmsSeckillSkuRelation;
+import com.qinweizhao.activity.model.entity.AmsSeckillSkuRelation;
 
 import java.util.List;
 

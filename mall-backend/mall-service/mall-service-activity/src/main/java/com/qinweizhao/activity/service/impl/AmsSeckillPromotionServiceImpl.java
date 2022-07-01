@@ -1,12 +1,12 @@
 package com.qinweizhao.activity.service.impl;
 
-import com.qinweizhao.activity.domain.AmsSeckillPromotion;
 import com.qinweizhao.activity.mapper.AmsSeckillPromotionMapper;
+import com.qinweizhao.activity.model.entity.AmsSeckillPromotion;
 import com.qinweizhao.activity.service.IAmsSeckillPromotionService;
-import com.qinweizhao.common.core.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -50,7 +50,7 @@ public class AmsSeckillPromotionServiceImpl implements IAmsSeckillPromotionServi
      */
     @Override
     public int insertAmsSeckillPromotion(AmsSeckillPromotion amsSeckillPromotion) {
-        amsSeckillPromotion.setCreateTime(DateUtils.getNowDate());
+        amsSeckillPromotion.setCreateTime(LocalDateTime.now());
         return amsSeckillPromotionMapper.insertAmsSeckillPromotion(amsSeckillPromotion);
     }
 
@@ -62,7 +62,7 @@ public class AmsSeckillPromotionServiceImpl implements IAmsSeckillPromotionServi
      */
     @Override
     public int updateAmsSeckillPromotion(AmsSeckillPromotion amsSeckillPromotion) {
-        amsSeckillPromotion.setUpdateTime(DateUtils.getNowDate());
+        amsSeckillPromotion.setUpdateTime(LocalDateTime.now());
         return amsSeckillPromotionMapper.updateAmsSeckillPromotion(amsSeckillPromotion);
     }
 

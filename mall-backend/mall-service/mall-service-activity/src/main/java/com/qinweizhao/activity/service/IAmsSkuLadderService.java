@@ -1,6 +1,6 @@
 package com.qinweizhao.activity.service;
 
-import com.qinweizhao.activity.domain.AmsSkuLadder;
+import com.qinweizhao.activity.model.entity.AmsSkuLadder;
 
 import java.util.List;
 

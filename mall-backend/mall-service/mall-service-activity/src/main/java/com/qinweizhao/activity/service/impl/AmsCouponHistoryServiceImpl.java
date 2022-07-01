@@ -1,12 +1,12 @@
 package com.qinweizhao.activity.service.impl;
 
-import com.qinweizhao.activity.domain.AmsCouponHistory;
 import com.qinweizhao.activity.mapper.AmsCouponHistoryMapper;
+import com.qinweizhao.activity.model.entity.AmsCouponHistory;
 import com.qinweizhao.activity.service.IAmsCouponHistoryService;
-import com.qinweizhao.common.core.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -50,7 +50,7 @@ public class AmsCouponHistoryServiceImpl implements IAmsCouponHistoryService {
      */
     @Override
     public int insertAmsCouponHistory(AmsCouponHistory amsCouponHistory) {
-        amsCouponHistory.setCreateTime(DateUtils.getNowDate());
+        amsCouponHistory.setCreateTime(LocalDateTime.now());
         return amsCouponHistoryMapper.insertAmsCouponHistory(amsCouponHistory);
     }
 
@@ -62,7 +62,7 @@ public class AmsCouponHistoryServiceImpl implements IAmsCouponHistoryService {
      */
     @Override
     public int updateAmsCouponHistory(AmsCouponHistory amsCouponHistory) {
-        amsCouponHistory.setUpdateTime(DateUtils.getNowDate());
+        amsCouponHistory.setUpdateTime(LocalDateTime.now());
         return amsCouponHistoryMapper.updateAmsCouponHistory(amsCouponHistory);
     }
 

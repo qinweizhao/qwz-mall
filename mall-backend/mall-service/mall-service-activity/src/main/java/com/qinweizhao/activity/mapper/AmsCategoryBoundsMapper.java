@@ -1,6 +1,6 @@
 package com.qinweizhao.activity.mapper;
 
-import com.qinweizhao.activity.domain.AmsCategoryBounds;
+import com.qinweizhao.activity.model.entity.AmsCategoryBounds;
 
 import java.util.List;
 

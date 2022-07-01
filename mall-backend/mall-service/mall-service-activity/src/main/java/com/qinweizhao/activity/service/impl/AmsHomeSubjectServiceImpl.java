@@ -1,12 +1,12 @@
 package com.qinweizhao.activity.service.impl;
 
-import com.qinweizhao.activity.domain.AmsHomeSubject;
 import com.qinweizhao.activity.mapper.AmsHomeSubjectMapper;
+import com.qinweizhao.activity.model.entity.AmsHomeSubject;
 import com.qinweizhao.activity.service.IAmsHomeSubjectService;
-import com.qinweizhao.common.core.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -50,7 +50,7 @@ public class AmsHomeSubjectServiceImpl implements IAmsHomeSubjectService {
      */
     @Override
     public int insertAmsHomeSubject(AmsHomeSubject amsHomeSubject) {
-        amsHomeSubject.setCreateTime(DateUtils.getNowDate());
+        amsHomeSubject.setCreateTime(LocalDateTime.now());
         return amsHomeSubjectMapper.insertAmsHomeSubject(amsHomeSubject);
     }
 
@@ -62,7 +62,7 @@ public class AmsHomeSubjectServiceImpl implements IAmsHomeSubjectService {
      */
     @Override
     public int updateAmsHomeSubject(AmsHomeSubject amsHomeSubject) {
-        amsHomeSubject.setUpdateTime(DateUtils.getNowDate());
+        amsHomeSubject.setUpdateTime(LocalDateTime.now());
         return amsHomeSubjectMapper.updateAmsHomeSubject(amsHomeSubject);
     }
 

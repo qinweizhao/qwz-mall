@@ -1,12 +1,12 @@
 package com.qinweizhao.activity.service.impl;
 
-import com.qinweizhao.activity.domain.AmsSkuFullReduction;
 import com.qinweizhao.activity.mapper.AmsSkuFullReductionMapper;
+import com.qinweizhao.activity.model.entity.AmsSkuFullReduction;
 import com.qinweizhao.activity.service.IAmsSkuFullReductionService;
-import com.qinweizhao.common.core.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -50,7 +50,7 @@ public class AmsSkuFullReductionServiceImpl implements IAmsSkuFullReductionServi
      */
     @Override
     public int insertAmsSkuFullReduction(AmsSkuFullReduction amsSkuFullReduction) {
-        amsSkuFullReduction.setCreateTime(DateUtils.getNowDate());
+        amsSkuFullReduction.setCreateTime(LocalDateTime.now());
         return amsSkuFullReductionMapper.insertAmsSkuFullReduction(amsSkuFullReduction);
     }
 
@@ -62,7 +62,7 @@ public class AmsSkuFullReductionServiceImpl implements IAmsSkuFullReductionServi
      */
     @Override
     public int updateAmsSkuFullReduction(AmsSkuFullReduction amsSkuFullReduction) {
-        amsSkuFullReduction.setUpdateTime(DateUtils.getNowDate());
+        amsSkuFullReduction.setUpdateTime(LocalDateTime.now());
         return amsSkuFullReductionMapper.updateAmsSkuFullReduction(amsSkuFullReduction);
     }
 

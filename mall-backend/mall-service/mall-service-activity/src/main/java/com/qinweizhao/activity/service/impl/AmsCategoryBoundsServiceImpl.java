@@ -1,12 +1,12 @@
 package com.qinweizhao.activity.service.impl;
 
-import com.qinweizhao.activity.domain.AmsCategoryBounds;
 import com.qinweizhao.activity.mapper.AmsCategoryBoundsMapper;
+import com.qinweizhao.activity.model.entity.AmsCategoryBounds;
 import com.qinweizhao.activity.service.IAmsCategoryBoundsService;
-import com.qinweizhao.common.core.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -50,7 +50,7 @@ public class AmsCategoryBoundsServiceImpl implements IAmsCategoryBoundsService {
      */
     @Override
     public int insertAmsCategoryBounds(AmsCategoryBounds amsCategoryBounds) {
-        amsCategoryBounds.setCreateTime(DateUtils.getNowDate());
+        amsCategoryBounds.setCreateTime(LocalDateTime.now());
         return amsCategoryBoundsMapper.insertAmsCategoryBounds(amsCategoryBounds);
     }
 
@@ -62,7 +62,7 @@ public class AmsCategoryBoundsServiceImpl implements IAmsCategoryBoundsService {
      */
     @Override
     public int updateAmsCategoryBounds(AmsCategoryBounds amsCategoryBounds) {
-        amsCategoryBounds.setUpdateTime(DateUtils.getNowDate());
+        amsCategoryBounds.setUpdateTime(LocalDateTime.now());
         return amsCategoryBoundsMapper.updateAmsCategoryBounds(amsCategoryBounds);
     }
 

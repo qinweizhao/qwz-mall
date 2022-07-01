@@ -1,6 +1,6 @@
 package com.qinweizhao.activity.controller;
 
-import com.qinweizhao.activity.domain.AmsHomeSubject;
+import com.qinweizhao.activity.model.entity.AmsHomeSubject;
 import com.qinweizhao.activity.service.IAmsHomeSubjectService;
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;

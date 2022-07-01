@@ -1,6 +1,6 @@
 package com.qinweizhao.activity.mapper;
 
-import com.qinweizhao.activity.domain.AmsSeckillSkuNotice;
+import com.qinweizhao.activity.model.entity.AmsSeckillSkuNotice;
 
 import java.util.List;
 

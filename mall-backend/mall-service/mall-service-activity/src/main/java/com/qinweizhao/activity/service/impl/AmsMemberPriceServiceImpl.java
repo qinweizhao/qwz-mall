@@ -1,12 +1,12 @@
 package com.qinweizhao.activity.service.impl;
 
-import com.qinweizhao.activity.domain.AmsMemberPrice;
 import com.qinweizhao.activity.mapper.AmsMemberPriceMapper;
+import com.qinweizhao.activity.model.entity.AmsMemberPrice;
 import com.qinweizhao.activity.service.IAmsMemberPriceService;
-import com.qinweizhao.common.core.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -50,7 +50,7 @@ public class AmsMemberPriceServiceImpl implements IAmsMemberPriceService {
      */
     @Override
     public int insertAmsMemberPrice(AmsMemberPrice amsMemberPrice) {
-        amsMemberPrice.setCreateTime(DateUtils.getNowDate());
+        amsMemberPrice.setCreateTime(LocalDateTime.now());
         return amsMemberPriceMapper.insertAmsMemberPrice(amsMemberPrice);
     }
 
@@ -62,7 +62,7 @@ public class AmsMemberPriceServiceImpl implements IAmsMemberPriceService {
      */
     @Override
     public int updateAmsMemberPrice(AmsMemberPrice amsMemberPrice) {
-        amsMemberPrice.setUpdateTime(DateUtils.getNowDate());
+        amsMemberPrice.setUpdateTime(LocalDateTime.now());
         return amsMemberPriceMapper.updateAmsMemberPrice(amsMemberPrice);
     }
 

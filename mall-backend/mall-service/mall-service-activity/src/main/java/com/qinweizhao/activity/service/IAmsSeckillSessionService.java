@@ -1,6 +1,6 @@
 package com.qinweizhao.activity.service;
 
-import com.qinweizhao.activity.domain.AmsSeckillSession;
+import com.qinweizhao.activity.model.entity.AmsSeckillSession;
 
 import java.util.List;
 

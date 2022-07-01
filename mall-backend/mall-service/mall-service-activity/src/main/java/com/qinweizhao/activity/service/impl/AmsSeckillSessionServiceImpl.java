@@ -1,12 +1,12 @@
 package com.qinweizhao.activity.service.impl;
 
-import com.qinweizhao.activity.domain.AmsSeckillSession;
 import com.qinweizhao.activity.mapper.AmsSeckillSessionMapper;
+import com.qinweizhao.activity.model.entity.AmsSeckillSession;
 import com.qinweizhao.activity.service.IAmsSeckillSessionService;
-import com.qinweizhao.common.core.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -50,7 +50,7 @@ public class AmsSeckillSessionServiceImpl implements IAmsSeckillSessionService {
      */
     @Override
     public int insertAmsSeckillSession(AmsSeckillSession amsSeckillSession) {
-        amsSeckillSession.setCreateTime(DateUtils.getNowDate());
+        amsSeckillSession.setCreateTime(LocalDateTime.now());
         return amsSeckillSessionMapper.insertAmsSeckillSession(amsSeckillSession);
     }
 
@@ -62,7 +62,7 @@ public class AmsSeckillSessionServiceImpl implements IAmsSeckillSessionService {
      */
     @Override
     public int updateAmsSeckillSession(AmsSeckillSession amsSeckillSession) {
-        amsSeckillSession.setUpdateTime(DateUtils.getNowDate());
+        amsSeckillSession.setUpdateTime(LocalDateTime.now());
         return amsSeckillSessionMapper.updateAmsSeckillSession(amsSeckillSession);
     }
 

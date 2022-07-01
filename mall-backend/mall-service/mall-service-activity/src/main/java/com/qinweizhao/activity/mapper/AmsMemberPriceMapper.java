@@ -1,6 +1,6 @@
 package com.qinweizhao.activity.mapper;
 
-import com.qinweizhao.activity.domain.AmsMemberPrice;
+import com.qinweizhao.activity.model.entity.AmsMemberPrice;
 
 import java.util.List;
 

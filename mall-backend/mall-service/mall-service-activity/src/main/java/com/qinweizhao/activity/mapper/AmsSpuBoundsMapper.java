@@ -1,6 +1,6 @@
 package com.qinweizhao.activity.mapper;
 
-import com.qinweizhao.activity.domain.AmsSpuBounds;
+import com.qinweizhao.activity.model.entity.AmsSpuBounds;
 
 import java.util.List;
 

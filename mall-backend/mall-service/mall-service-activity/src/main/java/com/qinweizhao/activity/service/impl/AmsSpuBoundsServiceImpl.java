@@ -1,12 +1,12 @@
 package com.qinweizhao.activity.service.impl;
 
-import com.qinweizhao.activity.domain.AmsSpuBounds;
 import com.qinweizhao.activity.mapper.AmsSpuBoundsMapper;
+import com.qinweizhao.activity.model.entity.AmsSpuBounds;
 import com.qinweizhao.activity.service.IAmsSpuBoundsService;
-import com.qinweizhao.common.core.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -50,7 +50,7 @@ public class AmsSpuBoundsServiceImpl implements IAmsSpuBoundsService {
      */
     @Override
     public int insertAmsSpuBounds(AmsSpuBounds amsSpuBounds) {
-        amsSpuBounds.setCreateTime(DateUtils.getNowDate());
+        amsSpuBounds.setCreateTime(LocalDateTime.now());
         return amsSpuBoundsMapper.insertAmsSpuBounds(amsSpuBounds);
     }
 
@@ -62,7 +62,7 @@ public class AmsSpuBoundsServiceImpl implements IAmsSpuBoundsService {
      */
     @Override
     public int updateAmsSpuBounds(AmsSpuBounds amsSpuBounds) {
-        amsSpuBounds.setUpdateTime(DateUtils.getNowDate());
+        amsSpuBounds.setUpdateTime(LocalDateTime.now());
         return amsSpuBoundsMapper.updateAmsSpuBounds(amsSpuBounds);
     }
 

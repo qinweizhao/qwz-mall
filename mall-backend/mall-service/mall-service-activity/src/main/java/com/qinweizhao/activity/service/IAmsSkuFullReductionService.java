@@ -1,6 +1,6 @@
 package com.qinweizhao.activity.service;
 
-import com.qinweizhao.activity.domain.AmsSkuFullReduction;
+import com.qinweizhao.activity.model.entity.AmsSkuFullReduction;
 
 import java.util.List;
 

@@ -1,12 +1,12 @@
 package com.qinweizhao.activity.service.impl;
 
-import com.qinweizhao.activity.domain.AmsSeckillSkuNotice;
 import com.qinweizhao.activity.mapper.AmsSeckillSkuNoticeMapper;
+import com.qinweizhao.activity.model.entity.AmsSeckillSkuNotice;
 import com.qinweizhao.activity.service.IAmsSeckillSkuNoticeService;
-import com.qinweizhao.common.core.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -50,7 +50,7 @@ public class AmsSeckillSkuNoticeServiceImpl implements IAmsSeckillSkuNoticeServi
      */
     @Override
     public int insertAmsSeckillSkuNotice(AmsSeckillSkuNotice amsSeckillSkuNotice) {
-        amsSeckillSkuNotice.setCreateTime(DateUtils.getNowDate());
+        amsSeckillSkuNotice.setCreateTime(LocalDateTime.now());
         return amsSeckillSkuNoticeMapper.insertAmsSeckillSkuNotice(amsSeckillSkuNotice);
     }
 
@@ -62,7 +62,7 @@ public class AmsSeckillSkuNoticeServiceImpl implements IAmsSeckillSkuNoticeServi
      */
     @Override
     public int updateAmsSeckillSkuNotice(AmsSeckillSkuNotice amsSeckillSkuNotice) {
-        amsSeckillSkuNotice.setUpdateTime(DateUtils.getNowDate());
+        amsSeckillSkuNotice.setUpdateTime(LocalDateTime.now());
         return amsSeckillSkuNoticeMapper.updateAmsSeckillSkuNotice(amsSeckillSkuNotice);
     }
 

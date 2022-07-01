@@ -1,6 +1,6 @@
 package com.qinweizhao.activity.mapper;
 
-import com.qinweizhao.activity.domain.AmsSeckillSkuRelation;
+import com.qinweizhao.activity.model.entity.AmsSeckillSkuRelation;
 
 import java.util.List;
 

@@ -1,12 +1,12 @@
 package com.qinweizhao.activity.service.impl;
 
-import com.qinweizhao.activity.domain.AmsSkuLadder;
 import com.qinweizhao.activity.mapper.AmsSkuLadderMapper;
+import com.qinweizhao.activity.model.entity.AmsSkuLadder;
 import com.qinweizhao.activity.service.IAmsSkuLadderService;
-import com.qinweizhao.common.core.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -50,7 +50,7 @@ public class AmsSkuLadderServiceImpl implements IAmsSkuLadderService {
      */
     @Override
     public int insertAmsSkuLadder(AmsSkuLadder amsSkuLadder) {
-        amsSkuLadder.setCreateTime(DateUtils.getNowDate());
+        amsSkuLadder.setCreateTime(LocalDateTime.now());
         return amsSkuLadderMapper.insertAmsSkuLadder(amsSkuLadder);
     }
 
@@ -62,7 +62,7 @@ public class AmsSkuLadderServiceImpl implements IAmsSkuLadderService {
      */
     @Override
     public int updateAmsSkuLadder(AmsSkuLadder amsSkuLadder) {
-        amsSkuLadder.setUpdateTime(DateUtils.getNowDate());
+        amsSkuLadder.setUpdateTime(LocalDateTime.now());
         return amsSkuLadderMapper.updateAmsSkuLadder(amsSkuLadder);
     }
 

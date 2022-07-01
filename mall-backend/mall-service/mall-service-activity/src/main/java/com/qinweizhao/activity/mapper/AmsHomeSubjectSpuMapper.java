@@ -1,6 +1,6 @@
 package com.qinweizhao.activity.mapper;
 
-import com.qinweizhao.activity.domain.AmsHomeSubjectSpu;
+import com.qinweizhao.activity.model.entity.AmsHomeSubjectSpu;
 
 import java.util.List;
 
