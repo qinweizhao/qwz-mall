@@ -1,18 +1,14 @@
 package com.qinweizhao.user.controller.admin;
 
-import cn.hutool.core.io.resource.ResourceUtil;
-import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.user.model.entity.UmsGrowthChangeHistory;
 import com.qinweizhao.user.service.UmsGrowthChangeHistoryService;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.io.File;
 import java.util.List;
 
 /**
@@ -23,7 +19,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/growth-history")
-public class UmsGrowthChangeHistoryController extends BaseController {
+public class UmsGrowthChangeHistoryController {
 
     @Resource
     private UmsGrowthChangeHistoryService umsGrowthChangeHistoryService;
@@ -34,7 +30,7 @@ public class UmsGrowthChangeHistoryController extends BaseController {
     @RequiresPermissions("product:history:list")
     @GetMapping("/list")
     public R<List<UmsGrowthChangeHistory>> list(UmsGrowthChangeHistory umsGrowthChangeHistory) {
-        startPage();
+         
         List<UmsGrowthChangeHistory> list = umsGrowthChangeHistoryService.selectUmsGrowthChangeHistoryList(umsGrowthChangeHistory);
         return R.success(list);
     }

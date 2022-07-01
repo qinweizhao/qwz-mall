@@ -1,12 +1,12 @@
 package com.qinweizhao.order.service.impl;
 
-import com.qinweizhao.common.core.utils.DateUtils;
-import com.qinweizhao.order.service.IOmsOrderOperateHistoryService;
+import com.qinweizhao.order.mapper.OmsOrderOperateHistoryMapper;
 import com.qinweizhao.order.model.entity.OmsOrderOperateHistory;
-import com.qinweizhao.product.mapper.OmsOrderOperateHistoryMapper;
+import com.qinweizhao.order.service.IOmsOrderOperateHistoryService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -50,7 +50,7 @@ public class OmsOrderOperateHistoryServiceImpl implements IOmsOrderOperateHistor
      */
     @Override
     public int insertOmsOrderOperateHistory(OmsOrderOperateHistory omsOrderOperateHistory) {
-        omsOrderOperateHistory.setCreateTime(DateUtils.getNowDate());
+        omsOrderOperateHistory.setCreateTime(LocalDateTime.now());
         return omsOrderOperateHistoryMapper.insertOmsOrderOperateHistory(omsOrderOperateHistory);
     }
 
@@ -62,7 +62,7 @@ public class OmsOrderOperateHistoryServiceImpl implements IOmsOrderOperateHistor
      */
     @Override
     public int updateOmsOrderOperateHistory(OmsOrderOperateHistory omsOrderOperateHistory) {
-        omsOrderOperateHistory.setUpdateTime(DateUtils.getNowDate());
+        omsOrderOperateHistory.setUpdateTime(LocalDateTime.now());
         return omsOrderOperateHistoryMapper.updateOmsOrderOperateHistory(omsOrderOperateHistory);
     }
 

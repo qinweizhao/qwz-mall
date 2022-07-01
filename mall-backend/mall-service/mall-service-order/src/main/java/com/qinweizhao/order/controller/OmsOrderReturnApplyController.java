@@ -1,7 +1,6 @@
 package com.qinweizhao.order.controller;
 
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
-import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.log.annotation.Log;
@@ -22,7 +21,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/apply")
-public class OmsOrderReturnApplyController extends BaseController {
+public class OmsOrderReturnApplyController {
     @Resource
     private IOmsOrderReturnApplyService omsOrderReturnApplyService;
 
@@ -32,7 +31,7 @@ public class OmsOrderReturnApplyController extends BaseController {
     @RequiresPermissions("order:apply:list")
     @GetMapping("/list")
     public R<List<OmsOrderReturnApply>> list(OmsOrderReturnApply omsOrderReturnApply) {
-        startPage();
+          
         List<OmsOrderReturnApply> list = omsOrderReturnApplyService.selectOmsOrderReturnApplyList(omsOrderReturnApply);
         return R.success(list);
     }

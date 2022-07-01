@@ -18,7 +18,7 @@ import java.util.Date;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-@TableName("oms_order_operate_history")
+@TableName("oms_order")
 public class OmsOrder extends BaseEntity {
     private static final long serialVersionUID = 1L;
 

@@ -1,11 +1,10 @@
 package com.qinweizhao.user.controller.admin;
 
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
-import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.user.model.entity.UmsMemberReceiveAddress;
 import com.qinweizhao.user.service.UmsMemberReceiveAddressService;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +21,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/address")
-public class UmsMemberReceiveAddressController extends BaseController {
+public class UmsMemberReceiveAddressController {
 
     @Resource
     private UmsMemberReceiveAddressService umsMemberReceiveAddressService;
@@ -33,7 +32,7 @@ public class UmsMemberReceiveAddressController extends BaseController {
     @RequiresPermissions("product:address:list")
     @GetMapping("/list")
     public R<List<UmsMemberReceiveAddress>> list(UmsMemberReceiveAddress umsMemberReceiveAddress) {
-        startPage();
+         
         List<UmsMemberReceiveAddress> list = umsMemberReceiveAddressService.selectUmsMemberReceiveAddressList(umsMemberReceiveAddress);
         return R.success(list);
     }

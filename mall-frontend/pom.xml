@@ -26,6 +26,5 @@
     <modules>
         <module>mall-frontend-app</module>
         <module>mall-frontend-admin</module>
-        <module>mall-frontend-portal</module>
     </modules>
 </project>

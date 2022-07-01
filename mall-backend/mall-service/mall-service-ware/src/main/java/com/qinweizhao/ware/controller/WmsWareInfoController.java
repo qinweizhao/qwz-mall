@@ -1,6 +1,5 @@
 package com.qinweizhao.ware.controller;
 
-import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.core.response.PageResult;
 import com.qinweizhao.component.core.response.R;

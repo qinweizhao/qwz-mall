@@ -2,13 +2,11 @@ package com.qinweizhao.ware.controller;
 
 import com.qinweizhao.api.ware.dto.SkuHasStockDTO;
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
-import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.InnerAuth;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.core.response.PageResult;
-import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.ware.model.entity.WmsWareSku;
 import com.qinweizhao.ware.service.IWmsWareSkuService;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +23,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/ware-sku")
-public class WmsWareSkuController extends BaseController {
+public class WmsWareSkuController  {
 
 
     @Resource
@@ -36,10 +34,9 @@ public class WmsWareSkuController extends BaseController {
      */
     @RequiresPermissions("product:sku:list")
     @GetMapping("/page")
-    public R<PageResult<WmsWareSku>> list(WmsWareSku wmsWareSku) {
-        startPage();
+    public R<List<WmsWareSku>> list(WmsWareSku wmsWareSku) {
         List<WmsWareSku> list = wmsWareSkuService.selectWmsWareSkuList(wmsWareSku);
-        return getPageResult(list);
+        return R.success(list);
     }
 
     /**

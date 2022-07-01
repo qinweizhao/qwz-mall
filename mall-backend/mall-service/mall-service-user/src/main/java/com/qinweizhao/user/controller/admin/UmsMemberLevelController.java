@@ -1,12 +1,10 @@
 package com.qinweizhao.user.controller.admin;
 
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
-import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.core.response.PageResult;
-import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.user.model.entity.UmsMemberLevel;
 import com.qinweizhao.user.service.UmsMemberLevelService;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +21,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/level")
-public class UmsMemberLevelController extends BaseController {
+public class UmsMemberLevelController {
 
     @Resource
     private UmsMemberLevelService umsMemberLevelService;
@@ -33,10 +31,9 @@ public class UmsMemberLevelController extends BaseController {
      */
     @RequiresPermissions("product:level:list")
     @GetMapping("/list")
-    public R<PageResult<UmsMemberLevel>> list(UmsMemberLevel umsMemberLevel) {
-        startPage();
+    public R<List<UmsMemberLevel>> list(UmsMemberLevel umsMemberLevel) {
         List<UmsMemberLevel> list = umsMemberLevelService.selectUmsMemberLevelList(umsMemberLevel);
-        return getPageResult(list);
+        return R.success(list);
     }
 
     /**
@@ -47,7 +44,7 @@ public class UmsMemberLevelController extends BaseController {
     @PostMapping("/export")
     public R<?> export(HttpServletResponse response, UmsMemberLevel umsMemberLevel) {
         List<UmsMemberLevel> list = umsMemberLevelService.selectUmsMemberLevelList(umsMemberLevel);
-        ExcelUtil<UmsMemberLevel> util = new ExcelUtil<UmsMemberLevel>(UmsMemberLevel.class);
+        ExcelUtil<UmsMemberLevel> util = new ExcelUtil<>(UmsMemberLevel.class);
         util.exportExcel(response, list, "会员等级数据");
         return R.success();
     }

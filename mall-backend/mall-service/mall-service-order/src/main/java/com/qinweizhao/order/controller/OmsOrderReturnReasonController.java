@@ -1,7 +1,6 @@
 package com.qinweizhao.order.controller;
 
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
-import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.log.annotation.Log;
@@ -22,7 +21,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/reason")
-public class OmsOrderReturnReasonController extends BaseController {
+public class OmsOrderReturnReasonController {
     @Resource
     private IOmsOrderReturnReasonService omsOrderReturnReasonService;
 
@@ -32,7 +31,7 @@ public class OmsOrderReturnReasonController extends BaseController {
     @RequiresPermissions("order:reason:list")
     @GetMapping("/list")
     public R<List<OmsOrderReturnReason>> list(OmsOrderReturnReason omsOrderReturnReason) {
-        startPage();
+
         List<OmsOrderReturnReason> list = omsOrderReturnReasonService.selectOmsOrderReturnReasonList(omsOrderReturnReason);
         return R.success(list);
     }
@@ -45,7 +44,7 @@ public class OmsOrderReturnReasonController extends BaseController {
     @PostMapping("/export")
     public R<?> export(HttpServletResponse response, OmsOrderReturnReason omsOrderReturnReason) {
         List<OmsOrderReturnReason> list = omsOrderReturnReasonService.selectOmsOrderReturnReasonList(omsOrderReturnReason);
-        ExcelUtil<OmsOrderReturnReason> util = new ExcelUtil<OmsOrderReturnReason>(OmsOrderReturnReason.class);
+        ExcelUtil<OmsOrderReturnReason> util = new ExcelUtil<>(OmsOrderReturnReason.class);
         util.exportExcel(response, list, "退货原因数据");
         return R.success();
     }

@@ -1,8 +1,10 @@
 package com.qinweizhao.order.model.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.component.core.entity.BaseEntity;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 
@@ -12,6 +14,9 @@ import java.math.BigDecimal;
  * @author qinweizhao
  * @date 2022-07-01
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
+@TableName("oms_order_item")
 public class OmsOrderItem extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
@@ -134,193 +139,4 @@ public class OmsOrderItem extends BaseEntity {
     @Excel(name = "赠送成长值")
     private Long giftGrowth;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
-
-    public String getOrderSn() {
-        return orderSn;
-    }
-
-    public void setOrderSn(String orderSn) {
-        this.orderSn = orderSn;
-    }
-
-    public Long getSpuId() {
-        return spuId;
-    }
-
-    public void setSpuId(Long spuId) {
-        this.spuId = spuId;
-    }
-
-    public String getSpuName() {
-        return spuName;
-    }
-
-    public void setSpuName(String spuName) {
-        this.spuName = spuName;
-    }
-
-    public String getSpuPic() {
-        return spuPic;
-    }
-
-    public void setSpuPic(String spuPic) {
-        this.spuPic = spuPic;
-    }
-
-    public String getSpuBrand() {
-        return spuBrand;
-    }
-
-    public void setSpuBrand(String spuBrand) {
-        this.spuBrand = spuBrand;
-    }
-
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public Long getSkuId() {
-        return skuId;
-    }
-
-    public void setSkuId(Long skuId) {
-        this.skuId = skuId;
-    }
-
-    public String getSkuName() {
-        return skuName;
-    }
-
-    public void setSkuName(String skuName) {
-        this.skuName = skuName;
-    }
-
-    public String getSkuPic() {
-        return skuPic;
-    }
-
-    public void setSkuPic(String skuPic) {
-        this.skuPic = skuPic;
-    }
-
-    public BigDecimal getSkuPrice() {
-        return skuPrice;
-    }
-
-    public void setSkuPrice(BigDecimal skuPrice) {
-        this.skuPrice = skuPrice;
-    }
-
-    public Long getSkuQuantity() {
-        return skuQuantity;
-    }
-
-    public void setSkuQuantity(Long skuQuantity) {
-        this.skuQuantity = skuQuantity;
-    }
-
-    public String getSkuAttrsVals() {
-        return skuAttrsVals;
-    }
-
-    public void setSkuAttrsVals(String skuAttrsVals) {
-        this.skuAttrsVals = skuAttrsVals;
-    }
-
-    public BigDecimal getPromotionAmount() {
-        return promotionAmount;
-    }
-
-    public void setPromotionAmount(BigDecimal promotionAmount) {
-        this.promotionAmount = promotionAmount;
-    }
-
-    public BigDecimal getCouponAmount() {
-        return couponAmount;
-    }
-
-    public void setCouponAmount(BigDecimal couponAmount) {
-        this.couponAmount = couponAmount;
-    }
-
-    public BigDecimal getIntegrationAmount() {
-        return integrationAmount;
-    }
-
-    public void setIntegrationAmount(BigDecimal integrationAmount) {
-        this.integrationAmount = integrationAmount;
-    }
-
-    public BigDecimal getRealAmount() {
-        return realAmount;
-    }
-
-    public void setRealAmount(BigDecimal realAmount) {
-        this.realAmount = realAmount;
-    }
-
-    public Long getGiftIntegration() {
-        return giftIntegration;
-    }
-
-    public void setGiftIntegration(Long giftIntegration) {
-        this.giftIntegration = giftIntegration;
-    }
-
-    public Long getGiftGrowth() {
-        return giftGrowth;
-    }
-
-    public void setGiftGrowth(Long giftGrowth) {
-        this.giftGrowth = giftGrowth;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("id", getId())
-                .append("orderId", getOrderId())
-                .append("orderSn", getOrderSn())
-                .append("spuId", getSpuId())
-                .append("spuName", getSpuName())
-                .append("spuPic", getSpuPic())
-                .append("spuBrand", getSpuBrand())
-                .append("categoryId", getCategoryId())
-                .append("skuId", getSkuId())
-                .append("skuName", getSkuName())
-                .append("skuPic", getSkuPic())
-                .append("skuPrice", getSkuPrice())
-                .append("skuQuantity", getSkuQuantity())
-                .append("skuAttrsVals", getSkuAttrsVals())
-                .append("promotionAmount", getPromotionAmount())
-                .append("couponAmount", getCouponAmount())
-                .append("integrationAmount", getIntegrationAmount())
-                .append("realAmount", getRealAmount())
-                .append("giftIntegration", getGiftIntegration())
-                .append("giftGrowth", getGiftGrowth())
-                .append("createBy", getCreateBy())
-                .append("updateBy", getUpdateBy())
-                .append("createTime", getCreateTime())
-                .append("updateTime", getUpdateTime())
-                .toString();
-    }
 }

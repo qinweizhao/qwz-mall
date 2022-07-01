@@ -1,11 +1,10 @@
 package com.qinweizhao.user.controller.admin;
 
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
-import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.user.model.entity.UmsMemberLoginLog;
 import com.qinweizhao.user.service.UmsMemberLoginLogService;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +21,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/log")
-public class UmsMemberLoginLogController extends BaseController {
+public class UmsMemberLoginLogController {
     @Resource
     private UmsMemberLoginLogService umsMemberLoginLogService;
 
@@ -32,7 +31,7 @@ public class UmsMemberLoginLogController extends BaseController {
     @RequiresPermissions("product:log:list")
     @GetMapping("/list")
     public R<List<UmsMemberLoginLog>> list(UmsMemberLoginLog umsMemberLoginLog) {
-        startPage();
+         
         List<UmsMemberLoginLog> list = umsMemberLoginLogService.selectUmsMemberLoginLogList(umsMemberLoginLog);
         return R.success(list);
     }

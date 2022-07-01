@@ -1,7 +1,7 @@
 package com.qinweizhao.ware.controller;
 
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
-import com.qinweizhao.common.core.web.controller.BaseController;
+
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
@@ -22,7 +22,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/purchase/detail")
-public class WmsPurchaseDetailController extends BaseController {
+public class WmsPurchaseDetailController  {
     @Resource
     private IWmsPurchaseDetailService wmsPurchaseDetailService;
 
@@ -32,7 +32,7 @@ public class WmsPurchaseDetailController extends BaseController {
     @RequiresPermissions("product:detail:list")
     @GetMapping("/list")
     public R<List<WmsPurchaseDetail>> list(WmsPurchaseDetail wmsPurchaseDetail) {
-        startPage();
+        
         List<WmsPurchaseDetail> list = wmsPurchaseDetailService.selectWmsPurchaseDetailList(wmsPurchaseDetail);
         return R.success(list);
     }

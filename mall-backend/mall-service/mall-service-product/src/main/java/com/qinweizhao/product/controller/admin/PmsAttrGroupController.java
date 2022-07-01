@@ -1,12 +1,12 @@
 package com.qinweizhao.product.controller.admin;
 
 import com.qinweizhao.common.core.utils.bean.BeanUtils;
-import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.core.response.PageResult;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
+import com.qinweizhao.product.controller.base.BaseController;
 import com.qinweizhao.product.convert.AttrGroupConvert;
 import com.qinweizhao.product.model.dto.AttrGroupWithAttrsDTO;
 import com.qinweizhao.product.model.entity.PmsAttrGroup;

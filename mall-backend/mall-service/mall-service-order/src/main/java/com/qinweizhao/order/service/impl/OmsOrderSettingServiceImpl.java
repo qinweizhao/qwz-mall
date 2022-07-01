@@ -1,12 +1,12 @@
 package com.qinweizhao.order.service.impl;
 
-import com.qinweizhao.common.core.utils.DateUtils;
-import com.qinweizhao.order.service.IOmsOrderSettingService;
+import com.qinweizhao.order.mapper.OmsOrderSettingMapper;
 import com.qinweizhao.order.model.entity.OmsOrderSetting;
-import com.qinweizhao.product.mapper.OmsOrderSettingMapper;
+import com.qinweizhao.order.service.IOmsOrderSettingService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -50,7 +50,7 @@ public class OmsOrderSettingServiceImpl implements IOmsOrderSettingService {
      */
     @Override
     public int insertOmsOrderSetting(OmsOrderSetting omsOrderSetting) {
-        omsOrderSetting.setCreateTime(DateUtils.getNowDate());
+        omsOrderSetting.setCreateTime(LocalDateTime.now());
         return omsOrderSettingMapper.insertOmsOrderSetting(omsOrderSetting);
     }
 
@@ -62,7 +62,7 @@ public class OmsOrderSettingServiceImpl implements IOmsOrderSettingService {
      */
     @Override
     public int updateOmsOrderSetting(OmsOrderSetting omsOrderSetting) {
-        omsOrderSetting.setUpdateTime(DateUtils.getNowDate());
+        omsOrderSetting.setUpdateTime(LocalDateTime.now());
         return omsOrderSettingMapper.updateOmsOrderSetting(omsOrderSetting);
     }
 

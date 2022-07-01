@@ -2,7 +2,7 @@ package com.qinweizhao.system.controller.admin;
 
 import com.qinweizhao.common.core.constant.UserConstants;
 import com.qinweizhao.common.core.utils.StringUtils;
-import com.qinweizhao.common.core.web.controller.BaseController;
+ import com.qinweizhao.system.controller.base.BaseController;
 import com.qinweizhao.common.core.web.domain.AjaxResult;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.common.security.utils.SecurityUtils;

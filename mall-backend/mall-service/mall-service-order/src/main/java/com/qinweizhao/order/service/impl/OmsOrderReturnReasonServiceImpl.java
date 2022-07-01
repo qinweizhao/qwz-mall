@@ -1,12 +1,12 @@
 package com.qinweizhao.order.service.impl;
 
-import com.qinweizhao.common.core.utils.DateUtils;
-import com.qinweizhao.order.service.IOmsOrderReturnReasonService;
+import com.qinweizhao.order.mapper.OmsOrderReturnReasonMapper;
 import com.qinweizhao.order.model.entity.OmsOrderReturnReason;
-import com.qinweizhao.product.mapper.OmsOrderReturnReasonMapper;
+import com.qinweizhao.order.service.IOmsOrderReturnReasonService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -50,7 +50,6 @@ public class OmsOrderReturnReasonServiceImpl implements IOmsOrderReturnReasonSer
      */
     @Override
     public int insertOmsOrderReturnReason(OmsOrderReturnReason omsOrderReturnReason) {
-        omsOrderReturnReason.setCreateTime(DateUtils.getNowDate());
         return omsOrderReturnReasonMapper.insertOmsOrderReturnReason(omsOrderReturnReason);
     }
 
@@ -62,7 +61,7 @@ public class OmsOrderReturnReasonServiceImpl implements IOmsOrderReturnReasonSer
      */
     @Override
     public int updateOmsOrderReturnReason(OmsOrderReturnReason omsOrderReturnReason) {
-        omsOrderReturnReason.setUpdateTime(DateUtils.getNowDate());
+        omsOrderReturnReason.setUpdateTime(LocalDateTime.now());
         return omsOrderReturnReasonMapper.updateOmsOrderReturnReason(omsOrderReturnReason);
     }
 

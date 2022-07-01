@@ -1,11 +1,10 @@
-package com.qinweizhao.common.core.web.controller;
+package com.qinweizhao.generator.controller.base;
 
 import com.github.pagehelper.PageInfo;
 import com.qinweizhao.common.core.utils.DateUtils;
 import com.qinweizhao.common.core.utils.PageUtils;
 import com.qinweizhao.common.core.web.domain.AjaxResult;
 import com.qinweizhao.common.core.web.page.TableDataInfo;
-import com.qinweizhao.component.core.response.PageResult;
 import com.qinweizhao.component.core.response.PageResult;
 import com.qinweizhao.component.core.response.R;
 import org.slf4j.Logger;

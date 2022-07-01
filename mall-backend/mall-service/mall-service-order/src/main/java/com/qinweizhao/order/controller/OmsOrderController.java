@@ -1,7 +1,6 @@
 package com.qinweizhao.order.controller;
 
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
-import com.qinweizhao.common.core.web.controller.BaseController;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.log.annotation.Log;
@@ -22,7 +21,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/order")
-public class OmsOrderController extends BaseController {
+public class OmsOrderController {
 
     @Resource
     private IOmsOrderService omsOrderService;
@@ -33,7 +32,7 @@ public class OmsOrderController extends BaseController {
     @RequiresPermissions("order:order:list")
     @GetMapping("/list")
     public R<List<OmsOrder>> list(OmsOrder omsOrder) {
-        startPage();
+          
         List<OmsOrder> list = omsOrderService.selectOmsOrderList(omsOrder);
         return R.success(list);
     }

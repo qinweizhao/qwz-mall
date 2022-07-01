@@ -1,7 +1,7 @@
 package com.qinweizhao.ware.controller;
 
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
-import com.qinweizhao.common.core.web.controller.BaseController;
+
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
@@ -22,7 +22,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/order/task")
-public class WmsWareOrderTaskController extends BaseController {
+public class WmsWareOrderTaskController  {
     @Resource
     private IWmsWareOrderTaskService wmsWareOrderTaskService;
 
@@ -32,7 +32,7 @@ public class WmsWareOrderTaskController extends BaseController {
     @RequiresPermissions("product:task:list")
     @GetMapping("/list")
     public R<List<WmsWareOrderTask>> list(WmsWareOrderTask wmsWareOrderTask) {
-        startPage();
+        
         List<WmsWareOrderTask> list = wmsWareOrderTaskService.selectWmsWareOrderTaskList(wmsWareOrderTask);
         return R.success(list);
     }

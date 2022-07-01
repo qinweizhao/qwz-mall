@@ -4,7 +4,7 @@ import com.qinweizhao.common.core.constant.Constants;
 import com.qinweizhao.common.core.exception.job.TaskException;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.utils.poi.ExcelUtil;
-import com.qinweizhao.common.core.web.controller.BaseController;
+ import com.qinweizhao.system.controller.base.BaseController;
 import com.qinweizhao.common.core.web.domain.AjaxResult;
 import com.qinweizhao.common.core.web.page.TableDataInfo;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
