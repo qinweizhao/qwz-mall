@@ -33,5 +33,5 @@ public class LoginBody {
     /**
      * sysType 参考SysTypeEnum
      */
-    protected String sysType;
+    private String sysType;
 }

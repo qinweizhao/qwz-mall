@@ -26,12 +26,12 @@ export function login(code, encryptedData,iv) {
 // #ifndef MP
 export function login( mobile,code) {
 	return request({
-		url: '/youlai-auth/oauth/token',
+		url: '/auth/login',
 		method: 'post',
-		params: {
-			mobile: mobile,
-			code: code,
-			grant_type: 'sms_code'
+		data: {
+			username: mobile,
+			password: code,
+			sysType: 'app'
 		},
 		headers: {
 			'Authorization': 'Basic bWFsbC1hcHA6MTIzNDU2' // 客户端信息Base64加密，明文：mall-app:123456

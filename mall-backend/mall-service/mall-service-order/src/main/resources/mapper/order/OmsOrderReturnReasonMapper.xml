@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qinweizhao.product.mapper.OmsOrderReturnReasonMapper">
+    
+    <resultMap type="OmsOrderReturnReason" id="OmsOrderReturnReasonResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <result property="sort"    column="sort"    />
+        <result property="status"    column="status"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectOmsOrderReturnReasonVo">
+        select id, name, sort, status, create_by, update_by, create_time, update_time from oms_order_return_reason
+    </sql>
+
+    <select id="selectOmsOrderReturnReasonList" parameterType="OmsOrderReturnReason" resultMap="OmsOrderReturnReasonResult">
+        <include refid="selectOmsOrderReturnReasonVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="sort != null "> and sort = #{sort}</if>
+            <if test="status != null "> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectOmsOrderReturnReasonById" parameterType="Long" resultMap="OmsOrderReturnReasonResult">
+        <include refid="selectOmsOrderReturnReasonVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertOmsOrderReturnReason" parameterType="OmsOrderReturnReason" useGeneratedKeys="true" keyProperty="id">
+        insert into oms_order_return_reason
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">name,</if>
+            <if test="sort != null">sort,</if>
+            <if test="status != null">status,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">#{name},</if>
+            <if test="sort != null">#{sort},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateOmsOrderReturnReason" parameterType="OmsOrderReturnReason">
+        update oms_order_return_reason
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name = #{name},</if>
+            <if test="sort != null">sort = #{sort},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteOmsOrderReturnReasonById" parameterType="Long">
+        delete from oms_order_return_reason where id = #{id}
+    </delete>
+
+    <delete id="deleteOmsOrderReturnReasonByIds" parameterType="String">
+        delete from oms_order_return_reason where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

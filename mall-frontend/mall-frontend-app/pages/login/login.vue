@@ -8,7 +8,7 @@
 			<!-- #ifdef MP -->
 			<button class="confirm-btn" @click.stop="getUserProfile">小程序登录授权</button>
 			<view class="tip">
-				温馨提示:未注册有来小店的用户,初次登录时将完成注册
+				温馨提示:未注册的用户,初次登录时将完成注册
 			</view>
 			<!-- #endif -->
 
@@ -17,7 +17,7 @@
 			<view class="left-top-sign">LOGIN</view>
 			<view class="welcome">欢迎回来！</view>
 			<view class="input-content">
-				<view class="input-item" style="position: relative;">
+			<!-- 	<view class="input-item" style="position: relative;">
 					<text class="tit">手机号码</text>
 					<input :value="mobile" placeholder="请输入手机号码" maxlength="11" data-key="mobile"
 						@input="inputChange" />
@@ -25,18 +25,24 @@
 						:class="{correct_phone_number:isCorretPhoneNumber}" @click.prevent="getSmsCode">
 						{{countdown>0 ? `(${countdown}s)已发送` : '获取验证码'}}
 					</button>
+				</view> -->
+				
+				<view class="input-item" style="position: relative;">
+					<text class="tit">用户名</text>
+					<input :value="mobile" placeholder="请输入用户名" maxlength="11" data-key="mobile"
+						@input="inputChange" />
 				</view>
 
 				<view class="input-item">
-					<text class="tit">验证码</text>
-					<input :value="verificationCode" placeholder="6位随机数字组合" placeholder-class="input-empty" maxlength="20"
+					<text class="tit">密码</text>
+					<input :value="verificationCode" placeholder="请输入密码" placeholder-class="input-empty" maxlength="20"
 						data-key="verificationCode" @input="inputChange" @confirm="toLogin" />
 				</view>
 			</view>
 			<button class="confirm-btn" @click="toLogin" :disabled="logining">登录</button>
-			<view class="tip">
+			<!-- <view class="tip">
 				默认手机号码/验证码: 17621590365/666666
-			</view>
+			</view> -->
 			<!-- #endif -->
 		</view>
 		<view class="register-section">
@@ -58,8 +64,8 @@
 	export default {
 		data() {
 			return {
-				mobile: '17621590365',
-				verificationCode: 666666,
+				mobile: 'qwz',
+				verificationCode: 123456,
 				password: undefined,
 				logining: false,
 				countdown: 0,

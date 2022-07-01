@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qinweizhao.product.mapper.OmsOrderSettingMapper">
+    
+    <resultMap type="OmsOrderSetting" id="OmsOrderSettingResult">
+        <result property="id"    column="id"    />
+        <result property="flashOrderOvertime"    column="flash_order_overtime"    />
+        <result property="normalOrderOvertime"    column="normal_order_overtime"    />
+        <result property="confirmOvertime"    column="confirm_overtime"    />
+        <result property="finishOvertime"    column="finish_overtime"    />
+        <result property="commentOvertime"    column="comment_overtime"    />
+        <result property="memberLevel"    column="member_level"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectOmsOrderSettingVo">
+        select id, flash_order_overtime, normal_order_overtime, confirm_overtime, finish_overtime, comment_overtime, member_level, create_by, update_by, create_time, update_time from oms_order_setting
+    </sql>
+
+    <select id="selectOmsOrderSettingList" parameterType="OmsOrderSetting" resultMap="OmsOrderSettingResult">
+        <include refid="selectOmsOrderSettingVo"/>
+        <where>  
+            <if test="flashOrderOvertime != null "> and flash_order_overtime = #{flashOrderOvertime}</if>
+            <if test="normalOrderOvertime != null "> and normal_order_overtime = #{normalOrderOvertime}</if>
+            <if test="confirmOvertime != null "> and confirm_overtime = #{confirmOvertime}</if>
+            <if test="finishOvertime != null "> and finish_overtime = #{finishOvertime}</if>
+            <if test="commentOvertime != null "> and comment_overtime = #{commentOvertime}</if>
+            <if test="memberLevel != null "> and member_level = #{memberLevel}</if>
+        </where>
+    </select>
+    
+    <select id="selectOmsOrderSettingById" parameterType="Long" resultMap="OmsOrderSettingResult">
+        <include refid="selectOmsOrderSettingVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertOmsOrderSetting" parameterType="OmsOrderSetting" useGeneratedKeys="true" keyProperty="id">
+        insert into oms_order_setting
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="flashOrderOvertime != null">flash_order_overtime,</if>
+            <if test="normalOrderOvertime != null">normal_order_overtime,</if>
+            <if test="confirmOvertime != null">confirm_overtime,</if>
+            <if test="finishOvertime != null">finish_overtime,</if>
+            <if test="commentOvertime != null">comment_overtime,</if>
+            <if test="memberLevel != null">member_level,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="flashOrderOvertime != null">#{flashOrderOvertime},</if>
+            <if test="normalOrderOvertime != null">#{normalOrderOvertime},</if>
+            <if test="confirmOvertime != null">#{confirmOvertime},</if>
+            <if test="finishOvertime != null">#{finishOvertime},</if>
+            <if test="commentOvertime != null">#{commentOvertime},</if>
+            <if test="memberLevel != null">#{memberLevel},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateOmsOrderSetting" parameterType="OmsOrderSetting">
+        update oms_order_setting
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="flashOrderOvertime != null">flash_order_overtime = #{flashOrderOvertime},</if>
+            <if test="normalOrderOvertime != null">normal_order_overtime = #{normalOrderOvertime},</if>
+            <if test="confirmOvertime != null">confirm_overtime = #{confirmOvertime},</if>
+            <if test="finishOvertime != null">finish_overtime = #{finishOvertime},</if>
+            <if test="commentOvertime != null">comment_overtime = #{commentOvertime},</if>
+            <if test="memberLevel != null">member_level = #{memberLevel},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteOmsOrderSettingById" parameterType="Long">
+        delete from oms_order_setting where id = #{id}
+    </delete>
+
+    <delete id="deleteOmsOrderSettingByIds" parameterType="String">
+        delete from oms_order_setting where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

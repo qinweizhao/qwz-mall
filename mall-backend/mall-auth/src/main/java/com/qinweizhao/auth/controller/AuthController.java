@@ -1,6 +1,7 @@
 package com.qinweizhao.auth.controller;
 
 
+import com.qinweizhao.auth.constant.SysTypeEnum;
 import com.qinweizhao.auth.model.LoginBody;
 import com.qinweizhao.auth.model.RegisterBody;
 import com.qinweizhao.auth.service.SysLoginService;
@@ -42,17 +43,20 @@ public class AuthController {
         return R.success(captcha);
     }
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public R<Map<String, Object>> login(@RequestBody LoginBody form) {
-        // 校验验证码
-        validateCodeService.checkCapcha(form.getCode(), form.getUuid());
+        String sysType = form.getSysType();
+        if (SysTypeEnum.ADMIN.value().equals(sysType)){
+            // 校验验证码
+            validateCodeService.checkCapcha(form.getCode(), form.getUuid());
+        }
         // 用户登录
         LoginUser userInfo = sysLoginService.login(form.getUsername(), form.getPassword(), form.getSysType());
         // 获取登录token
         return R.success(tokenService.createToken(userInfo));
     }
 
-    @DeleteMapping("logout")
+    @DeleteMapping("/logout")
     public R<?> logout(HttpServletRequest request) {
         String token = SecurityUtils.getToken(request);
         if (StringUtils.isNotEmpty(token)) {
