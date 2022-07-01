@@ -43,7 +43,7 @@ public class OmsOrderSettingController {
     @PostMapping("/export")
     public R<?> export(HttpServletResponse response, OmsOrderSetting omsOrderSetting) {
         List<OmsOrderSetting> list = omsOrderSettingService.selectOmsOrderSettingList(omsOrderSetting);
-        ExcelUtil<OmsOrderSetting> util = new ExcelUtil<OmsOrderSetting>(OmsOrderSetting.class);
+        ExcelUtil<OmsOrderSetting> util = new ExcelUtil<>(OmsOrderSetting.class);
         util.exportExcel(response, list, "订单配置信息数据");
         return R.success();
     }
@@ -54,7 +54,7 @@ public class OmsOrderSettingController {
     @RequiresPermissions("order:setting:query")
     @GetMapping(value = "/{id}")
     public R<OmsOrderSetting> getInfo(@PathVariable("id") Long id) {
-        return R.success(omsOrderSettingService.selectOmsOrderSettingById(id));
+        return R.success(omsOrderSettingService.getById(id));
     }
 
     /**
@@ -64,7 +64,7 @@ public class OmsOrderSettingController {
     @Log(title = "订单配置信息", businessType = BusinessType.INSERT)
     @PostMapping
     public R<?> add(@RequestBody OmsOrderSetting omsOrderSetting) {
-        return R.success(omsOrderSettingService.insertOmsOrderSetting(omsOrderSetting));
+        return R.success(omsOrderSettingService.save(omsOrderSetting));
     }
 
     /**
@@ -74,7 +74,7 @@ public class OmsOrderSettingController {
     @Log(title = "订单配置信息", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<?> edit(@RequestBody OmsOrderSetting omsOrderSetting) {
-        return R.success(omsOrderSettingService.updateOmsOrderSetting(omsOrderSetting));
+        return R.success(omsOrderSettingService.updateById(omsOrderSetting));
     }
 
     /**
@@ -82,8 +82,8 @@ public class OmsOrderSettingController {
      */
     @RequiresPermissions("order:setting:remove")
     @Log(title = "订单配置信息", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{ids}")
-    public R<?> remove(@PathVariable Long[] ids) {
-        return R.success(omsOrderSettingService.deleteOmsOrderSettingByIds(ids));
+    @DeleteMapping("/{id}")
+    public R<?> remove(@PathVariable Long id) {
+        return R.success(omsOrderSettingService.removeById(id));
     }
 }

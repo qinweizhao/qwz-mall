@@ -23,6 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/item")
 public class OmsOrderItemController {
+
     @Resource
     private IOmsOrderItemService omsOrderItemService;
 
@@ -44,7 +45,7 @@ public class OmsOrderItemController {
     @PostMapping("/export")
     public R<?> export(HttpServletResponse response, OmsOrderItem omsOrderItem) {
         List<OmsOrderItem> list = omsOrderItemService.selectOmsOrderItemList(omsOrderItem);
-        ExcelUtil<OmsOrderItem> util = new ExcelUtil<OmsOrderItem>(OmsOrderItem.class);
+        ExcelUtil<OmsOrderItem> util = new ExcelUtil<>(OmsOrderItem.class);
         util.exportExcel(response, list, "订单项信息数据");
         return R.success();
     }
@@ -55,7 +56,7 @@ public class OmsOrderItemController {
     @RequiresPermissions("order:item:query")
     @GetMapping(value = "/{id}")
     public R<OmsOrderItem> getInfo(@PathVariable("id") Long id) {
-        return R.success(omsOrderItemService.selectOmsOrderItemById(id));
+        return R.success(omsOrderItemService.getById(id));
     }
 
     /**
@@ -65,7 +66,7 @@ public class OmsOrderItemController {
     @Log(title = "订单项信息", businessType = BusinessType.INSERT)
     @PostMapping
     public R<?> add(@RequestBody OmsOrderItem omsOrderItem) {
-        return R.success(omsOrderItemService.insertOmsOrderItem(omsOrderItem));
+        return R.success(omsOrderItemService.save(omsOrderItem));
     }
 
     /**
@@ -75,7 +76,7 @@ public class OmsOrderItemController {
     @Log(title = "订单项信息", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<?> edit(@RequestBody OmsOrderItem omsOrderItem) {
-        return R.success(omsOrderItemService.updateOmsOrderItem(omsOrderItem));
+        return R.success(omsOrderItemService.updateById(omsOrderItem));
     }
 
     /**
@@ -83,8 +84,8 @@ public class OmsOrderItemController {
      */
     @RequiresPermissions("order:item:remove")
     @Log(title = "订单项信息", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{ids}")
-    public R<?> remove(@PathVariable Long[] ids) {
-        return R.success(omsOrderItemService.deleteOmsOrderItemByIds(ids));
+    @DeleteMapping("/{id}")
+    public R<?> remove(@PathVariable Long id) {
+        return R.success(omsOrderItemService.removeById(id));
     }
 }

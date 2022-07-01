@@ -32,7 +32,6 @@ public class OmsOrderController {
     @RequiresPermissions("order:order:list")
     @GetMapping("/list")
     public R<List<OmsOrder>> list(OmsOrder omsOrder) {
-          
         List<OmsOrder> list = omsOrderService.selectOmsOrderList(omsOrder);
         return R.success(list);
     }
@@ -45,7 +44,7 @@ public class OmsOrderController {
     @PostMapping("/export")
     public R<?> export(HttpServletResponse response, OmsOrder omsOrder) {
         List<OmsOrder> list = omsOrderService.selectOmsOrderList(omsOrder);
-        ExcelUtil<OmsOrder> util = new ExcelUtil<OmsOrder>(OmsOrder.class);
+        ExcelUtil<OmsOrder> util = new ExcelUtil<>(OmsOrder.class);
         util.exportExcel(response, list, "订单数据");
         return R.success();
     }
@@ -56,7 +55,7 @@ public class OmsOrderController {
     @RequiresPermissions("order:order:query")
     @GetMapping(value = "/{id}")
     public R<OmsOrder> getInfo(@PathVariable("id") Long id) {
-        return R.success(omsOrderService.selectOmsOrderById(id));
+        return R.success(omsOrderService.getById(id));
     }
 
     /**
@@ -66,7 +65,7 @@ public class OmsOrderController {
     @Log(title = "订单", businessType = BusinessType.INSERT)
     @PostMapping
     public R<?> add(@RequestBody OmsOrder omsOrder) {
-        return R.success(omsOrderService.insertOmsOrder(omsOrder));
+        return R.success(omsOrderService.save(omsOrder));
     }
 
     /**
@@ -76,7 +75,7 @@ public class OmsOrderController {
     @Log(title = "订单", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<?> edit(@RequestBody OmsOrder omsOrder) {
-        return R.success(omsOrderService.updateOmsOrder(omsOrder));
+        return R.success(omsOrderService.updateById(omsOrder));
     }
 
     /**
@@ -85,7 +84,7 @@ public class OmsOrderController {
     @RequiresPermissions("order:order:remove")
     @Log(title = "订单", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
-    public R<?> remove(@PathVariable Long[] ids) {
-        return R.success(omsOrderService.deleteOmsOrderByIds(ids));
+    public R<?> remove(@PathVariable List<Long> ids) {
+        return R.success(omsOrderService.removeByIds(ids));
     }
 }

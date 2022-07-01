@@ -55,7 +55,7 @@ public class OmsOrderReturnReasonController {
     @RequiresPermissions("order:reason:query")
     @GetMapping(value = "/{id}")
     public R<OmsOrderReturnReason> getInfo(@PathVariable("id") Long id) {
-        return R.success(omsOrderReturnReasonService.selectOmsOrderReturnReasonById(id));
+        return R.success(omsOrderReturnReasonService.getById(id));
     }
 
     /**
@@ -65,7 +65,7 @@ public class OmsOrderReturnReasonController {
     @Log(title = "退货原因", businessType = BusinessType.INSERT)
     @PostMapping
     public R<?> add(@RequestBody OmsOrderReturnReason omsOrderReturnReason) {
-        return R.success(omsOrderReturnReasonService.insertOmsOrderReturnReason(omsOrderReturnReason));
+        return R.success(omsOrderReturnReasonService.save(omsOrderReturnReason));
     }
 
     /**
@@ -75,7 +75,7 @@ public class OmsOrderReturnReasonController {
     @Log(title = "退货原因", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<?> edit(@RequestBody OmsOrderReturnReason omsOrderReturnReason) {
-        return R.success(omsOrderReturnReasonService.updateOmsOrderReturnReason(omsOrderReturnReason));
+        return R.success(omsOrderReturnReasonService.updateById(omsOrderReturnReason));
     }
 
     /**
@@ -83,8 +83,8 @@ public class OmsOrderReturnReasonController {
      */
     @RequiresPermissions("order:reason:remove")
     @Log(title = "退货原因", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{ids}")
-    public R<?> remove(@PathVariable Long[] ids) {
-        return R.success(omsOrderReturnReasonService.deleteOmsOrderReturnReasonByIds(ids));
+    @DeleteMapping("/{id}")
+    public R<?> remove(@PathVariable Long id) {
+        return R.success(omsOrderReturnReasonService.removeById(id));
     }
 }
