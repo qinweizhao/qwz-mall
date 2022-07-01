@@ -55,7 +55,7 @@ public class AmsSeckillSessionController {
     @RequiresPermissions("activity:session:query")
     @GetMapping(value = "/{id}")
     public R<AmsSeckillSession> getInfo(@PathVariable("id") Long id) {
-        return R.success(amsSeckillSessionService.selectAmsSeckillSessionById(id));
+        return R.success(amsSeckillSessionService.getById(id));
     }
 
     /**
@@ -65,7 +65,7 @@ public class AmsSeckillSessionController {
     @Log(title = "秒杀活动场次", businessType = BusinessType.INSERT)
     @PostMapping
     public R<?> add(@RequestBody AmsSeckillSession amsSeckillSession) {
-        return R.success(amsSeckillSessionService.insertAmsSeckillSession(amsSeckillSession));
+        return R.success(amsSeckillSessionService.save(amsSeckillSession));
     }
 
     /**
@@ -75,7 +75,7 @@ public class AmsSeckillSessionController {
     @Log(title = "秒杀活动场次", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<?> edit(@RequestBody AmsSeckillSession amsSeckillSession) {
-        return R.success(amsSeckillSessionService.updateAmsSeckillSession(amsSeckillSession));
+        return R.success(amsSeckillSessionService.updateById(amsSeckillSession));
     }
 
     /**
@@ -83,8 +83,8 @@ public class AmsSeckillSessionController {
      */
     @RequiresPermissions("activity:session:remove")
     @Log(title = "秒杀活动场次", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{ids}")
-    public R<?> remove(@PathVariable Long[] ids) {
-        return R.success(amsSeckillSessionService.deleteAmsSeckillSessionByIds(ids));
+    @DeleteMapping("/{id}")
+    public R<?> remove(@PathVariable Long id) {
+        return R.success(amsSeckillSessionService.removeById(id));
     }
 }

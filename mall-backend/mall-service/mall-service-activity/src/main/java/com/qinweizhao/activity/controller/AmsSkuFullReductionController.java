@@ -55,7 +55,7 @@ public class AmsSkuFullReductionController {
     @RequiresPermissions("activity:reduction:query")
     @GetMapping(value = "/{id}")
     public R<AmsSkuFullReduction> getInfo(@PathVariable("id") Long id) {
-        return R.success(amsSkuFullReductionService.selectAmsSkuFullReductionById(id));
+        return R.success(amsSkuFullReductionService.getById(id));
     }
 
     /**
@@ -65,7 +65,7 @@ public class AmsSkuFullReductionController {
     @Log(title = "商品满减信息", businessType = BusinessType.INSERT)
     @PostMapping
     public R<?> add(@RequestBody AmsSkuFullReduction amsSkuFullReduction) {
-        return R.success(amsSkuFullReductionService.insertAmsSkuFullReduction(amsSkuFullReduction));
+        return R.success(amsSkuFullReductionService.save(amsSkuFullReduction));
     }
 
     /**
@@ -75,7 +75,7 @@ public class AmsSkuFullReductionController {
     @Log(title = "商品满减信息", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<?> edit(@RequestBody AmsSkuFullReduction amsSkuFullReduction) {
-        return R.success(amsSkuFullReductionService.updateAmsSkuFullReduction(amsSkuFullReduction));
+        return R.success(amsSkuFullReductionService.updateById(amsSkuFullReduction));
     }
 
     /**
@@ -83,8 +83,8 @@ public class AmsSkuFullReductionController {
      */
     @RequiresPermissions("activity:reduction:remove")
     @Log(title = "商品满减信息", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{ids}")
-    public R<?> remove(@PathVariable Long[] ids) {
-        return R.success(amsSkuFullReductionService.deleteAmsSkuFullReductionByIds(ids));
+    @DeleteMapping("/{id}")
+    public R<?> remove(@PathVariable Long id) {
+        return R.success(amsSkuFullReductionService.removeById(id));
     }
 }

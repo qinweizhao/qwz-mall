@@ -55,7 +55,7 @@ public class AmsSeckillPromotionController {
     @RequiresPermissions("activity:promotion:query")
     @GetMapping(value = "/{id}")
     public R<AmsSeckillPromotion> getInfo(@PathVariable("id") Long id) {
-        return R.success(amsSeckillPromotionService.selectAmsSeckillPromotionById(id));
+        return R.success(amsSeckillPromotionService.getById(id));
     }
 
     /**
@@ -65,7 +65,7 @@ public class AmsSeckillPromotionController {
     @Log(title = "秒杀活动", businessType = BusinessType.INSERT)
     @PostMapping
     public R<?> add(@RequestBody AmsSeckillPromotion amsSeckillPromotion) {
-        return R.success(amsSeckillPromotionService.insertAmsSeckillPromotion(amsSeckillPromotion));
+        return R.success(amsSeckillPromotionService.save(amsSeckillPromotion));
     }
 
     /**
@@ -75,7 +75,7 @@ public class AmsSeckillPromotionController {
     @Log(title = "秒杀活动", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<?> edit(@RequestBody AmsSeckillPromotion amsSeckillPromotion) {
-        return R.success(amsSeckillPromotionService.updateAmsSeckillPromotion(amsSeckillPromotion));
+        return R.success(amsSeckillPromotionService.updateById(amsSeckillPromotion));
     }
 
     /**
@@ -83,8 +83,8 @@ public class AmsSeckillPromotionController {
      */
     @RequiresPermissions("activity:promotion:remove")
     @Log(title = "秒杀活动", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{ids}")
-    public R<?> remove(@PathVariable Long[] ids) {
-        return R.success(amsSeckillPromotionService.deleteAmsSeckillPromotionByIds(ids));
+    @DeleteMapping("/{id}")
+    public R<?> remove(@PathVariable Long id) {
+        return R.success(amsSeckillPromotionService.removeById(id));
     }
 }

@@ -55,7 +55,7 @@ public class AmsSeckillSkuRelationController {
     @RequiresPermissions("activity:relation:query")
     @GetMapping(value = "/{id}")
     public R<AmsSeckillSkuRelation> getInfo(@PathVariable("id") Long id) {
-        return R.success(amsSeckillSkuRelationService.selectAmsSeckillSkuRelationById(id));
+        return R.success(amsSeckillSkuRelationService.getById(id));
     }
 
     /**
@@ -65,7 +65,7 @@ public class AmsSeckillSkuRelationController {
     @Log(title = "秒杀活动商品关联", businessType = BusinessType.INSERT)
     @PostMapping
     public R<?> add(@RequestBody AmsSeckillSkuRelation amsSeckillSkuRelation) {
-        return R.success(amsSeckillSkuRelationService.insertAmsSeckillSkuRelation(amsSeckillSkuRelation));
+        return R.success(amsSeckillSkuRelationService.save(amsSeckillSkuRelation));
     }
 
     /**
@@ -75,7 +75,7 @@ public class AmsSeckillSkuRelationController {
     @Log(title = "秒杀活动商品关联", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<?> edit(@RequestBody AmsSeckillSkuRelation amsSeckillSkuRelation) {
-        return R.success(amsSeckillSkuRelationService.updateAmsSeckillSkuRelation(amsSeckillSkuRelation));
+        return R.success(amsSeckillSkuRelationService.updateById(amsSeckillSkuRelation));
     }
 
     /**
@@ -83,8 +83,8 @@ public class AmsSeckillSkuRelationController {
      */
     @RequiresPermissions("activity:relation:remove")
     @Log(title = "秒杀活动商品关联", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{ids}")
-    public R<?> remove(@PathVariable Long[] ids) {
-        return R.success(amsSeckillSkuRelationService.deleteAmsSeckillSkuRelationByIds(ids));
+    @DeleteMapping("/{id}")
+    public R<?> remove(@PathVariable Long id) {
+        return R.success(amsSeckillSkuRelationService.removeById(id));
     }
 }

@@ -55,7 +55,7 @@ public class AmsHomeSubjectController {
     @RequiresPermissions("activity:subject:query")
     @GetMapping(value = "/{id}")
     public R<AmsHomeSubject> getInfo(@PathVariable("id") Long id) {
-        return R.success(amsHomeSubjectService.selectAmsHomeSubjectById(id));
+        return R.success(amsHomeSubjectService.getById(id));
     }
 
     /**
@@ -65,7 +65,7 @@ public class AmsHomeSubjectController {
     @Log(title = "首页专题【jd首页下面很多专题，每个专题链接新的页面，展示专题商品信息】", businessType = BusinessType.INSERT)
     @PostMapping
     public R<?> add(@RequestBody AmsHomeSubject amsHomeSubject) {
-        return R.success(amsHomeSubjectService.insertAmsHomeSubject(amsHomeSubject));
+        return R.success(amsHomeSubjectService.save(amsHomeSubject));
     }
 
     /**
@@ -75,7 +75,7 @@ public class AmsHomeSubjectController {
     @Log(title = "首页专题【jd首页下面很多专题，每个专题链接新的页面，展示专题商品信息】", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<?> edit(@RequestBody AmsHomeSubject amsHomeSubject) {
-        return R.success(amsHomeSubjectService.updateAmsHomeSubject(amsHomeSubject));
+        return R.success(amsHomeSubjectService.updateById(amsHomeSubject));
     }
 
     /**
@@ -83,8 +83,8 @@ public class AmsHomeSubjectController {
      */
     @RequiresPermissions("activity:subject:remove")
     @Log(title = "首页专题【jd首页下面很多专题，每个专题链接新的页面，展示专题商品信息】", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{ids}")
-    public R<?> remove(@PathVariable Long[] ids) {
-        return R.success(amsHomeSubjectService.deleteAmsHomeSubjectByIds(ids));
+    @DeleteMapping("/{id}")
+    public R<?> remove(@PathVariable Long id) {
+        return R.success(amsHomeSubjectService.removeById(id));
     }
 }

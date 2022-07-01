@@ -55,7 +55,7 @@ public class AmsCouponHistoryController {
     @RequiresPermissions("activity:history:query")
     @GetMapping(value = "/{id}")
     public R<AmsCouponHistory> getInfo(@PathVariable("id") Long id) {
-        return R.success(amsCouponHistoryService.selectAmsCouponHistoryById(id));
+        return R.success(amsCouponHistoryService.getById(id));
     }
 
     /**
@@ -65,7 +65,7 @@ public class AmsCouponHistoryController {
     @Log(title = "优惠券领取历史记录", businessType = BusinessType.INSERT)
     @PostMapping
     public R<?> add(@RequestBody AmsCouponHistory amsCouponHistory) {
-        return R.success(amsCouponHistoryService.insertAmsCouponHistory(amsCouponHistory));
+        return R.success(amsCouponHistoryService.save(amsCouponHistory));
     }
 
     /**
@@ -75,7 +75,7 @@ public class AmsCouponHistoryController {
     @Log(title = "优惠券领取历史记录", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<?> edit(@RequestBody AmsCouponHistory amsCouponHistory) {
-        return R.success(amsCouponHistoryService.updateAmsCouponHistory(amsCouponHistory));
+        return R.success(amsCouponHistoryService.updateById(amsCouponHistory));
     }
 
     /**
@@ -83,8 +83,8 @@ public class AmsCouponHistoryController {
      */
     @RequiresPermissions("activity:history:remove")
     @Log(title = "优惠券领取历史记录", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{ids}")
-    public R<?> remove(@PathVariable Long[] ids) {
-        return R.success(amsCouponHistoryService.deleteAmsCouponHistoryByIds(ids));
+    @DeleteMapping("/{id}")
+    public R<?> remove(@PathVariable Long id) {
+        return R.success(amsCouponHistoryService.removeById(id));
     }
 }

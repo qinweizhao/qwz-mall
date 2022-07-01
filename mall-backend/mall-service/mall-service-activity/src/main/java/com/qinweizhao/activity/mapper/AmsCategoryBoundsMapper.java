@@ -1,6 +1,7 @@
 package com.qinweizhao.activity.mapper;
 
 import com.qinweizhao.activity.model.entity.AmsCategoryBounds;
+import com.qinweizhao.component.mybatis.mapper.QwzBaseMapper;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * @author qinweizhao
  * @date 2022-07-01
  */
-public interface AmsCategoryBoundsMapper {
+public interface AmsCategoryBoundsMapper extends QwzBaseMapper<AmsCategoryBounds> {
     /**
      * 查询商品分类积分设置
      *

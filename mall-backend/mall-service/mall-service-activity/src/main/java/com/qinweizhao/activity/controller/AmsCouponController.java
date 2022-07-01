@@ -55,7 +55,7 @@ public class AmsCouponController {
     @RequiresPermissions("activity:coupon:query")
     @GetMapping(value = "/{id}")
     public R<AmsCoupon> getInfo(@PathVariable("id") Long id) {
-        return R.success(amsCouponService.selectAmsCouponById(id));
+        return R.success(amsCouponService.getById(id));
     }
 
     /**
@@ -65,7 +65,7 @@ public class AmsCouponController {
     @Log(title = "优惠券信息", businessType = BusinessType.INSERT)
     @PostMapping
     public R<?> add(@RequestBody AmsCoupon amsCoupon) {
-        return R.success(amsCouponService.insertAmsCoupon(amsCoupon));
+        return R.success(amsCouponService.save(amsCoupon));
     }
 
     /**
@@ -75,7 +75,7 @@ public class AmsCouponController {
     @Log(title = "优惠券信息", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<?> edit(@RequestBody AmsCoupon amsCoupon) {
-        return R.success(amsCouponService.updateAmsCoupon(amsCoupon));
+        return R.success(amsCouponService.updateById(amsCoupon));
     }
 
     /**
@@ -83,8 +83,8 @@ public class AmsCouponController {
      */
     @RequiresPermissions("activity:coupon:remove")
     @Log(title = "优惠券信息", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{ids}")
-    public R<?> remove(@PathVariable Long[] ids) {
-        return R.success(amsCouponService.deleteAmsCouponByIds(ids));
+    @DeleteMapping("/{id}")
+    public R<?> remove(@PathVariable Long id) {
+        return R.success(amsCouponService.removeById(id));
     }
 }

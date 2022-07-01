@@ -55,7 +55,7 @@ public class AmsHomeSubjectSpuController {
     @RequiresPermissions("activity:spu:query")
     @GetMapping(value = "/{id}")
     public R<AmsHomeSubjectSpu> getInfo(@PathVariable("id") Long id) {
-        return R.success(amsHomeSubjectSpuService.selectAmsHomeSubjectSpuById(id));
+        return R.success(amsHomeSubjectSpuService.getById(id));
     }
 
     /**
@@ -65,7 +65,7 @@ public class AmsHomeSubjectSpuController {
     @Log(title = "专题商品", businessType = BusinessType.INSERT)
     @PostMapping
     public R<?> add(@RequestBody AmsHomeSubjectSpu amsHomeSubjectSpu) {
-        return R.success(amsHomeSubjectSpuService.insertAmsHomeSubjectSpu(amsHomeSubjectSpu));
+        return R.success(amsHomeSubjectSpuService.save(amsHomeSubjectSpu));
     }
 
     /**
@@ -75,7 +75,7 @@ public class AmsHomeSubjectSpuController {
     @Log(title = "专题商品", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<?> edit(@RequestBody AmsHomeSubjectSpu amsHomeSubjectSpu) {
-        return R.success(amsHomeSubjectSpuService.updateAmsHomeSubjectSpu(amsHomeSubjectSpu));
+        return R.success(amsHomeSubjectSpuService.updateById(amsHomeSubjectSpu));
     }
 
     /**
@@ -83,8 +83,8 @@ public class AmsHomeSubjectSpuController {
      */
     @RequiresPermissions("activity:spu:remove")
     @Log(title = "专题商品", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{ids}")
-    public R<?> remove(@PathVariable Long[] ids) {
-        return R.success(amsHomeSubjectSpuService.deleteAmsHomeSubjectSpuByIds(ids));
+    @DeleteMapping("/{id}")
+    public R<?> remove(@PathVariable Long id) {
+        return R.success(amsHomeSubjectSpuService.removeById(id));
     }
 }

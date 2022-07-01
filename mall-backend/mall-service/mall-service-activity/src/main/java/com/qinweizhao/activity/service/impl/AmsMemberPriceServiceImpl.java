@@ -3,10 +3,10 @@ package com.qinweizhao.activity.service.impl;
 import com.qinweizhao.activity.mapper.AmsMemberPriceMapper;
 import com.qinweizhao.activity.model.entity.AmsMemberPrice;
 import com.qinweizhao.activity.service.IAmsMemberPriceService;
+import com.qinweizhao.component.mybatis.service.impl.QwzServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -16,20 +16,10 @@ import java.util.List;
  * @date 2022-07-01
  */
 @Service
-public class AmsMemberPriceServiceImpl implements IAmsMemberPriceService {
+public class AmsMemberPriceServiceImpl extends QwzServiceImpl<AmsMemberPriceMapper, AmsMemberPrice> implements IAmsMemberPriceService {
     @Resource
     private AmsMemberPriceMapper amsMemberPriceMapper;
 
-    /**
-     * 查询商品会员价格
-     *
-     * @param id 商品会员价格主键
-     * @return 商品会员价格
-     */
-    @Override
-    public AmsMemberPrice selectAmsMemberPriceById(Long id) {
-        return amsMemberPriceMapper.selectAmsMemberPriceById(id);
-    }
 
     /**
      * 查询商品会员价格列表
@@ -42,49 +32,4 @@ public class AmsMemberPriceServiceImpl implements IAmsMemberPriceService {
         return amsMemberPriceMapper.selectAmsMemberPriceList(amsMemberPrice);
     }
 
-    /**
-     * 新增商品会员价格
-     *
-     * @param amsMemberPrice 商品会员价格
-     * @return 结果
-     */
-    @Override
-    public int insertAmsMemberPrice(AmsMemberPrice amsMemberPrice) {
-        amsMemberPrice.setCreateTime(LocalDateTime.now());
-        return amsMemberPriceMapper.insertAmsMemberPrice(amsMemberPrice);
-    }
-
-    /**
-     * 修改商品会员价格
-     *
-     * @param amsMemberPrice 商品会员价格
-     * @return 结果
-     */
-    @Override
-    public int updateAmsMemberPrice(AmsMemberPrice amsMemberPrice) {
-        amsMemberPrice.setUpdateTime(LocalDateTime.now());
-        return amsMemberPriceMapper.updateAmsMemberPrice(amsMemberPrice);
-    }
-
-    /**
-     * 批量删除商品会员价格
-     *
-     * @param ids 需要删除的商品会员价格主键
-     * @return 结果
-     */
-    @Override
-    public int deleteAmsMemberPriceByIds(Long[] ids) {
-        return amsMemberPriceMapper.deleteAmsMemberPriceByIds(ids);
-    }
-
-    /**
-     * 删除商品会员价格信息
-     *
-     * @param id 商品会员价格主键
-     * @return 结果
-     */
-    @Override
-    public int deleteAmsMemberPriceById(Long id) {
-        return amsMemberPriceMapper.deleteAmsMemberPriceById(id);
-    }
 }

@@ -1,6 +1,7 @@
 package com.qinweizhao.activity.service;
 
 import com.qinweizhao.activity.model.entity.AmsCouponSpuRelation;
+import com.qinweizhao.component.mybatis.service.QwzService;
 
 import java.util.List;
 
@@ -10,14 +11,8 @@ import java.util.List;
  * @author qinweizhao
  * @date 2022-07-01
  */
-public interface IAmsCouponSpuRelationService {
-    /**
-     * 查询优惠券与产品关联
-     *
-     * @param id 优惠券与产品关联主键
-     * @return 优惠券与产品关联
-     */
-    AmsCouponSpuRelation selectAmsCouponSpuRelationById(Long id);
+public interface IAmsCouponSpuRelationService extends QwzService<AmsCouponSpuRelation> {
+
 
     /**
      * 查询优惠券与产品关联列表
@@ -27,35 +22,4 @@ public interface IAmsCouponSpuRelationService {
      */
     List<AmsCouponSpuRelation> selectAmsCouponSpuRelationList(AmsCouponSpuRelation amsCouponSpuRelation);
 
-    /**
-     * 新增优惠券与产品关联
-     *
-     * @param amsCouponSpuRelation 优惠券与产品关联
-     * @return 结果
-     */
-    int insertAmsCouponSpuRelation(AmsCouponSpuRelation amsCouponSpuRelation);
-
-    /**
-     * 修改优惠券与产品关联
-     *
-     * @param amsCouponSpuRelation 优惠券与产品关联
-     * @return 结果
-     */
-    int updateAmsCouponSpuRelation(AmsCouponSpuRelation amsCouponSpuRelation);
-
-    /**
-     * 批量删除优惠券与产品关联
-     *
-     * @param ids 需要删除的优惠券与产品关联主键集合
-     * @return 结果
-     */
-    int deleteAmsCouponSpuRelationByIds(Long[] ids);
-
-    /**
-     * 删除优惠券与产品关联信息
-     *
-     * @param id 优惠券与产品关联主键
-     * @return 结果
-     */
-    int deleteAmsCouponSpuRelationById(Long id);
 }

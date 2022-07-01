@@ -55,7 +55,7 @@ public class AmsSkuLadderController {
     @RequiresPermissions("activity:ladder:query")
     @GetMapping(value = "/{id}")
     public R<AmsSkuLadder> getInfo(@PathVariable("id") Long id) {
-        return R.success(amsSkuLadderService.selectAmsSkuLadderById(id));
+        return R.success(amsSkuLadderService.getById(id));
     }
 
     /**
@@ -65,7 +65,7 @@ public class AmsSkuLadderController {
     @Log(title = "商品阶梯价格", businessType = BusinessType.INSERT)
     @PostMapping
     public R<?> add(@RequestBody AmsSkuLadder amsSkuLadder) {
-        return R.success(amsSkuLadderService.insertAmsSkuLadder(amsSkuLadder));
+        return R.success(amsSkuLadderService.save(amsSkuLadder));
     }
 
     /**
@@ -75,7 +75,7 @@ public class AmsSkuLadderController {
     @Log(title = "商品阶梯价格", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<?> edit(@RequestBody AmsSkuLadder amsSkuLadder) {
-        return R.success(amsSkuLadderService.updateAmsSkuLadder(amsSkuLadder));
+        return R.success(amsSkuLadderService.updateById(amsSkuLadder));
     }
 
     /**
@@ -83,8 +83,8 @@ public class AmsSkuLadderController {
      */
     @RequiresPermissions("activity:ladder:remove")
     @Log(title = "商品阶梯价格", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{ids}")
-    public R<?> remove(@PathVariable Long[] ids) {
-        return R.success(amsSkuLadderService.deleteAmsSkuLadderByIds(ids));
+    @DeleteMapping("/{id}")
+    public R<?> remove(@PathVariable Long id) {
+        return R.success(amsSkuLadderService.removeById(id));
     }
 }

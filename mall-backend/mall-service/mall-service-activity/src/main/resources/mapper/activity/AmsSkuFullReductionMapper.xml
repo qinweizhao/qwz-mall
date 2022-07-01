@@ -1,40 +1,50 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qinweizhao.activity.mapper.AmsSkuFullReductionMapper">
-    
+
     <resultMap type="AmsSkuFullReduction" id="AmsSkuFullReductionResult">
-        <result property="id"    column="id"    />
-        <result property="skuId"    column="sku_id"    />
-        <result property="fullPrice"    column="full_price"    />
-        <result property="reducePrice"    column="reduce_price"    />
-        <result property="addOther"    column="add_other"    />
-        <result property="createBy"    column="create_by"    />
-        <result property="updateBy"    column="update_by"    />
-        <result property="createTime"    column="create_time"    />
-        <result property="updateTime"    column="update_time"    />
+        <result property="id" column="id"/>
+        <result property="skuId" column="sku_id"/>
+        <result property="fullPrice" column="full_price"/>
+        <result property="reducePrice" column="reduce_price"/>
+        <result property="addOther" column="add_other"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
     </resultMap>
 
     <sql id="selectAmsSkuFullReductionVo">
-        select id, sku_id, full_price, reduce_price, add_other, create_by, update_by, create_time, update_time from ams_sku_full_reduction
+        select id,
+               sku_id,
+               full_price,
+               reduce_price,
+               add_other,
+               create_by,
+               update_by,
+               create_time,
+               update_time
+        from ams_sku_full_reduction
     </sql>
 
-    <select id="selectAmsSkuFullReductionList" parameterType="AmsSkuFullReduction" resultMap="AmsSkuFullReductionResult">
+    <select id="selectAmsSkuFullReductionList" parameterType="AmsSkuFullReduction"
+            resultMap="AmsSkuFullReductionResult">
         <include refid="selectAmsSkuFullReductionVo"/>
-        <where>  
-            <if test="skuId != null "> and sku_id = #{skuId}</if>
-            <if test="fullPrice != null "> and full_price = #{fullPrice}</if>
-            <if test="reducePrice != null "> and reduce_price = #{reducePrice}</if>
-            <if test="addOther != null "> and add_other = #{addOther}</if>
+        <where>
+            <if test="skuId != null ">and sku_id = #{skuId}</if>
+            <if test="fullPrice != null ">and full_price = #{fullPrice}</if>
+            <if test="reducePrice != null ">and reduce_price = #{reducePrice}</if>
+            <if test="addOther != null ">and add_other = #{addOther}</if>
         </where>
     </select>
-    
+
     <select id="selectAmsSkuFullReductionById" parameterType="Long" resultMap="AmsSkuFullReductionResult">
         <include refid="selectAmsSkuFullReductionVo"/>
         where id = #{id}
     </select>
-        
+
     <insert id="insertAmsSkuFullReduction" parameterType="AmsSkuFullReduction" useGeneratedKeys="true" keyProperty="id">
         insert into ams_sku_full_reduction
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -46,7 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateBy != null">update_by,</if>
             <if test="createTime != null">create_time,</if>
             <if test="updateTime != null">update_time,</if>
-         </trim>
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="skuId != null">#{skuId},</if>
             <if test="fullPrice != null">#{fullPrice},</if>
@@ -56,7 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateBy != null">#{updateBy},</if>
             <if test="createTime != null">#{createTime},</if>
             <if test="updateTime != null">#{updateTime},</if>
-         </trim>
+        </trim>
     </insert>
 
     <update id="updateAmsSkuFullReduction" parameterType="AmsSkuFullReduction">
@@ -75,11 +85,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
     <delete id="deleteAmsSkuFullReductionById" parameterType="Long">
-        delete from ams_sku_full_reduction where id = #{id}
+        delete
+        from ams_sku_full_reduction
+        where id = #{id}
     </delete>
 
     <delete id="deleteAmsSkuFullReductionByIds" parameterType="String">
-        delete from ams_sku_full_reduction where id in 
+        delete from ams_sku_full_reduction where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>

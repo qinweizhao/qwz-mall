@@ -44,7 +44,7 @@ public class AmsMemberPriceController {
     @PostMapping("/export")
     public R<?> export(HttpServletResponse response, AmsMemberPrice amsMemberPrice) {
         List<AmsMemberPrice> list = amsMemberPriceService.selectAmsMemberPriceList(amsMemberPrice);
-        ExcelUtil<AmsMemberPrice> util = new ExcelUtil<AmsMemberPrice>(AmsMemberPrice.class);
+        ExcelUtil<AmsMemberPrice> util = new ExcelUtil<>(AmsMemberPrice.class);
         util.exportExcel(response, list, "商品会员价格数据");
         return R.success();
     }
@@ -55,7 +55,7 @@ public class AmsMemberPriceController {
     @RequiresPermissions("activity:price:query")
     @GetMapping(value = "/{id}")
     public R<AmsMemberPrice> getInfo(@PathVariable("id") Long id) {
-        return R.success(amsMemberPriceService.selectAmsMemberPriceById(id));
+        return R.success(amsMemberPriceService.getById(id));
     }
 
     /**
@@ -65,7 +65,7 @@ public class AmsMemberPriceController {
     @Log(title = "商品会员价格", businessType = BusinessType.INSERT)
     @PostMapping
     public R<?> add(@RequestBody AmsMemberPrice amsMemberPrice) {
-        return R.success(amsMemberPriceService.insertAmsMemberPrice(amsMemberPrice));
+        return R.success(amsMemberPriceService.save(amsMemberPrice));
     }
 
     /**
@@ -75,7 +75,7 @@ public class AmsMemberPriceController {
     @Log(title = "商品会员价格", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<?> edit(@RequestBody AmsMemberPrice amsMemberPrice) {
-        return R.success(amsMemberPriceService.updateAmsMemberPrice(amsMemberPrice));
+        return R.success(amsMemberPriceService.updateById(amsMemberPrice));
     }
 
     /**
@@ -83,8 +83,8 @@ public class AmsMemberPriceController {
      */
     @RequiresPermissions("activity:price:remove")
     @Log(title = "商品会员价格", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{ids}")
-    public R<?> remove(@PathVariable Long[] ids) {
-        return R.success(amsMemberPriceService.deleteAmsMemberPriceByIds(ids));
+    @DeleteMapping("/{id}")
+    public R<?> remove(@PathVariable Long id) {
+        return R.success(amsMemberPriceService.removeById(id));
     }
 }

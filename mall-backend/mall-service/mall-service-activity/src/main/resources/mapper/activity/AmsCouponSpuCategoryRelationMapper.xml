@@ -1,39 +1,52 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qinweizhao.activity.mapper.AmsCouponSpuCategoryRelationMapper">
-    
+
     <resultMap type="AmsCouponSpuCategoryRelation" id="AmsCouponSpuCategoryRelationResult">
-        <result property="id"    column="id"    />
-        <result property="couponId"    column="coupon_id"    />
-        <result property="categoryId"    column="category_id"    />
-        <result property="categoryName"    column="category_name"    />
-        <result property="createBy"    column="create_by"    />
-        <result property="updateBy"    column="update_by"    />
-        <result property="createTime"    column="create_time"    />
-        <result property="updateTime"    column="update_time"    />
+        <result property="id" column="id"/>
+        <result property="couponId" column="coupon_id"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="categoryName" column="category_name"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
     </resultMap>
 
     <sql id="selectAmsCouponSpuCategoryRelationVo">
-        select id, coupon_id, category_id, category_name, create_by, update_by, create_time, update_time from ams_coupon_spu_category_relation
+        select id,
+               coupon_id,
+               category_id,
+               category_name,
+               create_by,
+               update_by,
+               create_time,
+               update_time
+        from ams_coupon_spu_category_relation
     </sql>
 
-    <select id="selectAmsCouponSpuCategoryRelationList" parameterType="AmsCouponSpuCategoryRelation" resultMap="AmsCouponSpuCategoryRelationResult">
+    <select id="selectAmsCouponSpuCategoryRelationList" parameterType="AmsCouponSpuCategoryRelation"
+            resultMap="AmsCouponSpuCategoryRelationResult">
         <include refid="selectAmsCouponSpuCategoryRelationVo"/>
-        <where>  
-            <if test="couponId != null "> and coupon_id = #{couponId}</if>
-            <if test="categoryId != null "> and category_id = #{categoryId}</if>
-            <if test="categoryName != null  and categoryName != ''"> and category_name like concat('%', #{categoryName}, '%')</if>
+        <where>
+            <if test="couponId != null ">and coupon_id = #{couponId}</if>
+            <if test="categoryId != null ">and category_id = #{categoryId}</if>
+            <if test="categoryName != null  and categoryName != ''">and category_name like concat('%', #{categoryName},
+                '%')
+            </if>
         </where>
     </select>
-    
-    <select id="selectAmsCouponSpuCategoryRelationById" parameterType="Long" resultMap="AmsCouponSpuCategoryRelationResult">
+
+    <select id="selectAmsCouponSpuCategoryRelationById" parameterType="Long"
+            resultMap="AmsCouponSpuCategoryRelationResult">
         <include refid="selectAmsCouponSpuCategoryRelationVo"/>
         where id = #{id}
     </select>
-        
-    <insert id="insertAmsCouponSpuCategoryRelation" parameterType="AmsCouponSpuCategoryRelation" useGeneratedKeys="true" keyProperty="id">
+
+    <insert id="insertAmsCouponSpuCategoryRelation" parameterType="AmsCouponSpuCategoryRelation" useGeneratedKeys="true"
+            keyProperty="id">
         insert into ams_coupon_spu_category_relation
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="couponId != null">coupon_id,</if>
@@ -43,7 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateBy != null">update_by,</if>
             <if test="createTime != null">create_time,</if>
             <if test="updateTime != null">update_time,</if>
-         </trim>
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="couponId != null">#{couponId},</if>
             <if test="categoryId != null">#{categoryId},</if>
@@ -52,7 +65,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateBy != null">#{updateBy},</if>
             <if test="createTime != null">#{createTime},</if>
             <if test="updateTime != null">#{updateTime},</if>
-         </trim>
+        </trim>
     </insert>
 
     <update id="updateAmsCouponSpuCategoryRelation" parameterType="AmsCouponSpuCategoryRelation">
@@ -70,11 +83,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
     <delete id="deleteAmsCouponSpuCategoryRelationById" parameterType="Long">
-        delete from ams_coupon_spu_category_relation where id = #{id}
+        delete
+        from ams_coupon_spu_category_relation
+        where id = #{id}
     </delete>
 
     <delete id="deleteAmsCouponSpuCategoryRelationByIds" parameterType="String">
-        delete from ams_coupon_spu_category_relation where id in 
+        delete from ams_coupon_spu_category_relation where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>

@@ -55,7 +55,7 @@ public class AmsHomeAdvertController {
     @RequiresPermissions("activity:advert:query")
     @GetMapping(value = "/{id}")
     public R<AmsHomeAdvert> getInfo(@PathVariable("id") Long id) {
-        return R.success(amsHomeAdvertService.selectAmsHomeAdvertById(id));
+        return R.success(amsHomeAdvertService.getById(id));
     }
 
     /**
@@ -65,7 +65,7 @@ public class AmsHomeAdvertController {
     @Log(title = "首页轮播广告", businessType = BusinessType.INSERT)
     @PostMapping
     public R<?> add(@RequestBody AmsHomeAdvert amsHomeAdvert) {
-        return R.success(amsHomeAdvertService.insertAmsHomeAdvert(amsHomeAdvert));
+        return R.success(amsHomeAdvertService.save(amsHomeAdvert));
     }
 
     /**
@@ -75,7 +75,7 @@ public class AmsHomeAdvertController {
     @Log(title = "首页轮播广告", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<?> edit(@RequestBody AmsHomeAdvert amsHomeAdvert) {
-        return R.success(amsHomeAdvertService.updateAmsHomeAdvert(amsHomeAdvert));
+        return R.success(amsHomeAdvertService.updateById(amsHomeAdvert));
     }
 
     /**
@@ -83,8 +83,8 @@ public class AmsHomeAdvertController {
      */
     @RequiresPermissions("activity:advert:remove")
     @Log(title = "首页轮播广告", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{ids}")
-    public R<?> remove(@PathVariable Long[] ids) {
-        return R.success(amsHomeAdvertService.deleteAmsHomeAdvertByIds(ids));
+    @DeleteMapping("/{id}")
+    public R<?> remove(@PathVariable Long id) {
+        return R.success(amsHomeAdvertService.removeById(id));
     }
 }

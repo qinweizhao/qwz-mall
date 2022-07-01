@@ -55,7 +55,7 @@ public class AmsCouponSpuRelationController {
     @RequiresPermissions("activity:relation:query")
     @GetMapping(value = "/{id}")
     public R<AmsCouponSpuRelation> getInfo(@PathVariable("id") Long id) {
-        return R.success(amsCouponSpuRelationService.selectAmsCouponSpuRelationById(id));
+        return R.success(amsCouponSpuRelationService.getById(id));
     }
 
     /**
@@ -65,7 +65,7 @@ public class AmsCouponSpuRelationController {
     @Log(title = "优惠券与产品关联", businessType = BusinessType.INSERT)
     @PostMapping
     public R<?> add(@RequestBody AmsCouponSpuRelation amsCouponSpuRelation) {
-        return R.success(amsCouponSpuRelationService.insertAmsCouponSpuRelation(amsCouponSpuRelation));
+        return R.success(amsCouponSpuRelationService.save(amsCouponSpuRelation));
     }
 
     /**
@@ -75,7 +75,7 @@ public class AmsCouponSpuRelationController {
     @Log(title = "优惠券与产品关联", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<?> edit(@RequestBody AmsCouponSpuRelation amsCouponSpuRelation) {
-        return R.success(amsCouponSpuRelationService.updateAmsCouponSpuRelation(amsCouponSpuRelation));
+        return R.success(amsCouponSpuRelationService.updateById(amsCouponSpuRelation));
     }
 
     /**
@@ -83,8 +83,8 @@ public class AmsCouponSpuRelationController {
      */
     @RequiresPermissions("activity:relation:remove")
     @Log(title = "优惠券与产品关联", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{ids}")
-    public R<?> remove(@PathVariable Long[] ids) {
-        return R.success(amsCouponSpuRelationService.deleteAmsCouponSpuRelationByIds(ids));
+    @DeleteMapping("/{id}")
+    public R<?> remove(@PathVariable Long id) {
+        return R.success(amsCouponSpuRelationService.removeById(id));
     }
 }

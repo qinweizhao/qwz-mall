@@ -1,6 +1,7 @@
 package com.qinweizhao.activity.service;
 
 import com.qinweizhao.activity.model.entity.AmsMemberPrice;
+import com.qinweizhao.component.mybatis.service.QwzService;
 
 import java.util.List;
 
@@ -10,15 +11,7 @@ import java.util.List;
  * @author qinweizhao
  * @date 2022-07-01
  */
-public interface IAmsMemberPriceService {
-    /**
-     * 查询商品会员价格
-     *
-     * @param id 商品会员价格主键
-     * @return 商品会员价格
-     */
-    AmsMemberPrice selectAmsMemberPriceById(Long id);
-
+public interface IAmsMemberPriceService extends QwzService<AmsMemberPrice> {
     /**
      * 查询商品会员价格列表
      *
@@ -27,35 +20,4 @@ public interface IAmsMemberPriceService {
      */
     List<AmsMemberPrice> selectAmsMemberPriceList(AmsMemberPrice amsMemberPrice);
 
-    /**
-     * 新增商品会员价格
-     *
-     * @param amsMemberPrice 商品会员价格
-     * @return 结果
-     */
-    int insertAmsMemberPrice(AmsMemberPrice amsMemberPrice);
-
-    /**
-     * 修改商品会员价格
-     *
-     * @param amsMemberPrice 商品会员价格
-     * @return 结果
-     */
-    int updateAmsMemberPrice(AmsMemberPrice amsMemberPrice);
-
-    /**
-     * 批量删除商品会员价格
-     *
-     * @param ids 需要删除的商品会员价格主键集合
-     * @return 结果
-     */
-    int deleteAmsMemberPriceByIds(Long[] ids);
-
-    /**
-     * 删除商品会员价格信息
-     *
-     * @param id 商品会员价格主键
-     * @return 结果
-     */
-    int deleteAmsMemberPriceById(Long id);
 }

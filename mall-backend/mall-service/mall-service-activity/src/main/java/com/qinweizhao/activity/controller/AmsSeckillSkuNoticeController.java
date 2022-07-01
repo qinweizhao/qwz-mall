@@ -55,7 +55,7 @@ public class AmsSeckillSkuNoticeController {
     @RequiresPermissions("activity:notice:query")
     @GetMapping(value = "/{id}")
     public R<AmsSeckillSkuNotice> getInfo(@PathVariable("id") Long id) {
-        return R.success(amsSeckillSkuNoticeService.selectAmsSeckillSkuNoticeById(id));
+        return R.success(amsSeckillSkuNoticeService.getById(id));
     }
 
     /**
@@ -65,7 +65,7 @@ public class AmsSeckillSkuNoticeController {
     @Log(title = "秒杀商品通知订阅", businessType = BusinessType.INSERT)
     @PostMapping
     public R<?> add(@RequestBody AmsSeckillSkuNotice amsSeckillSkuNotice) {
-        return R.success(amsSeckillSkuNoticeService.insertAmsSeckillSkuNotice(amsSeckillSkuNotice));
+        return R.success(amsSeckillSkuNoticeService.save(amsSeckillSkuNotice));
     }
 
     /**
@@ -75,7 +75,7 @@ public class AmsSeckillSkuNoticeController {
     @Log(title = "秒杀商品通知订阅", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<?> edit(@RequestBody AmsSeckillSkuNotice amsSeckillSkuNotice) {
-        return R.success(amsSeckillSkuNoticeService.updateAmsSeckillSkuNotice(amsSeckillSkuNotice));
+        return R.success(amsSeckillSkuNoticeService.updateById(amsSeckillSkuNotice));
     }
 
     /**
@@ -83,8 +83,8 @@ public class AmsSeckillSkuNoticeController {
      */
     @RequiresPermissions("activity:notice:remove")
     @Log(title = "秒杀商品通知订阅", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{ids}")
-    public R<?> remove(@PathVariable Long[] ids) {
-        return R.success(amsSeckillSkuNoticeService.deleteAmsSeckillSkuNoticeByIds(ids));
+    @DeleteMapping("/{id}")
+    public R<?> remove(@PathVariable Long id) {
+        return R.success(amsSeckillSkuNoticeService.removeById(id));
     }
 }

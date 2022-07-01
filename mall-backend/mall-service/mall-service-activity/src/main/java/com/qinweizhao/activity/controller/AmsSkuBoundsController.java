@@ -55,7 +55,7 @@ public class AmsSkuBoundsController {
     @RequiresPermissions("activity:bounds:query")
     @GetMapping(value = "/{id}")
     public R<AmsSkuBounds> getInfo(@PathVariable("id") Long id) {
-        return R.success(amsSkuBoundsService.selectAmsSkuBoundsById(id));
+        return R.success(amsSkuBoundsService.getById(id));
     }
 
     /**
@@ -65,7 +65,7 @@ public class AmsSkuBoundsController {
     @Log(title = "商品sku积分设置", businessType = BusinessType.INSERT)
     @PostMapping
     public R<?> add(@RequestBody AmsSkuBounds amsSkuBounds) {
-        return R.success(amsSkuBoundsService.insertAmsSkuBounds(amsSkuBounds));
+        return R.success(amsSkuBoundsService.save(amsSkuBounds));
     }
 
     /**
@@ -75,7 +75,7 @@ public class AmsSkuBoundsController {
     @Log(title = "商品sku积分设置", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<?> edit(@RequestBody AmsSkuBounds amsSkuBounds) {
-        return R.success(amsSkuBoundsService.updateAmsSkuBounds(amsSkuBounds));
+        return R.success(amsSkuBoundsService.updateById(amsSkuBounds));
     }
 
     /**
@@ -83,8 +83,8 @@ public class AmsSkuBoundsController {
      */
     @RequiresPermissions("activity:bounds:remove")
     @Log(title = "商品sku积分设置", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{ids}")
-    public R<?> remove(@PathVariable Long[] ids) {
-        return R.success(amsSkuBoundsService.deleteAmsSkuBoundsByIds(ids));
+    @DeleteMapping("/{id}")
+    public R<?> remove(@PathVariable Long id) {
+        return R.success(amsSkuBoundsService.removeById(id));
     }
 }

@@ -1,47 +1,61 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qinweizhao.activity.mapper.AmsSeckillSkuRelationMapper">
-    
+
     <resultMap type="AmsSeckillSkuRelation" id="AmsSeckillSkuRelationResult">
-        <result property="id"    column="id"    />
-        <result property="promotionId"    column="promotion_id"    />
-        <result property="promotionSessionId"    column="promotion_session_id"    />
-        <result property="skuId"    column="sku_id"    />
-        <result property="seckillPrice"    column="seckill_price"    />
-        <result property="seckillCount"    column="seckill_count"    />
-        <result property="seckillLimit"    column="seckill_limit"    />
-        <result property="seckillSort"    column="seckill_sort"    />
-        <result property="createBy"    column="create_by"    />
-        <result property="updateBy"    column="update_by"    />
-        <result property="createTime"    column="create_time"    />
-        <result property="updateTime"    column="update_time"    />
+        <result property="id" column="id"/>
+        <result property="promotionId" column="promotion_id"/>
+        <result property="promotionSessionId" column="promotion_session_id"/>
+        <result property="skuId" column="sku_id"/>
+        <result property="seckillPrice" column="seckill_price"/>
+        <result property="seckillCount" column="seckill_count"/>
+        <result property="seckillLimit" column="seckill_limit"/>
+        <result property="seckillSort" column="seckill_sort"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
     </resultMap>
 
     <sql id="selectAmsSeckillSkuRelationVo">
-        select id, promotion_id, promotion_session_id, sku_id, seckill_price, seckill_count, seckill_limit, seckill_sort, create_by, update_by, create_time, update_time from ams_seckill_sku_relation
+        select id,
+               promotion_id,
+               promotion_session_id,
+               sku_id,
+               seckill_price,
+               seckill_count,
+               seckill_limit,
+               seckill_sort,
+               create_by,
+               update_by,
+               create_time,
+               update_time
+        from ams_seckill_sku_relation
     </sql>
 
-    <select id="selectAmsSeckillSkuRelationList" parameterType="AmsSeckillSkuRelation" resultMap="AmsSeckillSkuRelationResult">
+    <select id="selectAmsSeckillSkuRelationList" parameterType="AmsSeckillSkuRelation"
+            resultMap="AmsSeckillSkuRelationResult">
         <include refid="selectAmsSeckillSkuRelationVo"/>
-        <where>  
-            <if test="promotionId != null "> and promotion_id = #{promotionId}</if>
-            <if test="promotionSessionId != null "> and promotion_session_id = #{promotionSessionId}</if>
-            <if test="skuId != null "> and sku_id = #{skuId}</if>
-            <if test="seckillPrice != null "> and seckill_price = #{seckillPrice}</if>
-            <if test="seckillCount != null "> and seckill_count = #{seckillCount}</if>
-            <if test="seckillLimit != null "> and seckill_limit = #{seckillLimit}</if>
-            <if test="seckillSort != null "> and seckill_sort = #{seckillSort}</if>
+        <where>
+            <if test="promotionId != null ">and promotion_id = #{promotionId}</if>
+            <if test="promotionSessionId != null ">and promotion_session_id = #{promotionSessionId}</if>
+            <if test="skuId != null ">and sku_id = #{skuId}</if>
+            <if test="seckillPrice != null ">and seckill_price = #{seckillPrice}</if>
+            <if test="seckillCount != null ">and seckill_count = #{seckillCount}</if>
+            <if test="seckillLimit != null ">and seckill_limit = #{seckillLimit}</if>
+            <if test="seckillSort != null ">and seckill_sort = #{seckillSort}</if>
         </where>
     </select>
-    
+
     <select id="selectAmsSeckillSkuRelationById" parameterType="Long" resultMap="AmsSeckillSkuRelationResult">
         <include refid="selectAmsSeckillSkuRelationVo"/>
         where id = #{id}
     </select>
-        
-    <insert id="insertAmsSeckillSkuRelation" parameterType="AmsSeckillSkuRelation" useGeneratedKeys="true" keyProperty="id">
+
+    <insert id="insertAmsSeckillSkuRelation" parameterType="AmsSeckillSkuRelation" useGeneratedKeys="true"
+            keyProperty="id">
         insert into ams_seckill_sku_relation
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="promotionId != null">promotion_id,</if>
@@ -55,7 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateBy != null">update_by,</if>
             <if test="createTime != null">create_time,</if>
             <if test="updateTime != null">update_time,</if>
-         </trim>
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="promotionId != null">#{promotionId},</if>
             <if test="promotionSessionId != null">#{promotionSessionId},</if>
@@ -68,7 +82,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateBy != null">#{updateBy},</if>
             <if test="createTime != null">#{createTime},</if>
             <if test="updateTime != null">#{updateTime},</if>
-         </trim>
+        </trim>
     </insert>
 
     <update id="updateAmsSeckillSkuRelation" parameterType="AmsSeckillSkuRelation">
@@ -90,11 +104,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
     <delete id="deleteAmsSeckillSkuRelationById" parameterType="Long">
-        delete from ams_seckill_sku_relation where id = #{id}
+        delete
+        from ams_seckill_sku_relation
+        where id = #{id}
     </delete>
 
     <delete id="deleteAmsSeckillSkuRelationByIds" parameterType="String">
-        delete from ams_seckill_sku_relation where id in 
+        delete from ams_seckill_sku_relation where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>

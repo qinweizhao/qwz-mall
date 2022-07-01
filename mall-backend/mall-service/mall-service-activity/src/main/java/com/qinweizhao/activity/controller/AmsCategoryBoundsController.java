@@ -55,7 +55,7 @@ public class AmsCategoryBoundsController {
     @RequiresPermissions("activity:bounds:query")
     @GetMapping(value = "/{id}")
     public R<AmsCategoryBounds> getInfo(@PathVariable("id") Long id) {
-        return R.success(amsCategoryBoundsService.selectAmsCategoryBoundsById(id));
+        return R.success(amsCategoryBoundsService.getById(id));
     }
 
     /**
@@ -65,7 +65,7 @@ public class AmsCategoryBoundsController {
     @Log(title = "商品分类积分设置", businessType = BusinessType.INSERT)
     @PostMapping
     public R<?> add(@RequestBody AmsCategoryBounds amsCategoryBounds) {
-        return R.success(amsCategoryBoundsService.insertAmsCategoryBounds(amsCategoryBounds));
+        return R.success(amsCategoryBoundsService.save(amsCategoryBounds));
     }
 
     /**
@@ -75,7 +75,7 @@ public class AmsCategoryBoundsController {
     @Log(title = "商品分类积分设置", businessType = BusinessType.UPDATE)
     @PutMapping
     public R<?> edit(@RequestBody AmsCategoryBounds amsCategoryBounds) {
-        return R.success(amsCategoryBoundsService.updateAmsCategoryBounds(amsCategoryBounds));
+        return R.success(amsCategoryBoundsService.updateById(amsCategoryBounds));
     }
 
     /**
@@ -83,8 +83,8 @@ public class AmsCategoryBoundsController {
      */
     @RequiresPermissions("activity:bounds:remove")
     @Log(title = "商品分类积分设置", businessType = BusinessType.DELETE)
-    @DeleteMapping("/{ids}")
-    public R<?> remove(@PathVariable Long[] ids) {
-        return R.success(amsCategoryBoundsService.deleteAmsCategoryBoundsByIds(ids));
+    @DeleteMapping("/{id}")
+    public R<?> remove(@PathVariable Long id) {
+        return R.success(amsCategoryBoundsService.removeById(id));
     }
 }
