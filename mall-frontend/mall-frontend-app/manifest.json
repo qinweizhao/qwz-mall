@@ -1,6 +1,6 @@
 {
-    "name" : "电商模板 更新下单流程、分类、列表",
-    "appid" : "",
+    "name" : "qwz-mall-app",
+    "appid" : "__UNI__C4E2002",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -47,7 +47,20 @@
             },
             "ios" : {},
             /* ios打包配置 */
-            "sdkConfigs" : {}
+            "sdkConfigs" : {
+                "ad" : {}
+            },
+            "icons" : {
+                "android" : {
+                    "hdpi" : "C:/Users/xianrui/Desktop/logo.png",
+                    "xhdpi" : "C:/Users/xianrui/Desktop/logo.png",
+                    "xxxhdpi" : "C:/Users/xianrui/Desktop/logo.png",
+                    "xxhdpi" : "C:/Users/xianrui/Desktop/logo.png"
+                },
+                "ios" : {
+                    "appstore" : "C:/Users/xianrui/Desktop/logo.png"
+                }
+            }
         }
     },
     /* SDK配置 */
@@ -58,7 +71,13 @@
         "usingComponents" : true,
         "appid" : "wx99a151dc43d2637b",
         "setting" : {
-            "urlCheck" : true
-        }
+            "urlCheck" : false,
+            "minified" : true
+        },
+        "permission" : {}
+    },
+    "h5" : {
+        "title" : "有来商城H5",
+        "domain" : "www.youlai.tech"
     }
 }

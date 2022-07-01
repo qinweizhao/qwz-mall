@@ -21,8 +21,8 @@
 			<text class="cell-tit">清除缓存</text>
 			<text class="cell-more yticon icon-you"></text>
 		</view>
-		<view class="list-cell b-b" @click="navTo('关于Dcloud')" hover-class="cell-hover" :hover-stay-time="50">
-			<text class="cell-tit">关于Dcloud</text>
+		<view class="list-cell b-b" @click="navTo('关于有来小店')" hover-class="cell-hover" :hover-stay-time="50">
+			<text class="cell-tit">关于有来小店</text>
 			<text class="cell-more yticon icon-you"></text>
 		</view>
 		<view class="list-cell">
@@ -37,9 +37,6 @@
 </template>
 
 <script>
-	import {  
-	    mapMutations  
-	} from 'vuex';
 	export default {
 		data() {
 			return {
@@ -47,8 +44,6 @@
 			};
 		},
 		methods:{
-			...mapMutations(['logout']),
-
 			navTo(url){
 				this.$api.msg(`跳转到${url}`);
 			},
@@ -58,7 +53,7 @@
 				    content: '确定要退出登录么',
 				    success: (e)=>{
 				    	if(e.confirm){
-				    		this.logout();
+				    		this.$store.dispatch('user/logout')
 				    		setTimeout(()=>{
 				    			uni.navigateBack();
 				    		}, 200)

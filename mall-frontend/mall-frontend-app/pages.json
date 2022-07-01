@@ -5,7 +5,7 @@
 			"path": "pages/index/index",
 			"style": {
 				// #ifdef MP 
-				"navigationBarTitleText": "Dloud商城",
+				"navigationBarTitleText": "有来小店",
 				//"navigationStyle": "custom",
 				// #endif 
 				"app-plus": {
@@ -67,7 +67,7 @@
 				"navigationBarTitleText": "购物车"
 			}
 		}, {
-			"path": "pages/public/login",
+			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "",
 				"navigationStyle": "custom",
