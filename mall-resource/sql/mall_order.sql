@@ -11,7 +11,7 @@
  Target Server Version : 80028
  File Encoding         : 65001
 
- Date: 15/03/2022 16:36:05
+ Date: 01/07/2022 14:25:53
 */
 
 SET NAMES utf8mb4;
@@ -24,54 +24,50 @@ DROP TABLE IF EXISTS `oms_order`;
 CREATE TABLE `oms_order` (
   `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
   `member_id` bigint DEFAULT NULL COMMENT 'member_id',
-  `order_sn` char(32) DEFAULT NULL COMMENT '?????',
-  `coupon_id` bigint DEFAULT NULL COMMENT 'ʹ?õ??Ż?ȯ',
-  `create_time` datetime DEFAULT NULL COMMENT 'create_time',
-  `member_username` varchar(200) DEFAULT NULL COMMENT '?û??',
-  `total_amount` decimal(18,4) DEFAULT NULL COMMENT '?????ܶ',
-  `pay_amount` decimal(18,4) DEFAULT NULL COMMENT 'Ӧ???ܶ',
-  `freight_amount` decimal(18,4) DEFAULT NULL COMMENT '?˷ѽ',
-  `promotion_amount` decimal(18,4) DEFAULT NULL COMMENT '?????Ż?????????ۡ??????????ݼۣ?',
-  `integration_amount` decimal(18,4) DEFAULT NULL COMMENT '???ֵֿ۽',
-  `coupon_amount` decimal(18,4) DEFAULT NULL COMMENT '?Ż?ȯ?ֿ۽',
-  `discount_amount` decimal(18,4) DEFAULT NULL COMMENT '??̨????????ʹ?õ??ۿ۽',
-  `pay_type` tinyint DEFAULT NULL COMMENT '֧????ʽ??1->֧??????2->΢?ţ?3->?????? 4->?????????',
-  `source_type` tinyint DEFAULT NULL COMMENT '??????Դ[0->PC??????1->app????]',
-  `status` tinyint DEFAULT NULL COMMENT '????״̬??0->?????1->????????2->?ѷ?????3->?????ɣ?4->?ѹرգ?5->??Ч??????',
-  `delivery_company` varchar(64) DEFAULT NULL COMMENT '??????˾(???ͷ?ʽ)',
-  `delivery_sn` varchar(64) DEFAULT NULL COMMENT '???????',
-  `auto_confirm_day` int DEFAULT NULL COMMENT '?Զ?ȷ??ʱ?䣨?죩',
-  `integration` int DEFAULT NULL COMMENT '???Ի??õĻ',
-  `growth` int DEFAULT NULL COMMENT '???Ի??õĳɳ?ֵ',
-  `bill_type` tinyint DEFAULT NULL COMMENT '??Ʊ????[0->??????Ʊ??1->???ӷ?Ʊ??2->ֽ?ʷ?Ʊ]',
-  `bill_header` varchar(255) DEFAULT NULL COMMENT '??Ʊ̧ͷ',
-  `bill_content` varchar(255) DEFAULT NULL COMMENT '??Ʊ???',
-  `bill_receiver_phone` varchar(32) DEFAULT NULL COMMENT '??Ʊ?˵绰',
-  `bill_receiver_email` varchar(64) DEFAULT NULL COMMENT '??Ʊ?????',
-  `receiver_name` varchar(100) DEFAULT NULL COMMENT '?ջ??????',
-  `receiver_phone` varchar(32) DEFAULT NULL COMMENT '?ջ??˵绰',
-  `receiver_post_code` varchar(32) DEFAULT NULL COMMENT '?ջ????ʱ',
-  `receiver_province` varchar(32) DEFAULT NULL COMMENT 'ʡ??/ֱϽ?',
-  `receiver_city` varchar(32) DEFAULT NULL COMMENT '???',
-  `receiver_region` varchar(32) DEFAULT NULL COMMENT '?',
-  `receiver_detail_address` varchar(200) DEFAULT NULL COMMENT '??ϸ??ַ',
-  `note` varchar(500) DEFAULT NULL COMMENT '??????ע',
-  `confirm_status` tinyint DEFAULT NULL COMMENT 'ȷ???ջ?״̬[0->δȷ?ϣ?1->??ȷ??]',
-  `delete_status` tinyint DEFAULT NULL COMMENT 'ɾ??״̬??0->δɾ????1->??ɾ?',
-  `use_integration` int DEFAULT NULL COMMENT '?µ?ʱʹ?õĻ',
-  `payment_time` datetime DEFAULT NULL COMMENT '֧??ʱ?',
-  `delivery_time` datetime DEFAULT NULL COMMENT '????ʱ?',
-  `receive_time` datetime DEFAULT NULL COMMENT 'ȷ???ջ?ʱ?',
-  `comment_time` datetime DEFAULT NULL COMMENT '????ʱ?',
-  `modify_time` datetime DEFAULT NULL COMMENT '?޸?ʱ?',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='????';
-
--- ----------------------------
--- Records of oms_order
--- ----------------------------
-BEGIN;
-COMMIT;
+  `order_sn` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '订单号',
+  `coupon_id` bigint DEFAULT NULL COMMENT '使用的优惠券',
+  `member_username` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '用户名',
+  `total_amount` decimal(18,4) DEFAULT NULL COMMENT '订单总额',
+  `pay_amount` decimal(18,4) DEFAULT NULL COMMENT '应付总额',
+  `freight_amount` decimal(18,4) DEFAULT NULL COMMENT '运费金额',
+  `promotion_amount` decimal(18,4) DEFAULT NULL COMMENT '促销优化金额（促销价、满减、阶梯价）',
+  `integration_amount` decimal(18,4) DEFAULT NULL COMMENT '积分抵扣金额',
+  `coupon_amount` decimal(18,4) DEFAULT NULL COMMENT '优惠券抵扣金额',
+  `discount_amount` decimal(18,4) DEFAULT NULL COMMENT '后台调整订单使用的折扣金额',
+  `pay_type` tinyint DEFAULT NULL COMMENT '支付方式【1->支付宝；2->微信；3->银联； 4->货到付款；】',
+  `source_type` tinyint DEFAULT NULL COMMENT '订单来源[0->PC订单；1->app订单]',
+  `status` tinyint DEFAULT NULL COMMENT '订单状态【0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->无效订单】',
+  `delivery_company` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '物流公司(配送方式)',
+  `delivery_sn` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '物流单号',
+  `auto_confirm_day` int DEFAULT NULL COMMENT '自动确认时间（天）',
+  `integration` int DEFAULT NULL COMMENT '可以获得的积分',
+  `growth` int DEFAULT NULL COMMENT '可以获得的成长值',
+  `bill_type` tinyint DEFAULT NULL COMMENT '发票类型[0->不开发票；1->电子发票；2->纸质发票]',
+  `bill_header` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '发票抬头',
+  `bill_content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '发票内容',
+  `bill_receiver_phone` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收票人电话',
+  `bill_receiver_email` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收票人邮箱',
+  `receiver_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收货人姓名',
+  `receiver_phone` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收货人电话',
+  `receiver_post_code` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收货人邮编',
+  `receiver_province` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '省份/直辖市',
+  `receiver_city` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '城市',
+  `receiver_region` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '区',
+  `receiver_detail_address` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '详细地址',
+  `note` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '订单备注',
+  `confirm_status` tinyint DEFAULT NULL COMMENT '确认收货状态[0->未确认；1->已确认]',
+  `delete_status` tinyint DEFAULT NULL COMMENT '删除状态【0->未删除；1->已删除】',
+  `comment_time` datetime DEFAULT NULL COMMENT '评价时间',
+  `use_integration` int DEFAULT NULL COMMENT '下单时使用的积分',
+  `payment_time` datetime DEFAULT NULL COMMENT '支付时间',
+  `delivery_time` datetime DEFAULT NULL COMMENT '发货时间',
+  `receive_time` datetime DEFAULT NULL COMMENT '确认收货时间',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '创建者',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '更新者',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='订单';
 
 -- ----------------------------
 -- Table structure for oms_order_item
@@ -80,32 +76,30 @@ DROP TABLE IF EXISTS `oms_order_item`;
 CREATE TABLE `oms_order_item` (
   `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
   `order_id` bigint DEFAULT NULL COMMENT 'order_id',
-  `order_sn` char(32) DEFAULT NULL COMMENT 'order_sn',
+  `order_sn` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'order_sn',
   `spu_id` bigint DEFAULT NULL COMMENT 'spu_id',
-  `spu_name` varchar(255) DEFAULT NULL COMMENT 'spu_name',
-  `spu_pic` varchar(500) DEFAULT NULL COMMENT 'spu_pic',
-  `spu_brand` varchar(200) DEFAULT NULL COMMENT 'Ʒ?',
-  `category_id` bigint DEFAULT NULL COMMENT '??Ʒ????id',
-  `sku_id` bigint DEFAULT NULL COMMENT '??Ʒsku???',
-  `sku_name` varchar(255) DEFAULT NULL COMMENT '??Ʒsku?',
-  `sku_pic` varchar(500) DEFAULT NULL COMMENT '??ƷskuͼƬ',
-  `sku_price` decimal(18,4) DEFAULT NULL COMMENT '??Ʒsku?۸',
-  `sku_quantity` int DEFAULT NULL COMMENT '??Ʒ???????',
-  `sku_attrs_vals` varchar(500) DEFAULT NULL COMMENT '??Ʒ???????????ϣ?JSON??',
-  `promotion_amount` decimal(18,4) DEFAULT NULL COMMENT '??Ʒ?????ֽ??',
-  `coupon_amount` decimal(18,4) DEFAULT NULL COMMENT '?Ż?ȯ?Żݷֽ??',
-  `integration_amount` decimal(18,4) DEFAULT NULL COMMENT '?????Żݷֽ??',
-  `real_amount` decimal(18,4) DEFAULT NULL COMMENT '????Ʒ?????Żݺ??ķֽ??',
-  `gift_integration` int DEFAULT NULL COMMENT '???ͻ',
-  `gift_growth` int DEFAULT NULL COMMENT '???ͳɳ?ֵ',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='????????Ϣ';
-
--- ----------------------------
--- Records of oms_order_item
--- ----------------------------
-BEGIN;
-COMMIT;
+  `spu_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'spu_name',
+  `spu_pic` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'spu_pic',
+  `spu_brand` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '品牌',
+  `category_id` bigint DEFAULT NULL COMMENT '商品分类id',
+  `sku_id` bigint DEFAULT NULL COMMENT '商品sku编号',
+  `sku_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品sku名字',
+  `sku_pic` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品sku图片',
+  `sku_price` decimal(18,4) DEFAULT NULL COMMENT '商品sku价格',
+  `sku_quantity` int DEFAULT NULL COMMENT '商品购买的数量',
+  `sku_attrs_vals` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品销售属性组合（JSON）',
+  `promotion_amount` decimal(18,4) DEFAULT NULL COMMENT '商品促销分解金额',
+  `coupon_amount` decimal(18,4) DEFAULT NULL COMMENT '优惠券优惠分解金额',
+  `integration_amount` decimal(18,4) DEFAULT NULL COMMENT '积分优惠分解金额',
+  `real_amount` decimal(18,4) DEFAULT NULL COMMENT '该商品经过优惠后的分解金额',
+  `gift_integration` int DEFAULT NULL COMMENT '赠送积分',
+  `gift_growth` int DEFAULT NULL COMMENT '赠送成长值',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '创建者',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '更新者',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='订单项信息';
 
 -- ----------------------------
 -- Table structure for oms_order_operate_history
@@ -113,19 +107,15 @@ COMMIT;
 DROP TABLE IF EXISTS `oms_order_operate_history`;
 CREATE TABLE `oms_order_operate_history` (
   `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `order_id` bigint DEFAULT NULL COMMENT '????id',
-  `operate_man` varchar(100) DEFAULT NULL COMMENT '??????[?û???ϵͳ????̨????Ա]',
-  `create_time` datetime DEFAULT NULL COMMENT '????ʱ?',
-  `order_status` tinyint DEFAULT NULL COMMENT '????״̬??0->?????1->????????2->?ѷ?????3->?????ɣ?4->?ѹرգ?5->??Ч??????',
-  `note` varchar(500) DEFAULT NULL COMMENT '??ע',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='??????????ʷ??¼';
-
--- ----------------------------
--- Records of oms_order_operate_history
--- ----------------------------
-BEGIN;
-COMMIT;
+  `order_id` bigint DEFAULT NULL COMMENT '订单id',
+  `order_status` tinyint DEFAULT NULL COMMENT '订单状态【0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->无效订单】',
+  `note` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '创建者',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '更新者',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='订单操作历史记录';
 
 -- ----------------------------
 -- Table structure for oms_order_return_apply
@@ -134,40 +124,34 @@ DROP TABLE IF EXISTS `oms_order_return_apply`;
 CREATE TABLE `oms_order_return_apply` (
   `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
   `order_id` bigint DEFAULT NULL COMMENT 'order_id',
-  `sku_id` bigint DEFAULT NULL COMMENT '?˻???Ʒid',
-  `order_sn` char(32) DEFAULT NULL COMMENT '???????',
-  `create_time` datetime DEFAULT NULL COMMENT '????ʱ?',
-  `member_username` varchar(64) DEFAULT NULL COMMENT '??Ա?û??',
-  `return_amount` decimal(18,4) DEFAULT NULL COMMENT '?˿??',
-  `return_name` varchar(100) DEFAULT NULL COMMENT '?˻??????',
-  `return_phone` varchar(20) DEFAULT NULL COMMENT '?˻??˵绰',
-  `status` tinyint(1) DEFAULT NULL COMMENT '????״̬[0->????????1->?˻??У?2->?????ɣ?3->?Ѿܾ',
-  `handle_time` datetime DEFAULT NULL COMMENT '????ʱ?',
-  `sku_img` varchar(500) DEFAULT NULL COMMENT '??ƷͼƬ',
-  `sku_name` varchar(200) DEFAULT NULL COMMENT '??Ʒ?',
-  `sku_brand` varchar(200) DEFAULT NULL COMMENT '??ƷƷ?',
-  `sku_attrs_vals` varchar(500) DEFAULT NULL COMMENT '??Ʒ????????(JSON)',
-  `sku_count` int DEFAULT NULL COMMENT '?˻??',
-  `sku_price` decimal(18,4) DEFAULT NULL COMMENT '??Ʒ???',
-  `sku_real_price` decimal(18,4) DEFAULT NULL COMMENT '??Ʒʵ??֧?????',
-  `reason` varchar(200) DEFAULT NULL COMMENT 'ԭ?',
-  `description?` varchar(500) DEFAULT NULL COMMENT '???',
-  `desc_pics` varchar(2000) DEFAULT NULL COMMENT 'ƾ֤ͼƬ???Զ??Ÿ',
-  `handle_note` varchar(500) DEFAULT NULL COMMENT '??????ע',
-  `handle_man` varchar(200) DEFAULT NULL COMMENT '??????Ա',
-  `receive_man` varchar(100) DEFAULT NULL COMMENT '?ջ',
-  `receive_time` datetime DEFAULT NULL COMMENT '?ջ?ʱ?',
-  `receive_note` varchar(500) DEFAULT NULL COMMENT '?ջ???ע',
-  `receive_phone` varchar(20) DEFAULT NULL COMMENT '?ջ??绰',
-  `company_address` varchar(500) DEFAULT NULL COMMENT '??˾?ջ???ַ',
+  `sku_id` bigint DEFAULT NULL COMMENT '退货商品id',
+  `order_sn` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '订单编号',
+  `create_time` datetime DEFAULT NULL COMMENT '申请时间',
+  `member_username` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '会员用户名',
+  `return_amount` decimal(18,4) DEFAULT NULL COMMENT '退款金额',
+  `return_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '退货人姓名',
+  `return_phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '退货人电话',
+  `status` tinyint(1) DEFAULT NULL COMMENT '申请状态[0->待处理；1->退货中；2->已完成；3->已拒绝]',
+  `handle_time` datetime DEFAULT NULL COMMENT '处理时间',
+  `sku_img` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品图片',
+  `sku_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品名称',
+  `sku_brand` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品品牌',
+  `sku_attrs_vals` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品销售属性(JSON)',
+  `sku_count` int DEFAULT NULL COMMENT '退货数量',
+  `sku_price` decimal(18,4) DEFAULT NULL COMMENT '商品单价',
+  `sku_real_price` decimal(18,4) DEFAULT NULL COMMENT '商品实际支付单价',
+  `reason` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '原因',
+  `description述` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '描述',
+  `desc_pics` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '凭证图片，以逗号隔开',
+  `handle_note` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '处理备注',
+  `handle_man` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '处理人员',
+  `receive_man` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收货人',
+  `receive_time` datetime DEFAULT NULL COMMENT '收货时间',
+  `receive_note` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收货备注',
+  `receive_phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收货电话',
+  `company_address` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '公司收货地址',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='?????˻????';
-
--- ----------------------------
--- Records of oms_order_return_apply
--- ----------------------------
-BEGIN;
-COMMIT;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='订单退货申请';
 
 -- ----------------------------
 -- Table structure for oms_order_return_reason
@@ -175,18 +159,15 @@ COMMIT;
 DROP TABLE IF EXISTS `oms_order_return_reason`;
 CREATE TABLE `oms_order_return_reason` (
   `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `name` varchar(200) DEFAULT NULL COMMENT '?˻?ԭ?',
-  `sort` int DEFAULT NULL COMMENT '???',
-  `status` tinyint(1) DEFAULT NULL COMMENT '????״̬',
-  `create_time` datetime DEFAULT NULL COMMENT 'create_time',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='?˻?ԭ?';
-
--- ----------------------------
--- Records of oms_order_return_reason
--- ----------------------------
-BEGIN;
-COMMIT;
+  `name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '退货原因名',
+  `sort` int DEFAULT NULL COMMENT '排序',
+  `status` tinyint(1) DEFAULT NULL COMMENT '启用状态',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '创建者',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '更新者',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='退货原因';
 
 -- ----------------------------
 -- Table structure for oms_order_setting
@@ -194,65 +175,17 @@ COMMIT;
 DROP TABLE IF EXISTS `oms_order_setting`;
 CREATE TABLE `oms_order_setting` (
   `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `flash_order_overtime` int DEFAULT NULL COMMENT '??ɱ??????ʱ?ر?ʱ??(??)',
-  `normal_order_overtime` int DEFAULT NULL COMMENT '??????????ʱʱ??(??)',
-  `confirm_overtime` int DEFAULT NULL COMMENT '???????Զ?ȷ???ջ?ʱ?䣨?죩',
-  `finish_overtime` int DEFAULT NULL COMMENT '?Զ????ɽ???ʱ?䣬?????????˻????죩',
-  `comment_overtime` int DEFAULT NULL COMMENT '???????ɺ??Զ?????ʱ?䣨?죩',
-  `member_level` tinyint DEFAULT NULL COMMENT '??Ա?ȼ???0-???޻?Ա?ȼ???ȫ??ͨ?ã?????-??Ӧ????????Ա?ȼ???',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='??????????Ϣ';
-
--- ----------------------------
--- Records of oms_order_setting
--- ----------------------------
-BEGIN;
-COMMIT;
-
--- ----------------------------
--- Table structure for oms_payment_info
--- ----------------------------
-DROP TABLE IF EXISTS `oms_payment_info`;
-CREATE TABLE `oms_payment_info` (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `order_sn` char(32) DEFAULT NULL COMMENT '?????ţ?????ҵ???ţ?',
-  `order_id` bigint DEFAULT NULL COMMENT '????id',
-  `alipay_trade_no` varchar(50) DEFAULT NULL COMMENT '֧??????????ˮ?',
-  `total_amount` decimal(18,4) DEFAULT NULL COMMENT '֧???ܽ',
-  `subject` varchar(200) DEFAULT NULL COMMENT '???????',
-  `payment_status` varchar(20) DEFAULT NULL COMMENT '֧??״̬',
-  `create_time` datetime DEFAULT NULL COMMENT '????ʱ?',
-  `confirm_time` datetime DEFAULT NULL COMMENT 'ȷ??ʱ?',
-  `callback_content` varchar(4000) DEFAULT NULL COMMENT '?ص????',
-  `callback_time` datetime DEFAULT NULL COMMENT '?ص?ʱ?',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='֧????Ϣ?';
-
--- ----------------------------
--- Records of oms_payment_info
--- ----------------------------
-BEGIN;
-COMMIT;
-
--- ----------------------------
--- Table structure for oms_refund_info
--- ----------------------------
-DROP TABLE IF EXISTS `oms_refund_info`;
-CREATE TABLE `oms_refund_info` (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `order_return_id` bigint DEFAULT NULL COMMENT '?˿??Ķ???',
-  `refund` decimal(18,4) DEFAULT NULL COMMENT '?˿??',
-  `refund_sn` varchar(64) DEFAULT NULL COMMENT '?˿????ˮ?',
-  `refund_status` tinyint(1) DEFAULT NULL COMMENT '?˿?״̬',
-  `refund_channel` tinyint DEFAULT NULL COMMENT '?˿?????[1-֧??????2-΢?ţ?3-??????4-???',
-  `refund_content` varchar(5000) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='?˿???Ϣ';
-
--- ----------------------------
--- Records of oms_refund_info
--- ----------------------------
-BEGIN;
-COMMIT;
+  `flash_order_overtime` int DEFAULT NULL COMMENT '秒杀订单超时关闭时间(分)',
+  `normal_order_overtime` int DEFAULT NULL COMMENT '正常订单超时时间(分)',
+  `confirm_overtime` int DEFAULT NULL COMMENT '发货后自动确认收货时间（天）',
+  `finish_overtime` int DEFAULT NULL COMMENT '自动完成交易时间，不能申请退货（天）',
+  `comment_overtime` int DEFAULT NULL COMMENT '订单完成后自动好评时间（天）',
+  `member_level` tinyint DEFAULT NULL COMMENT '会员等级【0-不限会员等级，全部通用；其他-对应的其他会员等级】',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '创建者',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '更新者',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='订单配置信息';
 
 SET FOREIGN_KEY_CHECKS = 1;
