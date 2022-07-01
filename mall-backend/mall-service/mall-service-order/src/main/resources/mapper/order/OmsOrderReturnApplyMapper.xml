@@ -1,73 +1,105 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qinweizhao.order.mapper.OmsOrderReturnApplyMapper">
-    
+
     <resultMap type="OmsOrderReturnApply" id="OmsOrderReturnApplyResult">
-        <result property="id"    column="id"    />
-        <result property="orderId"    column="order_id"    />
-        <result property="skuId"    column="sku_id"    />
-        <result property="orderSn"    column="order_sn"    />
-        <result property="createTime"    column="create_time"    />
-        <result property="memberUsername"    column="member_username"    />
-        <result property="returnAmount"    column="return_amount"    />
-        <result property="returnName"    column="return_name"    />
-        <result property="returnPhone"    column="return_phone"    />
-        <result property="status"    column="status"    />
-        <result property="handleTime"    column="handle_time"    />
-        <result property="skuImg"    column="sku_img"    />
-        <result property="skuName"    column="sku_name"    />
-        <result property="skuBrand"    column="sku_brand"    />
-        <result property="skuAttrsVals"    column="sku_attrs_vals"    />
-        <result property="skuCount"    column="sku_count"    />
-        <result property="skuPrice"    column="sku_price"    />
-        <result property="skuRealPrice"    column="sku_real_price"    />
-        <result property="reason"    column="reason"    />
-        <result property="description"    column="description"    />
-        <result property="descPics"    column="desc_pics"    />
-        <result property="handleNote"    column="handle_note"    />
-        <result property="handleMan"    column="handle_man"    />
-        <result property="receiveMan"    column="receive_man"    />
-        <result property="receiveTime"    column="receive_time"    />
-        <result property="receiveNote"    column="receive_note"    />
-        <result property="receivePhone"    column="receive_phone"    />
-        <result property="companyAddress"    column="company_address"    />
+        <result property="id" column="id"/>
+        <result property="orderId" column="order_id"/>
+        <result property="skuId" column="sku_id"/>
+        <result property="orderSn" column="order_sn"/>
+        <result property="createTime" column="create_time"/>
+        <result property="memberUsername" column="member_username"/>
+        <result property="returnAmount" column="return_amount"/>
+        <result property="returnName" column="return_name"/>
+        <result property="returnPhone" column="return_phone"/>
+        <result property="status" column="status"/>
+        <result property="handleTime" column="handle_time"/>
+        <result property="skuImg" column="sku_img"/>
+        <result property="skuName" column="sku_name"/>
+        <result property="skuBrand" column="sku_brand"/>
+        <result property="skuAttrsVals" column="sku_attrs_vals"/>
+        <result property="skuCount" column="sku_count"/>
+        <result property="skuPrice" column="sku_price"/>
+        <result property="skuRealPrice" column="sku_real_price"/>
+        <result property="reason" column="reason"/>
+        <result property="description" column="description"/>
+        <result property="descPics" column="desc_pics"/>
+        <result property="handleNote" column="handle_note"/>
+        <result property="handleMan" column="handle_man"/>
+        <result property="receiveMan" column="receive_man"/>
+        <result property="receiveTime" column="receive_time"/>
+        <result property="receiveNote" column="receive_note"/>
+        <result property="receivePhone" column="receive_phone"/>
+        <result property="companyAddress" column="company_address"/>
     </resultMap>
 
     <sql id="selectOmsOrderReturnApplyVo">
-        select id, order_id, sku_id, order_sn, create_time, member_username, return_amount, return_name, return_phone, status, handle_time, sku_img, sku_name, sku_brand, sku_attrs_vals, sku_count, sku_price, sku_real_price, reason, description述, desc_pics, handle_note, handle_man, receive_man, receive_time, receive_note, receive_phone, company_address from oms_order_return_apply
+        select id,
+               order_id,
+               sku_id,
+               order_sn,
+               create_time,
+               member_username,
+               return_amount,
+               return_name,
+               return_phone,
+               status,
+               handle_time,
+               sku_img,
+               sku_name,
+               sku_brand,
+               sku_attrs_vals,
+               sku_count,
+               sku_price,
+               sku_real_price,
+               reason,
+               description述,
+               desc_pics,
+               handle_note,
+               handle_man,
+               receive_man,
+               receive_time,
+               receive_note,
+               receive_phone,
+               company_address
+        from oms_order_return_apply
     </sql>
 
-    <select id="selectOmsOrderReturnApplyList" parameterType="OmsOrderReturnApply" resultMap="OmsOrderReturnApplyResult">
+    <select id="selectOmsOrderReturnApplyList" parameterType="OmsOrderReturnApply"
+            resultMap="OmsOrderReturnApplyResult">
         <include refid="selectOmsOrderReturnApplyVo"/>
-        <where>  
-            <if test="orderId != null "> and order_id = #{orderId}</if>
-            <if test="skuId != null "> and sku_id = #{skuId}</if>
-            <if test="orderSn != null  and orderSn != ''"> and order_sn = #{orderSn}</if>
-            <if test="memberUsername != null  and memberUsername != ''"> and member_username like concat('%', #{memberUsername}, '%')</if>
-            <if test="returnAmount != null "> and return_amount = #{returnAmount}</if>
-            <if test="returnName != null  and returnName != ''"> and return_name like concat('%', #{returnName}, '%')</if>
-            <if test="returnPhone != null  and returnPhone != ''"> and return_phone = #{returnPhone}</if>
-            <if test="status != null "> and status = #{status}</if>
-            <if test="handleTime != null "> and handle_time = #{handleTime}</if>
-            <if test="skuImg != null  and skuImg != ''"> and sku_img = #{skuImg}</if>
-            <if test="skuName != null  and skuName != ''"> and sku_name like concat('%', #{skuName}, '%')</if>
-            <if test="skuBrand != null  and skuBrand != ''"> and sku_brand = #{skuBrand}</if>
-            <if test="skuAttrsVals != null  and skuAttrsVals != ''"> and sku_attrs_vals = #{skuAttrsVals}</if>
-            <if test="skuCount != null "> and sku_count = #{skuCount}</if>
-            <if test="skuPrice != null "> and sku_price = #{skuPrice}</if>
-            <if test="skuRealPrice != null "> and sku_real_price = #{skuRealPrice}</if>
-            <if test="reason != null  and reason != ''"> and reason = #{reason}</if>
-            <if test="description述 != null  and description述 != ''"> and description述 = #{description述}</if>
-            <if test="descPics != null  and descPics != ''"> and desc_pics = #{descPics}</if>
-            <if test="handleNote != null  and handleNote != ''"> and handle_note = #{handleNote}</if>
-            <if test="handleMan != null  and handleMan != ''"> and handle_man = #{handleMan}</if>
-            <if test="receiveMan != null  and receiveMan != ''"> and receive_man = #{receiveMan}</if>
-            <if test="receiveTime != null "> and receive_time = #{receiveTime}</if>
-            <if test="receiveNote != null  and receiveNote != ''"> and receive_note = #{receiveNote}</if>
-            <if test="receivePhone != null  and receivePhone != ''"> and receive_phone = #{receivePhone}</if>
-            <if test="companyAddress != null  and companyAddress != ''"> and company_address = #{companyAddress}</if>
+        <where>
+            <if test="orderId != null ">and order_id = #{orderId}</if>
+            <if test="skuId != null ">and sku_id = #{skuId}</if>
+            <if test="orderSn != null  and orderSn != ''">and order_sn = #{orderSn}</if>
+            <if test="memberUsername != null  and memberUsername != ''">and member_username like concat('%',
+                #{memberUsername}, '%')
+            </if>
+            <if test="returnAmount != null ">and return_amount = #{returnAmount}</if>
+            <if test="returnName != null  and returnName != ''">and return_name like concat('%', #{returnName}, '%')
+            </if>
+            <if test="returnPhone != null  and returnPhone != ''">and return_phone = #{returnPhone}</if>
+            <if test="status != null ">and status = #{status}</if>
+            <if test="handleTime != null ">and handle_time = #{handleTime}</if>
+            <if test="skuImg != null  and skuImg != ''">and sku_img = #{skuImg}</if>
+            <if test="skuName != null  and skuName != ''">and sku_name like concat('%', #{skuName}, '%')</if>
+            <if test="skuBrand != null  and skuBrand != ''">and sku_brand = #{skuBrand}</if>
+            <if test="skuAttrsVals != null  and skuAttrsVals != ''">and sku_attrs_vals = #{skuAttrsVals}</if>
+            <if test="skuCount != null ">and sku_count = #{skuCount}</if>
+            <if test="skuPrice != null ">and sku_price = #{skuPrice}</if>
+            <if test="skuRealPrice != null ">and sku_real_price = #{skuRealPrice}</if>
+            <if test="reason != null  and reason != ''">and reason = #{reason}</if>
+            <if test="description述 != null  and description述 != ''">and description述 = #{description述}</if>
+            <if test="descPics != null  and descPics != ''">and desc_pics = #{descPics}</if>
+            <if test="handleNote != null  and handleNote != ''">and handle_note = #{handleNote}</if>
+            <if test="handleMan != null  and handleMan != ''">and handle_man = #{handleMan}</if>
+            <if test="receiveMan != null  and receiveMan != ''">and receive_man = #{receiveMan}</if>
+            <if test="receiveTime != null ">and receive_time = #{receiveTime}</if>
+            <if test="receiveNote != null  and receiveNote != ''">and receive_note = #{receiveNote}</if>
+            <if test="receivePhone != null  and receivePhone != ''">and receive_phone = #{receivePhone}</if>
+            <if test="companyAddress != null  and companyAddress != ''">and company_address = #{companyAddress}</if>
         </where>
     </select>
 
