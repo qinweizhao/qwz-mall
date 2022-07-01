@@ -17,7 +17,6 @@
         <module>mall-service-activity</module>
         <module>mall-service-order</module>
         <module>mall-service-user</module>
-        <module>mall-service-payment</module>
         <module>mall-service-product</module>
         <module>mall-service-search</module>
         <module>mall-service-system</module>
