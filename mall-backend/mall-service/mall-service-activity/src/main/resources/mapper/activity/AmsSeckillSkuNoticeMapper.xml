@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qinweizhao.activity.mapper.AmsSeckillSkuNoticeMapper">
+    
+    <resultMap type="AmsSeckillSkuNotice" id="AmsSeckillSkuNoticeResult">
+        <result property="id"    column="id"    />
+        <result property="memberId"    column="member_id"    />
+        <result property="skuId"    column="sku_id"    />
+        <result property="sessionId"    column="session_id"    />
+        <result property="subcribeTime"    column="subcribe_time"    />
+        <result property="sendTime"    column="send_time"    />
+        <result property="noticeType"    column="notice_type"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectAmsSeckillSkuNoticeVo">
+        select id, member_id, sku_id, session_id, subcribe_time, send_time, notice_type, create_by, update_by, create_time, update_time from ams_seckill_sku_notice
+    </sql>
+
+    <select id="selectAmsSeckillSkuNoticeList" parameterType="AmsSeckillSkuNotice" resultMap="AmsSeckillSkuNoticeResult">
+        <include refid="selectAmsSeckillSkuNoticeVo"/>
+        <where>  
+            <if test="memberId != null "> and member_id = #{memberId}</if>
+            <if test="skuId != null "> and sku_id = #{skuId}</if>
+            <if test="sessionId != null "> and session_id = #{sessionId}</if>
+            <if test="subcribeTime != null "> and subcribe_time = #{subcribeTime}</if>
+            <if test="sendTime != null "> and send_time = #{sendTime}</if>
+            <if test="noticeType != null "> and notice_type = #{noticeType}</if>
+        </where>
+    </select>
+    
+    <select id="selectAmsSeckillSkuNoticeById" parameterType="Long" resultMap="AmsSeckillSkuNoticeResult">
+        <include refid="selectAmsSeckillSkuNoticeVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertAmsSeckillSkuNotice" parameterType="AmsSeckillSkuNotice" useGeneratedKeys="true" keyProperty="id">
+        insert into ams_seckill_sku_notice
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="memberId != null">member_id,</if>
+            <if test="skuId != null">sku_id,</if>
+            <if test="sessionId != null">session_id,</if>
+            <if test="subcribeTime != null">subcribe_time,</if>
+            <if test="sendTime != null">send_time,</if>
+            <if test="noticeType != null">notice_type,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="memberId != null">#{memberId},</if>
+            <if test="skuId != null">#{skuId},</if>
+            <if test="sessionId != null">#{sessionId},</if>
+            <if test="subcribeTime != null">#{subcribeTime},</if>
+            <if test="sendTime != null">#{sendTime},</if>
+            <if test="noticeType != null">#{noticeType},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateAmsSeckillSkuNotice" parameterType="AmsSeckillSkuNotice">
+        update ams_seckill_sku_notice
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="memberId != null">member_id = #{memberId},</if>
+            <if test="skuId != null">sku_id = #{skuId},</if>
+            <if test="sessionId != null">session_id = #{sessionId},</if>
+            <if test="subcribeTime != null">subcribe_time = #{subcribeTime},</if>
+            <if test="sendTime != null">send_time = #{sendTime},</if>
+            <if test="noticeType != null">notice_type = #{noticeType},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteAmsSeckillSkuNoticeById" parameterType="Long">
+        delete from ams_seckill_sku_notice where id = #{id}
+    </delete>
+
+    <delete id="deleteAmsSeckillSkuNoticeByIds" parameterType="String">
+        delete from ams_seckill_sku_notice where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

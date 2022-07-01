@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qinweizhao.activity.mapper.AmsHomeSubjectSpuMapper">
+    
+    <resultMap type="AmsHomeSubjectSpu" id="AmsHomeSubjectSpuResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <result property="subjectId"    column="subject_id"    />
+        <result property="spuId"    column="spu_id"    />
+        <result property="sort"    column="sort"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectAmsHomeSubjectSpuVo">
+        select id, name, subject_id, spu_id, sort, create_by, update_by, create_time, update_time from ams_home_subject_spu
+    </sql>
+
+    <select id="selectAmsHomeSubjectSpuList" parameterType="AmsHomeSubjectSpu" resultMap="AmsHomeSubjectSpuResult">
+        <include refid="selectAmsHomeSubjectSpuVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="subjectId != null "> and subject_id = #{subjectId}</if>
+            <if test="spuId != null "> and spu_id = #{spuId}</if>
+            <if test="sort != null "> and sort = #{sort}</if>
+        </where>
+    </select>
+    
+    <select id="selectAmsHomeSubjectSpuById" parameterType="Long" resultMap="AmsHomeSubjectSpuResult">
+        <include refid="selectAmsHomeSubjectSpuVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertAmsHomeSubjectSpu" parameterType="AmsHomeSubjectSpu" useGeneratedKeys="true" keyProperty="id">
+        insert into ams_home_subject_spu
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">name,</if>
+            <if test="subjectId != null">subject_id,</if>
+            <if test="spuId != null">spu_id,</if>
+            <if test="sort != null">sort,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">#{name},</if>
+            <if test="subjectId != null">#{subjectId},</if>
+            <if test="spuId != null">#{spuId},</if>
+            <if test="sort != null">#{sort},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateAmsHomeSubjectSpu" parameterType="AmsHomeSubjectSpu">
+        update ams_home_subject_spu
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name = #{name},</if>
+            <if test="subjectId != null">subject_id = #{subjectId},</if>
+            <if test="spuId != null">spu_id = #{spuId},</if>
+            <if test="sort != null">sort = #{sort},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteAmsHomeSubjectSpuById" parameterType="Long">
+        delete from ams_home_subject_spu where id = #{id}
+    </delete>
+
+    <delete id="deleteAmsHomeSubjectSpuByIds" parameterType="String">
+        delete from ams_home_subject_spu where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
