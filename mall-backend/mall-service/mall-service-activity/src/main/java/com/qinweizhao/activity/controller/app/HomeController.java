@@ -17,12 +17,12 @@ import java.util.List;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/app/adverts")
+@RequestMapping("/app/home")
 public class HomeController {
 
     private final IAmsHomeAdvertService amsHomeAdvertService;
 
-    @GetMapping
+    @GetMapping("/adverts")
     public R<List<AmsHomeAdvert>> list() {
         List<AmsHomeAdvert> list = amsHomeAdvertService.list();
         return R.success(list);

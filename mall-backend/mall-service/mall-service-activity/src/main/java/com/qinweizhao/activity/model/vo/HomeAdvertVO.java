@@ -7,7 +7,7 @@ import lombok.Data;
  * @since 2022/7/4
  */
 @Data
-public class AdvertVO {
+public class HomeAdvertVO {
 
     /**
      * 轮播图地址

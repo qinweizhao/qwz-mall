@@ -44,7 +44,7 @@ public class AmsCouponSpuCategoryRelationController {
     @PostMapping("/export")
     public R<?> export(HttpServletResponse response, AmsCouponSpuCategoryRelation amsCouponSpuCategoryRelation) {
         List<AmsCouponSpuCategoryRelation> list = amsCouponSpuCategoryRelationService.selectAmsCouponSpuCategoryRelationList(amsCouponSpuCategoryRelation);
-        ExcelUtil<AmsCouponSpuCategoryRelation> util = new ExcelUtil<AmsCouponSpuCategoryRelation>(AmsCouponSpuCategoryRelation.class);
+        ExcelUtil<AmsCouponSpuCategoryRelation> util = new ExcelUtil<>(AmsCouponSpuCategoryRelation.class);
         util.exportExcel(response, list, "优惠券分类关联数据");
         return R.success();
     }

@@ -1,9 +1,9 @@
 package com.qinweizhao.activity.service;
 
 import com.qinweizhao.activity.model.entity.AmsHomeAdvert;
+import com.qinweizhao.activity.model.param.AmsHomeAdvertPageParam;
+import com.qinweizhao.component.core.response.PageResult;
 import com.qinweizhao.component.mybatis.service.QwzService;
-
-import java.util.List;
 
 /**
  * 首页轮播广告Service接口
@@ -13,13 +13,11 @@ import java.util.List;
  */
 public interface IAmsHomeAdvertService extends QwzService<AmsHomeAdvert> {
 
+
     /**
-     * 查询首页轮播广告列表
-     *
-     * @param amsHomeAdvert 首页轮播广告
-     * @return 首页轮播广告集合
+     * 分页信息
+     * @param pageParam pageParam
+     * @return PageResult
      */
-    List<AmsHomeAdvert> selectAmsHomeAdvertList(AmsHomeAdvert amsHomeAdvert);
-
-
+    PageResult<AmsHomeAdvert> page(AmsHomeAdvertPageParam pageParam);
 }
