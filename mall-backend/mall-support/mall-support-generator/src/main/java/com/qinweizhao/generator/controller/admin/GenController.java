@@ -6,7 +6,6 @@ import com.qinweizhao.common.core.web.page.TableDataInfo;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.generator.controller.base.BaseController;
 import com.qinweizhao.generator.domain.GenTable;
 import com.qinweizhao.generator.domain.GenTableColumn;
 import com.qinweizhao.generator.service.IGenTableColumnService;

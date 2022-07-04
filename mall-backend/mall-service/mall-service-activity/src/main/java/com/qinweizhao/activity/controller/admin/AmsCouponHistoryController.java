@@ -1,4 +1,4 @@
-package com.qinweizhao.activity.controller;
+package com.qinweizhao.activity.controller.admin;
 
 import com.qinweizhao.activity.model.entity.AmsCouponHistory;
 import com.qinweizhao.activity.service.IAmsCouponHistoryService;
@@ -20,7 +20,7 @@ import java.util.List;
  * @date 2022-07-01
  */
 @RestController
-@RequestMapping("/history")
+@RequestMapping("/coupon/history")
 public class AmsCouponHistoryController {
     @Resource
     private IAmsCouponHistoryService amsCouponHistoryService;

@@ -1,7 +1,6 @@
 package com.qinweizhao.product.controller.admin;
 
- import com.qinweizhao.product.controller.base.BaseController;
-import com.qinweizhao.common.security.annotation.RequiresPermissions;
+ import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.core.response.PageResult;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.log.annotation.Log;

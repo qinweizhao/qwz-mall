@@ -1,4 +1,4 @@
-package com.qinweizhao.activity.controller;
+package com.qinweizhao.activity.controller.admin;
 
 import com.qinweizhao.activity.model.entity.AmsHomeSubjectSpu;
 import com.qinweizhao.activity.service.IAmsHomeSubjectSpuService;

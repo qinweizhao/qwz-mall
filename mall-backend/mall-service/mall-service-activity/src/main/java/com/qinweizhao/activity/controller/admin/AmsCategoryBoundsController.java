@@ -1,4 +1,4 @@
-package com.qinweizhao.activity.controller;
+package com.qinweizhao.activity.controller.admin;
 
 import com.qinweizhao.activity.model.entity.AmsCategoryBounds;
 import com.qinweizhao.activity.service.IAmsCategoryBoundsService;
@@ -20,8 +20,9 @@ import java.util.List;
  * @date 2022-07-01
  */
 @RestController
-@RequestMapping("/bounds")
+@RequestMapping("/category/bounds")
 public class AmsCategoryBoundsController {
+
     @Resource
     private IAmsCategoryBoundsService amsCategoryBoundsService;
 
@@ -31,7 +32,6 @@ public class AmsCategoryBoundsController {
     @RequiresPermissions("activity:bounds:list")
     @GetMapping("/list")
     public R<List<AmsCategoryBounds>> list(AmsCategoryBounds amsCategoryBounds) {
-
         List<AmsCategoryBounds> list = amsCategoryBoundsService.selectAmsCategoryBoundsList(amsCategoryBounds);
         return R.success(list);
     }
@@ -44,7 +44,7 @@ public class AmsCategoryBoundsController {
     @PostMapping("/export")
     public R<?> export(HttpServletResponse response, AmsCategoryBounds amsCategoryBounds) {
         List<AmsCategoryBounds> list = amsCategoryBoundsService.selectAmsCategoryBoundsList(amsCategoryBounds);
-        ExcelUtil<AmsCategoryBounds> util = new ExcelUtil<AmsCategoryBounds>(AmsCategoryBounds.class);
+        ExcelUtil<AmsCategoryBounds> util = new ExcelUtil<>(AmsCategoryBounds.class);
         util.exportExcel(response, list, "商品分类积分设置数据");
         return R.success();
     }

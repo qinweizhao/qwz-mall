@@ -1,4 +1,4 @@
-package com.qinweizhao.system.controller.base;
+package com.qinweizhao.generator.controller.admin;
 
 import com.github.pagehelper.PageInfo;
 import com.qinweizhao.common.core.utils.DateUtils;

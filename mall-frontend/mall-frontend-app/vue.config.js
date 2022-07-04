@@ -8,7 +8,7 @@ proxyObj['/'] = {
     target: "http://localhost:8080",
     changeOrigin: true,
     pathRewrite: {
-        '^/app': '/'
+        '^/api': '/'
     }
 };
 module.exports = {

@@ -1,4 +1,4 @@
-package com.qinweizhao.activity.controller;
+package com.qinweizhao.activity.controller.admin;
 
 import com.qinweizhao.activity.model.entity.AmsSpuBounds;
 import com.qinweizhao.activity.service.IAmsSpuBoundsService;
@@ -20,7 +20,7 @@ import java.util.List;
  * @date 2022-07-01
  */
 @RestController
-@RequestMapping("/bounds")
+@RequestMapping("/spu/bounds")
 public class AmsSpuBoundsController {
     @Resource
     private IAmsSpuBoundsService amsSpuBoundsService;

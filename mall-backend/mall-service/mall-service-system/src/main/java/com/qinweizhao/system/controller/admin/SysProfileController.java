@@ -6,7 +6,6 @@ import com.qinweizhao.api.file.domain.SysFile;
 import com.qinweizhao.common.core.constant.UserConstants;
 import com.qinweizhao.common.core.model.LoginUser;
 import com.qinweizhao.common.core.utils.StringUtils;
- import com.qinweizhao.system.controller.base.BaseController;
 import com.qinweizhao.common.core.web.domain.AjaxResult;
 import com.qinweizhao.common.security.service.TokenService;
 import com.qinweizhao.common.security.utils.SecurityUtils;

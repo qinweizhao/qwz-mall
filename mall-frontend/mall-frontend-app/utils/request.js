@@ -4,7 +4,7 @@ axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
 
 // create an axios instance
 const service = axios.create({
-	baseURL: "/app", // 本地开发环境地址
+	baseURL: "/api", // 本地开发环境地址
 	withCredentials: true, // send cookies when cross-domain requests
 	timeout: 10000 // request timeout
 })

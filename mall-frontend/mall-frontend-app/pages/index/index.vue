@@ -219,7 +219,7 @@
 <script>
 	import {
 		getAdvertList
-	} from '@/api/sms/advert.js'
+	} from '@/api/activity/home.js'
 
 	export default {
 
@@ -237,8 +237,7 @@
 		},
 		methods: {
 			/**
-			 * 请求静态数据只是为了代码不那么乱
-			 * 分次请求未作整合
+			 * 轮播图
 			 */
 			async loadData() {
 				const that = this

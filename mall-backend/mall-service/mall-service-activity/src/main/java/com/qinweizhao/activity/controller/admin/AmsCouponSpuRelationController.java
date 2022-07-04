@@ -1,4 +1,4 @@
-package com.qinweizhao.activity.controller;
+package com.qinweizhao.activity.controller.admin;
 
 import com.qinweizhao.activity.model.entity.AmsCouponSpuRelation;
 import com.qinweizhao.activity.service.IAmsCouponSpuRelationService;
@@ -20,7 +20,7 @@ import java.util.List;
  * @date 2022-07-01
  */
 @RestController
-@RequestMapping("/relation")
+@RequestMapping("/1/relation")
 public class AmsCouponSpuRelationController {
     @Resource
     private IAmsCouponSpuRelationService amsCouponSpuRelationService;

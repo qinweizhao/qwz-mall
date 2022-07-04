@@ -12,6 +12,7 @@ import java.util.List;
  * @date 2022-07-01
  */
 public interface AmsCouponMapper extends QwzBaseMapper<AmsCoupon> {
+
     /**
      * 查询优惠券信息
      *

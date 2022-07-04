@@ -1,4 +1,4 @@
-package com.qinweizhao.activity.controller;
+package com.qinweizhao.activity.controller.admin;
 
 import com.qinweizhao.activity.model.entity.AmsHomeAdvert;
 import com.qinweizhao.activity.service.IAmsHomeAdvertService;
@@ -20,7 +20,7 @@ import java.util.List;
  * @date 2022-07-01
  */
 @RestController
-@RequestMapping("/advert")
+@RequestMapping("/home/advert")
 public class AmsHomeAdvertController {
     @Resource
     private IAmsHomeAdvertService amsHomeAdvertService;
@@ -31,7 +31,6 @@ public class AmsHomeAdvertController {
     @RequiresPermissions("activity:advert:list")
     @GetMapping("/list")
     public R<List<AmsHomeAdvert>> list(AmsHomeAdvert amsHomeAdvert) {
-
         List<AmsHomeAdvert> list = amsHomeAdvertService.selectAmsHomeAdvertList(amsHomeAdvert);
         return R.success(list);
     }
