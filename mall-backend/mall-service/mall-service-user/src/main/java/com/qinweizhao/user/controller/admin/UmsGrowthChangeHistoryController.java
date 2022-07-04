@@ -30,7 +30,6 @@ public class UmsGrowthChangeHistoryController {
     @RequiresPermissions("product:history:list")
     @GetMapping("/list")
     public R<List<UmsGrowthChangeHistory>> list(UmsGrowthChangeHistory umsGrowthChangeHistory) {
-         
         List<UmsGrowthChangeHistory> list = umsGrowthChangeHistoryService.selectUmsGrowthChangeHistoryList(umsGrowthChangeHistory);
         return R.success(list);
     }

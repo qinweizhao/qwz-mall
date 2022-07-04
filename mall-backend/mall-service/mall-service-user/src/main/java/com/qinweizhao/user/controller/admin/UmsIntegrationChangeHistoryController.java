@@ -1,6 +1,5 @@
 package com.qinweizhao.user.controller.admin;
 
-import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.log.annotation.Log;
@@ -10,7 +9,6 @@ import com.qinweizhao.user.service.UmsIntegrationChangeHistoryService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -35,19 +33,6 @@ public class UmsIntegrationChangeHistoryController {
          
         List<UmsIntegrationChangeHistory> list = umsIntegrationChangeHistoryService.selectUmsIntegrationChangeHistoryList(umsIntegrationChangeHistory);
         return R.success(list);
-    }
-
-    /**
-     * 导出积分变化历史记录列表
-     */
-    @RequiresPermissions("product:history:export")
-    @Log(title = "积分变化历史记录", businessType = BusinessType.EXPORT)
-    @PostMapping("/export")
-    public R<?> export(HttpServletResponse response, UmsIntegrationChangeHistory umsIntegrationChangeHistory) {
-        List<UmsIntegrationChangeHistory> list = umsIntegrationChangeHistoryService.selectUmsIntegrationChangeHistoryList(umsIntegrationChangeHistory);
-        ExcelUtil<UmsIntegrationChangeHistory> util = new ExcelUtil<UmsIntegrationChangeHistory>(UmsIntegrationChangeHistory.class);
-        util.exportExcel(response, list, "积分变化历史记录数据");
-        return R.success();
     }
 
     /**
