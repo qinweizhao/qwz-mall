@@ -81,8 +81,19 @@
                 "enable": true
             }
         },
-        "devServer": {
-            "port": 80
+        "devServer" : {
+            "https" : false,
+            "port" : 8089,
+            "proxy" : {
+                "/api" : {
+                    "target" : "http://localhost:8080",
+                    "changeOrigin" : true,
+                    "secure" : false,
+                    "pathRewrite" : {
+                        "^/api" : "/"
+                    }
+                }
+            }
         },
         "router": {
             "mode": "history"
