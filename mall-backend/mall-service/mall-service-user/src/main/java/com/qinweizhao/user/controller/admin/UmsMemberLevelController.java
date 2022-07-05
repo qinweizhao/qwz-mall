@@ -1,16 +1,14 @@
 package com.qinweizhao.user.controller.admin;
 
-import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.user.model.entity.UmsMemberLevel;
 import com.qinweizhao.user.service.UmsMemberLevelService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -21,33 +19,32 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/level")
+@AllArgsConstructor
 public class UmsMemberLevelController {
 
-    @Resource
-    private UmsMemberLevelService umsMemberLevelService;
+
+    private final UmsMemberLevelService umsMemberLevelService;
 
     /**
      * 查询会员等级列表
      */
     @RequiresPermissions("product:level:list")
     @GetMapping("/list")
-    public R<List<UmsMemberLevel>> list(UmsMemberLevel umsMemberLevel) {
-        List<UmsMemberLevel> list = umsMemberLevelService.selectUmsMemberLevelList(umsMemberLevel);
+    public R<List<UmsMemberLevel>> list() {
+        List<UmsMemberLevel> list = umsMemberLevelService.list();
         return R.success(list);
     }
 
     /**
-     * 导出会员等级列表
+     * 查询会员等级列表
      */
-    @RequiresPermissions("product:level:export")
-    @Log(title = "会员等级", businessType = BusinessType.EXPORT)
-    @PostMapping("/export")
-    public R<?> export(HttpServletResponse response, UmsMemberLevel umsMemberLevel) {
-        List<UmsMemberLevel> list = umsMemberLevelService.selectUmsMemberLevelList(umsMemberLevel);
-        ExcelUtil<UmsMemberLevel> util = new ExcelUtil<>(UmsMemberLevel.class);
-        util.exportExcel(response, list, "会员等级数据");
-        return R.success();
+    @RequiresPermissions("product:level:page")
+    @GetMapping("/page")
+    public R<List<UmsMemberLevel>> page() {
+        List<UmsMemberLevel> list = umsMemberLevelService.list();
+        return R.success(list);
     }
+
 
     /**
      * 获取会员等级详细信息

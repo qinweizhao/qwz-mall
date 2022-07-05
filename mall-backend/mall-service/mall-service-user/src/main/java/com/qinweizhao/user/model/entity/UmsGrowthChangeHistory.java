@@ -15,6 +15,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @TableName("ums_growth_change_history")
 public class UmsGrowthChangeHistory extends BaseEntity {
+
     private static final long serialVersionUID = 1L;
 
     /**
