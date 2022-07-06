@@ -1,15 +1,16 @@
 package com.qinweizhao.product.model.vo;
 
+import com.qinweizhao.component.core.entity.BaseTree;
 import lombok.Data;
-
-import java.util.List;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author qinweizhao
  * @since 2022/5/14
  */
 @Data
-public class CategoryTreeVO {
+@EqualsAndHashCode(callSuper = true)
+public class CategoryVO extends BaseTree<CategoryVO> {
 
 
     /**
@@ -21,11 +22,5 @@ public class CategoryTreeVO {
      * label
      */
     private String name;
-
-
-    /**
-     * children
-     */
-    private List<CategoryTreeVO> children;
 
 }

@@ -30,7 +30,7 @@ public class PmsCategoryController extends BaseController {
      */
     @RequiresPermissions("product:category:list")
     @GetMapping("/page")
-    public R<PageResult<PmsCategory>> list(PmsCategory pmsCategory) {
+    public R<PageResult<PmsCategory>> page(PmsCategory pmsCategory) {
         startPage();
         List<PmsCategory> list = pmsCategoryService.list(pmsCategory);
         return getPageResult(list);

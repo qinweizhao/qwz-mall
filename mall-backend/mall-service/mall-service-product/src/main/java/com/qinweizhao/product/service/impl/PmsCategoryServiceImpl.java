@@ -3,8 +3,8 @@ package com.qinweizhao.product.service.impl;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.product.convert.CategoryConvert;
 import com.qinweizhao.product.mapper.PmsCategoryMapper;
-import com.qinweizhao.product.model.dto.CategoryTreeDTO;
 import com.qinweizhao.product.model.entity.PmsCategory;
+import com.qinweizhao.product.model.vo.CategoryVO;
 import com.qinweizhao.product.service.IPmsCategoryService;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -71,7 +71,7 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
      * @param pmsCategory 商品三级分类
      * @return 结果
      */
-    @CacheEvict(value = "category",allEntries = true)
+    @CacheEvict(value = "category", allEntries = true)
     @Override
     public int updateById(PmsCategory pmsCategory) {
         PmsCategory newParentCategory = pmsCategoryMapper.selectById(pmsCategory.getParentId());
@@ -128,12 +128,10 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
     }
 
 
-
-    @Cacheable(value = {"category"},key = "#root.method.name",sync = true)
+    @Cacheable(value = {"category"}, key = "#root.method.name", sync = true)
     @Override
-    public List<CategoryTreeDTO> getCategoryTree() {
-        List<PmsCategory> list = this.list(new PmsCategory());
-        return buildCategoryTree(list);
+    public List<CategoryVO> getCategoryTree() {
+        return buildCategoryTree(list(new PmsCategory()));
     }
 
     /**
@@ -143,9 +141,8 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
      * @return List
      */
     @Override
-    public List<CategoryTreeDTO> buildCategoryTree(List<PmsCategory> list) {
-        List<CategoryTreeDTO> categoryTreeDTOList = CategoryConvert.INSTANCE.convertToDTO(list);
-        return buildTree(categoryTreeDTOList);
+    public List<CategoryVO> buildCategoryTree(List<PmsCategory> list) {
+        return buildTree(CategoryConvert.INSTANCE.convertToVO(list));
     }
 
 
@@ -155,7 +152,7 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
      * @param list list
      * @return List
      */
-    private List<CategoryTreeDTO> buildTree(List<CategoryTreeDTO> list) {
+    private List<CategoryVO> buildTree(List<CategoryVO> list) {
         return list.stream().filter(item ->
                 LONG_ZERO.equals(item.getParentId())
         ).peek(item -> item.setChildren(getCategoryChildren(item, list))).collect(Collectors.toList());
@@ -168,7 +165,7 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
      * @param categories categories
      * @return List
      */
-    private List<CategoryTreeDTO> getCategoryChildren(CategoryTreeDTO category, List<CategoryTreeDTO> categories) {
+    private List<CategoryVO> getCategoryChildren(CategoryVO category, List<CategoryVO> categories) {
         return categories.stream()
                 .filter(
                         i ->

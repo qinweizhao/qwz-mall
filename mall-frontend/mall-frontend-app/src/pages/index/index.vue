@@ -15,15 +15,10 @@
       <view class="bg">
         <image src="/static/images/bannerBg.png" />
       </view>
-      <swiper
-        class="img"
-        indicator-dots="true"
-        indicator-color="rgba(255,252,255, .3)"
-        indicator-active-color="rgba(255,252,255, .6)"
-        autoplay="true"
-        circular="true"
-      >
-        <swiper-item v-for="(imgItem, imgIdx) in indexImgs" :key="imgIdx" class="item" @tap="toProdDetail(imgItem.spuId)">
+      <swiper class="img" indicator-dots="true" indicator-color="rgba(255,252,255, .3)"
+        indicator-active-color="rgba(255,252,255, .6)" autoplay="true" circular="true">
+        <swiper-item v-for="(imgItem, imgIdx) in indexImgs" :key="imgIdx" class="item"
+          @tap="toProdDetail(imgItem.spuId)">
           <image :src="imgItem.imgUrl" />
         </swiper-item>
       </swiper>
@@ -83,9 +78,11 @@
 
     <!-- 推荐 -->
     <view class="recommend">
-      <scroll-view scroll-x="true" class="category" :scroll-left="categoryScrollLeft" scroll-with-animation @scroll="scroll">
+      <scroll-view scroll-x="true" class="category" :scroll-left="categoryScrollLeft" scroll-with-animation
+        @scroll="scroll">
         <block v-for="(item, index) in categoryList" :key="index">
-          <view class="category-item" :class="{active:selectedIndex===index}" :data-index="index" :data-categoryid="item.categoryId" @tap="switchCategory">{{ item.name }}</view>
+          <view class="category-item" :class="{ active: selectedIndex === index }" :data-index="index"
+            :data-categoryid="item.categoryId" @tap="switchCategory">{{ item.name }}</view>
         </block>
       </scroll-view>
     </view>
@@ -109,14 +106,14 @@
       </block>
     </view>
     <!-- 无商品显示 -->
-    <view v-if="categoryProdList.length===0" class="empty">
+    <view v-if="categoryProdList.length === 0" class="empty">
       <view class="img">
         <image src="/static/empty-img/not-found.png" />
       </view>
       <view class="text">没有找到对应商品，看看别的吧</view>
     </view>
 
-    <view v-if="isLoadAll && categoryProdList.length>0" class="nomore">没有更多了，看看别的吧</view>
+    <view v-if="isLoadAll && categoryProdList.length > 0" class="nomore">没有更多了，看看别的吧</view>
   </view>
 </template>
 <script module="wxs" lang="wxs" src="../../wxs/index.wxs"></script>
@@ -283,7 +280,7 @@ export default {
     getIndexImgs() {
       uni.showLoading()
       var params = {
-        url: '/mall4cloud_multishop/ua/index_img/list',
+        url: '/activity//app/home/advert',
         method: 'GET',
         data: {
           shopId: this.pageQuery.shopId

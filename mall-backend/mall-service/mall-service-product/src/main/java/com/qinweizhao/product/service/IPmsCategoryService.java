@@ -1,7 +1,7 @@
 package com.qinweizhao.product.service;
 
-import com.qinweizhao.product.model.dto.CategoryTreeDTO;
 import com.qinweizhao.product.model.entity.PmsCategory;
+import com.qinweizhao.product.model.vo.CategoryVO;
 
 import java.util.List;
 
@@ -66,14 +66,13 @@ public interface IPmsCategoryService {
      * @param list list
      * @return List<PmsCategory>
      */
-    List<CategoryTreeDTO> buildCategoryTree(List<PmsCategory> list);
-
+    List<CategoryVO> buildCategoryTree(List<PmsCategory> list);
 
     /**
      * 获取分类树
      * @return List
      */
-    List<CategoryTreeDTO> getCategoryTree();
+    List<CategoryVO> getCategoryTree();
 
 
 }

@@ -1,6 +1,8 @@
 package com.qinweizhao.activity.controller.app;
 
+import com.qinweizhao.activity.convert.HomeAdvertConvert;
 import com.qinweizhao.activity.model.entity.AmsHomeAdvert;
+import com.qinweizhao.activity.model.vo.AppHomeAdvertVO;
 import com.qinweizhao.activity.service.IAmsHomeAdvertService;
 import com.qinweizhao.component.core.response.R;
 import lombok.AllArgsConstructor;
@@ -22,9 +24,11 @@ public class HomeController {
 
     private final IAmsHomeAdvertService amsHomeAdvertService;
 
-    @GetMapping("/adverts")
-    public R<List<AmsHomeAdvert>> list() {
+    @GetMapping("/advert")
+    public R<List<AppHomeAdvertVO>> list() {
         List<AmsHomeAdvert> list = amsHomeAdvertService.list();
-        return R.success(list);
+        return R.success(HomeAdvertConvert.INSTANCE.convertToVO(list));
     }
+
+
 }

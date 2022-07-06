@@ -1,9 +1,8 @@
 package com.qinweizhao.product.convert;
 
 
-import com.qinweizhao.product.model.dto.CategoryTreeDTO;
 import com.qinweizhao.product.model.entity.PmsCategory;
-import com.qinweizhao.product.model.vo.CategoryTreeVO;
+import com.qinweizhao.product.model.vo.CategoryVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -24,19 +23,10 @@ public interface CategoryConvert {
     CategoryConvert INSTANCE = Mappers.getMapper(CategoryConvert.class);
 
     /**
-     * DO 转 DTO
+     * convert VO
      *
-     * @param pmsCategoryList pmsCategory
-     * @return List
+     * @param list list
+     * @return CategoryVO
      */
-    List<CategoryTreeDTO> convertToDTO(List<PmsCategory> pmsCategoryList);
-
-    /**
-     * DTO 转 VO
-     *
-     * @param categoryTreeDTOList categoryTreeDTOList
-     * @return List
-     */
-    List<CategoryTreeVO> convertToVO(List<CategoryTreeDTO> categoryTreeDTOList);
-
+    List<CategoryVO> convertToVO(List<PmsCategory> list);
 }
