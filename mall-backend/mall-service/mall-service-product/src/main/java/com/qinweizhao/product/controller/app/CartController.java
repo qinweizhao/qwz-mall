@@ -5,9 +5,9 @@ import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.product.model.dto.CartItemDTO;
 import com.qinweizhao.product.model.entity.PmsCartItem;
 import com.qinweizhao.product.service.IPmsCartService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -15,11 +15,11 @@ import java.util.List;
  * @since 2022/6/17
  */
 @RestController
+@AllArgsConstructor
 @RequestMapping("/app/cart")
 public class CartController {
 
-    @Resource
-    private IPmsCartService pmsCartItemService;
+    private final IPmsCartService pmsCartItemService;
 
     @GetMapping
     public R<List<CartItemDTO>> getCart() {

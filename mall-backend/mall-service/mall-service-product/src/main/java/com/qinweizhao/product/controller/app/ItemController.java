@@ -3,12 +3,12 @@ package com.qinweizhao.product.controller.app;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.product.model.vo.SkuItemVO;
 import com.qinweizhao.product.service.IPmsSkuInfoService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -16,11 +16,11 @@ import java.util.concurrent.ExecutionException;
  * @since 2022/5/27
  */
 @RestController
-@RequestMapping("/ua")
+@AllArgsConstructor
+@RequestMapping("/app/item")
 public class ItemController {
 
-    @Resource
-    private IPmsSkuInfoService pmsSkuInfoService;
+    private final IPmsSkuInfoService pmsSkuInfoService;
 
 
     @GetMapping("/{skuId}")
