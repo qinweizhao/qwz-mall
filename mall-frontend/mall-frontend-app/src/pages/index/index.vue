@@ -280,7 +280,7 @@ export default {
     getIndexImgs() {
       uni.showLoading()
       var params = {
-        url: '/activity//app/home/advert',
+        url: '/activity/app/home/advert',
         method: 'GET',
         data: {
           shopId: this.pageQuery.shopId

@@ -4,7 +4,8 @@ import {
 } from './constant.js'
 
 function request(params) {
-  const url = params.uploadUrl ? params.uploadUrl : (params.domain ? params.domain : config.domain) + params.url
+  // const url = params.uploadUrl ? params.uploadUrl : (params.domain ? params.domain : config.domain) + params.url
+  const url = params.uploadUrl ? params.uploadUrl : params.url
   let head = []
   head = {
     'Authorization': uni.getStorageSync('token'),
@@ -16,7 +17,7 @@ function request(params) {
     head['Accept'] = 'application/json'
   }
   uni.request({
-    url: url,
+    url: `/api/${url}`,
     // 接口请求地址
     data: params.data,
     header: head,

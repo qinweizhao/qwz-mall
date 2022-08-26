@@ -83,7 +83,7 @@
     },
     "devServer": {
       "https": false,
-      "port": 8089,
+      "port": 8888,
       "proxy": {
         "/api": {
           "target": "http://localhost:8080",
