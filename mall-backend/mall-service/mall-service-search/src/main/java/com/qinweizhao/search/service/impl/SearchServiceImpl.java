@@ -326,9 +326,9 @@ public class SearchServiceImpl implements SearchService {
         searchVO.setTotal(total);
 
         List<Hit<EsSkuSaveParam>> hits = response.hits().hits();
-        if (ObjectUtils.isEmpty(hits)) {
-            return new SearchVO();
-        }
+//        if (ObjectUtils.isEmpty(hits)) {
+//            return new SearchVO();
+//        }
 
         // products
         List<EsSkuSaveParam> esSkus = new ArrayList<>();
