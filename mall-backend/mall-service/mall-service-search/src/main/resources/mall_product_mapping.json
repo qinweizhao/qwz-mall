@@ -28,6 +28,9 @@
       "categoryId": {
         "type": "long"
       },
+      "topCategoryId": {
+        "type": "long"
+      },
       "categoryName": {
         "type": "keyword"
       },

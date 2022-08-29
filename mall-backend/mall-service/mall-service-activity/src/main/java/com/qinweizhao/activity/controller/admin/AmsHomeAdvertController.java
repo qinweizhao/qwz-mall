@@ -1,7 +1,7 @@
 package com.qinweizhao.activity.controller.admin;
 
 import com.qinweizhao.activity.model.entity.AmsHomeAdvert;
-import com.qinweizhao.activity.model.param.AmsHomeAdvertPageParam;
+import com.qinweizhao.activity.model.param.HomeAdvertPageParam;
 import com.qinweizhao.activity.service.IAmsHomeAdvertService;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
 import com.qinweizhao.component.core.response.PageResult;
@@ -29,7 +29,7 @@ public class AmsHomeAdvertController {
      */
     @RequiresPermissions("activity:advert:page")
     @GetMapping("/page")
-    public R<PageResult<AmsHomeAdvert>> page(AmsHomeAdvertPageParam pageParam) {
+    public R<PageResult<AmsHomeAdvert>> page(HomeAdvertPageParam pageParam) {
         PageResult<AmsHomeAdvert> page = amsHomeAdvertService.page(pageParam);
         return R.success(page);
     }

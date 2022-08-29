@@ -1,7 +1,7 @@
 package com.qinweizhao.product.service.impl;
 
 
-import com.qinweizhao.api.search.feign.ElasticSaveFeignService;
+import com.qinweizhao.api.search.feign.ElasticSaveFeignClient;
 import com.qinweizhao.api.search.model.param.EsSkuSaveParam;
 import com.qinweizhao.api.ware.dto.SkuHasStockDTO;
 import com.qinweizhao.api.ware.feign.WareSkuFeignService;
@@ -69,7 +69,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
     private WareSkuFeignService wareSkuFeignService;
 
     @Resource
-    private ElasticSaveFeignService elasticSaveFeignService;
+    private ElasticSaveFeignClient elasticSaveFeignClient;
 
     /**
      * 查询spu信息
@@ -345,7 +345,11 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
             esSkuSaveParam.setBrandImg(pmsBrand.getLogo());
 
             // 查询分类信息
-            PmsCategory pmsCategory = pmsCategoryService.getById(sku.getCategoryId());
+            Long categoryId = sku.getCategoryId();
+            PmsCategory pmsCategory = pmsCategoryService.getById(categoryId);
+            // 目前新增商品时只会是第三级分类
+            Long topCategoryId = pmsCategoryService.getTopCategoryId(categoryId);
+            esSkuSaveParam.setTopCategoryId(topCategoryId);
             esSkuSaveParam.setCategoryId(sku.getCategoryId());
             esSkuSaveParam.setCategoryName(pmsCategory.getName());
 
@@ -355,7 +359,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
         }).collect(Collectors.toList());
 
 
-        R<?> result = elasticSaveFeignService.saveEsSkuList(esSkuSaveParamList);
+        R<?> result = elasticSaveFeignClient.saveEsSkuList(esSkuSaveParamList);
         if (!result.getCode().equals(SystemResultCodeEnum.SUCCESS.getCode())) {
             System.out.println("远程调用失败");
             //TODO 7、重复调用？接口幂等性；重试机制？
@@ -370,7 +374,7 @@ public class PmsSpuInfoServiceImpl implements IPmsSpuInfoService {
      * @param spuId spuId
      */
     private void productDown(Long spuId) {
-        System.out.println("下架"+spuId);
+        System.out.println("下架" + spuId);
     }
 
 }

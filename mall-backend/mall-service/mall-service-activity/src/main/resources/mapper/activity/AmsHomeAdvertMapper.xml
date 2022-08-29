@@ -7,13 +7,12 @@
     <resultMap type="AmsHomeAdvert" id="AmsHomeAdvertResult">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
-        <result property="pic" column="pic"/>
+        <result property="imgUrl" column="img_url"/>
         <result property="startTime" column="start_time"/>
         <result property="endTime" column="end_time"/>
         <result property="status" column="status"/>
         <result property="clickCount" column="click_count"/>
         <result property="url" column="url"/>
-        <result property="note" column="note"/>
         <result property="sort" column="sort"/>
         <result property="publisherId" column="publisher_id"/>
         <result property="authId" column="auth_id"/>
@@ -26,13 +25,12 @@
     <sql id="selectAmsHomeAdvertVo">
         select id,
                name,
-               pic,
+               img_url,
                start_time,
                end_time,
                status,
                click_count,
                url,
-               note,
                sort,
                publisher_id,
                auth_id,

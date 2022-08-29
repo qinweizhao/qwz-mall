@@ -134,6 +134,18 @@ public class PmsCategoryServiceImpl implements IPmsCategoryService {
         return buildCategoryTree(list(new PmsCategory()));
     }
 
+    @Override
+    public Long getTopCategoryId(Long categoryId) {
+        PmsCategory pmsCategory = pmsCategoryMapper.selectById(categoryId);
+
+        Long parentId = pmsCategory.getParentId();
+        if (!parentId.equals(0L)){
+            return getTopCategoryId(parentId);
+        }else {
+            return pmsCategory.getCategoryId();
+        }
+    }
+
     /**
      * 构建分类树
      *

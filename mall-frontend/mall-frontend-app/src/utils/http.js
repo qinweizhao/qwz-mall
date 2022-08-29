@@ -17,7 +17,7 @@ function request(params) {
     head['Accept'] = 'application/json'
   }
   uni.request({
-    url: `/api/${url}`,
+    url: `/api${url}`,
     // 接口请求地址
     data: params.data,
     header: head,
@@ -39,7 +39,8 @@ function request(params) {
         return
       }
       var responseData = res.data
-      if (responseData.code === '00000') {
+      // if (responseData.code === '00000') {
+      if (responseData.code === '200') {
         if (params.callBack) {
           params.callBack(responseData.data)
         }

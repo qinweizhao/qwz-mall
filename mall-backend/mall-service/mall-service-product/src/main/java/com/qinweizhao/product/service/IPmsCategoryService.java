@@ -75,4 +75,12 @@ public interface IPmsCategoryService {
     List<CategoryVO> getCategoryTree();
 
 
+    /**
+     * 查找一级分类 id
+     * @param categoryId categoryId
+     * @return Long
+     */
+    Long getTopCategoryId(Long categoryId);
+
+
 }

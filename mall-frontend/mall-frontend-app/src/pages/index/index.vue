@@ -15,10 +15,15 @@
       <view class="bg">
         <image src="/static/images/bannerBg.png" />
       </view>
-      <swiper class="img" indicator-dots="true" indicator-color="rgba(255,252,255, .3)"
-        indicator-active-color="rgba(255,252,255, .6)" autoplay="true" circular="true">
-        <swiper-item v-for="(imgItem, imgIdx) in indexImgs" :key="imgIdx" class="item"
-          @tap="toProdDetail(imgItem.spuId)">
+      <swiper
+        class="img"
+        indicator-dots="true"
+        indicator-color="rgba(255,252,255, .3)"
+        indicator-active-color="rgba(255,252,255, .6)"
+        autoplay="true"
+        circular="true"
+      >
+        <swiper-item v-for="(imgItem, imgIdx) in indexImgs" :key="imgIdx" class="item" @tap="toProdDetail(imgItem.id)">
           <image :src="imgItem.imgUrl" />
         </swiper-item>
       </swiper>
@@ -78,11 +83,21 @@
 
     <!-- 推荐 -->
     <view class="recommend">
-      <scroll-view scroll-x="true" class="category" :scroll-left="categoryScrollLeft" scroll-with-animation
-        @scroll="scroll">
+      <scroll-view
+        scroll-x="true"
+        class="category"
+        :scroll-left="categoryScrollLeft"
+        scroll-with-animation
+        @scroll="scroll"
+      >
         <block v-for="(item, index) in categoryList" :key="index">
-          <view class="category-item" :class="{ active: selectedIndex === index }" :data-index="index"
-            :data-categoryid="item.categoryId" @tap="switchCategory">{{ item.name }}</view>
+          <view
+            class="category-item"
+            :class="{ active: selectedIndex === index }"
+            :data-index="index"
+            :data-categoryid="item.categoryId"
+            @tap="switchCategory"
+          >{{ item.name }}</view>
         </block>
       </scroll-view>
     </view>
@@ -90,15 +105,15 @@
       <block v-for="(item, index) in categoryProdList" :key="index">
         <view class="item" @tap="toProdDetail(item.spuId)">
           <view class="img">
-            <image :src="item.mainImgUrl" />
+            <image :src="item.skuImg" />
           </view>
           <view class="text-box">
-            <view class="name">{{ item.spuName }}</view>
+            <view class="name">{{ item.skuTitle }}</view>
             <view class="price-box">
               <view class="price">
                 <view class="symbol">￥</view>
-                <view class="big">{{ wxs.parsePrice(item.priceFee)[0] }}</view>
-                <view class="symbol">.{{ wxs.parsePrice(item.priceFee)[1] }}</view>
+                <view class="big">{{ wxs.parsePrice(item.skuPrice)[0] }}</view>
+                <view class="symbol">.{{ wxs.parsePrice(item.skuPrice)[1] }}</view>
               </view>
             </view>
           </view>
@@ -146,8 +161,8 @@ export default {
       searchListQuery: {
         pageSize: 10,
         pageNum: 1,
-        primaryCategoryId: null,
-        sort: 1 // 新品 1:新品
+        topCategoryId: null,
+        // sort: 1 // 新品 1:新品
       },
       // 分类商品列表返回的参数
       searchListData: {
@@ -282,9 +297,6 @@ export default {
       var params = {
         url: '/activity/app/home/advert',
         method: 'GET',
-        data: {
-          shopId: this.pageQuery.shopId
-        },
         callBack: res => {
           uni.hideLoading()
           this.indexImgs = res
@@ -299,19 +311,21 @@ export default {
     getSearchList() {
       uni.showLoading()
       this.isLoadAll = false
-      this.searchListQuery.primaryCategoryId = this.selectedCategoryId
+      this.searchListQuery.topCategoryId = this.selectedCategoryId
       const params = {
-        url: '/mall4cloud_search/ua/search/simple_page',
+        // url: '/mall4cloud_search/ua/search/simple_page',
+        url: '/search/app/search/sample-page',
         method: 'GET',
         data: this.searchListQuery,
         callBack: res => {
           this.searchListData = res
           let list = []
           if (this.searchListQuery.pageNum === 1) {
-            list = res.list[0].spus
+            // list = res.list[0].spus
+             list = res.rows
           } else {
             list = this.categoryProdList
-            list = list.concat(res.list[0].spus)
+            list = list.concat(res.rows)
           }
           if (this.searchListQuery.pageNum === this.searchListData.pages) {
             this.isLoadAll = true
@@ -350,15 +364,14 @@ export default {
     getPlatformCategoryList() {
       uni.showLoading()
       const params = {
-        url: '/mall4cloud_product/ua/category/category_list',
+        url: '/product/app/category/list',
         method: 'GET',
         data: {
-          shopId: 0,
           parentId: 0
         },
         callBack: res => {
           this.categoryList = res
-          // this.selectedCategoryId = res[0].categoryId // 默认选中分类第一项
+          this.selectedCategoryId = res[0].categoryId // 默认选中分类第一项
           this.getSearchList()
           uni.hideLoading()
           this.getCategoryScrollWidth()

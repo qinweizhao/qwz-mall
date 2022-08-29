@@ -43,6 +43,7 @@ public class SearchServiceImpl implements SearchService {
      */
     private static final String TITLE = "skuTitle";
     private static final String CATEGORY_ID = "categoryId";
+    private static final String TOP_CATEGORY_ID = "topCategoryId";
     private static final String CATEGORY_NAME = "categoryName";
     private static final String BRAND_ID = "brandId";
     private static final String BRAND_NAME = "brandName";
@@ -71,7 +72,7 @@ public class SearchServiceImpl implements SearchService {
         SearchVO result;
         try {
             SearchResponse<EsSkuSaveParam> searchResponse = elasticsearchClient.search(searchRequest, EsSkuSaveParam.class);
-            result = this.buildSearchResult(searchResponse);
+            result = this.buildSearchResult(searchResponse, param);
         } catch (Exception e) {
             e.printStackTrace();
             throw new ServiceException("检索异常");
@@ -229,12 +230,20 @@ public class SearchServiceImpl implements SearchService {
         }
 
         // 分类
-        // terms
         String categoryId = param.getCategoryId();
         if (StringUtils.isNotNull(categoryId)) {
             boolBuilder.filter(f ->
                     f.term(t ->
                             t.field(CATEGORY_ID).value(categoryId)
+                    )
+            );
+        }
+        // 一级分类
+        Long topCategoryId = param.getTopCategoryId();
+        if (!ObjectUtils.isEmpty(topCategoryId)) {
+            boolBuilder.filter(f ->
+                    f.term(t ->
+                            t.field(TOP_CATEGORY_ID).value(topCategoryId)
                     )
             );
         }
@@ -286,7 +295,6 @@ public class SearchServiceImpl implements SearchService {
             }
         }
 
-        // Query
         return new Query(boolBuilder.build());
     }
 
@@ -296,8 +304,27 @@ public class SearchServiceImpl implements SearchService {
      * @param response response
      * @return PageResult
      */
-    private SearchVO buildSearchResult(SearchResponse<EsSkuSaveParam> response) {
+    private SearchVO buildSearchResult(SearchResponse<EsSkuSaveParam> response, SearchParam param) {
         SearchVO searchVO = new SearchVO();
+
+        long total;
+        long pages;
+
+        // 分页信息
+        if (response.hits().total() != null) {
+            total = response.hits().total().value();
+            // 总页码
+            pages = total % param.getPageSize() == 0 ?
+                     total / param.getPageSize() : ( total / param.getPageSize() + 1);
+        } else {
+            total = 0L;
+            pages = 0L;
+        }
+
+
+        searchVO.setPages(pages);
+        searchVO.setTotal(total);
+
         List<Hit<EsSkuSaveParam>> hits = response.hits().hits();
         if (ObjectUtils.isEmpty(hits)) {
             return new SearchVO();

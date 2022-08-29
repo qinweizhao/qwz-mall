@@ -13,7 +13,7 @@ import java.util.List;
  * @since 2022/5/13
  */
 @FeignClient(ServiceNameConstants.SEARCH_SERVICE)
-public interface ElasticSaveFeignService {
+public interface ElasticSaveFeignClient {
 
     /**
      * 是否有库存

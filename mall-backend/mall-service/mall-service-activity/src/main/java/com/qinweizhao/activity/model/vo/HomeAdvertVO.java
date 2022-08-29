@@ -10,9 +10,14 @@ import lombok.Data;
 public class HomeAdvertVO {
 
     /**
+     * id
+     */
+    private Long id;
+
+    /**
      * 图片地址
      */
-    private String picUrl;
+    private String imgUrl;
 
     /**
      * 广告详情连接地址

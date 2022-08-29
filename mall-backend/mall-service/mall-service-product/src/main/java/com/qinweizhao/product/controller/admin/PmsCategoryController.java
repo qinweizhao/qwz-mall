@@ -45,14 +45,13 @@ public class PmsCategoryController extends BaseController {
         return R.success(pmsCategoryService.getById(categoryId));
     }
 
-
     /**
      * 新增
      */
     @RequiresPermissions("product:category:add")
     @Log(title = "商品三级分类", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<?> add(@RequestBody PmsCategory pmsCategory) {
+    public R<Integer> add(@RequestBody PmsCategory pmsCategory) {
         return R.success(pmsCategoryService.save(pmsCategory));
     }
 

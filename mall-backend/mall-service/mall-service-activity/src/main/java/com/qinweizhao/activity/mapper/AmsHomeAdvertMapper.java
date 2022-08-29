@@ -1,7 +1,7 @@
 package com.qinweizhao.activity.mapper;
 
 import com.qinweizhao.activity.model.entity.AmsHomeAdvert;
-import com.qinweizhao.activity.model.param.AmsHomeAdvertPageParam;
+import com.qinweizhao.activity.model.param.HomeAdvertPageParam;
 import com.qinweizhao.component.core.response.PageResult;
 import com.qinweizhao.component.mybatis.mapper.QwzBaseMapper;
 import com.qinweizhao.component.mybatis.query.QwzLambdaQueryWrapper;
@@ -19,7 +19,7 @@ public interface AmsHomeAdvertMapper extends QwzBaseMapper<AmsHomeAdvert> {
      * @param pageParam pageParam
      * @return PageResult
      */
-    default PageResult<AmsHomeAdvert> selectPage(AmsHomeAdvertPageParam pageParam){
+    default PageResult<AmsHomeAdvert> selectPage(HomeAdvertPageParam pageParam){
         return selectPage(pageParam, new QwzLambdaQueryWrapper<AmsHomeAdvert>()
                 .likeIfPresent(AmsHomeAdvert::getName, pageParam.getName())
                 .eqIfPresent(AmsHomeAdvert::getStatus, pageParam.getStatus())

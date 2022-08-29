@@ -48,6 +48,8 @@ public class EsSkuSaveParam {
 
     private Long brandId;
 
+    private Long topCategoryId;
+
     private Long categoryId;
 
     private String brandName;

@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class AmsHomeAdvertPageParam extends PageParam {
+public class HomeAdvertPageParam extends PageParam {
 
     private static final long serialVersionUID = 1L;
 

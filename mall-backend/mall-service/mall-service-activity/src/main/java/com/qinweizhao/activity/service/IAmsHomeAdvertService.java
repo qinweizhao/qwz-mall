@@ -1,7 +1,7 @@
 package com.qinweizhao.activity.service;
 
 import com.qinweizhao.activity.model.entity.AmsHomeAdvert;
-import com.qinweizhao.activity.model.param.AmsHomeAdvertPageParam;
+import com.qinweizhao.activity.model.param.HomeAdvertPageParam;
 import com.qinweizhao.component.core.response.PageResult;
 import com.qinweizhao.component.mybatis.service.QwzService;
 
@@ -19,5 +19,5 @@ public interface IAmsHomeAdvertService extends QwzService<AmsHomeAdvert> {
      * @param pageParam pageParam
      * @return PageResult
      */
-    PageResult<AmsHomeAdvert> page(AmsHomeAdvertPageParam pageParam);
+    PageResult<AmsHomeAdvert> page(HomeAdvertPageParam pageParam);
 }

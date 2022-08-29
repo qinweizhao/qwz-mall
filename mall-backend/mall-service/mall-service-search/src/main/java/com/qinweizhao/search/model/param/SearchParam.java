@@ -25,6 +25,11 @@ public class SearchParam extends PageParam {
     private String categoryId;
 
     /**
+     * 一级分类
+     */
+    private Long topCategoryId;
+
+    /**
      * 按照品牌进行查询，可以多选  v
      *  "5:OPPO"
      */

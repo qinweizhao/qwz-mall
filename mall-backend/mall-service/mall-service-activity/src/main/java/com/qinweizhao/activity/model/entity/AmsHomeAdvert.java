@@ -34,7 +34,7 @@ public class AmsHomeAdvert extends BaseEntity {
     /**
      * 图片地址
      */
-    private String picUrl;
+    private String imgUrl;
 
     /**
      * 状态

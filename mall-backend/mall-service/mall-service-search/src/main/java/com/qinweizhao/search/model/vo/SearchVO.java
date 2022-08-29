@@ -35,6 +35,11 @@ public class SearchVO extends PageResult<Object> {
      */
     private List<Attr> attrs;
 
+    /**
+     * 总页数
+     */
+    private Long pages;
+
 
 
     @Data

@@ -37,7 +37,6 @@ public class PmsSpuInfoController extends BaseController {
         return getPageResult(list);
     }
 
-
     /**
      * 获取spu信息详细信息
      */
@@ -58,7 +57,7 @@ public class PmsSpuInfoController extends BaseController {
     }
 
     /**
-     * 修改spu状态
+     * 修改spu状态（上架下架）
      */
     @RequiresPermissions("product:info:edit")
     @Log(title = "spu信息", businessType = BusinessType.UPDATE)
