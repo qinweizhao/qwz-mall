@@ -2,7 +2,7 @@ package com.qinweizhao.activity.convert;
 
 
 import com.qinweizhao.activity.model.entity.AmsHomeAdvert;
-import com.qinweizhao.activity.model.vo.AppHomeAdvertVO;
+import com.qinweizhao.activity.model.vo.HomeAdvertVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -24,5 +24,5 @@ public interface HomeAdvertConvert {
      * @param homeAdvertList homeAdvertList
      * @return List
      */
-    List<AppHomeAdvertVO> convertToVO(List<AmsHomeAdvert> homeAdvertList);
+    List<HomeAdvertVO> convertToVO(List<AmsHomeAdvert> homeAdvertList);
 }
