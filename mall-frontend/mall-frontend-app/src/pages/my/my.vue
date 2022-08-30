@@ -237,7 +237,7 @@ export default {
     notOpen(title) {
       uni.showModal({
         title: '提示',
-        content: `${title}暂未开源`,
+        content: `${title}待开发`,
         showCancel: false,
         success: function(res) {
           if (res.confirm) {

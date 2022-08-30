@@ -307,10 +307,9 @@ public class SearchServiceImpl implements SearchService {
     private SearchVO buildSearchResult(SearchResponse<EsSkuSaveParam> response, SearchParam param) {
         SearchVO searchVO = new SearchVO();
 
+        // 分页信息
         long total;
         long pages;
-
-        // 分页信息
         if (response.hits().total() != null) {
             total = response.hits().total().value();
             // 总页码
@@ -326,9 +325,6 @@ public class SearchServiceImpl implements SearchService {
         searchVO.setTotal(total);
 
         List<Hit<EsSkuSaveParam>> hits = response.hits().hits();
-//        if (ObjectUtils.isEmpty(hits)) {
-//            return new SearchVO();
-//        }
 
         // products
         List<EsSkuSaveParam> esSkus = new ArrayList<>();

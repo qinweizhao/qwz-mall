@@ -1,7 +1,6 @@
 <template>
   <view class="detail">
     <!-- 头部 -->
-    <!--  -->
     <view class="det-header" :style="{ opacity: topTabOpacity, zIndex: topTabOpacity >0.2?'1':'-1'}">
       <view :class="['item', topTabSts === 0? 'active' : '']" @tap="hanleTopTabClick(0)">商品</view>
       <view :class="['item', topTabSts === 2? 'active' : '']" @tap="hanleTopTabClick(2)">详情</view>
@@ -110,11 +109,11 @@
             <image :src="prodInfo.mainImgUrl" />
           </view>
           <view class="info">
-            <view class="name">{{ prodInfo.name }}</view>
+            <view class="name">{{ prodInfo.title }}</view>
             <view class="price">
               <view class="symbol">￥</view>
-              <view class="big">{{ wxs.parsePrice(defaultSku.priceFee)[0] }}</view>
-              <view class="symbol">.{{ wxs.parsePrice(defaultSku.priceFee)[1] }}</view>
+              <view class="big">{{ wxs.parsePrice(prodInfo.price)[0] }}</view>
+              <view class="symbol">.{{ wxs.parsePrice(prodInfo.price)[1] }}</view>
             </view>
           </view>
           <view class="close" @tap="closePopup">
@@ -161,7 +160,7 @@ export default {
     return {
       isShowSkuPopup: false, // 显示sku弹窗
       isShowCommentPopup: false, // 显示评价弹窗
-      spuId: 0, // 商品id
+      skuId: 0, // 商品id
       shopId: 0,
       prodInfo: {}, // 商品详情
       shopInfo:{}, //店铺详情
@@ -204,8 +203,8 @@ export default {
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if (options.spuId) {
-      this.spuId = options.spuId
+    if (options.skuId) {
+      this.skuId = options.skuId
     }
   },
 
@@ -376,29 +375,29 @@ export default {
     getProdInfo() {
       uni.showLoading()
       const params = {
-        url: '/mall4cloud_product/ua/spu/prod_info',
+        url: `/product/app/item/${this.skuId}`,
         method: 'GET',
-        data: {
-          spuId: this.spuId
-        },
         callBack: res => {
-          this.shopId = res.shopId
-          this.getShopInfo()
+          // this.shopId = res.shopId
+          // this.getShopInfo()
           uni.hideLoading()
+          // 图片信息
           let imgList = []
-          if (res.imgUrls) {
-            imgList = res.imgUrls.split(',')
+          if (res.skuImages) {
+            for(let i = 0; i < res.skuImages.length; i++){
+              imgList.push(res.skuImages[i].url)
+            }
           }
-          console.log(res.priceFee)
           // 组装sku
-          this.groupSkuProp(res.skus, res.priceFee)
+          // this.groupSkuProp(res.skuInfo, res.priceFee)
 
-          this.prodInfo = res
-          this.deliveryModeVO = res.deliveryModeVO
-          this.prodDetail = util.formatHtml(res.detail)
+          // sku信息
+          this.prodInfo = res.skuInfo
+          // this.deliveryModeVO = res.deliveryModeVO
+          // this.prodDetail = util.formatHtml(res.detail)
           this.imgList = imgList
           // this.deliveryModeVO = JSON.parse(res.deliveryMode)
-          this.skuList = res.skus
+          // this.skuList = res.skus
 
         }
       }

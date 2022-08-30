@@ -103,7 +103,7 @@
     </view>
     <view class="prods">
       <block v-for="(item, index) in categoryProdList" :key="index">
-        <view class="item" @tap="toProdDetail(item.spuId)">
+        <view class="item" @tap="toProdDetail(item.skuId)">
           <view class="img">
             <image :src="item.skuImg" />
           </view>
@@ -237,10 +237,10 @@ export default {
     /**
      * 跳转商品详情
      */
-    toProdDetail(spuId) {
-      if(spuId) {
+    toProdDetail(skuId) {
+      if(skuId) {
         uni.navigateTo({
-        url: '/pages/detail/detail?spuId=' + spuId
+        url: '/pages/detail/detail?skuId=' + skuId
       })
       }
     },
@@ -416,7 +416,7 @@ export default {
     notOpen(title){
       uni.showModal({
         title: '提示',
-        content: `${title}暂未开源`,
+        content: `${title}暂未开发`,
         showCancel: false,
         success: function (res) {
           if (res.confirm) {

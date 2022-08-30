@@ -147,21 +147,21 @@ public class PmsSkuInfoServiceImpl implements IPmsSkuInfoService {
                 }
                 , executor);
 
-        infoFuture.thenAcceptAsync(response -> {
+        CompletableFuture<Void> saleAttrFuture = infoFuture.thenAcceptAsync(response -> {
             Long spuId = response.getSpuId();
             // 3.获取spu的销售组合
             List<SkuItemAttrDTO> saleAttrList = pmsSkuAttrValueService.listSkuItemAttrBySpuId(spuId);
             skuItem.setSaleAttr(saleAttrList);
         }, executor);
 
-        infoFuture.thenAcceptAsync(response -> {
+        CompletableFuture<Void> descFuture =  infoFuture.thenAcceptAsync(response -> {
             // 4.获取 spu 详情（介绍）
             Long spuId = response.getSpuId();
             PmsSpuInfoDetail pmsSpuInfoDetail = pmsSpuInfoDetailMapper.selectPmsSpuInfoDetailBySpuId(spuId);
             skuItem.setSpuInfoDetail(SpuInfoDetailConvert.INSTANCE.convert(pmsSpuInfoDetail));
         }, executor);
 
-        infoFuture.thenAcceptAsync(response -> {
+        CompletableFuture<Void> baseAttrFuture = infoFuture.thenAcceptAsync(response -> {
             // 5.获取spu的规格参数信息
             Long spuId = response.getSpuId();
             Long categoryId = response.getCategoryId();
@@ -171,7 +171,7 @@ public class PmsSkuInfoServiceImpl implements IPmsSkuInfoService {
         }, executor);
 
 
-        CompletableFuture.allOf(infoFuture, imageFuture).get();
+        CompletableFuture.allOf(saleAttrFuture,descFuture,baseAttrFuture,imageFuture).get();
 
         return skuItem;
     }
