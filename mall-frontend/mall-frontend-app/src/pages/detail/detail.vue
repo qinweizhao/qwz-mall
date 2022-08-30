@@ -279,14 +279,14 @@ export default {
       }
       if (this.skuPopConfirmType === 1) {
         const params = {
-          url: '/mall4cloud_product/a/shop_cart/change_item',
+          url: `/product/app/cart/${this.prodInfo.skuId}`,
           method: 'POST',
-          data: {
-            skuId: this.prodInfo.skuId,
-            spuId: this.prodInfo.spuId,
-            count: this.prodNumber,
-            oldSkuId: ''
-          },
+          // data: {
+          //   skuId: this.prodInfo.skuId
+          //   spuId: this.prodInfo.spuId,
+          //   count: this.prodNumber,
+          //   oldSkuId: ''
+          // },
           callBack: res => {
             uni.showToast({
               title: '加入购物车成功~',
@@ -609,7 +609,7 @@ export default {
      */
     getCartCount() {
       const params = {
-        url: '/mall4cloud_product/a/shop_cart/prod_count',
+        url: '/product/app/cart',
         method: 'GET',
         data: {},
         callBack: res => {

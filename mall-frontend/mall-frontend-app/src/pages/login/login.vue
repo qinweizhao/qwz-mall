@@ -52,35 +52,42 @@ export default {
 
     // 登录
     login() {
-      if (this.isAccountLogin && (!this.principal || !util.checkUserName(this.principal))) {
-        this.errorTips = 1
-        return
-      }
-      if (this.isAccountLogin && !this.credentials) {
-        this.errorTips = 2
-        return
-      }
-      if (!this.isAccountLogin && !this.principal) {
-        this.errorTips = 3
-        return
-      }
-      if (!this.isAccountLogin && !util.checkPhoneNumber(this.principal)) {
-        this.errorTips = 4
-        return
-      }
-      if (!this.isAccountLogin && !this.captchaVerification) {
-        this.errorTips = 5
-        return
-      }
+      // todo
+      // if (this.isAccountLogin && (!this.principal || !util.checkUserName(this.principal))) {
+      //   this.errorTips = 1
+      //   return
+      // }
+      // if (this.isAccountLogin && !this.credentials) {
+      //   this.errorTips = 2
+      //   return
+      // }
+      // if (!this.isAccountLogin && !this.principal) {
+      //   this.errorTips = 3
+      //   return
+      // }
+      // if (!this.isAccountLogin && !util.checkPhoneNumber(this.principal)) {
+      //   this.errorTips = 4
+      //   return
+      // }
+      // if (!this.isAccountLogin && !this.captchaVerification) {
+      //   this.errorTips = 5
+      //   return
+      // }
       this.errorTips = 0
       var params = {
-        url: '/mall4cloud_auth/ua/login',
+        url: '/auth/login',
         method: 'POST',
+        // data: {
+        //   principal: this.principal,
+        //   credentials: this.credentials,
+        //   captchaVerification: this.captchaVerification,
+        //   sysType: this.sysType
+        // },
         data: {
-          principal: this.principal,
-          credentials: this.credentials,
+          username: this.principal,
+          password: this.credentials,
           captchaVerification: this.captchaVerification,
-          sysType: this.sysType
+          sysType: 'app'
         },
         callBack: res => {
           uni.setStorageSync('token', res.accessToken)

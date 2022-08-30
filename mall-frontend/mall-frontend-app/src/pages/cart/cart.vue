@@ -341,17 +341,18 @@ export default {
      */
     getCartInfo() {
       const params = {
-        url: '/mall4cloud_product/a/shop_cart/info',
+        url: '/product/app/cart',
         method: 'GET',
         data: {},
         callBack: res => {
-          let shopCarts = res.shopCarts
+          let shopCarts = res.data
           if (!this.reqItemList.length) {  // 初次请求
             // 所有商品添加勾选状态
             shopCarts.forEach(shopItem => {
                 shopItem.shopCartItem.forEach(prodItem => {
                   if (prodItem.imgUrl.indexOf('http')==-1) {
-                    prodItem.imgUrl = config.resourcesUrl + prodItem.imgUrl
+                    // prodItem.imgUrl = config.resourcesUrl + prodItem.imgUrl
+                    prodItem.imgUrl ='https://www.qinweizhao.com/image/2022/05/avatar-2412a5066872422e860c1d9a3622c21a.jpeg'
                   }
                   prodItem.checked = prodItem.isChecked ? true : false
                 })
