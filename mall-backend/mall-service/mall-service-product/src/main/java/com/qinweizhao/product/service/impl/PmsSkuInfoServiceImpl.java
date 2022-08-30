@@ -7,6 +7,7 @@ import com.qinweizhao.product.mapper.PmsSkuImageMapper;
 import com.qinweizhao.product.mapper.PmsSkuInfoMapper;
 import com.qinweizhao.product.mapper.PmsSpuInfoDetailMapper;
 import com.qinweizhao.product.model.dto.AttrGroupWithAttrsDTO;
+import com.qinweizhao.product.model.dto.SkuInfoDTO;
 import com.qinweizhao.product.model.dto.SkuItemAttrDTO;
 import com.qinweizhao.product.model.entity.PmsSkuImage;
 import com.qinweizhao.product.model.entity.PmsSkuInfo;
@@ -133,7 +134,9 @@ public class PmsSkuInfoServiceImpl implements IPmsSkuInfoService {
         CompletableFuture<PmsSkuInfo> infoFuture = CompletableFuture.supplyAsync(() -> {
             // 1.sku 基本信息获取
             PmsSkuInfo pmsSkuInfo = pmsSkuInfoMapper.selectById(skuId);
-            skuItem.setSkuInfo(SkuInfoConvert.INSTANCE.convert(pmsSkuInfo));
+            SkuInfoDTO infoDTO = SkuInfoConvert.INSTANCE.convert(pmsSkuInfo);
+            infoDTO.setStock(1000L);
+            skuItem.setSkuInfo(infoDTO);
             return pmsSkuInfo;
         }, executor);
 
@@ -169,7 +172,6 @@ public class PmsSkuInfoServiceImpl implements IPmsSkuInfoService {
             skuItem.setGroupAttrs(spuItemAttrGroupDTOList);
 
         }, executor);
-
 
         CompletableFuture.allOf(saleAttrFuture,descFuture,baseAttrFuture,imageFuture).get();
 

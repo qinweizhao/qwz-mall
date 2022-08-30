@@ -27,10 +27,10 @@
         <view class="price-box">
           <view class="price">
             <view class="symbol">￥</view>
-            <view class="big">{{ wxs.parsePrice(defaultSku.priceFee)[0] }}</view>
-            <view class="symbol">.{{ wxs.parsePrice(defaultSku.priceFee)[1] }}</view>
+            <view class="big">{{ wxs.parsePrice(prodInfo.price)[0] }}</view>
+            <view class="symbol">.{{ wxs.parsePrice(prodInfo.price)[1] }}</view>
           </view>
-          <view class="stock">仅剩{{ defaultSku.stock }}件</view>
+          <view class="stock">仅剩{{ prodInfo.stock }}件</view>
         </view>
       </view>
     </view>
@@ -40,7 +40,7 @@
       <view class="item">
         <view class="tit">已选</view>
         <view class="con sku-con" @tap="isShowSkuPopup = true">
-          <view v-if="defaultSku.skuName" class="s-item">
+          <view v-if="prodInfo.skuName" class="s-item">
             <block v-for="(skuItem,index) in selectedProp" :key="index">
               <text decode="true">{{ index < selectedProp.length-1 ? skuItem +'，' : skuItem+'&nbsp; &nbsp;' }}</text>
             </block>
@@ -51,22 +51,22 @@
     </view>
 
     <!-- 店铺 -->
-    <view class="shop-box">
-      <view class="shop-info">
-        <view class="info">
-          <view class="img">
-            <image :src="shopInfo.shopLogo" />
-          </view>
-          <view class="text">
-            <view class="name">{{ shopInfo.shopName }}</view>
-            <view class="focus-box">
-              <view v-if="shopInfo.type === 1" class="self">自营</view>
-            </view>
-          </view>
-        </view>
-        <view class="go-shop" @tap="toShopIndex">进店逛逛</view>
-      </view>
-    </view>
+<!--    <view class="shop-box">-->
+<!--      <view class="shop-info">-->
+<!--        <view class="info">-->
+<!--          <view class="img">-->
+<!--            <image :src="shopInfo.shopLogo" />-->
+<!--          </view>-->
+<!--          <view class="text">-->
+<!--            <view class="name">{{ shopInfo.shopName }}</view>-->
+<!--            <view class="focus-box">-->
+<!--              <view v-if="shopInfo.type === 1" class="self">自营</view>-->
+<!--            </view>-->
+<!--          </view>-->
+<!--        </view>-->
+<!--        <view class="go-shop" @tap="toShopIndex">进店逛逛</view>-->
+<!--      </view>-->
+<!--    </view>-->
 
     <!-- 详情 -->
     <div class="det-det">
@@ -174,7 +174,6 @@ export default {
 
       // sku 商品规格
       findSku: true,
-      defaultSku: "",
       detaultGroupSku: "",
       skuList: [],
       selectedProp: [],
@@ -257,7 +256,7 @@ export default {
 
   watch: {
     prodNumber(nv) {
-      if (nv >= this.defaultSku.stock) {
+      if (nv >= this.prodInfo.stock) {
         this.isMaxProdNumber = true
       } else {
         this.isMaxProdNumber = false
@@ -270,7 +269,7 @@ export default {
      * 规格弹窗底部确定按钮
      */
     skuPopupConfirm() {
-      if (!this.defaultSku.stock) {
+      if (!this.prodInfo.stock) {
         uni.showToast({
           title: '所选规格无货',
           duration: 2000,
@@ -283,8 +282,8 @@ export default {
           url: '/mall4cloud_product/a/shop_cart/change_item',
           method: 'POST',
           data: {
-            skuId: this.defaultSku.skuId,
-            spuId: this.defaultSku.spuId,
+            skuId: this.prodInfo.skuId,
+            spuId: this.prodInfo.spuId,
             count: this.prodNumber,
             oldSkuId: ''
           },
@@ -303,7 +302,7 @@ export default {
         uni.setStorageSync('shopCartItem', JSON.stringify({
           count: this.prodNumber,
           shopId: this.prodInfo.shopId,
-          skuId: this.defaultSku.skuId,
+          skuId: this.prodInfo.skuId,
           spuId: this.spuId
         }))
         uni.navigateTo({
@@ -389,7 +388,7 @@ export default {
             }
           }
           // 组装sku
-          // this.groupSkuProp(res.skuInfo, res.priceFee)
+          //  this.groupSkuProp(res)
 
           // sku信息
           this.prodInfo = res.skuInfo
@@ -425,35 +424,30 @@ export default {
      /**
      * 组装SKU
      */
-    groupSkuProp: function(skuList, defaultPrice) {
-      if (skuList.length == 1 && skuList[0].properties == "") {
-        this.defaultSku = skuList[0]
-        // this.setDefaultGroupSku();
-        return;
-      }
+    groupSkuProp: function(response) {
       let skuGroup = {};
       let allProperties = [];
       let propKeys = [];
       let selectedPropObj = {}
       let defaultSku = null;
-      for (var i = 0; i < skuList.length; i++) {
-        var isDefault = false;
-        if (!defaultSku && skuList[i].priceFee == defaultPrice) { //找到和商品价格一样的那个SKU，作为默认选中的SKU
-          defaultSku = skuList[i];
-          isDefault = true;
-        }
-        var properties = skuList[i].properties; //版本:公开版;颜色:金色;内存:64GB
+      for (let i = 0; i < skuList.length; i++) {
+        let isDefault = false;
+        // if (!defaultSku && skuList[i].priceFee == defaultPrice) { //找到和商品价格一样的那个SKU，作为默认选中的SKU
+        //   defaultSku = skuList[i];
+        //   isDefault = true;
+        // }
+        let properties = skuList[i].properties; //版本:公开版;颜色:金色;内存:64GB
         allProperties.push(properties);
-        var propList = properties.split(";"); // ["版本:公开版","颜色:金色","内存:64GB"]
-        for (var j = 0; j < propList.length; j++) {
+        let propList = properties.split(";"); // ["版本:公开版","颜色:金色","内存:64GB"]
+        for (let j = 0; j < propList.length; j++) {
 
-          var propval = propList[j].split(":"); //["版本","公开版"]
-          var props = skuGroup[propval[0]]; //先取出 版本对应的值数组
+          let propval = propList[j].split(":"); //["版本","公开版"]
+          let props = skuGroup[propval[0]]; //先取出 版本对应的值数组
           //如果当前是默认选中的sku，把对应的属性值 组装到selectedProp
-          if (isDefault) {
+          // if (isDefault) {
             propKeys.push(propval[0]);
             selectedPropObj[propval[0]] = propval[1];
-          }
+          // }
 
           if (props == undefined) {
             props = []; //假设还没有版本，新建个新的空数组
@@ -466,7 +460,6 @@ export default {
           skuGroup[propval[0]] = props; //最后把数据 放回版本对应的值
         }
       }
-      this.defaultSku = defaultSku
       this.propKeys = propKeys
       this.selectedPropObj = selectedPropObj
       this.skuGroup = skuGroup

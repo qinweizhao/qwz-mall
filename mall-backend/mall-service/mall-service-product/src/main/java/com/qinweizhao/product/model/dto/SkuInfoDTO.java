@@ -65,4 +65,11 @@ public class SkuInfoDTO {
      * 销量
      */
     private Long saleCount;
+
+
+    /**
+     * 库存
+     */
+    private Long stock;
+
 }

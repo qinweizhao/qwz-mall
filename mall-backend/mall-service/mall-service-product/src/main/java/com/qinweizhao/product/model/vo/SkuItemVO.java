@@ -12,14 +12,12 @@ import java.util.List;
 @Data
 public class SkuItemVO {
 
-    boolean hasStock = true;
 
     /**
      * pms_sku_info
      * sku基本信息获取
      */
     SkuInfoDTO skuInfo;
-
 
     /**
      * pms_sku_images
