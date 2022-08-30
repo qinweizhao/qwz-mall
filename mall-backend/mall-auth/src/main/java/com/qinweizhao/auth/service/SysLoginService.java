@@ -95,13 +95,12 @@ public class SysLoginService {
                 recordLoginInfo(username, Constants.LOGIN_FAIL, "用户已停用，请联系管理员");
                 throw new ServiceException("对不起，您的账号：" + username + " 已停用");
             }
+            if (!SecurityUtils.matchesPassword(password, loginUser.getPassword())) {
+                recordLoginInfo(username, Constants.LOGIN_FAIL, "用户密码错误");
+                throw new ServiceException("用户不存在/密码错误");
+            }
         }
 
-
-        if (!SecurityUtils.matchesPassword(password, loginUser.getPassword())) {
-            recordLoginInfo(username, Constants.LOGIN_FAIL, "用户密码错误");
-            throw new ServiceException("用户不存在/密码错误");
-        }
     }
 
     /**

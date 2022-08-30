@@ -34,8 +34,8 @@ public class CartController {
         return R.success(result);
     }
 
-    @PostMapping
-    public R<Boolean> addCartItem(@RequestParam Long skuId) {
+    @PostMapping("{skuId}")
+    public R<Boolean> addCartItem(@PathVariable Long skuId) {
         boolean result = pmsCartItemService.saveCartItem(skuId);
         return R.success(result);
     }
