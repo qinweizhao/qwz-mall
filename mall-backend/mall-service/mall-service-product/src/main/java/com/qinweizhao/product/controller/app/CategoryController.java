@@ -4,7 +4,7 @@ import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.product.convert.CategoryConvert;
 import com.qinweizhao.product.model.entity.PmsCategory;
 import com.qinweizhao.product.model.vo.CategoryVO;
-import com.qinweizhao.product.service.IPmsCategoryService;
+import com.qinweizhao.product.service.PmsCategoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +21,7 @@ import java.util.List;
 @RequestMapping("/app/category")
 public class CategoryController {
 
-    private final IPmsCategoryService pmsCategoryService;
+    private final PmsCategoryService pmsCategoryService;
 
     /**
      * 树
@@ -34,16 +34,7 @@ public class CategoryController {
         return R.success(list);
     }
 
-    /**
-     * 列表
-     * @param pmsCategory pmsCategory
-     * @return List
-     */
-    @GetMapping("/list")
-    public R<List<CategoryVO>> list(PmsCategory pmsCategory) {
-        List<PmsCategory> list = pmsCategoryService.list(pmsCategory);
-        return R.success(CategoryConvert.INSTANCE.convertToVO(list));
-    }
+
 
 
 }

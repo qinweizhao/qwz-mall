@@ -1,67 +1,64 @@
 package com.qinweizhao.product.model.dto;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.qinweizhao.component.core.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
 /**
- * 商品三级分类对象 pms_category
+ * <p>
+ * 分类
+ * </p>
  *
  * @author qinweizhao
- * @date 2022-04-11
+ * @since 2022-09-01
  */
-
 @Data
 @EqualsAndHashCode(callSuper = true)
-@Accessors(chain = true)
+@TableName("pms_category")
 public class CategoryDTO extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 分类id
+     * 编号
      */
-    private Long categoryId;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
 
     /**
-     * 分类名称
+     * 名称
      */
     private String name;
 
     /**
-     * 父分类id
+     * 父编号
      */
     private Long parentId;
 
     /**
-     * 祖级列表
+     * 图标
      */
-    private String ancestors;
+    private String icon;
 
     /**
      * 层级
      */
-    private Long level;
+    private Integer level;
 
     /**
-     * 是否显示[0-不显示，1显示]
+     * 状态;[0-停用，1-启用]
      */
     private String status;
 
     /**
      * 排序
      */
-    private Long sort;
+    private Integer sort;
 
-    /**
-     * 计量单位
-     */
-    private String unit;
+     
 
-    /**
-     * 商品数量
-     */
-    private Long count;
 
 }

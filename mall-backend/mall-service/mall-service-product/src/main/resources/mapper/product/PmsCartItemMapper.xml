@@ -1,102 +1,25 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qinweizhao.product.mapper.PmsCartItemMapper">
-    
-    <resultMap type="PmsCartItem" id="PmsCartItemResult">
-        <result property="cartItemId"    column="cart_item_id"    />
-        <result property="shopId"    column="shop_id"    />
-        <result property="spuId"    column="spu_id"    />
-        <result property="skuId"    column="sku_id"    />
-        <result property="userId"    column="user_id"    />
-        <result property="count"    column="count"    />
-        <result property="priceFee"    column="price_fee"    />
-        <result property="checked"    column="checked"    />
-        <result property="createBy"    column="create_by"    />
-        <result property="updateBy"    column="update_by"    />
-        <result property="createTime"    column="create_time"    />
-        <result property="updateTime"    column="update_time"    />
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.qinweizhao.product.model.entity.PmsCartItem">
+        <id column="id" property="id" />
+        <result column="spu_id" property="spuId" />
+        <result column="sku_id" property="skuId" />
+        <result column="member_id" property="memberId" />
+        <result column="count" property="count" />
+        <result column="price_fee" property="priceFee" />
+        <result column="checked" property="checked" />
+        <result column="create_by" property="createBy" />
+        <result column="update_by" property="updateBy" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
     </resultMap>
 
-    <sql id="selectPmsCartItemVo">
-        select cart_item_id, shop_id, spu_id, sku_id, user_id, count, price_fee, checked, create_by, update_by, create_time, update_time from pms_cart_item
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, spu_id, sku_id, member_id, count, price_fee, checked, create_by, update_by, create_time, update_time
     </sql>
 
-    <select id="selectPmsCartItemList" parameterType="PmsCartItem" resultMap="PmsCartItemResult">
-        <include refid="selectPmsCartItemVo"/>
-        <where>  
-            <if test="shopId != null "> and shop_id = #{shopId}</if>
-            <if test="spuId != null  and spuId != ''"> and spu_id = #{spuId}</if>
-            <if test="skuId != null  and skuId != ''"> and sku_id = #{skuId}</if>
-            <if test="userId != null  and userId != ''"> and user_id = #{userId}</if>
-            <if test="count != null "> and count = #{count}</if>
-            <if test="priceFee != null  and priceFee != ''"> and price_fee = #{priceFee}</if>
-            <if test="checked != null "> and checked = #{checked}</if>
-        </where>
-    </select>
-    
-    <select id="selectPmsCartItemByCartItemId" parameterType="String" resultMap="PmsCartItemResult">
-        <include refid="selectPmsCartItemVo"/>
-        where cart_item_id = #{cartItemId}
-    </select>
-        
-    <insert id="insertPmsCartItem" parameterType="PmsCartItem" useGeneratedKeys="true" keyProperty="cartItemId">
-        insert into pms_cart_item
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="shopId != null">shop_id,</if>
-            <if test="spuId != null and spuId != ''">spu_id,</if>
-            <if test="skuId != null and skuId != ''">sku_id,</if>
-            <if test="userId != null and userId != ''">user_id,</if>
-            <if test="count != null">count,</if>
-            <if test="priceFee != null and priceFee != ''">price_fee,</if>
-            <if test="checked != null">checked,</if>
-            <if test="createBy != null">create_by,</if>
-            <if test="updateBy != null">update_by,</if>
-            <if test="createTime != null">create_time,</if>
-            <if test="updateTime != null">update_time,</if>
-         </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="shopId != null">#{shopId},</if>
-            <if test="spuId != null and spuId != ''">#{spuId},</if>
-            <if test="skuId != null and skuId != ''">#{skuId},</if>
-            <if test="userId != null and userId != ''">#{userId},</if>
-            <if test="count != null">#{count},</if>
-            <if test="priceFee != null and priceFee != ''">#{priceFee},</if>
-            <if test="checked != null">#{checked},</if>
-            <if test="createBy != null">#{createBy},</if>
-            <if test="updateBy != null">#{updateBy},</if>
-            <if test="createTime != null">#{createTime},</if>
-            <if test="updateTime != null">#{updateTime},</if>
-         </trim>
-    </insert>
-
-    <update id="updatePmsCartItem" parameterType="PmsCartItem">
-        update pms_cart_item
-        <trim prefix="SET" suffixOverrides=",">
-            <if test="shopId != null">shop_id = #{shopId},</if>
-            <if test="spuId != null and spuId != ''">spu_id = #{spuId},</if>
-            <if test="skuId != null and skuId != ''">sku_id = #{skuId},</if>
-            <if test="userId != null and userId != ''">user_id = #{userId},</if>
-            <if test="count != null">count = #{count},</if>
-            <if test="priceFee != null and priceFee != ''">price_fee = #{priceFee},</if>
-            <if test="checked != null">checked = #{checked},</if>
-            <if test="createBy != null">create_by = #{createBy},</if>
-            <if test="updateBy != null">update_by = #{updateBy},</if>
-            <if test="createTime != null">create_time = #{createTime},</if>
-            <if test="updateTime != null">update_time = #{updateTime},</if>
-        </trim>
-        where cart_item_id = #{cartItemId}
-    </update>
-
-    <delete id="deletePmsCartItemByCartItemId" parameterType="String">
-        delete from pms_cart_item where cart_item_id = #{cartItemId}
-    </delete>
-
-    <delete id="deletePmsCartItemByCartItemIds" parameterType="String">
-        delete from pms_cart_item where cart_item_id in 
-        <foreach item="cartItemId" collection="array" open="(" separator="," close=")">
-            #{cartItemId}
-        </foreach>
-    </delete>
 </mapper>

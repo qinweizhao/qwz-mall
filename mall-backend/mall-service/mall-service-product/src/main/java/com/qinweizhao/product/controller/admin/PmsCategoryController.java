@@ -1,12 +1,12 @@
 package com.qinweizhao.product.controller.admin;
 
- import com.qinweizhao.common.security.annotation.RequiresPermissions;
+import com.qinweizhao.common.security.annotation.RequiresPermissions;
+import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
-import com.qinweizhao.component.core.response.PageResult;
-import com.qinweizhao.component.core.response.R;
+import com.qinweizhao.product.model.dto.CategoryDTO;
 import com.qinweizhao.product.model.entity.PmsCategory;
-import com.qinweizhao.product.service.IPmsCategoryService;
+import com.qinweizhao.product.service.PmsCategoryService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -20,28 +20,18 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/category")
-public class PmsCategoryController extends BaseController {
+public class PmsCategoryController  {
 
     @Resource
-    private IPmsCategoryService pmsCategoryService;
+    private PmsCategoryService pmsCategoryService;
 
-    /**
-     * 分页
-     */
-    @RequiresPermissions("product:category:list")
-    @GetMapping("/page")
-    public R<PageResult<PmsCategory>> page(PmsCategory pmsCategory) {
-        startPage();
-        List<PmsCategory> list = pmsCategoryService.list(pmsCategory);
-        return getPageResult(list);
-    }
 
     /**
      * 详情
      */
     @RequiresPermissions("product:category:query")
     @GetMapping(value = "/{categoryId}")
-    public R<PmsCategory> get(@PathVariable("categoryId") Long categoryId) {
+    public R<CategoryDTO> get(@PathVariable("categoryId") Long categoryId) {
         return R.success(pmsCategoryService.getById(categoryId));
     }
 
@@ -51,7 +41,7 @@ public class PmsCategoryController extends BaseController {
     @RequiresPermissions("product:category:add")
     @Log(title = "商品三级分类", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<Integer> add(@RequestBody PmsCategory pmsCategory) {
+    public R<Boolean> add(@RequestBody PmsCategory pmsCategory) {
         return R.success(pmsCategoryService.save(pmsCategory));
     }
 
@@ -61,7 +51,7 @@ public class PmsCategoryController extends BaseController {
     @RequiresPermissions("product:category:edit")
     @Log(title = "商品三级分类", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<?> edit(@RequestBody PmsCategory pmsCategory) {
+    public R<Boolean> edit(@RequestBody PmsCategory pmsCategory) {
         return R.success(pmsCategoryService.updateById(pmsCategory));
     }
 
@@ -71,7 +61,7 @@ public class PmsCategoryController extends BaseController {
     @RequiresPermissions("product:category:remove")
     @Log(title = "商品三级分类", businessType = BusinessType.DELETE)
     @DeleteMapping("/{categoryIds}")
-    public R<?> remove(@PathVariable Long[] categoryIds) {
+    public R<Boolean> remove(@PathVariable List<Long> categoryIds) {
         return R.success(pmsCategoryService.removeByIds(categoryIds));
     }
 }

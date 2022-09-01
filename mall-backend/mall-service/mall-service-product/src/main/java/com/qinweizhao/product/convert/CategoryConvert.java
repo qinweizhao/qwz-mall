@@ -1,6 +1,7 @@
 package com.qinweizhao.product.convert;
 
 
+import com.qinweizhao.product.model.dto.CategoryDTO;
 import com.qinweizhao.product.model.entity.PmsCategory;
 import com.qinweizhao.product.model.vo.CategoryVO;
 import org.mapstruct.Mapper;
@@ -29,4 +30,11 @@ public interface CategoryConvert {
      * @return CategoryVO
      */
     List<CategoryVO> convertToVO(List<PmsCategory> list);
+
+    /**
+     * convert
+     * @param pmsCategory pmsCategory
+     * @return CategoryDTO
+     */
+    CategoryDTO convert(PmsCategory pmsCategory);
 }

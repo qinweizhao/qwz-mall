@@ -1,163 +1,24 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qinweizhao.product.mapper.PmsAttrMapper">
 
-    <resultMap type="PmsAttr" id="PmsAttrResult">
-        <result property="attrId" column="attr_id"/>
-        <result property="name" column="name"/>
-        <result property="icon" column="icon"/>
-        <result property="valueSelect" column="value_select"/>
-        <result property="valueType" column="value_type"/>
-        <result property="searchType" column="search_type"/>
-        <result property="type" column="type"/>
-        <result property="status" column="status"/>
-        <result property="categoryId" column="category_id"/>
-        <result property="categoryPath" column="category_path"/>
-        <result property="quickShow" column="quick_show"/>
-        <result property="createBy" column="create_by"/>
-        <result property="updateBy" column="update_by"/>
-        <result property="createTime" column="create_time"/>
-        <result property="updateTime" column="update_time"/>
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.qinweizhao.product.model.entity.PmsAttr">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="type" property="type" />
+        <result column="search_type" property="searchType" />
+        <result column="sort" property="sort" />
+        <result column="status" property="status" />
+        <result column="create_by" property="createBy" />
+        <result column="update_by" property="updateBy" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
     </resultMap>
 
-    <sql id="selectPmsAttrVo">
-        select attr_id,
-               name,
-               icon,
-               value_select,
-               value_type,
-               search_type,
-               type,
-               status,
-               category_id,
-               category_path,
-               quick_show,
-               create_by,
-               update_by,
-               create_time,
-               update_time
-        from pms_attr
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, type, search_type, sort, status, create_by, update_by, create_time, update_time
     </sql>
-
-    <select id="selectPmsAttrList" parameterType="PmsAttr" resultMap="PmsAttrResult">
-        <include refid="selectPmsAttrVo"/>
-        <where>
-            <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
-            <if test="icon != null  and icon != ''">and icon = #{icon}</if>
-            <if test="valueSelect != null  and valueSelect != ''">and value_select = #{valueSelect}</if>
-            <if test="valueType != null ">and value_type = #{valueType}</if>
-            <if test="searchType != null ">and search_type = #{searchType}</if>
-            <if test="type != null ">and type = #{type}</if>
-            <if test="status != null ">and status = #{status}</if>
-            <if test="categoryId != null ">and category_id = #{categoryId}</if>
-            <if test="quickShow != null ">and quick_show = #{quickShow}</if>
-        </where>
-    </select>
-
-    <select id="selectPmsAttrByAttrId" parameterType="Long" resultMap="PmsAttrResult">
-        <include refid="selectPmsAttrVo"/>
-        where attr_id = #{attrId}
-    </select>
-
-    <select id="selectIdsByAttrGroupIds" resultType="long">
-        select a.attr_id
-        from pms_attr a
-        left join pms_attr_attr_group aag on a.attr_id = aag.attr_id
-        where aag.attr_group_id in
-        <foreach collection="attrGroupIds" item="id" open="(" close=")" separator=",">
-            #{id}
-        </foreach>
-    </select>
-
-    <select id="selectPmsAttrsByCategoryId" resultMap="PmsAttrResult">
-        <include refid="selectPmsAttrVo"/>
-        where category_id = #{categoryId} and type=#{type}
-         <if test="excludeAttrIds!=null and excludeAttrIds.size() > 0">
-             and attr_id not in
-             <foreach collection="excludeAttrIds" item="attrId" open="(" close=")" separator=",">
-                 #{attrId}
-             </foreach>
-         </if>
-    </select>
-
-    <select id="selectPmsAttrsByPmsAttrIds" resultMap="PmsAttrResult">
-        <include refid="selectPmsAttrVo"/>
-        where attr_id in
-        <foreach collection="list" item="id" open="(" close=")" separator=",">
-            #{id}
-        </foreach>
-    </select>
-
-    <insert id="insertPmsAttr" parameterType="PmsAttr" useGeneratedKeys="true" keyProperty="attrId">
-        insert into pms_attr
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="name != null">name,</if>
-            <if test="icon != null">icon,</if>
-            <if test="valueSelect != null">value_select,</if>
-            <if test="valueType != null">value_type,</if>
-            <if test="searchType != null">search_type,</if>
-            <if test="type != null">type,</if>
-            <if test="status != null">status,</if>
-            <if test="categoryId != null">category_id,</if>
-            <if test="categoryPath != null">category_path,</if>
-            <if test="quickShow != null">quick_show,</if>
-            <if test="createBy != null">create_by,</if>
-            <if test="updateBy != null">update_by,</if>
-            <if test="createTime != null">create_time,</if>
-            <if test="updateTime != null">update_time,</if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="name != null">#{name},</if>
-            <if test="icon != null">#{icon},</if>
-            <if test="valueSelect != null">#{valueSelect},</if>
-            <if test="valueType != null">#{valueType},</if>
-            <if test="searchType != null">#{searchType},</if>
-            <if test="type != null">#{type},</if>
-            <if test="status != null">#{status},</if>
-            <if test="categoryId != null">#{categoryId},</if>
-            <if test="categoryPath != null">#{categoryPath},</if>
-            <if test="quickShow != null">#{quickShow},</if>
-            <if test="createBy != null">#{createBy},</if>
-            <if test="updateBy != null">#{updateBy},</if>
-            <if test="createTime != null">#{createTime},</if>
-            <if test="updateTime != null">#{updateTime},</if>
-        </trim>
-    </insert>
-
-    <update id="updatePmsAttr" parameterType="PmsAttr">
-        update pms_attr
-        <trim prefix="SET" suffixOverrides=",">
-            <if test="name != null">name = #{name},</if>
-            <if test="icon != null">icon = #{icon},</if>
-            <if test="valueSelect != null">value_select = #{valueSelect},</if>
-            <if test="valueType != null">value_type = #{valueType},</if>
-            <if test="searchType != null">search_type = #{searchType},</if>
-            <if test="type != null">type = #{type},</if>
-            <if test="status != null">status = #{status},</if>
-            <if test="categoryId != null">category_id = #{categoryId},</if>
-            <if test="categoryPath != null">category_path = #{categoryPath},</if>
-            <if test="quickShow != null">quick_show = #{quickShow},</if>
-            <if test="createBy != null">create_by = #{createBy},</if>
-            <if test="updateBy != null">update_by = #{updateBy},</if>
-            <if test="createTime != null">create_time = #{createTime},</if>
-            <if test="updateTime != null">update_time = #{updateTime},</if>
-        </trim>
-        where attr_id = #{attrId}
-    </update>
-
-    <delete id="deletePmsAttrByAttrId" parameterType="Long">
-        delete
-        from pms_attr
-        where attr_id = #{attrId}
-    </delete>
-
-    <delete id="deletePmsAttrByAttrIds" parameterType="String">
-        delete from pms_attr where attr_id in
-        <foreach item="attrId" collection="array" open="(" separator="," close=")">
-            #{attrId}
-        </foreach>
-    </delete>
 
 </mapper>

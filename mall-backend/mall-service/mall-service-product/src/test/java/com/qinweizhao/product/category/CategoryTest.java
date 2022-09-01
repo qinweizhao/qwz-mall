@@ -1,6 +1,6 @@
 package com.qinweizhao.product.category;
 
-import com.qinweizhao.product.service.IPmsCategoryService;
+import com.qinweizhao.product.service.PmsCategoryService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class CategoryTest {
 
     @Autowired
-    private IPmsCategoryService pmsCategoryService;
+    private PmsCategoryService pmsCategoryService;
 
     @Test
     void testGetTopCategory(){

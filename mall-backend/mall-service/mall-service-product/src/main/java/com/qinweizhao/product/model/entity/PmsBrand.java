@@ -1,61 +1,62 @@
 package com.qinweizhao.product.model.entity;
 
-import com.qinweizhao.common.core.annotation.Excel;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.qinweizhao.component.core.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 品牌对象 pms_brand
+ * <p>
+ * 品牌
+ * </p>
  *
  * @author qinweizhao
- * @date 2022-04-11
+ * @since 2022-09-01
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
+@TableName("pms_brand")
 public class PmsBrand extends BaseEntity {
+
     private static final long serialVersionUID = 1L;
 
     /**
-     * 品牌id
+     * 编号
      */
-    private Long brandId;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
 
     /**
-     * 品牌名
+     * 名称
      */
-    @Excel(name = "品牌名")
     private String name;
 
     /**
-     * 品牌logo地址
+     * 标志
      */
-    @Excel(name = "品牌logo地址")
     private String logo;
 
     /**
      * 介绍
      */
-    @Excel(name = "介绍")
     private String description;
 
     /**
-     * 显示状态[0-不显示；1-显示]
+     * 状态;[0-不显示，1-显示]
      */
-    @Excel(name = "显示状态[0-不显示；1-显示]")
-    private Long status;
+    private Integer status;
 
     /**
      * 检索首字母
      */
-    @Excel(name = "检索首字母")
     private String firstLetter;
 
     /**
      * 排序
      */
-    @Excel(name = "排序")
-    private Long sort;
+    private Integer sort;
 
 
 }

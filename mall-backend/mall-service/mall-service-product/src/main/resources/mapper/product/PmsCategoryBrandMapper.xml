@@ -1,105 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qinweizhao.product.mapper.PmsCategoryBrandMapper">
 
-    <resultMap type="PmsCategoryBrand" id="PmsCategoryBrandResult">
-        <result property="id" column="id"/>
-        <result property="brandId" column="brand_id"/>
-        <result property="categoryId" column="category_id"/>
-        <result property="brandName" column="brand_name"/>
-        <result property="categoryName" column="category_name"/>
-        <result property="createBy" column="create_by"/>
-        <result property="updateBy" column="update_by"/>
-        <result property="createTime" column="create_time"/>
-        <result property="updateTime" column="update_time"/>
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.qinweizhao.product.model.entity.PmsCategoryBrand">
+        <id column="id" property="id" />
+        <result column="brand_id" property="brandId" />
+        <result column="category_id" property="categoryId" />
+        <result column="create_by" property="createBy" />
+        <result column="update_by" property="updateBy" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
     </resultMap>
 
-    <sql id="selectPmsCategoryBrandVo">
-        select id,
-               brand_id,
-               category_id,
-               brand_name,
-               category_name,
-               create_by,
-               update_by,
-               create_time,
-               update_time
-        from pms_category_brand
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, brand_id, category_id, create_by, update_by, create_time, update_time
     </sql>
 
-    <select id="selectList" parameterType="PmsCategoryBrand" resultMap="PmsCategoryBrandResult">
-        <include refid="selectPmsCategoryBrandVo"/>
-        <where>
-            <if test="brandId != null ">and brand_id = #{brandId}</if>
-            <if test="categoryId != null ">and category_id = #{categoryId}</if>
-            <if test="brandName != null  and brandName != ''">and brand_name like concat('%', #{brandName}, '%')</if>
-            <if test="categoryName != null  and categoryName != ''">and category_name like concat('%', #{categoryName},
-                '%')
-            </if>
-        </where>
-    </select>
-
-    <select id="selectPmsCategoryBrandById" parameterType="Long" resultMap="PmsCategoryBrandResult">
-        <include refid="selectPmsCategoryBrandVo"/>
-        where id = #{id}
-    </select>
-
-    <select id="selectPmsCategoryBrandByBrandId" resultMap="PmsCategoryBrandResult">
-        <include refid="selectPmsCategoryBrandVo"/>
-        where brand_id = #{brandId}
-    </select>
-
-    <insert id="insert" parameterType="PmsCategoryBrand" useGeneratedKeys="true" keyProperty="id">
-        insert into pms_category_brand
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="brandId != null">brand_id,</if>
-            <if test="categoryId != null">category_id,</if>
-            <if test="brandName != null">brand_name,</if>
-            <if test="categoryName != null">category_name,</if>
-            <if test="createBy != null">create_by,</if>
-            <if test="updateBy != null">update_by,</if>
-            <if test="createTime != null">create_time,</if>
-            <if test="updateTime != null">update_time,</if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="brandId != null">#{brandId},</if>
-            <if test="categoryId != null">#{categoryId},</if>
-            <if test="brandName != null">#{brandName},</if>
-            <if test="categoryName != null">#{categoryName},</if>
-            <if test="createBy != null">#{createBy},</if>
-            <if test="updateBy != null">#{updateBy},</if>
-            <if test="createTime != null">#{createTime},</if>
-            <if test="updateTime != null">#{updateTime},</if>
-        </trim>
-    </insert>
-
-    <update id="updatePmsCategoryBrand" parameterType="PmsCategoryBrand">
-        update pms_category_brand
-        <trim prefix="SET" suffixOverrides=",">
-            <if test="brandId != null">brand_id = #{brandId},</if>
-            <if test="categoryId != null">category_id = #{categoryId},</if>
-            <if test="brandName != null">brand_name = #{brandName},</if>
-            <if test="categoryName != null">category_name = #{categoryName},</if>
-            <if test="createBy != null">create_by = #{createBy},</if>
-            <if test="updateBy != null">update_by = #{updateBy},</if>
-            <if test="createTime != null">create_time = #{createTime},</if>
-            <if test="updateTime != null">update_time = #{updateTime},</if>
-        </trim>
-        where id = #{id}
-    </update>
-
-    <delete id="deleteById" parameterType="Long">
-        delete
-        from pms_category_brand
-        where id = #{id}
-    </delete>
-
-    <delete id="deleteByIds" parameterType="String">
-        delete from pms_category_brand where id in
-        <foreach item="id" collection="array" open="(" separator="," close=")">
-            #{id}
-        </foreach>
-    </delete>
 </mapper>

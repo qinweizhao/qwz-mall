@@ -1,24 +1,19 @@
 package com.qinweizhao.product.controller.admin;
 
-import com.qinweizhao.common.core.utils.bean.BeanUtils;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
-import com.qinweizhao.component.log.annotation.Log;
-import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.component.core.response.PageResult;
 import com.qinweizhao.component.core.response.R;
-import com.qinweizhao.product.constant.ProductConstant;
+import com.qinweizhao.component.log.annotation.Log;
+import com.qinweizhao.component.log.enums.BusinessType;
+import com.qinweizhao.product.convert.AttrConvert;
+import com.qinweizhao.product.model.dto.AttrDTO;
 import com.qinweizhao.product.model.entity.PmsAttr;
-import com.qinweizhao.product.model.entity.PmsAttrAttrGroup;
-import com.qinweizhao.product.model.vo.AttrVO;
 import com.qinweizhao.product.model.param.AttrParam;
-import com.qinweizhao.product.service.IPmsAttrAttrGroupService;
-import com.qinweizhao.product.service.IPmsAttrService;
+import com.qinweizhao.product.service.PmsAttrService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 商品属性Controller
@@ -27,24 +22,20 @@ import java.util.stream.Collectors;
  * @date 2022-04-25
  */
 @RestController
-@RequestMapping("/attr")
-public class PmsAttrController extends BaseController {
+@AllArgsConstructor
+@RequestMapping("/admin/attr")
+public class PmsAttrController {
 
-    @Resource
-    private IPmsAttrService pmsAttrService;
-
-    @Resource
-    private IPmsAttrAttrGroupService pmsAttrAttrGroupService;
+    private final PmsAttrService pmsAttrService;
 
     /**
      * 查询商品属性列表
      */
-    @RequiresPermissions("product:attr:list")
+    @RequiresPermissions("product:attr:page")
     @GetMapping("/page")
-    public R<PageResult<PmsAttr>> page(PmsAttr pmsAttr) {
-        startPage();
-        List<PmsAttr> list = pmsAttrService.list(pmsAttr);
-        return getPageResult(list);
+    public R<PageResult<AttrDTO>> page(AttrParam param) {
+        PageResult<AttrDTO> result = pmsAttrService.page(param);
+        return R.success(result);
     }
 
     /**
@@ -52,20 +43,9 @@ public class PmsAttrController extends BaseController {
      */
     @RequiresPermissions("product:attr:query")
     @GetMapping(value = "/{attrId}")
-    public R<AttrVO> getInfo(@PathVariable("attrId") Long attrId) {
-        PmsAttr pmsAttr = pmsAttrService.getById(attrId);
-        String dbCategoryPath = pmsAttr.getCategoryPath();
-        AttrVO attrVO = new AttrVO();
-        List<Long> categoryPath = Arrays.stream(dbCategoryPath.split(",")).map(Long::parseLong).collect(Collectors.toList());
-        attrVO.setCategoryPath(categoryPath);
-        BeanUtils.copyProperties(pmsAttr, attrVO);
-        if(pmsAttr.getType() == ProductConstant.AttrEnum.ATTR_TYPE_BASE.getCode()){
-            PmsAttrAttrGroup pmsAttrAttrGroup = pmsAttrAttrGroupService.selectByAttrId(attrId);
-            if (pmsAttrAttrGroup!=null){
-                attrVO.setAttrGroupId(pmsAttrAttrGroup.getAttrGroupId());
-            }
-        }
-        return R.success(attrVO);
+    public R<AttrDTO> get(@PathVariable("attrId") Long attrId) {
+        AttrDTO pmsAttr = pmsAttrService.getById(attrId);
+        return R.success(pmsAttr);
     }
 
     /**
@@ -74,7 +54,8 @@ public class PmsAttrController extends BaseController {
     @RequiresPermissions("product:attr:add")
     @Log(title = "商品属性", businessType = BusinessType.INSERT)
     @PostMapping
-    public R<?> add(@RequestBody AttrParam pmsAttr) {
+    public R<Boolean> add(@RequestBody AttrParam param) {
+        PmsAttr pmsAttr = AttrConvert.INSTANCE.convert(param);
         return R.success(pmsAttrService.save(pmsAttr));
     }
 
@@ -84,7 +65,8 @@ public class PmsAttrController extends BaseController {
     @RequiresPermissions("product:attr:edit")
     @Log(title = "商品属性", businessType = BusinessType.UPDATE)
     @PutMapping
-    public R<?> edit(@RequestBody AttrParam pmsAttr) {
+    public R<Boolean> edit(@RequestBody AttrParam param) {
+        PmsAttr pmsAttr = AttrConvert.INSTANCE.convert(param);
         return R.success(pmsAttrService.updateById(pmsAttr));
     }
 
@@ -94,7 +76,7 @@ public class PmsAttrController extends BaseController {
     @RequiresPermissions("product:attr:remove")
     @Log(title = "商品属性", businessType = BusinessType.DELETE)
     @DeleteMapping("/{attrIds}")
-    public R<?> remove(@PathVariable Long[] attrIds) {
+    public R<Boolean> remove(@PathVariable List<Long> attrIds) {
         return R.success(pmsAttrService.removeByIds(attrIds));
     }
 }

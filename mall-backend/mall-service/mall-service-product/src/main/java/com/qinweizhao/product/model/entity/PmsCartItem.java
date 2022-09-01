@@ -1,44 +1,64 @@
 package com.qinweizhao.product.model.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.qinweizhao.component.core.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 购物车对象 pms_cart_item
- * 
+ * <p>
+ * 购物车
+ * </p>
+ *
  * @author qinweizhao
- * @date 2022-06-16
+ * @since 2022-09-01
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class PmsCartItem extends BaseEntity
-{
+@EqualsAndHashCode(callSuper = true)
+@TableName("pms_cart_item")
+public class PmsCartItem extends BaseEntity {
+
     private static final long serialVersionUID = 1L;
 
-    /** 主键 */
-    private String cartItemId;
+    /**
+     * 编号
+     */
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
 
-    /** 店铺ID */
-    private Long shopId;
+    /**
+     * spu编号
+     */
+    private Long spuId;
 
-    /** 产品ID */
-    private String spuId;
-
-    /** SkuID */
+    /**
+     * sku编号
+     */
     private Long skuId;
 
-    /** 用户ID */
-    private String userId;
+    /**
+     * 用户编号
+     */
+    private Long memberId;
 
-    /** 购物车产品个数 */
-    private Long count;
+    /**
+     * 产品个数
+     */
+    private Integer count;
 
-    /** 售价，加入购物车时的商品价格 */
-    private String priceFee;
+    /**
+     * 售价;加入购物车时的商品价格
+     */
+    private Long priceFee;
 
-    /** 是否已勾选 */
-    private Boolean checked;
+    /**
+     * 是否已勾选
+     */
+    private Integer checked;
+
+     
 
 
 }

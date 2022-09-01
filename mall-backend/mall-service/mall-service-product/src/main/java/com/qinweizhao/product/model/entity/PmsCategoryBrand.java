@@ -1,48 +1,43 @@
 package com.qinweizhao.product.model.entity;
 
-import com.qinweizhao.common.core.annotation.Excel;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.qinweizhao.component.core.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 分类&品牌关联对象 pms_category_brand
+ * <p>
+ * 分类&品牌
+ * </p>
  *
  * @author qinweizhao
- * @date 2022-04-11
+ * @since 2022-09-01
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
+@TableName("pms_category_brand")
 public class PmsCategoryBrand extends BaseEntity {
+
     private static final long serialVersionUID = 1L;
 
     /**
-     * id
+     * 关联编号;
      */
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     /**
-     * 品牌id
+     * 品牌编号
      */
-    @Excel(name = "品牌id")
     private Long brandId;
 
     /**
-     * 分类id
+     * 分类编号
      */
-    @Excel(name = "分类id")
     private Long categoryId;
 
-    /**
-     * 品牌名称
-     */
-    @Excel(name = "品牌名称")
-    private String brandName;
 
-    /**
-     * 分类名称
-     */
-    @Excel(name = "分类名称")
-    private String categoryName;
 
 }

@@ -1,23 +1,20 @@
 package com.qinweizhao.product.service.impl;
 
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.lang.Assert;
 import com.qinweizhao.common.security.utils.SecurityUtils;
+import com.qinweizhao.component.mybatis.service.impl.QwzServiceImpl;
 import com.qinweizhao.product.constant.CartConstant;
 import com.qinweizhao.product.convert.CartItemConvert;
+import com.qinweizhao.product.mapper.PmsCartItemMapper;
 import com.qinweizhao.product.model.dto.CartItemDTO;
 import com.qinweizhao.product.model.entity.PmsCartItem;
-import com.qinweizhao.product.model.entity.PmsSkuInfo;
-import com.qinweizhao.product.service.IPmsCartService;
-import com.qinweizhao.product.service.IPmsSkuInfoService;
+import com.qinweizhao.product.service.PmsCartService;
+import com.qinweizhao.product.service.PmsSkuService;
 import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Objects;
-import java.util.concurrent.CompletableFuture;
 
 /**
  * 购物车Service业务层处理
@@ -26,13 +23,13 @@ import java.util.concurrent.CompletableFuture;
  * @date 2022-06-16
  */
 @Service
-public class PmsCartServiceImpl implements IPmsCartService {
+public class PmsCartServiceImpl extends QwzServiceImpl<PmsCartItemMapper, PmsCartItem> implements PmsCartService {
 
     @Resource
-    private RedisTemplate<String,Object> redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     @Resource
-    private IPmsSkuInfoService pmsSkuInfoService;
+    private PmsSkuService pmsSkuInfoService;
 
     @Override
     public List<CartItemDTO> listByMemberId(Long memberId) {
@@ -48,35 +45,35 @@ public class PmsCartServiceImpl implements IPmsCartService {
 
     @Override
     public boolean saveCartItem(Long skuId) {
-        Long memberId = SecurityUtils.getUserId();
-        BoundHashOperations<String, Object, PmsCartItem> operations = this.getCartHashOperations(memberId);
-        String hKey = skuId + "";
-
-        PmsCartItem cartItem;
-        // 购物车已存在该商品，更新商品数量
-        if (operations.get(hKey) != null) {
-            cartItem = operations.get(hKey);
-            // 点击一次“加入购物车”，数量+1
-            assert cartItem != null;
-            cartItem.setCount(cartItem.getCount() + 1);
-            cartItem.setChecked(true);
-            operations.put(hKey, cartItem);
-            return true;
-        }
-        // 购物车不存在该商品，添加商品至购物车
-        cartItem = new PmsCartItem();
-        CompletableFuture<Void> cartItemCompletableFuture = CompletableFuture.runAsync(() -> {
-            PmsSkuInfo skuInfo = pmsSkuInfoService.getById(skuId);
-            if (skuInfo != null) {
-                BeanUtil.copyProperties(skuInfo, cartItem);
-                cartItem.setCount(1L);
-                cartItem.setChecked(true);
-            }
-        });
-        CompletableFuture.allOf(cartItemCompletableFuture).join();
-
-        Assert.isTrue(cartItem.getSkuId() != null, "商品不存在");
-        operations.put(hKey, cartItem);
+//        Long memberId = SecurityUtils.getUserId();
+//        BoundHashOperations<String, Object, PmsCartItem> operations = this.getCartHashOperations(memberId);
+//        String hKey = skuId + "";
+//
+//        PmsCartItem cartItem;
+//        // 购物车已存在该商品，更新商品数量
+//        if (operations.get(hKey) != null) {
+//            cartItem = operations.get(hKey);
+//            // 点击一次“加入购物车”，数量+1
+//            assert cartItem != null;
+//            cartItem.setCount(cartItem.getCount() + 1);
+//            cartItem.setChecked(true);
+//            operations.put(hKey, cartItem);
+//            return true;
+//        }
+//        // 购物车不存在该商品，添加商品至购物车
+//        cartItem = new PmsCartItem();
+//        CompletableFuture<Void> cartItemCompletableFuture = CompletableFuture.runAsync(() -> {
+//            PmsSkuInfo skuInfo = pmsSkuInfoService.getById(skuId);
+//            if (skuInfo != null) {
+//                BeanUtil.copyProperties(skuInfo, cartItem);
+//                cartItem.setCount(1L);
+//                cartItem.setChecked(true);
+//            }
+//        });
+//        CompletableFuture.allOf(cartItemCompletableFuture).join();
+//
+//        Assert.isTrue(cartItem.getSkuId() != null, "商品不存在");
+//        operations.put(hKey, cartItem);
         return true;
     }
 
@@ -101,13 +98,13 @@ public class PmsCartServiceImpl implements IPmsCartService {
 
     @Override
     public boolean checkAll(boolean checked) {
-        Long memberId = SecurityUtils.getUserId();
-        BoundHashOperations<String, Object, PmsCartItem> cartHashOperations = this.getCartHashOperations(memberId);
-        for (PmsCartItem cartItem : Objects.requireNonNull(cartHashOperations.values())) {
-            cartItem.setChecked(checked);
-            String hKey = cartItem.getSkuId() + "";
-            cartHashOperations.put(hKey, cartItem);
-        }
+//        Long memberId = SecurityUtils.getUserId();
+//        BoundHashOperations<String, Object, PmsCartItem> cartHashOperations = this.getCartHashOperations(memberId);
+//        for (PmsCartItem cartItem : Objects.requireNonNull(cartHashOperations.values())) {
+//            cartItem.setChecked(checked);
+//            String hKey = cartItem.getSkuId() + "";
+//            cartHashOperations.put(hKey, cartItem);
+//        }
         return true;
     }
 

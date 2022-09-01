@@ -76,6 +76,11 @@
             <artifactId>mall-common-core</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.qinweizhao.component</groupId>
+            <artifactId>qwz-component-mybatis</artifactId>
+        </dependency>
+
         <!-- Common Log -->
         <dependency>
             <groupId>com.qinweizhao.component</groupId>

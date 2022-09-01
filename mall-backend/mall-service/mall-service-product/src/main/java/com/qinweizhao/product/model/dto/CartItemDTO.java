@@ -1,58 +1,53 @@
 package com.qinweizhao.product.model.dto;
 
-import com.qinweizhao.component.core.entity.BaseEntity;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 /**
- * 购物车对象 pms_cart_item
+ * <p>
+ * 购物车
+ * </p>
  *
  * @author qinweizhao
- * @date 2022-06-16
+ * @since 2022-09-01
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class CartItemDTO extends BaseEntity {
-    private static final long serialVersionUID = 1L;
+public class CartItemDTO {
+
 
     /**
-     * 主键
+     * 编号
      */
-    private String cartItemId;
+    private Long id;
 
     /**
-     * 店铺ID
+     * spu编号
      */
-    private Long shopId;
+    private Long spuId;
 
     /**
-     * 产品ID
-     */
-    private String spuId;
-
-    /**
-     * SkuID
+     * sku编号
      */
     private Long skuId;
 
     /**
-     * 用户ID
+     * 用户编号
      */
-    private String userId;
+    private Long memberId;
 
     /**
-     * 购物车产品个数
+     * 产品个数
      */
-    private Long count;
+    private Integer count;
 
     /**
-     * 售价，加入购物车时的商品价格
+     * 售价;加入购物车时的商品价格
      */
-    private String priceFee;
+    private Long priceFee;
 
     /**
      * 是否已勾选
      */
-    private Boolean checked;
+    private Integer checked;
+
 
 }

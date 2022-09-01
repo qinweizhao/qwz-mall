@@ -1,121 +1,25 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qinweizhao.product.mapper.PmsCategoryMapper">
 
-    <resultMap type="PmsCategory" id="PmsCategoryResult">
-        <result property="categoryId" column="category_id"/>
-        <result property="name" column="name"/>
-        <result property="parentId" column="parent_id"/>
-        <result property="ancestors" column="ancestors"/>
-        <result property="level" column="level"/>
-        <result property="status" column="status"/>
-        <result property="sort" column="sort"/>
-        <result property="unit" column="unit"/>
-        <result property="count" column="count"/>
-        <result property="createBy" column="create_by"/>
-        <result property="createTime" column="create_time"/>
-        <result property="updateBy" column="update_by"/>
-        <result property="updateTime" column="update_time"/>
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.qinweizhao.product.model.entity.PmsCategory">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="parent_id" property="parentId" />
+        <result column="icon" property="icon" />
+        <result column="level" property="level" />
+        <result column="status" property="status" />
+        <result column="sort" property="sort" />
+        <result column="create_by" property="createBy" />
+        <result column="create_time" property="createTime" />
+        <result column="update_by" property="updateBy" />
+        <result column="update_time" property="updateTime" />
     </resultMap>
 
-    <sql id="selectPmsCategoryVo">
-        select category_id,
-               name,
-               parent_id,
-               ancestors,
-               level,
-               status,
-               sort,
-               unit,
-               count,
-               create_by,
-               create_time,
-               update_by,
-               update_time
-        from pms_category
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, parent_id, icon, level, status, sort, create_by, create_time, update_by, update_time
     </sql>
 
-    <select id="selectList" parameterType="PmsCategory" resultMap="PmsCategoryResult">
-        <include refid="selectPmsCategoryVo"/>
-        <where>
-            <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
-            <if test="parentId != null ">and parent_id = #{parentId}</if>
-            <if test="level != null ">and level = #{level}</if>
-            <if test="status != null  and status != ''">and status = #{status}</if>
-            <if test="sort != null ">and sort = #{sort}</if>
-            <if test="unit != null  and unit != ''">and unit = #{unit}</if>
-            <if test="count != null ">and count = #{count}</if>
-        </where>
-    </select>
-
-    <select id="selectById" parameterType="Long" resultMap="PmsCategoryResult">
-        <include refid="selectPmsCategoryVo"/>
-        where category_id = #{categoryId}
-    </select>
-
-    <insert id="insert" parameterType="PmsCategory" useGeneratedKeys="true" keyProperty="categoryId">
-        insert into pms_category
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="name != null">name,</if>
-            <if test="parentId != null">parent_id,</if>
-            <if test="ancestors != null">ancestors,</if>
-            <if test="level != null">level,</if>
-            <if test="status != null">status,</if>
-            <if test="sort != null">sort,</if>
-            <if test="unit != null">unit,</if>
-            <if test="count != null">count,</if>
-            <if test="createBy != null">create_by,</if>
-            <if test="createTime != null">create_time,</if>
-            <if test="updateBy != null">update_by,</if>
-            <if test="updateTime != null">update_time,</if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="name != null">#{name},</if>
-            <if test="parentId != null">#{parentId},</if>
-            <if test="ancestors != null">#{ancestors},</if>
-            <if test="level != null">#{level},</if>
-            <if test="status != null">#{status},</if>
-            <if test="sort != null">#{sort},</if>
-            <if test="unit != null">#{unit},</if>
-            <if test="count != null">#{count},</if>
-            <if test="createBy != null">#{createBy},</if>
-            <if test="createTime != null">#{createTime},</if>
-            <if test="updateBy != null">#{updateBy},</if>
-            <if test="updateTime != null">#{updateTime},</if>
-        </trim>
-    </insert>
-
-    <update id="updateById" parameterType="PmsCategory">
-        update pms_category
-        <trim prefix="SET" suffixOverrides=",">
-            <if test="name != null">name = #{name},</if>
-            <if test="parentId != null">parent_id = #{parentId},</if>
-            <if test="ancestors != null">ancestors = #{ancestors},</if>
-            <if test="level != null">level = #{level},</if>
-            <if test="status != null">status = #{status},</if>
-            <if test="sort != null">sort = #{sort},</if>
-            <if test="unit != null">unit = #{unit},</if>
-            <if test="count != null">count = #{count},</if>
-            <if test="createBy != null">create_by = #{createBy},</if>
-            <if test="createTime != null">create_time = #{createTime},</if>
-            <if test="updateBy != null">update_by = #{updateBy},</if>
-            <if test="updateTime != null">update_time = #{updateTime},</if>
-        </trim>
-        where category_id = #{categoryId}
-    </update>
-
-    <delete id="removeById" parameterType="Long">
-        delete
-        from pms_category
-        where category_id = #{categoryId}
-    </delete>
-
-    <delete id="removeByIds" parameterType="String">
-        delete from pms_category where category_id in
-        <foreach item="categoryId" collection="array" open="(" separator="," close=")">
-            #{categoryId}
-        </foreach>
-    </delete>
 </mapper>

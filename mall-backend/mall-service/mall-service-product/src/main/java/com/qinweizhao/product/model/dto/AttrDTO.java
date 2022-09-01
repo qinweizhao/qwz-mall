@@ -3,76 +3,40 @@ package com.qinweizhao.product.model.dto;
 import lombok.Data;
 
 /**
- * 商品属性对象 pms_attr
- *
  * @author qinweizhao
- * @date 2022-04-25
+ * @since 2022/9/1
  */
 @Data
 public class AttrDTO {
 
-    private static final long serialVersionUID = 1L;
 
     /**
-     * 属性id
+     * 编号
      */
-    private Long attrId;
+    private Long id;
 
     /**
-     * 属性名
+     * 名称
      */
     private String name;
 
-
     /**
-     * 属性值
+     * 类型;[0-销售属性，1-基本属性]
      */
-    private String value;
+    private Integer type;
 
     /**
-     * 属性图标
+     * 是否检索;[0-不需要，1-需要]
      */
-    private String icon;
+    private Integer searchType;
 
     /**
-     * 可选值列表[用逗号分隔]
+     * 排序
      */
-    private String valueSelect;
+    private Integer sort;
 
     /**
-     * 值类型[0-单值，1-多值]
-     */
-    private Long valueType;
-
-    /**
-     * 是否需要检索[0-不需要，1-需要]
-     */
-    private Long searchType;
-
-    /**
-     * 属性类型[0-销售属性，1-基本属性，2-既是销售属性又是基本属性]
-     */
-    private Long type;
-
-    /**
-     * 启用状态[0 - 禁用，1 - 启用]
+     * 状态;[0-禁用，1-启用]
      */
     private Long status;
-
-    /**
-     * 所属分类
-     */
-    private Long categoryId;
-
-
-    /**
-     * 所属分类三级分类路径
-     */
-    private String categoryPath;
-
-    /**
-     * 快速展示【是否展示在介绍上；0-否 1-是】，在sku中仍然可以调整
-     */
-    private Long quickShow;
-
 }

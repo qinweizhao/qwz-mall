@@ -1,127 +1,24 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qinweizhao.product.mapper.PmsSpuAttrValueMapper">
 
-    <resultMap type="PmsSpuAttrValue" id="PmsSpuAttrValueResult">
-        <result property="id" column="id"/>
-        <result property="spuId" column="spu_id"/>
-        <result property="attrId" column="attr_id"/>
-        <result property="name" column="name"/>
-        <result property="value" column="value"/>
-        <result property="sort" column="sort"/>
-        <result property="quickShow" column="quick_show"/>
-        <result property="createBy" column="create_by"/>
-        <result property="updateBy" column="update_by"/>
-        <result property="createTime" column="create_time"/>
-        <result property="updateTime" column="update_time"/>
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.qinweizhao.product.model.entity.PmsSpuAttrValue">
+        <id column="id" property="id" />
+        <result column="spu_id" property="spuId" />
+        <result column="attr_id" property="attrId" />
+        <result column="attr_name" property="attrName" />
+        <result column="value" property="value" />
+        <result column="sort" property="sort" />
+        <result column="create_by" property="createBy" />
+        <result column="update_by" property="updateBy" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
     </resultMap>
 
-    <sql id="selectPmsSpuAttrValueVo">
-        select id,
-               spu_id,
-               attr_id,
-               name,
-               value,
-               sort,
-               quick_show,
-               create_by,
-               update_by,
-               create_time,
-               update_time
-        from pms_spu_attr_value
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, spu_id, attr_id, attr_name, value, sort, create_by, update_by, create_time, update_time
     </sql>
 
-    <select id="selectPmsSpuAttrValueList" parameterType="PmsSpuAttrValue" resultMap="PmsSpuAttrValueResult">
-        <include refid="selectPmsSpuAttrValueVo"/>
-        <where>
-            <if test="spuId != null ">and spu_id = #{spuId}</if>
-            <if test="attrId != null ">and attr_id = #{attrId}</if>
-            <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
-            <if test="value != null  and value != ''">and value = #{value}</if>
-            <if test="sort != null ">and sort = #{sort}</if>
-            <if test="quickShow != null ">and quick_show = #{quickShow}</if>
-        </where>
-    </select>
-
-    <select id="selectPmsSpuAttrValueById" parameterType="Long" resultMap="PmsSpuAttrValueResult">
-        <include refid="selectPmsSpuAttrValueVo"/>
-        where id = #{id}
-    </select>
-
-
-    <select id="selectSearchAttrValueListBySpuId" resultMap="PmsSpuAttrValueResult">
-        select sav.*, a.search_type
-        from pms_spu_attr_value sav
-                 left join pms_attr a on sav.attr_id = a.attr_id
-        where a.search_type = #{searchType}
-          and sav.spu_id = #{spuId}
-    </select>
-
-    <select id="selectBySpuIdAndAttrId" resultMap="PmsSpuAttrValueResult">
-        <include refid="selectPmsSpuAttrValueVo"/>
-        where
-        spu_id=#{spuId} and
-        attr_id=#{attrId}
-    </select>
-
-
-    <insert id="insertPmsSpuAttrValue" parameterType="PmsSpuAttrValue" useGeneratedKeys="true" keyProperty="id">
-        insert into pms_spu_attr_value
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="spuId != null">spu_id,</if>
-            <if test="attrId != null">attr_id,</if>
-            <if test="name != null">name,</if>
-            <if test="value != null">value,</if>
-            <if test="sort != null">sort,</if>
-            <if test="quickShow != null">quick_show,</if>
-            <if test="createBy != null">create_by,</if>
-            <if test="updateBy != null">update_by,</if>
-            <if test="createTime != null">create_time,</if>
-            <if test="updateTime != null">update_time,</if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="spuId != null">#{spuId},</if>
-            <if test="attrId != null">#{attrId},</if>
-            <if test="name != null">#{name},</if>
-            <if test="value != null">#{value},</if>
-            <if test="sort != null">#{sort},</if>
-            <if test="quickShow != null">#{quickShow},</if>
-            <if test="createBy != null">#{createBy},</if>
-            <if test="updateBy != null">#{updateBy},</if>
-            <if test="createTime != null">#{createTime},</if>
-            <if test="updateTime != null">#{updateTime},</if>
-        </trim>
-    </insert>
-
-    <update id="updatePmsSpuAttrValue" parameterType="PmsSpuAttrValue">
-        update pms_spu_attr_value
-        <trim prefix="SET" suffixOverrides=",">
-            <if test="spuId != null">spu_id = #{spuId},</if>
-            <if test="attrId != null">attr_id = #{attrId},</if>
-            <if test="name != null">name = #{name},</if>
-            <if test="value != null">value = #{value},</if>
-            <if test="sort != null">sort = #{sort},</if>
-            <if test="quickShow != null">quick_show = #{quickShow},</if>
-            <if test="createBy != null">create_by = #{createBy},</if>
-            <if test="updateBy != null">update_by = #{updateBy},</if>
-            <if test="createTime != null">create_time = #{createTime},</if>
-            <if test="updateTime != null">update_time = #{updateTime},</if>
-        </trim>
-        where id = #{id}
-    </update>
-
-    <delete id="deletePmsSpuAttrValueById" parameterType="Long">
-        delete
-        from pms_spu_attr_value
-        where id = #{id}
-    </delete>
-
-    <delete id="deletePmsSpuAttrValueByIds" parameterType="String">
-        delete from pms_spu_attr_value where id in
-        <foreach item="id" collection="array" open="(" separator="," close=")">
-            #{id}
-        </foreach>
-    </delete>
 </mapper>
