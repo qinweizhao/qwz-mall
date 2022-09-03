@@ -21,7 +21,7 @@ import java.util.List;
  * @date 2022-07-02
  */
 @RestController
-@RequestMapping("/info")
+@RequestMapping("/order/info")
 public class OmsRefundInfoController {
     @Resource
     private IOmsRefundInfoService omsRefundInfoService;
@@ -49,24 +49,24 @@ public class OmsRefundInfoController {
         return R.success();
     }
 
-    /**
-     * 获取退款信息详细信息
-     */
-    @RequiresPermissions("order:info:query")
-    @GetMapping(value = "/{id}")
-    public R<OmsRefundInfo> getInfo(@PathVariable("id") Long id) {
-        return R.success(omsRefundInfoService.getById(id));
-    }
+//    /**
+//     * 获取退款信息详细信息
+//     */
+//    @RequiresPermissions("order:info:query")
+//    @GetMapping(value = "/{id}")
+//    public R<OmsRefundInfo> getInfo(@PathVariable("id") Long id) {
+//        return R.success(omsRefundInfoService.getById(id));
+//    }
 
-    /**
-     * 新增退款信息
-     */
-    @RequiresPermissions("order:info:add")
-    @Log(title = "退款信息", businessType = BusinessType.INSERT)
-    @PostMapping
-    public R<?> add(@RequestBody OmsRefundInfo omsRefundInfo) {
-        return R.success(omsRefundInfoService.save(omsRefundInfo));
-    }
+//    /**
+//     * 新增退款信息
+//     */
+//    @RequiresPermissions("order:info:add")
+//    @Log(title = "退款信息", businessType = BusinessType.INSERT)
+//    @PostMapping
+//    public R<?> add(@RequestBody OmsRefundInfo omsRefundInfo) {
+//        return R.success(omsRefundInfoService.save(omsRefundInfo));
+//    }
 
     /**
      * 修改退款信息

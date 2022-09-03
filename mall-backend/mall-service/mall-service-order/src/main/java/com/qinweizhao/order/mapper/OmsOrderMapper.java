@@ -1,7 +1,8 @@
 package com.qinweizhao.order.mapper;
 
-import com.qinweizhao.component.mybatis.mapper.QwzBaseMapper;
+import com.qinweizhao.component.mybatis.mapper.QwzMapper;
 import com.qinweizhao.order.model.entity.OmsOrder;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
@@ -11,7 +12,8 @@ import java.util.List;
  * @author qinweizhao
  * @date 2022-07-01
  */
-public interface OmsOrderMapper extends QwzBaseMapper<OmsOrder> {
+@Mapper
+public interface OmsOrderMapper extends QwzMapper<OmsOrder> {
 
     /**
      * 查询订单列表

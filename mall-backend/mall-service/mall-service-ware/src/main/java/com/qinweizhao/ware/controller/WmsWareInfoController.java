@@ -37,14 +37,14 @@ public class WmsWareInfoController{
         return R.success(pageResult);
     }
 
-    /**
-     * 获取仓库信息详细信息
-     */
-    @RequiresPermissions("product:info:query")
-    @GetMapping(value = "/{id}")
-    public R<WmsWareInfo> getInfo(@PathVariable("id") Long id) {
-        return R.success(wmsWareInfoService.getById(id));
-    }
+//    /**
+//     * 获取仓库信息详细信息
+//     */
+//    @RequiresPermissions("product:info:query")
+//    @GetMapping(value = "/{id}")
+//    public R<WmsWareInfo> getInfo(@PathVariable("id") Long id) {
+//        return R.success(wmsWareInfoService.getById(id));
+//    }
 
     /**
      * 新增仓库信息

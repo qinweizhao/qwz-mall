@@ -2,7 +2,7 @@ package com.qinweizhao.user.mapper;
 
 
 import com.qinweizhao.component.core.response.PageResult;
-import com.qinweizhao.component.mybatis.mapper.QwzBaseMapper;
+import com.qinweizhao.component.mybatis.mapper.QwzMapper;
 import com.qinweizhao.component.mybatis.query.QwzLambdaQueryWrapper;
 import com.qinweizhao.user.model.entity.UmsMember;
 import com.qinweizhao.user.model.param.MemberPageParam;
@@ -15,7 +15,7 @@ import java.util.List;
  * @author qinweizhao
  * @date 2022-04-29
  */
-public interface UmsMemberMapper extends QwzBaseMapper<UmsMember> {
+public interface UmsMemberMapper extends QwzMapper<UmsMember> {
 
 
     /**

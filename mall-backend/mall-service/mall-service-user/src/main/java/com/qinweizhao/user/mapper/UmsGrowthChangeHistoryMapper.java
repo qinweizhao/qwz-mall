@@ -1,6 +1,6 @@
 package com.qinweizhao.user.mapper;
 
-import com.qinweizhao.component.mybatis.mapper.QwzBaseMapper;
+import com.qinweizhao.component.mybatis.mapper.QwzMapper;
 import com.qinweizhao.user.model.entity.UmsGrowthChangeHistory;
 
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
  * @author qinweizhao
  * @date 2022-04-30
  */
-public interface UmsGrowthChangeHistoryMapper extends QwzBaseMapper<UmsGrowthChangeHistory> {
+public interface UmsGrowthChangeHistoryMapper extends QwzMapper<UmsGrowthChangeHistory> {
 
     /**
      * 查询成长值变化历史记录列表

@@ -47,15 +47,15 @@ public class OmsOrderOperateHistoryController {
         util.exportExcel(response, list, "订单操作历史记录数据");
         return R.success();
     }
-
-    /**
-     * 获取订单操作历史记录详细信息
-     */
-    @RequiresPermissions("order:history:query")
-    @GetMapping(value = "/{id}")
-    public R<OmsOrderOperateHistory> getInfo(@PathVariable("id") Long id) {
-        return R.success(omsOrderOperateHistoryService.getById(id));
-    }
+//
+//    /**
+//     * 获取订单操作历史记录详细信息
+//     */
+//    @RequiresPermissions("order:history:query")
+//    @GetMapping(value = "/{id}")
+//    public R<OmsOrderOperateHistory> getInfo(@PathVariable("id") Long id) {
+//        return R.success(omsOrderOperateHistoryService.getById(id));
+//    }
 
     /**
      * 新增订单操作历史记录

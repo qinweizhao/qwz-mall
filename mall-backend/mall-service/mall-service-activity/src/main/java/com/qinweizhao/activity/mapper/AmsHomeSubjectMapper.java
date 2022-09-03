@@ -1,7 +1,7 @@
 package com.qinweizhao.activity.mapper;
 
 import com.qinweizhao.activity.model.entity.AmsHomeSubject;
-import com.qinweizhao.component.mybatis.mapper.QwzBaseMapper;
+import com.qinweizhao.component.mybatis.mapper.QwzMapper;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  * @author qinweizhao
  * @date 2022-07-01
  */
-public interface AmsHomeSubjectMapper extends QwzBaseMapper<AmsHomeSubject> {
+public interface AmsHomeSubjectMapper extends QwzMapper<AmsHomeSubject> {
     /**
      * 查询首页专题【jd首页下面很多专题，每个专题链接新的页面，展示专题商品信息】
      *

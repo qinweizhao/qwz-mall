@@ -7,6 +7,7 @@ import com.qinweizhao.component.log.annotation.Log;
 import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.product.convert.AttrConvert;
 import com.qinweizhao.product.model.dto.AttrDTO;
+import com.qinweizhao.product.model.dto.TestDTO;
 import com.qinweizhao.product.model.entity.PmsAttr;
 import com.qinweizhao.product.model.param.AttrParam;
 import com.qinweizhao.product.service.PmsAttrService;
@@ -79,4 +80,22 @@ public class PmsAttrController {
     public R<Boolean> remove(@PathVariable List<Long> attrIds) {
         return R.success(pmsAttrService.removeByIds(attrIds));
     }
+
+
+    /**
+     * 查询商品属性列表
+     */
+    @GetMapping("/test")
+    public TestDTO test() {
+        TestDTO attrDTO = new TestDTO();
+        attrDTO.setId(123L);
+        attrDTO.setName("asd");
+        attrDTO.setType(1);
+        attrDTO.setSearchType(1);
+        attrDTO.setSort(1);
+        attrDTO.setStatus(121L);
+        System.out.println("远程数据为：" + attrDTO);
+        return attrDTO;
+    }
+
 }

@@ -50,14 +50,14 @@ public class OmsOrderItemController {
         return R.success();
     }
 
-    /**
-     * 获取订单项信息详细信息
-     */
-    @RequiresPermissions("order:item:query")
-    @GetMapping(value = "/{id}")
-    public R<OmsOrderItem> getInfo(@PathVariable("id") Long id) {
-        return R.success(omsOrderItemService.getById(id));
-    }
+//    /**
+//     * 获取订单项信息详细信息
+//     */
+//    @RequiresPermissions("order:item:query")
+//    @GetMapping(value = "/{id}")
+//    public R<OmsOrderItem> getInfo(@PathVariable("id") Long id) {
+//        return R.success(omsOrderItemService.getById(id));
+//    }
 
     /**
      * 新增订单项信息

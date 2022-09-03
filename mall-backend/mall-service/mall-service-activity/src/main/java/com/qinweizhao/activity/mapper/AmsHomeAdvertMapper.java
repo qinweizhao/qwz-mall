@@ -3,7 +3,7 @@ package com.qinweizhao.activity.mapper;
 import com.qinweizhao.activity.model.entity.AmsHomeAdvert;
 import com.qinweizhao.activity.model.param.HomeAdvertPageParam;
 import com.qinweizhao.component.core.response.PageResult;
-import com.qinweizhao.component.mybatis.mapper.QwzBaseMapper;
+import com.qinweizhao.component.mybatis.mapper.QwzMapper;
 import com.qinweizhao.component.mybatis.query.QwzLambdaQueryWrapper;
 
 /**
@@ -12,7 +12,7 @@ import com.qinweizhao.component.mybatis.query.QwzLambdaQueryWrapper;
  * @author qinweizhao
  * @date 2022-07-01
  */
-public interface AmsHomeAdvertMapper extends QwzBaseMapper<AmsHomeAdvert> {
+public interface AmsHomeAdvertMapper extends QwzMapper<AmsHomeAdvert> {
 
     /**
      * 查询分页信息

@@ -1,7 +1,7 @@
 package com.qinweizhao.activity.mapper;
 
 import com.qinweizhao.activity.model.entity.AmsCoupon;
-import com.qinweizhao.component.mybatis.mapper.QwzBaseMapper;
+import com.qinweizhao.component.mybatis.mapper.QwzMapper;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  * @author qinweizhao
  * @date 2022-07-01
  */
-public interface AmsCouponMapper extends QwzBaseMapper<AmsCoupon> {
+public interface AmsCouponMapper extends QwzMapper<AmsCoupon> {
 
     /**
      * 查询优惠券信息

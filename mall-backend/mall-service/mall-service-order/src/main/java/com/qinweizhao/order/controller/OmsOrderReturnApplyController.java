@@ -49,15 +49,15 @@ public class OmsOrderReturnApplyController {
         util.exportExcel(response, list, "订单退货申请数据");
         return R.success();
     }
-
-    /**
-     * 获取订单退货申请详细信息
-     */
-    @RequiresPermissions("order:apply:query")
-    @GetMapping(value = "/{id}")
-    public R<OmsOrderReturnApply> getInfo(@PathVariable("id") Long id) {
-        return R.success(omsOrderReturnApplyService.getById(id));
-    }
+//
+//    /**
+//     * 获取订单退货申请详细信息
+//     */
+//    @RequiresPermissions("order:apply:query")
+//    @GetMapping(value = "/{id}")
+//    public R<OmsOrderReturnApply> getInfo(@PathVariable("id") Long id) {
+//        return R.success(omsOrderReturnApplyService.getById(id));
+//    }
 
     /**
      * 新增订单退货申请

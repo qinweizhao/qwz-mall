@@ -1,7 +1,7 @@
 package com.qinweizhao.activity.mapper;
 
 import com.qinweizhao.activity.model.entity.AmsMemberPrice;
-import com.qinweizhao.component.mybatis.mapper.QwzBaseMapper;
+import com.qinweizhao.component.mybatis.mapper.QwzMapper;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  * @author qinweizhao
  * @date 2022-07-01
  */
-public interface AmsMemberPriceMapper extends QwzBaseMapper<AmsMemberPrice> {
+public interface AmsMemberPriceMapper extends QwzMapper<AmsMemberPrice> {
     /**
      * 查询商品会员价格
      *

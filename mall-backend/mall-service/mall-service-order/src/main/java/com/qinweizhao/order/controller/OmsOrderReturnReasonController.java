@@ -49,14 +49,14 @@ public class OmsOrderReturnReasonController {
         return R.success();
     }
 
-    /**
-     * 获取退货原因详细信息
-     */
-    @RequiresPermissions("order:reason:query")
-    @GetMapping(value = "/{id}")
-    public R<OmsOrderReturnReason> getInfo(@PathVariable("id") Long id) {
-        return R.success(omsOrderReturnReasonService.getById(id));
-    }
+//    /**
+//     * 获取退货原因详细信息
+//     */
+//    @RequiresPermissions("order:reason:query")
+//    @GetMapping(value = "/{id}")
+//    public R<OmsOrderReturnReason> getInfo(@PathVariable("id") Long id) {
+//        return R.success(omsOrderReturnReasonService.getById(id));
+//    }
 
     /**
      * 新增退货原因

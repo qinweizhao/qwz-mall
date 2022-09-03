@@ -96,6 +96,12 @@
 
         <dependency>
             <groupId>com.qinweizhao</groupId>
+            <artifactId>mall-api-system</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.qinweizhao</groupId>
             <artifactId>mall-api-order</artifactId>
             <version>1.0.0</version>
         </dependency>

@@ -1,7 +1,7 @@
 package com.qinweizhao.activity.mapper;
 
 import com.qinweizhao.activity.model.entity.AmsSeckillSkuNotice;
-import com.qinweizhao.component.mybatis.mapper.QwzBaseMapper;
+import com.qinweizhao.component.mybatis.mapper.QwzMapper;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  * @author qinweizhao
  * @date 2022-07-01
  */
-public interface AmsSeckillSkuNoticeMapper extends QwzBaseMapper<AmsSeckillSkuNotice> {
+public interface AmsSeckillSkuNoticeMapper extends QwzMapper<AmsSeckillSkuNotice> {
     /**
      * 查询秒杀商品通知订阅
      *

@@ -1,7 +1,7 @@
 package com.qinweizhao.ware.mapper;
 
 import com.qinweizhao.component.core.response.PageResult;
-import com.qinweizhao.component.mybatis.mapper.QwzBaseMapper;
+import com.qinweizhao.component.mybatis.mapper.QwzMapper;
 import com.qinweizhao.component.mybatis.query.QwzLambdaQueryWrapper;
 import com.qinweizhao.ware.model.entity.WmsWareInfo;
 import com.qinweizhao.ware.model.param.WareInfoPageParam;
@@ -14,7 +14,7 @@ import java.util.List;
  * @author qinweizhao
  * @date 2022-05-04
  */
-public interface WmsWareInfoMapper extends QwzBaseMapper<WmsWareInfo> {
+public interface WmsWareInfoMapper extends QwzMapper<WmsWareInfo> {
 
     /**
      * 查询仓库信息列表

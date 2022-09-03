@@ -1,7 +1,8 @@
 package com.qinweizhao.order.mapper;
 
-import com.qinweizhao.component.mybatis.mapper.QwzBaseMapper;
+import com.qinweizhao.component.mybatis.mapper.QwzMapper;
 import com.qinweizhao.order.model.entity.OmsOrderOperateHistory;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
@@ -11,7 +12,9 @@ import java.util.List;
  * @author qinweizhao
  * @date 2022-07-01
  */
-public interface OmsOrderOperateHistoryMapper extends QwzBaseMapper<OmsOrderOperateHistory> {
+@Mapper
+
+public interface OmsOrderOperateHistoryMapper extends QwzMapper<OmsOrderOperateHistory> {
 
     /**
      * 查询订单操作历史记录列表

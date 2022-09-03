@@ -1,7 +1,7 @@
 package com.qinweizhao.activity.mapper;
 
 import com.qinweizhao.activity.model.entity.AmsSeckillSession;
-import com.qinweizhao.component.mybatis.mapper.QwzBaseMapper;
+import com.qinweizhao.component.mybatis.mapper.QwzMapper;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  * @author qinweizhao
  * @date 2022-07-01
  */
-public interface AmsSeckillSessionMapper extends QwzBaseMapper<AmsSeckillSession> {
+public interface AmsSeckillSessionMapper extends QwzMapper<AmsSeckillSession> {
     /**
      * 查询秒杀活动场次
      *

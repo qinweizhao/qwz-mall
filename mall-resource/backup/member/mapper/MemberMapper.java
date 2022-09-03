@@ -1,7 +1,7 @@
 package com.qinweizhao.user.mapper;
 
 
-import com.qinweizhao.component.mybatis.mapper.QwzBaseMapper;
+import com.qinweizhao.component.mybatis.mapper.QwzMapper;
 import com.qinweizhao.user.entity.Member;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
  * @author qinweizhao
  * @date 2022-04-29
  */
-public interface MemberMapper extends QwzBaseMapper<Member> {
+public interface MemberMapper extends QwzMapper<Member> {
     /**
      * 查询会员
      *
