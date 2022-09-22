@@ -25,7 +25,7 @@ public class ItemController {
 
     @GetMapping("/{skuId}")
     public R<SkuDTO> info(@PathVariable("skuId") Long skuId) throws ExecutionException, InterruptedException {
-//        SkuDTO skuItem = pmsSkuInfoService.getItemById(skuId);
+        // SkuDTO skuItem = pmsSkuInfoService.getItemById(skuId);
         return R.success(null);
     }
 }

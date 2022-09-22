@@ -1,7 +1,7 @@
 package com.qinweizhao.product.mapper;
 
 import com.qinweizhao.component.mybatis.mapper.QwzMapper;
-import com.qinweizhao.product.model.entity.PmsSpuAttrValue;
+import com.qinweizhao.product.model.entity.PmsAttrValue;
 
 /**
  * spu属性值Mapper接口
@@ -9,6 +9,6 @@ import com.qinweizhao.product.model.entity.PmsSpuAttrValue;
  * @author qinweizhao
  * @date 2022-04-11
  */
-public interface PmsSpuAttrValueMapper extends QwzMapper<PmsSpuAttrValue> {
+public interface PmsSpuAttrValueMapper extends QwzMapper<PmsAttrValue> {
 
 }

@@ -2,14 +2,9 @@ package com.qinweizhao.product.service.impl;
 
 import com.qinweizhao.component.mybatis.service.impl.QwzServiceImpl;
 import com.qinweizhao.product.mapper.PmsAttrMapper;
-import com.qinweizhao.product.mapper.PmsSpuAttrValueMapper;
 import com.qinweizhao.product.model.entity.PmsAttr;
-import com.qinweizhao.product.model.entity.PmsSpuAttrValue;
 import com.qinweizhao.product.service.PmsSpuAttrValueService;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * spu属性值Service业务层处理

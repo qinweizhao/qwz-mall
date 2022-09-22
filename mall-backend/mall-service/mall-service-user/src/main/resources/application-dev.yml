@@ -17,4 +17,4 @@ spring:
 #  # 配置mapper的扫描，找到所有的mapper.xml映射文件
 #  mapperLocations: classpath:mapper/**/*.xml
 mybatis-plus:
-  type-aliases-package: com.qinweizhao.user
+  type-aliases-package: com.qinweizhao.user.model.entity

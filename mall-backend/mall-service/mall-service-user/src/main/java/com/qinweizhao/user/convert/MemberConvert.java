@@ -2,10 +2,8 @@ package com.qinweizhao.user.convert;
 
 
 import com.qinweizhao.common.core.model.LoginUser;
-import com.qinweizhao.component.core.response.PageResult;
-import com.qinweizhao.user.model.dto.MemberDTO;
-import com.qinweizhao.user.model.entity.UmsMember;
-import com.qinweizhao.user.model.vo.MemberVO;
+import com.qinweizhao.user.model.dto.UserDTO;
+import com.qinweizhao.user.model.entity.UmsUser;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -24,13 +22,6 @@ public interface MemberConvert {
 
     MemberConvert INSTANCE = Mappers.getMapper(MemberConvert.class);
 
-    /**
-     * DO 转 DTO
-     *
-     * @param pageResult pageResult
-     * @return List
-     */
-    PageResult<MemberVO> convertToVO(PageResult<UmsMember> pageResult);
 
 
     /**
@@ -39,7 +30,7 @@ public interface MemberConvert {
      * @param member member
      * @return List
      */
-    MemberDTO convert(UmsMember member);
+    UserDTO convert(UmsUser member);
 
 
 
@@ -49,6 +40,6 @@ public interface MemberConvert {
      * @param member member
      * @return List
      */
-    LoginUser convert(MemberDTO member);
+    LoginUser convert(UserDTO member);
 
 }
