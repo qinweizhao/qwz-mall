@@ -4,6 +4,7 @@ import java.util.List;
 import ${packageName}.domain.${ClassName};
 #if($table.sub)
 import ${packageName}.domain.${subClassName};
+import com.qinweizhao.component.mybatis.mapper.QwzMapper;
 #end
 
 /**
@@ -12,7 +13,7 @@ import ${packageName}.domain.${subClassName};
  * @author ${author}
  * @date ${datetime}
  */
-public interface ${ClassName}Mapper 
+public interface ${ClassName}Mapper extends QwzMapper<${ClassName}>
 {
     /**
      * 查询${functionName}

@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.qinweizhao.component.log.annotation.Log;
 import ${packageName}.domain.${ClassName};
 import ${packageName}.service.I${ClassName}Service;
-import com.qinweizhao.common.core.web.controller.BaseController;
-import com.qinweizhao.common.core.utils.poi.ExcelUtil;
 #if($table.crud || $table.sub)
 #elseif($table.tree)
 #end
@@ -33,9 +31,9 @@ import com.qinweizhao.common.core.utils.poi.ExcelUtil;
  */
 @RestController
 @RequestMapping("/${businessName}")
-public class ${ClassName}Controller extends BaseController {
+public class ${ClassName}Controller{
     @Resource
-    private I${ClassName}Service ${className}Service;
+    private ${ClassName}Service ${className}Service;
 
     /**
      * 查询${functionName}列表
@@ -54,19 +52,6 @@ public class ${ClassName}Controller extends BaseController {
             return R.success(list);
         }
 #end
-
-    /**
-     * 导出${functionName}列表
-     */
-    @RequiresPermissions("${permissionPrefix}:export")
-    @Log(title = "${functionName}", businessType = BusinessType.EXPORT)
-    @PostMapping("/export")
-    public R<?> export(HttpServletResponse response, ${ClassName} ${className}) {
-        List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
-        ExcelUtil<${ClassName}> util = new ExcelUtil<${ClassName}>(${ClassName}. class);
-        util.exportExcel(response, list, "${functionName}数据");
-        return R.success();
-    }
 
     /**
      * 获取${functionName}详细信息

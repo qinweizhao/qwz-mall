@@ -19,6 +19,8 @@ import ${packageName}.domain.${subClassName};
 import ${packageName}.mapper.${ClassName}Mapper;
 import ${packageName}.domain.${ClassName};
 import ${packageName}.service.I${ClassName}Service;
+import com.qinweizhao.component.mybatis.service.impl.QwzServiceImpl;
+
 
 /**
  * ${functionName}Service业务层处理
@@ -27,7 +29,7 @@ import ${packageName}.service.I${ClassName}Service;
  * @date ${datetime}
  */
 @Service
-public class ${ClassName}ServiceImpl implements I${ClassName}Service {
+public class ${ClassName}ServiceImpl extends QwzServiceImpl<${ClassName}Mapper, ${ClassName}> implements ${ClassName}Service {
     @Resource
     private ${ClassName}Mapper ${className}Mapper;
 

@@ -10,7 +10,7 @@
     <artifactId>mall-service-ware</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>mall-service-ware</name>
-    <description>mall-service-ware</description>
+    <description>Warehouse Manage System（仓库管理系统）</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>

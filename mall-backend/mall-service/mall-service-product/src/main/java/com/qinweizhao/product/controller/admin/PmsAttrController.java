@@ -78,7 +78,7 @@ public class PmsAttrController {
     @Log(title = "商品属性", businessType = BusinessType.DELETE)
     @DeleteMapping("/{attrIds}")
     public R<Boolean> remove(@PathVariable List<Long> attrIds) {
-        return R.success(pmsAttrService.removeByIds(attrIds));
+        return R.success(pmsAttrService.removeBatchByIds(attrIds));
     }
 
 

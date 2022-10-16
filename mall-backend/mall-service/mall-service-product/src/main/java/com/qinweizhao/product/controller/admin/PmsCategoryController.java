@@ -62,6 +62,6 @@ public class PmsCategoryController  {
     @Log(title = "商品三级分类", businessType = BusinessType.DELETE)
     @DeleteMapping("/{categoryIds}")
     public R<Boolean> remove(@PathVariable List<Long> categoryIds) {
-        return R.success(pmsCategoryService.removeByIds(categoryIds));
+        return R.success(pmsCategoryService.removeBatchByIds(categoryIds));
     }
 }

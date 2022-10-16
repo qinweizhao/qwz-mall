@@ -31,8 +31,8 @@ public class PmsSpuServiceImpl extends QwzServiceImpl<PmsSpuMapper,PmsSpu> imple
     @Resource
     private PmsSpuAttrValueService pmsSpuAttrValueService;
 
-    @Resource
-    private PmsSkuAttrValueService pmsSkuAttrValueService;
+//    @Resource
+//    private PmsSkuAttrValueService pmsSkuAttrValueService;
 
     @Resource
     private PmsSkuService pmsSkuInfoService;

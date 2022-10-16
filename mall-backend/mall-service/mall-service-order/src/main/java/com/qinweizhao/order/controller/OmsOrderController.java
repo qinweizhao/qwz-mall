@@ -85,6 +85,6 @@ public class OmsOrderController {
     @Log(title = "订单", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
     public R<?> remove(@PathVariable List<Long> ids) {
-        return R.success(omsOrderService.removeByIds(ids));
+        return R.success(omsOrderService.removeBatchByIds(ids));
     }
 }

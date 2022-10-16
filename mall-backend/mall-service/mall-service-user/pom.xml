@@ -13,7 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>mall-service-user</name>
 
-    <description>用户服务</description>
+    <description>User Manage System（用户管理系统）</description>
 
     <dependencies>
         <!-- SpringCloud Alibaba Nacos -->

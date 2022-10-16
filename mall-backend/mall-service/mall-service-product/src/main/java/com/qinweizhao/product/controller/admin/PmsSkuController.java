@@ -64,6 +64,6 @@ public class PmsSkuController {
 //    @Log(title = "sku信息", businessType = BusinessType.DELETE)
 //    @DeleteMapping("/{skuIds}")
 //    public R<?> remove(@PathVariable Long[] skuIds) {
-//        return R.success(PmsSkuService.removeByIds(skuIds));
+//        return R.success(PmsSkuService.removeBatchByIds(skuIds));
 //    }
 }

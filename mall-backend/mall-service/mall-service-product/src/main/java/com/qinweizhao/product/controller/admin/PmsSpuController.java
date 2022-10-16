@@ -85,6 +85,6 @@ public class PmsSpuController {
     @Log(title = "spu信息", businessType = BusinessType.DELETE)
     @DeleteMapping("/{spuIds}")
     public R<Boolean> remove(@PathVariable List<Long> spuIds) {
-        return R.success(pmsSpuInfoService.removeByIds(spuIds));
+        return R.success(pmsSpuInfoService.removeBatchByIds(spuIds));
     }
 }

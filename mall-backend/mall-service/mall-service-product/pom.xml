@@ -11,7 +11,7 @@
 
     <artifactId>mall-service-product</artifactId>
     <name>mall-service-product</name>
-    <description>商品服务</description>
+    <description>Product Manage System（商品管理系统）</description>
 
 
     <dependencies>

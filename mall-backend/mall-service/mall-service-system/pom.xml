@@ -11,7 +11,7 @@
 
     <artifactId>mall-service-system</artifactId>
 
-    <description>系统模块</description>
+    <description>System Manage System后台管理系统</description>
 
     <dependencies>
         <!-- SpringBoot Admin -->
