@@ -3,14 +3,14 @@ package com.qinweizhao.system.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.qinweizhao.system.common.model.Option;
 import com.qinweizhao.system.pojo.entity.SysRole;
 import com.qinweizhao.system.pojo.form.RoleForm;
-import com.qinweizhao.system.pojo.form.RoleResourceForm;
 import com.qinweizhao.system.pojo.query.RolePageQuery;
 import com.qinweizhao.system.pojo.vo.role.RolePageVO;
-import com.qinweizhao.system.pojo.Option;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * 角色业务接口层
@@ -37,6 +37,7 @@ public interface SysRoleService extends IService<SysRole> {
     List<Option> listRoleOptions();
 
     /**
+     *
      * @param roleForm
      * @return
      */
@@ -66,15 +67,23 @@ public interface SysRoleService extends IService<SysRole> {
      * @param roleId
      * @return
      */
-    RoleResourceForm getRoleResources(Long roleId);
+    List<Long> getRoleMenuIds(Long roleId);
 
 
     /**
      * 修改角色的资源权限
      *
      * @param roleId
-     * @param roleResourceForm
+     * @param menuIds
      * @return
      */
-    boolean updateRoleResource(Long roleId, RoleResourceForm roleResourceForm);
+    boolean updateRoleMenus(Long roleId, List<Long> menuIds);
+
+    /**
+     * 获取最大范围的数据权限
+     *
+     * @param roles
+     * @return
+     */
+    Integer getMaximumDataScope(Set<String> roles);
 }

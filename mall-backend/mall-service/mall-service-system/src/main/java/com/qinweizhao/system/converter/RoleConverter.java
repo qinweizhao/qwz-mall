@@ -1,10 +1,10 @@
 package com.qinweizhao.system.converter;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.qinweizhao.system.common.model.Option;
 import com.qinweizhao.system.pojo.entity.SysRole;
 import com.qinweizhao.system.pojo.form.RoleForm;
 import com.qinweizhao.system.pojo.vo.role.RolePageVO;
-import com.qinweizhao.system.pojo.Option;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;

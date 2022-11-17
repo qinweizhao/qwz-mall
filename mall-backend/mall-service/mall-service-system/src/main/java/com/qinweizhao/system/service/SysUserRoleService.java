@@ -15,5 +15,5 @@ public interface SysUserRoleService extends IService<SysUserRole> {
      * @param roleIds
      * @return
      */
-    boolean saveUserRoles(Long userId, List<Long> roleIds);
+     boolean saveUserRoles(Long userId, List<Long> roleIds);
 }

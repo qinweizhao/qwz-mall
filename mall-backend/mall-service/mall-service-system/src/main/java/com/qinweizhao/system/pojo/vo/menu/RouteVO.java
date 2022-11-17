@@ -24,7 +24,6 @@ public class RouteVO {
     private String name;
 
     private Meta meta;
-    private List<RouteVO> children;
 
     @Data
     public static class Meta {
@@ -47,4 +46,6 @@ public class RouteVO {
          */
         private Boolean keepAlive;
     }
+
+    private List<RouteVO> children;
 }

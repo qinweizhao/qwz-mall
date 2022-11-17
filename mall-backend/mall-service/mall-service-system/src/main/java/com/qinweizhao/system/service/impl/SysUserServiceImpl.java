@@ -13,29 +13,30 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.common.collect.Lists;
+import com.qinweizhao.system.common.base.IBaseEnum;
+import com.qinweizhao.system.common.constant.SystemConstants;
+import com.qinweizhao.system.common.enums.GenderEnum;
+import com.qinweizhao.system.common.util.SecurityUtils;
 import com.qinweizhao.system.converter.UserConverter;
-import com.qinweizhao.system.dto.UserAuthDTO;
+import com.qinweizhao.system.dto.UserAuthInfo;
 import com.qinweizhao.system.listener.excel.UserImportListener;
 import com.qinweizhao.system.mapper.SysUserMapper;
-import com.qinweizhao.system.pojo.GenderEnum;
-import com.qinweizhao.system.pojo.IBaseEnum;
-import com.qinweizhao.system.pojo.SystemConstants;
-import com.qinweizhao.system.pojo.UserUtils;
+import com.qinweizhao.system.pojo.bo.UserBO;
+import com.qinweizhao.system.pojo.bo.UserFormBO;
 import com.qinweizhao.system.pojo.dto.UserImportDTO;
 import com.qinweizhao.system.pojo.entity.SysUser;
 import com.qinweizhao.system.pojo.entity.SysUserRole;
 import com.qinweizhao.system.pojo.form.UserForm;
-import com.qinweizhao.system.pojo.po.UserDetailPO;
-import com.qinweizhao.system.pojo.po.UserPO;
 import com.qinweizhao.system.pojo.query.UserPageQuery;
-import com.qinweizhao.system.pojo.vo.user.LoginUserVO;
-import com.qinweizhao.system.pojo.vo.user.UserDetailVO;
 import com.qinweizhao.system.pojo.vo.user.UserExportVO;
+import com.qinweizhao.system.pojo.vo.user.UserLoginVO;
 import com.qinweizhao.system.pojo.vo.user.UserVO;
-import com.qinweizhao.system.service.SysPermissionService;
+import com.qinweizhao.system.service.SysMenuService;
+import com.qinweizhao.system.service.SysRoleService;
 import com.qinweizhao.system.service.SysUserRoleService;
 import com.qinweizhao.system.service.SysUserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,6 +46,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -60,8 +62,10 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     private final PasswordEncoder passwordEncoder;
     private final SysUserRoleService userRoleService;
     private final UserImportListener userImportListener;
-    private final SysPermissionService permissionService;
     private final UserConverter userConverter;
+    private final SysMenuService menuService;
+    private final SysRoleService roleService;
+    private final RedisTemplate redisTemplate;
 
     /**
      * 获取用户分页列表
@@ -72,16 +76,15 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Override
     public IPage<UserVO> listUserPages(UserPageQuery queryParams) {
 
-        // 参数构建
-        int pageNum = queryParams.getPageNum();
-        int pageSize = queryParams.getPageSize();
-        Page<UserPO> page = new Page<>(pageNum, pageSize);
-
         // 查询数据
-        Page<UserPO> userPoPage = this.baseMapper.listUserPages(page, queryParams);
+        Page<UserBO> userBoPage = this.baseMapper.listUserPages(
+                new Page<>(queryParams.getPageNum(),
+                        queryParams.getPageSize()),
+                queryParams
+        );
 
         // 实体转换
-        Page<UserVO> userVoPage = userConverter.po2Vo(userPoPage);
+        Page<UserVO> userVoPage = userConverter.bo2Vo(userBoPage);
 
         return userVoPage;
     }
@@ -93,11 +96,11 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
      * @return
      */
     @Override
-    public UserDetailVO getUserDetail(Long userId) {
-        UserDetailPO userDetailPO = this.baseMapper.getUserDetail(userId);
+    public UserForm getUserFormData(Long userId) {
+        UserFormBO userFormBO = this.baseMapper.getUserDetail(userId);
         // 实体转换po->form
-        UserDetailVO userDetailVO = userConverter.po2Vo(userDetailPO);
-        return userDetailVO;
+        UserForm userForm = userConverter.bo2Form(userFormBO);
+        return userForm;
     }
 
     /**
@@ -188,7 +191,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
      * @return
      */
     @Override
-    public boolean updateUserPassword(Long userId, String password) {
+    public boolean updatePassword(Long userId, String password) {
         String encryptedPassword = passwordEncoder.encode(password);
         boolean result = this.update(new LambdaUpdateWrapper<SysUser>()
                 .eq(SysUser::getId, userId)
@@ -205,8 +208,18 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
      * @return
      */
     @Override
-    public UserAuthDTO getAuthInfoByUsername(String username) {
-        UserAuthDTO userAuthInfo = this.baseMapper.getAuthInfoByUsername(username);
+    public UserAuthInfo getUserAuthInfo(String username) {
+        UserAuthInfo userAuthInfo = this.baseMapper.getUserAuthInfo(username);
+
+        Set<String> roles = userAuthInfo.getRoles();
+        if (CollectionUtil.isNotEmpty(roles)) {
+            Set<String> perms = menuService.listRolePerms(roles);
+            userAuthInfo.setPerms(perms);
+
+            // 获取最大范围的数据权限
+            Integer dataScope = roleService.getMaximumDataScope(roles);
+            userAuthInfo.setDataScope(dataScope);
+        }
         return userAuthInfo;
     }
 
@@ -221,7 +234,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public String importUsers(UserImportDTO userImportDTO) throws IOException {
 
         Long deptId = userImportDTO.getDeptId();
-        List<Long> roleIds = Arrays.stream(userImportDTO.getRoleIds().split(",")).map(roleId -> Convert.toLong(roleId)).collect(Collectors.toList());
+        List<Long> roleIds = Arrays.stream(userImportDTO.getRoleIds().split(","))
+                .map(roleId -> Convert.toLong(roleId)).collect(Collectors.toList());
         InputStream inputStream = userImportDTO.getFile().getInputStream();
 
         ExcelReaderBuilder excelReaderBuilder = EasyExcel.read(inputStream, UserImportDTO.UserItem.class, userImportListener);
@@ -318,10 +332,10 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
      * @return
      */
     @Override
-    public LoginUserVO getLoginUserInfo() {
+    public UserLoginVO getLoginUserInfo() {
         // 登录用户entity
         SysUser user = this.getOne(new LambdaQueryWrapper<SysUser>()
-                .eq(SysUser::getId, UserUtils.getUserId())
+                .eq(SysUser::getUsername, SecurityUtils.getUsername())
                 .select(
                         SysUser::getId,
                         SysUser::getNickname,
@@ -329,17 +343,17 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
                 )
         );
         // entity->VO
-        LoginUserVO loginUserVO = userConverter.entity2LoginUser(user);
+        UserLoginVO userLoginVO = userConverter.entity2LoginUser(user);
 
         // 用户角色集合
-        List<String> roles = UserUtils.getRoles();
-        loginUserVO.setRoles(roles);
+        Set<String> roles = SecurityUtils.getRoles();
+        userLoginVO.setRoles(roles);
 
-        // 用户按钮权限集合
-        List<String> perms = permissionService.listBtnPermByRoles(roles);
-        loginUserVO.setPerms(perms);
+        // 用户权限集合
+        Set<String> perms = (Set<String>) redisTemplate.opsForValue().get("AUTH:USER_PERMS:" + user.getId());
+        userLoginVO.setPerms(perms);
 
-        return loginUserVO;
+        return userLoginVO;
     }
 
 

@@ -1,17 +1,19 @@
 package com.qinweizhao.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.qinweizhao.system.pojo.Option;
+import com.qinweizhao.system.common.model.Option;
 import com.qinweizhao.system.pojo.entity.SysMenu;
+import com.qinweizhao.system.pojo.query.MenuQuery;
 import com.qinweizhao.system.pojo.vo.menu.MenuVO;
 import com.qinweizhao.system.pojo.vo.menu.ResourceVO;
 import com.qinweizhao.system.pojo.vo.menu.RouteVO;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * 菜单业务接口
- *
+ * 
  * @author haoxr
  * @date 2020/11/06
  */
@@ -20,10 +22,9 @@ public interface SysMenuService extends IService<SysMenu> {
     /**
      * 获取菜单表格列表
      *
-     * @param name 菜单名称
      * @return
      */
-    List<MenuVO> listMenus(String name);
+    List<MenuVO> listMenus(MenuQuery queryParams);
 
 
     /**
@@ -62,10 +63,18 @@ public interface SysMenuService extends IService<SysMenu> {
 
     /**
      * 修改菜单显示状态
-     *
-     * @param menuId  菜单ID
+     * 
+     * @param menuId 菜单ID
      * @param visible 是否显示(1->显示；2->隐藏)
      * @return
      */
     boolean updateMenuVisible(Long menuId, Integer visible);
+
+    /**
+     * 获取角色权限集合
+     *
+     * @param roles
+     * @return
+     */
+    Set<String> listRolePerms(Set<String> roles);
 }

@@ -6,8 +6,8 @@ import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.alibaba.csp.sentinel.slots.block.degrade.DegradeException;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qinweizhao.system.pojo.result.Result;
-import com.qinweizhao.system.pojo.result.ResultCode;
+import com.qinweizhao.system.common.result.Result;
+import com.qinweizhao.system.common.result.ResultCode;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,11 +29,11 @@ public class DefaultBlockExceptionHandler implements BlockExceptionHandler {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
-        if (e instanceof FlowException) {
+        if(e instanceof FlowException){
             // objectMapper.writeValue 用于将java对象转位JSON格式返回调用方
             objectMapper.writeValue(response.getWriter(), Result.failed(ResultCode.FLOW_LIMITING));
-        } else if (e instanceof DegradeException) {
-            objectMapper.writeValue(response.getWriter(), Result.failed(ResultCode.DEGRADATION));
+        }else if(e instanceof DegradeException){
+            objectMapper.writeValue(response.getWriter(),Result.failed(ResultCode.DEGRADATION));
         }
     }
 }

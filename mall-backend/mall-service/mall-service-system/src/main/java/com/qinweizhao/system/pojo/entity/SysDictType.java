@@ -17,6 +17,6 @@ public class SysDictType extends BaseEntity {
 
     private Integer status;
 
-    private String remark;
+    private  String  remark;
 
 }

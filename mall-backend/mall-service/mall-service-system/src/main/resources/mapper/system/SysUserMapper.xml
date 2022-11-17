@@ -5,7 +5,7 @@
 <mapper namespace="com.qinweizhao.system.mapper.SysUserMapper">
 
     <!-- 用户分页列表 -->
-    <select id="listUserPages" resultType="com.qinweizhao.system.pojo.po.UserPO">
+    <select id="listUserPages" resultType="com.qinweizhao.system.pojo.bo.UserBO">
         SELECT
             u.id,
             u.username,
@@ -23,7 +23,7 @@
             LEFT JOIN sys_user_role ur ON u.id = ur.user_id
             LEFT JOIN sys_role r ON ur.role_id = r.id
         <where>
-            u.deleted = 0
+            u.deleted = 0 AND u.username != 'root'
             <if test='queryParams.keywords!=null and queryParams.keywords.trim() neq ""'>
                 AND (
                     u.username LIKE CONCAT('%',#{queryParams.keywords},'%')
@@ -42,7 +42,7 @@
     </select>
 
     <!-- 用户表单信息映射 -->
-    <resultMap id="UserFormMap" type="com.qinweizhao.system.pojo.po.UserDetailPO">
+    <resultMap id="UserFormMap" type="com.qinweizhao.system.pojo.bo.UserFormBO">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="username" column="username" jdbcType="VARCHAR"/>
         <result property="nickname" column="nickname" jdbcType="VARCHAR"/>
@@ -77,19 +77,19 @@
     </select>
 
     <!-- 用户认证信息映射 -->
-    <resultMap id="AuthUserMap" type="com.qinweizhao.system.dto.UserAuthDTO">
+    <resultMap id="UserAuthMap" type="com.qinweizhao.system.dto.UserAuthInfo">
         <id property="userId" column="userId" jdbcType="BIGINT"/>
         <result property="username" column="username" jdbcType="VARCHAR"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
         <result property="status" column="status" jdbcType="BOOLEAN"/>
         <result property="deptId" column="deptId" jdbcType="BIGINT"></result>
-        <collection property="roles" ofType="string" javaType="list">
+        <collection property="roles" ofType="string" javaType="java.util.Set">
             <result column="roleCode"></result>
         </collection>
     </resultMap>
 
     <!-- 根据用户名获取认证信息 -->
-    <select id="getAuthInfoByUsername" resultMap="AuthUserMap">
+    <select id="getUserAuthInfo" resultMap="UserAuthMap">
         SELECT
             t1.id userId,
             t1.username,

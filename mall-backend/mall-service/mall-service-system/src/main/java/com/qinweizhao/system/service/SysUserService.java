@@ -3,14 +3,13 @@ package com.qinweizhao.system.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.qinweizhao.system.dto.UserAuthDTO;
+import com.qinweizhao.system.dto.UserAuthInfo;
 import com.qinweizhao.system.pojo.dto.UserImportDTO;
 import com.qinweizhao.system.pojo.entity.SysUser;
 import com.qinweizhao.system.pojo.form.UserForm;
 import com.qinweizhao.system.pojo.query.UserPageQuery;
-import com.qinweizhao.system.pojo.vo.user.LoginUserVO;
-import com.qinweizhao.system.pojo.vo.user.UserDetailVO;
 import com.qinweizhao.system.pojo.vo.user.UserExportVO;
+import com.qinweizhao.system.pojo.vo.user.UserLoginVO;
 import com.qinweizhao.system.pojo.vo.user.UserVO;
 
 import java.io.IOException;
@@ -38,7 +37,7 @@ public interface SysUserService extends IService<SysUser> {
      * @param userId
      * @return
      */
-    UserDetailVO getUserDetail(Long userId);
+    UserForm getUserFormData(Long userId);
 
 
     /**
@@ -75,7 +74,7 @@ public interface SysUserService extends IService<SysUser> {
      * @param password 用户密码
      * @return
      */
-    boolean updateUserPassword(Long userId, String password);
+    boolean updatePassword(Long userId, String password);
 
     /**
      * 根据用户名获取认证信息
@@ -83,7 +82,7 @@ public interface SysUserService extends IService<SysUser> {
      * @param username
      * @return
      */
-    UserAuthDTO getAuthInfoByUsername(String username);
+    UserAuthInfo getUserAuthInfo(String username);
 
     /**
      * 导入用户
@@ -107,5 +106,5 @@ public interface SysUserService extends IService<SysUser> {
      *
      * @return
      */
-    LoginUserVO getLoginUserInfo();
+    UserLoginVO getLoginUserInfo();
 }

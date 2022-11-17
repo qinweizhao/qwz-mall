@@ -10,7 +10,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class SysDictItem extends BaseEntity {
 
-    @TableId(type = IdType.AUTO)
+    @TableId(type= IdType.AUTO)
     private Long id;
 
     private String name;

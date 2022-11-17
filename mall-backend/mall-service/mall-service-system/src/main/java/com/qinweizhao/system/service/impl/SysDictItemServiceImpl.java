@@ -12,22 +12,18 @@ import com.qinweizhao.system.pojo.form.DictItemForm;
 import com.qinweizhao.system.pojo.query.DictItemPageQuery;
 import com.qinweizhao.system.pojo.vo.dict.DictItemPageVO;
 import com.qinweizhao.system.service.SysDictItemService;
-import com.qinweizhao.system.pojo.Option;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
-
 /**
- * 字典数据项业务实现类
+ * 数据字典项业务实现类
  *
  * @author haoxr
- * @date 2022/6/9
+ * @date 2022/10/12
  */
 @Service
 @RequiredArgsConstructor
@@ -70,7 +66,7 @@ public class SysDictItemServiceImpl extends ServiceImpl<SysDictItemMapper, SysDi
      * @return
      */
     @Override
-    public DictItemForm getDictItemFormData(Long id) {
+    public DictItemForm getDictItemForm(Long id) {
         // 获取entity
         SysDictItem entity = this.getOne(new LambdaQueryWrapper<SysDictItem>()
                 .eq(SysDictItem::getId, id)
@@ -139,27 +135,8 @@ public class SysDictItemServiceImpl extends ServiceImpl<SysDictItemMapper, SysDi
         return result;
     }
 
-
-    /**
-     * 根据字典类型编码获取字典数据项
-     *
-     * @param typeCode 字典类型编码
-     * @return
-     */
-    @Override
-    public List<Option> listDictItemsByTypeCode(String typeCode) {
-
-        // 数据字典项
-        List<SysDictItem> dictItems = this.list(new LambdaQueryWrapper<SysDictItem>()
-                .eq(SysDictItem::getTypeCode, typeCode)
-                .select(SysDictItem::getValue, SysDictItem::getName)
-        );
-
-        // 转换下拉数据
-        List<Option> options = Optional.ofNullable(dictItems).orElse(new ArrayList<>()).stream()
-                .map(dictItem -> new Option(dictItem.getValue(), dictItem.getName()))
-                .collect(Collectors.toList());
-
-        return options;
-    }
 }
+
+
+
+

@@ -1,5 +1,4 @@
 package com.qinweizhao.system.pojo.entity;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

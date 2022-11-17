@@ -14,7 +14,6 @@ import com.qinweizhao.common.core.utils.ip.IpUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.system.api.UserFeignClient;
-import com.qinweizhao.system.dto.UserAuthDTO;
 import com.qinweizhao.system.model.param.SysLoginInfoParam;
 import org.springframework.stereotype.Component;
 

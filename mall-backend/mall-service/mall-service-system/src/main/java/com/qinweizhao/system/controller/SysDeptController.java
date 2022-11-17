@@ -1,12 +1,11 @@
 package com.qinweizhao.system.controller;
 
+import com.qinweizhao.system.common.model.Option;
+import com.qinweizhao.system.common.result.Result;
 import com.qinweizhao.system.pojo.form.DeptForm;
 import com.qinweizhao.system.pojo.query.DeptQuery;
-import com.qinweizhao.system.pojo.vo.dept.DeptDetailVO;
 import com.qinweizhao.system.pojo.vo.dept.DeptVO;
 import com.qinweizhao.system.service.SysDeptService;
-import com.qinweizhao.system.pojo.result.Result;
-import com.qinweizhao.system.pojo.Option;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -24,7 +23,7 @@ import java.util.List;
  */
 @Api(tags = "部门接口")
 @RestController
-@RequestMapping("/api/v1/depts")
+@RequestMapping("/api/v1/dept")
 @RequiredArgsConstructor
 public class SysDeptController {
 
@@ -32,8 +31,8 @@ public class SysDeptController {
 
     @ApiOperation(value = "获取部门列表")
     @GetMapping
-    public Result<List<DeptVO>> listDepts(DeptQuery queryParams) {
-        List<DeptVO> list = deptService.listDepts(queryParams);
+    public Result<List<DeptVO>> listDepartments(DeptQuery queryParams) {
+        List<DeptVO> list = deptService.listDepartments(queryParams);
         return Result.success(list);
     }
 
@@ -45,12 +44,12 @@ public class SysDeptController {
     }
 
     @ApiOperation(value = "获取部门详情")
-    @GetMapping("/{deptId}")
-    public Result<DeptDetailVO> getDeptDetail(
+    @GetMapping("/{deptId}/form")
+    public Result<DeptForm> getDeptForm(
             @ApiParam("部门ID") @PathVariable Long deptId
     ) {
-        DeptDetailVO deptDetail = deptService.getDeptDetail(deptId);
-        return Result.success(deptDetail);
+        DeptForm deptForm = deptService.getDeptForm(deptId);
+        return Result.success(deptForm);
     }
 
     @ApiOperation(value = "新增部门")

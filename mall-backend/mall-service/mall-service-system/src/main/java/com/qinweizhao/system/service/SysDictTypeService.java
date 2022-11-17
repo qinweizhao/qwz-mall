@@ -1,18 +1,20 @@
 package com.qinweizhao.system.service;
 
-
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.qinweizhao.system.common.model.Option;
 import com.qinweizhao.system.pojo.entity.SysDictType;
 import com.qinweizhao.system.pojo.form.DictTypeForm;
 import com.qinweizhao.system.pojo.query.DictTypePageQuery;
 import com.qinweizhao.system.pojo.vo.dict.DictTypePageVO;
 
+import java.util.List;
+
 /**
- * 字典类型业务接口
+ * 数据字典类型业务接口
  *
  * @author haoxr
- * @date 2022/6/8
+ * @date 2022/10/12
  */
 public interface SysDictTypeService extends IService<SysDictType> {
 
@@ -59,4 +61,13 @@ public interface SysDictTypeService extends IService<SysDictType> {
      * @return
      */
     boolean deleteDictTypes(String idsStr);
+
+
+    /**
+     * 获取字典类型的数据项
+     *
+     * @param typeCode
+     * @return
+     */
+    List<Option> listDictItemsByTypeCode(String typeCode);
 }

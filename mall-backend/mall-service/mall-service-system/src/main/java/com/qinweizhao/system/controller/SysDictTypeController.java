@@ -1,35 +1,38 @@
 package com.qinweizhao.system.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.qinweizhao.system.common.model.Option;
+import com.qinweizhao.system.common.result.PageResult;
+import com.qinweizhao.system.common.result.Result;
 import com.qinweizhao.system.pojo.form.DictTypeForm;
 import com.qinweizhao.system.pojo.query.DictTypePageQuery;
 import com.qinweizhao.system.pojo.vo.dict.DictTypePageVO;
 import com.qinweizhao.system.service.SysDictTypeService;
-import com.qinweizhao.system.pojo.result.PageResult;
-import com.qinweizhao.system.pojo.result.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-@Api(tags = "字典类型")
+import java.util.List;
+
+@Api(tags = "字典类型接口")
 @RestController
-@RequestMapping("/api/v1/dict-types")
+@RequestMapping("/api/v1/dict/types")
 @RequiredArgsConstructor
 public class SysDictTypeController {
 
     private final SysDictTypeService dictTypeService;
 
     @ApiOperation(value = "字典类型分页列表")
-    @GetMapping
+    @GetMapping("/pages")
     public PageResult<DictTypePageVO> listDictTypePages(DictTypePageQuery queryParams) {
         Page<DictTypePageVO> result = dictTypeService.listDictTypePages(queryParams);
         return PageResult.success(result);
     }
 
     @ApiOperation(value = "字典类型表单详情")
-    @GetMapping("/{id}/form_data")
+    @GetMapping("/{id}/form")
     public Result<DictTypeForm> getDictTypeFormData(
             @ApiParam("字典ID") @PathVariable Long id
     ) {
@@ -58,5 +61,14 @@ public class SysDictTypeController {
     ) {
         boolean result = dictTypeService.deleteDictTypes(ids);
         return Result.judge(result);
+    }
+
+    @ApiOperation(value = "获取字典类型的数据项")
+    @GetMapping("/{typeCode}/items")
+    public Result<List<Option>> listDictItemsByTypeCode(
+            @ApiParam("字典类型编码") @PathVariable String typeCode
+    ) {
+        List<Option> list = dictTypeService.listDictItemsByTypeCode(typeCode);
+        return Result.success(list);
     }
 }

@@ -1,7 +1,7 @@
 package com.qinweizhao.system.pojo.vo.menu;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.qinweizhao.system.pojo.Option;
+import com.qinweizhao.system.common.model.Option;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

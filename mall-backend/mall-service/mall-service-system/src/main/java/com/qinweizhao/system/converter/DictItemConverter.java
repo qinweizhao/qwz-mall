@@ -20,6 +20,6 @@ public interface DictItemConverter {
 
     DictItemForm entity2Form(SysDictItem entity);
 
-    @InheritInverseConfiguration(name = "entity2Form")
+    @InheritInverseConfiguration(name="entity2Form")
     SysDictItem form2Entity(DictItemForm entity);
 }

@@ -1,13 +1,13 @@
 package com.qinweizhao.system.controller;
 
-import com.qinweizhao.system.pojo.Option;
+import com.qinweizhao.system.common.model.Option;
+import com.qinweizhao.system.common.result.Result;
 import com.qinweizhao.system.pojo.entity.SysMenu;
-import com.qinweizhao.system.pojo.result.Result;
+import com.qinweizhao.system.pojo.query.MenuQuery;
 import com.qinweizhao.system.pojo.vo.menu.MenuVO;
 import com.qinweizhao.system.pojo.vo.menu.ResourceVO;
 import com.qinweizhao.system.pojo.vo.menu.RouteVO;
 import com.qinweizhao.system.service.SysMenuService;
-import com.qinweizhao.system.service.SysPermissionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -33,7 +33,6 @@ import java.util.List;
 public class SysMenuController {
 
     private final SysMenuService menuService;
-    private final SysPermissionService permissionService;
 
     @ApiOperation(value = "资源(菜单+权限)列表")
     @GetMapping("/resources")
@@ -44,10 +43,8 @@ public class SysMenuController {
 
     @ApiOperation(value = "菜单列表")
     @GetMapping
-    public Result listMenus(
-            @ApiParam("菜单名称") String name
-    ) {
-        List<MenuVO> menuList = menuService.listMenus(name);
+    public Result listMenus(MenuQuery queryParams) {
+        List<MenuVO> menuList = menuService.listMenus(queryParams);
         return Result.success(menuList);
     }
 
@@ -99,9 +96,6 @@ public class SysMenuController {
             @ApiParam("菜单ID，多个以英文(,)分割") @PathVariable("ids") String ids
     ) {
         boolean result = menuService.removeByIds(Arrays.asList(ids.split(",")));
-        if (result) {
-            permissionService.refreshPermRolesRules();
-        }
         return Result.judge(result);
     }
 
@@ -109,10 +103,10 @@ public class SysMenuController {
     @PatchMapping("/{menuId}")
     public Result updateMenuVisible(
             @ApiParam(value = "菜单ID") @PathVariable Long menuId,
-            @ApiParam(value = "显示状态(1-显示；2-隐藏)") Integer visible
+            @ApiParam(value = "显示状态(1:显示;0:隐藏)") Integer visible
 
     ) {
-        boolean result = menuService.updateMenuVisible(menuId, visible);
+        boolean result =menuService.updateMenuVisible(menuId, visible);
         return Result.judge(result);
     }
 

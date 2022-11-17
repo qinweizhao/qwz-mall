@@ -1,12 +1,11 @@
 package com.qinweizhao.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.qinweizhao.system.common.model.Option;
 import com.qinweizhao.system.pojo.entity.SysDept;
 import com.qinweizhao.system.pojo.form.DeptForm;
 import com.qinweizhao.system.pojo.query.DeptQuery;
-import com.qinweizhao.system.pojo.vo.dept.DeptDetailVO;
 import com.qinweizhao.system.pojo.vo.dept.DeptVO;
-import com.qinweizhao.system.pojo.Option;
 
 import java.util.List;
 
@@ -22,7 +21,7 @@ public interface SysDeptService extends IService<SysDept> {
      *
      * @return
      */
-    List<DeptVO> listDepts(DeptQuery queryParams);
+    List<DeptVO> listDepartments(DeptQuery queryParams);
 
     /**
      * 部门树形下拉选项
@@ -62,5 +61,5 @@ public interface SysDeptService extends IService<SysDept> {
      * @param deptId
      * @return
      */
-    DeptDetailVO getDeptDetail(Long deptId);
+    DeptForm getDeptForm(Long deptId);
 }

@@ -1,6 +1,6 @@
 package com.qinweizhao.system.pojo.query;
 
-import com.qinweizhao.system.pojo.BasePageQuery;
+import com.qinweizhao.system.common.base.BasePageQuery;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

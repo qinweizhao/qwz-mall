@@ -1,6 +1,6 @@
 package com.qinweizhao.system.pojo.query;
 
-import com.qinweizhao.system.pojo.BasePageQuery;
+import com.qinweizhao.system.common.base.BasePageQuery;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -9,6 +9,7 @@ import lombok.Data;
  *
  * @author haoxr
  * @date 2022/6/3
+ *
  */
 @Data
 public class RolePageQuery extends BasePageQuery {

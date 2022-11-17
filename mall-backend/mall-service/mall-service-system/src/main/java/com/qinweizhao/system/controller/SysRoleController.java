@@ -1,15 +1,14 @@
 package com.qinweizhao.system.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.qinweizhao.system.common.model.Option;
+import com.qinweizhao.system.common.result.PageResult;
+import com.qinweizhao.system.common.result.Result;
 import com.qinweizhao.system.pojo.entity.SysRole;
 import com.qinweizhao.system.pojo.form.RoleForm;
-import com.qinweizhao.system.pojo.form.RoleResourceForm;
 import com.qinweizhao.system.pojo.query.RolePageQuery;
 import com.qinweizhao.system.pojo.vo.role.RolePageVO;
 import com.qinweizhao.system.service.SysRoleService;
-import com.qinweizhao.system.pojo.result.PageResult;
-import com.qinweizhao.system.pojo.result.Result;
-import com.qinweizhao.system.pojo.Option;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -24,20 +23,19 @@ import java.util.List;
 @RequestMapping("/api/v1/roles")
 @RequiredArgsConstructor
 public class SysRoleController {
-
-    private final SysRoleService sysRoleService;
+    private final SysRoleService roleService;
 
     @ApiOperation(value = "角色分页列表")
     @GetMapping("/pages")
     public PageResult<RolePageVO> listRolePages(RolePageQuery queryParams) {
-        Page<RolePageVO> result = sysRoleService.listRolePages(queryParams);
+        Page<RolePageVO> result = roleService.listRolePages(queryParams);
         return PageResult.success(result);
     }
 
     @ApiOperation(value = "角色下拉列表")
     @GetMapping("/options")
     public Result<List<Option>> listRoleOptions() {
-        List<Option> list = sysRoleService.listRoleOptions();
+        List<Option> list = roleService.listRoleOptions();
         return Result.success(list);
     }
 
@@ -46,21 +44,21 @@ public class SysRoleController {
     public Result getRoleDetail(
             @ApiParam("角色ID") @PathVariable Long roleId
     ) {
-        SysRole role = sysRoleService.getById(roleId);
+        SysRole role = roleService.getById(roleId);
         return Result.success(role);
     }
 
     @ApiOperation(value = "新增角色")
     @PostMapping
     public Result addRole(@Valid @RequestBody RoleForm roleForm) {
-        boolean result = sysRoleService.saveRole(roleForm);
+        boolean result = roleService.saveRole(roleForm);
         return Result.judge(result);
     }
 
     @ApiOperation(value = "修改角色")
     @PutMapping(value = "/{id}")
     public Result updateRole(@Valid @RequestBody RoleForm roleForm) {
-        boolean result = sysRoleService.saveRole(roleForm);
+        boolean result = roleService.saveRole(roleForm);
         return Result.judge(result);
     }
 
@@ -69,7 +67,7 @@ public class SysRoleController {
     public Result deleteRoles(
             @ApiParam("删除角色，多个以英文逗号(,)分割") @PathVariable String ids
     ) {
-        boolean result = sysRoleService.deleteRoles(ids);
+        boolean result = roleService.deleteRoles(ids);
         return Result.judge(result);
     }
 
@@ -77,28 +75,28 @@ public class SysRoleController {
     @PutMapping(value = "/{roleId}/status")
     public Result updateRoleStatus(
             @ApiParam("角色ID") @PathVariable Long roleId,
-            @ApiParam("角色状态:1-正常；0-禁用") @RequestParam Integer status
+            @ApiParam("角色状态:1-启用；0-禁用") @RequestParam Integer status
     ) {
-        boolean result = sysRoleService.updateRoleStatus(roleId, status);
+        boolean result = roleService.updateRoleStatus(roleId, status);
         return Result.judge(result);
     }
 
-    @ApiOperation(value = "获取角色的资源ID集合", notes = "资源包括菜单和权限ID")
-    @GetMapping("/{roleId}/resources")
-    public Result<RoleResourceForm> getRoleResources(
+    @ApiOperation(value = "获取角色的菜单ID集合")
+    @GetMapping("/{roleId}/menuIds")
+    public Result<List<Long>> getRoleMenuIds(
             @ApiParam("角色ID") @PathVariable Long roleId
     ) {
-        RoleResourceForm resourceIds = sysRoleService.getRoleResources(roleId);
+        List<Long> resourceIds = roleService.getRoleMenuIds(roleId);
         return Result.success(resourceIds);
     }
 
     @ApiOperation(value = "分配角色的资源权限")
-    @PutMapping("/{roleId}/resources")
-    public Result updateRoleResource(
+    @PutMapping("/{roleId}/menus")
+    public Result updateRoleMenus(
             @PathVariable Long roleId,
-            @RequestBody RoleResourceForm roleResourceForm
+            @RequestBody List<Long> menuIds
     ) {
-        boolean result = sysRoleService.updateRoleResource(roleId, roleResourceForm);
+        boolean result = roleService.updateRoleMenus(roleId,menuIds);
         return Result.judge(result);
     }
 }

@@ -2,11 +2,11 @@ package com.qinweizhao.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.qinweizhao.system.dto.UserAuthDTO;
-import com.qinweizhao.system.pojo.DataPermission;
+import com.qinweizhao.system.common.annotation.DataPermission;
+import com.qinweizhao.system.dto.UserAuthInfo;
+import com.qinweizhao.system.pojo.bo.UserBO;
+import com.qinweizhao.system.pojo.bo.UserFormBO;
 import com.qinweizhao.system.pojo.entity.SysUser;
-import com.qinweizhao.system.pojo.po.UserDetailPO;
-import com.qinweizhao.system.pojo.po.UserPO;
 import com.qinweizhao.system.pojo.query.UserPageQuery;
 import com.qinweizhao.system.pojo.vo.user.UserExportVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -29,8 +29,8 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @param queryParams 查询参数
      * @return
      */
-    @DataPermission(deptAlias = "d")
-    Page<UserPO> listUserPages(Page<UserPO> page, UserPageQuery queryParams);
+    @DataPermission(deptAlias = "u",userAlias = "u")
+    Page<UserBO> listUserPages(Page<UserBO> page, UserPageQuery queryParams);
 
     /**
      * 获取用户表单详情
@@ -38,7 +38,7 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @param userId 用户ID
      * @return
      */
-    UserDetailPO getUserDetail(Long userId);
+    UserFormBO getUserDetail(Long userId);
 
     /**
      * 根据用户名获取认证信息
@@ -46,7 +46,7 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @param username
      * @return
      */
-    UserAuthDTO getAuthInfoByUsername(String username);
+    UserAuthInfo getUserAuthInfo(String username);
 
     /**
      * 获取导出用户列表
@@ -54,6 +54,6 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @param queryParams
      * @return
      */
-    @DataPermission(deptAlias = "d")
+    @DataPermission(deptAlias = "u")
     List<UserExportVO> listExportUsers(UserPageQuery queryParams);
 }

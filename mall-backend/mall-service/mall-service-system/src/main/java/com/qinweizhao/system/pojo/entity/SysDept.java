@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class SysDept extends BaseEntity {
 
-    @TableId(type = IdType.AUTO)
+    @TableId(type= IdType.AUTO)
     private Long id;
 
     private String name;
