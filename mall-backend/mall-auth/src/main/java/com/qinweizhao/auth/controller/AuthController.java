@@ -37,7 +37,7 @@ public class AuthController {
     private ValidateCodeService validateCodeService;
 
 
-    @GetMapping("/code")
+    @GetMapping("/captcha")
     public R<Object> code() {
         Map<String, Object> captcha = validateCodeService.createCaptcha();
         return R.success(captcha);

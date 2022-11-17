@@ -82,10 +82,11 @@
         </dependency>
 
         <!-- Common Log -->
-        <dependency>
-            <groupId>com.qinweizhao.component</groupId>
-            <artifactId>qwz-component-starter-log</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.qinweizhao.component</groupId>-->
+<!--            <artifactId>qwz-component-starter-log</artifactId>-->
+<!--        </dependency>-->
+
 
         <dependency>
             <groupId>com.qinweizhao.component</groupId>

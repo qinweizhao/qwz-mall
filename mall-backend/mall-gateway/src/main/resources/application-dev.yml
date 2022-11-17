@@ -86,7 +86,7 @@ security:
     whites:
       - /auth/logout
       - /auth/login
-      - /auth/code
+      - /auth/captcha
       - /auth/register
       - /csrf
       - /favicon.ico

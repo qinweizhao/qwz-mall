@@ -1,3 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.qinweizhao.system.api.fallback.UserFeignFallbackClient,\
-  com.qinweizhao.system.factory.RemoteLogFallbackFactory
+  com.qinweizhao.system.api.fallback.UserFeignFallbackClient

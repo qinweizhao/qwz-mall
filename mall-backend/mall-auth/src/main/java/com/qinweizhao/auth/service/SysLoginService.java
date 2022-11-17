@@ -13,10 +13,9 @@ import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.utils.ip.IpUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.component.core.response.R;
-import com.qinweizhao.system.feign.LogFeignClient;
-import com.qinweizhao.system.feign.UserFeignClient;
+import com.qinweizhao.system.api.UserFeignClient;
+import com.qinweizhao.system.dto.UserAuthDTO;
 import com.qinweizhao.system.model.param.SysLoginInfoParam;
-import com.qinweizhao.system.model.param.SysUserParam;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -29,8 +28,8 @@ import javax.annotation.Resource;
 @Component
 public class SysLoginService {
 
-    @Resource
-    private LogFeignClient logFeignClient;
+//    @Resource
+//    private LogFeignClient logFeignClient;
 
     @Resource
     private UserFeignClient userFeignClient;
@@ -43,9 +42,8 @@ public class SysLoginService {
      * 登录
      */
     public LoginUser login(String username, String password, String sysType) {
-
+// todo
         this.preCheck(username, password);
-
         R<LoginUser> userResult;
 
         if (SysTypeEnum.APP.value().equals(sysType)) {
@@ -53,22 +51,24 @@ public class SysLoginService {
             userResult = memberFeignClient.getMemberInfo(username, SecurityConstants.INNER);
         } else {
             // admin 验证
-            userResult = userFeignClient.getUserInfo(username, SecurityConstants.INNER);
+//            userResult = userFeignClient.getUserInfo(username, SecurityConstants.INNER);
+
         }
+        R<UserAuthDTO> s = userFeignClient.getUserByUsername("username");
+//        if (Constants.FAIL.equals(userResult.getCode())) {
+//            throw new ServiceException(userResult.getMessage());
+//        }
 
-        if (Constants.FAIL.equals(userResult.getCode())) {
-            throw new ServiceException(userResult.getMessage());
-        }
+//
+//        LoginUser userInfo = userResult.getData();
 
-
-        LoginUser userInfo = userResult.getData();
-
-
-        this.postCheck(username, password, sysType, userInfo);
-
-        recordLoginInfo(username, Constants.LOGIN_SUCCESS, "登录成功");
-
-        return userInfo;
+//
+//        this.postCheck(username, password, sysType, userInfo);
+//
+//        recordLoginInfo(username, Constants.LOGIN_SUCCESS, "登录成功");
+//
+//        return userInfo;
+        return null;
     }
 
 
@@ -115,14 +115,12 @@ public class SysLoginService {
             throw new ServiceException("用户/密码必须填写");
         }
         // 密码如果不在指定范围内 错误
-        if (password.length() < UserConstants.PASSWORD_MIN_LENGTH
-                || password.length() > UserConstants.PASSWORD_MAX_LENGTH) {
+        if (password.length() < UserConstants.PASSWORD_MIN_LENGTH || password.length() > UserConstants.PASSWORD_MAX_LENGTH) {
             recordLoginInfo(username, Constants.LOGIN_FAIL, "用户密码不在指定范围");
             throw new ServiceException("用户密码不在指定范围");
         }
         // 用户名不在指定范围内 错误
-        if (username.length() < UserConstants.USERNAME_MIN_LENGTH
-                || username.length() > UserConstants.USERNAME_MAX_LENGTH) {
+        if (username.length() < UserConstants.USERNAME_MIN_LENGTH || username.length() > UserConstants.USERNAME_MAX_LENGTH) {
             recordLoginInfo(username, Constants.LOGIN_FAIL, "用户名不在指定范围");
             throw new ServiceException("用户名不在指定范围");
         }
@@ -140,25 +138,23 @@ public class SysLoginService {
         if (StringUtils.isAnyBlank(username, password)) {
             throw new ServiceException("用户/密码必须填写");
         }
-        if (username.length() < UserConstants.USERNAME_MIN_LENGTH
-                || username.length() > UserConstants.USERNAME_MAX_LENGTH) {
+        if (username.length() < UserConstants.USERNAME_MIN_LENGTH || username.length() > UserConstants.USERNAME_MAX_LENGTH) {
             throw new ServiceException("账户长度必须在2到20个字符之间");
         }
-        if (password.length() < UserConstants.PASSWORD_MIN_LENGTH
-                || password.length() > UserConstants.PASSWORD_MAX_LENGTH) {
+        if (password.length() < UserConstants.PASSWORD_MIN_LENGTH || password.length() > UserConstants.PASSWORD_MAX_LENGTH) {
             throw new ServiceException("密码长度必须在5到20个字符之间");
         }
+//  todo
+//        // 注册用户信息
+//        SysUserParam sysUser = new SysUserParam();
+//        sysUser.setUserName(username);
+//        sysUser.setNickName(username);
+//        sysUser.setPassword(SecurityUtils.encryptPassword(password));
+//        R<?> registerResult = userFeignClient.registerUserInfo(sysUser, SecurityConstants.INNER);
 
-        // 注册用户信息
-        SysUserParam sysUser = new SysUserParam();
-        sysUser.setUserName(username);
-        sysUser.setNickName(username);
-        sysUser.setPassword(SecurityUtils.encryptPassword(password));
-        R<?> registerResult = userFeignClient.registerUserInfo(sysUser, SecurityConstants.INNER);
-
-        if (Constants.FAIL.equals(registerResult.getCode())) {
-            throw new ServiceException(registerResult.getMessage());
-        }
+//        if (Constants.FAIL.equals(registerResult.getCode())) {
+//            throw new ServiceException(registerResult.getMessage());
+//        }
         recordLoginInfo(username, Constants.REGISTER, "注册成功");
     }
 
@@ -180,6 +176,6 @@ public class SysLoginService {
         } else if (Constants.LOGIN_FAIL.equals(status)) {
             loginInfo.setStatus("1");
         }
-        logFeignClient.saveLoginInfo(loginInfo, SecurityConstants.INNER);
+//        logFeignClient.saveLoginInfo(loginInfo, SecurityConstants.INNER);
     }
 }
