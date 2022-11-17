@@ -1,6 +1,7 @@
 package com.qinweizhao.system.mapper;
 
 import com.qinweizhao.system.model.entity.SysOperLog;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
  *
  * @author ruoyi
  */
+@Mapper
 public interface SysOperLogMapper {
     /**
      * 新增操作日志

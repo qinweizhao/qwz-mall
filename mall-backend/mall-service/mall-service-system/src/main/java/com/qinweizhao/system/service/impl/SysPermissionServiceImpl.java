@@ -1,56 +1,114 @@
 package com.qinweizhao.system.service.impl;
 
-import com.qinweizhao.system.model.entity.SysUser;
-import com.qinweizhao.system.service.ISysMenuService;
-import com.qinweizhao.system.service.ISysPermissionService;
-import com.qinweizhao.system.service.ISysRoleService;
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.map.MapUtil;
+import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.qinweizhao.system.mapper.SysPermissionMapper;
+import com.qinweizhao.system.pojo.GlobalConstants;
+import com.qinweizhao.system.pojo.entity.SysPermission;
+import com.qinweizhao.system.pojo.query.PermPageQuery;
+import com.qinweizhao.system.pojo.vo.perm.PermPageVO;
+import com.qinweizhao.system.service.SysPermissionService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
+/**
+ * 权限业务实现类
+ *
+ * @author haoxr
+ * @date 2022/1/22
+ */
 @Service
-public class SysPermissionServiceImpl implements ISysPermissionService {
-    @Resource
-    private ISysRoleService roleService;
+@RequiredArgsConstructor
+public class SysPermissionServiceImpl extends ServiceImpl<SysPermissionMapper, SysPermission> implements SysPermissionService {
 
-    @Resource
-    private ISysMenuService menuService;
+    private final RedisTemplate redisTemplate;
 
     /**
-     * 获取角色数据权限
+     * 获取权限分页列表
      *
-     * @param userId 用户Id
-     * @return 角色权限信息
+     * @param queryParams
+     * @return
      */
     @Override
-    public Set<String> getRolePermission(Long userId) {
-        Set<String> roles = new HashSet<String>();
-        // 管理员拥有所有权限
-        if (SysUser.isAdmin(userId)) {
-            roles.add("admin");
-        } else {
-            roles.addAll(roleService.selectRolePermissionByUserId(userId));
-        }
-        return roles;
+    public IPage<PermPageVO> listPermPages(PermPageQuery queryParams) {
+        Page<PermPageVO> page = new Page<>(queryParams.getPageNum(), queryParams.getPageSize());
+        List<PermPageVO> list = this.baseMapper.listPermPages(page, queryParams);
+        page.setRecords(list);
+        return page;
     }
 
     /**
-     * 获取菜单数据权限
+     * 根据角色编码集合获取按钮权限
      *
-     * @param userId 用户Id
-     * @return 菜单权限信息
+     * @param roles 角色权限编码集合
+     * @return
      */
     @Override
-    public Set<String> getMenuPermission(Long userId) {
-        Set<String> perms = new HashSet<String>();
-        // 管理员拥有所有权限
-        if (SysUser.isAdmin(userId)) {
-            perms.add("*:*:*");
-        } else {
-            perms.addAll(menuService.selectMenuPermsByUserId(userId));
-        }
+    public List<String> listBtnPermByRoles(List<String> roles) {
+        List<String> perms = this.baseMapper.listBtnPermByRoles(roles);
         return perms;
     }
+
+    /**
+     * 权限<->有权限的角色集合
+     *
+     * @return
+     */
+    @Override
+    public List<SysPermission> listPermRoles() {
+        return this.baseMapper.listPermRoles();
+    }
+
+    /**
+     * 刷新权限角色缓存
+     *
+     * @return
+     */
+    @Override
+    public boolean refreshPermRolesRules() {
+        redisTemplate.delete(Arrays.asList(GlobalConstants.URL_PERM_ROLES_KEY, GlobalConstants.BTN_PERM_ROLES_KEY));
+        List<SysPermission> permissions = this.listPermRoles();
+        if (CollectionUtil.isNotEmpty(permissions)) {
+            // 初始化URL【权限->角色(集合)】规则
+            List<SysPermission> urlPermList = permissions.stream()
+                    .filter(item -> StrUtil.isNotBlank(item.getUrlPerm()))
+                    .collect(Collectors.toList());
+            if (CollectionUtil.isNotEmpty(urlPermList)) {
+                Map<String, List<String>> urlPermRoles = new HashMap<>();
+                urlPermList.stream().forEach(item -> {
+                    String perm = item.getUrlPerm();
+                    List<String> roles = item.getRoles();
+                    urlPermRoles.put(perm, roles);
+                });
+                redisTemplate.opsForHash().putAll(GlobalConstants.URL_PERM_ROLES_KEY, urlPermRoles);
+            }
+            // 初始化URL【按钮->角色(集合)】规则
+            List<SysPermission> btnPermList = permissions.stream()
+                    .filter(item -> StrUtil.isNotBlank(item.getBtnPerm()))
+                    .collect(Collectors.toList());
+            if (CollectionUtil.isNotEmpty(btnPermList)) {
+                Map<String, List<String>> btnPermRoles = MapUtil.newHashMap();
+                btnPermList.stream().forEach(item -> {
+                    String perm = item.getBtnPerm();
+                    List<String> roles = item.getRoles();
+                    btnPermRoles.put(perm, roles);
+                });
+                redisTemplate.opsForHash().putAll(GlobalConstants.BTN_PERM_ROLES_KEY, btnPermRoles);
+            }
+        }
+        return true;
+    }
+
+
 }

@@ -3,7 +3,7 @@ package com.qinweizhao.system.model.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.qinweizhao.common.core.annotation.Excel;
 import com.qinweizhao.common.core.annotation.Excel.ColumnType;
-import com.qinweizhao.system.model.base.BaseEntity;
+import com.qinweizhao.component.core.entity.BaseEntity;
 
 import java.util.Date;
 

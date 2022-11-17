@@ -5,8 +5,6 @@ import com.qinweizhao.common.core.web.domain.AjaxResult;
 import com.qinweizhao.common.core.web.page.TableDataInfo;
 import com.qinweizhao.common.security.annotation.InnerAuth;
 import com.qinweizhao.common.security.annotation.RequiresPermissions;
-import com.qinweizhao.component.log.annotation.Log;
-import com.qinweizhao.component.log.enums.BusinessType;
 import com.qinweizhao.system.model.entity.SysLogininfor;
 import com.qinweizhao.system.service.ISysLogininforService;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +32,7 @@ public class SysLogininforController extends BaseController {
         return getDataTable(list);
     }
 
-    @Log(title = "登录日志", businessType = BusinessType.EXPORT)
+    //   @Log(title = "登录日志", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:logininfor:export")
     @PostMapping("/export")
     public void export(HttpServletResponse response, SysLogininfor logininfor) {
@@ -44,14 +42,14 @@ public class SysLogininforController extends BaseController {
     }
 
     @RequiresPermissions("system:logininfor:remove")
-    @Log(title = "登录日志", businessType = BusinessType.DELETE)
+//    @Log(title = "登录日志", businessType = BusinessType.DELETE)
     @DeleteMapping("/{infoIds}")
     public AjaxResult remove(@PathVariable Long[] infoIds) {
         return toAjax(logininforService.deleteLogininforByIds(infoIds));
     }
 
     @RequiresPermissions("system:logininfor:remove")
-    @Log(title = "登录日志", businessType = BusinessType.DELETE)
+    //   @Log(title = "登录日志", businessType = BusinessType.DELETE)
     @DeleteMapping("/clean")
     public AjaxResult clean() {
         logininforService.cleanLogininfor();

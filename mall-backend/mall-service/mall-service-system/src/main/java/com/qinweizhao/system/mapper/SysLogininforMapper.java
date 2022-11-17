@@ -1,6 +1,7 @@
 package com.qinweizhao.system.mapper;
 
 import com.qinweizhao.system.model.entity.SysLogininfor;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
  *
  * @author ruoyi
  */
+@Mapper
 public interface SysLogininforMapper {
     /**
      * 新增系统登录日志
