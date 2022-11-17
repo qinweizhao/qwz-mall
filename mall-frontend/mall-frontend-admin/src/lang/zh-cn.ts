@@ -6,14 +6,14 @@ export default {
   },
   // 登录页面国际化
   login: {
-    title: '有来商城管理系统',
+    title: '后台管理系统',
     username: '用户名',
     password: '密码',
     login: '登 录',
     code: '请输入验证码',
     copyright:
-      'Copyright © 2021 - 2022 youlai.tech All Rights Reserved. 有来技术 版权所有',
-    icp: 'ICP备案号:皖ICP备20006496号-2',
+      'Copyright © 2021 - 2022 xxx All Rights Reserved. 版权所有',
+    icp: 'ICP备案号:皖ICP备XXXXX号',
   },
   navbar: {
     dashboard: '首页',

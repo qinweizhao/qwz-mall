@@ -43,7 +43,7 @@ public class ValidateCodeServiceImpl implements ValidateCodeService {
      * 生成验证码
      */
     @Override
-    public Map<String, Object> createCaptcha() throws CaptchaException{
+    public Map<String, Object> createCaptcha() throws CaptchaException {
         Map<String, Object> map = new LinkedHashMap<>();
 
         boolean captchaOnOff = captchaProperties.getEnabled();
@@ -80,12 +80,12 @@ public class ValidateCodeServiceImpl implements ValidateCodeService {
         try {
             assert image != null;
             ImageIO.write(image, "jpg", os);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new CaptchaException("生成验证码失败");
         }
 
-        map.put("uuid", uuid);
-        map.put("img", Base64.encode(os.toByteArray()));
+        map.put("verifyCodeKey", uuid);
+        map.put("verifyCodeImg", "data:image/png;base64," + Base64.encode(os.toByteArray()));
 
         return map;
     }
