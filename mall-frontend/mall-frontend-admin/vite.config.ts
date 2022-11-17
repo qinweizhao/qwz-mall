@@ -26,7 +26,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       proxy: {
         [env.VITE_APP_BASE_API]: {
           // 本地API地址
-          target: 'http://localhost:9999',
+          target: 'http://localhost:8080',
           changeOrigin: true,
           rewrite: (path) =>
             // @ts-ignore
