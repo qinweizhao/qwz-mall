@@ -86,8 +86,12 @@ security:
     whites:
       - /auth/logout
       - /auth/login
-      - /auth/captcha
+      - /captcha
       - /auth/register
       - /csrf
       - /favicon.ico
       - /*/app/**
+# 验证码
+captcha:
+  enabled: true
+  type: math

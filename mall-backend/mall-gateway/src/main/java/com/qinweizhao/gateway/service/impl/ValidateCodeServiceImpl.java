@@ -1,14 +1,14 @@
-package com.qinweizhao.auth.service.impl;
+package com.qinweizhao.gateway.service.impl;
 
 import com.google.code.kaptcha.Producer;
-import com.qinweizhao.auth.config.properties.CaptchaProperties;
-import com.qinweizhao.auth.service.ValidateCodeService;
 import com.qinweizhao.common.core.constant.Constants;
 import com.qinweizhao.common.core.exception.CaptchaException;
 import com.qinweizhao.common.core.utils.IdUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
 import com.qinweizhao.common.core.utils.sign.Base64;
 import com.qinweizhao.component.redis.service.RedisService;
+import com.qinweizhao.gateway.config.properties.CaptchaProperties;
+import com.qinweizhao.gateway.service.ValidateCodeService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FastByteArrayOutputStream;
 
@@ -58,7 +58,8 @@ public class ValidateCodeServiceImpl implements ValidateCodeService {
         String uuid = IdUtils.simpleUUID();
         String verifyKey = Constants.CAPTCHA_CODE_KEY + uuid;
 
-        String capStr, code = null;
+        String capStr;
+        String code = null;
         BufferedImage image = null;
 
         String captchaType = captchaProperties.getType();

@@ -1,4 +1,4 @@
-package com.qinweizhao.auth.config.properties;
+package com.qinweizhao.gateway.config.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @RefreshScope
-@ConfigurationProperties(prefix = "auth.captcha")
+@ConfigurationProperties(prefix = "captcha")
 public class CaptchaProperties {
     /**
      * 验证码开关

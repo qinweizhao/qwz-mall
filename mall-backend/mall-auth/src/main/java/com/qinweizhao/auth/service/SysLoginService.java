@@ -8,13 +8,10 @@ import com.qinweizhao.common.core.constant.UserConstants;
 import com.qinweizhao.common.core.enums.UserStatus;
 import com.qinweizhao.common.core.exception.ServiceException;
 import com.qinweizhao.common.core.model.LoginUser;
-import com.qinweizhao.common.core.utils.ServletUtils;
 import com.qinweizhao.common.core.utils.StringUtils;
-import com.qinweizhao.common.core.utils.ip.IpUtils;
 import com.qinweizhao.common.security.utils.SecurityUtils;
 import com.qinweizhao.component.core.response.R;
 import com.qinweizhao.system.api.UserFeignClient;
-import com.qinweizhao.system.model.param.SysLoginInfoParam;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -53,10 +50,7 @@ public class SysLoginService {
 //            userResult = userFeignClient.getUserInfo(username, SecurityConstants.INNER);
 
         }
-        R<UserAuthDTO> s = userFeignClient.getUserByUsername("username");
-//        if (Constants.FAIL.equals(userResult.getCode())) {
-//            throw new ServiceException(userResult.getMessage());
-//        }
+
 
 //
 //        LoginUser userInfo = userResult.getData();
@@ -165,16 +159,16 @@ public class SysLoginService {
      * @param message  消息内容
      */
     public void recordLoginInfo(String username, String status, String message) {
-        SysLoginInfoParam loginInfo = new SysLoginInfoParam();
-        loginInfo.setUserName(username);
-        loginInfo.setIpaddr(IpUtils.getIpAddr(ServletUtils.getRequest()));
-        loginInfo.setMsg(message);
-        // 日志状态
-        if (StringUtils.equalsAny(status, Constants.LOGIN_SUCCESS, Constants.LOGOUT, Constants.REGISTER)) {
-            loginInfo.setStatus("0");
-        } else if (Constants.LOGIN_FAIL.equals(status)) {
-            loginInfo.setStatus("1");
-        }
+//        SysLoginInfoParam loginInfo = new SysLoginInfoParam();
+//        loginInfo.setUserName(username);
+//        loginInfo.setIpaddr(IpUtils.getIpAddr(ServletUtils.getRequest()));
+//        loginInfo.setMsg(message);
+//        // 日志状态
+//        if (StringUtils.equalsAny(status, Constants.LOGIN_SUCCESS, Constants.LOGOUT, Constants.REGISTER)) {
+//            loginInfo.setStatus("0");
+//        } else if (Constants.LOGIN_FAIL.equals(status)) {
+//            loginInfo.setStatus("1");
+//        }
 //        logFeignClient.saveLoginInfo(loginInfo, SecurityConstants.INNER);
     }
 }

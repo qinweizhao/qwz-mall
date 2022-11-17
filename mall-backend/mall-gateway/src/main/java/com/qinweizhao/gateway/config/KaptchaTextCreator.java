@@ -1,4 +1,4 @@
-package com.qinweizhao.auth.config;
+package com.qinweizhao.gateway.config;
 
 import com.google.code.kaptcha.text.impl.DefaultTextCreator;
 
