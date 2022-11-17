@@ -98,6 +98,7 @@ public class UmsUserController {
     @Log(title = "会员", businessType = BusinessType.DELETE)
     @DeleteMapping("/{ids}")
     public R<?> remove(@PathVariable List<Long> ids) {
-        return R.success(umsUserService.removeByIds(ids));
+//        return R.success(umsUserService.removeByIds(ids));
+        return R.success();
     }
 }
