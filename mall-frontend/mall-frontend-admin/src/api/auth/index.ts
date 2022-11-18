@@ -9,7 +9,7 @@ import { LoginForm, LoginResult, VerifyCode } from './types';
  */
 export function loginApi(data: LoginForm): AxiosPromise<LoginResult> {
   return request({
-    url: '/youlai-auth/oauth/token',
+    url: '/auth/oauth/token',
     method: 'post',
     params: data,
     headers: {

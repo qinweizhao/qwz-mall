@@ -14,6 +14,28 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-oauth2-jose</artifactId>
+            <version>5.7.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-oauth2-core</artifactId>
+            <version>5.7.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <version>2.7.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-oauth2-authorization-server</artifactId>
+            <version>0.3.1</version>
+        </dependency>
         <!-- SpringCloud Alibaba Nacos -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -51,7 +73,6 @@
         </dependency>
 
 
-
         <dependency>
             <groupId>com.qinweizhao.component</groupId>
             <artifactId>qwz-component-starter-redis</artifactId>
@@ -75,7 +96,7 @@
                 <executions>
                     <execution>
                         <goals>
-                             <goal>repackage</goal>
+                            <goal>repackage</goal>
                         </goals>
                     </execution>
                 </executions>
