@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.qinweizhao</groupId>
+        <artifactId>mall-backend</artifactId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>mall-api</artifactId>
+    <packaging>pom</packaging>
+
+    <description>mall 内网接口</description>
+    <modules>
+        <module>mall-api-auth</module>
+        <module>mall-api-biz</module>
+        <module>mall-api-rbac</module>
+        <module>mall-api-leaf</module>
+        <module>mall-api-product</module>
+        <module>mall-api-multishop</module>
+        <module>mall-api-user</module>
+        <module>mall-api-order</module>
+        <module>mall-api-search</module>
+        <module>mall-api-platform</module>
+    </modules>
+
+</project>
