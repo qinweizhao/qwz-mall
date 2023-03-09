@@ -12,7 +12,7 @@
   </parent>
 
 
-  <artifactId>mall-frontend-admin</artifactId>
+  <artifactId>mall-frontend-platform</artifactId>
   <description>管理端</description>
 
   <properties>
