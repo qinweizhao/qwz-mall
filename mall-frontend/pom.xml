@@ -25,6 +25,7 @@
 
     <modules>
         <module>mall-frontend-app</module>
-        <module>mall-frontend-admin</module>
+        <module>mall-frontend-multishop</module>
+        <module>mall-frontend-platform</module>
     </modules>
 </project>
