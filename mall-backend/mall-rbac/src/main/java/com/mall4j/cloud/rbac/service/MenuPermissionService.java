@@ -1,13 +1,13 @@
 package com.mall4j.cloud.rbac.service;
 
 import com.mall4j.cloud.api.rbac.bo.UriPermissionBO;
-
-import java.util.List;
 import com.mall4j.cloud.common.database.dto.PageDTO;
 import com.mall4j.cloud.common.database.vo.PageVO;
 import com.mall4j.cloud.common.response.ServerResponseEntity;
 import com.mall4j.cloud.rbac.model.MenuPermission;
 import com.mall4j.cloud.rbac.vo.MenuPermissionVO;
+
+import java.util.List;
 
 /**
  * 菜单资源

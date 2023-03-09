@@ -1,11 +1,11 @@
 package com.mall4j.cloud.auth.controller;
 
-import com.mall4j.cloud.common.security.bo.TokenInfoBO;
+import com.mall4j.cloud.api.auth.vo.TokenInfoVO;
 import com.mall4j.cloud.auth.dto.RefreshTokenDTO;
 import com.mall4j.cloud.auth.manager.TokenStore;
-import com.mall4j.cloud.api.auth.vo.TokenInfoVO;
 import com.mall4j.cloud.common.response.ServerResponseEntity;
-import io.swagger.annotations.Api;
+import com.mall4j.cloud.common.security.bo.TokenInfoBO;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +19,7 @@ import javax.validation.Valid;
  * @date 2020/6/30
  */
 @RestController
-@Api(tags = "token")
+@Tag(name = "token")
 public class TokenController {
 
 	@Autowired

@@ -1,10 +1,10 @@
 package com.mall4j.cloud.product.service;
 
+import com.mall4j.cloud.api.product.vo.AttrVO;
 import com.mall4j.cloud.common.database.dto.PageDTO;
 import com.mall4j.cloud.common.database.vo.PageVO;
 import com.mall4j.cloud.product.dto.AttrDTO;
 import com.mall4j.cloud.product.model.Attr;
-import com.mall4j.cloud.api.product.vo.AttrVO;
 
 import java.util.List;
 

@@ -1,13 +1,13 @@
 package com.mall4j.cloud.product.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
+import com.mall4j.cloud.api.product.vo.SpuAttrValueVO;
 import com.mall4j.cloud.common.cache.constant.CacheNames;
 import com.mall4j.cloud.common.cache.util.RedisUtil;
 import com.mall4j.cloud.product.mapper.SpuAttrValueMapper;
 import com.mall4j.cloud.product.mapper.SpuMapper;
 import com.mall4j.cloud.product.model.SpuAttrValue;
 import com.mall4j.cloud.product.service.SpuAttrValueService;
-import com.mall4j.cloud.api.product.vo.SpuAttrValueVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

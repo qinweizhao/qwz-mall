@@ -1,6 +1,7 @@
 package com.mall4j.cloud.product.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
+import com.mall4j.cloud.api.product.vo.SkuVO;
 import com.mall4j.cloud.api.product.vo.SpuSkuAttrValueVO;
 import com.mall4j.cloud.common.cache.constant.CacheNames;
 import com.mall4j.cloud.common.cache.util.RedisUtil;
@@ -14,7 +15,6 @@ import com.mall4j.cloud.product.model.SpuSkuAttrValue;
 import com.mall4j.cloud.product.service.SkuService;
 import com.mall4j.cloud.product.service.SkuStockService;
 import com.mall4j.cloud.product.service.SpuSkuAttrValueService;
-import com.mall4j.cloud.api.product.vo.SkuVO;
 import com.mall4j.cloud.product.vo.app.SkuAppVO;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.aop.framework.AopContext;

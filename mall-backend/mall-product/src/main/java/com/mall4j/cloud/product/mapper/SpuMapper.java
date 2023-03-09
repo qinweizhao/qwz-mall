@@ -1,11 +1,11 @@
 package com.mall4j.cloud.product.mapper;
 
 import com.mall4j.cloud.api.product.bo.EsProductBO;
+import com.mall4j.cloud.api.product.vo.SpuVO;
 import com.mall4j.cloud.common.database.dto.PageDTO;
 import com.mall4j.cloud.product.dto.SpuDTO;
 import com.mall4j.cloud.product.dto.SpuPageSearchDTO;
 import com.mall4j.cloud.product.model.Spu;
-import com.mall4j.cloud.api.product.vo.SpuVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

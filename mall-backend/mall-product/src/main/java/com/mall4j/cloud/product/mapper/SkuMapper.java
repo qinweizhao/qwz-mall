@@ -1,8 +1,8 @@
 package com.mall4j.cloud.product.mapper;
 
+import com.mall4j.cloud.api.product.vo.SkuVO;
 import com.mall4j.cloud.product.dto.SkuDTO;
 import com.mall4j.cloud.product.model.Sku;
-import com.mall4j.cloud.api.product.vo.SkuVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

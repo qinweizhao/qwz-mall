@@ -1,7 +1,7 @@
 package com.mall4j.cloud.platform.service.impl;
 
-import com.mall4j.cloud.api.auth.dto.AuthAccountDTO;
 import com.mall4j.cloud.api.auth.bo.UserInfoInTokenBO;
+import com.mall4j.cloud.api.auth.dto.AuthAccountDTO;
 import com.mall4j.cloud.api.auth.feign.AccountFeignClient;
 import com.mall4j.cloud.api.auth.vo.AuthAccountVO;
 import com.mall4j.cloud.common.response.ServerResponseEntity;

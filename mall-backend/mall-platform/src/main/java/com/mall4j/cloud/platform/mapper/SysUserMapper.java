@@ -1,8 +1,8 @@
 package com.mall4j.cloud.platform.mapper;
 
 import com.mall4j.cloud.platform.model.SysUser;
-import com.mall4j.cloud.platform.vo.SysUserVO;
 import com.mall4j.cloud.platform.vo.SysUserSimpleVO;
+import com.mall4j.cloud.platform.vo.SysUserVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

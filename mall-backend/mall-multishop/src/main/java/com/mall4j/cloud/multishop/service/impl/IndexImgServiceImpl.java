@@ -5,16 +5,15 @@ import com.mall4j.cloud.common.database.dto.PageDTO;
 import com.mall4j.cloud.common.database.util.PageUtil;
 import com.mall4j.cloud.common.database.vo.PageVO;
 import com.mall4j.cloud.multishop.dto.IndexImgDTO;
-import com.mall4j.cloud.multishop.model.IndexImg;
 import com.mall4j.cloud.multishop.mapper.IndexImgMapper;
+import com.mall4j.cloud.multishop.model.IndexImg;
 import com.mall4j.cloud.multishop.service.IndexImgService;
 import com.mall4j.cloud.multishop.vo.IndexImgVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 

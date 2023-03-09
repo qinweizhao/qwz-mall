@@ -1,12 +1,11 @@
 package com.mall4j.cloud.product.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
-import com.mall4j.cloud.product.model.CategoryBrand;
 import com.mall4j.cloud.product.mapper.CategoryBrandMapper;
+import com.mall4j.cloud.product.model.CategoryBrand;
 import com.mall4j.cloud.product.service.CategoryBrandService;
-import org.springframework.stereotype.Service;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;

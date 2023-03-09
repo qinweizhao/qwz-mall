@@ -1,10 +1,6 @@
 package com.mall4j.cloud.product.service;
 
-import com.mall4j.cloud.api.product.vo.CategoryVO;
 import com.mall4j.cloud.product.dto.CategoryDTO;
-import com.mall4j.cloud.product.model.Category;
-
-import java.util.List;
 
 /**
  * 分类信息

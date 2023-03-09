@@ -1,9 +1,9 @@
 package com.mall4j.cloud.product.mapper;
 
+import com.mall4j.cloud.api.product.vo.AttrVO;
 import com.mall4j.cloud.common.database.util.PageAdapter;
 import com.mall4j.cloud.product.dto.AttrDTO;
 import com.mall4j.cloud.product.model.Attr;
-import com.mall4j.cloud.api.product.vo.AttrVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

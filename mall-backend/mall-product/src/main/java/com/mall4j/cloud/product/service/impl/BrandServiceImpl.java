@@ -1,6 +1,7 @@
 package com.mall4j.cloud.product.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
+import com.mall4j.cloud.api.product.vo.BrandVO;
 import com.mall4j.cloud.common.cache.constant.CacheNames;
 import com.mall4j.cloud.common.cache.util.RedisUtil;
 import com.mall4j.cloud.common.constant.StatusEnum;
@@ -9,15 +10,14 @@ import com.mall4j.cloud.common.database.util.PageUtil;
 import com.mall4j.cloud.common.database.vo.PageVO;
 import com.mall4j.cloud.common.exception.Mall4cloudException;
 import com.mall4j.cloud.product.dto.BrandDTO;
-import com.mall4j.cloud.product.model.Brand;
 import com.mall4j.cloud.product.mapper.BrandMapper;
+import com.mall4j.cloud.product.model.Brand;
 import com.mall4j.cloud.product.service.BrandService;
 import com.mall4j.cloud.product.service.CategoryBrandService;
-import com.mall4j.cloud.api.product.vo.BrandVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;

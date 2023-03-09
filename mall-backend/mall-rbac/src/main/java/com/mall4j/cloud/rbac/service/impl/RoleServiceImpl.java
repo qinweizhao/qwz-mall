@@ -4,16 +4,15 @@ import cn.hutool.core.collection.CollectionUtil;
 import com.mall4j.cloud.common.database.dto.PageDTO;
 import com.mall4j.cloud.common.database.util.PageUtil;
 import com.mall4j.cloud.common.database.vo.PageVO;
+import com.mall4j.cloud.rbac.mapper.RoleMapper;
 import com.mall4j.cloud.rbac.mapper.RoleMenuMapper;
 import com.mall4j.cloud.rbac.mapper.UserRoleMapper;
 import com.mall4j.cloud.rbac.model.Role;
-import com.mall4j.cloud.rbac.mapper.RoleMapper;
 import com.mall4j.cloud.rbac.model.RoleMenu;
 import com.mall4j.cloud.rbac.service.RoleService;
 import com.mall4j.cloud.rbac.vo.RoleVO;
-import org.springframework.stereotype.Service;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;

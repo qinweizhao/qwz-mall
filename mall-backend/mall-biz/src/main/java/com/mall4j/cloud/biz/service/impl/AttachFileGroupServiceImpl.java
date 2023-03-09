@@ -1,14 +1,13 @@
 package com.mall4j.cloud.biz.service.impl;
 
+import com.mall4j.cloud.biz.mapper.AttachFileGroupMapper;
 import com.mall4j.cloud.biz.mapper.AttachFileMapper;
 import com.mall4j.cloud.biz.model.AttachFileGroup;
-import com.mall4j.cloud.biz.mapper.AttachFileGroupMapper;
 import com.mall4j.cloud.biz.service.AttachFileGroupService;
 import com.mall4j.cloud.biz.vo.AttachFileGroupVO;
 import com.mall4j.cloud.common.security.AuthUserContext;
-import org.springframework.stereotype.Service;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;

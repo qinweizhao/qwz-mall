@@ -5,20 +5,18 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.crypto.symmetric.AES;
+import com.mall4j.cloud.api.auth.bo.UserInfoInTokenBO;
+import com.mall4j.cloud.api.auth.constant.SysTypeEnum;
+import com.mall4j.cloud.api.auth.vo.TokenInfoVO;
 import com.mall4j.cloud.common.cache.constant.CacheNames;
 import com.mall4j.cloud.common.exception.Mall4cloudException;
 import com.mall4j.cloud.common.response.ResponseEnum;
-import com.mall4j.cloud.common.security.bo.TokenInfoBO;
-import com.mall4j.cloud.api.auth.bo.UserInfoInTokenBO;
-import com.mall4j.cloud.api.auth.constant.SysTypeEnum;
 import com.mall4j.cloud.common.response.ServerResponseEntity;
-import com.mall4j.cloud.api.auth.vo.TokenInfoVO;
+import com.mall4j.cloud.common.security.bo.TokenInfoBO;
 import com.mall4j.cloud.common.util.PrincipalUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -27,7 +25,10 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**

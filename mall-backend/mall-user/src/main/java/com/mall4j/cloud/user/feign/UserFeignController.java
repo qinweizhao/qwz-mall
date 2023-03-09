@@ -1,9 +1,9 @@
 package com.mall4j.cloud.user.feign;
 
 import com.mall4j.cloud.api.user.feign.UserFeignClient;
+import com.mall4j.cloud.api.user.vo.UserApiVO;
 import com.mall4j.cloud.common.response.ServerResponseEntity;
 import com.mall4j.cloud.user.service.UserService;
-import com.mall4j.cloud.api.user.vo.UserApiVO;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;

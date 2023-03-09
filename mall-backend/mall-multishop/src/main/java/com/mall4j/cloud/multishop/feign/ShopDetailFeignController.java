@@ -2,10 +2,10 @@ package com.mall4j.cloud.multishop.feign;
 
 import com.mall4j.cloud.api.multishop.bo.EsShopDetailBO;
 import com.mall4j.cloud.api.multishop.feign.ShopDetailFeignClient;
+import com.mall4j.cloud.api.multishop.vo.ShopDetailVO;
 import com.mall4j.cloud.common.response.ServerResponseEntity;
 import com.mall4j.cloud.multishop.model.ShopDetail;
 import com.mall4j.cloud.multishop.service.ShopDetailService;
-import com.mall4j.cloud.api.multishop.vo.ShopDetailVO;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;

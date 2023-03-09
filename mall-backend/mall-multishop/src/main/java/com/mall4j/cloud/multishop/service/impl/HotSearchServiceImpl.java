@@ -5,15 +5,14 @@ import com.mall4j.cloud.common.database.dto.PageDTO;
 import com.mall4j.cloud.common.database.util.PageUtil;
 import com.mall4j.cloud.common.database.vo.PageVO;
 import com.mall4j.cloud.multishop.dto.HotSearchDTO;
-import com.mall4j.cloud.multishop.model.HotSearch;
 import com.mall4j.cloud.multishop.mapper.HotSearchMapper;
+import com.mall4j.cloud.multishop.model.HotSearch;
 import com.mall4j.cloud.multishop.service.HotSearchService;
 import com.mall4j.cloud.multishop.vo.HotSearchVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 

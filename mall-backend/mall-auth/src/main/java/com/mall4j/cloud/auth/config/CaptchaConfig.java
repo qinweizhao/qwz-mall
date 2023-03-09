@@ -1,6 +1,5 @@
 package com.mall4j.cloud.auth.config;
 
-import cn.hutool.core.io.FileUtil;
 import com.anji.captcha.model.common.CaptchaTypeEnum;
 import com.anji.captcha.model.common.Const;
 import com.anji.captcha.service.CaptchaService;

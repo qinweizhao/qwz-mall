@@ -1,20 +1,21 @@
 package com.mall4j.cloud.rbac.controller;
 
-import com.mall4j.cloud.common.response.ResponseEnum;
-import com.mall4j.cloud.rbac.model.Role;
-import com.mall4j.cloud.rbac.service.RoleService;
-import com.mall4j.cloud.rbac.vo.RoleVO;
-import com.mall4j.cloud.rbac.dto.RoleDTO;
 import com.mall4j.cloud.api.auth.bo.UserInfoInTokenBO;
 import com.mall4j.cloud.common.database.dto.PageDTO;
 import com.mall4j.cloud.common.database.vo.PageVO;
+import com.mall4j.cloud.common.response.ResponseEnum;
 import com.mall4j.cloud.common.response.ServerResponseEntity;
 import com.mall4j.cloud.common.security.AuthUserContext;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import com.mall4j.cloud.rbac.dto.RoleDTO;
+import com.mall4j.cloud.rbac.model.Role;
+import com.mall4j.cloud.rbac.service.RoleService;
+import com.mall4j.cloud.rbac.vo.RoleVO;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
@@ -27,7 +28,7 @@ import java.util.Objects;
  */
 @RestController
 @RequestMapping("/role")
-@Api(tags = "角色")
+@Tag(name = "角色")
 public class RoleController {
 
     @Autowired
@@ -37,7 +38,7 @@ public class RoleController {
 	private MapperFacade mapperFacade;
 
 	@GetMapping("/page")
-	@ApiOperation(value = "分页获取角色列表", notes = "分页获取角色列表")
+	@Operation(summary = "分页获取角色列表" , description = "分页获取角色列表")
 	public ServerResponseEntity<PageVO<RoleVO>> page(@Valid PageDTO pageDTO) {
         UserInfoInTokenBO userInfoInTokenBO = AuthUserContext.get();
 		PageVO<RoleVO> rolePage = roleService.page(pageDTO, userInfoInTokenBO.getSysType(), userInfoInTokenBO.getTenantId());
@@ -45,20 +46,20 @@ public class RoleController {
 	}
 
     @GetMapping("/list")
-    @ApiOperation(value = "获取角色列表", notes = "分页获取角色列表")
+    @Operation(summary = "获取角色列表" , description = "分页获取角色列表")
     public ServerResponseEntity<List<RoleVO>> list() {
         UserInfoInTokenBO userInfoInTokenBO = AuthUserContext.get();
         return ServerResponseEntity.success(roleService.list(userInfoInTokenBO.getSysType(), userInfoInTokenBO.getTenantId()));
     }
 
 	@GetMapping
-    @ApiOperation(value = "获取角色", notes = "根据roleId获取角色")
+    @Operation(summary = "获取角色" , description = "根据roleId获取角色")
     public ServerResponseEntity<RoleVO> getByRoleId(@RequestParam Long roleId) {
         return ServerResponseEntity.success(roleService.getByRoleId(roleId));
     }
 
     @PostMapping
-    @ApiOperation(value = "保存角色", notes = "保存角色")
+    @Operation(summary = "保存角色" , description = "保存角色")
     public ServerResponseEntity<Void> save(@Valid @RequestBody RoleDTO roleDTO) {
         Role role = mapperFacade.map(roleDTO, Role.class);
         UserInfoInTokenBO userInfoInTokenBO = AuthUserContext.get();
@@ -71,7 +72,7 @@ public class RoleController {
     }
 
     @PutMapping
-    @ApiOperation(value = "更新角色", notes = "更新角色")
+    @Operation(summary = "更新角色" , description = "更新角色")
     public ServerResponseEntity<Void> update(@Valid @RequestBody RoleDTO roleDTO) {
 
         UserInfoInTokenBO userInfoInTokenBO = AuthUserContext.get();
@@ -90,7 +91,7 @@ public class RoleController {
     }
 
     @DeleteMapping
-    @ApiOperation(value = "删除角色", notes = "根据角色id删除角色")
+    @Operation(summary = "删除角色" , description = "根据角色id删除角色")
     public ServerResponseEntity<Void> delete(@RequestParam Long roleId) {
         UserInfoInTokenBO userInfoInTokenBO = AuthUserContext.get();
 

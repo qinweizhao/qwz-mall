@@ -1,11 +1,11 @@
 package com.mall4j.cloud.multishop.service;
 
 import com.mall4j.cloud.api.multishop.bo.EsShopDetailBO;
+import com.mall4j.cloud.api.multishop.vo.ShopDetailVO;
 import com.mall4j.cloud.common.database.dto.PageDTO;
 import com.mall4j.cloud.common.database.vo.PageVO;
 import com.mall4j.cloud.multishop.dto.ShopDetailDTO;
 import com.mall4j.cloud.multishop.model.ShopDetail;
-import com.mall4j.cloud.api.multishop.vo.ShopDetailVO;
 import com.mall4j.cloud.multishop.vo.ShopDetailAppVO;
 
 import java.util.List;

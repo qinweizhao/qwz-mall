@@ -1,6 +1,8 @@
 package com.mall4j.cloud.product.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
+import com.mall4j.cloud.api.product.vo.AttrVO;
+import com.mall4j.cloud.api.product.vo.CategoryVO;
 import com.mall4j.cloud.common.cache.constant.CacheNames;
 import com.mall4j.cloud.common.cache.util.RedisUtil;
 import com.mall4j.cloud.common.database.dto.PageDTO;
@@ -11,17 +13,17 @@ import com.mall4j.cloud.common.exception.Mall4cloudException;
 import com.mall4j.cloud.common.security.AuthUserContext;
 import com.mall4j.cloud.product.constant.AttrType;
 import com.mall4j.cloud.product.dto.AttrDTO;
-import com.mall4j.cloud.product.model.Attr;
 import com.mall4j.cloud.product.mapper.AttrMapper;
+import com.mall4j.cloud.product.model.Attr;
 import com.mall4j.cloud.product.service.*;
-import com.mall4j.cloud.api.product.vo.AttrVO;
-import com.mall4j.cloud.api.product.vo.CategoryVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**

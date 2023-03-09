@@ -1,11 +1,10 @@
 package com.mall4j.cloud.rbac.service;
 
 import com.mall4j.cloud.rbac.model.Menu;
-
-import java.util.List;
-
 import com.mall4j.cloud.rbac.vo.MenuSimpleVO;
 import com.mall4j.cloud.rbac.vo.MenuVO;
+
+import java.util.List;
 
 /**
  * 菜单管理

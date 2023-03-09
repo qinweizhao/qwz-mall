@@ -1,8 +1,8 @@
 package com.mall4j.cloud.api.order.feign;
 
 import com.mall4j.cloud.api.order.bo.EsOrderBO;
-import com.mall4j.cloud.api.order.bo.OrderStatusBO;
 import com.mall4j.cloud.api.order.bo.OrderSimpleAmountInfoBO;
+import com.mall4j.cloud.api.order.bo.OrderStatusBO;
 import com.mall4j.cloud.api.order.vo.OrderAmountVO;
 import com.mall4j.cloud.common.feign.FeignInsideAuthConfig;
 import com.mall4j.cloud.common.response.ServerResponseEntity;

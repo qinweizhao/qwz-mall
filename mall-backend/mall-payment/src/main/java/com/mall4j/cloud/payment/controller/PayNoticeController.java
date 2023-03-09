@@ -4,11 +4,11 @@ import cn.hutool.core.util.StrUtil;
 import com.mall4j.cloud.payment.bo.PayInfoResultBO;
 import com.mall4j.cloud.payment.model.PayInfo;
 import com.mall4j.cloud.payment.service.PayInfoService;
+import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * @author FrozenWatermelon
  */
-@ApiIgnore
+@Hidden
 @RestController
 @RequestMapping("/notice/pay")
 public class PayNoticeController {

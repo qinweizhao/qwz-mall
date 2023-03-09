@@ -6,7 +6,8 @@ import com.mall4j.cloud.common.dto.OrderSearchDTO;
 import com.mall4j.cloud.common.feign.FeignInsideAuthConfig;
 import com.mall4j.cloud.common.response.ServerResponseEntity;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * 订单搜索

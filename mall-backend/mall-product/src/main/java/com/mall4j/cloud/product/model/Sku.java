@@ -1,9 +1,9 @@
 package com.mall4j.cloud.product.model;
 
+import com.mall4j.cloud.common.model.BaseModel;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
-
-import com.mall4j.cloud.common.model.BaseModel;
 /**
  * sku信息
  *

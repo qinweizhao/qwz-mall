@@ -1,9 +1,9 @@
 package com.mall4j.cloud.multishop.model;
 
-import java.io.Serializable;
-
 import com.mall4j.cloud.common.database.annotations.DistributedId;
 import com.mall4j.cloud.common.model.BaseModel;
+
+import java.io.Serializable;
 /**
  * 商家用户
  *

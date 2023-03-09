@@ -1,10 +1,10 @@
 package com.mall4j.cloud.product.service;
 
+import com.mall4j.cloud.api.product.vo.BrandVO;
 import com.mall4j.cloud.common.database.dto.PageDTO;
 import com.mall4j.cloud.common.database.vo.PageVO;
 import com.mall4j.cloud.product.dto.BrandDTO;
 import com.mall4j.cloud.product.model.Brand;
-import com.mall4j.cloud.api.product.vo.BrandVO;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
 package com.mall4j.cloud.multishop.mapper;
 
 import com.mall4j.cloud.multishop.model.ShopUser;
-import com.mall4j.cloud.multishop.vo.ShopUserVO;
 import com.mall4j.cloud.multishop.vo.ShopUserSimpleVO;
+import com.mall4j.cloud.multishop.vo.ShopUserVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

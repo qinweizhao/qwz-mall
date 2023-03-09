@@ -3,7 +3,6 @@ package com.mall4j.cloud.product.feign;
 import com.mall4j.cloud.api.product.dto.SkuStockLockDTO;
 import com.mall4j.cloud.api.product.feign.SkuStockLockFeignClient;
 import com.mall4j.cloud.common.response.ServerResponseEntity;
-import com.mall4j.cloud.product.service.*;
 import com.mall4j.cloud.product.service.SkuStockLockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;

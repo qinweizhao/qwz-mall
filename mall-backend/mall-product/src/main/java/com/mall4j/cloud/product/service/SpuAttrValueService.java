@@ -1,7 +1,7 @@
 package com.mall4j.cloud.product.service;
 
-import com.mall4j.cloud.product.model.SpuAttrValue;
 import com.mall4j.cloud.api.product.vo.SpuAttrValueVO;
+import com.mall4j.cloud.product.model.SpuAttrValue;
 
 import java.util.List;
 

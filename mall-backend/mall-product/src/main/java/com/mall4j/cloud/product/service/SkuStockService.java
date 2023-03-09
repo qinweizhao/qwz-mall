@@ -1,9 +1,9 @@
 package com.mall4j.cloud.product.service;
 
+import com.mall4j.cloud.api.product.vo.SkuVO;
 import com.mall4j.cloud.product.dto.SkuDTO;
 import com.mall4j.cloud.product.model.SkuStock;
 import com.mall4j.cloud.product.vo.SkuStockVO;
-import com.mall4j.cloud.api.product.vo.SkuVO;
 
 import java.util.List;
 

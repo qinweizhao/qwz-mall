@@ -1,8 +1,8 @@
 package com.mall4j.cloud.product.mapper;
 
+import com.mall4j.cloud.api.product.vo.BrandVO;
 import com.mall4j.cloud.product.dto.BrandDTO;
 import com.mall4j.cloud.product.model.Brand;
-import com.mall4j.cloud.api.product.vo.BrandVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

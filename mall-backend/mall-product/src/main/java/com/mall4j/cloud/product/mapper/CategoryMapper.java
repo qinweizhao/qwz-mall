@@ -1,7 +1,7 @@
 package com.mall4j.cloud.product.mapper;
 
-import com.mall4j.cloud.product.model.Category;
 import com.mall4j.cloud.api.product.vo.CategoryVO;
+import com.mall4j.cloud.product.model.Category;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

@@ -1,16 +1,15 @@
 package com.mall4j.cloud.api.product.manager;
 
 import cn.hutool.core.collection.CollectionUtil;
-import com.google.common.collect.Lists;
 import com.mall4j.cloud.api.multishop.feign.ShopDetailFeignClient;
-import com.mall4j.cloud.common.exception.Mall4cloudException;
 import com.mall4j.cloud.api.product.dto.ShopCartItemDTO;
 import com.mall4j.cloud.api.product.feign.ShopCartFeignClient;
 import com.mall4j.cloud.api.product.feign.SpuFeignClient;
-import com.mall4j.cloud.common.order.vo.ShopCartItemVO;
 import com.mall4j.cloud.api.product.vo.SkuVO;
 import com.mall4j.cloud.api.product.vo.SpuAndSkuVO;
 import com.mall4j.cloud.api.product.vo.SpuVO;
+import com.mall4j.cloud.common.exception.Mall4cloudException;
+import com.mall4j.cloud.common.order.vo.ShopCartItemVO;
 import com.mall4j.cloud.common.order.vo.ShopCartVO;
 import com.mall4j.cloud.common.response.ResponseEnum;
 import com.mall4j.cloud.common.response.ServerResponseEntity;
@@ -104,7 +103,7 @@ public class ShopCartAdapter {
         Map<Long, List<ShopCartItemVO>> shopCartMap = shopCartItems.stream().collect(Collectors.groupingBy(ShopCartItemVO::getShopId));
 
         // 返回一个店铺的所有信息
-        List<ShopCartVO> shopCarts = Lists.newArrayList();
+        List<ShopCartVO> shopCarts = new ArrayList<>();
         for (Long shopId : shopCartMap.keySet()) {
             // 构建每个店铺的购物车信息
             ShopCartVO shopCart = buildShopCart(shopId,shopCartMap.get(shopId));

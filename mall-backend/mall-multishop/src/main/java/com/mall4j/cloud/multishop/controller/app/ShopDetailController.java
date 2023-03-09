@@ -5,10 +5,13 @@ import com.mall4j.cloud.common.exception.Mall4cloudException;
 import com.mall4j.cloud.common.response.ServerResponseEntity;
 import com.mall4j.cloud.multishop.service.ShopDetailService;
 import com.mall4j.cloud.multishop.vo.ShopHeadInfoVO;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Objects;
 
@@ -18,21 +21,21 @@ import java.util.Objects;
  */
 @RequestMapping(value = "/ua/shop_detail")
 @RestController("appShopDetailController")
-@Api(tags = "app-店铺详情信息")
+@Tag(name = "app-店铺详情信息")
 public class ShopDetailController {
 
     @Autowired
     private ShopDetailService shopDetailService;
 
     @GetMapping("/check_shop_name")
-    @ApiOperation(value = "验证店铺名称是否重名", notes = "验证店铺名称是否重名")
+    @Operation(summary = "验证店铺名称是否重名" , description = "验证店铺名称是否重名")
     public ServerResponseEntity<Boolean> checkShopName(@RequestParam("shopName") String shopName) {
         Boolean res = shopDetailService.checkShopName(shopName);
         return ServerResponseEntity.success(res);
     }
 
     @GetMapping("/head_info")
-    @ApiOperation(value = "店铺头部信息", notes = "店铺头部信息")
+    @Operation(summary = "店铺头部信息" , description = "店铺头部信息")
     public ServerResponseEntity<ShopHeadInfoVO> getShopHeadInfo(Long shopId) {
         ShopHeadInfoVO shopHeadInfoVO = new ShopHeadInfoVO();
         ShopDetailVO shopDetailVO = shopDetailService.getByShopId(shopId);

@@ -1,9 +1,9 @@
 package com.mall4j.cloud.product.mapper;
 
+import com.mall4j.cloud.api.product.vo.SkuVO;
 import com.mall4j.cloud.product.bo.SkuWithStockBO;
 import com.mall4j.cloud.product.model.SkuStock;
 import com.mall4j.cloud.product.vo.SkuStockVO;
-import com.mall4j.cloud.api.product.vo.SkuVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

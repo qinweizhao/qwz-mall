@@ -4,9 +4,8 @@ import cn.hutool.core.collection.CollUtil;
 import com.mall4j.cloud.api.product.vo.CategoryVO;
 import com.mall4j.cloud.product.mapper.AttrCategoryMapper;
 import com.mall4j.cloud.product.service.AttrCategoryService;
-import org.springframework.stereotype.Service;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;

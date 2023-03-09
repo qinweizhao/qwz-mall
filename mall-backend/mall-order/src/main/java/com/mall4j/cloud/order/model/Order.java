@@ -1,10 +1,10 @@
 package com.mall4j.cloud.order.model;
 
+import com.mall4j.cloud.common.model.BaseModel;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
-import com.mall4j.cloud.common.model.BaseModel;
 /**
  * 订单信息
  *

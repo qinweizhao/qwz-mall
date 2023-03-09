@@ -1,8 +1,8 @@
 package com.mall4j.cloud.product.mapper;
 
+import com.mall4j.cloud.common.order.vo.ShopCartItemVO;
 import com.mall4j.cloud.product.dto.shopcart.CheckShopCartItemDTO;
 import com.mall4j.cloud.product.model.ShopCartItem;
-import com.mall4j.cloud.common.order.vo.ShopCartItemVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

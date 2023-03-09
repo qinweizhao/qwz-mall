@@ -16,16 +16,15 @@ import com.mall4j.cloud.common.response.ResponseEnum;
 import com.mall4j.cloud.common.response.ServerResponseEntity;
 import com.mall4j.cloud.common.util.IpHelper;
 import com.mall4j.cloud.user.dto.UserRegisterDTO;
-import com.mall4j.cloud.user.model.User;
 import com.mall4j.cloud.user.mapper.UserMapper;
+import com.mall4j.cloud.user.model.User;
 import com.mall4j.cloud.user.service.UserService;
 import io.seata.spring.annotation.GlobalTransactional;
 import ma.glasnost.orika.MapperFacade;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
