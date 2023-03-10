@@ -7,6 +7,9 @@
     <groupId>com.qinweizhao</groupId>
     <artifactId>mall-backend</artifactId>
     <version>1.0.0</version>
+
+    <name>a-backend</name>
+
     <modules>
         <module>mall-gateway</module>
         <module>mall-auth</module>
