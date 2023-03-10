@@ -1,0 +1,88 @@
+# 数据源
+spring:
+  #避免nacos取网卡出错
+  cloud:
+    inetutils:
+      preferred-networks: 172.16.172
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 0
+      maximum-pool-size: 20
+      idle-timeout: 25000
+      auto-commit: true
+      connection-test-query: SELECT 1
+  redis:
+    host: 172.16.172.128
+    # password: null
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+#mybatis的相关配置
+mybatis:
+  #mapper配置文件
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.mall4j.cloud.**.model
+  #开启驼峰命名
+  configuration:
+    map-underscore-to-camel-case: true
+
+seata:
+  config:
+    type: nacos
+    nacos:
+      namespace: 4b70485d-72dd-44df-a76a-7a3f578a3001
+      server-addr: ${spring.cloud.nacos.discovery.server-addr}
+      password: ${spring.cloud.nacos.discovery.password}
+      username: ${spring.cloud.nacos.discovery.username}
+  registry:
+    type: nacos
+    nacos:
+      server-addr: ${spring.cloud.nacos.discovery.server-addr}
+      username: ${spring.cloud.nacos.discovery.username}
+      password: ${spring.cloud.nacos.discovery.password}
+      namespace: ${seata.config.nacos.namespace}
+
+logging:
+  level:
+    root: info
+    com:
+      mall:
+        shop: debug
+# 分页合理化，当查询到页码大于最后一页的时候，返回最后一页的数据，防止vue在最后一页删除时，数据不对的问题
+pagehelper:
+  reasonable: true
+
+biz:
+  oss:
+    # resources-url是带有bucket的
+    resources-url: http://172.16.172.128:9000/mall
+    type: 1
+    endpoint: http://172.16.172.128:9000
+    bucket: mall
+    access-key-id: admin
+    access-key-secret: admin123456
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+  inside:
+    key: mall-feign-inside-key
+    secret: mall-feign-inside-secret
+    # ip白名单，如果有需要的话，用小写逗号分割
+    ips:
+
+mall:
+  job:
+    accessToken:
+    admin:
+      addresses: http://172.16.172.128:8999
+
+rocketmq:
+  name-server: 172.16.172.128:9876

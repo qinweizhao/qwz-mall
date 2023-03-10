@@ -1,0 +1,126 @@
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allow-credentials: true
+            allowed-headers: "*"
+            # 半个月内都允许
+            max-age: 1296000
+            # 测试环境，全部允许
+            allowedOriginPatterns: "*"
+              # allowedOrigins:
+              # - "http://localhost:9527"
+              # - "http://localhost:9527"
+              # - "http://localhost:9528"
+              # - "http://localhost:9529"
+            # - "http://:9527"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - OPTIONS
+              - DELETE
+      discovery:
+        locator:
+          # 开启服务注册和发现
+          enabled: true
+          # 不手动写路由的话，swagger整合不了...
+      routes:
+        - id: mall-rbac
+          uri: lb://mall-rbac
+          predicates:
+            - Path=/mall_rbac/**
+          filters:
+            - RewritePath=/mall_rbac(?<segment>/?.*), $\{segment}
+        - id: mall-auth
+          uri: lb://mall-auth
+          predicates:
+            - Path=/mall_auth/**
+          filters:
+            - RewritePath=/mall_auth(?<segment>/?.*), $\{segment}
+        - id: mall-multishop
+          uri: lb://mall-multishop
+          predicates:
+            - Path=/mall_multishop/**
+          filters:
+            - RewritePath=/mall_multishop(?<segment>/?.*), $\{segment}
+        - id: mall-biz
+          uri: lb://mall-biz
+          predicates:
+            - Path=/mall_biz/**
+          filters:
+            - RewritePath=/mall_biz(?<segment>/?.*), $\{segment}
+        - id: mall-product
+          uri: lb://mall-product
+          predicates:
+            - Path=/mall_product/**
+          filters:
+            - RewritePath=/mall_product(?<segment>/?.*), $\{segment}
+        - id: mall-user
+          uri: lb://mall-user
+          predicates:
+            - Path=/mall_user/**
+          filters:
+            - RewritePath=/mall_user(?<segment>/?.*), $\{segment}
+        - id: mall-order
+          uri: lb://mall-order
+          predicates:
+            - Path=/mall_order/**
+          filters:
+            - RewritePath=/mall_order(?<segment>/?.*), $\{segment}
+        - id: mall-delivery
+          uri: lb://mall-delivery
+          predicates:
+            - Path=/mall_delivery/**
+          filters:
+            - RewritePath=/mall_delivery(?<segment>/?.*), $\{segment}
+        - id: mall-discount
+          uri: lb://mall-discount
+          predicates:
+            - Path=/mall_discount/**
+          filters:
+            - RewritePath=/mall_discount(?<segment>/?.*), $\{segment}
+        - id: mall-platform
+          uri: lb://mall-platform
+          predicates:
+            - Path=/mall_platform/**
+          filters:
+            - RewritePath=/mall_platform(?<segment>/?.*), $\{segment}
+        - id: mall-search
+          uri: lb://mall-search
+          predicates:
+            - Path=/mall_search/**
+          filters:
+            - RewritePath=/mall_search(?<segment>/?.*), $\{segment}
+        - id: mall-coupon
+          uri: lb://mall-coupon
+          predicates:
+            - Path=/mall_coupon/**
+          filters:
+            - RewritePath=/mall_coupon(?<segment>/?.*), $\{segment}
+        - id: mall-payment
+          uri: lb://mall-payment
+          predicates:
+            - Path=/mall_payment/**
+          filters:
+            - RewritePath=/mall_payment(?<segment>/?.*), $\{segment}
+        - id: mall-group
+          uri: lb://mall-group
+          predicates:
+            - Path=/mall_group/**
+          filters:
+            - RewritePath=/mall_group(?<segment>/?.*), $\{segment}
+        - id: mall-seckill
+          uri: lb://mall-seckill
+          predicates:
+            - Path=/mall_seckill/**
+          filters:
+            - RewritePath=/mall_seckill(?<segment>/?.*), $\{segment}
+        - id: mall-flow
+          uri: lb://mall-flow
+          predicates:
+            - Path=/mall_flow/**
+          filters:
+            - RewritePath=/mall_flow(?<segment>/?.*), $\{segment}
