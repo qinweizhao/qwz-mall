@@ -4,7 +4,6 @@ import cn.hutool.core.util.ArrayUtil;
 import com.mall4j.cloud.common.security.adapter.AuthConfigAdapter;
 import com.mall4j.cloud.common.security.adapter.DefaultAuthConfigAdapter;
 import com.mall4j.cloud.common.security.filter.AuthFilter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;

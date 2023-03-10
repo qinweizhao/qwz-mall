@@ -1,7 +1,5 @@
 package com.mall4j.cloud.common.order.bo;
 
-import io.swagger.annotations.ApiModelProperty;
-
 import java.util.List;
 
 /**
