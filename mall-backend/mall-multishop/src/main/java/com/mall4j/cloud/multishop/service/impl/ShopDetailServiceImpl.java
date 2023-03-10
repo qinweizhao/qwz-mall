@@ -34,7 +34,7 @@ import com.mall4j.cloud.multishop.model.ShopUser;
 import com.mall4j.cloud.multishop.service.ShopDetailService;
 import com.mall4j.cloud.multishop.service.ShopUserService;
 import com.mall4j.cloud.multishop.vo.ShopDetailAppVO;
-import io.seata.spring.annotation.GlobalTransactional;
+
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -52,6 +52,7 @@ import java.util.stream.Collectors;
  * @author FrozenWatermelon
  * @date 2020-11-23 16:24:29
  */
+// todo seata
 @Service
 public class ShopDetailServiceImpl implements ShopDetailService {
 
@@ -133,7 +134,8 @@ public class ShopDetailServiceImpl implements ShopDetailService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    @GlobalTransactional
+
+//    @GlobalTransactional
     public void applyShop(ShopDetailDTO shopDetailDTO) {
         checkShopInfo(shopDetailDTO);
         ShopDetail newShopDetail = mapperFacade.map(shopDetailDTO, ShopDetail.class);
@@ -164,7 +166,7 @@ public class ShopDetailServiceImpl implements ShopDetailService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    @GlobalTransactional(rollbackFor = Exception.class)
+//    @GlobalTransactional(rollbackFor = Exception.class)
     public void createShop(ShopDetailDTO shopDetailDTO) {
         checkShopInfo(shopDetailDTO);
         UserInfoInTokenBO userInfoInTokenBO = AuthUserContext.get();

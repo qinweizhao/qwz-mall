@@ -29,21 +29,21 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
 
-seata:
-  config:
-    type: nacos
-    nacos:
-      namespace: 4b70485d-72dd-44df-a76a-7a3f578a3001
-      server-addr: ${spring.cloud.nacos.discovery.server-addr}
-      password: ${spring.cloud.nacos.discovery.password}
-      username: ${spring.cloud.nacos.discovery.username}
-  registry:
-    type: nacos
-    nacos:
-      server-addr: ${spring.cloud.nacos.discovery.server-addr}
-      username: ${spring.cloud.nacos.discovery.username}
-      password: ${spring.cloud.nacos.discovery.password}
-      namespace: ${seata.config.nacos.namespace}
+#seata:
+#  config:
+#    type: nacos
+#    nacos:
+#      namespace: 4b70485d-72dd-44df-a76a-7a3f578a3001
+#      server-addr: ${spring.cloud.nacos.discovery.server-addr}
+#      password: ${spring.cloud.nacos.discovery.password}
+#      username: ${spring.cloud.nacos.discovery.username}
+#  registry:
+#    type: nacos
+#    nacos:
+#      server-addr: ${spring.cloud.nacos.discovery.server-addr}
+#      username: ${spring.cloud.nacos.discovery.username}
+#      password: ${spring.cloud.nacos.discovery.password}
+#      namespace: ${seata.config.nacos.namespace}
 
 logging:
   level:

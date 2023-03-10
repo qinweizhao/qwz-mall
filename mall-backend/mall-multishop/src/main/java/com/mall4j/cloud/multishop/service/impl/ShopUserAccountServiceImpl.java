@@ -11,7 +11,6 @@ import com.mall4j.cloud.multishop.dto.ChangeAccountDTO;
 import com.mall4j.cloud.multishop.mapper.ShopUserMapper;
 import com.mall4j.cloud.multishop.model.ShopUser;
 import com.mall4j.cloud.multishop.service.ShopUserAccountService;
-import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +30,8 @@ public class ShopUserAccountServiceImpl implements ShopUserAccountService {
 	private AccountFeignClient accountFeignClient;
 
     @Override
-	@GlobalTransactional(rollbackFor = Exception.class)
+	// todo seata
+//	@GlobalTransactional(rollbackFor = Exception.class)
 	@Transactional(rollbackFor = Exception.class)
     public ServerResponseEntity<Void> save(ChangeAccountDTO changeAccountDTO) {
 		AuthAccountDTO authAccountDTO = getAuthAccountDTO(changeAccountDTO);

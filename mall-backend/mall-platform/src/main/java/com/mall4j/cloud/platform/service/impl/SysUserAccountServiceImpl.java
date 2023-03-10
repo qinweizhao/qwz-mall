@@ -11,7 +11,6 @@ import com.mall4j.cloud.platform.dto.ChangeAccountDTO;
 import com.mall4j.cloud.platform.mapper.SysUserMapper;
 import com.mall4j.cloud.platform.model.SysUser;
 import com.mall4j.cloud.platform.service.SysUserAccountService;
-import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +21,7 @@ import javax.annotation.Resource;
  * @author lhd
  * @date 2020/12/22
  */
+// todo seata
 @Service
 public class SysUserAccountServiceImpl implements SysUserAccountService {
 
@@ -31,7 +31,7 @@ public class SysUserAccountServiceImpl implements SysUserAccountService {
 	private AccountFeignClient accountFeignClient;
 
     @Override
-	@GlobalTransactional(rollbackFor = Exception.class)
+//	@GlobalTransactional(rollbackFor = Exception.class)
 	@Transactional(rollbackFor = Exception.class)
     public ServerResponseEntity<Void> save(ChangeAccountDTO changeAccountDTO) {
 		AuthAccountDTO authAccountDTO = getAuthAccountDTO(changeAccountDTO);

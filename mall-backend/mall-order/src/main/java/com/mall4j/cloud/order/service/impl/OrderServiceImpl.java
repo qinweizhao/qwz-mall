@@ -30,7 +30,7 @@ import com.mall4j.cloud.order.service.OrderItemService;
 import com.mall4j.cloud.order.service.OrderService;
 import com.mall4j.cloud.order.vo.OrderCountVO;
 import com.mall4j.cloud.order.vo.OrderVO;
-import io.seata.spring.annotation.GlobalTransactional;
+//import io.seata.spring.annotation.GlobalTransactional;
 import ma.glasnost.orika.MapperFacade;
 import org.apache.rocketmq.client.producer.SendStatus;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
@@ -88,7 +88,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    @GlobalTransactional(rollbackFor = Exception.class)
+//    @GlobalTransactional(rollbackFor = Exception.class)
     public List<Long> submit(Long userId, ShopCartOrderMergerVO mergerOrder) {
         List<Order> orders = saveOrder(userId, mergerOrder);
         List<Long> orderIds = new ArrayList<>();
@@ -212,7 +212,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    @GlobalTransactional(rollbackFor = Exception.class)
+//    @GlobalTransactional(rollbackFor = Exception.class)
     public void delivery(DeliveryOrderDTO deliveryOrderParam) {
         //修改为发货状态
         Date date = new Date();

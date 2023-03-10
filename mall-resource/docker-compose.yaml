@@ -1,0 +1,14 @@
+version: "3.5"
+
+services:
+  mall-seata:
+    image: seataio/seata-server:1.6.1
+    container_name: mall-seata
+    restart: always
+    ports:
+      - 8091:8091
+      - 7091:7091
+    environment:
+      - SEATA_IP=172.16.172.41
+    volumes:
+      - ./seata/application.yml:/seata-server/resources/application.yml

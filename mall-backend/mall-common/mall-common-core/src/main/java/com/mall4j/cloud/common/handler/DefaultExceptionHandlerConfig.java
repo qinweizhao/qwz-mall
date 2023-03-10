@@ -1,12 +1,8 @@
 package com.mall4j.cloud.common.handler;
 
-import cn.hutool.core.util.StrUtil;
 import com.mall4j.cloud.common.exception.Mall4cloudException;
 import com.mall4j.cloud.common.response.ResponseEnum;
 import com.mall4j.cloud.common.response.ServerResponseEntity;
-import io.seata.core.context.RootContext;
-import io.seata.core.exception.TransactionException;
-import io.seata.tm.api.GlobalTransactionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -78,13 +74,14 @@ public class DefaultExceptionHandlerConfig {
 		return ResponseEntity.status(HttpStatus.OK).body(ServerResponseEntity.showFailMsg(e.getMessage()));
 	}
 
-	@ExceptionHandler(Exception.class)
-	public ResponseEntity<ServerResponseEntity<Object>> exceptionHandler(Exception e) throws TransactionException {
-		logger.error("exceptionHandler", e);
-		logger.info("RootContext.getXID(): " + RootContext.getXID());
-		if (StrUtil.isNotBlank(RootContext.getXID())) {
-			GlobalTransactionContext.reload(RootContext.getXID()).rollback();
-		}
-		return ResponseEntity.status(HttpStatus.OK).body(ServerResponseEntity.fail(ResponseEnum.EXCEPTION));
-	}
+	// todo seata
+//	@ExceptionHandler(Exception.class)
+//	public ResponseEntity<ServerResponseEntity<Object>> exceptionHandler(Exception e) throws TransactionException {
+//		logger.error("exceptionHandler", e);
+//		logger.info("RootContext.getXID(): " + RootContext.getXID());
+//		if (StrUtil.isNotBlank(RootContext.getXID())) {
+//			GlobalTransactionContext.reload(RootContext.getXID()).rollback();
+//		}
+//		return ResponseEntity.status(HttpStatus.OK).body(ServerResponseEntity.fail(ResponseEnum.EXCEPTION));
+//	}
 }

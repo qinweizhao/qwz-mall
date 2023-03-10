@@ -15,7 +15,6 @@ import com.mall4j.cloud.multishop.mapper.ShopUserMapper;
 import com.mall4j.cloud.multishop.model.ShopUser;
 import com.mall4j.cloud.multishop.service.ShopUserService;
 import com.mall4j.cloud.multishop.vo.ShopUserVO;
-import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,7 +65,8 @@ public class ShopUserServiceImpl implements ShopUserService {
 	}
 
 	@Override
-	@GlobalTransactional(rollbackFor = Exception.class)
+	// todo seata
+//	@GlobalTransactional(rollbackFor = Exception.class)
 	@Transactional(rollbackFor = Exception.class)
 	public void update(ShopUser shopUser, List<Long> roleIds) {
 		UserRoleDTO userRoleDTO = new UserRoleDTO();
@@ -77,7 +77,8 @@ public class ShopUserServiceImpl implements ShopUserService {
 	}
 
 	@Override
-	@GlobalTransactional(rollbackFor = Exception.class)
+	// todo seata
+//	@GlobalTransactional(rollbackFor = Exception.class)
 	@Transactional(rollbackFor = Exception.class)
 	public void deleteById(Long shopUserId) {
 		UserInfoInTokenBO userInfoInTokenBO = AuthUserContext.get();

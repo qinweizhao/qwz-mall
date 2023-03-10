@@ -19,7 +19,6 @@ import com.mall4j.cloud.user.dto.UserRegisterDTO;
 import com.mall4j.cloud.user.mapper.UserMapper;
 import com.mall4j.cloud.user.model.User;
 import com.mall4j.cloud.user.service.UserService;
-import io.seata.spring.annotation.GlobalTransactional;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -37,6 +36,7 @@ import java.util.Objects;
  * @author YXF
  * @date 2020-12-08 11:18:04
  */
+// todo seata
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -80,7 +80,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @GlobalTransactional(rollbackFor = Exception.class)
+//    @GlobalTransactional(rollbackFor = Exception.class)
     @Transactional(rollbackFor = Exception.class)
     public Long save(UserRegisterDTO param) {
         this.checkRegisterInfo(param);

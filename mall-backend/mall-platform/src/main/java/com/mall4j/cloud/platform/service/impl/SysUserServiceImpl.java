@@ -13,7 +13,6 @@ import com.mall4j.cloud.platform.model.SysUser;
 import com.mall4j.cloud.platform.service.SysUserService;
 import com.mall4j.cloud.platform.vo.SysUserSimpleVO;
 import com.mall4j.cloud.platform.vo.SysUserVO;
-import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -28,6 +27,7 @@ import java.util.List;
  * @date 2020/12/22
  */
 @Service
+// todo seata
 public class SysUserServiceImpl implements SysUserService {
 
 	@Resource
@@ -59,7 +59,7 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 
     @Override
-	@GlobalTransactional(rollbackFor = Exception.class)
+//	@GlobalTransactional(rollbackFor = Exception.class)
 	@Transactional(rollbackFor = Exception.class)
     public void save(SysUser sysUser, List<Long> roleIds) {
 		UserRoleDTO userRoleDTO = new UserRoleDTO();
@@ -70,7 +70,7 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 
 	@Override
-	@GlobalTransactional(rollbackFor = Exception.class)
+//	@GlobalTransactional(rollbackFor = Exception.class)
 	@Transactional(rollbackFor = Exception.class)
 	@CacheEvict(cacheNames = CacheNames.PLATFORM_SIMPLE_INFO_KEY, key = "#sysUser.sysUserId")
 	public void update(SysUser sysUser, List<Long> roleIds) {
@@ -82,7 +82,7 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 
 	@Override
-	@GlobalTransactional(rollbackFor = Exception.class)
+//	@GlobalTransactional(rollbackFor = Exception.class)
 	@Transactional(rollbackFor = Exception.class)
 	@CacheEvict(cacheNames = CacheNames.PLATFORM_SIMPLE_INFO_KEY, key = "#sysUserId")
 	public void deleteById(Long sysUserId) {

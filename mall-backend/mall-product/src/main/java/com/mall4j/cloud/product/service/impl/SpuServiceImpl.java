@@ -27,7 +27,6 @@ import com.mall4j.cloud.product.model.SpuAttrValue;
 import com.mall4j.cloud.product.model.SpuDetail;
 import com.mall4j.cloud.product.model.SpuExtension;
 import com.mall4j.cloud.product.service.*;
-import io.seata.spring.annotation.GlobalTransactional;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +46,7 @@ import java.util.stream.Collectors;
  * @date 2020-10-28 15:27:24
  */
 @Service
+// todo seata
 public class SpuServiceImpl implements SpuService {
 
     @Autowired
@@ -112,7 +112,7 @@ public class SpuServiceImpl implements SpuService {
     }
 
     @Override
-    @GlobalTransactional(rollbackFor = Exception.class)
+//    @GlobalTransactional(rollbackFor = Exception.class)
     public void changeSpuStatus(Long spuId, Integer status) {
         spuMapper.changeSpuStatus(spuId, status);
         if (!Objects.equals(status, StatusEnum.ENABLE)) {
@@ -188,7 +188,7 @@ public class SpuServiceImpl implements SpuService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    @GlobalTransactional(rollbackFor = Exception.class)
+//    @GlobalTransactional(rollbackFor = Exception.class)
     public void deleteById(Long spuId) {
         SpuVO spuVO = getBySpuId(spuId);
         if(Objects.isNull(spuVO) || Objects.equals(spuVO.getStatus(), StatusEnum.DELETE.value())){
